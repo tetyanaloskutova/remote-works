@@ -75,7 +75,7 @@ class Address(models.Model):
 class UserManager(BaseUserManager):
 
     def create_user(
-            self, email, password=None, is_staff=False, is_active=True,
+            self, email, password=None, is_staff=False, is_employer=False, is_active=True,
             **extra_fields):
         """Create a user instance with the given email and password."""
         email = UserManager.normalize_email(email)
@@ -83,7 +83,7 @@ class UserManager(BaseUserManager):
         extra_fields.pop('username', None)
 
         user = self.model(
-            email=email, is_active=is_active, is_staff=is_staff,
+            email=email, is_active=is_active, is_staff=is_staff,is_employer=is_employer,
             **extra_fields)
         if password:
             user.set_password(password)
@@ -113,6 +113,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     addresses = models.ManyToManyField(
         Address, blank=True, related_name='user_addresses')
     is_staff = models.BooleanField(default=False)
+    is_employer = models.BooleanField(default=False)
+
     token = models.UUIDField(default=get_token, editable=False, unique=True)
     is_active = models.BooleanField(default=True)
     note = models.TextField(null=True, blank=True)

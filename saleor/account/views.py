@@ -15,6 +15,10 @@ from .emails import send_account_delete_confirmation_email
 from .forms import (
     ChangePasswordForm, LoginForm, NameForm, PasswordResetForm, SignupForm,
     get_address_form, logout_on_password_change)
+from ..account.models import User
+from django.db.models import Q
+from ..dashboard.customer.filters import UserFilter
+
 
 
 @find_and_assign_anonymous_cart()
@@ -167,3 +171,31 @@ def account_delete_confirm(request, token):
 
     return TemplateResponse(
         request, 'account/account_delete_prompt.html')
+
+
+def profile_list(request):
+    profiles = (
+        User.objects.filter(Q(is_staff=False)).distinct().prefetch_related('products', 'addresses').select_related('default_billing_address', 'default_shipping_address').order_by('email'))
+    print(len(profiles))
+    profile_filter = UserFilter(request.GET, queryset=profiles)
+    profiles = get_paginator_items(
+        profile_filter.qs, settings.DASHBOARD_PAGINATE_BY,
+        request.GET.get('page'))
+    print(len(profiles))
+    ctx = {
+        'profiles': profiles, 'filter_set': profile_filter,
+        'is_empty': not profile_filter.queryset.exists()}
+    return TemplateResponse(request, 'account/list.html', ctx)
+
+
+def profile_details(request, pk):
+    queryset = User.objects.prefetch_related(
+        'orders', 'addresses', 'notes').select_related(
+            'default_billing_address', 'default_shipping_address')
+    customer = get_object_or_404(queryset, pk=pk)
+    customer_orders = customer.orders.all()
+    notes = customer.notes.all()
+    ctx = {
+        'customer': customer, 'customer_orders': customer_orders,
+        'notes': notes}
+    return TemplateResponse(request, 'account/profile_detail.html', ctx)

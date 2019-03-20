@@ -245,7 +245,7 @@ class ProductForm(forms.ModelForm, AttributesMixin):
     class Meta:
         model = Product
         exclude = [
-            'attributes', 'product_type', 'updated_at', 'description_json']
+            'attributes', 'product_type', 'updated_at', 'description_json','owner']
         labels = {
             'name': pgettext_lazy('Item name', 'Name'),
             'price': pgettext_lazy('Currency amount', 'Price'),

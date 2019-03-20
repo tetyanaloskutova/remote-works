@@ -38,7 +38,6 @@ from .utils import (
     save_address_in_order)
 
 
-@staff_member_required
 @permission_required('order.manage_orders')
 def order_list(request):
     orders = Order.objects.prefetch_related('payments', 'lines', 'user')
@@ -53,7 +52,6 @@ def order_list(request):
 
 
 @require_POST
-@staff_member_required
 @permission_required('order.manage_orders')
 def order_create(request):
     display_gross_prices = request.site.settings.display_gross_prices
@@ -66,7 +64,6 @@ def order_create(request):
     return redirect('dashboard:order-details', order_pk=order.pk)
 
 
-@staff_member_required
 @permission_required('order.manage_orders')
 def create_order_from_draft(request, order_pk):
     order = get_object_or_404(Order.objects.drafts(), pk=order_pk)
@@ -96,7 +93,6 @@ def create_order_from_draft(request, order_pk):
     return TemplateResponse(request, template, ctx, status=status)
 
 
-@staff_member_required
 @permission_required('order.manage_orders')
 def remove_draft_order(request, order_pk):
     order = get_object_or_404(Order.objects.drafts(), pk=order_pk)
@@ -111,7 +107,6 @@ def remove_draft_order(request, order_pk):
     return TemplateResponse(request, template, ctx)
 
 
-@staff_member_required
 @permission_required('order.manage_orders')
 def order_details(request, order_pk):
     qs = Order.objects.select_related(
@@ -129,7 +124,6 @@ def order_details(request, order_pk):
     return TemplateResponse(request, 'dashboard/order/detail.html', ctx)
 
 
-@staff_member_required
 @permission_required('order.manage_orders')
 def order_add_note(request, order_pk):
     order = get_object_or_404(Order, pk=order_pk)

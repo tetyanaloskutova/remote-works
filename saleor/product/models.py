@@ -117,6 +117,9 @@ class Product(SeoModel, PublishableModel):
     weight = MeasurementField(
         measurement=Weight, unit_choices=WeightUnits.CHOICES,
         blank=True, null=True)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null = True, related_name='products',
+        on_delete=models.SET_NULL)
 
     translated = TranslationProxy()
 

@@ -50,6 +50,7 @@ def product_details(request, slug, product_id, form=None):
         currency. The value will be None if exchange rate is not available or
         the local currency is the same as site's default currency.
     """
+    print("Product")
     products = products_with_details(user=request.user)
     product = get_object_or_404(products, id=product_id)
     if product.get_slug() != slug:

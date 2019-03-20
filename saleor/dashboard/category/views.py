@@ -15,7 +15,6 @@ from .filters import CategoryFilter
 from .forms import CategoryForm
 
 
-@staff_member_required
 @permission_required('product.manage_products')
 def category_list(request):
     categories = Category.tree.root_nodes().order_by('name')

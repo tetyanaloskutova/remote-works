@@ -27,7 +27,7 @@ def home(request):
             'webpage_schema': json.dumps(webpage_schema)})
 
 
-@staff_member_required
+#@staff_member_required
 def styleguide(request):
     return TemplateResponse(request, 'styleguide.html')
 

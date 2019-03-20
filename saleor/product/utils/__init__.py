@@ -17,6 +17,8 @@ def products_visible_to_user(user):
     from ..models import Product
     if user.is_authenticated and user.is_active and user.is_staff:
         return Product.objects.all()
+    if user.is_authenticated and user.is_active:
+        return Product.objects.filter(owner = user)
     return Product.objects.published()
 
 

@@ -19,7 +19,7 @@ def superuser_required(
         view_func=None, redirect_field_name=REDIRECT_FIELD_NAME,
         login_url='account:login'):
     """Check if the user is logged in and is a superuser.
-
+    
     Otherwise redirects to the login page.
     """
     actual_decorator = user_passes_test(
@@ -31,8 +31,8 @@ def superuser_required(
     return actual_decorator
 
 
-@staff_member_required
 def index(request):
+    print("Product")
     paginate_by = 10
     orders_to_ship = Order.objects.ready_to_fulfill().select_related(
         'user').prefetch_related('lines', 'payments')
@@ -47,7 +47,7 @@ def index(request):
     return TemplateResponse(request, 'dashboard/index.html', ctx)
 
 
-@staff_member_required
+#@staff_member_required
 def styleguide(request):
     return TemplateResponse(request, 'dashboard/styleguide/index.html', {})
 

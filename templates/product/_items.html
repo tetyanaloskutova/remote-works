@@ -1,33 +1,33 @@
 {% load i18n %}
 {% load static %}
 {% load taxed_prices %}
-{% load get_product_image_thumbnail from product_images %}
+{% load get_skill_image_thumbnail from skill_images %}
 {% load placeholder %}
 
-{% for product, availability in products %}
-  <div class="col-6 col-lg-3 product-list">
-    <a href="{{ product.get_absolute_url }}" class="link--clean">
+{% for skill, availability in skills %}
+  <div class="col-6 col-lg-3 skill-list">
+    <a href="{{ skill.get_absolute_url }}" class="link--clean">
       <div class="text-center">
         <div>
-          <div class="product-image">
+          <div class="skill-image">
             <img class="img-responsive lazyload lazypreload"
-                 data-src="{% get_product_image_thumbnail product.get_first_image method="thumbnail" size=255 %}"
-                 data-srcset="{% get_product_image_thumbnail product.get_first_image method="thumbnail" size=255 %} 1x, {% get_product_image_thumbnail product.get_first_image method="thumbnail" size=510 %} 2x"
+                 data-src="{% get_skill_image_thumbnail skill.get_first_image method="thumbnail" size=255 %}"
+                 data-srcset="{% get_skill_image_thumbnail skill.get_first_image method="thumbnail" size=255 %} 1x, {% get_skill_image_thumbnail skill.get_first_image method="thumbnail" size=510 %} 2x"
                  alt=""
                  src="{% placeholder size=255 %}">
             </div>
-          <span class="product-list-item-name" title="{{ product.translated }}">{{ product.translated }}</span>
+          <span class="skill-list-item-name" title="{{ skill.translated }}">{{ skill.translated }}</span>
         </div>
         <div class="panel-footer">
           {% if availability.available %}
             {% price_range availability.price_range %}
             {% if availability.on_sale %}
               {% if availability.price_range_undiscounted.start != availability.price_range.start %}
-                <div class="product-list__sale">
+                <div class="skill-list__sale">
                   <svg data-src="{% static "images/sale-bg.svg" %}" />
-                  <span class="product-list__sale__text">
+                  <span class="skill-list__sale__text">
                     {% comment %}Translators: Layout may break if character length is different than four.{% endcomment %}
-                    {% trans "Urgent" context "Sale (discount) label for item in product list" %}
+                    {% trans "Urgent" context "Sale (discount) label for item in skill list" %}
                   </span>
                 </div>
               {% endif %}

@@ -8,7 +8,7 @@ from django.template.response import TemplateResponse
 from ..order.models import Order
 from ..payment import ChargeStatus
 from ..payment.models import Payment
-from ..product.models import Product
+from ..skill.models import Skill
 
 
 def staff_member_required(f):
@@ -32,7 +32,6 @@ def superuser_required(
 
 
 def index(request):
-    print("Product")
     paginate_by = 10
     orders_to_ship = Order.objects.ready_to_fulfill().select_related(
         'user').prefetch_related('lines', 'payments')
@@ -54,6 +53,6 @@ def styleguide(request):
 
 def get_low_stock_products():
     threshold = getattr(settings, 'LOW_STOCK_THRESHOLD', 10)
-    products = Product.objects.annotate(
+    products = Skill.objects.annotate(
         total_stock=Sum('variants__quantity'))
     return products.filter(Q(total_stock__lte=threshold)).distinct()

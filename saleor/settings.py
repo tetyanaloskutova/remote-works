@@ -212,7 +212,7 @@ INSTALLED_APPS = [
     # Local apps
     'saleor.account',
     'saleor.discount',
-    'saleor.product',
+    'saleor.skill',
     'saleor.checkout',
     'saleor.core',
     'saleor.graphql',
@@ -407,18 +407,18 @@ if AWS_MEDIA_BUCKET_NAME:
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'products': [
-        ('product_gallery', 'thumbnail__540x540'),
-        ('product_gallery_2x', 'thumbnail__1080x1080'),
-        ('product_small', 'thumbnail__60x60'),
-        ('product_small_2x', 'thumbnail__120x120'),
-        ('product_list', 'thumbnail__255x255'),
-        ('product_list_2x', 'thumbnail__510x510')],
+    'skills': [
+        ('skill_gallery', 'thumbnail__540x540'),
+        ('skill_gallery_2x', 'thumbnail__1080x1080'),
+        ('skill_small', 'thumbnail__60x60'),
+        ('skill_small_2x', 'thumbnail__120x120'),
+        ('skill_list', 'thumbnail__255x255'),
+        ('skill_list_2x', 'thumbnail__510x510')],
     'background_images': [
         ('header_image', 'thumbnail__1080x440')]}
 
 VERSATILEIMAGEFIELD_SETTINGS = {
-    # Images should be pre-generated on Production environment
+    # Images should be pre-generated on production environment
     'create_images_on_demand': get_bool_from_env(
         'CREATE_IMAGES_ON_DEMAND', DEBUG),
 }

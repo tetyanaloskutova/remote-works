@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 
 from ..page.models import Page
-from ..product.models import Category, Collection, Product
+from ..skill.models import Category, Collection, Skill
 
 
 class I18nSitemap(Sitemap):
@@ -13,7 +13,7 @@ class I18nSitemap(Sitemap):
 class ProductSitemap(I18nSitemap):
 
     def items(self):
-        return Product.objects.only('id', 'name').order_by('-id')
+        return Skill.objects.only('id', 'name').order_by('-id')
 
 
 class CategorySitemap(I18nSitemap):

@@ -7,9 +7,9 @@ from django.templatetags.static import static
 from django_filters.fields import RangeField
 from versatileimagefield.widgets import VersatileImagePPOIClickWidget
 
-from ...product.utils.costs import (
+from ...skill.utils.costs import (
     get_margin_for_variant, get_variant_costs_data)
-from ..product.widgets import ImagePreviewWidget
+from ..skill.widgets import ImagePreviewWidget
 from .chips import (
     handle_default, handle_multiple_choice, handle_multiple_model_choice,
     handle_nullboolean, handle_range, handle_single_choice,
@@ -32,17 +32,17 @@ def construct_get_query(context, **params):
 
 @register.filter
 def is_versatile_image_ppoi_click_widget(field):
-    """Check if image field widget is used when editing a product image."""
+    """Check if image field widget is used when editing a skill image."""
     return isinstance(field.field.widget, VersatileImagePPOIClickWidget)
 
 
 @register.filter
 def is_image_preview_widget(field):
-    """Check if image field widget is used when adding a product image."""
+    """Check if image field widget is used when adding a skill image."""
     return isinstance(field.field.widget, ImagePreviewWidget)
 
 
-@register.inclusion_tag('dashboard/product/product_variant/_image_select.html')
+@register.inclusion_tag('dashboard/skill/skill_variant/_image_select.html')
 def render_image_choice(field):
     choices = zip(field, field.field.queryset)
     return {'field': field, 'choices_with_images': choices}

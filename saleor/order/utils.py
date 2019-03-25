@@ -16,7 +16,7 @@ from ..order import FulfillmentStatus, OrderStatus
 from ..order.models import OrderLine
 from ..payment import ChargeStatus
 from ..payment.utils import gateway_refund, gateway_void
-from ..product.utils import allocate_stock, deallocate_stock, increase_stock
+from ..skill.utils import allocate_stock, deallocate_stock, increase_stock
 
 
 def check_order_status(func):
@@ -99,7 +99,7 @@ def update_order_prices(order, discounts):
         if line.variant:
             line.unit_price = line.variant.get_price(discounts, taxes)
             line.tax_rate = get_tax_rate_by_name(
-                line.variant.product.tax_rate, taxes)
+                line.variant.skill.tax_rate, taxes)
             line.save()
 
     if order.shipping_method:
@@ -112,7 +112,7 @@ def update_order_prices(order, discounts):
 def cancel_order(order, restock):
     """Cancel order and associated fulfillments.
 
-    Return products to corresponding stocks if restock is set to True.
+    Return skills to corresponding stocks if restock is set to True.
     """
     if restock:
         restock_order_lines(order)
@@ -152,7 +152,7 @@ def update_order_status(order):
 def cancel_fulfillment(fulfillment, restock):
     """Cancel fulfillment.
 
-    Return products to corresponding stocks if restock is set to True.
+    Return skills to corresponding stocks if restock is set to True.
     """
     if restock:
         restock_fulfillment_lines(fulfillment)
@@ -198,19 +198,19 @@ def add_variant_to_order(
         line.quantity += quantity
         line.save(update_fields=['quantity'])
     except OrderLine.DoesNotExist:
-        product_name = variant.display_product()
-        translated_product_name = variant.display_product(translated=True)
-        if translated_product_name == product_name:
-            translated_product_name = ''
+        skill_name = variant.display_skill()
+        translated_skill_name = variant.display_skill(translated=True)
+        if translated_skill_name == skill_name:
+            translated_skill_name = ''
         line = order.lines.create(
-            product_name=product_name,
-            translated_product_name=translated_product_name,
-            product_sku=variant.sku,
+            skill_name=skill_name,
+            translated_skill_name=translated_skill_name,
+            skill_sku=variant.sku,
             is_shipping_required=variant.is_shipping_required(),
             quantity=quantity,
             variant=variant,
             unit_price=variant.get_price(discounts, taxes),
-            tax_rate=get_tax_rate_by_name(variant.product.tax_rate, taxes))
+            tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
     if variant.track_inventory and track_inventory:
         allocate_stock(variant, quantity)
@@ -232,7 +232,7 @@ def delete_order_line(line):
 
 
 def restock_order_lines(order):
-    """Return ordered products to corresponding stocks."""
+    """Return ordered skills to corresponding stocks."""
     for line in order:
         if line.variant and line.variant.track_inventory:
             if line.quantity_unfulfilled > 0:
@@ -246,7 +246,7 @@ def restock_order_lines(order):
 
 
 def restock_fulfillment_lines(fulfillment):
-    """Return fulfilled products to corresponding stocks."""
+    """Return fulfilled skills to corresponding stocks."""
     for line in fulfillment:
         if line.order_line.variant and line.order_line.variant.track_inventory:
             increase_stock(

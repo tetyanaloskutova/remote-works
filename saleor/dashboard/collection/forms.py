@@ -4,18 +4,18 @@ from django.utils.text import slugify
 from django.utils.translation import pgettext_lazy
 from text_unidecode import unidecode
 
-from ...product.models import Collection, Product
-from ...product.thumbnails import create_collection_background_image_thumbnails
+from ...skill.models import Collection, Skill
+from ...skill.thumbnails import create_collection_background_image_thumbnails
 from ...site.models import SiteSettings
 from ..forms import AjaxSelect2MultipleChoiceField
 from ..seo.fields import SeoDescriptionField, SeoTitleField
 
 
 class CollectionForm(forms.ModelForm):
-    products = AjaxSelect2MultipleChoiceField(
-        queryset=Product.objects.all(),
-        fetch_data_url=reverse_lazy('dashboard:ajax-products'), required=False,
-        label=pgettext_lazy('Products selection', 'Products'))
+    skills = AjaxSelect2MultipleChoiceField(
+        queryset=Skill.objects.all(),
+        fetch_data_url=reverse_lazy('dashboard:ajax-skills'), required=False,
+        label=pgettext_lazy('Skills selection', 'Skills'))
 
     class Meta:
         model = Collection
@@ -41,7 +41,7 @@ class CollectionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
-            self.fields['products'].set_initial(self.instance.products.all())
+            self.fields['skills'].set_initial(self.instance.skills.all())
         self.fields['seo_description'] = SeoDescriptionField(
             extra_attrs={'data-bind': self['description'].auto_id})
         self.fields['seo_title'] = SeoTitleField(

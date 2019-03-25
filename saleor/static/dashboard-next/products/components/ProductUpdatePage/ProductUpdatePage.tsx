@@ -12,10 +12,10 @@ import SeoForm from "../../../components/SeoForm";
 import { maybe } from "../../../misc";
 import { UserError } from "../../../types";
 import {
-  ProductDetails_product,
-  ProductDetails_product_attributes_attribute,
-  ProductDetails_product_images,
-  ProductDetails_product_variants
+  ProductDetails_skill,
+  ProductDetails_skill_attributes_attribute,
+  ProductDetails_skill_images,
+  ProductDetails_skill_variants
 } from "../../types/ProductDetails";
 import ProductAvailabilityForm from "../ProductAvailabilityForm";
 import ProductDetailsForm from "../ProductDetailsForm";
@@ -37,13 +37,13 @@ interface ProductUpdateProps {
     name: string;
   }>;
   disabled?: boolean;
-  productCollections?: Array<{
+  skillCollections?: Array<{
     id: string;
     name: string;
   }>;
-  variants: ProductDetails_product_variants[];
-  images?: ProductDetails_product_images[];
-  product?: ProductDetails_product;
+  variants: ProductDetails_skill_variants[];
+  images?: ProductDetails_skill_images[];
+  skill?: ProductDetails_skill;
   header: string;
   saveButtonBarState: ConfirmButtonTransitionState;
   fetchCategories: (query: string) => void;
@@ -78,14 +78,14 @@ export interface FormData {
   description: RawDraftContentState;
   name: string;
   price: number;
-  productType: {
+  skillType: {
     label: string;
     value: {
       hasVariants: boolean;
       id: string;
       name: string;
-      productAttributes: Array<
-        Exclude<ProductDetails_product_attributes_attribute, "__typename">
+      skillAttributes: Array<
+        Exclude<ProductDetails_skill_attributes_attribute, "__typename">
       >;
     };
   } | null;
@@ -106,8 +106,8 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
   images,
   header,
   placeholderImage,
-  product,
-  productCollections,
+  skill,
+  skillCollections,
   saveButtonBarState,
   variants,
   onAttributesEdit,
@@ -125,48 +125,48 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
   const initialData: FormData = {
     attributes: maybe(
       () =>
-        product.attributes.map(a => ({
+        skill.attributes.map(a => ({
           slug: a.attribute.slug,
           value: a.value ? a.value.slug : null
         })),
       []
     ),
-    available: maybe(() => product.isPublished, false),
+    available: maybe(() => skill.isPublished, false),
     category: maybe(() => ({
-      label: product.category.name,
-      value: product.category.id
+      label: skill.category.name,
+      value: skill.category.id
     })),
-    chargeTaxes: maybe(() => product.chargeTaxes, false),
-    collections: productCollections
-      ? productCollections.map(collection => ({
+    chargeTaxes: maybe(() => skill.chargeTaxes, false),
+    collections: skillCollections
+      ? skillCollections.map(collection => ({
           label: collection.name,
           value: collection.id
         }))
       : [],
-    description: maybe(() => JSON.parse(product.descriptionJson)),
-    name: maybe(() => product.name),
-    price: maybe(() => product.price.amount),
-    productType: maybe(() => ({
-      label: product.productType.name,
+    description: maybe(() => JSON.parse(skill.descriptionJson)),
+    name: maybe(() => skill.name),
+    price: maybe(() => skill.price.amount),
+    skillType: maybe(() => ({
+      label: skill.skillType.name,
       value: {
-        hasVariants: product.productType.hasVariants,
-        id: product.productType.id,
-        name: product.productType.name,
-        productAttributes: product.attributes.map(a => a.attribute)
+        hasVariants: skill.skillType.hasVariants,
+        id: skill.skillType.id,
+        name: skill.skillType.name,
+        skillAttributes: skill.attributes.map(a => a.attribute)
       }
     })),
-    publicationDate: maybe(() => product.publicationDate),
-    seoDescription: maybe(() => product.seoDescription),
-    seoTitle: maybe(() => product.seoTitle),
+    publicationDate: maybe(() => skill.publicationDate),
+    seoDescription: maybe(() => skill.seoDescription),
+    seoTitle: maybe(() => skill.seoTitle),
     sku: maybe(() =>
-      product.productType.hasVariants
+      skill.skillType.hasVariants
         ? undefined
         : variants && variants[0]
         ? variants[0].sku
         : undefined
     ),
     stockQuantity: maybe(() =>
-      product.productType.hasVariants
+      skill.skillType.hasVariants
         ? undefined
         : variants && variants[0]
         ? variants[0].quantity
@@ -188,9 +188,9 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
         }))
       : [];
   const currency =
-    product && product.price ? product.price.currency : undefined;
+    skill && skill.price ? skill.price.currency : undefined;
   const hasVariants =
-    product && product.productType && product.productType.hasVariants;
+    skill && skill.skillType && skill.skillType.hasVariants;
 
   return (
     <Form
@@ -209,7 +209,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   data={data}
                   disabled={disabled}
                   errors={errors}
-                  product={product}
+                  skill={skill}
                   onChange={change}
                 />
                 <CardSpacer />
@@ -232,7 +232,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                 {hasVariants ? (
                   <ProductVariants
                     variants={variants}
-                    fallbackPrice={product ? product.price : undefined}
+                    fallbackPrice={skill ? skill.price : undefined}
                     onAttributesEdit={onAttributesEdit}
                     onRowClick={onVariantShow}
                     onVariantAdd={onVariantAdd}
@@ -241,7 +241,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   <ProductStock
                     data={data}
                     disabled={disabled}
-                    product={product}
+                    skill={skill}
                     onChange={change}
                   />
                 )}
@@ -263,7 +263,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   fetchCategories={fetchCategories}
                   fetchCollections={fetchCollections}
                   collections={collections}
-                  product={product}
+                  skill={skill}
                   data={data}
                   disabled={disabled}
                   onChange={change}

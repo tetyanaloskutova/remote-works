@@ -15,7 +15,7 @@ from ...account.i18n import I18nMixin
 from ...account.types import AddressInput
 from ...core.mutations import BaseMutation, ModelDeleteMutation, ModelMutation
 from ...core.scalars import Decimal
-from ...product.types import ProductVariant
+from ...skill.types import SkillVariant
 from ..types import Order, OrderLine
 from ..utils import can_finalize_draft_order
 
@@ -27,7 +27,7 @@ class OrderLineInput(graphene.InputObjectType):
 
 class OrderLineCreateInput(OrderLineInput):
     variant_id = graphene.ID(
-        description='Product variant ID.', name='variantId', required=True)
+        description='Skill variant ID.', name='variantId', required=True)
 
 
 class DraftOrderInput(InputObjectType):
@@ -50,7 +50,7 @@ class DraftOrderCreateInput(DraftOrderInput):
     lines = graphene.List(
         OrderLineCreateInput,
         description=dedent("""Variant line input consisting of variant ID
-        and quantity of products."""))
+        and quantity of skills."""))
 
 
 class DraftOrderCreate(ModelMutation, I18nMixin):
@@ -72,7 +72,7 @@ class DraftOrderCreate(ModelMutation, I18nMixin):
         if lines:
             variant_ids = [line.get('variant_id') for line in lines]
             variants = cls.get_nodes_or_error(
-                ids=variant_ids, only_type=ProductVariant, errors=errors,
+                ids=variant_ids, only_type=SkillVariant, errors=errors,
                 field='variants')
             quantities = [line.get('quantity') for line in lines]
             cleaned_input['variants'] = variants
@@ -246,7 +246,7 @@ class DraftOrderLinesCreate(BaseMutation):
         for input_line in input:
             variant_id = input_line['variant_id']
             variant = cls.get_node_or_error(
-                info, variant_id, errors, 'variant_id', ProductVariant)
+                info, variant_id, errors, 'variant_id', SkillVariant)
             quantity = input_line['quantity']
             if quantity > 0:
                 if variant:

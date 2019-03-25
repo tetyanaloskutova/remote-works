@@ -2,12 +2,12 @@ from ...shipping import models as shipping_models
 from ..core.types.common import Error
 
 
-def _check_can_finalize_products_quantity(order, errors):
+def _check_can_finalize_skills_quantity(order, errors):
     if order.get_total_quantity() == 0:
         errors.append(
             Error(
                 field='lines',
-                message='Could not create order without any products.'))
+                message='Could not create order without any skills.'))
 
 
 def _check_can_finalize_shipping(order, errors):
@@ -25,13 +25,13 @@ def _check_can_finalize_shipping(order, errors):
                     'address'))
 
 
-def _check_can_finalize_products_exists(order, errors):
+def _check_can_finalize_skills_exists(order, errors):
     line_variants = [line.variant for line in order]
     if None in line_variants:
         errors.append(
             Error(
                 field='lines',
-                message='Could not create orders with non-existing products.'))
+                message='Could not create orders with non-existing skills.'))
 
 
 def can_finalize_draft_order(order, errors):
@@ -39,12 +39,12 @@ def can_finalize_draft_order(order, errors):
 
     Checks, if given order has a proper customer data, shipping
     address and method set up and return list of errors if not.
-    Checks if product variants for order lines still exists in
+    Checks if skill variants for order lines still exists in
     database, too.
     """
-    _check_can_finalize_products_quantity(order, errors)
+    _check_can_finalize_skills_quantity(order, errors)
     _check_can_finalize_shipping(order, errors)
-    _check_can_finalize_products_exists(order, errors)
+    _check_can_finalize_skills_exists(order, errors)
     return errors
 
 

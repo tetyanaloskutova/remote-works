@@ -33,18 +33,18 @@ from ...page.models import Page
 from ...payment.utils import (
     create_payment, gateway_authorize, gateway_capture, gateway_refund,
     gateway_void)
-from ...product.models import (
-    Attribute, AttributeValue, Category, Collection, Product, ProductImage,
-    ProductType, ProductVariant)
-from ...product.thumbnails import (
+from ...skill.models import (
+    Attribute, AttributeValue, Category, Collection, Skill, SkillImage,
+    SkillType, SkillVariant)
+from ...skill.thumbnails import (
     create_category_background_image_thumbnails,
-    create_collection_background_image_thumbnails, create_product_thumbnails)
+    create_collection_background_image_thumbnails, create_skill_thumbnails)
 from ...shipping.models import ShippingMethod, ShippingMethodType, ShippingZone
 from ...shipping.utils import get_taxed_shipping_price
 
 fake = Factory.create()
 
-PRODUCTS_LIST_DIR = 'products-list/'
+PRODUCTS_LIST_DIR = 'skills-list/'
 
 GROCERIES_CATEGORY = {'name': 'Groceries', 'image_name': 'groceries.jpg'}
 
@@ -53,73 +53,73 @@ COLLECTIONS_SCHEMA = [
         'name': 'Summer collection',
         'image_name': 'summer.jpg',
         'description': dedent('''The Saleor Summer Collection features a range
-            of products that feel the heat of the market. A demo store for all
+            of skills that feel the heat of the market. A demo store for all
             seasons. Saleor captures the open source, e-commerce sun.''')},
     {
         'name': 'Winter sale',
         'image_name': 'clothing.jpg',
         'description': dedent('''The Saleor Winter Sale is snowed under with
-            seasonal offers. Unreal products at unreal prices. Literally,
-            they are not real products, but the Saleor demo store is a
+            seasonal offers. Unreal skills at unreal prices. Literally,
+            they are not real skills, but the Saleor demo store is a
             genuine e-commerce leader.''')}]
 
 IMAGES_MAPPING = {
-    61: ['saleordemoproduct_paints_01.png'],
-    62: ['saleordemoproduct_paints_02.png'],
-    63: ['saleordemoproduct_paints_03.png'],
-    64: ['saleordemoproduct_paints_04.png'],
-    65: ['saleordemoproduct_paints_05.png'],
-    71: ['saleordemoproduct_fd_juice_06.png'],
-    72: ['saleordemoproduct_fd_juice_06.png'],  # FIXME inproper image
-    73: ['saleordemoproduct_fd_juice_05.png'],
-    74: ['saleordemoproduct_fd_juice_01.png'],
-    75: ['saleordemoproduct_fd_juice_03.png'],  # FIXME inproper image
-    76: ['saleordemoproduct_fd_juice_02.png'],  # FIXME inproper image
-    77: ['saleordemoproduct_fd_juice_03.png'],
-    78: ['saleordemoproduct_fd_juice_04.png'],
-    79: ['saleordemoproduct_fd_juice_02.png'],
-    81: ['saleordemoproduct_wine-red.png'],
-    82: ['saleordemoproduct_wine-white.png'],
-    83: ['saleordemoproduct_beer-02_1.png', 'saleordemoproduct_beer-02_2.png'],
-    84: ['saleordemoproduct_beer-01_1.png', 'saleordemoproduct_beer-01_2.png'],
-    85: ['saleordemoproduct_cuschion01.png'],
-    86: ['saleordemoproduct_cuschion02.png'],
+    61: ['saleordemoskill_paints_01.png'],
+    62: ['saleordemoskill_paints_02.png'],
+    63: ['saleordemoskill_paints_03.png'],
+    64: ['saleordemoskill_paints_04.png'],
+    65: ['saleordemoskill_paints_05.png'],
+    71: ['saleordemoskill_fd_juice_06.png'],
+    72: ['saleordemoskill_fd_juice_06.png'],  # FIXME inproper image
+    73: ['saleordemoskill_fd_juice_05.png'],
+    74: ['saleordemoskill_fd_juice_01.png'],
+    75: ['saleordemoskill_fd_juice_03.png'],  # FIXME inproper image
+    76: ['saleordemoskill_fd_juice_02.png'],  # FIXME inproper image
+    77: ['saleordemoskill_fd_juice_03.png'],
+    78: ['saleordemoskill_fd_juice_04.png'],
+    79: ['saleordemoskill_fd_juice_02.png'],
+    81: ['saleordemoskill_wine-red.png'],
+    82: ['saleordemoskill_wine-white.png'],
+    83: ['saleordemoskill_beer-02_1.png', 'saleordemoskill_beer-02_2.png'],
+    84: ['saleordemoskill_beer-01_1.png', 'saleordemoskill_beer-01_2.png'],
+    85: ['saleordemoskill_cuschion01.png'],
+    86: ['saleordemoskill_cuschion02.png'],
     87: [
-        'saleordemoproduct_sneakers_01_1.png',
-        'saleordemoproduct_sneakers_01_2.png',
-        'saleordemoproduct_sneakers_01_3.png',
-        'saleordemoproduct_sneakers_01_4.png'],
+        'saleordemoskill_sneakers_01_1.png',
+        'saleordemoskill_sneakers_01_2.png',
+        'saleordemoskill_sneakers_01_3.png',
+        'saleordemoskill_sneakers_01_4.png'],
     88: [
-        'saleordemoproduct_sneakers_02_1.png',
-        'saleordemoproduct_sneakers_02_2.png',
-        'saleordemoproduct_sneakers_02_3.png',
-        'saleordemoproduct_sneakers_02_4.png'],
+        'saleordemoskill_sneakers_02_1.png',
+        'saleordemoskill_sneakers_02_2.png',
+        'saleordemoskill_sneakers_02_3.png',
+        'saleordemoskill_sneakers_02_4.png'],
     89: [
-        'saleordemoproduct_cl_boot07_1.png',
-        'saleordemoproduct_cl_boot07_2.png'],
-    107: ['saleordemoproduct_cl_polo01.png'],
-    108: ['saleordemoproduct_cl_polo02.png'],
-    109: ['saleordemoproduct_cl_polo03-woman.png'],
-    110: ['saleordemoproduct_cl_polo04-woman.png'],
+        'saleordemoskill_cl_boot07_1.png',
+        'saleordemoskill_cl_boot07_2.png'],
+    107: ['saleordemoskill_cl_polo01.png'],
+    108: ['saleordemoskill_cl_polo02.png'],
+    109: ['saleordemoskill_cl_polo03-woman.png'],
+    110: ['saleordemoskill_cl_polo04-woman.png'],
     111: [
-        'saleordemoproduct_cl_boot01_1.png',
-        'saleordemoproduct_cl_boot01_2.png',
-        'saleordemoproduct_cl_boot01_3.png'],
+        'saleordemoskill_cl_boot01_1.png',
+        'saleordemoskill_cl_boot01_2.png',
+        'saleordemoskill_cl_boot01_3.png'],
     112: [
-        'saleordemoproduct_cl_boot03_1.png',
-        'saleordemoproduct_cl_boot03_2.png'],
+        'saleordemoskill_cl_boot03_1.png',
+        'saleordemoskill_cl_boot03_2.png'],
     113: [
-        'saleordemoproduct_cl_boot06_1.png',
-        'saleordemoproduct_cl_boot06_2.png'],
+        'saleordemoskill_cl_boot06_1.png',
+        'saleordemoskill_cl_boot06_2.png'],
     114: [
-        'saleordemoproduct_cl_boot06_1.png',
-        'saleordemoproduct_cl_boot06_2.png'],  # FIXME incorrect image
-    115: ['saleordemoproduct_cl_bogo01_1.png'],
-    116: ['saleordemoproduct_cl_bogo02_1.png'],
-    117: ['saleordemoproduct_cl_bogo03_1.png'],
+        'saleordemoskill_cl_boot06_1.png',
+        'saleordemoskill_cl_boot06_2.png'],  # FIXME incorrect image
+    115: ['saleordemoskill_cl_bogo01_1.png'],
+    116: ['saleordemoskill_cl_bogo02_1.png'],
+    117: ['saleordemoskill_cl_bogo03_1.png'],
     118: [
-        'saleordemoproduct_cl_bogo04_1.png',
-        'saleordemoproduct_cl_bogo04_2.png']}
+        'saleordemoskill_cl_bogo04_1.png',
+        'saleordemoskill_cl_bogo04_2.png']}
 
 
 CATEGORY_IMAGES = {
@@ -136,16 +136,16 @@ def get_weight(weight):
     return Weight(**{unit: value})
 
 
-def create_product_types(product_type_data):
-    for product_type in product_type_data:
-        pk = product_type['pk']
-        defaults = product_type['fields']
+def create_skill_types(skill_type_data):
+    for skill_type in skill_type_data:
+        pk = skill_type['pk']
+        defaults = skill_type['fields']
         defaults['weight'] = get_weight(defaults['weight'])
-        ProductType.objects.update_or_create(pk=pk, defaults=defaults)
+        SkillType.objects.update_or_create(pk=pk, defaults=defaults)
 
 
 def create_categories(categories_data, placeholder_dir):
-    placeholder_dir = get_product_list_images_dir(placeholder_dir)
+    placeholder_dir = get_skill_list_images_dir(placeholder_dir)
     for category in categories_data:
         pk = category['pk']
         defaults = category['fields']
@@ -160,9 +160,9 @@ def create_attributes(attributes_data):
     for attribute in attributes_data:
         pk = attribute['pk']
         defaults = attribute['fields']
-        defaults['product_type_id'] = defaults.pop('product_type')
-        defaults['product_variant_type_id'] = defaults.pop(
-            'product_variant_type')
+        defaults['skill_type_id'] = defaults.pop('skill_type')
+        defaults['skill_variant_type_id'] = defaults.pop(
+            'skill_variant_type')
         Attribute.objects.update_or_create(pk=pk, defaults=defaults)
 
 
@@ -174,43 +174,43 @@ def create_attributes_values(values_data):
         AttributeValue.objects.update_or_create(pk=pk, defaults=defaults)
 
 
-def create_products(products_data, placeholder_dir, create_images):
-    for product in products_data:
-        pk = product['pk']
-        # We are skipping products without images
+def create_skills(skills_data, placeholder_dir, create_images):
+    for skill in skills_data:
+        pk = skill['pk']
+        # We are skipping skills without images
         if pk not in IMAGES_MAPPING:
             continue
-        defaults = product['fields']
+        defaults = skill['fields']
         defaults['weight'] = get_weight(defaults['weight'])
         defaults['category_id'] = defaults.pop('category')
-        defaults['product_type_id'] = defaults.pop('product_type')
+        defaults['skill_type_id'] = defaults.pop('skill_type')
         defaults['price'] = get_in_default_currency(
             defaults, 'price', settings.DEFAULT_CURRENCY)
         defaults['attributes'] = json.loads(defaults['attributes'])
-        product, _ = Product.objects.update_or_create(pk=pk, defaults=defaults)
+        skill, _ = Skill.objects.update_or_create(pk=pk, defaults=defaults)
 
         if create_images:
             images = IMAGES_MAPPING.get(pk, [])
             for image_name in images:
-                create_product_image(product, placeholder_dir, image_name)
+                create_skill_image(skill, placeholder_dir, image_name)
 
 
-def create_product_variants(variants_data):
+def create_skill_variants(variants_data):
     for variant in variants_data:
         pk = variant['pk']
         defaults = variant['fields']
         defaults['weight'] = get_weight(defaults['weight'])
-        product_id = defaults.pop('product')
-        # We have not created products without images
-        if product_id not in IMAGES_MAPPING:
+        skill_id = defaults.pop('skill')
+        # We have not created skills without images
+        if skill_id not in IMAGES_MAPPING:
             continue
-        defaults['product_id'] = product_id
+        defaults['skill_id'] = skill_id
         defaults['attributes'] = json.loads(defaults['attributes'])
         defaults['price_override'] = get_in_default_currency(
             defaults, 'price_override', settings.DEFAULT_CURRENCY)
         defaults['cost_price'] = get_in_default_currency(
             defaults, 'cost_price', settings.DEFAULT_CURRENCY)
-        ProductVariant.objects.update_or_create(pk=pk, defaults=defaults)
+        SkillVariant.objects.update_or_create(pk=pk, defaults=defaults)
 
 
 def get_in_default_currency(defaults, field, currency):
@@ -219,7 +219,7 @@ def get_in_default_currency(defaults, field, currency):
     return None
 
 
-def create_products_by_schema(placeholder_dir, create_images):
+def create_skills_by_schema(placeholder_dir, create_images):
     path = os.path.join(settings.PROJECT_ROOT, 'saleor', 'static', 'db.json')
     with open(path) as f:
         db_items = json.load(f, object_hook=object_hook)
@@ -229,16 +229,16 @@ def create_products_by_schema(placeholder_dir, create_images):
         model = item.pop('model')
         types[model].append(item)
 
-    create_product_types(product_type_data=types['product.producttype'])
+    create_skill_types(skill_type_data=types['skill.skilltype'])
     create_categories(
-        categories_data=types['product.category'],
+        categories_data=types['skill.category'],
         placeholder_dir=placeholder_dir)
-    create_attributes(attributes_data=types['product.attribute'])
-    create_attributes_values(values_data=types['product.attributevalue'])
-    create_products(
-        products_data=types['product.product'],
+    create_attributes(attributes_data=types['skill.attribute'])
+    create_attributes_values(values_data=types['skill.attributevalue'])
+    create_skills(
+        skills_data=types['skill.skill'],
         placeholder_dir=placeholder_dir, create_images=create_images)
-    create_product_variants(variants_data=types['product.productvariant'])
+    create_skill_variants(variants_data=types['skill.skillvariant'])
 
 
 class SaleorProvider(BaseProvider):
@@ -269,15 +269,15 @@ def get_or_create_collection(name, placeholder_dir, image_name, description):
     return Collection.objects.get_or_create(name=name, defaults=defaults)[0]
 
 
-def create_product_image(product, placeholder_dir, image_name):
+def create_skill_image(skill, placeholder_dir, image_name):
     image = get_image(placeholder_dir, image_name)
-    # We don't want to create duplicated product images
-    if product.images.count() >= len(IMAGES_MAPPING.get(product.pk, [])):
+    # We don't want to create duplicated skill images
+    if skill.images.count() >= len(IMAGES_MAPPING.get(skill.pk, [])):
         return None
-    product_image = ProductImage(product=product, image=image)
-    product_image.save()
-    create_product_thumbnails.delay(product_image.pk)
-    return product_image
+    skill_image = SkillImage(skill=skill, image=image)
+    skill_image.save()
+    create_skill_thumbnails.delay(skill_image.pk)
+    return skill_image
 
 
 def create_address():
@@ -341,20 +341,20 @@ def create_fake_payment(mock_email_confirmation, order):
 
 
 def create_order_line(order, discounts, taxes):
-    product = Product.objects.filter(variants__isnull=False).order_by('?')[0]
-    variant = product.variants.all()[0]
+    skill = Skill.objects.filter(variants__isnull=False).order_by('?')[0]
+    variant = skill.variants.all()[0]
     quantity = random.randrange(1, 5)
     variant.quantity += quantity
     variant.quantity_allocated += quantity
     variant.save()
     return order.lines.create(
-        product_name=variant.display_product(),
-        product_sku=variant.sku,
+        skill_name=variant.display_skill(),
+        skill_sku=variant.sku,
         is_shipping_required=variant.is_shipping_required(),
         quantity=quantity,
         variant=variant,
         unit_price=variant.get_price(discounts=discounts, taxes=taxes),
-        tax_rate=get_tax_rate_by_name(variant.product.tax_rate, taxes))
+        tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
 
 def create_order_lines(order, discounts, taxes, how_many=10):
@@ -419,8 +419,8 @@ def create_fake_sale():
         name='Happy %s day!' % fake.word(),
         type=DiscountValueType.PERCENTAGE,
         value=random.choice([10, 20, 30, 40, 50]))
-    for product in Product.objects.all().order_by('?')[:4]:
-        sale.products.add(product)
+    for skill in Skill.objects.all().order_by('?')[:4]:
+        sale.skills.add(skill)
     return sale
 
 
@@ -433,13 +433,13 @@ def create_users(how_many=10):
 def create_orders(how_many=10):
     taxes = get_taxes_for_country(Country(settings.DEFAULT_COUNTRY))
     discounts = Sale.objects.active(date.today()).prefetch_related(
-        'products', 'categories', 'collections')
+        'skills', 'categories', 'collections')
     for dummy in range(how_many):
         order = create_fake_order(discounts, taxes)
         yield 'Order: %s' % (order,)
 
 
-def create_product_sales(how_many=5):
+def create_skill_sales(how_many=5):
     for dummy in range(how_many):
         sale = create_fake_sale()
         yield 'Sale: %s' % (sale,)
@@ -551,13 +551,13 @@ def add_address_to_admin(email):
 
 
 def create_fake_collection(placeholder_dir, collection_data):
-    image_dir = get_product_list_images_dir(placeholder_dir)
+    image_dir = get_skill_list_images_dir(placeholder_dir)
     collection = get_or_create_collection(
         name=collection_data['name'], placeholder_dir=image_dir,
         image_name=collection_data['image_name'],
         description=collection_data['description'])
-    products = Product.objects.order_by('?')[:4]
-    collection.products.add(*products)
+    skills = Skill.objects.order_by('?')[:4]
+    collection.skills.add(*skills)
     create_collection_background_image_thumbnails.delay(collection.pk)
     return collection
 
@@ -592,7 +592,7 @@ def generate_menu_items(menu: Menu, category: Category, parent_menu_item):
 
 
 def generate_menu_tree(menu):
-    categories = Category.tree.get_queryset().filter(products__isnull=False)
+    categories = Category.tree.get_queryset().filter(skills__isnull=False)
     for category in categories:
         if not category.parent_id:
             for msg in generate_menu_items(menu, category, None):
@@ -613,13 +613,13 @@ def create_menus():
         name=settings.DEFAULT_MENUS['bottom_menu_name'])
     bottom_menu.items.all().delete()
     collection = Collection.objects.filter(
-        products__isnull=False).order_by('?')[0]
+        skills__isnull=False).order_by('?')[0]
     item, _ = bottom_menu.items.get_or_create(
         name='Collections',
         collection=collection)
 
     for collection in Collection.objects.filter(
-            products__isnull=False, background_image__isnull=False):
+            skills__isnull=False, background_image__isnull=False):
         bottom_menu.items.get_or_create(
             name=collection.name,
             collection=collection,
@@ -639,10 +639,10 @@ def create_menus():
     site_settings.save()
 
 
-def get_product_list_images_dir(placeholder_dir):
-    product_list_images_dir = os.path.join(
+def get_skill_list_images_dir(placeholder_dir):
+    skill_list_images_dir = os.path.join(
         placeholder_dir, PRODUCTS_LIST_DIR)
-    return product_list_images_dir
+    return skill_list_images_dir
 
 
 def get_image(image_dir, image_name):

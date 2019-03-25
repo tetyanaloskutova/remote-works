@@ -4,7 +4,7 @@ from django.conf import settings
 from ...discount import models as discount_models
 from ...menu import models as menu_models
 from ...page import models as page_models
-from ...product import models as product_models
+from ...skill import models as skill_models
 from ...shipping import models as shipping_models
 from ...site import models as site_models
 from ..core.connection import CountableDjangoObjectType
@@ -30,42 +30,42 @@ class BaseTranslationType(CountableDjangoObjectType):
 
 class AttributeValueTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.AttributeValueTranslation
+        model = skill_models.AttributeValueTranslation
         interfaces = [graphene.relay.Node]
         exclude_fields = ['attribute_value', 'language_code']
 
 
 class AttributeTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.AttributeTranslation
+        model = skill_models.AttributeTranslation
         interfaces = [graphene.relay.Node]
         exclude_fields = ['attribute', 'language_code']
 
 
-class ProductVariantTranslation(BaseTranslationType):
+class SkillVariantTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.ProductVariantTranslation
+        model = skill_models.SkillVariantTranslation
         interfaces = [graphene.relay.Node]
-        exclude_fields = ['product_variant', 'language_code']
+        exclude_fields = ['skill_variant', 'language_code']
 
 
-class ProductTranslation(BaseTranslationType):
+class SkillTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.ProductTranslation
+        model = skill_models.SkillTranslation
         interfaces = [graphene.relay.Node]
-        exclude_fields = ['product', 'language_code']
+        exclude_fields = ['skill', 'language_code']
 
 
 class CollectionTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.CollectionTranslation
+        model = skill_models.CollectionTranslation
         interfaces = [graphene.relay.Node]
         exclude_fields = ['collection', 'language_code']
 
 
 class CategoryTranslation(BaseTranslationType):
     class Meta:
-        model = product_models.CategoryTranslation
+        model = skill_models.CategoryTranslation
         interfaces = [graphene.relay.Node]
         exclude_fields = ['category', 'language_code']
 

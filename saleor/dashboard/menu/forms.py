@@ -4,7 +4,7 @@ from django.utils.translation import pgettext_lazy
 
 from ...menu.models import Menu, MenuItem
 from ...page.models import Page
-from ...product.models import Category, Collection
+from ...skill.models import Category, Collection
 from ...site.models import SiteSettings
 from ..forms import (
     AjaxSelect2CombinedChoiceField, OrderedModelMultipleChoiceField)

@@ -2,7 +2,7 @@
 {% load bootstrap_pagination from bootstrap4 %}
 {% load build_absolute_uri from urls %}
 {% load get_object_properties from attributes %}
-{% load get_thumbnail from product_images %}
+{% load get_thumbnail from skill_images %}
 {% load i18n %}
 {% load shop %}
 {% load static %}
@@ -34,14 +34,14 @@
 
   {% build_absolute_uri request=request location=object.get_absolute_url as object_url %}
   <meta property="og:url" content="{{ object_url }}">
-  <link rel="canonical" href="{{ object_url }}?page={{ products_paginated.number }}">
+  <link rel="canonical" href="{{ object_url }}?page={{ skills_paginated.number }}">
 
-  {% if products_paginated.has_previous %}
-    <link rel="prev" href="{{ object_url }}?page={{ products_paginated.previous_page_number }}">
+  {% if skills_paginated.has_previous %}
+    <link rel="prev" href="{{ object_url }}?page={{ skills_paginated.previous_page_number }}">
   {% endif %}
 
-  {% if products_paginated.has_next %}
-    <link rel="next" href="{{ object_url }}?page={{ products_paginated.next_page_number }}">
+  {% if skills_paginated.has_next %}
+    <link rel="next" href="{{ object_url }}?page={{ skills_paginated.next_page_number }}">
   {% endif %}
 {% endblock meta_tags %}
 
@@ -57,21 +57,21 @@
 
 {% block topcontent %}
   {% if object.background_image %}
-    <div class="row" id="product-list-image" alt="{{ object.background_image_alt }}"
+    <div class="row" id="skill-list-image" alt="{{ object.background_image_alt }}"
          style="background-image: url({% get_thumbnail object.background_image size='1080x440' method="thumbnail" rendition_key_set="background_images" %})"></div>
   {% endif %}
 {% endblock topcontent %}
 
 {% block content %}
   {% block collection_published_warning %}{% endblock %}
-  <div id="product-list-page">
+  <div id="skill-list-page">
     <div class="row">
       <div class="col-md-4 col-lg-3">
         {% block filters %}{% endblock filters %}
       </div>
-      <div class="col-md-8 col-lg-9 product-list">
-        <div class="product-list__header">
-          <div class="product-list__header__title">
+      <div class="col-md-8 col-lg-9 skill-list">
+        <div class="skill-list__header">
+          <div class="skill-list__header__title">
           <h1>
             <strong>{{ object.translated }}</strong>
           </h1>
@@ -138,14 +138,14 @@
           </div>
           <div>
             <div>
-              {% if products %}
+              {% if skills %}
                 <div class="row">
-                  {% include "product/_items.html" with products=products %}
+                  {% include "skill/_items.html" with skills=skills %}
                 </div>
                 <div class="row">
                   <div class="m-auto">
-                    {% if products_paginated.has_other_pages %}
-                      {% bootstrap_pagination products_paginated extra=request.GET.urlencode %}
+                    {% if skills_paginated.has_other_pages %}
+                      {% bootstrap_pagination skills_paginated extra=request.GET.urlencode %}
                     {% endif %}
                   </div>
                 </div>

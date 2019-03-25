@@ -7,23 +7,23 @@ from impersonate.views import impersonate as orig_impersonate
 
 from ..account.models import User
 from ..dashboard.views import staff_member_required
-from ..product.utils import products_for_homepage
-from ..product.utils.availability import products_with_availability
+from ..skill.utils import skills_for_homepage
+from ..skill.utils.availability import skills_with_availability
 from ..seo.schema.webpage import get_webpage_schema
 
 
 def home(request):
-    products = products_for_homepage(
+    skills = skills_for_homepage(
         request.user,
         request.site.settings.homepage_collection)[:8]
-    products = list(products_with_availability(
-        products, discounts=request.discounts, taxes=request.taxes,
+    skills = list(skills_with_availability(
+        skills, discounts=request.discounts, taxes=request.taxes,
         local_currency=request.currency))
     webpage_schema = get_webpage_schema(request)
     return TemplateResponse(
         request, 'home.html', {
             'parent': None,
-            'products': products,
+            'skills': skills,
             'webpage_schema': json.dumps(webpage_schema)})
 
 

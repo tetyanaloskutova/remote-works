@@ -2,32 +2,32 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder255x255.png";
-import ProductUpdatePage from "../../../products/components/ProductUpdatePage";
-import { product as productFixture } from "../../../products/fixtures";
+import SkillUpdatePage from "../../../skills/components/SkillUpdatePage";
+import { skill as skillFixture } from "../../../skills/fixtures";
 import Decorator from "../../Decorator";
 
-const product = productFixture(placeholderImage);
+const skill = skillFixture(placeholderImage);
 
-storiesOf("Views / Products / Product edit", module)
+storiesOf("Views / Skills / Skill edit", module)
   .addDecorator(Decorator)
   .add("when data is fully loaded", () => (
-    <ProductUpdatePage
+    <SkillUpdatePage
       errors={[]}
       onBack={() => undefined}
       onSubmit={() => undefined}
-      product={product}
-      header={product.name}
-      collections={product.collections}
-      categories={[product.category]}
+      skill={skill}
+      header={skill.name}
+      collections={skill.collections}
+      categories={[skill.category]}
       fetchCategories={() => undefined}
       fetchCollections={() => undefined}
       placeholderImage={placeholderImage}
-      images={product.images}
-      variants={product.variants}
-      productCollections={product.collections}
+      images={skill.images}
+      variants={skill.variants}
+      skillCollections={skill.collections}
       onAttributesEdit={undefined}
       onDelete={undefined}
-      onProductShow={undefined}
+      onSkillShow={undefined}
       onVariantAdd={undefined}
       onVariantShow={() => undefined}
       onImageDelete={() => undefined}
@@ -35,24 +35,24 @@ storiesOf("Views / Products / Product edit", module)
       saveButtonBarState="default"
     />
   ))
-  .add("when product has no images", () => (
-    <ProductUpdatePage
+  .add("when skill has no images", () => (
+    <SkillUpdatePage
       errors={[]}
       onBack={() => undefined}
       onSubmit={() => undefined}
-      product={product}
-      header={product.name}
-      collections={product.collections}
-      categories={[product.category]}
+      skill={skill}
+      header={skill.name}
+      collections={skill.collections}
+      categories={[skill.category]}
       fetchCategories={() => undefined}
       fetchCollections={() => undefined}
       placeholderImage={placeholderImage}
       images={[]}
-      variants={product.variants}
-      productCollections={product.collections}
+      variants={skill.variants}
+      skillCollections={skill.collections}
       onAttributesEdit={undefined}
       onDelete={undefined}
-      onProductShow={undefined}
+      onSkillShow={undefined}
       onImageDelete={() => undefined}
       onVariantAdd={undefined}
       onVariantShow={() => undefined}
@@ -60,29 +60,29 @@ storiesOf("Views / Products / Product edit", module)
       saveButtonBarState="default"
     />
   ))
-  .add("when product has no variants", () => (
-    <ProductUpdatePage
+  .add("when skill has no variants", () => (
+    <SkillUpdatePage
       errors={[]}
       onBack={() => undefined}
       onSubmit={() => undefined}
-      product={
+      skill={
         {
-          ...product,
-          productType: { ...product.productType, hasVariants: false }
+          ...skill,
+          skillType: { ...skill.skillType, hasVariants: false }
         } as any
       }
-      header={product.name}
-      collections={product.collections}
-      categories={[product.category]}
+      header={skill.name}
+      collections={skill.collections}
+      categories={[skill.category]}
       fetchCategories={() => undefined}
       fetchCollections={() => undefined}
       placeholderImage={placeholderImage}
-      images={product.images}
-      variants={product.variants}
-      productCollections={product.collections}
+      images={skill.images}
+      variants={skill.variants}
+      skillCollections={skill.collections}
       onAttributesEdit={undefined}
       onDelete={undefined}
-      onProductShow={undefined}
+      onSkillShow={undefined}
       onVariantAdd={undefined}
       onImageDelete={() => undefined}
       onVariantShow={() => undefined}
@@ -91,7 +91,7 @@ storiesOf("Views / Products / Product edit", module)
     />
   ))
   .add("when loading data", () => (
-    <ProductUpdatePage
+    <SkillUpdatePage
       errors={[]}
       header={undefined}
       categories={[]}

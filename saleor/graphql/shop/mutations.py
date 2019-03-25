@@ -6,7 +6,7 @@ from graphql_jwt.decorators import permission_required
 from ...site import models as site_models
 from ..core.enums import WeightUnitsEnum
 from ..core.mutations import BaseMutation
-from ..product.types import Collection
+from ..skill.types import Collection
 from .types import AuthorizationKey, AuthorizationKeyType, Shop
 
 

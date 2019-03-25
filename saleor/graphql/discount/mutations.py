@@ -5,16 +5,16 @@ from ...discount import models
 from ...discount.utils import generate_voucher_code
 from ..core.mutations import BaseMutation, ModelDeleteMutation, ModelMutation
 from ..core.scalars import Decimal
-from ..product.types import Category, Collection, Product
+from ..skill.types import Category, Collection, Skill
 from .enums import DiscountValueTypeEnum, VoucherTypeEnum
 from .types import Sale, Voucher
 
 
 class CatalogueInput(graphene.InputObjectType):
-    products = graphene.List(
+    skills = graphene.List(
         graphene.ID,
-        description='Products related to the discount.',
-        name='products')
+        description='Skills related to the discount.',
+        name='skills')
     categories = graphene.List(
         graphene.ID,
         description='Categories related to the discount.',
@@ -31,11 +31,11 @@ class BaseDiscountCatalogueMutation(BaseMutation):
 
     @classmethod
     def add_catalogues_to_node(cls, node, input, errors):
-        products = input.get('products', [])
-        if products:
-            products = cls.get_nodes_or_error(
-                products, errors, 'products', only_type=Product)
-            node.products.add(*products)
+        skills = input.get('skills', [])
+        if skills:
+            skills = cls.get_nodes_or_error(
+                skills, errors, 'skills', only_type=Skill)
+            node.skills.add(*skills)
         categories = input.get('categories', [])
         if categories:
             categories = cls.get_nodes_or_error(
@@ -49,11 +49,11 @@ class BaseDiscountCatalogueMutation(BaseMutation):
 
     @classmethod
     def remove_catalogues_from_node(cls, node, input, errors):
-        products = input.get('products', [])
-        if products:
-            products = cls.get_nodes_or_error(
-                products, errors, 'products', only_type=Product)
-            node.products.remove(*products)
+        skills = input.get('skills', [])
+        if skills:
+            skills = cls.get_nodes_or_error(
+                skills, errors, 'skills', only_type=Skill)
+            node.skills.remove(*skills)
         categories = input.get('categories', [])
         if categories:
             categories = cls.get_nodes_or_error(
@@ -68,7 +68,7 @@ class BaseDiscountCatalogueMutation(BaseMutation):
 
 class VoucherInput(graphene.InputObjectType):
     type = VoucherTypeEnum(
-        description='Voucher type: product, category shipping or value.')
+        description='Voucher type: skill, category shipping or value.')
     name = graphene.String(description='Voucher name.')
     code = graphene.String(decription='Code to use the voucher.')
     start_date = graphene.types.datetime.Date(
@@ -78,10 +78,10 @@ class VoucherInput(graphene.InputObjectType):
     discount_value_type = DiscountValueTypeEnum(
         description='Choices: fixed or percentage.')
     discount_value = Decimal(description='Value of the voucher.')
-    products = graphene.List(
+    skills = graphene.List(
         graphene.ID,
-        description='Products discounted by the voucher.',
-        name='products')
+        description='Skills discounted by the voucher.',
+        name='skills')
     collections = graphene.List(
         graphene.ID,
         description='Collections discounted by the voucher.',
@@ -163,7 +163,7 @@ class VoucherBaseCatalogueMutation(BaseDiscountCatalogueMutation):
 
 class VoucherAddCatalogues(VoucherBaseCatalogueMutation):
     class Meta:
-        description = 'Adds products, categories, collections to a voucher.'
+        description = 'Adds skills, categories, collections to a voucher.'
 
     @classmethod
     @permission_required('discount.manage_discounts')
@@ -179,7 +179,7 @@ class VoucherAddCatalogues(VoucherBaseCatalogueMutation):
 class VoucherRemoveCatalogues(VoucherBaseCatalogueMutation):
     class Meta:
         description = (
-            'Removes products, categories, collections from a voucher.')
+            'Removes skills, categories, collections from a voucher.')
 
     @classmethod
     @permission_required('discount.manage_discounts')
@@ -196,10 +196,10 @@ class SaleInput(graphene.InputObjectType):
     name = graphene.String(description='Voucher name.')
     type = DiscountValueTypeEnum(description='Fixed or percentage.')
     value = Decimal(description='Value of the voucher.')
-    products = graphene.List(
+    skills = graphene.List(
         graphene.ID,
-        description='Products related to the discount.',
-        name='products')
+        description='Skills related to the discount.',
+        name='skills')
     categories = graphene.List(
         graphene.ID,
         description='Categories related to the discount.',
@@ -272,7 +272,7 @@ class SaleBaseCatalogueMutation(BaseDiscountCatalogueMutation):
 
 class SaleAddCatalogues(SaleBaseCatalogueMutation):
     class Meta:
-        description = 'Adds products, categories, collections to a voucher.'
+        description = 'Adds skills, categories, collections to a voucher.'
 
     @classmethod
     @permission_required('discount.manage_discounts')
@@ -287,7 +287,7 @@ class SaleAddCatalogues(SaleBaseCatalogueMutation):
 
 class SaleRemoveCatalogues(SaleBaseCatalogueMutation):
     class Meta:
-        description = 'Removes products, categories, collections from a sale.'
+        description = 'Removes skills, categories, collections from a sale.'
 
     @classmethod
     @permission_required('discount.manage_discounts')

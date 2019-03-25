@@ -6,7 +6,7 @@ from graphql_jwt.decorators import permission_required
 from ...menu import models
 from ..core.mutations import BaseMutation, ModelDeleteMutation, ModelMutation
 from ..page.types import Page
-from ..product.types import Category, Collection
+from ..skill.types import Category, Collection
 from .enums import NavigationType
 from .types import Menu
 

@@ -121,14 +121,14 @@ class Cart(models.Model):
 class CartLine(models.Model):
     """A single cart line.
 
-    Multiple lines in the same cart can refer to the same product variant if
+    Multiple lines in the same cart can refer to the same skill variant if
     their `data` field is different.
     """
 
     cart = models.ForeignKey(
         Cart, related_name='lines', on_delete=models.CASCADE)
     variant = models.ForeignKey(
-        'product.ProductVariant', related_name='+', on_delete=models.CASCADE)
+        'skill.SkillVariant', related_name='+', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     data = JSONField(blank=True, default=dict)
 
@@ -165,5 +165,5 @@ class CartLine(models.Model):
         return amount.quantize(CENTS)
 
     def is_shipping_required(self):
-        """Return `True` if the related product variant requires shipping."""
+        """Return `True` if the related skill variant requires shipping."""
         return self.variant.is_shipping_required()

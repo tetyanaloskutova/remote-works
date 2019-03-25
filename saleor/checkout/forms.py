@@ -30,7 +30,7 @@ class QuantityField(forms.IntegerField):
 class AddToCartForm(forms.Form):
     """Add-to-cart form.
 
-    Allows selection of a product variant and quantity.
+    Allows selection of a skill variant and quantity.
 
     The save method adds it to the cart.
     """
@@ -40,19 +40,19 @@ class AddToCartForm(forms.Form):
     error_messages = {
         'not-available': pgettext_lazy(
             'Add to cart form error',
-            'Sorry. This product is currently not available.'),
+            'Sorry. This skill is currently not available.'),
         'empty-stock': pgettext_lazy(
             'Add to cart form error',
-            'Sorry. This product is currently out of stock.'),
+            'Sorry. This skill is currently out of stock.'),
         'variant-does-not-exists': pgettext_lazy(
-            'Add to cart form error', 'Oops. We could not find that product.'),
+            'Add to cart form error', 'Oops. We could not find that skill.'),
         'insufficient-stock': npgettext_lazy(
             'Add to cart form error',
             'Only %d remaining in stock.', 'Only %d remaining in stock.')}
 
     def __init__(self, *args, **kwargs):
         self.cart = kwargs.pop('cart')
-        self.product = kwargs.pop('product')
+        self.skill = kwargs.pop('skill')
         self.discounts = kwargs.pop('discounts', ())
         self.taxes = kwargs.pop('taxes', {})
         super().__init__(*args, **kwargs)
@@ -89,14 +89,14 @@ class AddToCartForm(forms.Form):
         return cleaned_data
 
     def save(self):
-        """Add the selected product variant and quantity to the cart."""
+        """Add the selected skill variant and quantity to the cart."""
         from .utils import add_variant_to_cart
         variant = self.get_variant(self.cleaned_data)
         quantity = self.cleaned_data['quantity']
         add_variant_to_cart(self.cart, variant, quantity)
 
     def get_variant(self, cleaned_data):
-        """Return a product variant that matches submitted values.
+        """Return a skill variant that matches submitted values.
 
         This allows specialized implementations to select the variant based on
         multiple fields (like size and color) instead of having a single
@@ -113,7 +113,7 @@ class ReplaceCartLineForm(AddToCartForm):
 
     def __init__(self, *args, **kwargs):
         self.variant = kwargs.pop('variant')
-        kwargs['product'] = self.variant.product
+        kwargs['skill'] = self.variant.skill
         super().__init__(*args, **kwargs)
         self.cart_line = self.cart.get_line(self.variant)
         self.fields['quantity'].widget.attrs = {
@@ -149,7 +149,7 @@ class ReplaceCartLineForm(AddToCartForm):
         return self.variant
 
     def save(self):
-        """Replace the selected product's quantity in cart."""
+        """Replace the selected skill's quantity in cart."""
         from .utils import add_variant_to_cart
         variant = self.get_variant(self.cleaned_data)
         quantity = self.cleaned_data['quantity']

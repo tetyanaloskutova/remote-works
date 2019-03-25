@@ -7,7 +7,7 @@ from mptt.models import MPTTModel
 from ..core.models import SortableModel
 from ..core.utils.translations import TranslationProxy
 from ..page.models import Page
-from ..product.models import Category, Collection
+from ..skill.models import Category, Collection
 
 
 class Menu(models.Model):

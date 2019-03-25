@@ -18,7 +18,7 @@ from .graphql.api import schema
 from .graphql.views import GraphQLView
 from .order.urls import urlpatterns as order_urls
 from .page.urls import urlpatterns as page_urls
-from .product.urls import urlpatterns as product_urls
+from .skill.urls import urlpatterns as skill_urls
 from .search.urls import urlpatterns as search_urls
 
 handler404 = 'saleor.core.views.handle_404'
@@ -42,7 +42,7 @@ translatable_urlpatterns = [
     url(r'^order/', include((order_urls, 'order'), namespace='order')),
     url(r'^page/', include((page_urls, 'page'), namespace='page')),
     url(r'^products/',
-        include((product_urls, 'product'), namespace='product')),
+        include((skill_urls, 'skill'), namespace='skill')),
     url(r'^account/',
         include((account_urls, 'account'), namespace='account')),
     url(r'^feeds/',

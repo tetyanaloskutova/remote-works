@@ -100,8 +100,8 @@ type Attribute implements Node {
   id: ID!
   slug: String
   name: String
-  productType: ProductType
-  productVariantType: ProductType
+  skillType: SkillType
+  skillVariantType: SkillType
   values: [AttributeValue]
   translation(languageCode: String!): AttributeTranslation
 }
@@ -120,7 +120,7 @@ type AttributeCountableEdge {
 type AttributeCreate {
   errors: [Error!]
   attribute: Attribute
-  productType: ProductType
+  skillType: SkillType
 }
 
 input AttributeCreateInput {
@@ -130,7 +130,7 @@ input AttributeCreateInput {
 
 type AttributeDelete {
   errors: [Error!]
-  productType: ProductType
+  skillType: SkillType
   attribute: Attribute
 }
 
@@ -148,13 +148,13 @@ type AttributeTranslation implements Node {
 }
 
 enum AttributeTypeEnum {
-  PRODUCT
+  SKILL
   VARIANT
 }
 
 type AttributeUpdate {
   errors: [Error!]
-  productType: ProductType
+  skillType: SkillType
   attribute: Attribute
 }
 
@@ -248,7 +248,7 @@ enum AuthorizationKeyType {
 }
 
 input CatalogueInput {
-  products: [ID]
+  skills: [ID]
   categories: [ID]
   collections: [ID]
 }
@@ -265,7 +265,7 @@ type Category implements Node {
   backgroundImage(size: Int): Image
   level: Int!
   children(before: String, after: String, first: Int, last: Int): CategoryCountableConnection
-  products(before: String, after: String, first: Int, last: Int): ProductCountableConnection
+  skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
   ancestors(before: String, after: String, first: Int, last: Int): CategoryCountableConnection
   url: String
   translation(languageCode: String!): CategoryTranslation
@@ -397,7 +397,7 @@ type CheckoutEmailUpdate {
 
 type CheckoutLine implements Node {
   id: ID!
-  variant: ProductVariant!
+  variant: SkillVariant!
   quantity: Int!
   totalPrice: TaxedMoney
   requiresShipping: Boolean
@@ -468,7 +468,7 @@ type Collection implements Node {
   id: ID!
   name: String!
   slug: String!
-  products(before: String, after: String, first: Int, last: Int): ProductCountableConnection
+  skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
   backgroundImage(size: Int): Image
   description: String!
   descriptionJson: JSONString!
@@ -476,7 +476,7 @@ type Collection implements Node {
   translation(languageCode: String!): CollectionTranslation
 }
 
-type CollectionAddProducts {
+type CollectionAddSkills {
   errors: [Error!]
   collection: Collection
 }
@@ -507,7 +507,7 @@ input CollectionCreateInput {
   backgroundImageAlt: String
   seo: SeoInput
   publicationDate: Date
-  products: [ID]
+  skills: [ID]
 }
 
 type CollectionDelete {
@@ -527,7 +527,7 @@ input CollectionInput {
   publicationDate: Date
 }
 
-type CollectionRemoveProducts {
+type CollectionRemoveSkills {
   errors: [Error!]
   collection: Collection
 }
@@ -954,27 +954,27 @@ type Mutations {
   categoryDelete(id: ID!): CategoryDelete
   categoryUpdate(id: ID!, input: CategoryInput!): CategoryUpdate
   categoryTranslate(id: ID!, input: TranslationInput!, languageCode: String!): CategoryTranslate
-  collectionAddProducts(collectionId: ID!, products: [ID]!): CollectionAddProducts
+  collectionAddSkills(collectionId: ID!, skills: [ID]!): CollectionAddSkills
   collectionCreate(input: CollectionCreateInput!): CollectionCreate
   collectionDelete(id: ID!): CollectionDelete
-  collectionRemoveProducts(collectionId: ID!, products: [ID]!): CollectionRemoveProducts
+  collectionRemoveSkills(collectionId: ID!, skills: [ID]!): CollectionRemoveSkills
   collectionUpdate(id: ID!, input: CollectionInput!): CollectionUpdate
   collectionTranslate(id: ID!, input: TranslationInput!, languageCode: String!): CollectionTranslate
-  productCreate(input: ProductCreateInput!): ProductCreate
-  productDelete(id: ID!): ProductDelete
-  productUpdate(id: ID!, input: ProductInput!): ProductUpdate
-  productTranslate(id: ID!, input: TranslationInput!, languageCode: String!): ProductTranslate
-  productImageCreate(input: ProductImageCreateInput!): ProductImageCreate
-  productImageDelete(id: ID!): ProductImageDelete
-  productImageReorder(imagesIds: [ID]!, productId: ID!): ProductImageReorder
-  productImageUpdate(id: ID!, input: ProductImageUpdateInput!): ProductImageUpdate
-  productTypeCreate(input: ProductTypeInput!): ProductTypeCreate
-  productTypeDelete(id: ID!): ProductTypeDelete
-  productTypeUpdate(id: ID!, input: ProductTypeInput!): ProductTypeUpdate
-  productVariantCreate(input: ProductVariantCreateInput!): ProductVariantCreate
-  productVariantDelete(id: ID!): ProductVariantDelete
-  productVariantUpdate(id: ID!, input: ProductVariantInput!): ProductVariantUpdate
-  productVariantTranslate(id: ID!, input: NameTranslationInput!, languageCode: String!): ProductVariantTranslate
+  skillCreate(input: SkillCreateInput!): SkillCreate
+  skillDelete(id: ID!): SkillDelete
+  skillUpdate(id: ID!, input: SkillInput!): SkillUpdate
+  skillTranslate(id: ID!, input: TranslationInput!, languageCode: String!): SkillTranslate
+  skillImageCreate(input: SkillImageCreateInput!): SkillImageCreate
+  skillImageDelete(id: ID!): SkillImageDelete
+  skillImageReorder(imagesIds: [ID]!, skillId: ID!): SkillImageReorder
+  skillImageUpdate(id: ID!, input: SkillImageUpdateInput!): SkillImageUpdate
+  skillTypeCreate(input: SkillTypeInput!): SkillTypeCreate
+  skillTypeDelete(id: ID!): SkillTypeDelete
+  skillTypeUpdate(id: ID!, input: SkillTypeInput!): SkillTypeUpdate
+  skillVariantCreate(input: SkillVariantCreateInput!): SkillVariantCreate
+  skillVariantDelete(id: ID!): SkillVariantDelete
+  skillVariantUpdate(id: ID!, input: SkillVariantInput!): SkillVariantUpdate
+  skillVariantTranslate(id: ID!, input: NameTranslationInput!, languageCode: String!): SkillVariantTranslate
   variantImageAssign(imageId: ID!, variantId: ID!): VariantImageAssign
   variantImageUnassign(imageId: ID!, variantId: ID!): VariantImageUnassign
   paymentCapture(amount: Decimal, paymentId: ID!): PaymentCapture
@@ -1212,9 +1212,9 @@ enum OrderEventsEmails {
 
 type OrderLine implements Node {
   id: ID!
-  productName: String!
-  translatedProductName: String!
-  productSku: String!
+  skillName: String!
+  translatedSkillName: String!
+  skillSku: String!
   isShippingRequired: Boolean!
   quantity: Int!
   quantityFulfilled: Int!
@@ -1449,19 +1449,19 @@ enum PermissionEnum {
   MANAGE_MENUS
   MANAGE_ORDERS
   MANAGE_PAGES
-  MANAGE_PRODUCTS
+  MANAGE_SKILLS
   MANAGE_SHIPPING
   MANAGE_SETTINGS
   MANAGE_TRANSLATIONS
 }
 
-type Product implements Node {
+type Skill implements Node {
   id: ID!
   publicationDate: Date
   isPublished: Boolean!
   seoTitle: String
   seoDescription: String
-  productType: ProductType!
+  skillType: SkillType!
   name: String!
   description: String!
   descriptionJson: JSONString!
@@ -1472,21 +1472,21 @@ type Product implements Node {
   chargeTaxes: Boolean!
   taxRate: TaxRateType
   weight: Weight
-  variants: [ProductVariant]
-  images: [ProductImage]
+  variants: [SkillVariant]
+  images: [SkillImage]
   collections: [Collection]
   url: String!
   thumbnailUrl(size: Int): String @deprecated(reason: "thumbnailUrl is deprecated, use\\n         thumbnail instead")
   thumbnail(size: Int): Image
-  availability: ProductAvailability
+  availability: SkillAvailability
   purchaseCost: MoneyRange
   margin: Margin
-  imageById(id: ID): ProductImage
+  imageById(id: ID): SkillImage
   availableOn: Date @deprecated(reason: "availableOn is deprecated, use publicationDate instead")
-  translation(languageCode: String!): ProductTranslation
+  translation(languageCode: String!): SkillTranslation
 }
 
-type ProductAvailability {
+type SkillAvailability {
   available: Boolean
   onSale: Boolean
   discount: TaxedMoney
@@ -1496,23 +1496,23 @@ type ProductAvailability {
   priceRangeLocalCurrency: TaxedMoneyRange
 }
 
-type ProductCountableConnection {
+type SkillCountableConnection {
   pageInfo: PageInfo!
-  edges: [ProductCountableEdge!]!
+  edges: [SkillCountableEdge!]!
   totalCount: Int
 }
 
-type ProductCountableEdge {
-  node: Product!
+type SkillCountableEdge {
+  node: Skill!
   cursor: String!
 }
 
-type ProductCreate {
+type SkillCreate {
   errors: [Error!]
-  product: Product
+  skill: Skill
 }
 
-input ProductCreateInput {
+input SkillCreateInput {
   attributes: [AttributeValueInput]
   publicationDate: Date
   category: ID
@@ -1529,56 +1529,56 @@ input ProductCreateInput {
   sku: String
   quantity: Int
   trackInventory: Boolean
-  productType: ID!
+  skillType: ID!
 }
 
-type ProductDelete {
+type SkillDelete {
   errors: [Error!]
-  product: Product
+  skill: Skill
 }
 
-type ProductImage implements Node {
+type SkillImage implements Node {
   sortOrder: Int!
   id: ID!
   alt: String!
   url(size: Int): String!
 }
 
-type ProductImageCreate {
+type SkillImageCreate {
   errors: [Error!]
-  product: Product
-  image: ProductImage
+  skill: Skill
+  image: SkillImage
 }
 
-input ProductImageCreateInput {
+input SkillImageCreateInput {
   alt: String
   image: Upload!
-  product: ID!
+  skill: ID!
 }
 
-type ProductImageDelete {
+type SkillImageDelete {
   errors: [Error!]
-  product: Product
-  image: ProductImage
+  skill: Skill
+  image: SkillImage
 }
 
-type ProductImageReorder {
+type SkillImageReorder {
   errors: [Error!]
-  product: Product
-  images: [ProductImage]
+  skill: Skill
+  images: [SkillImage]
 }
 
-type ProductImageUpdate {
+type SkillImageUpdate {
   errors: [Error!]
-  product: Product
-  image: ProductImage
+  skill: Skill
+  image: SkillImage
 }
 
-input ProductImageUpdateInput {
+input SkillImageUpdateInput {
   alt: String
 }
 
-input ProductInput {
+input SkillInput {
   attributes: [AttributeValueInput]
   publicationDate: Date
   category: ID
@@ -1597,23 +1597,23 @@ input ProductInput {
   trackInventory: Boolean
 }
 
-input ProductOrder {
-  field: ProductOrderField!
+input SkillOrder {
+  field: SkillOrderField!
   direction: OrderDirection!
 }
 
-enum ProductOrderField {
+enum SkillOrderField {
   NAME
   PRICE
   DATE
 }
 
-type ProductTranslate {
+type SkillTranslate {
   errors: [Error!]
-  product: Product
+  skill: Skill
 }
 
-type ProductTranslation implements Node {
+type SkillTranslation implements Node {
   id: ID!
   seoTitle: String
   seoDescription: String
@@ -1623,67 +1623,67 @@ type ProductTranslation implements Node {
   language: LanguageDisplay!
 }
 
-type ProductType implements Node {
+type SkillType implements Node {
   id: ID!
   name: String!
   hasVariants: Boolean!
   isShippingRequired: Boolean!
   taxRate: TaxRateType
   weight: Weight
-  products(before: String, after: String, first: Int, last: Int): ProductCountableConnection
-  productAttributes: [Attribute]
+  skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
+  skillAttributes: [Attribute]
   variantAttributes: [Attribute]
 }
 
-type ProductTypeCountableConnection {
+type SkillTypeCountableConnection {
   pageInfo: PageInfo!
-  edges: [ProductTypeCountableEdge!]!
+  edges: [SkillTypeCountableEdge!]!
   totalCount: Int
 }
 
-type ProductTypeCountableEdge {
-  node: ProductType!
+type SkillTypeCountableEdge {
+  node: SkillType!
   cursor: String!
 }
 
-type ProductTypeCreate {
+type SkillTypeCreate {
   errors: [Error!]
-  productType: ProductType
+  skillType: SkillType
 }
 
-type ProductTypeDelete {
+type SkillTypeDelete {
   errors: [Error!]
-  productType: ProductType
+  skillType: SkillType
 }
 
-input ProductTypeInput {
+input SkillTypeInput {
   name: String
   hasVariants: Boolean
-  productAttributes: [ID]
+  skillAttributes: [ID]
   variantAttributes: [ID]
   isShippingRequired: Boolean
   weight: WeightScalar
   taxRate: TaxRateType
 }
 
-type ProductTypeUpdate {
+type SkillTypeUpdate {
   errors: [Error!]
-  productType: ProductType
+  skillType: SkillType
 }
 
-type ProductUpdate {
+type SkillUpdate {
   errors: [Error!]
-  product: Product
+  skill: Skill
 }
 
-type ProductVariant implements Node {
+type SkillVariant implements Node {
   id: ID!
   sku: String!
   name: String!
   priceOverride: Money
-  product: Product!
+  skill: Skill!
   attributes: [SelectedAttribute!]!
-  images: [ProductImage]
+  images: [SkillImage]
   trackInventory: Boolean!
   quantity: Int!
   quantityAllocated: Int!
@@ -1694,26 +1694,26 @@ type ProductVariant implements Node {
   margin: Int
   quantityOrdered: Int
   revenue(period: ReportingPeriod): TaxedMoney
-  translation(languageCode: String!): ProductVariantTranslation
+  translation(languageCode: String!): SkillVariantTranslation
 }
 
-type ProductVariantCountableConnection {
+type SkillVariantCountableConnection {
   pageInfo: PageInfo!
-  edges: [ProductVariantCountableEdge!]!
+  edges: [SkillVariantCountableEdge!]!
   totalCount: Int
 }
 
-type ProductVariantCountableEdge {
-  node: ProductVariant!
+type SkillVariantCountableEdge {
+  node: SkillVariant!
   cursor: String!
 }
 
-type ProductVariantCreate {
+type SkillVariantCreate {
   errors: [Error!]
-  productVariant: ProductVariant
+  skillVariant: SkillVariant
 }
 
-input ProductVariantCreateInput {
+input SkillVariantCreateInput {
   attributes: [AttributeValueInput]!
   costPrice: Decimal
   priceOverride: Decimal
@@ -1721,15 +1721,15 @@ input ProductVariantCreateInput {
   quantity: Int
   trackInventory: Boolean
   weight: WeightScalar
-  product: ID!
+  skill: ID!
 }
 
-type ProductVariantDelete {
+type SkillVariantDelete {
   errors: [Error!]
-  productVariant: ProductVariant
+  skillVariant: SkillVariant
 }
 
-input ProductVariantInput {
+input SkillVariantInput {
   attributes: [AttributeValueInput]
   costPrice: Decimal
   priceOverride: Decimal
@@ -1739,20 +1739,20 @@ input ProductVariantInput {
   weight: WeightScalar
 }
 
-type ProductVariantTranslate {
+type SkillVariantTranslate {
   errors: [Error!]
-  productVariant: ProductVariant
+  skillVariant: SkillVariant
 }
 
-type ProductVariantTranslation implements Node {
+type SkillVariantTranslation implements Node {
   id: ID!
   name: String!
   language: LanguageDisplay!
 }
 
-type ProductVariantUpdate {
+type SkillVariantUpdate {
   errors: [Error!]
-  productVariant: ProductVariant
+  skillVariant: SkillVariant
 }
 
 type Query {
@@ -1765,13 +1765,13 @@ type Query {
   category(id: ID!): Category
   collection(id: ID!): Collection
   collections(query: String, before: String, after: String, first: Int, last: Int): CollectionCountableConnection
-  product(id: ID!): Product
-  products(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: ProductOrder, stockAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): ProductCountableConnection
-  productType(id: ID!): ProductType
-  productTypes(before: String, after: String, first: Int, last: Int): ProductTypeCountableConnection
-  productVariant(id: ID!): ProductVariant
-  productVariants(ids: [ID], before: String, after: String, first: Int, last: Int): ProductVariantCountableConnection
-  reportProductSales(period: ReportingPeriod!, before: String, after: String, first: Int, last: Int): ProductVariantCountableConnection
+  skill(id: ID!): Skill
+  skills(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: SkillOrder, stockAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): SkillCountableConnection
+  skillType(id: ID!): SkillType
+  skillTypes(before: String, after: String, first: Int, last: Int): SkillTypeCountableConnection
+  skillVariant(id: ID!): SkillVariant
+  skillVariants(ids: [ID], before: String, after: String, first: Int, last: Int): SkillVariantCountableConnection
+  reportSkillSales(period: ReportingPeriod!, before: String, after: String, first: Int, last: Int): SkillVariantCountableConnection
   payment(id: ID): Payment
   payments(before: String, after: String, first: Int, last: Int): PaymentCountableConnection
   paymentClientToken(gateway: GatewaysEnum): String
@@ -1822,7 +1822,7 @@ type Sale implements Node {
   name: String!
   type: SaleType!
   value: Float!
-  products(before: String, after: String, first: Int, last: Int): ProductCountableConnection
+  skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
   categories(before: String, after: String, first: Int, last: Int): CategoryCountableConnection
   collections(before: String, after: String, first: Int, last: Int): CollectionCountableConnection
   startDate: Date!
@@ -1859,7 +1859,7 @@ input SaleInput {
   name: String
   type: DiscountValueTypeEnum
   value: Decimal
-  products: [ID]
+  skills: [ID]
   categories: [ID]
   collections: [ID]
   startDate: Date
@@ -2179,7 +2179,7 @@ enum TransactionKind {
   VOID
 }
 
-union TranslatableItem = Product | Category | Collection | Attribute | AttributeValue | ProductVariant | Page | ShippingMethod | Voucher | MenuItem
+union TranslatableItem = Skill | Category | Collection | Attribute | AttributeValue | SkillVariant | Page | ShippingMethod | Voucher | MenuItem
 
 type TranslatableItemConnection {
   pageInfo: PageInfo!
@@ -2193,7 +2193,7 @@ type TranslatableItemEdge {
 }
 
 enum TranslatableKinds {
-  PRODUCT
+  SKILL
   COLLECTION
   CATEGORY
   PAGE
@@ -2271,14 +2271,14 @@ type VAT {
 
 type VariantImageAssign {
   errors: [Error!]
-  productVariant: ProductVariant
-  image: ProductImage
+  skillVariant: SkillVariant
+  image: SkillImage
 }
 
 type VariantImageUnassign {
   errors: [Error!]
-  productVariant: ProductVariant
-  image: ProductImage
+  skillVariant: SkillVariant
+  image: SkillImage
 }
 
 type VerifyToken {
@@ -2300,7 +2300,7 @@ type Voucher implements Node {
   discountValue: Float!
   countries: [CountryDisplay]
   minAmountSpent: Money
-  products(before: String, after: String, first: Int, last: Int): ProductCountableConnection
+  skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
   collections(before: String, after: String, first: Int, last: Int): CollectionCountableConnection
   categories(before: String, after: String, first: Int, last: Int): CategoryCountableConnection
   translation(languageCode: String!): VoucherTranslation
@@ -2345,7 +2345,7 @@ input VoucherInput {
   endDate: Date
   discountValueType: DiscountValueTypeEnum
   discountValue: Decimal
-  products: [ID]
+  skills: [ID]
   collections: [ID]
   categories: [ID]
   minAmountSpent: Decimal
@@ -2370,14 +2370,14 @@ type VoucherTranslation implements Node {
 
 enum VoucherType {
   VALUE
-  PRODUCT
+  SKILL
   COLLECTION
   CATEGORY
   SHIPPING
 }
 
 enum VoucherTypeEnum {
-  PRODUCT
+  SKILL
   COLLECTION
   CATEGORY
   SHIPPING

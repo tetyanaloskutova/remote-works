@@ -30,7 +30,7 @@ class Command(BaseCommand):
             action='store_true',
             dest='withoutimages',
             default=False,
-            help='Don\'t create product images')
+            help='Don\'t create skill images')
         parser.add_argument(
             '--withoutsearch',
             action='store_true',

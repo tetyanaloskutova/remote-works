@@ -11,7 +11,7 @@ from django.utils.translation import pgettext_lazy
 from ...core.utils import get_paginator_items
 from ...menu.models import Menu, MenuItem
 from ...page.models import Page
-from ...product.models import Category, Collection
+from ...skill.models import Category, Collection
 from ..views import staff_member_required
 from .filters import MenuFilter, MenuItemFilter
 from .forms import AssignMenuForm, MenuForm, MenuItemForm, ReorderMenuItemsForm

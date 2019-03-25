@@ -3,8 +3,8 @@ from django.core.paginator import InvalidPage, Paginator
 from django.http import Http404
 from django.shortcuts import render
 
-from ..product.utils import products_with_details
-from ..product.utils.availability import products_with_availability
+from ..skill.utils import skills_with_details
+from ..skill.utils.availability import skills_with_availability
 from .forms import SearchForm
 
 
@@ -19,8 +19,8 @@ def paginate_results(results, get_data, paginate_by=settings.PAGINATE_BY):
 
 
 def evaluate_search_query(form, request):
-    results = products_with_details(request.user) & form.search()
-    return products_with_availability(
+    results = skills_with_details(request.user) & form.search()
+    return skills_with_availability(
         results, discounts=request.discounts, taxes=request.taxes,
         local_currency=request.currency)
 

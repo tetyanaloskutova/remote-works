@@ -1,26 +1,26 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import ProductCreatePage from "../../../products/components/ProductCreatePage";
-import { product as productFixture } from "../../../products/fixtures";
-import { productTypes } from "../../../productTypes/fixtures";
+import SkillCreatePage from "../../../skills/components/SkillCreatePage";
+import { skill as skillFixture } from "../../../skills/fixtures";
+import { skillTypes } from "../../../skillTypes/fixtures";
 import Decorator from "../../Decorator";
 
-const product = productFixture("");
+const skill = skillFixture("");
 
-storiesOf("Views / Products / Create product", module)
+storiesOf("Views / Skills / Create skill", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <ProductCreatePage
+    <SkillCreatePage
       currency="USD"
       disabled={false}
       errors={[]}
-      header="Add product"
-      collections={product.collections}
+      header="Add skill"
+      collections={skill.collections}
       fetchCategories={() => undefined}
       fetchCollections={() => undefined}
-      productTypes={productTypes}
-      categories={[product.category]}
+      skillTypes={skillTypes}
+      categories={[skill.category]}
       onAttributesEdit={undefined}
       onBack={() => undefined}
       onSubmit={() => undefined}
@@ -28,16 +28,16 @@ storiesOf("Views / Products / Create product", module)
     />
   ))
   .add("When loading", () => (
-    <ProductCreatePage
+    <SkillCreatePage
       currency="USD"
       disabled={true}
       errors={[]}
-      header="Add product"
-      collections={product.collections}
+      header="Add skill"
+      collections={skill.collections}
       fetchCategories={() => undefined}
       fetchCollections={() => undefined}
-      productTypes={productTypes}
-      categories={[product.category]}
+      skillTypes={skillTypes}
+      categories={[skill.category]}
       onAttributesEdit={undefined}
       onBack={() => undefined}
       onSubmit={() => undefined}

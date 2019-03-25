@@ -6,12 +6,12 @@ from django.template.response import TemplateResponse
 from ...account.forms import LoginForm
 from ...core.utils import (
     format_money, get_user_shipping_country, to_local_currency)
-from ...product.models import ProductVariant
+from ...skill.models import SkillVariant
 from ...shipping.utils import get_shipping_price_estimate
 from ..forms import CartShippingMethodForm, CountryForm, ReplaceCartLineForm
 from ..models import Cart
 from ..utils import (
-    check_product_availability_and_warn, get_cart_data,
+    check_skill_availability_and_warn, get_cart_data,
     get_cart_data_for_checkout, get_or_empty_db_cart, get_taxes_for_cart,
     is_valid_shipping_method, update_cart_quantity)
 from .discount import add_voucher_form, validate_voucher
@@ -100,22 +100,22 @@ def cart_index(request, cart):
     discounts = request.discounts
     taxes = request.taxes
     cart_lines = []
-    check_product_availability_and_warn(request, cart)
+    check_skill_availability_and_warn(request, cart)
 
     # refresh required to get updated cart lines and it's quantity
     try:
         cart = Cart.objects.prefetch_related(
-            'lines__variant__product__category').get(pk=cart.pk)
+            'lines__variant__skill__category').get(pk=cart.pk)
     except Cart.DoesNotExist:
         pass
 
-    lines = cart.lines.select_related('variant__product__product_type')
+    lines = cart.lines.select_related('variant__skill__skill_type')
     lines = lines.prefetch_related(
-        'variant__translations', 'variant__product__translations',
-        'variant__product__images',
-        'variant__product__product_type__variant_attributes__translations',
+        'variant__translations', 'variant__skill__translations',
+        'variant__skill__images',
+        'variant__skill__skill_type__variant_attributes__translations',
         'variant__images',
-        'variant__product__product_type__variant_attributes')
+        'variant__skill__skill_type__variant_attributes')
     for line in lines:
         initial = {'quantity': line.quantity}
         form = ReplaceCartLineForm(
@@ -170,7 +170,7 @@ def update_cart_line(request, cart, variant_id):
     """Update the line quantities."""
     if not request.is_ajax():
         return redirect('cart:index')
-    variant = get_object_or_404(ProductVariant, pk=variant_id)
+    variant = get_object_or_404(SkillVariant, pk=variant_id)
     discounts = request.discounts
     taxes = request.taxes
     status = None
@@ -225,7 +225,7 @@ def cart_summary(request, cart):
         if first_image:
             first_image = first_image.image
         return {
-            'product': line.variant.product,
+            'skill': line.variant.skill,
             'variant': line.variant,
             'quantity': line.quantity,
             'image': first_image,

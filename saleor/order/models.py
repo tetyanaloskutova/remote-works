@@ -290,13 +290,13 @@ class OrderLine(models.Model):
     order = models.ForeignKey(
         Order, related_name='lines', editable=False, on_delete=models.CASCADE)
     variant = models.ForeignKey(
-        'product.ProductVariant', related_name='order_lines',
+        'skill.SkillVariant', related_name='order_lines',
         on_delete=models.SET_NULL, blank=True, null=True)
-    # max_length is as produced by ProductVariant's display_product method
-    product_name = models.CharField(max_length=386)
-    translated_product_name = models.CharField(
+    # max_length is as produced by SkillVariant's display_skill method
+    skill_name = models.CharField(max_length=386)
+    translated_skill_name = models.CharField(
         max_length=386, default='', blank=True)
-    product_sku = models.CharField(max_length=32)
+    skill_sku = models.CharField(max_length=32)
     is_shipping_required = models.BooleanField()
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
     quantity_fulfilled = models.IntegerField(
@@ -318,7 +318,7 @@ class OrderLine(models.Model):
         ordering = ('pk', )
 
     def __str__(self):
-        return self.product_name
+        return self.skill_name
 
     def get_total(self):
         return self.unit_price * self.quantity

@@ -9,14 +9,14 @@ from django.core.files.storage import default_storage
 from django.utils.encoding import smart_text
 
 from ..discount.models import Sale
-from ..product.models import (
-    Attribute, AttributeValue, Category, ProductVariant)
+from ..skill.models import (
+    Attribute, AttributeValue, Category, SkillVariant)
 
 CATEGORY_SEPARATOR = ' > '
 
 FILE_PATH = 'google-feed.csv.gz'
 
-ATTRIBUTES = ['id', 'title', 'product_type', 'google_product_category',
+ATTRIBUTES = ['id', 'title', 'skill_type', 'google_skill_category',
               'link', 'image_link', 'condition', 'availability',
               'price', 'tax', 'sale_price', 'mpn', 'brand', 'item_group_id',
               'gender', 'age_group', 'color', 'size', 'description']
@@ -27,12 +27,12 @@ def get_feed_file_url():
 
 
 def get_feed_items():
-    items = ProductVariant.objects.all()
-    items = items.select_related('product')
+    items = SkillVariant.objects.all()
+    items = items.select_related('skill')
     items = items.prefetch_related(
-        'images', 'product__category',
-        'product__images', 'product__product_type__product_attributes',
-        'product__product_type__variant_attributes')
+        'images', 'skill__category',
+        'skill__images', 'skill__skill_type__skill_attributes',
+        'skill__skill_type__variant_attributes')
     return items
 
 
@@ -55,11 +55,11 @@ def item_link(item, current_site):
 
 
 def item_title(item):
-    return item.display_product()
+    return item.display_skill()
 
 
 def item_description(item):
-    return item.product.description[:100]
+    return item.skill.description[:100]
 
 
 def item_condition(item):
@@ -86,12 +86,12 @@ def item_brand(item, attributes_dict, attribute_values_dict):
     if brand_attribute_pk:
         brand = item.attributes.get(str(brand_attribute_pk))
         if brand is None:
-            brand = item.product.attributes.get(str(brand_attribute_pk))
+            brand = item.skill.attributes.get(str(brand_attribute_pk))
 
     if brand is None and publisher_attribute_pk is not None:
         brand = item.attributes.get(str(publisher_attribute_pk))
         if brand is None:
-            brand = item.product.attributes.get(str(publisher_attribute_pk))
+            brand = item.skill.attributes.get(str(publisher_attribute_pk))
 
     if brand is not None:
         brand_name = attribute_values_dict.get(brand)
@@ -112,13 +112,13 @@ def item_tax(item, discounts):
 
 
 def item_group_id(item):
-    return str(item.product.pk)
+    return str(item.skill.pk)
 
 
 def item_image_link(item, current_site):
-    product_image = item.get_first_image()
-    if product_image:
-        image = product_image.image
+    skill_image = item.get_first_image()
+    if skill_image:
+        image = skill_image.image
         return add_domain(current_site.domain, image.url, False)
     return None
 
@@ -129,15 +129,15 @@ def item_availability(item):
     return 'out of stock'
 
 
-def item_google_product_category(item, category_paths):
-    """Return a canonical product category.
+def item_google_skill_category(item, category_paths):
+    """Return a canonical skill category.
 
     To have your categories accepted, please use names accepted by Google or
     write custom function which maps your category names into to Google codes.
     Read more:
     https://support.google.com/merchants/answer/6324436
     """
-    category = item.product.category
+    category = item.skill.category
     if category.pk in category_paths:
         return category_paths[category.pk]
     ancestors = [
@@ -159,7 +159,7 @@ def item_sale_price(item, discounts):
 
 def item_attributes(item, categories, category_paths, current_site,
                     discounts, attributes_dict, attribute_values_dict):
-    product_data = {
+    skill_data = {
         'id': item_id(item),
         'title': item_title(item),
         'description': item_description(item),
@@ -167,29 +167,29 @@ def item_attributes(item, categories, category_paths, current_site,
         'mpn': item_mpn(item),
         'item_group_id': item_group_id(item),
         'availability': item_availability(item),
-        'google_product_category': item_google_product_category(
+        'google_skill_category': item_google_skill_category(
             item, category_paths),
         'link': item_link(item, current_site)}
 
     image_link = item_image_link(item, current_site)
     if image_link:
-        product_data['image_link'] = image_link
+        skill_data['image_link'] = image_link
 
     price = item_price(item)
-    product_data['price'] = price
+    skill_data['price'] = price
     sale_price = item_sale_price(item, discounts)
     if sale_price != price:
-        product_data['sale_price'] = sale_price
+        skill_data['sale_price'] = sale_price
 
     tax = item_tax(item, discounts)
     if tax:
-        product_data['tax'] = tax
+        skill_data['tax'] = tax
 
     brand = item_brand(item, attributes_dict, attribute_values_dict)
     if brand:
-        product_data['brand'] = brand
+        skill_data['brand'] = brand
 
-    return product_data
+    return skill_data
 
 
 def write_feed(file_obj):
@@ -198,7 +198,7 @@ def write_feed(file_obj):
     writer.writeheader()
     categories = Category.objects.all()
     discounts = Sale.objects.active(date.today()).prefetch_related(
-        'products', 'categories')
+        'skills', 'categories')
     attributes_dict = {a.slug: a.pk for a in Attribute.objects.all()}
     attribute_values_dict = {smart_text(a.pk): smart_text(a) for a
                              in AttributeValue.objects.all()}

@@ -4,12 +4,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import get_template
 
 from ...checkout import AddressType
-from ...checkout.utils import _get_products_voucher_discount
+from ...checkout.utils import _get_skills_voucher_discount
 from ...core.utils.taxes import ZERO_MONEY
 from ...discount import VoucherType
 from ...discount.utils import (
     get_shipping_voucher_discount, get_value_voucher_discount)
-from ...product.utils import decrease_stock
+from ...skill.utils import decrease_stock
 
 INVOICE_TEMPLATE = 'dashboard/order/pdf/invoice.html'
 PACKING_SLIP_TEMPLATE = 'dashboard/order/pdf/packing_slip.html'
@@ -94,7 +94,7 @@ def get_voucher_discount_for_order(order):
             order.voucher, order.get_subtotal(), order.shipping_price)
     if order.voucher.type in (
             VoucherType.PRODUCT, VoucherType.COLLECTION, VoucherType.CATEGORY):
-        return _get_products_voucher_discount(order, order.voucher)
+        return _get_skills_voucher_discount(order, order.voucher)
     raise NotImplementedError('Unknown discount type')
 
 

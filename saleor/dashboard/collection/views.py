@@ -9,7 +9,7 @@ from django.utils.translation import pgettext_lazy
 from django.views.decorators.http import require_POST
 
 from ...core.utils import get_paginator_items
-from ...product.models import Collection
+from ...skill.models import Collection
 from ..menu.utils import get_menus_that_needs_update, update_menus
 from ..views import staff_member_required
 from .filters import CollectionFilter
@@ -17,7 +17,7 @@ from .forms import AssignHomepageCollectionForm, CollectionForm
 
 
 @staff_member_required
-@permission_required('product.manage_products')
+@permission_required('skill.manage_skills')
 def collection_list(request):
     site_settings = request.site.settings
     assign_homepage_col_form = AssignHomepageCollectionForm(
@@ -28,7 +28,7 @@ def collection_list(request):
             'Dashboard message', 'Updated homepage collection')
         messages.success(request, msg)
         return redirect('dashboard:collection-list')
-    collections = Collection.objects.prefetch_related('products').all()
+    collections = Collection.objects.prefetch_related('skills').all()
     collection_filter = CollectionFilter(request.GET, queryset=collections)
     collections = get_paginator_items(
         collection_filter.qs, settings.DASHBOARD_PAGINATE_BY,
@@ -42,7 +42,7 @@ def collection_list(request):
 
 
 @staff_member_required
-@permission_required('product.manage_products')
+@permission_required('skill.manage_skills')
 def collection_create(request):
     collection = Collection()
     form = CollectionForm(
@@ -57,7 +57,7 @@ def collection_create(request):
 
 
 @staff_member_required
-@permission_required('product.manage_products')
+@permission_required('skill.manage_skills')
 def collection_update(request, pk=None):
     collection = get_object_or_404(Collection, pk=pk)
     form = CollectionForm(
@@ -77,7 +77,7 @@ def collection_update(request, pk=None):
 
 
 @staff_member_required
-@permission_required('product.manage_products')
+@permission_required('skill.manage_skills')
 def collection_delete(request, pk=None):
     collection = get_object_or_404(Collection, pk=pk)
     if request.method == 'POST':
@@ -98,7 +98,7 @@ def collection_delete(request, pk=None):
 
 @require_POST
 @staff_member_required
-@permission_required('product.manage_products')
+@permission_required('skill.manage_skills')
 def collection_toggle_is_published(request, pk):
     collection = get_object_or_404(Collection, pk=pk)
     collection.is_published = not collection.is_published

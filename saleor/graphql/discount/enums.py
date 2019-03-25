@@ -9,7 +9,7 @@ class DiscountValueTypeEnum(graphene.Enum):
 
 
 class VoucherTypeEnum(graphene.Enum):
-    PRODUCT = VoucherType.PRODUCT
+    SKILL = VoucherType.SKILL
     COLLECTION = VoucherType.COLLECTION
     CATEGORY = VoucherType.CATEGORY
     SHIPPING = VoucherType.SHIPPING

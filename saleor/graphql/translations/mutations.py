@@ -4,7 +4,7 @@ from graphql_jwt.decorators import permission_required
 from ...discount import models as discount_models
 from ...menu import models as menu_models
 from ...page import models as page_models
-from ...product import models as product_models
+from ...skill import models as skill_models
 from ...shipping import models as shipping_models
 from ..core.mutations import BaseMutation, ModelMutation, registry
 # discount types need to be imported to get Voucher in the graphene registry
@@ -56,19 +56,19 @@ class CategoryTranslate(BaseTranslateMutation):
 
     class Meta:
         description = 'Creates/Updates translations for Category.'
-        model = product_models.Category
+        model = skill_models.Category
 
 
-class ProductTranslate(BaseTranslateMutation):
+class SkillTranslate(BaseTranslateMutation):
     class Arguments:
-        id = graphene.ID(required=True, description='Product ID')
+        id = graphene.ID(required=True, description='Skill ID')
         language_code = graphene.String(
             required=True, description='Translation language code')
         input = TranslationInput(required=True)
 
     class Meta:
-        description = 'Creates/Updates translations for Product.'
-        model = product_models.Product
+        description = 'Creates/Updates translations for Skill.'
+        model = skill_models.Skill
 
 
 class CollectionTranslate(BaseTranslateMutation):
@@ -80,19 +80,19 @@ class CollectionTranslate(BaseTranslateMutation):
 
     class Meta:
         description = 'Creates/Updates translations for Collection.'
-        model = product_models.Collection
+        model = skill_models.Collection
 
 
-class ProductVariantTranslate(BaseTranslateMutation):
+class SkillVariantTranslate(BaseTranslateMutation):
     class Arguments:
-        id = graphene.ID(required=True, description='Product Variant ID')
+        id = graphene.ID(required=True, description='Skill Variant ID')
         language_code = graphene.String(
             required=True, description='Translation language code')
         input = NameTranslationInput(required=True)
 
     class Meta:
-        description = 'Creates/Updates translations for Product Variant.'
-        model = product_models.ProductVariant
+        description = 'Creates/Updates translations for Skill Variant.'
+        model = skill_models.SkillVariant
 
 
 class AttributeTranslate(BaseTranslateMutation):
@@ -104,7 +104,7 @@ class AttributeTranslate(BaseTranslateMutation):
 
     class Meta:
         description = 'Creates/Updates translations for Attribute.'
-        model = product_models.Attribute
+        model = skill_models.Attribute
 
 
 class AttributeValueTranslate(BaseTranslateMutation):
@@ -116,7 +116,7 @@ class AttributeValueTranslate(BaseTranslateMutation):
 
     class Meta:
         description = 'Creates/Updates translations for Attribute Value.'
-        model = product_models.AttributeValue
+        model = skill_models.AttributeValue
 
 
 class VoucherTranslate(BaseTranslateMutation):

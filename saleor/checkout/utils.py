@@ -21,7 +21,7 @@ from ..core.utils.taxes import ZERO_MONEY, get_taxes_for_country
 from ..discount import VoucherType
 from ..discount.models import NotApplicable, Voucher
 from ..discount.utils import (
-    get_products_voucher_discount, get_shipping_voucher_discount,
+    get_skills_voucher_discount, get_shipping_voucher_discount,
     get_value_voucher_discount, increase_voucher_usage)
 from ..order.models import Order
 from ..shipping.models import ShippingMethod
@@ -82,18 +82,18 @@ def get_variant_prices_from_lines(lines):
         for item in range(line.quantity)]
 
 
-def get_prices_of_discounted_products(lines, discounted_products):
-    """Get prices of variants belonging to the discounted products."""
-    # If there's no discounted_products,
-    # it means that all products are discounted
-    if discounted_products:
+def get_prices_of_discounted_skills(lines, discounted_skills):
+    """Get prices of variants belonging to the discounted skills."""
+    # If there's no discounted_skills,
+    # it means that all skills are discounted
+    if discounted_skills:
         lines = (
             line for line in lines
-            if line.variant.product in discounted_products)
+            if line.variant.skill in discounted_skills)
     return get_variant_prices_from_lines(lines)
 
 
-def get_prices_of_products_in_discounted_collections(
+def get_prices_of_skills_in_discounted_collections(
         lines, discounted_collections):
     """Get prices of variants belonging to the discounted collections."""
     # If there's no discounted collections,
@@ -103,17 +103,17 @@ def get_prices_of_products_in_discounted_collections(
         lines = (
             line for line in lines
             if line.variant and
-            set(line.variant.product.collections.all()).intersection(
+            set(line.variant.skill.collections.all()).intersection(
                 discounted_collections))
     return get_variant_prices_from_lines(lines)
 
 
-def get_prices_of_products_in_discounted_categories(
+def get_prices_of_skills_in_discounted_categories(
         lines, discounted_categories):
     """Get prices of variants belonging to the discounted categories.
 
-    Product must be assigned directly to the discounted category, assigning
-    product to child category won't work.
+    Skill must be assigned directly to the discounted category, assigning
+    skill to child category won't work.
     """
     # If there's no discounted collections,
     # it means that all of them are discounted
@@ -122,11 +122,11 @@ def get_prices_of_products_in_discounted_categories(
         lines = (
             line for line in lines
             if line.variant and
-            line.variant.product.category in discounted_categories)
+            line.variant.skill.category in discounted_categories)
     return get_variant_prices_from_lines(lines)
 
 
-def check_product_availability_and_warn(request, cart):
+def check_skill_availability_and_warn(request, cart):
     """Warn if cart contains any lines that cannot be fulfilled."""
     if contains_unavailable_variants(cart):
         msg = pgettext_lazy(
@@ -298,7 +298,7 @@ def update_cart_quantity(cart):
 
 def add_variant_to_cart(
         cart, variant, quantity=1, replace=False, check_quantity=True):
-    """Add a product variant to cart.
+    """Add a skill variant to cart.
 
     The `data` parameter may be used to differentiate between items with
     different customization options.
@@ -648,24 +648,24 @@ def _get_shipping_voucher_discount_for_cart(voucher, cart):
         voucher, cart.get_subtotal(), shipping_method.get_total())
 
 
-def _get_products_voucher_discount(order_or_cart, voucher):
-    """Calculate products discount value for a voucher, depending on its type.
+def _get_skills_voucher_discount(order_or_cart, voucher):
+    """Calculate skills discount value for a voucher, depending on its type.
     """
-    if voucher.type == VoucherType.PRODUCT:
-        prices = get_prices_of_discounted_products(
-            order_or_cart.lines.all(), voucher.products.all())
+    if voucher.type == VoucherType.SKILL:
+        prices = get_prices_of_discounted_skills(
+            order_or_cart.lines.all(), voucher.skills.all())
     elif voucher.type == VoucherType.COLLECTION:
-        prices = get_prices_of_products_in_discounted_collections(
+        prices = get_prices_of_skills_in_discounted_collections(
             order_or_cart.lines.all(), voucher.collections.all())
     elif voucher.type == VoucherType.CATEGORY:
-        prices = get_prices_of_products_in_discounted_categories(
+        prices = get_prices_of_skills_in_discounted_categories(
             order_or_cart.lines.all(), voucher.categories.all())
     if not prices:
         msg = pgettext(
             'Voucher not applicable',
             'This offer is only valid for selected items.')
         raise NotApplicable(msg)
-    return get_products_voucher_discount(voucher, prices)
+    return get_skills_voucher_discount(voucher, prices)
 
 
 def get_voucher_discount_for_cart(voucher, cart):
@@ -678,8 +678,8 @@ def get_voucher_discount_for_cart(voucher, cart):
     if voucher.type == VoucherType.SHIPPING:
         return _get_shipping_voucher_discount_for_cart(voucher, cart)
     if voucher.type in (
-            VoucherType.PRODUCT, VoucherType.COLLECTION, VoucherType.CATEGORY):
-        return _get_products_voucher_discount(cart, voucher)
+            VoucherType.SKILL, VoucherType.COLLECTION, VoucherType.CATEGORY):
+        return _get_skills_voucher_discount(cart, voucher)
     raise NotImplementedError('Unknown discount type')
 
 

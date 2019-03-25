@@ -8,7 +8,7 @@ from ...discount import models
 from ..core.connection import CountableDjangoObjectType
 from ..core.fields import PrefetchingConnectionField
 from ..core.types import CountryDisplay
-from ..product.types import Category, Collection, Product
+from ..skill.types import Category, Collection, Skill
 from ..translations.resolvers import resolve_translation
 from ..translations.types import VoucherTranslation
 
@@ -24,16 +24,16 @@ class Sale(CountableDjangoObjectType):
             Collection,
             description='List of collections this sale applies to.'),
         model_field='collections')
-    products = gql_optimizer.field(
+    skills = gql_optimizer.field(
         PrefetchingConnectionField(
-            Product,
-            description='List of products this sale applies to.'),
-        model_field='products')
+            Skill,
+            description='List of skills this sale applies to.'),
+        model_field='skills')
 
     class Meta:
         description = dedent("""
         Sales allow creating discounts for categories, collections or
-        products and are visible to all the customers.""")
+        skills and are visible to all the customers.""")
         interfaces = [relay.Node]
         model = models.Sale
 
@@ -43,8 +43,8 @@ class Sale(CountableDjangoObjectType):
     def resolve_collections(self, info, **kwargs):
         return self.collections.visible_to_user(info.context.user)
 
-    def resolve_products(self, info, **kwargs):
-        return self.products.visible_to_user(info.context.user)
+    def resolve_skills(self, info, **kwargs):
+        return self.skills.visible_to_user(info.context.user)
 
 
 class Voucher(CountableDjangoObjectType):
@@ -58,11 +58,11 @@ class Voucher(CountableDjangoObjectType):
             Collection,
             description='List of collections this voucher applies to.'),
         model_field='collections')
-    products = gql_optimizer.field(
+    skills = gql_optimizer.field(
         PrefetchingConnectionField(
-            Product,
-            description='List of products this voucher applies to.'),
-        model_field='products')
+            Skill,
+            description='List of skills this voucher applies to.'),
+        model_field='skills')
     countries = graphene.List(
         CountryDisplay,
         description='List of countries available for the shipping voucher.')
@@ -77,7 +77,7 @@ class Voucher(CountableDjangoObjectType):
     class Meta:
         description = dedent("""
         Vouchers allow giving discounts to particular customers on categories,
-        collections or specific products. They can be used during checkout by
+        collections or specific skills. They can be used during checkout by
         providing valid voucher codes.""")
         exclude_fields = ['translations']
         interfaces = [relay.Node]
@@ -89,8 +89,8 @@ class Voucher(CountableDjangoObjectType):
     def resolve_collections(self, info, **kwargs):
         return self.collections.visible_to_user(info.context.user)
 
-    def resolve_products(self, info, **kwargs):
-        return self.products.visible_to_user(info.context.user)
+    def resolve_skills(self, info, **kwargs):
+        return self.skills.visible_to_user(info.context.user)
 
     def resolve_countries(self, info, **kwargs):
         return [

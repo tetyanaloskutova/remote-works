@@ -21,8 +21,8 @@ from ...payment import ChargeStatus, CustomPaymentChoices, PaymentError
 from ...payment.utils import (
     clean_mark_order_as_paid, gateway_capture, gateway_refund, gateway_void,
     mark_order_as_paid)
-from ...product.models import Product, ProductVariant
-from ...product.utils import allocate_stock, deallocate_stock
+from ...skill.models import Skill, SkillVariant
+from ...skill.utils import allocate_stock, deallocate_stock
 from ...shipping.models import ShippingMethod
 from ..forms import AjaxSelect2ChoiceField
 from ..widgets import PhonePrefixWidget
@@ -54,7 +54,7 @@ class CreateOrderFromDraftForm(forms.ModelForm):
         if self.instance.get_total_quantity() == 0:
             errors.append(forms.ValidationError(pgettext_lazy(
                 'Create draft order form error',
-                'Could not create order without any products')))
+                'Could not create order without any skills')))
         if self.instance.is_shipping_required():
             method = self.instance.shipping_method
             shipping_address = self.instance.shipping_address
@@ -535,8 +535,8 @@ class AddVariantToOrderForm(forms.Form):
     """Allow adding lines with given quantity to an order."""
 
     variant = AjaxSelect2ChoiceField(
-        queryset=ProductVariant.objects.filter(
-            product__in=Product.objects.published()),
+        queryset=SkillVariant.objects.filter(
+            skill__in=Skill.objects.published()),
         fetch_data_url=reverse_lazy('dashboard:ajax-available-variants'),
         label=pgettext_lazy(
             'Order form: subform to add variant to order form: variant field',

@@ -10,7 +10,7 @@ from ...core.utils.taxes import ZERO_MONEY
 from ...discount import DiscountValueType
 from ...discount.models import Sale, Voucher
 from ...discount.utils import generate_voucher_code
-from ...product.models import Category, Product
+from ...skill.models import Category, Skill
 from ..forms import AjaxSelect2MultipleChoiceField
 
 MinAmountSpent = MoneyField(
@@ -22,11 +22,11 @@ MinAmountSpent = MoneyField(
 
 
 class SaleForm(forms.ModelForm):
-    products = AjaxSelect2MultipleChoiceField(
-        queryset=Product.objects.all(),
-        fetch_data_url=reverse_lazy('dashboard:ajax-products'),
+    skills = AjaxSelect2MultipleChoiceField(
+        queryset=Skill.objects.all(),
+        fetch_data_url=reverse_lazy('dashboard:ajax-skills'),
         required=False,
-        label=pgettext_lazy('Discounted products', 'Discounted products'))
+        label=pgettext_lazy('Discounted skills', 'Discounted skills'))
 
     class Meta:
         model = Sale
@@ -57,7 +57,7 @@ class SaleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
-            self.fields['products'].set_initial(self.instance.products.all())
+            self.fields['skills'].set_initial(self.instance.skills.all())
 
     def clean(self):
         cleaned_data = super().clean()
@@ -67,13 +67,13 @@ class SaleForm(forms.ModelForm):
             self.add_error('value', pgettext_lazy(
                 'Sale (discount) error',
                 'Sale cannot exceed 100%'))
-        products = cleaned_data.get('products')
+        skills = cleaned_data.get('skills')
         categories = cleaned_data.get('categories')
         collections = cleaned_data.get('collections')
-        if not any([products, categories, collections]):
+        if not any([skills, categories, collections]):
             raise forms.ValidationError(pgettext_lazy(
                 'Sale (discount) error',
-                'A single sale must point to at least one product, collection'
+                'A single sale must point to at least one skill, collection'
                 'and/or category.'))
         return cleaned_data
 
@@ -83,7 +83,7 @@ class VoucherForm(forms.ModelForm):
     class Meta:
         model = Voucher
         exclude = [
-            'min_amount_spent', 'countries', 'products', 'collections',
+            'min_amount_spent', 'countries', 'skills', 'collections',
             'categories', 'used']
         labels = {
             'type': pgettext_lazy(
@@ -144,7 +144,7 @@ class ValueVoucherForm(forms.ModelForm):
     def save(self, commit=True):
         self.instance.category = None
         self.instance.countries = []
-        self.instance.product = None
+        self.instance.skill = None
         return super().save(commit)
 
 
@@ -162,16 +162,16 @@ class CommonVoucherForm(forms.ModelForm):
             'off each suitable item in an order.'))
 
 
-class ProductVoucherForm(CommonVoucherForm):
-    products = AjaxSelect2MultipleChoiceField(
-        queryset=Product.objects.all(),
-        fetch_data_url=reverse_lazy('dashboard:ajax-products'),
+class SkillVoucherForm(CommonVoucherForm):
+    skills = AjaxSelect2MultipleChoiceField(
+        queryset=Skill.objects.all(),
+        fetch_data_url=reverse_lazy('dashboard:ajax-skills'),
         required=True,
-        label=pgettext_lazy('Product', 'Products'))
+        label=pgettext_lazy('Skill', 'Skills'))
 
     class Meta:
         model = Voucher
-        fields = ['products', 'apply_once_per_order']
+        fields = ['skills', 'apply_once_per_order']
 
 
 class CollectionVoucherForm(CommonVoucherForm):

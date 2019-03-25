@@ -3,7 +3,7 @@ import logging
 from django.core.management.base import BaseCommand
 from versatileimagefield.image_warmer import VersatileImageFieldWarmer
 
-from ....product.models import ProductImage
+from ....skill.models import SkillImage
 
 logger = logging.getLogger(__name__)
 

@@ -7,7 +7,7 @@ from django_filters import (
 
 from ...core.filters import SortedFilterSet
 from ...discount.models import Sale, Voucher
-from ...product.models import Category
+from ...skill.models import Category
 from ..widgets import DateRangeWidget
 
 SORT_BY_FIELDS_SALE = {

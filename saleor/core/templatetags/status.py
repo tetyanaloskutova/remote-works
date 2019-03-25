@@ -2,9 +2,9 @@ from django.template import Library
 
 from ...order import OrderStatus
 from ...payment import ChargeStatus
-from ...product import ProductAvailabilityStatus, VariantAvailabilityStatus
-from ...product.utils.availability import (
-    get_product_availability_status, get_variant_availability_status)
+from ...skill import SkillAvailabilityStatus, VariantAvailabilityStatus
+from ...skill.utils.availability import (
+    get_skill_availability_status, get_variant_availability_status)
 
 register = Library()
 
@@ -38,10 +38,10 @@ def render_order_status(status, status_display=None):
 
 
 @register.inclusion_tag('status_label.html')
-def render_availability_status(product):
-    status = get_product_availability_status(product)
-    display = ProductAvailabilityStatus.get_display(status)
-    if status == ProductAvailabilityStatus.READY_FOR_PURCHASE:
+def render_availability_status(skill):
+    status = get_skill_availability_status(skill)
+    display = SkillAvailabilityStatus.get_display(status)
+    if status == SkillAvailabilityStatus.READY_FOR_PURCHASE:
         label_cls = LABEL_SUCCESS
     else:
         label_cls = LABEL_DANGER

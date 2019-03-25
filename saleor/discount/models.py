@@ -60,9 +60,9 @@ class Voucher(models.Model):
         currency=settings.DEFAULT_CURRENCY,
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES, null=True, blank=True)
-    products = models.ManyToManyField('product.Product', blank=True)
-    collections = models.ManyToManyField('product.Collection', blank=True)
-    categories = models.ManyToManyField('product.Category', blank=True)
+    skills = models.ManyToManyField('skill.Skill', blank=True)
+    collections = models.ManyToManyField('skill.Collection', blank=True)
+    categories = models.ManyToManyField('skill.Category', blank=True)
 
     objects = VoucherQueryset.as_manager()
     translated = TranslationProxy()
@@ -79,13 +79,13 @@ class Voucher(models.Model):
                 'Voucher type',
                 '%(discount)s off shipping') % {'discount': discount}
         if self.type == VoucherType.PRODUCT:
-            products = len(self.products.all())
-            if products:
+            skills = len(self.skills.all())
+            if skills:
                 return pgettext(
                     'Voucher type',
-                    '%(discount)s off %(product_num)d products') % {
+                    '%(discount)s off %(skill_num)d skills') % {
                         'discount': discount,
-                        'product_num': products}
+                        'skill_num': skills}
         if self.type == VoucherType.COLLECTION:
             collections = len(self.collections.all())
             if collections:
@@ -164,9 +164,9 @@ class Sale(models.Model):
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES,
         default=0)
-    products = models.ManyToManyField('product.Product', blank=True)
-    categories = models.ManyToManyField('product.Category', blank=True)
-    collections = models.ManyToManyField('product.Collection', blank=True)
+    skills = models.ManyToManyField('skill.Skill', blank=True)
+    categories = models.ManyToManyField('skill.Category', blank=True)
+    collections = models.ManyToManyField('skill.Collection', blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(null=True, blank=True)
 

@@ -13,17 +13,17 @@ class DiscountValueType:
 
 
 class VoucherType:
-    PRODUCT = 'product'
+    SKILL = 'skill'
     COLLECTION = 'collection'
     CATEGORY = 'category'
     SHIPPING = 'shipping'
     VALUE = 'value'
 
     CHOICES = [
-        (VALUE, pgettext_lazy('Voucher: discount for', 'All products')),
-        (PRODUCT, pgettext_lazy('Voucher: discount for', 'Specific products')),
+        (VALUE, pgettext_lazy('Voucher: discount for', 'All skills')),
+        (SKILL, pgettext_lazy('Voucher: discount for', 'Specific skills')),
         (COLLECTION, pgettext_lazy(
-            'Voucher: discount for', 'Specific collections of products')),
+            'Voucher: discount for', 'Specific collections of skills')),
         (CATEGORY, pgettext_lazy(
-            'Voucher: discount for', 'Specific categories of products')),
+            'Voucher: discount for', 'Specific categories of skills')),
         (SHIPPING, pgettext_lazy('Voucher: discount for', 'Shipping'))]

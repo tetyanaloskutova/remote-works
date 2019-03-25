@@ -10,32 +10,32 @@ import Navigator from "../../../components/Navigator";
 import { WindowTitle } from "../../../components/WindowTitle";
 import i18n from "../../../i18n";
 import { decimal, getMutationState, maybe } from "../../../misc";
-import { productTypeUrl } from "../../../productTypes/urls";
-import ProductUpdatePage, {
+import { skillTypeUrl } from "../../../skillTypes/urls";
+import SkillUpdatePage, {
   FormData
-} from "../../components/ProductUpdatePage";
+} from "../../components/SkillUpdatePage";
 import { CategorySearchProvider } from "../../containers/CategorySearch";
 import { CollectionSearchProvider } from "../../containers/CollectionSearch";
-import ProductUpdateOperations from "../../containers/ProductUpdateOperations";
-import { TypedProductDetailsQuery } from "../../queries";
+import SkillUpdateOperations from "../../containers/SkillUpdateOperations";
+import { TypedSkillDetailsQuery } from "../../queries";
 import {
-  ProductImageCreate,
-  ProductImageCreateVariables
-} from "../../types/ProductImageCreate";
+  SkillImageCreate,
+  SkillImageCreateVariables
+} from "../../types/SkillImageCreate";
 import {
-  productImageUrl,
-  productListUrl,
-  productUrl,
-  productVariantAddUrl,
-  productVariantEditUrl
+  skillImageUrl,
+  skillListUrl,
+  skillUrl,
+  skillVariantAddUrl,
+  skillVariantEditUrl
 } from "../../urls";
-import { productRemovePath, productRemoveUrl } from "./urls";
+import { skillRemovePath, skillRemoveUrl } from "./urls";
 
-interface ProductUpdateProps {
+interface SkillUpdateProps {
   id: string;
 }
 
-export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
+export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
   id
 }) => (
   <Messages>
@@ -54,25 +54,25 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                       search: searchCollections,
                       searchOpts: searchCollectionsOpts
                     }) => (
-                      <TypedProductDetailsQuery
+                      <TypedSkillDetailsQuery
                         displayLoader
-                        require={["product"]}
+                        require={["skill"]}
                         variables={{ id }}
                       >
                         {({ data, loading }) => {
                           const handleDelete = () => {
-                            pushMessage({ text: i18n.t("Product removed") });
-                            navigate(productListUrl());
+                            pushMessage({ text: i18n.t("Skill removed") });
+                            navigate(skillListUrl());
                           };
                           const handleUpdate = () =>
                             pushMessage({ text: i18n.t("Saved changes") });
                           const handleImageCreate = (
-                            data: ProductImageCreate
+                            data: SkillImageCreate
                           ) => {
-                            const imageError = data.productImageCreate.errors.find(
+                            const imageError = data.skillImageCreate.errors.find(
                               error =>
                                 error.field ===
-                                ("image" as keyof ProductImageCreateVariables)
+                                ("image" as keyof SkillImageCreateVariables)
                             );
                             if (imageError) {
                               pushMessage({
@@ -85,35 +85,35 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                               text: i18n.t("Image successfully deleted")
                             });
                           const handleVariantAdd = () =>
-                            navigate(productVariantAddUrl(id));
+                            navigate(skillVariantAddUrl(id));
 
-                          const product = data ? data.product : undefined;
+                          const skill = data ? data.skill : undefined;
                           return (
-                            <ProductUpdateOperations
-                              product={product}
+                            <SkillUpdateOperations
+                              skill={skill}
                               onDelete={handleDelete}
                               onImageCreate={handleImageCreate}
                               onImageDelete={handleImageDeleteSuccess}
                               onUpdate={handleUpdate}
                             >
                               {({
-                                createProductImage,
-                                deleteProduct,
-                                deleteProductImage,
-                                reorderProductImages,
-                                updateProduct,
-                                updateSimpleProduct
+                                createSkillImage,
+                                deleteSkill,
+                                deleteSkillImage,
+                                reorderSkillImages,
+                                updateSkill,
+                                updateSimpleSkill
                               }) => {
                                 const handleImageDelete = (id: string) => () =>
-                                  deleteProductImage.mutate({ id });
+                                  deleteSkillImage.mutate({ id });
                                 const handleImageEdit = (
                                   imageId: string
                                 ) => () =>
-                                  navigate(productImageUrl(id, imageId));
+                                  navigate(skillImageUrl(id, imageId));
                                 const handleSubmit = (data: FormData) => {
-                                  if (product) {
-                                    if (product.productType.hasVariants) {
-                                      updateProduct.mutate({
+                                  if (skill) {
+                                    if (skill.skillType.hasVariants) {
+                                      updateSkill.mutate({
                                         attributes: data.attributes,
                                         category: data.category.value,
                                         chargeTaxes: data.chargeTaxes,
@@ -123,7 +123,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                         descriptionJson: JSON.stringify(
                                           data.description
                                         ),
-                                        id: product.id,
+                                        id: skill.id,
                                         isPublished: data.available,
                                         name: data.name,
                                         price: decimal(data.price),
@@ -133,7 +133,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                             : null
                                       });
                                     } else {
-                                      updateSimpleProduct.mutate({
+                                      updateSimpleSkill.mutate({
                                         attributes: data.attributes,
                                         category: data.category.value,
                                         chargeTaxes: data.chargeTaxes,
@@ -143,13 +143,13 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                         descriptionJson: JSON.stringify(
                                           data.description
                                         ),
-                                        id: product.id,
+                                        id: skill.id,
                                         isPublished: data.available,
                                         name: data.name,
                                         price: decimal(data.price),
-                                        productVariantId:
-                                          product.variants[0].id,
-                                        productVariantInput: {
+                                        skillVariantId:
+                                          skill.variants[0].id,
+                                        skillVariantInput: {
                                           quantity: data.stockQuantity,
                                           sku: data.sku
                                         },
@@ -163,47 +163,47 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                 };
 
                                 const disableFormSave =
-                                  createProductImage.opts.loading ||
-                                  deleteProduct.opts.loading ||
-                                  reorderProductImages.opts.loading ||
-                                  updateProduct.opts.loading ||
+                                  createSkillImage.opts.loading ||
+                                  deleteSkill.opts.loading ||
+                                  reorderSkillImages.opts.loading ||
+                                  updateSkill.opts.loading ||
                                   loading;
                                 const formTransitionState = getMutationState(
-                                  updateProduct.opts.called ||
-                                    updateSimpleProduct.opts.called,
-                                  updateProduct.opts.loading ||
-                                    updateSimpleProduct.opts.loading,
+                                  updateSkill.opts.called ||
+                                    updateSimpleSkill.opts.called,
+                                  updateSkill.opts.loading ||
+                                    updateSimpleSkill.opts.loading,
                                   maybe(
                                     () =>
-                                      updateProduct.opts.data.productUpdate
+                                      updateSkill.opts.data.skillUpdate
                                         .errors
                                   ),
                                   maybe(
                                     () =>
-                                      updateSimpleProduct.opts.data
-                                        .productUpdate.errors
+                                      updateSimpleSkill.opts.data
+                                        .skillUpdate.errors
                                   ),
                                   maybe(
                                     () =>
-                                      updateSimpleProduct.opts.data
-                                        .productVariantUpdate.errors
+                                      updateSimpleSkill.opts.data
+                                        .skillVariantUpdate.errors
                                   )
                                 );
                                 const deleteTransitionState = getMutationState(
-                                  deleteProduct.opts.called,
-                                  deleteProduct.opts.loading,
+                                  deleteSkill.opts.called,
+                                  deleteSkill.opts.loading,
                                   maybe(
                                     () =>
-                                      deleteProduct.opts.data.productDelete
+                                      deleteSkill.opts.data.skillDelete
                                         .errors
                                   )
                                 );
                                 return (
                                   <>
                                     <WindowTitle
-                                      title={maybe(() => data.product.name)}
+                                      title={maybe(() => data.skill.name)}
                                     />
-                                    <ProductUpdatePage
+                                    <SkillUpdatePage
                                       categories={maybe(
                                         () =>
                                           searchCategoriesOpts.data.categories
@@ -219,45 +219,45 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                       disabled={disableFormSave}
                                       errors={maybe(
                                         () =>
-                                          updateProduct.opts.data.productUpdate
+                                          updateSkill.opts.data.skillUpdate
                                             .errors,
                                         []
                                       )}
                                       fetchCategories={searchCategories}
                                       fetchCollections={searchCollections}
                                       saveButtonBarState={formTransitionState}
-                                      images={maybe(() => data.product.images)}
-                                      header={maybe(() => product.name)}
+                                      images={maybe(() => data.skill.images)}
+                                      header={maybe(() => skill.name)}
                                       placeholderImage={placeholderImg}
-                                      product={product}
-                                      productCollections={maybe(
-                                        () => product.collections
+                                      skill={skill}
+                                      skillCollections={maybe(
+                                        () => skill.collections
                                       )}
-                                      variants={maybe(() => product.variants)}
+                                      variants={maybe(() => skill.variants)}
                                       onAttributesEdit={() =>
                                         navigate(
-                                          productTypeUrl(
-                                            data.product.productType.id
+                                          skillTypeUrl(
+                                            data.skill.skillType.id
                                           )
                                         )
                                       }
                                       onBack={() => {
-                                        navigate(productListUrl());
+                                        navigate(skillListUrl());
                                       }}
                                       onDelete={() =>
-                                        navigate(productRemoveUrl(id))
+                                        navigate(skillRemoveUrl(id))
                                       }
-                                      onProductShow={() => {
-                                        if (product) {
-                                          window.open(product.url);
+                                      onSkillShow={() => {
+                                        if (skill) {
+                                          window.open(skill.url);
                                         }
                                       }}
                                       onImageReorder={({
                                         newIndex,
                                         oldIndex
                                       }) => {
-                                        if (product) {
-                                          let ids = product.images.map(
+                                        if (skill) {
+                                          let ids = skill.images.map(
                                             image => image.id
                                           );
                                           ids = arrayMove(
@@ -265,9 +265,9 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                             oldIndex,
                                             newIndex
                                           );
-                                          reorderProductImages.mutate({
+                                          reorderSkillImages.mutate({
                                             imagesIds: ids,
-                                            productId: product.id
+                                            skillId: skill.id
                                           });
                                         }
                                       }}
@@ -275,17 +275,17 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                       onVariantAdd={handleVariantAdd}
                                       onVariantShow={variantId => () =>
                                         navigate(
-                                          productVariantEditUrl(
-                                            product.id,
+                                          skillVariantEditUrl(
+                                            skill.id,
                                             variantId
                                           )
                                         )}
                                       onImageUpload={file => {
-                                        if (product) {
-                                          createProductImage.mutate({
+                                        if (skill) {
+                                          createSkillImage.mutate({
                                             alt: "",
                                             image: file,
-                                            product: product.id
+                                            skill: skill.id
                                           });
                                         }
                                       }}
@@ -293,29 +293,29 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                       onImageDelete={handleImageDelete}
                                     />
                                     <Route
-                                      path={productRemovePath(":id")}
+                                      path={skillRemovePath(":id")}
                                       render={({ match }) => (
                                         <ActionDialog
                                           open={!!match}
                                           onClose={() =>
-                                            navigate(productUrl(id))
+                                            navigate(skillUrl(id))
                                           }
                                           confirmButtonState={
                                             deleteTransitionState
                                           }
                                           onConfirm={() =>
-                                            deleteProduct.mutate({ id })
+                                            deleteSkill.mutate({ id })
                                           }
                                           variant="delete"
-                                          title={i18n.t("Remove product")}
+                                          title={i18n.t("Remove skill")}
                                         >
                                           <DialogContentText
                                             dangerouslySetInnerHTML={{
                                               __html: i18n.t(
                                                 "Are you sure you want to remove <strong>{{ name }}</strong>?",
                                                 {
-                                                  name: product
-                                                    ? product.name
+                                                  name: skill
+                                                    ? skill.name
                                                     : undefined
                                                 }
                                               )
@@ -327,10 +327,10 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                                   </>
                                 );
                               }}
-                            </ProductUpdateOperations>
+                            </SkillUpdateOperations>
                           );
                         }}
-                      </TypedProductDetailsQuery>
+                      </TypedSkillDetailsQuery>
                     )}
                   </CollectionSearchProvider>
                 )}
@@ -342,4 +342,4 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
     }}
   </Messages>
 );
-export default ProductUpdate;
+export default SkillUpdate;

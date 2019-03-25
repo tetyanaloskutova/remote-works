@@ -4,8 +4,8 @@ from django.utils.text import slugify
 from django.utils.translation import pgettext_lazy
 from text_unidecode import unidecode
 
-from ...product.models import Category
-from ...product.thumbnails import create_category_background_image_thumbnails
+from ...skill.models import Category
+from ...skill.thumbnails import create_category_background_image_thumbnails
 from ..seo.fields import SeoDescriptionField, SeoTitleField
 
 

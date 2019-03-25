@@ -3,7 +3,7 @@
 {% load i18n_address_tags %}
 {% load placeholder %}
 {% load price from taxed_prices %}
-{% load get_product_image_thumbnail from product_images %}
+{% load get_skill_image_thumbnail from skill_images %}
 
 {% if order.user == user %}
   <div class="order-details__addresses">
@@ -52,23 +52,23 @@
 </div>
 
 {% for line in order %}
-  <div class="table__row order-details__product{% if forloop.last %} order-details__last-row{% endif %}">
+  <div class="table__row order-details__skill{% if forloop.last %} order-details__last-row{% endif %}">
     <div class="row">
-      <div class="col-md-8 order-details__product__description">
+      <div class="col-md-8 order-details__skill__description">
         {% if line.variant %}
           <a class="link--clean" href="{{ line.variant.get_absolute_url }}">
-            <img data-src="{% get_product_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %}"
-                  data-srcset="{% get_product_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %} 1x, {% get_product_image_thumbnail line.variant.get_first_image size=120 method="thumbnail" %} 2x"
+            <img data-src="{% get_skill_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %}"
+                  data-srcset="{% get_skill_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %} 1x, {% get_skill_image_thumbnail line.variant.get_first_image size=120 method="thumbnail" %} 2x"
                   class="float-left lazyload lazypreload"
                   src="{% placeholder size=60 %}">
-            <span>{{ line.translated_product_name|default:line.product_name }}</span>
+            <span>{{ line.translated_skill_name|default:line.skill_name }}</span>
           </a>
         {% else %}
           <img src="{% placeholder size=60 %}" class="float-left">
-          <span>{{ line.translated_product_name|default:line.product_name }}</span>
+          <span>{{ line.translated_skill_name|default:line.skill_name }}</span>
         {% endif %}
       </div>
-      <div class="col-md-4 order-details__product__description">
+      <div class="col-md-4 order-details__skill__description">
         <div class="row">
           <div class="col-md-6 col-12">
             <p class="text-right">
@@ -191,16 +191,16 @@
     </div>
   </div>
   {% for fulfillment_line in fulfillment %}
-    <div class="table__row fulfillment__row order-details__product{% if forloop.last %} order-details__last-row{% endif %}">
+    <div class="table__row fulfillment__row order-details__skill{% if forloop.last %} order-details__last-row{% endif %}">
       <div class="row">
-        <div class="col-md-6 col-9 order-details__product__description">
+        <div class="col-md-6 col-9 order-details__skill__description">
           {% with variant=fulfillment_line.order_line.variant %}
             {% if variant %}
               <a class="link--clean" href="{{ variant.get_absolute_url }}">
-                <span>{{ fulfillment_line.order_line.translated_product_name|default:fulfillment_line.order_line.product_name }}</span>
+                <span>{{ fulfillment_line.order_line.translated_skill_name|default:fulfillment_line.order_line.skill_name }}</span>
               </a>
             {% else %}
-              <span>{{ fulfillment_line.order_line.translated_product_name|default:fulfillment_line.order_line.product_name }}</span>
+              <span>{{ fulfillment_line.order_line.translated_skill_name|default:fulfillment_line.order_line.skill_name }}</span>
             {% endif %}
           {% endwith %}
         </div>

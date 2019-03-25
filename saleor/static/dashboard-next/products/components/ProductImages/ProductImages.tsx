@@ -15,7 +15,7 @@ import CardTitle from "../../../components/CardTitle";
 import ImageTile from "../../../components/ImageTile";
 import ImageUpload from "../../../components/ImageUpload";
 import i18n from "../../../i18n";
-import { ProductDetails_product_images } from "../../types/ProductDetails";
+import { ProductDetails_skill_images } from "../../types/ProductDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -109,7 +109,7 @@ const styles = (theme: Theme) =>
 
 interface ProductImagesProps extends WithStyles<typeof styles> {
   placeholderImage?: string;
-  images: ProductDetails_product_images[];
+  images: ProductDetails_skill_images[];
   loading?: boolean;
   onImageDelete: (id: string) => () => void;
   onImageEdit: (id: string) => () => void;

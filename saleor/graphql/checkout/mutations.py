@@ -23,7 +23,7 @@ from ..account.types import AddressInput, User
 from ..core.mutations import BaseMutation, ModelMutation
 from ..core.types.common import Error
 from ..order.types import Order
-from ..product.types import ProductVariant
+from ..skill.types import SkillVariant
 from ..shipping.types import ShippingMethod
 from .types import Checkout, CheckoutLine
 
@@ -78,7 +78,7 @@ def check_lines_quantity(variants, quantities):
                 'Could not add item '
                 + '%(item_name)s. Only %(remaining)d remaining in stock.' % {
                     'remaining': e.item.quantity_available,
-                    'item_name': e.item.display_product()})
+                    'item_name': e.item.display_skill()})
             errors.append(('quantity', message))
     return errors
 
@@ -87,7 +87,7 @@ class CheckoutLineInput(graphene.InputObjectType):
     quantity = graphene.Int(
         required=True, description='The number of items purchased.')
     variant_id = graphene.ID(
-        required=True, description='ID of the ProductVariant.')
+        required=True, description='ID of the SkillVariant.')
 
 
 class CheckoutCreateInput(graphene.InputObjectType):
@@ -124,7 +124,7 @@ class CheckoutCreate(ModelMutation, I18nMixin):
             variant_ids = [line.get('variant_id') for line in lines]
             variants = cls.get_nodes_or_error(
                 ids=variant_ids, errors=errors, field='variant_id',
-                only_type=ProductVariant)
+                only_type=SkillVariant)
             quantities = [line.get('quantity') for line in lines]
             if not errors:
                 line_errors = check_lines_quantity(variants, quantities)
@@ -236,7 +236,7 @@ class CheckoutLinesAdd(BaseMutation):
             variant_ids = [line.get('variant_id') for line in lines]
             variants = cls.get_nodes_or_error(
                 ids=variant_ids, errors=errors, field='variant_id',
-                only_type=ProductVariant)
+                only_type=SkillVariant)
             quantities = [line.get('quantity') for line in lines]
             if not errors:
                 line_errors = check_lines_quantity(variants, quantities)
@@ -524,7 +524,7 @@ class CheckoutComplete(BaseMutation):
                 discounts=info.context.discounts, taxes=taxes)
         except InsufficientStock:
             cls.add_error(
-                field=None, message='Insufficient product stock.',
+                field=None, message='Insufficient skill stock.',
                 errors=errors)
             return CheckoutComplete(errors=errors)
         except voucher_model.NotApplicable:

@@ -3,7 +3,7 @@ from django.utils.translation import npgettext, pgettext_lazy
 from django_filters import CharFilter, ChoiceFilter, OrderingFilter
 
 from ...core.filters import SortedFilterSet
-from ...product.models import Collection
+from ...skill.models import Collection
 
 SORT_BY_FIELDS = {
     'name': pgettext_lazy('Collection list sorting option', 'name')}

@@ -8,7 +8,7 @@ MODELS_PERMISSIONS = [
     'menu.manage_menus',
     'order.manage_orders',
     'page.manage_pages',
-    'product.manage_products',
+    'skill.manage_skills',
     'shipping.manage_shipping',
     'site.manage_settings',
     'site.manage_translations']

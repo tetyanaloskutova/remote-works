@@ -11,33 +11,33 @@ def get_organization():
     return {'@type': 'Organization', 'name': site.name}
 
 
-def get_product_data(line, organization):
-    gross_product_price = line.get_total().gross
-    product_data = {
+def get_skill_data(line, organization):
+    gross_skill_price = line.get_total().gross
+    skill_data = {
         '@type': 'Offer',
         'itemOffered': {
-            '@type': 'Product',
-            'name': line.translated_product_name or line.product_name,
-            'sku': line.product_sku,
+            '@type': 'Skill',
+            'name': line.translated_skill_name or line.skill_name,
+            'sku': line.skill_sku,
         },
-        'price': gross_product_price.amount,
-        'priceCurrency': gross_product_price.currency,
+        'price': gross_skill_price.amount,
+        'priceCurrency': gross_skill_price.currency,
         'eligibleQuantity': {
             '@type': 'QuantitativeValue',
             'value': line.quantity
         },
         'seller': organization}
 
-    product = line.variant.product
-    product_url = build_absolute_uri(product.get_absolute_url())
-    product_data['itemOffered']['url'] = product_url
+    skill = line.variant.skill
+    skill_url = build_absolute_uri(skill.get_absolute_url())
+    skill_data['itemOffered']['url'] = skill_url
 
-    product_image = product.get_first_image()
-    if product_image:
-        image = product_image.image
-        product_data['itemOffered']['image'] = build_absolute_uri(
+    skill_image = skill.get_first_image()
+    if skill_image:
+        image = skill_image.image
+        skill_data['itemOffered']['image'] = build_absolute_uri(
             location=image.url)
-    return product_data
+    return skill_data
 
 
 def get_order_confirmation_markup(order):
@@ -62,6 +62,6 @@ def get_order_confirmation_markup(order):
 
     lines = order.lines.prefetch_related('variant')
     for line in lines:
-        product_data = get_product_data(line=line, organization=organization)
-        data['acceptedOffer'].append(product_data)
+        skill_data = get_skill_data(line=line, organization=organization)
+        data['acceptedOffer'].append(skill_data)
     return json.dumps(data, cls=DjangoJSONEncoder)

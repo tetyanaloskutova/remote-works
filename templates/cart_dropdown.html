@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load get_thumbnail from product_images %}
+{% load get_thumbnail from skill_images %}
 {% load placeholder %}
 {% load price from taxed_prices %}
 {% load static %}
@@ -17,7 +17,7 @@
                  alt=""
                  src="{% placeholder size=120 %}">
             <h3>
-              {{ line.product.translated }}
+              {{ line.skill.translated }}
               <span>x{{ line.quantity }}</span>
               <p>{{ line.variant.translated }}</p>
             </h3>
@@ -59,7 +59,7 @@
     </div>
   {% else %}
     <div class="text-md-center cart-dropdown__empty">
-      <h3>{% trans "There are no products in your shopping cart." context "Empty cart message" %}</h3>
+      <h3>{% trans "There are no skills in your shopping cart." context "Empty cart message" %}</h3>
       <img data-src="{% static 'images/empty-cart-bg.png' %}"
            data-srcset="{% static 'images/empty-cart-bg.png' %} 1x, {% static 'images/empty-cart-bg2x.png' %} 2x"
            src="{% placeholder size=255 %}"

@@ -11,13 +11,13 @@ from phonenumbers import COUNTRY_CODE_TO_REGION_CODE
 from ...core.permissions import get_permissions
 from ...core.utils import get_client_ip, get_country_by_ip
 from ...menu import models as menu_models
-from ...product import models as product_models
+from ...skill import models as skill_models
 from ...site import models as site_models
 from ..core.enums import WeightUnitsEnum
 from ..core.types.common import (
     CountryDisplay, LanguageDisplay, PermissionDisplay)
 from ..menu.types import Menu
-from ..product.types import Collection
+from ..skill.types import Collection
 from ..translations.resolvers import resolve_translation
 from ..translations.types import ShopTranslation
 from ..utils import format_permissions_for_display
@@ -157,7 +157,7 @@ class Shop(graphene.ObjectType):
 
     def resolve_homepage_collection(self, info):
         collection_pk = info.context.site.settings.homepage_collection_id
-        qs = product_models.Collection.objects.all()
+        qs = skill_models.Collection.objects.all()
         return get_node_optimized(qs, {'pk': collection_pk}, info)
 
     def resolve_languages(self, info):

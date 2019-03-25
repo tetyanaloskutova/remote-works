@@ -6,7 +6,7 @@ from ...core.utils.taxes import DEFAULT_TAX_RATE_NAME
 register = template.Library()
 
 
-@register.inclusion_tag('product/_price_range.html', takes_context=True)
+@register.inclusion_tag('skill/_price_range.html', takes_context=True)
 def price_range(context, price_range):
     display_gross = context['site'].settings.display_gross_prices
     return {'display_gross': display_gross, 'price_range': price_range}

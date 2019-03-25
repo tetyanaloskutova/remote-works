@@ -3,8 +3,8 @@
 {% load bootstrap_field from bootstrap4 %}
 {% load build_absolute_uri from urls %}
 {% load get_object_properties from attributes %}
-{% load get_thumbnail from product_images %}
-{% load get_product_image_thumbnail from product_images %}
+{% load get_thumbnail from skill_images %}
+{% load get_skill_image_thumbnail from skill_images %}
 {% load i18n %}
 {% load markdown from markdown %}
 {% load placeholder %}
@@ -12,25 +12,25 @@
 {% load taxed_prices %}
 
 {% block title %}
-  {% if product.seo_title %}
-    {{ product.translated.seo_title }}
+  {% if skill.seo_title %}
+    {{ skill.translated.seo_title }}
   {% else %}
-    {{ product.translated.name }} - {{ block.super }}
+    {{ skill.translated.name }} - {{ block.super }}
   {% endif %}
 {% endblock %}
 
 {% block meta_tags %}
-  <meta property="og:title" content="{{ product.translated.seo_title|default:product.translated.name }}">
-  <meta property="og:description" content="{{ product.translated.seo_description|default:"" }}">
-  <meta name="description" content="{{ product.translated.seo_description|default:"" }}">
+  <meta property="og:title" content="{{ skill.translated.seo_title|default:skill.translated.name }}">
+  <meta property="og:description" content="{{ skill.translated.seo_description|default:"" }}">
+  <meta name="description" content="{{ skill.translated.seo_description|default:"" }}">
 
-  {% build_absolute_uri request=request location=product.get_absolute_url as product_url %}
-  <meta property="og:url" content="{{ product_url }}">
-  <link rel="canonical" href="{{ product_url }}">
+  {% build_absolute_uri request=request location=skill.get_absolute_url as skill_url %}
+  <meta property="og:url" content="{{ skill_url }}">
+  <link rel="canonical" href="{{ skill_url }}">
 
-  {% get_product_image_thumbnail product.get_first_image size=510 method="thumbnail" as product_image %}
-  {% if product_image %}
-    <meta property="og:image" content="{{ product_image }}" />
+  {% get_skill_image_thumbnail skill.get_first_image size=510 method="thumbnail" as skill_image %}
+  {% if skill_image %}
+    <meta property="og:image" content="{{ skill_image }}" />
     <meta property="og:image:width" content="510">
     <meta property="og:image:height" content="510">
   {% else %}
@@ -45,13 +45,13 @@
         {% trans "Home" context "Main navigation item" %}
       </a>
     </li>
-    {% if product.category %}
+    {% if skill.category %}
       <li>
-        <a href="{{ product.category.get_absolute_url }}">{{ product.category.translated }}</a>
+        <a href="{{ skill.category.get_absolute_url }}">{{ skill.category.translated }}</a>
       </li>
     {% endif %}
     <li>
-      <a href="{{ product.get_absolute_url }}">{{ product.translated }}</a>
+      <a href="{{ skill.get_absolute_url }}">{{ skill.translated }}</a>
     </li>
   </ul>
 {% endblock breadcrumb %}
@@ -59,22 +59,22 @@
 {% block content %}
   {% if not is_visible %}
     <div class="alert alert-warning" role="alert">
-      {% blocktrans trimmed with date=product.publication_date|date context "Product details text" %}
+      {% blocktrans trimmed with date=skill.publication_date|date context "Product details text" %}
         <strong>Warning!</strong>
-        You are previewing a product that will become visible on <strong>{{ date }}</strong>.
+        You are previewing a skill that will become visible on <strong>{{ date }}</strong>.
       {% endblocktrans %}
     </div>
   {% endif %}
-  <div class="row product">
-    <script type="application/ld+json">{{ json_ld_product_data|safe }}</script>
-    <div class="col-md-6 col-12 product__gallery">
-      {% with images=product_images %}
+  <div class="row skill">
+    <script type="application/ld+json">{{ json_ld_skill_data|safe }}</script>
+    <div class="col-md-6 col-12 skill__gallery">
+      {% with images=skill_images %}
         {% if images %}
           <div id="carousel-example-generic" class="carousel slide">
             <div class="carousel-inner" role="listbox">
               {% for image in images %}
                 <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                  <div class="product-image">
+                  <div class="skill-image">
                     <img class="d-block img-fluid lazyload lazypreload"
                          data-src="{% get_thumbnail image.image method="thumbnail" size=540 %}"
                          data-srcset="{% get_thumbnail image.image method="thumbnail" size=540 %} 1x, {% get_thumbnail image.image method="thumbnail" size=1080 %} 2x"
@@ -114,13 +114,13 @@
         {% endif %}
       {% endwith %}
     </div>
-    <div class="col-md-6 col-12 product__info">
-      <h1 class="product__info__name">
-        {{ product.translated }}
+    <div class="col-md-6 col-12 skill__info">
+      <h1 class="skill__info__name">
+        {{ skill.translated }}
       </h1>
       {% if user.is_staff %}
         <p>
-          <a href="{% url "dashboard:product-details" pk=product.pk %}">
+          <a href="{% url "dashboard:skill-details" pk=skill.pk %}">
             {% trans "Edit in dashboard" context "Product details link text" %}
           </a>
         </p>
@@ -129,10 +129,10 @@
         {% if show_variant_picker %}
           <div id="variant-price-component"></div>
         {% else %}
-          <h2 class="product__info__price">
+          <h2 class="skill__info__price">
             <span>{% price_range availability.price_range %}</span>
             {% if availability.on_sale %}
-              <small class="product__info__price__undiscounted">
+              <small class="skill__info__price__undiscounted">
                 {% price availability.price_range_undiscounted %}
               </small>
             {% endif %}
@@ -145,7 +145,7 @@
             {% endif %}
             {% if request.taxes %}
               <small>
-                {% tax_rate request.taxes product.tax_rate as tax_rate %}
+                {% tax_rate request.taxes skill.tax_rate as tax_rate %}
                 {% if site.settings.display_gross_prices %}
                   {% blocktrans trimmed with tax_rate=tax_rate context "Product details page vat rate value" %}
                     including {{ tax_rate }}% VAT
@@ -160,20 +160,20 @@
           </h2>
         {% endif %}
       {% endif %}
-      {% if is_visible and product.is_in_stock %}
+      {% if is_visible and skill.is_in_stock %}
         {% block orderform %}
           {% if show_variant_picker %}
             {% csrf_token %}
-            <div id="variant-picker" data-variant-picker-data="{{ variant_picker_data }}" data-action="{% url 'product:add-to-cart' product_id=product.pk slug=product.get_slug %}"></div>
+            <div id="variant-picker" data-variant-picker-data="{{ variant_picker_data }}" data-action="{% url 'skill:add-to-cart' skill_id=skill.pk slug=skill.get_slug %}"></div>
           {% else %}
-            <form id="product-form" role="form" class="product-form clearfix" method="post" action="{% url 'product:add-to-cart' product_id=product.pk slug=product.get_slug %}" novalidate>
+            <form id="skill-form" role="form" class="skill-form clearfix" method="post" action="{% url 'skill:add-to-cart' skill_id=skill.pk slug=skill.get_slug %}" novalidate>
               {% csrf_token %}
               {% bootstrap_field form.variant %}
-              <div class="product__info__quantity">
+              <div class="skill__info__quantity">
                 {% bootstrap_field form.quantity %}
               </div>
 
-              <div class="form-group product__info__button">
+              <div class="form-group skill__info__button">
                 <button class="btn btn-primary">
                   {% trans "Add to cart" context "Product details primary action" %}
                 </button>
@@ -181,23 +181,23 @@
             </form>
           {% endif %}
         {% endblock %}
-        <div class="product__info__form-error">
+        <div class="skill__info__form-error">
           <small class="text-danger"></small>
         </div>
 
       {% else %}
         <p class="alert alert-warning">
-          {% blocktrans context "Product details text" %}This product is currently <strong>unavailable</strong>.{% endblocktrans %}
+          {% blocktrans context "Product details text" %}This skill is currently <strong>unavailable</strong>.{% endblocktrans %}
         </p>
       {% endif %}
-      <div class="product__info__description">
+      <div class="skill__info__description">
         <h3>{% trans "Description" context "Product details title" %}</h3>
         <hr>
-        {{ product.translated.description|safe }}
+        {{ skill.translated.description|safe }}
       </div>
       <hr>
       <table>
-        {% for attribute, value in product_attributes.items %}
+        {% for attribute, value in skill_attributes.items %}
           <tr>
             <td>{{ attribute.translated }}:</td>
             <td><strong>{{ value.translated }}</strong></td>

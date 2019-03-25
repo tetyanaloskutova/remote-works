@@ -7,10 +7,10 @@ from ..menu import types as menu_types
 from ..menu.resolvers import resolve_menu_items
 from ..page import types as page_types
 from ..page.resolvers import resolve_pages
-from ..product import types as product_types
-from ..product.resolvers import (
+from ..skill import types as skill_types
+from ..skill.resolvers import (
     resolve_attributes, resolve_categories, resolve_collections,
-    resolve_product_variants, resolve_products)
+    resolve_skill_variants, resolve_skills)
 from ..shipping import types as shipping_types
 from .resolvers import resolve_attribute_values, resolve_shipping_methods
 
@@ -18,12 +18,12 @@ from .resolvers import resolve_attribute_values, resolve_shipping_methods
 class TranslatableItem(graphene.Union):
     class Meta:
         types = (
-            product_types.Product,
-            product_types.Category,
-            product_types.Collection,
-            product_types.Attribute,
-            product_types.AttributeValue,
-            product_types.ProductVariant,
+            skill_types.Skill,
+            skill_types.Category,
+            skill_types.Collection,
+            skill_types.Attribute,
+            skill_types.AttributeValue,
+            skill_types.SkillVariant,
             page_types.Page,
             shipping_types.ShippingMethod,
             discount_types.Voucher,
@@ -36,7 +36,7 @@ class TranslatableItemConnection(CountableConnection):
 
 
 class TranslatableKinds(graphene.Enum):
-    PRODUCT = 'Product'
+    PRODUCT = 'Skill'
     COLLECTION = 'Collection'
     CATEGORY = 'Category'
     PAGE = 'Page'
@@ -58,7 +58,7 @@ class TranslationQueries(graphene.ObjectType):
 
     def resolve_translations(self, info, kind, **kwargs):
         if kind == TranslatableKinds.PRODUCT:
-            return resolve_products(info)
+            return resolve_skills(info)
         elif kind == TranslatableKinds.COLLECTION:
             return resolve_collections(info, query=None)
         elif kind == TranslatableKinds.CATEGORY:
@@ -74,6 +74,6 @@ class TranslationQueries(graphene.ObjectType):
         elif kind == TranslatableKinds.ATTRIBUTE_VALUE:
             return resolve_attribute_values(info)
         elif kind == TranslatableKinds.VARIANT:
-            return resolve_product_variants(info)
+            return resolve_skill_variants(info)
         elif kind == TranslatableKinds.MENU_ITEM:
             return resolve_menu_items(info, query=None)

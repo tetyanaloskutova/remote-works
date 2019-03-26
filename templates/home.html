@@ -27,7 +27,7 @@
             <div class="home--content-wrapper">
               <div class="home--content-inner">
                 <h1>{% trans "Skills" context "Homepage title" %}</h1>
-                <a class="btn btn-secondary home__button" href="#">{% trans "View now" context "Homepage action" %}</a>
+                <a class="btn btn-secondary home__button" href="/skills/collection/featured-skills-1/">{% trans "View now" context "Homepage action" %}</a>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@
       <div class="home__featured">
         <h2 class="text-center">{% trans "Featured skills" context "Homepage title" %}</h2>
         <div class="row">
-          {% include "product/_items.html" %}
+          {% include "skill/_items.html" %}
         </div>
       </div>
     {% endif %}

@@ -41,7 +41,7 @@ translatable_urlpatterns = [
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^order/', include((order_urls, 'order'), namespace='order')),
     url(r'^page/', include((page_urls, 'page'), namespace='page')),
-    url(r'^products/',
+    url(r'^skills/',
         include((skill_urls, 'skill'), namespace='skill')),
     url(r'^account/',
         include((account_urls, 'account'), namespace='account')),

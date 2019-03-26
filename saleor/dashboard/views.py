@@ -39,7 +39,7 @@ def index(request):
         is_active=True, charge_status=ChargeStatus.NOT_CHARGED
     ).order_by('-created')
     payments = payments.select_related('order', 'order__user')
-    low_stock = get_low_stock_products()
+    low_stock = get_low_stock_skills()
     ctx = {'preauthorized_payments': payments[:paginate_by],
            'orders_to_ship': orders_to_ship[:paginate_by],
            'low_stock': low_stock[:paginate_by]}
@@ -51,8 +51,8 @@ def styleguide(request):
     return TemplateResponse(request, 'dashboard/styleguide/index.html', {})
 
 
-def get_low_stock_products():
+def get_low_stock_skills():
     threshold = getattr(settings, 'LOW_STOCK_THRESHOLD', 10)
-    products = Skill.objects.annotate(
+    skills = Skill.objects.annotate(
         total_stock=Sum('variants__quantity'))
-    return products.filter(Q(total_stock__lte=threshold)).distinct()
+    return skills.filter(Q(total_stock__lte=threshold)).distinct()

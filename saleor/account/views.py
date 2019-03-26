@@ -175,7 +175,7 @@ def account_delete_confirm(request, token):
 
 def profile_list(request):
     profiles = (
-        User.objects.filter(Q(is_staff=False)).distinct().prefetch_related('products', 'addresses').select_related('default_billing_address', 'default_shipping_address').order_by('email'))
+        User.objects.filter(Q(is_staff=False)).distinct().prefetch_related('skills', 'addresses').select_related('default_billing_address', 'default_shipping_address').order_by('email'))
     print(len(profiles))
     profile_filter = UserFilter(request.GET, queryset=profiles)
     profiles = get_paginator_items(

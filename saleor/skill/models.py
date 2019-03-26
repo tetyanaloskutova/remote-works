@@ -17,6 +17,8 @@ from mptt.models import MPTTModel
 from prices import TaxedMoneyRange
 from text_unidecode import unidecode
 from versatileimagefield.fields import PPOIField, VersatileImageField
+from django.shortcuts import get_object_or_404
+from ..account.models import User
 
 from ..core import TaxRateType
 from ..core.exceptions import InsufficientStock
@@ -148,6 +150,11 @@ class Skill(SeoModel, PublishableModel):
         return reverse(
             'skill:details',
             kwargs={'slug': self.get_slug(), 'skill_id': self.id})
+     
+    def get_owner_url(self):
+        # Put owner ID compulsory in the DB
+        customer = get_object_or_404(User,email = self.owner)
+        return reverse("dashboard:customer-details",kwargs={'pk':str(customer.id)}) 
 
     def get_slug(self):
         return slugify(smart_text(unidecode(self.name)))

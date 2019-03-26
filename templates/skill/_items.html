@@ -6,7 +6,7 @@
 
 {% for skill, availability in skills %}
   <div class="col-6 col-lg-3 skill-list">
-    <a href="{{ skill.get_absolute_url }}" class="link--clean">
+    <a href="{{ skill.get_owner_url }}" class="link--clean">
       <div class="text-center">
         <div>
           <div class="skill-image">

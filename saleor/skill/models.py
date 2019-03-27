@@ -154,7 +154,7 @@ class Skill(SeoModel, PublishableModel):
     def get_owner_url(self):
         # Put owner ID compulsory in the DB
         customer = get_object_or_404(User,email = self.owner)
-        return reverse("dashboard:customer-details",kwargs={'pk':str(customer.id)}) 
+        return reverse("account:profile-details",kwargs={'pk':str(customer.id)}) 
 
     def get_slug(self):
         return slugify(smart_text(unidecode(self.name)))

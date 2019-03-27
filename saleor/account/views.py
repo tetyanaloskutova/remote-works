@@ -18,7 +18,7 @@ from .forms import (
 from ..account.models import User
 from django.db.models import Q
 from ..dashboard.customer.filters import UserFilter
-
+from ..skill.models import Skill
 
 
 @find_and_assign_anonymous_cart()
@@ -194,8 +194,9 @@ def profile_details(request, pk):
             'default_billing_address', 'default_shipping_address')
     customer = get_object_or_404(queryset, pk=pk)
     customer_orders = customer.orders.all()
+    customer_skills = Skill.objects.filter(owner=customer.id)
     notes = customer.notes.all()
     ctx = {
         'customer': customer, 'customer_orders': customer_orders,
-        'notes': notes}
+        'notes': notes, 'customer_skills':customer_skills }
     return TemplateResponse(request, 'account/profile_detail.html', ctx)

@@ -199,7 +199,7 @@ def profile_details(request, pk):
     customer_orders = customer.orders.all()
     customer_skills = Skill.objects.filter(owner=customer.id)
     notes = customer.notes.all()
-    schedules = customer.time_availability.all()
+    schedules = customer.schedules.all()
 
     ctx = {
         'customer': customer, 'customer_orders': customer_orders,
@@ -237,12 +237,12 @@ def schedule_delete(request, pk):
     if request.method == 'POST':
         schedule.delete()
         msg = pgettext_lazy(
-            'Dashboard message', 'Removed schedule %s') % (schedule.name,)
+            'Dashboard message', 'Removed schedule %s') % (schedule)
         messages.success(request, msg)
         return redirect('account:details')
     return TemplateResponse(
         request,
-        'account/schedule/modal/'
+        'account/modal/'
         'schedule_confirm_delete.html',
         {'schedule': schedule})
 

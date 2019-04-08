@@ -1,0 +1,27 @@
+{% extends "../../dashboard/base_modal.html" %}
+
+{% load i18n %}
+
+{% block form_class %}{% endblock %}
+
+{% block action_url %}
+{% url 'account:schedule-delete' pk=schedule.pk %}
+{% endblock %}
+
+{% block title %}
+{% blocktrans trimmed context "Modal remove schedule text" %}
+  Remove schedule {{ schedule }}
+{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+  <div class="col s12">
+    {% blocktrans trimmed context "Modal remove schedule text" %}
+      Are you sure you want to remove schedule <strong>{{ schedule }}</strong>?
+    {% endblocktrans %}
+  </div>
+{% endblock content %}
+
+{% block primary_action %}
+{% trans "Remove" context "Dashboard delete action" %}
+{% endblock %}

@@ -138,9 +138,6 @@ class User(PermissionsMixin, AbstractBaseUser):
     default_billing_address = models.ForeignKey(
         Address, related_name='+', null=True, blank=True,
         on_delete=models.SET_NULL)
-    time_availability = models.ForeignKey(
-        Schedule, related_name='+', null=True, blank=True,
-        on_delete=models.SET_NULL)
     USERNAME_FIELD = 'email'
 
     objects = UserManager()

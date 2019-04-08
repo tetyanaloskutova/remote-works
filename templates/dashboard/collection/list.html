@@ -40,7 +40,7 @@
                   {% trans "Name" context "Collections list table header name" as label %}
                   {% sorting_header 'name' label %}
                   <th>
-                    {% trans "Number of products" context "Voucher table header" %}
+                    {% trans "Number of skills" context "Voucher table header" %}
                   </th>
                   <th>
                     {% trans "Visibility" context "Collections list table header" %}
@@ -54,8 +54,8 @@
                       {{ node.name }}
                     </td>
                     <td class="nowrap">
-                      {% if node.products %}
-                    {% trans "Products in collection:" %} {{ node.products.count }}
+                      {% if node.skills %}
+                    {% trans "Skills in collection:" %} {{ node.skills.count }}
                       {% else %}
                         -
                       {% endif %}

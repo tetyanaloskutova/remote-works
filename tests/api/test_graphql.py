@@ -229,7 +229,7 @@ def test_get_nodes(product_list):
         get_nodes(global_ids, Product)
 
 
-@patch('saleor.product.models.Product.objects')
+@patch('saleor.skill.models.Product.objects')
 def test_filter_by_query_param(qs):
     qs.filter.return_value = qs
 

@@ -5,17 +5,17 @@
 {% load utils %}
 
 {% block title %}
-  {% trans "Product types" context "Dashboard product types list" %} - {{ block.super }}
+  {% trans "Skill types" context "Dashboard skill types list" %} - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-products{% endblock %}
+{% block body_class %}body-skills{% endblock %}
 
-{% block menu_product_types_class %}active{% endblock %}
+{% block menu_skill_types_class %}active{% endblock %}
 
 {% block header_extra %}
-  {% if perms.product.manage_products %}
+  {% if perms.skill.manage_skills %}
   <div class="btn-fab-fixed">
-    <a class="btn-fab-default waves-effect waves-light" title="{% trans "Add product type" context "Product type list add button text" %}" href="{% url 'dashboard:product-type-add' %}">
+    <a class="btn-fab-default waves-effect waves-light" title="{% trans "Add skill type" context "Skill type list add button text" %}" href="{% url 'dashboard:skill-type-add' %}">
       <svg data-src="{% static "dashboard/images/add.svg" %}" />
     </a>
   </div>
@@ -25,7 +25,7 @@
 {% block breadcrumbs %}
   <ul class="breadcrumbs">
     <li class="visible-s">
-      {% trans "Product types" context "Dashboard product types list" %}
+      {% trans "Skill types" context "Dashboard skill types list" %}
     </li>
   </ul>
 {% endblock %}
@@ -35,32 +35,32 @@
 {% block content %}
   <div class="row">
     <div class="col s12 l9">
-      {% if product_types %}
+      {% if skill_types %}
         <div class="card">
           <div class="data-table-container">
             <table class="bordered highlight data-table data-table-description">
               <thead>
                 <tr>
-                  {% trans "Name" context "Dashboard product types list table header name" as label %}
+                  {% trans "Name" context "Dashboard skill types list table header name" as label %}
                   {% sorting_header 'name' label %}
 
                   <th>
-                    {% trans "Product attributes" context "Product type item list text" %}
+                    {% trans "Skill attributes" context "Skill type item list text" %}
                   </th>
                   <th>
-                    {% trans "Variant attributes" context "Product type item list text" %}
+                    {% trans "Variant attributes" context "Skill type item list text" %}
                   </th>
                 </tr>
               </thead>
               <tbody>
-              {% for pk, name, product_attributes, variant_attributes in product_types %}
-                <tr data-action-go="{% if perms.product.manage_products %}{% url 'dashboard:product-type-update' pk=pk %}{% endif %}">
+              {% for pk, name, skill_attributes, variant_attributes in skill_types %}
+                <tr data-action-go="{% if perms.skill.manage_skills %}{% url 'dashboard:skill-type-update' pk=pk %}{% endif %}">
                   <td>
                     {{ name }}
                   </td>
                   <td>
-                    {% if product_attributes %}
-                      {{ product_attributes|join:", " }}
+                    {% if skill_attributes %}
+                      {{ skill_attributes|join:", " }}
                     {% else %}
                       -
                     {% endif %}
@@ -78,15 +78,15 @@
             </table>
           </div>
         </div>
-        {% paginate product_types %}
+        {% paginate skill_types %}
       {% else %}
         {% if is_empty %}
-          {% include 'dashboard/product/product_type/zero_page.html' %}
+          {% include 'dashboard/skill/skill_type/zero_page.html' %}
         {% else %}
           <div class="col s12">
             <div class="not-found">
               <p class="grey-text">
-                {% trans "No product types found." context "Empty product type list message" %}
+                {% trans "No skill types found." context "Empty skill type list message" %}
               </p>
             </div>
           </div>

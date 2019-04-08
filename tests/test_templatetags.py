@@ -7,7 +7,7 @@ from saleor.core.templatetags.status import (
 
 def test_sort_by_url_ascending(admin_client, category):
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={'slug': category.slug, 'category_id': category.id})
     response = admin_client.get(url)
     result = get_sort_by_url(response.context, 'name')
@@ -17,7 +17,7 @@ def test_sort_by_url_ascending(admin_client, category):
 
 def test_sort_by_url_descending(admin_client, category):
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={'slug': category.slug, 'category_id': category.id})
     response = admin_client.get(url)
     result = get_sort_by_url(response.context, 'name', descending=True)

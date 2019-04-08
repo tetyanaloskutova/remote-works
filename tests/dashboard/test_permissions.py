@@ -5,15 +5,15 @@ from saleor.account.models import User
 
 def test_staff_can_access_product_details(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-details', kwargs={'pk': product.pk})
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-details', kwargs={'pk': product.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.post(url)
     assert response.status_code == 200
@@ -21,15 +21,15 @@ def test_staff_can_access_product_details(
 
 def test_staff_can_access_product_toggle_is_published(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-publish', kwargs={'pk': product.pk})
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-publish', kwargs={'pk': product.pk})
 
     response = staff_client.post(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.post(url)
     assert response.status_code == 200
@@ -37,15 +37,15 @@ def test_staff_can_access_product_toggle_is_published(
 
 def test_staff_can_access_product_select_type(
         staff_client, staff_user, permission_manage_products):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-add-select-type')
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-add-select-type')
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.post(url)
     assert response.status_code == 200
@@ -53,15 +53,15 @@ def test_staff_can_access_product_select_type(
 
 def test_staff_can_access_product_create(
         staff_client, staff_user, permission_manage_products, product_type):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-add', kwargs={'type_pk': product_type.pk})
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-add', kwargs={'type_pk': product_type.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.post(url)
     assert response.status_code == 200
@@ -69,15 +69,15 @@ def test_staff_can_access_product_create(
 
 def test_staff_can_access_product_edit(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-update', kwargs={'pk': product.pk})
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-update', kwargs={'pk': product.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.post(url)
     assert response.status_code == 200
@@ -85,15 +85,15 @@ def test_staff_can_access_product_edit(
 
 def test_staff_can_access_product_delete(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
-    url = reverse('dashboard:product-delete', kwargs={'pk': product.pk})
+    assert not staff_user.has_perm('skill.manage_products')
+    url = reverse('dashboard:skill-delete', kwargs={'pk': product.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -101,49 +101,49 @@ def test_staff_can_access_product_delete(
 
 def test_staff_can_view_product_list(
         staff_client, staff_user, permission_manage_products):
-    assert not staff_user.has_perm('product.manage_products')
-    response = staff_client.get(reverse('dashboard:product-list'))
+    assert not staff_user.has_perm('skill.manage_products')
+    response = staff_client.get(reverse('dashboard:skill-list'))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
-    response = staff_client.get(reverse('dashboard:product-list'))
+    assert staff_user.has_perm('skill.manage_products')
+    response = staff_client.get(reverse('dashboard:skill-list'))
     assert response.status_code == 200
 
 
 def test_staff_can_view_category_list(
         staff_client, staff_user, permission_manage_products):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:category-list'))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:category-list'))
     assert response.status_code == 200
 
 
 def test_staff_can_view_category_add_root(
         staff_client, staff_user, permission_manage_products):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:category-add'))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:category-add'))
     assert response.status_code == 200
 
 
 def test_staff_can_view_category_add_subcategory(
         staff_client, staff_user, permission_manage_products, category):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-add', args=[category.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-add', args=[category.pk]))
     assert response.status_code == 200
@@ -151,13 +151,13 @@ def test_staff_can_view_category_add_subcategory(
 
 def test_staff_can_view_category_edit(
         staff_client, staff_user, permission_manage_products, category):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-edit', args=[category.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-edit', args=[category.pk]))
     assert response.status_code == 200
@@ -165,13 +165,13 @@ def test_staff_can_view_category_edit(
 
 def test_staff_can_view_category_delete(
         staff_client, staff_user, permission_manage_products, category):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-delete', args=[category.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse('dashboard:category-delete', args=[category.pk]))
     assert response.status_code == 200
@@ -417,37 +417,37 @@ def test_staff_can_view_detail_create_and_delete_staff_members(
 
 def test_staff_with_permissions_can_view_product_types_list(
         staff_client, staff_user, permission_manage_products):
-    assert not staff_user.has_perm('product.manage_products')
-    response = staff_client.get(reverse('dashboard:product-type-list'))
+    assert not staff_user.has_perm('skill.manage_products')
+    response = staff_client.get(reverse('dashboard:skill-type-list'))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
-    response = staff_client.get(reverse('dashboard:product-type-list'))
+    assert staff_user.has_perm('skill.manage_products')
+    response = staff_client.get(reverse('dashboard:skill-type-list'))
     assert response.status_code == 200
 
 
 def test_staff_with_permissions_can_edit_add_and_delete_product_types_list(
         staff_client, staff_user, permission_manage_products, product_type):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
-        reverse('dashboard:product-type-update', args=[product_type.pk]))
+        reverse('dashboard:skill-type-update', args=[product_type.pk]))
     assert response.status_code == 302
     response = staff_client.get(
-        reverse('dashboard:product-type-delete', args=[product_type.pk]))
+        reverse('dashboard:skill-type-delete', args=[product_type.pk]))
     assert response.status_code == 302
-    response = staff_client.get(reverse('dashboard:product-type-add'))
+    response = staff_client.get(reverse('dashboard:skill-type-add'))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
-        reverse('dashboard:product-type-update', args=[product_type.pk]))
+        reverse('dashboard:skill-type-update', args=[product_type.pk]))
     assert response.status_code == 200
     response = staff_client.get(
-        reverse('dashboard:product-type-delete', args=[product_type.pk]))
+        reverse('dashboard:skill-type-delete', args=[product_type.pk]))
     assert response.status_code == 200
-    response = staff_client.get(reverse('dashboard:product-type-add'))
+    response = staff_client.get(reverse('dashboard:skill-type-add'))
     assert response.status_code == 200
 
 
@@ -458,7 +458,7 @@ def test_staff_can_access_variant_details(
     product_type.save()
 
     variant = product.variants.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:variant-details',
         kwargs={
@@ -470,7 +470,7 @@ def test_staff_can_access_variant_details(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -478,7 +478,7 @@ def test_staff_can_access_variant_details(
 
 def test_staff_can_access_variant_create(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse('dashboard:variant-add', kwargs={'product_pk': product.pk})
 
     response = staff_client.get(url)
@@ -486,7 +486,7 @@ def test_staff_can_access_variant_create(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -495,7 +495,7 @@ def test_staff_can_access_variant_create(
 def test_staff_can_access_variant_edit(
         staff_client, staff_user, permission_manage_products, product):
     variant = product.variants.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:variant-update',
         kwargs={
@@ -507,7 +507,7 @@ def test_staff_can_access_variant_edit(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -516,7 +516,7 @@ def test_staff_can_access_variant_edit(
 def test_staff_can_access_variant_delete(
         staff_client, staff_user, permission_manage_products, product):
     variant = product.variants.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:variant-delete',
         kwargs={
@@ -528,7 +528,7 @@ def test_staff_can_access_variant_delete(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -537,7 +537,7 @@ def test_staff_can_access_variant_delete(
 def test_staff_can_access_variant_images(
         staff_client, staff_user, permission_manage_products, product):
     variant = product.variants.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:variant-images',
         kwargs={
@@ -549,7 +549,7 @@ def test_staff_can_access_variant_images(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -557,16 +557,16 @@ def test_staff_can_access_variant_images(
 
 def test_staff_can_access_product_image_list(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
-        'dashboard:product-image-list', kwargs={'product_pk': product.pk})
+        'dashboard:skill-image-list', kwargs={'product_pk': product.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -574,16 +574,16 @@ def test_staff_can_access_product_image_list(
 
 def test_staff_can_access_product_image_add(
         staff_client, staff_user, permission_manage_products, product):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
-        'dashboard:product-image-add', kwargs={'product_pk': product.pk})
+        'dashboard:skill-image-add', kwargs={'product_pk': product.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -592,9 +592,9 @@ def test_staff_can_access_product_image_add(
 def test_staff_can_access_product_image_update(
         staff_client, staff_user, permission_manage_products, product_with_image):
     product_image = product_with_image.images.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
-        'dashboard:product-image-update',
+        'dashboard:skill-image-update',
         kwargs={
             'product_pk': product_with_image.pk,
             'img_pk': product_image.pk})
@@ -604,7 +604,7 @@ def test_staff_can_access_product_image_update(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -613,9 +613,9 @@ def test_staff_can_access_product_image_update(
 def test_staff_can_access_product_image_delete(
         staff_client, staff_user, permission_manage_products, product_with_image):
     product_image = product_with_image.images.get()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
-        'dashboard:product-image-delete',
+        'dashboard:skill-image-delete',
         kwargs={
             'product_pk': product_with_image.pk,
             'img_pk': product_image.pk})
@@ -625,7 +625,7 @@ def test_staff_can_access_product_image_delete(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -633,7 +633,7 @@ def test_staff_can_access_product_image_delete(
 
 def test_staff_with_permissions_can_view_products_attributes_list(
         staff_client, staff_user, permission_manage_products, color_attribute):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:attributes'))
     assert response.status_code == 302
     response = staff_client.get(
@@ -642,7 +642,7 @@ def test_staff_with_permissions_can_view_products_attributes_list(
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(reverse('dashboard:attributes'))
     assert response.status_code == 200
     response = staff_client.get(
@@ -653,7 +653,7 @@ def test_staff_with_permissions_can_view_products_attributes_list(
 
 def test_staff_with_permissions_can_update_add_and_delete_products_attributes(
         staff_client, staff_user, permission_manage_products, color_attribute):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse(
             'dashboard:attribute-update', args=[color_attribute.pk]))
@@ -666,7 +666,7 @@ def test_staff_with_permissions_can_update_add_and_delete_products_attributes(
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
     response = staff_client.get(
         reverse(
             'dashboard:attribute-update', args=[color_attribute.pk]))
@@ -681,7 +681,7 @@ def test_staff_with_permissions_can_update_add_and_delete_products_attributes(
 
 def test_staff_can_access_attribute_create(
         staff_client, staff_user, permission_manage_products, color_attribute):
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:attribute-value-add',
         kwargs={'attribute_pk': color_attribute.pk})
@@ -691,7 +691,7 @@ def test_staff_can_access_attribute_create(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -700,7 +700,7 @@ def test_staff_can_access_attribute_create(
 def test_staff_can_access_attribute_edit(
         staff_client, staff_user, permission_manage_products, color_attribute):
     value = color_attribute.values.first()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:attribute-value-update',
         kwargs={
@@ -712,7 +712,7 @@ def test_staff_can_access_attribute_edit(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200
@@ -721,7 +721,7 @@ def test_staff_can_access_attribute_edit(
 def test_staff_can_access_attribute_delete(
         staff_client, staff_user, permission_manage_products, color_attribute):
     value = color_attribute.values.first()
-    assert not staff_user.has_perm('product.manage_products')
+    assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
         'dashboard:attribute-value-delete',
         kwargs={
@@ -733,7 +733,7 @@ def test_staff_can_access_attribute_delete(
 
     staff_user.user_permissions.add(permission_manage_products)
     staff_user = User.objects.get(pk=staff_user.pk)
-    assert staff_user.has_perm('product.manage_products')
+    assert staff_user.has_perm('skill.manage_products')
 
     response = staff_client.get(url)
     assert response.status_code == 200

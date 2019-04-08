@@ -12,14 +12,14 @@ def test_product_availability_status(unavailable_product):
     product = unavailable_product
     product.product_type.has_variants = True
 
-    # product is not published
+    # skill is not published
     status = get_product_availability_status(product)
     assert status == ProductAvailabilityStatus.NOT_PUBLISHED
 
     product.is_published = True
     product.save()
 
-    # product has no variants
+    # skill has no variants
     status = get_product_availability_status(product)
     assert status == ProductAvailabilityStatus.VARIANTS_MISSSING
 
@@ -46,7 +46,7 @@ def test_product_availability_status(unavailable_product):
     status = get_product_availability_status(product)
     assert status == ProductAvailabilityStatus.READY_FOR_PURCHASE
 
-    # set product availability date from future
+    # set skill availability date from future
     product.publication_date = (
         datetime.date.today() + datetime.timedelta(days=1))
     product.save()

@@ -8,7 +8,6 @@
 {% load status %}
 
 {% block title %}{% trans "Your profile" context "User profile page title" %} — {{ block.super }}{% endblock %}
-
 {% block breadcrumb %}
   <ul class="breadcrumbs list-unstyled">
     <li>
@@ -28,6 +27,11 @@
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#orders" role="tab">
             <h3>{% trans "Recent Orders" context "User profile tab" %}</h3>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#schedules" role="tab">
+            <h3>{% trans "Schedules" context "User profile tab" %}</h3>
           </a>
         </li>
         {% if user.password %}
@@ -113,6 +117,59 @@
           {% endif %}
         </div>
       </div>
+      <div class="tab-pane active fade show" id="schedule" role="tabpanel">
+        <div id="accordion1" role="tablist" aria-multiselectable="true">
+          {% if schedules|length %}
+            <div class="table__header">
+              <div class="row">
+                <div class="col-md-2 col-4">
+                  <small>{% trans "Schedule days" context "Schedule column title" %}</small>
+                </div>
+                <div class="col-md-2 col-6">
+                  <small>{% trans "Time start" context "Schedule column title" %}</small>
+                </div>
+                <div class="col-md-2 col-7">
+                  <small>{% trans "Time end" context "Schedule column title" %}</small>
+                </div>
+              </div>
+            </div>
+            {% for schedule in schedules %}
+              <div class="table__row">
+                <div class="row">
+                  <div class="col-md-2 col-4">
+                    {{ schedule.days_of_week }}
+                  </div>
+                  <div class="col-md-3 d-none d-md-block">
+                    {{ schedule.time_slot_start }}
+                  </div>
+                  <div class="col-md-3 d-none d-md-block">
+                    {{ schedule.time_slot_end }}
+                  </div>
+                  <div class="col-md-1 col-2">
+                    <a href="{% url "account:schedule-add" %}" class="float-right link--styled">
+                      {% trans "Add" context "Schedules link text" %}
+                    </a>
+                  </div>
+                  <div class="col-md-1 col-3">
+                    <a href="{% url "account:schedule-delete" pk=schedule.pk %}" class="float-right link--styled">
+                      {% trans "Delete" context "Schedules link text" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+          {% else %}
+            <h3 class="text-sm-center account__orders-empty">
+              {% trans "There is no schedule completed yet." context "No schedule text" %}
+              <a href="{% url "account:schedule-add"%}" class="float-right link--styled">
+                {% trans "Add" context "Schedules link text" %}
+              </a>
+            </h3>
+          {% endif %}
+        </div>
+      </div>
+
       <div class="tab-pane fade" id="password" role="tabpanel">
         <div class="row ">
           <div class="col-md-8 col-lg-6 m-auto account__password">
@@ -189,4 +246,5 @@
       </div>
     </div>
   </div>
+
 {% endblock content %}

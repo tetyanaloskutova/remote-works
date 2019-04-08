@@ -75,11 +75,11 @@ def test_filtering_by_attribute(db, color_attribute, category, settings):
         name='New class', has_variants=True)
     product_type_b.variant_attributes.add(color_attribute)
     product_a = models.Product.objects.create(
-        name='Test product a', price=Money(10, settings.DEFAULT_CURRENCY),
+        name='Test skill a', price=Money(10, settings.DEFAULT_CURRENCY),
         product_type=product_type_a, category=category)
     models.ProductVariant.objects.create(product=product_a, sku='1234')
     product_b = models.Product.objects.create(
-        name='Test product b', price=Money(10, settings.DEFAULT_CURRENCY),
+        name='Test skill b', price=Money(10, settings.DEFAULT_CURRENCY),
         product_type=product_type_b, category=category)
     variant_b = models.ProductVariant.objects.create(product=product_b,
                                                      sku='12345')
@@ -179,7 +179,7 @@ def test_view_invalid_add_to_cart(client, product, request_cart):
     add_variant_to_cart(request_cart, variant, 2)
     response = client.post(
         reverse(
-            'product:add-to-cart',
+            'skill:add-to-cart',
             kwargs={
                 'slug': product.get_slug(),
                 'product_id': product.pk}),
@@ -192,7 +192,7 @@ def test_view_add_to_cart(client, product, request_cart_with_item):
     variant = request_cart_with_item.lines.get().variant
     response = client.post(
         reverse(
-            'product:add-to-cart',
+            'skill:add-to-cart',
             kwargs={'slug': product.get_slug(),
                     'product_id': product.pk}),
         {'quantity': 1, 'variant': variant.pk})
@@ -212,7 +212,7 @@ def test_adding_to_cart_with_current_user_token(
     authorized_client.cookies[key] = response.cookies[key]
     variant = request_cart_with_item.lines.first().variant
     url = reverse(
-        'product:add-to-cart',
+        'skill:add-to-cart',
         kwargs={'slug': product.get_slug(), 'product_id': product.pk})
     data = {'quantity': 1, 'variant': variant.pk}
 
@@ -236,7 +236,7 @@ def test_adding_to_cart_with_another_user_token(
     client.cookies[key] = response.cookies[key]
     variant = request_cart_with_item.lines.first().variant
     url = reverse(
-        'product:add-to-cart',
+        'skill:add-to-cart',
         kwargs={'slug': product.get_slug(), 'product_id': product.pk})
     data = {'quantity': 1, 'variant': variant.pk}
 
@@ -258,7 +258,7 @@ def test_anonymous_adding_to_cart_with_another_user_token(
     client.cookies[key] = response.cookies[key]
     variant = product.variants.get()
     url = reverse(
-        'product:add-to-cart',
+        'skill:add-to-cart',
         kwargs={'slug': product.get_slug(), 'product_id': product.pk})
     data = {'quantity': 1, 'variant': variant.pk}
 
@@ -282,7 +282,7 @@ def test_adding_to_cart_with_deleted_cart_token(
     request_cart_with_item.delete()
     variant = product.variants.get()
     url = reverse(
-        'product:add-to-cart',
+        'skill:add-to-cart',
         kwargs={'slug': product.get_slug(), 'product_id': product.pk})
     data = {'quantity': 1, 'variant': variant.pk}
 
@@ -303,7 +303,7 @@ def test_adding_to_cart_with_closed_cart_token(
     authorized_client.cookies[key] = response.cookies[key]
     variant = product.variants.get()
     url = reverse(
-        'product:add-to-cart',
+        'skill:add-to-cart',
         kwargs={'slug': product.get_slug(), 'product_id': product.pk})
     data = {'quantity': 1, 'variant': variant.pk}
 
@@ -316,7 +316,7 @@ def test_product_filter_before_filtering(authorized_client, product, category):
     products = models.Product.objects.all().filter(
         category__name=category).order_by('-price')
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -332,7 +332,7 @@ def test_product_filter_product_exists(authorized_client, product, category):
         .filter(category__name=category)
         .order_by('-price'))
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -346,7 +346,7 @@ def test_product_filter_product_exists(authorized_client, product, category):
 def test_product_filter_product_does_not_exist(
         authorized_client, product, category):
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -363,7 +363,7 @@ def test_product_filter_form(authorized_client, product, category):
         .filter(category__name=category)
         .order_by('-price'))
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -382,7 +382,7 @@ def test_product_filter_sorted_by_price_descending(
         .filter(category__name=category, is_published=True)
         .order_by('-price'))
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -396,7 +396,7 @@ def test_product_filter_sorted_by_price_descending(
 def test_product_filter_sorted_by_wrong_parameter(
         authorized_client, product, category):
     url = reverse(
-        'product:category',
+        'skill:category',
         kwargs={
             'slug': category.slug,
             'category_id': category.pk})
@@ -424,7 +424,7 @@ def test_render_product_page_with_no_variant(
     status = get_product_availability_status(product)
     assert status == ProductAvailabilityStatus.VARIANTS_MISSSING
     url = reverse(
-        'product:details',
+        'skill:details',
         kwargs={'product_id': product.pk, 'slug': product.get_slug()})
     response = admin_client.get(url)
     assert response.status_code == 200
@@ -438,13 +438,13 @@ def test_include_products_from_subcategories_in_main_view(
     product.save()
     # URL to parent category view
     url = reverse(
-        'product:category', kwargs={
+        'skill:category', kwargs={
             'slug': category.slug, 'category_id': category.pk})
     response = authorized_client.get(url)
     assert product in response.context_data['products'][0]
 
 
-@patch('saleor.product.thumbnails.create_thumbnails')
+@patch('saleor.skill.thumbnails.create_thumbnails')
 def test_create_product_thumbnails(
         mock_create_thumbnails, product_with_image):
     product_image = product_with_image.images.first()
@@ -605,12 +605,12 @@ def test_product_json_serialization(product):
 def test_product_json_deserialization(category, product_type):
     product_json = """
     [{{
-        "model": "product.product",
+        "model": "skill.skill",
         "pk": 60,
         "fields": {{
             "seo_title": null,
             "seo_description": "Future almost cup national.",
-            "product_type": {product_type_pk},
+            "skill_type": {product_type_pk},
             "name": "Kelly-Clark",
             "description": "Future almost cup national",
             "category": {category_pk},
@@ -652,12 +652,12 @@ def test_product_json_deserialization(category, product_type):
 def test_json_no_currency_deserialization(category, product_type):
     product_json = """
     [{{
-        "model": "product.product",
+        "model": "skill.skill",
         "pk": 60,
         "fields": {{
             "seo_title": null,
             "seo_description": "Future almost cup national.",
-            "product_type": {product_type_pk},
+            "skill_type": {product_type_pk},
             "name": "Kelly-Clark",
             "description": "Future almost cup national",
             "category": {category_pk},

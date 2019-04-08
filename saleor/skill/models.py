@@ -116,9 +116,7 @@ class Skill(SeoModel, PublishableModel):
     tax_rate = models.CharField(
         max_length=128, default=DEFAULT_TAX_RATE_NAME, blank=True,
         choices=TaxRateType.CHOICES)
-    weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
-        blank=True, null=True)
+    experience_years = models.CharField(max_length=128, blank=True, null=True)
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, null = True, related_name='skills',
         on_delete=models.SET_NULL)

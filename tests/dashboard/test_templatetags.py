@@ -4,7 +4,7 @@ from saleor.dashboard.templatetags.utils import sorting_header
 
 
 def test_sorting_header_prepare_initial_data(admin_client):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     response = admin_client.get(url)
     result = sorting_header(response.context, 'name', 'Name')
     assert result['url'] == url + '?sort_by=name'
@@ -13,7 +13,7 @@ def test_sorting_header_prepare_initial_data(admin_client):
 
 
 def test_sorting_header_name_field(admin_client):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {'sort_by': 'name'}
     response = admin_client.get(url, data)
     result = sorting_header(response.context, 'name', 'Name')
@@ -28,7 +28,7 @@ def test_sorting_header_name_field(admin_client):
 
 
 def test_sorting_header_many_fields(admin_client):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {'sort_by': 'name'}
     response = admin_client.get(url, data)
     result = sorting_header(response.context, 'name', 'Name')

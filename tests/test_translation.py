@@ -29,7 +29,7 @@ def shipping_method_translation_fr(shipping_method):
 
 
 def test_translation(product, settings, product_translation_fr):
-    assert product.translated.name == 'Test product'
+    assert product.translated.name == 'Test skill'
     assert not product.translated.description
 
     settings.LANGUAGE_CODE = 'fr'

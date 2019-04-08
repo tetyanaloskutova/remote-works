@@ -58,10 +58,11 @@ class CustomerForm(forms.ModelForm):
         if address.last_name:
             placeholder = get_name_placeholder(address.last_name)
             self.fields['last_name'].widget.attrs['placeholder'] = placeholder
+        time_availability = self.instance.time_availability
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'is_active', 'note']
+        fields = ['first_name', 'last_name', 'email', 'is_active', 'note', 'time_availability']
         labels = {
             'first_name': pgettext_lazy(
                 'Customer form: Given name field', 'Given name'),

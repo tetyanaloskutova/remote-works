@@ -192,7 +192,7 @@ def test_query_product_image_by_id(user_api_client, product_with_image):
     image = product_with_image.images.first()
     query = """
     query productImageById($imageId: ID!, $productId: ID!) {
-        product(id: $productId) {
+        skill(id: $productId) {
             imageById(id: $imageId) {
                 id
                 url
@@ -211,7 +211,7 @@ def test_product_with_collections(
         staff_api_client, product, collection, permission_manage_products):
     query = """
         query getProduct($productID: ID!) {
-            product(id: $productID) {
+            skill(id: $productID) {
                 collections {
                     name
                 }
@@ -226,7 +226,7 @@ def test_product_with_collections(
     staff_api_client.user.user_permissions.add(permission_manage_products)
     response = staff_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    data = content['data']['product']
+    data = content['data']['skill']
     assert data['collections'][0]['name'] == collection.name
     assert len(data['collections']) == 1
 
@@ -376,12 +376,12 @@ def test_filter_products_by_collections(
 
 
 def test_sort_products(user_api_client, product):
-    # set price and update date of the first product
+    # set price and update date of the first skill
     product.price = Money('10.00', 'USD')
     product.updated_at = datetime.utcnow()
     product.save()
 
-    # Create the second product with higher price and date
+    # Create the second skill with higher price and date
     product.pk = None
     product.price = Money('20.00', 'USD')
     product.updated_at = datetime.utcnow()
@@ -463,7 +463,7 @@ def test_create_product(
                         price: $price,
                         attributes: $attributes
                     }) {
-                        product {
+                        skill {
                             category {
                                 name
                             }
@@ -508,7 +508,7 @@ def test_create_product(
     product_tax_rate = 'STANDARD'
     product_price = 22.33
 
-    # Default attribute defined in product_type fixture
+    # Default attribute defined in skill_type fixture
     color_attr = product_type.product_attributes.get(name='Color')
     color_value_slug = color_attr.values.first().slug
     color_attr_slug = color_attr.slug
@@ -518,7 +518,7 @@ def test_create_product(
     size_attr_slug = product_type.product_attributes.get(name='Size').slug
     non_existent_attr_value = 'The cake is a lie'
 
-    # test creating root product
+    # test creating root skill
     variables = {
         'productTypeId': product_type_id,
         'categoryId': category_id,
@@ -538,17 +538,17 @@ def test_create_product(
     content = get_graphql_content(response)
     data = content['data']['productCreate']
     assert data['errors'] == []
-    assert data['product']['name'] == product_name
-    assert data['product']['description'] == product_description
-    assert data['product']['descriptionJson'] == product_description_json
-    assert data['product']['isPublished'] == product_is_published
-    assert data['product']['chargeTaxes'] == product_charge_taxes
-    assert data['product']['taxRate'] == product_tax_rate
-    assert data['product']['productType']['name'] == product_type.name
-    assert data['product']['category']['name'] == category.name
+    assert data['skill']['name'] == product_name
+    assert data['skill']['description'] == product_description
+    assert data['skill']['descriptionJson'] == product_description_json
+    assert data['skill']['isPublished'] == product_is_published
+    assert data['skill']['chargeTaxes'] == product_charge_taxes
+    assert data['skill']['taxRate'] == product_tax_rate
+    assert data['skill']['productType']['name'] == product_type.name
+    assert data['skill']['category']['name'] == category.name
     values = (
-        data['product']['attributes'][0]['value']['slug'],
-        data['product']['attributes'][1]['value']['slug'])
+        data['skill']['attributes'][0]['value']['slug'],
+        data['skill']['attributes'][1]['value']['slug'])
     assert slugify(non_existent_attr_value) in values
     assert color_value_slug in values
 
@@ -576,7 +576,7 @@ QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS = """
                 trackInventory: $trackInventory
             })
         {
-            product {
+            skill {
                 id
                 name
                 variants{
@@ -633,12 +633,12 @@ def test_create_product_without_variants(
     content = get_graphql_content(response)
     data = content['data']['productCreate']
     assert data['errors'] == []
-    assert data['product']['name'] == product_name
-    assert data['product']['productType']['name'] == product_type.name
-    assert data['product']['category']['name'] == category.name
-    assert data['product']['variants'][0]['sku'] == sku
-    assert data['product']['variants'][0]['quantity'] == quantity
-    assert data['product']['variants'][0]['trackInventory'] == track_inventory
+    assert data['skill']['name'] == product_name
+    assert data['skill']['productType']['name'] == product_type.name
+    assert data['skill']['category']['name'] == category.name
+    assert data['skill']['variants'][0]['sku'] == sku
+    assert data['skill']['variants'][0]['quantity'] == quantity
+    assert data['skill']['variants'][0]['trackInventory'] == track_inventory
 
 
 def test_create_product_without_variants_sku_validation(
@@ -736,7 +736,7 @@ def test_update_product(
                         price: $price,
                         attributes: $attributes
                     }) {
-                        product {
+                        skill {
                             category {
                                 name
                             }
@@ -792,12 +792,12 @@ def test_update_product(
     content = get_graphql_content(response)
     data = content['data']['productUpdate']
     assert data['errors'] == []
-    assert data['product']['name'] == product_name
-    assert data['product']['description'] == product_description
-    assert data['product']['isPublished'] == product_isPublished
-    assert data['product']['chargeTaxes'] == product_chargeTaxes
-    assert data['product']['taxRate'] == product_taxRate
-    assert not data['product']['category']['name'] == category.name
+    assert data['skill']['name'] == product_name
+    assert data['skill']['description'] == product_description
+    assert data['skill']['isPublished'] == product_isPublished
+    assert data['skill']['chargeTaxes'] == product_chargeTaxes
+    assert data['skill']['taxRate'] == product_taxRate
+    assert not data['skill']['category']['name'] == category.name
 
 
 def test_update_product_without_variants(
@@ -820,7 +820,7 @@ def test_update_product_without_variants(
                 description: $description
             })
         {
-            product {
+            skill {
                 id
                 variants{
                     id
@@ -856,7 +856,7 @@ def test_update_product_without_variants(
     content = get_graphql_content(response)
     data = content['data']['productUpdate']
     assert data['errors'] == []
-    product = data['product']['variants'][0]
+    product = data['skill']['variants'][0]
     assert product['sku'] == product_sku
     assert product['quantity'] == product_quantity
     assert product['trackInventory'] == product_track_inventory
@@ -876,7 +876,7 @@ def test_update_product_without_variants_sku_duplication(
                 sku: $sku
             })
         {
-            product {
+            skill {
                 id
             }
             errors {
@@ -905,7 +905,7 @@ def test_delete_product(staff_api_client, product, permission_manage_products):
     query = """
         mutation DeleteProduct($id: ID!) {
             productDelete(id: $id) {
-                product {
+                skill {
                     name
                     id
                 }
@@ -922,10 +922,10 @@ def test_delete_product(staff_api_client, product, permission_manage_products):
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['productDelete']
-    assert data['product']['name'] == product.name
+    assert data['skill']['name'] == product.name
     with pytest.raises(product._meta.model.DoesNotExist):
         product.refresh_from_db()
-    assert node_id == data['product']['id']
+    assert node_id == data['skill']['id']
 
 
 def test_product_type(user_api_client, product_type):
@@ -1115,7 +1115,7 @@ def test_product_type_update_mutation(
     product_type_id = graphene.Node.to_global_id(
         'ProductType', product_type.id)
 
-    # Test scenario: remove all product attributes using [] as input
+    # Test scenario: remove all skill attributes using [] as input
     # but do not change variant attributes
     product_attributes = []
     product_attributes_ids = [
@@ -1165,8 +1165,8 @@ def test_product_type_delete_mutation(
 def test_product_image_create_mutation(
         monkeypatch, staff_api_client, product, permission_manage_products):
     query = """
-    mutation createProductImage($image: Upload!, $product: ID!) {
-        productImageCreate(input: {image: $image, product: $product}) {
+    mutation createProductImage($image: Upload!, $skill: ID!) {
+        productImageCreate(input: {image: $image, skill: $skill}) {
             image {
                 id
             }
@@ -1176,13 +1176,13 @@ def test_product_image_create_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.graphql.product.mutations.products.'
+        ('saleor.graphql.skill.mutations.products.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
     image_file, image_name = create_image()
     variables = {
-        'product': graphene.Node.to_global_id('Product', product.id),
+        'skill': graphene.Node.to_global_id('Product', product.id),
         'image': image_name}
     body = get_multipart_request_body(query, variables, image_file, image_name)
     response = staff_api_client.post_multipart(
@@ -1199,8 +1199,8 @@ def test_product_image_create_mutation(
 def test_invalid_product_image_create_mutation(
         staff_api_client, product, permission_manage_products):
     query = """
-    mutation createProductImage($image: Upload!, $product: ID!) {
-        productImageCreate(input: {image: $image, product: $product}) {
+    mutation createProductImage($image: Upload!, $skill: ID!) {
+        productImageCreate(input: {image: $image, skill: $skill}) {
             image {
                 id
                 url
@@ -1215,7 +1215,7 @@ def test_invalid_product_image_create_mutation(
     """
     image_file, image_name = create_pdf_file_with_image_ext()
     variables = {
-        'product': graphene.Node.to_global_id('Product', product.id),
+        'skill': graphene.Node.to_global_id('Product', product.id),
         'image': image_name}
     body = get_multipart_request_body(query, variables, image_file, image_name)
     response = staff_api_client.post_multipart(
@@ -1243,7 +1243,7 @@ def test_product_image_update_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.graphql.product.mutations.products.'
+        ('saleor.graphql.skill.mutations.products.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -1293,7 +1293,7 @@ def test_reorder_images(
     query = """
     mutation reorderImages($product_id: ID!, $images_ids: [ID]!) {
         productImageReorder(productId: $product_id, imagesIds: $images_ids) {
-            product {
+            skill {
                 id
             }
         }
@@ -1424,7 +1424,7 @@ def test_unassign_not_assigned_variant_image(
         'imageId')
 
 
-@patch('saleor.product.tasks.update_variants_names.delay')
+@patch('saleor.skill.tasks.update_variants_names.delay')
 def test_product_type_update_changes_variant_name(
         mock_update_variants_names, staff_api_client, product_type,
         product, permission_manage_products):
@@ -1473,7 +1473,7 @@ def test_product_type_update_changes_variant_name(
         product_type.pk, variant_attributes_ids)
 
 
-@patch('saleor.product.tasks._update_variants_names')
+@patch('saleor.skill.tasks._update_variants_names')
 def test_product_update_variants_names(mock__update_variants_names,
                                        product_type):
     variant_attributes = [product_type.variant_attributes.first()]
@@ -1530,7 +1530,7 @@ def test_product_variants_no_ids_list(user_api_client, variant):
 def test_product_variant_price(
         product_price, variant_override, api_variant_price,
         user_api_client, variant):
-    # Set price override on variant that is different than product price
+    # Set price override on variant that is different than skill price
     product = variant.product
     product.price = Money(amount=product_price, currency='USD')
     product.save()
@@ -1540,11 +1540,11 @@ def test_product_variant_price(
     else:
         product.variants.update(price_override=None)
     # Drop other variants
-    # product.variants.exclude(id=variant.pk).delete()
+    # skill.variants.exclude(id=variant.pk).delete()
 
     query = """
         query getProductVariants($id: ID!) {
-            product(id: $id) {
+            skill(id: $id) {
                 variants {
                     price {
                         amount
@@ -1557,7 +1557,7 @@ def test_product_variant_price(
     variables = {'id': product_id}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    data = content['data']['product']
+    data = content['data']['skill']
     variant_price = data['variants'][0]['price']
     assert variant_price['amount'] == api_variant_price
 
@@ -1588,7 +1588,7 @@ def test_stock_availability_filter(user_api_client, product):
     content = get_graphql_content(response)
     assert content['data']['products']['totalCount'] == 0
 
-    # Change product stock availability and test again
+    # Change skill stock availability and test again
     product.variants.update(quantity=0)
 
     # There should be no products in stock

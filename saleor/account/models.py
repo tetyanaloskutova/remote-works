@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.translation import pgettext_lazy
 from django_countries.fields import Country, CountryField
 from phonenumber_field.modelfields import PhoneNumber, PhoneNumberField
+from django.contrib.postgres.fields import DateTimeRangeField
 
 from .validators import validate_possible_number
 
@@ -106,6 +107,18 @@ def get_token():
     return str(uuid.uuid4())
 
 
+class Schedule(models.Model):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, related_name='schedules',
+        on_delete=models.SET_NULL)
+    time_slot_start = models.TimeField(null=True)
+    time_slot_end = models.TimeField(null=True)
+    days_of_week = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "{}<{}-{}>".format(self.days_of_week, self.time_slot_start,self.time_slot_end)
+
+
 class User(PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=256, blank=True)
@@ -125,7 +138,9 @@ class User(PermissionsMixin, AbstractBaseUser):
     default_billing_address = models.ForeignKey(
         Address, related_name='+', null=True, blank=True,
         on_delete=models.SET_NULL)
-
+    time_availability = models.ForeignKey(
+        Schedule, related_name='+', null=True, blank=True,
+        on_delete=models.SET_NULL)
     USERNAME_FIELD = 'email'
 
     objects = UserManager()

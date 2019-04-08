@@ -12,33 +12,33 @@
    - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-store body-products{% endblock %}
+{% block body_class %}body-store body-skills{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:variant-details" product_pk=product.pk variant_pk=variant.pk as url %}
+  {% url "dashboard:variant-details" skill_pk=skill.pk variant_pk=variant.pk as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:product-list" %}" class="breadcrumb">
-        {% trans "Products" context "Dashboard products list" %}
+      <a href="{% url "dashboard:skill-list" %}" class="breadcrumb">
+        {% trans "Skills" context "Dashboard skills list" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:product-details" pk=product.pk %}">
+      <a href="{% url "dashboard:skill-details" pk=skill.pk %}">
         <svg data-src="{% static "dashboard/images/chevron-left.svg" %}" />
       </a>
     </li>
     <li>
-      <a href="{% url "dashboard:product-details" pk=product.pk %}" class="breadcrumbs--ellipsed-item">
-        {{ product }}
+      <a href="{% url "dashboard:skill-details" pk=skill.pk %}" class="breadcrumbs--ellipsed-item">
+        {{ skill }}
       </a>
     </li>
     {% if variant.pk %}
       <li>
-        <a href="{% url "dashboard:variant-details" product_pk=product.pk variant_pk=variant.pk %}" class="breadcrumbs--ellipsed-item">
+        <a href="{% url "dashboard:variant-details" skill_pk=skill.pk variant_pk=variant.pk %}" class="breadcrumbs--ellipsed-item">
           {{ variant }}
         </a>
       </li>
@@ -54,7 +54,7 @@
         </span>
         <span class="hide-on-large-only breadcrumbs--ellipsed-item">
           {% blocktrans trimmed context "Variant form breadcrumbs" %}
-            Add variant for {{ product }}
+            Add variant for {{ skill }}
           {% endblocktrans %}
         </span>
       </li>
@@ -81,7 +81,7 @@
                 {% empty %}
                   {% trans "No attributes found." %}
                 {% endfor %}
-                {% if variant.product.product_type.is_shipping_required %}
+                {% if variant.skill.skill_type.is_shipping_required %}
                   <p class="card-title">{% trans "Shipping" %}</p>
                   {{ form.weight|materializecss }}
                 {% endif %}
@@ -107,14 +107,14 @@
           </div>
           <div class="card-action right-align">
             {% if variant.pk %}
-              <a href="{% url "dashboard:variant-details" product_pk=product.pk variant_pk=variant.pk %}" class="btn-flat waves-effect">
+              <a href="{% url "dashboard:variant-details" skill_pk=skill.pk variant_pk=variant.pk %}" class="btn-flat waves-effect">
                 {% trans "Cancel" context "Dashboard cancel action" %}
               </a>
               <button type="submit" class="btn waves-effect">
                 {% trans "Save" context "Dashboard update action" %}
               </button>
             {% else %}
-              <a href="{% url "dashboard:product-details" pk=product.pk %}" class="btn-flat waves-effect">
+              <a href="{% url "dashboard:skill-details" pk=skill.pk %}" class="btn-flat waves-effect">
                 {% trans "Cancel" context "Dashboard cancel action" %}
               </a>
               <button type="submit" class="btn waves-effect">

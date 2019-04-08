@@ -113,7 +113,7 @@ def test_sale_applies_to_correct_products(product_type, category):
         pk=111, product_type=product_type, category=category)
     variant = ProductVariant.objects.create(product=product, sku='firstvar')
     product2 = Product.objects.create(
-        name='Second product', price=Money(15, 'USD'), description='',
+        name='Second skill', price=Money(15, 'USD'), description='',
         product_type=product_type, category=category)
     sec_variant = ProductVariant.objects.create(
         product=product2, sku='secvar', pk=111)

@@ -10,7 +10,7 @@ def test_product_translation(user_api_client, product):
 
     query = """
     query productById($productId: ID!) {
-        product(id: $productId) {
+        skill(id: $productId) {
             translation(languageCode: "pl") {
                 name
                 language {
@@ -25,8 +25,8 @@ def test_product_translation(user_api_client, product):
     response = user_api_client.post_graphql(query, {'productId': product_id})
     data = get_graphql_content(response)['data']
 
-    assert data['product']['translation']['name'] == 'Produkt'
-    assert data['product']['translation']['language']['code'] == 'pl'
+    assert data['skill']['translation']['name'] == 'Produkt'
+    assert data['skill']['translation']['language']['code'] == 'pl'
 
 
 def test_product_variant_translation(user_api_client, variant):
@@ -299,7 +299,7 @@ def test_shop_translation(user_api_client, site_settings):
 def test_product_no_translation(user_api_client, product):
     query = """
     query productById($productId: ID!) {
-        product(id: $productId) {
+        skill(id: $productId) {
             translation(languageCode: "pl") {
                 name
                 language {
@@ -314,7 +314,7 @@ def test_product_no_translation(user_api_client, product):
     response = user_api_client.post_graphql(query, {'productId': product_id})
     data = get_graphql_content(response)['data']
 
-    assert data['product']['translation'] is None
+    assert data['skill']['translation'] is None
 
 
 def test_product_variant_no_translation(user_api_client, variant):
@@ -560,7 +560,7 @@ def test_product_create_translation(
         productTranslate(
                 id: $productId, languageCode: "pl",
                 input: {name: "Produkt PL"}) {
-            product {
+            skill {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -578,8 +578,8 @@ def test_product_create_translation(
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productTranslate']
 
-    assert data['product']['translation']['name'] == 'Produkt PL'
-    assert data['product']['translation']['language']['code'] == 'pl'
+    assert data['skill']['translation']['name'] == 'Produkt PL'
+    assert data['skill']['translation']['language']['code'] == 'pl'
 
 
 def test_product_update_translation(
@@ -591,7 +591,7 @@ def test_product_update_translation(
         productTranslate(
                 id: $productId, languageCode: "pl",
                 input: {name: "Produkt PL"}) {
-            product {
+            skill {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -609,8 +609,8 @@ def test_product_update_translation(
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productTranslate']
 
-    assert data['product']['translation']['name'] == 'Produkt PL'
-    assert data['product']['translation']['language']['code'] == 'pl'
+    assert data['skill']['translation']['name'] == 'Produkt PL'
+    assert data['skill']['translation']['language']['code'] == 'pl'
 
 
 def test_product_variant_create_translation(
@@ -1243,5 +1243,5 @@ def test_translations_query_inline_fragment(user_api_client, product):
     response = user_api_client.post_graphql(query)
     data = get_graphql_content(response)['data']['translations']['edges'][0]
 
-    assert data['node']['name'] == 'Test product'
+    assert data['node']['name'] == 'Test skill'
     assert data['node']['translation']['name'] == 'Produkt testowy'

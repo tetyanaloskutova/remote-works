@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load price from taxed_prices %}
+{% load static %}
+{% load status %}
+{% load utils %}
+
+{% block title %}{{ schedule }} - {{ block.super }}{% endblock %}
+
+{% block body_class %}body-schedules{% endblock %}
+
+{% block menu_schedules_class %}active{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+    <div class="col s12 l8">
+      <div class="card">
+        <div class="card-content">
+          <div class="schedule-header">
+            <div class="schedule-header__title">
+              <span class="card-title">
+                {{ schedule }}
+              </span>
+            </div>
+            <div class="schedule-header__switch">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <h5>{% schedule.id schedule %}</h5>
+            </div>
+          </div>
+          <div class="col s12">
+            <p>
+              {{ schedule.date}}
+            </p>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="{% url "account:details" %}" class="btn-flat waves-effect">
+            {% trans "Edit schedule" context "Schedule action" %}
+          </a>
+          <a href="#base-modal" data-href="{% url "account:schedule-delete" pk=schedule.pk %}" class="modal-trigger-custom btn-flat waves-effect">
+            {% trans "Remove schedule" context "Schedule action" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

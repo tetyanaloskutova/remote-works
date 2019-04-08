@@ -51,7 +51,7 @@ def indexed_products(product_type, category):
     def gen_product_with_id(object_id):
         product = Product.objects.create(
             pk=object_id,
-            name='Test product ' + str(object_id),
+            name='Test skill ' + str(object_id),
             price=Decimal(10.0),
             product_type=product_type,
             category=category)

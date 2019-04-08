@@ -1,0 +1,41 @@
+{% extends "dashboard/base_modal.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block form_class %}{% endblock %}
+
+{% block action_url %}
+{% url "dashboard:skill-type-delete" pk=skill_type.pk %}
+{% endblock %}
+
+{% block title %}
+{% blocktrans trimmed context "Modal remove skill type text" %}
+  Remove skill type {{ skill_type }}
+{% endblocktrans %}
+{% endblock title %}
+
+{% block content %}
+  <div class="col s12">
+    <p>
+      {% blocktrans trimmed context "Modal remove skill type text" %}
+        Are you sure you want to remove skill type <strong>{{ skill_type }}</strong>?
+      {% endblocktrans %}
+    </p>
+    <p>
+      {% if skills %}
+        {% blocktrans trimmed context "Modal remove skill type text" with skill_count=skills.count %}
+          There are {{ skill_count }} skills in skill type.
+        {% endblocktrans %}
+      {% else %}
+        {% blocktrans trimmed context "Modal remove skill type text" %}
+          There are no skills in this skill type.
+        {% endblocktrans %}
+      {% endif %}
+    </p>
+  </div>
+{% endblock %}
+
+{% block primary_action %}
+{% trans "Remove" context "Dashboard delete action" %}
+{% endblock %}

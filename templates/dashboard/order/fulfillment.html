@@ -76,13 +76,13 @@
                 <tr>
                   <td>
                     {% if line.variant %}
-                      <a href="{% url 'dashboard:variant-details' product_pk=line.variant.product.pk variant_pk=line.variant.pk %}">{{ line.product_name }}</a>
+                      <a href="{% url 'dashboard:variant-details' skill_pk=line.variant.skill.pk variant_pk=line.variant.pk %}">{{ line.skill_name }}</a>
                     {% else %}
-                      {{ line.product_name }}
+                      {{ line.skill_name }}
                     {% endif %}
                     <br>
                     <span class="grey-text">
-                      {% blocktrans trimmed with sku=line.product_sku context "Order table text" %}
+                      {% blocktrans trimmed with sku=line.skill_sku context "Order table text" %}
                         SKU: {{ sku }}
                       {% endblocktrans %}
                     </span>

@@ -265,7 +265,7 @@ def image():
     img_data = BytesIO()
     image = Image.new('RGB', size=(1, 1))
     image.save(img_data, format='JPEG')
-    return SimpleUploadedFile('product.jpg', img_data.getvalue())
+    return SimpleUploadedFile('skill.jpg', img_data.getvalue())
 
 
 @pytest.fixture
@@ -290,7 +290,7 @@ def categories_tree(db, product_type):  # pylint: disable=W0613
     attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
 
     Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, attributes=attributes, category=child)
 
     return parent
@@ -334,7 +334,7 @@ def product(product_type, category):
     attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
 
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, attributes=attributes, category=category)
 
     variant_attr = product_type.variant_attributes.first()
@@ -351,7 +351,7 @@ def product(product_type, category):
 @pytest.fixture
 def product_with_default_variant(product_type_without_variant, category):
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type_without_variant, category=category)
     ProductVariant.objects.create(
         product=product, sku='1234', track_inventory=True,
@@ -373,7 +373,7 @@ def product_without_shipping(category):
         name='Type with no shipping', has_variants=False,
         is_shipping_required=False)
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, category=category)
     ProductVariant.objects.create(product=product, sku='SKU_B')
     return product
@@ -386,17 +386,17 @@ def product_list(product_type, category):
     attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
 
     product_1 = Product.objects.create(
-        pk=1486, name='Test product 1', price=Money('10.00', 'USD'),
+        pk=1486, name='Test skill 1', price=Money('10.00', 'USD'),
         category=category, product_type=product_type, attributes=attributes,
         is_published=True)
 
     product_2 = Product.objects.create(
-        pk=1487, name='Test product 2', price=Money('20.00', 'USD'),
+        pk=1487, name='Test skill 2', price=Money('20.00', 'USD'),
         category=category, product_type=product_type, attributes=attributes,
         is_published=False)
 
     product_3 = Product.objects.create(
-        pk=1489, name='Test product 3', price=Money('20.00', 'USD'),
+        pk=1489, name='Test skill 3', price=Money('20.00', 'USD'),
         category=category, product_type=product_type, attributes=attributes,
         is_published=True)
 
@@ -425,7 +425,7 @@ def product_with_image(product, image):
 @pytest.fixture
 def unavailable_product(product_type, category):
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, is_published=False, category=category)
     return product
 
@@ -433,7 +433,7 @@ def unavailable_product(product_type, category):
 @pytest.fixture
 def unavailable_product_with_variant(product_type, category):
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, is_published=False, category=category)
 
     variant_attr = product_type.variant_attributes.first()
@@ -451,7 +451,7 @@ def unavailable_product_with_variant(product_type, category):
 @pytest.fixture
 def product_with_images(product_type, category):
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, category=category)
     file_mock_0 = MagicMock(spec=File, name='FileMock0')
     file_mock_0.name = 'image0.jpg'
@@ -489,7 +489,7 @@ def order_with_lines(
         order, product_type, category, shipping_zone, vatlayer):
     taxes = vatlayer
     product = Product.objects.create(
-        name='Test product', price=Money('10.00', 'USD'),
+        name='Test skill', price=Money('10.00', 'USD'),
         product_type=product_type, category=category)
     variant = ProductVariant.objects.create(
         product=product, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
@@ -504,7 +504,7 @@ def order_with_lines(
         tax_rate=taxes['standard']['value'])
 
     product = Product.objects.create(
-        name='Test product 2', price=Money('20.00', 'USD'),
+        name='Test skill 2', price=Money('20.00', 'USD'),
         product_type=product_type, category=category)
     variant = ProductVariant.objects.create(
         product=product, sku='SKU_B', cost_price=Money(2, 'USD'), quantity=2,

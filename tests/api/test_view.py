@@ -9,7 +9,7 @@ from .utils import _get_graphql_content_from_response, get_graphql_content
 def test_batch_queries(category, product, api_client):
     query_product = """
         query GetProduct($id: ID!) {
-            product(id: $id) {
+            skill(id: $id) {
                 name
             }
         }
@@ -36,7 +36,7 @@ def test_batch_queries(category, product, api_client):
         field: value
         for content in batch_content
         for field, value in content['data'].items()}
-    assert data['product']['name'] == product.name
+    assert data['skill']['name'] == product.name
     assert data['category']['name'] == category.name
 
 

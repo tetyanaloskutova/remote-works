@@ -75,10 +75,10 @@
         {% for line in order %}
           <tr>
             <td>
-              {{ line.product_name|truncatechars:30 }}<br>
+              {{ line.skill_name|truncatechars:30 }}<br>
             </td>
             <td>
-              {{ line.product_sku }}
+              {{ line.skill_sku }}
             </td>
             <td class="right-align">
               {% blocktrans with tax_rate=line.tax_rate context "Order line tax rate value" %}

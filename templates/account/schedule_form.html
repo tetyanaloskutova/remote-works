@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load materializecss %}
+{% load static %}
+
+{% block title %}
+  {% if schedule.pk %}
+   {% trans "Edit" context "Account schedule" %} - {{ schedule }}
+  {% else %}
+    {% trans "Add new schedule" context "Schedule detail page title" %}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}body-schedules{% endblock %}
+
+{% block menu_schedules_class %}active{% endblock %}
+
+
+{% block breadcrumbs %}
+  <ul class="breadcrumbs breadcrumbs--history">
+    <li>
+      <a href="{% url 'account' %}" class="breadcrumbs--ellipsed-item">
+        {% trans "Schedule" context "Account schedule list" %}
+      </a>
+    </li>
+    <li class="back-mobile">
+      <a href="{% url 'account' %}">
+        <svg data-src="{% static 'dashboard/images/arrow-left.svg' %}" fill="#fff" width="20px" height="20px" />
+      </a>
+    </li>
+    {% if schedule.pk %}
+    <li>
+      <a href="{% url 'account:details' %}" class="breadcrumbs--ellipsed-item">
+        {{ schedule }}
+      </a>
+    </li>
+    <li>
+      <span class="breadcrumbs--ellipsed-item">
+        {% trans "Edit" context "Schedule detail breadcrumbs" %}
+      </span>
+    </li>
+    {% else %}
+    <li>
+      <span class="breadcrumbs--ellipsed-item">
+        {% trans "Add new schedule" context "Schedule detail breadcrumbs" %}
+      </span>
+    </li>
+    {% endif %}
+  </ul>
+{% endblock %}
+
+{% block menu_catalogue_class %} active{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col m12 l9">
+      <div class="card">
+        <form method="post" enctype="multipart/form-data" id="form-schedule" novalidate>
+          <div class="card-content card-content-form">
+            {% csrf_token %}
+            <div class="row">
+              {{ form.time_slot_start|materializecss }}
+              {{ form.time_slot_end|materializecss }}
+            </div>
+            <div class="row">
+              {{ form.days_of_week|materializecss }}
+            </div>
+          </div>
+          <div class="card-action right-align">
+            {% if schedule.pk %}
+              <a href="{% url 'account:details' %}" class="btn-flat waves-effect">
+                {% trans "Cancel" context "Dashboard cancel action" %}
+              </a>
+              <button type="submit" class="btn waves-effect">
+                {% trans "Save" context "Dashboard update action" %}
+              </button>
+            {% else %}
+              <a href="{% url 'account:details' %}" class="btn-flat waves-effect">
+                {% trans "Cancel" context "Dashboard cancel action" %}
+              </a>
+              <button type="submit" class="btn waves-effect">
+                {% trans "Create" context "Dashboard create action" %}
+              </button>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col m12 l3 help-box"></div>
+  </div>
+{% endblock %}

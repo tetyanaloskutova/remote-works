@@ -6,27 +6,27 @@
 {% load status %}
 {% load utils %}
 
-{% block title %}{{ product }} - {{ block.super }}{% endblock %}
+{% block title %}{{ skill }} - {{ block.super }}{% endblock %}
 
-{% block body_class %}body-products{% endblock %}
+{% block body_class %}body-skills{% endblock %}
 
-{% block menu_products_class %}active{% endblock %}
+{% block menu_skills_class %}active{% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:product-list" %}" class="breadcrumb">
-        {% trans "Products" context "Product form breadcrumbs" %}
+      <a href="{% url "dashboard:skill-list" %}" class="breadcrumb">
+        {% trans "Skills" context "Skill form breadcrumbs" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:product-list" %}">
+      <a href="{% url "dashboard:skill-list" %}">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
     <li>
       <span class="breadcrumbs--ellipsed-item">
-        {{ product }}
+        {{ skill }}
       </span>
     </li>
   </ul>
@@ -36,24 +36,24 @@
     <div class="col s12 l8">
       <div class="card">
         <div class="card-content">
-          <div class="product-header">
-            <div class="product-header__title">
+          <div class="skill-header">
+            <div class="skill-header__title">
               <span class="card-title">
-                {{ product }}
+                {{ skill }}
               </span>
             </div>
-            <div class="product-header__switch">
-              <form id="toggle-publish-form" action="{% url 'dashboard:product-publish' product.pk %}">
+            <div class="skill-header__switch">
+              <form id="toggle-publish-form" action="{% url 'dashboard:skill-publish' skill.pk %}">
               {% csrf_token %}
-                <div class="switch" id="product-is-published">
+                <div class="switch" id="skill-is-published">
                   <label>
-                    <input id="toggle-publish-switch" type="checkbox" {% if product.is_published %} checked {% endif %}>
+                    <input id="toggle-publish-switch" type="checkbox" {% if skill.is_published %} checked {% endif %}>
                     <span class="lever"></span>
                     <span class="label">
-                      {% if product.is_published %}
-                        {% trans "Published" context "Product field" %}
+                      {% if skill.is_published %}
+                        {% trans "Published" context "Skill field" %}
                       {% else %}
-                        {% trans "Draft" context "Product field" %}
+                        {% trans "Draft" context "Skill field" %}
                       {% endif %}
                     </span>
                   </label>
@@ -63,24 +63,24 @@
           </div>
           <div class="row">
             <div class="col s12">
-              <h5>{% render_availability_status product %}</h5>
+              <h5>{% skill.pk skill %}</h5>
             </div>
           </div>
-          <div class="product-description">
+          <div class="skill-description">
             <p>
-              {{ product.description | safe }}
+              {{ skill.description | safe }}
             </p>
           </div>
         </div>
         <div class="card-action">
-          <a href="{% url "dashboard:product-update" product.pk %}" class="btn-flat waves-effect">
-            {% trans "Edit product" context "Product action" %}
+          <a href="{% url "dashboard:skill-update" skill.pk %}" class="btn-flat waves-effect">
+            {% trans "Edit skill" context "Skill action" %}
           </a>
-          <a href="#base-modal" data-href="{% url 'dashboard:product-delete' pk=product.pk %}" class="modal-trigger-custom btn-flat waves-effect">
-            {% trans "Remove product" context "Product action" %}
+          <a href="#base-modal" data-href="{% url 'dashboard:skill-delete' pk=skill.pk %}" class="modal-trigger-custom btn-flat waves-effect">
+            {% trans "Remove skill" context "Skill action" %}
           </a>
-          <a href="{{ product.get_absolute_url }}" target="_blank" class="btn-flat waves-effect">
-            {% trans "View on site" context "Product action" %}
+          <a href="{{ skill.get_absolute_url }}" target="_blank" class="btn-flat waves-effect">
+            {% trans "View on site" context "Skill action" %}
           </a>
         </div>
       </div>
@@ -90,7 +90,7 @@
             <span class="card-title">{% trans "Variant" %}</span>
           </div>
           <div class="data-table-header-action">
-            <a href="{% url 'dashboard:variant-add' product_pk=product.pk %}" class="btn-flat waves-effect">{% trans "Add" %}</a>
+            <a href="{% url 'dashboard:variant-add' skill_pk=skill.pk %}" class="btn-flat waves-effect">{% trans "Add" %}</a>
           </div>
           <div class="data-table-container">
             <table class="bordered highlight responsive data-table">
@@ -112,7 +112,7 @@
               </thead>
               <tbody>
                 {% for variant in variants %}
-                  <tr data-action-go="{% url "dashboard:variant-details" product_pk=product.pk variant_pk=variant.pk %}">
+                  <tr data-action-go="{% url "dashboard:variant-details" skill_pk=skill.pk variant_pk=variant.pk %}">
                     <td>{{ variant.sku }}</td>
                     <td>{{ variant }}</td>
                     <td class="wide">{% render_variant_availability_status variant %}</td>
@@ -129,11 +129,11 @@
                         -
                       {% endif %}
                     </td>
-                    <td><a href="{% url 'dashboard:variant-update' product_pk=product.pk variant_pk=variant.pk %}" class="btn-flat waves-effect">{% trans "Edit" %}</a></td>
+                    <td><a href="{% url 'dashboard:variant-update' skill_pk=skill.pk variant_pk=variant.pk %}" class="btn-flat waves-effect">{% trans "Edit" %}</a></td>
                   </tr>
                 {% empty %}
                   <tr>
-                    <td colspan="5">{% trans "No variants found" context "Dashboard product details page" %}</td>
+                    <td colspan="5">{% trans "No variants found" context "Dashboard skill details page" %}</td>
                   </tr>
                 {% endfor %}
               </tbody>
@@ -149,15 +149,15 @@
             <div class="data-table-header">
               <div class="data-table-title">
                 <h5>
-                  {% trans "Pricing" context "Product pricing card header" %}
+                  {% trans "Pricing" context "Skill pricing card header" %}
                 </h5>
                 <h6>
-                  {% if product.charge_taxes %}
-                    {% blocktrans trimmed with tax_rate=product.tax_rate context "Product pricing card header subtitle" %}
+                  {% if skill.charge_taxes %}
+                    {% blocktrans trimmed with tax_rate=skill.tax_rate context "Skill pricing card header subtitle" %}
                       Taxes are charged ({{ tax_rate }} tax rate)
                     {% endblocktrans %}
                   {% else %}
-                    {% trans "Taxes are not charged" context "Product pricing card header subtitle" %}
+                    {% trans "Taxes are not charged" context "Skill pricing card header subtitle" %}
                   {% endif %}
                 </h6>
               </div>
@@ -168,9 +168,9 @@
                   <tr>
                     <td>
                       {% if site.settings.include_taxes_in_prices %}
-                        {% trans "Gross sale price" context "Product field" %}
+                        {% trans "Gross sale price" context "Skill field" %}
                       {% else %}
-                        {% trans "Net sale price" context "Product field" %}
+                        {% trans "Net sale price" context "Skill field" %}
                       {% endif %}
                     </td>
                     <td class="right-align">
@@ -181,9 +181,9 @@
                     <tr>
                       <td>
                         {% if site.settings.include_taxes_in_prices %}
-                          {% trans "Gross discounted price" context "Product field" %}
+                          {% trans "Gross discounted price" context "Skill field" %}
                         {% else %}
-                          {% trans "Net discounted price" context "Product field" %}
+                          {% trans "Net discounted price" context "Skill field" %}
                         {% endif %}
                       </td>
                       <td class="right-align">
@@ -194,9 +194,9 @@
                   <tr>
                     <td>
                       {% if site.settings.include_taxes_in_prices %}
-                        {% trans "Gross purchase cost" context "Product field" %}
+                        {% trans "Gross purchase cost" context "Skill field" %}
                       {% else %}
-                        {% trans "Net purchase cost" context "Product field" %}
+                        {% trans "Net purchase cost" context "Skill field" %}
                       {% endif %}
                     </td>
                     <td class="right-align">
@@ -205,7 +205,7 @@
                   </tr>
                   <tr>
                     <td>
-                      {% trans "Margin" context "Product field" %}
+                      {% trans "Margin" context "Skill field" %}
                     </td>
                     <td class="right-align">
                       {% if margin %}
@@ -228,7 +228,7 @@
               <div class="data-table-header">
                 <div class="data-table-title">
                   <h5>
-                    {% trans "Inventory" context "Product variant inventory card header" %}
+                    {% trans "Inventory" context "Skill variant inventory card header" %}
                   </h5>
                 </div>
               </div>
@@ -268,7 +268,7 @@
               </div>
             </div>
             <div class="card-action">
-              <a href="{% url 'dashboard:product-image-list' product.pk %}" class="btn-flat waves-effect">{% trans "Edit images" %}</a>
+              <a href="{% url 'dashboard:skill-image-list' skill.pk %}" class="btn-flat waves-effect">{% trans "Edit images" %}</a>
             </div>
           </div>
         </div>

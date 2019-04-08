@@ -7,7 +7,7 @@
 {% load utils %}
 
 {% block title %}
-  {% trans "Products" context "Dashboard skills list" %} - {{ block.super }}
+  {% trans "Skills" context "Dashboard skills list" %} - {{ block.super }}
 {% endblock %}
 
 {% block body_class %}body-skills-list{% endblock %}
@@ -18,11 +18,11 @@
   {% if skill_types %}
     <div class="btn-fab-fixed">
       {% if skill_types|length > 1 %}
-      <a data-href="{% url "dashboard:skill-add-select-type" %}" class="btn-fab-default waves-effect waves-light modal-trigger-custom" href="#base-modal" title="{% trans "Add skill" context "Product list add button text" %}">
+      <a data-href="{% url "dashboard:skill-add-select-type" %}" class="btn-fab-default waves-effect waves-light modal-trigger-custom" href="#base-modal" title="{% trans "Add skill" context "Skill list add button text" %}">
           <svg data-src="{% static "dashboard/images/add.svg" %}" />
         </a>
       {% else %}
-        <a class="btn-fab-default waves-effect waves-light modal-trigger" href="{% url 'dashboard:skill-add' skill_types.0.pk %}" title="{% trans "Add skill" context "Product list add button text" %}">
+        <a class="btn-fab-default waves-effect waves-light modal-trigger" href="{% url 'dashboard:skill-add' skill_types.0.pk %}" title="{% trans "Add skill" context "Skill list add button text" %}">
           <svg data-src="{% static "dashboard/images/add.svg" %}" />
         </a>
       {% endif %}
@@ -33,7 +33,7 @@
 {% block breadcrumbs %}
   <ul class="breadcrumbs">
     <li class="visible-s">
-      {% trans "Products" context "Dashboard skills list" %}
+      {% trans "Skills" context "Dashboard skills list" %}
     </li>
   </ul>
 {% endblock %}
@@ -58,10 +58,10 @@
                 <label for="select-all-items"></label>
               </th>
               <th></th>
-              {% trans "Name" context "Products list table header" as label %}
+              {% trans "Name" context "Skills list table header" as label %}
               {% sorting_header 'name' label is_wide=True %}
 
-              {% trans "Price" context "Products list table header" as label %}
+              {% trans "Price" context "Skills list table header" as label %}
               {% sorting_header 'price' label is_wide=True %}
             </tr>
           </thead>

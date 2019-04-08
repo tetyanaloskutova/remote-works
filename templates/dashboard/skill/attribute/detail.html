@@ -42,10 +42,10 @@
           <span class="card-title">
             {{ attribute.name }}
           </span>
-          {% if product_type %}
-            {% trans "Product type" %}: <a href="{% url "dashboard:product-type-update" pk=product_type.pk %}">{{ product_type }}</a>
+          {% if skill_type %}
+            {% trans "Skill type" %}: <a href="{% url "dashboard:skill-type-update" pk=skill_type.pk %}">{{ skill_type }}</a>
           {% elif attribute.pk %}
-            <a href="{% url "dashboard:product-type-list" %}">Assign to a product type</a>
+            <a href="{% url "dashboard:skill-type-list" %}">Assign to a skill type</a>
           {% endif %}
         </div>
         <div class="card-action">

@@ -38,8 +38,8 @@
         <a href="#tabs">Tabs</a>
         <a href="#tables">Tables</a>
         <a href="#cards">Cards</a>
-        <a href="#product">Product items</a>
-        <a href="#product-gallery">Product gallery</a>
+        <a href="#skill">Skill items</a>
+        <a href="#skill-gallery">Skill gallery</a>
       </nav>
     </div>
     <div class="col-md-9 pull-md-3 styleguide__content">
@@ -407,7 +407,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-6 m-auto">
               <div class="styleguide__section">
-                <div class="product-filters">
+                <div class="skill-filters">
                   <h3 contenteditable="true">Box Size
                     <div class="collapse-filters-icon">
                       <svg data-src="{% static "images/chevron-up.svg" %}" />
@@ -483,7 +483,7 @@
           <div class="row">
             <div class="col-md-6">
               <form class="form-inline search-form" action="{% url "search:search" %}">
-                <input class="form-control" type="text" name="q" required value="{% if query %}{{ query }}{% endif %}" placeholder="Search for product">
+                <input class="form-control" type="text" name="q" required value="{% if query %}{{ query }}{% endif %}" placeholder="Search for skill">
                 <button class="btn btn-link" type="submit">
                   <svg data-src="{% static "images/search.svg" %}" width="19" height="19" />
                 </button>
@@ -780,34 +780,34 @@
           </div>
         </div>
       </div>
-      <div id="product" class="styleguide__content__block">
+      <div id="skill" class="styleguide__content__block">
         <div class="styleguide__tittle">
-          <h3 class="styleguide__content__block__title">Products</h3>
+          <h3 class="styleguide__content__block__title">Skills</h3>
           <p>Click and edit any text below to see how the component looks with different text</p>
         </div>
         <div class="styleguide__section">
           <div class="row">
-            <div class="col-6 col-lg-3 product-list">
+            <div class="col-6 col-lg-3 skill-list">
               <div class="text-center">
                 <div>
-                  <img class="img-responsive" src="{% static "images/sample-product.jpg" %}" alt="">
-                  <span class="product-list-item-name" contenteditable="true">Johnson-Brown</span>
+                  <img class="img-responsive" src="{% static "images/sample-skill.jpg" %}" alt="">
+                  <span class="skill-list-item-name" contenteditable="true">Johnson-Brown</span>
                 </div>
                 <div class="panel-footer">
                   <span contenteditable="true">$32.13</span>
                 </div>
               </div>
             </div>
-            <div class="col-6 col-lg-3 product-list">
+            <div class="col-6 col-lg-3 skill-list">
               <div class="text-center">
                 <div>
-                  <img class="img-responsive" src="{% static "images/sample-product2.jpg" %}" alt="">
-                  <span class="product-list-item-name" contenteditable="true">Johnson-Brown</span>
+                  <img class="img-responsive" src="{% static "images/sample-skill2.jpg" %}" alt="">
+                  <span class="skill-list-item-name" contenteditable="true">Johnson-Brown</span>
                 </div>
                 <div class="panel-footer">
-                  <div class="product-list__sale">
+                  <div class="skill-list__sale">
                     <svg data-src="{% static "images/sale-bg.svg" %}" />
-                    <span class="product-list__sale__text" contenteditable="true">Sale</span>
+                    <span class="skill-list__sale__text" contenteditable="true">Sale</span>
                   </div>
                   <span contenteditable="true">FROM $72.25</span>
                 </div>
@@ -816,20 +816,20 @@
           </div>
         </div>
       </div>
-      <div id="product-gallery" class="styleguide__content__block">
+      <div id="skill-gallery" class="styleguide__content__block">
         <div class="styleguide__tittle">
-          <h3 class="styleguide__content__block__title">Product gallery</h3>
+          <h3 class="styleguide__content__block__title">Skill gallery</h3>
         </div>
         <div class="styleguide__section">
           <div class="row">
-            <div class="col-md-8 col-lg-6 col-12 m-auto product__gallery">
+            <div class="col-md-8 col-lg-6 col-12 m-auto skill__gallery">
               <div id="carousel-example-generic" class="carousel slide">
                 <div class="carousel-inner" role="listbox">
                   <div class="carousel-item active">
-                    <img class="d-block img-fluid" src="{% static "images/sample-product.jpg" %}" alt="">
+                    <img class="d-block img-fluid" src="{% static "images/sample-skill.jpg" %}" alt="">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block img-fluid" src="{% static "images/sample-product2.jpg" %}" alt="">
+                    <img class="d-block img-fluid" src="{% static "images/sample-skill2.jpg" %}" alt="">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -840,10 +840,10 @@
                 </a>
                 <ol class="carousel-indicators hidden-sm-down">
                   <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-                    <img src="{% static "images/sample-product.jpg" %}" alt="">
+                    <img src="{% static "images/sample-skill.jpg" %}" alt="">
                   </li>
                   <li data-target="#carousel-example-generic" data-slide-to="1" class="">
-                    <img src="{% static "images/sample-product2.jpg" %}" alt="">
+                    <img src="{% static "images/sample-skill2.jpg" %}" alt="">
                   </li>
                 </ol>
               </div>

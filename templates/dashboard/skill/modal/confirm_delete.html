@@ -5,19 +5,19 @@
 {% block form_class %}{% endblock %}
 
 {% block action_url %}
-{% url 'dashboard:product-delete' pk=product.pk %}
+{% url 'dashboard:skill-delete' pk=skill.pk %}
 {% endblock %}
 
 {% block title %}
-{% blocktrans trimmed context "Modal remove product text" %}
-  Remove product {{ product }}
+{% blocktrans trimmed context "Modal remove skill text" %}
+  Remove skill {{ skill }}
 {% endblocktrans %}
 {% endblock %}
 
 {% block content %}
   <div class="col s12">
-    {% blocktrans trimmed context "Modal remove product text" %}
-      Are you sure you want to remove product <strong>{{ product }}</strong>?
+    {% blocktrans trimmed context "Modal remove skill text" %}
+      Are you sure you want to remove skill <strong>{{ skill }}</strong>?
     {% endblocktrans %}
   </div>
 {% endblock content %}

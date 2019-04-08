@@ -13,7 +13,7 @@ from saleor.product.utils.attributes import (
 @pytest.fixture()
 def product_with_no_attributes(product_type, category):
     product = Product.objects.create(
-        name='Test product', price='10.00', product_type=product_type,
+        name='Test skill', price='10.00', product_type=product_type,
         category=category)
     return product
 

@@ -4,50 +4,50 @@
 {% load static %}
 
 {% block title %}
-  {% if product.pk %}
-    {% trans "Edit" context "Dashboard products list" %} - {{ product }}
+  {% if skill.pk %}
+    {% trans "Edit" context "Dashboard skills list" %} - {{ skill }}
   {% else %}
-    {% trans "Add new product" context "Product form page title" %}
+    {% trans "Add new skill" context "Skill form page title" %}
   {% endif %}
    - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-products{% endblock %}
+{% block body_class %}body-skills{% endblock %}
 
-{% block menu_products_class %}active{% endblock %}
+{% block menu_skills_class %}active{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:product-list" as url %}
+  {% url "dashboard:skill-list" as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:product-list" %}" class="breadcrumb">
-        {% trans "Products" context "Dashboard products list" %}
+      <a href="{% url "dashboard:skill-list" %}" class="breadcrumb">
+        {% trans "Skills" context "Dashboard skills list" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:product-list" %}">
+      <a href="{% url "dashboard:skill-list" %}">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
     <li>
-      {% if product.pk %}
-        <a href="{% url "dashboard:product-details" pk=product.pk %}" class="breadcrumbs--ellipsed-item">
-          {{ product }}
+      {% if skill.pk %}
+        <a href="{% url "dashboard:skill-details" pk=skill.pk %}" class="breadcrumbs--ellipsed-item">
+          {{ skill }}
         </a>
       {% else %}
         <span class="breadcrumbs--ellipsed-item">
-          {% trans "Add new product" context "Product form breadcrumbs" %}
+          {% trans "Add new skill" context "Skill form breadcrumbs" %}
         </span>
       {% endif %}
     </li>
-    {% if product.pk %}
+    {% if skill.pk %}
       <li>
         <span class="breadcrumbs--ellipsed-item">
-          {% trans "Edit" context "Product form breadcrumbs" %}
+          {% trans "Edit" context "Skill form breadcrumbs" %}
         </span>
       </li>
     {% endif %}
@@ -60,37 +60,37 @@
   <div class="tab-content" id="details">
     <div class="row">
       <div class="col m12 l9">
-        <form method="post" class="card" id="form-product" novalidate>
+        <form method="post" class="card" id="form-skill" novalidate>
           {% csrf_token %}
           <div class="card-content">
             <div class="row">
               <div class="col s12 l8" >
                 <div class="row">
-                  {{ product_form.name|materializecss }}
+                  {{ skill_form.name|materializecss }}
                 </div>
                 <div class="row">
-                  {{ product_form.description|materializecss }}
+                  {{ skill_form.description|materializecss }}
                 </div>
                 <span class="card-title">Availability</span>
                 <div class="row">
                   <div class="col s12 m3">
-                    {{ product_form.is_published|materializecss }}
+                    {{ skill_form.is_published|materializecss }}
                   </div>
                   <div class="col s12 m9">
-                    {{ product_form.publication_date|materializecss }}
+                    {{ skill_form.publication_date|materializecss }}
                   </div>
                 </div>
-                {% include "dashboard/includes/_google_preview.html" with object=product form=product_form %}
+                {% include "dashboard/includes/_google_preview.html" with object=skill form=skill_form %}
               </div>
               <div class="col s12 l4">
                 <div class="row">
-                  {{ product_form.price|materializecss }}
+                  {{ skill_form.price|materializecss }}
                 </div>
                 <div class="row">
-                  {{ product_form.tax_rate|materializecss }}
-                  {{ product_form.charge_taxes|materializecss }}
+                  {{ skill_form.tax_rate|materializecss }}
+                  {{ skill_form.charge_taxes|materializecss }}
                 </div>
-                {% if not product.product_type.has_variants %}
+                {% if not skill.skill_type.has_variants %}
                   <div class="row">
                     {{ variant_form.sku|materializecss }}
                   </div>
@@ -102,25 +102,25 @@
                   </div>
                 {% endif %}
                 <div class="row">
-                  {{ product_form.category|materializecss }}
+                  {{ skill_form.category|materializecss }}
                 </div>
                 <div class="row">
-                  {{ product_form.collections|materializecss }}
+                  {{ skill_form.collections|materializecss }}
                 </div>
-                {% if product.product_type.is_shipping_required %}
+                {% if skill.skill_type.is_shipping_required %}
                   <span class="card-title">{% trans "Shipping" %}</span>
                   <br>
-                  {{ product_form.weight|materializecss }}
+                  {{ skill_form.weight|materializecss }}
                 {% endif %}
                 <span class="card-title">{% trans "Attributes" %}</span>
                 <br>
                 <h6>
-                  {% blocktrans with product_type_name=product.product_type %}
-                    Product Type: {{ product_type_name }}
+                  {% blocktrans with skill_type_name=skill.skill_type %}
+                    Skill Type: {{ skill_type_name }}
                   {% endblocktrans %}
                 </h6>
                 <br>
-                {% for attribute_field in product_form.iter_attribute_fields %}
+                {% for attribute_field in skill_form.iter_attribute_fields %}
                   <div class="row attribute-select-or-create">
                     {{ attribute_field|materializecss:"input-field s12" }}
                   </div>
@@ -129,15 +129,15 @@
             </div>
           </div>
           <div class="card-action right-align">
-            {% if product.pk %}
-              <a href="{% url 'dashboard:product-details' product.pk %}" class="btn-flat waves-effect">
+            {% if skill.pk %}
+              <a href="{% url 'dashboard:skill-details' skill.pk %}" class="btn-flat waves-effect">
                 {% trans "Cancel" context "Dashboard cancel action" %}
               </a>
               <button type="submit" class="btn waves-effect">
                 {% trans "Save" context "Dashboard update action" %}
               </button>
             {% else %}
-              <a href="{% url 'dashboard:product-list' %}" class="btn-flat waves-effect">
+              <a href="{% url 'dashboard:skill-list' %}" class="btn-flat waves-effect">
                 {% trans "Cancel" context "Dashboard cancel action" %}
               </a>
               <button type="submit" class="btn waves-effect">

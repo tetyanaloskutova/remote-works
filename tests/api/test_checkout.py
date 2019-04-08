@@ -228,7 +228,7 @@ def test_checkout_create_check_lines_quantity(
     content = get_graphql_content(response)
     data = content['data']['checkoutCreate']
     assert data['errors'][0]['message'] == (
-        'Could not add item Test product (SKU_A). Only 2 remaining in stock.')
+        'Could not add item Test skill (SKU_A). Only 2 remaining in stock.')
     assert data['errors'][0]['field'] == 'quantity'
 
 
@@ -391,7 +391,7 @@ def test_checkout_lines_add_check_lines_quantity(
     content = get_graphql_content(response)
     data = content['data']['checkoutLinesAdd']
     assert data['errors'][0]['message'] == (
-        'Could not add item Test product (SKU_A). Only 2 remaining in stock.')
+        'Could not add item Test skill (SKU_A). Only 2 remaining in stock.')
     assert data['errors'][0]['field'] == 'quantity'
 
 
@@ -497,7 +497,7 @@ def test_checkout_lines_update_check_lines_quantity(
 
     data = content['data']['checkoutLinesUpdate']
     assert data['errors'][0]['message'] == (
-        'Could not add item Test product (123). Only 9 remaining in stock.')
+        'Could not add item Test skill (123). Only 9 remaining in stock.')
     assert data['errors'][0]['field'] == 'quantity'
 
 
@@ -905,7 +905,7 @@ def test_checkout_complete_insufficient_stock(
         MUTATION_CHECKOUT_COMPLETE, variables)
     content = get_graphql_content(response)
     data = content['data']['checkoutComplete']
-    assert data['errors'][0]['message'] == 'Insufficient product stock.'
+    assert data['errors'][0]['message'] == 'Insufficient skill stock.'
     assert orders_count == Order.objects.count()
 
 
@@ -916,7 +916,7 @@ def test_fetch_checkout_by_token(user_api_client, cart_with_item):
            token,
            lines {
                 variant {
-                    product {
+                    skill {
                         name
                     }
                 }

@@ -18,8 +18,8 @@ for f in file_list:
         os.chdir(f)
         for file in glob.glob("*.py"):
             if str(file) != '__init__.py':
-                if 'product' in str(file):
-                    file_renamed = str(file).replace("product","skill")
+                if 'skill' in str(file):
+                    file_renamed = str(file).replace("skill","skill")
                     os.rename(os.path.join(f,file),os.path.join(f,file_renamed))
                     file = file_renamed
                 file1 = os.path.join(f,file)
@@ -39,8 +39,8 @@ def replace_project_in(file):
      
         newText=f.read()
      
-        while 'product' in newText:
-            newText=newText.replace('product', 'skill')
+        while 'skill' in newText:
+            newText=newText.replace('skill', 'skill')
      
         while 'PRODUCT' in newText:
             newText=newText.replace('PRODUCT', 'SKILL')

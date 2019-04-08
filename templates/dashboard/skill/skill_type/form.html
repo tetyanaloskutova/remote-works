@@ -4,41 +4,41 @@
 {% load static %}
 
 {% block title %}
-  {% if product_type.pk %}
-    {{ product_type }}
+  {% if skill_type.pk %}
+    {{ skill_type }}
   {% else %}
-    {% trans "Add new product type" context "Product type page title" %}
+    {% trans "Add new skill type" context "Skill type page title" %}
   {% endif %}
-  - {% trans "Products" context "Dashboard products list" %} - {{ block.super }}
+  - {% trans "Skills" context "Dashboard skills list" %} - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-products{% endblock %}
+{% block body_class %}body-skills{% endblock %}
 
-{% block menu_product_types_class %}active{% endblock %}
+{% block menu_skill_types_class %}active{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:product-type-list" as url %}
+  {% url "dashboard:skill-type-list" as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:product-type-list" %}" class="breadcrumb">
-        {% trans "Product types" context "Dashboard product types list" %}
+      <a href="{% url "dashboard:skill-type-list" %}" class="breadcrumb">
+        {% trans "Skill types" context "Dashboard skill types list" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:product-type-list" %}">
+      <a href="{% url "dashboard:skill-type-list" %}">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
     <li>
       <span class="breadcrumbs--ellipsed-item">
-        {% if product_type.pk %}
-          {{ product_type }}
+        {% if skill_type.pk %}
+          {{ skill_type }}
         {% else %}
-          {% trans 'Add new product type' context "Product type breadcrumbs" %}
+          {% trans 'Add new skill type' context "Skill type breadcrumbs" %}
         {% endif %}
       </span>
     </li>
@@ -46,15 +46,15 @@
 {% endblock %}
 
 {% block header_extra %}
-  {% if product_type.pk %}
+  {% if skill_type.pk %}
     <a class="dropdown-button right" href="#" data-activates="context-menu" data-constrainwidth="false">
       <svg data-src="{% static "dashboard/images/more-vert.svg" %}" height="24" width="24" />
     </a>
     <ul id="context-menu" class="dropdown-content">
-      {% if perms.product.manage_products %}
+      {% if perms.skill.manage_skills %}
       <li>
-        <a href="#base-modal" data-href="{% url 'dashboard:product-type-delete' pk=product_type.pk %}" class="modal-trigger-custom">
-          {% trans "Remove product type" context "Product type action" %}
+        <a href="#base-modal" data-href="{% url 'dashboard:skill-type-delete' pk=skill_type.pk %}" class="modal-trigger-custom">
+          {% trans "Remove skill type" context "Skill type action" %}
         </a>
       </li>
       {% endif %}
@@ -66,7 +66,7 @@
   <div class="row">
     <div class="col m12 l9">
       <div class="card">
-        <form method="post" id="form-product" enctype="multipart/form-data" novalidate>
+        <form method="post" id="form-skill" enctype="multipart/form-data" novalidate>
           <div class="card-content card-content-form">
             {% csrf_token %}
             <div class="row">
@@ -75,7 +75,7 @@
             <div class="row">
               <div class="col s12 m8">
                 <div class="row">
-                  {{ form.product_attributes|materializecss:"input-field s12" }}
+                  {{ form.skill_attributes|materializecss:"input-field s12" }}
                 </div>
                 <div class="row">
                   {{ form.variant_attributes|materializecss:"input-field s12" }}
@@ -107,12 +107,12 @@
               </div>
             </div>
           </div>
-          {% if perms.product.manage_products %}
+          {% if perms.skill.manage_skills %}
           <div class="card-action right-align">
-            <a href="{% url 'dashboard:product-type-list' %}" class="btn-flat waves-effect">
+            <a href="{% url 'dashboard:skill-type-list' %}" class="btn-flat waves-effect">
               {% trans "Cancel" context "Dashboard cancel action" %}
             </a>
-            {% if product_type.pk %}
+            {% if skill_type.pk %}
               <button type="submit" class="btn waves-effect">
                 {% trans "Update" context "Dashboard update action" %}
               </button>
@@ -129,9 +129,9 @@
     <div class="col m12 l3 help-box">
       <p class="grey-text">
         <svg data-src="{% static "dashboard/images/help.svg" %}" width="18" height="18" />
-        {% blocktrans trimmed context "Product type help text" %}
-        Product Type is a template used for creating new products.
-        It also controls which attributes can be used during product creation process.
+        {% blocktrans trimmed context "Skill type help text" %}
+        Skill Type is a template used for creating new skills.
+        It also controls which attributes can be used during skill creation process.
         {% endblocktrans %}
       </p>
     </div>

@@ -2,11 +2,12 @@ from captcha.fields import ReCaptchaField
 from django import forms
 from django.conf import settings
 from django.contrib.auth import forms as django_forms, update_session_auth_hash
+from django.utils.safestring import mark_safe
 from django.utils.translation import pgettext, pgettext_lazy
 from phonenumbers.phonenumberutil import country_code_for_region
 
 from . import emails
-from ..account.models import User
+from ..account.models import User, Schedule
 from .i18n import AddressMetaForm, get_address_form_class
 
 
@@ -48,6 +49,81 @@ def get_address_form(
             **kwargs)
     return address_form, preview
 
+
+class TimePickerWidget(forms.TimeInput):
+    def render(self, name, value, attrs=None, renderer=None):
+
+        htmlString = u''
+        htmlString += u'<select name="%s">' % (name)
+        for i in range(24):
+                htmlString += ('<option value="%d:00">%d:00</option>' % (i,i))
+        htmlString +='</select>'
+        return mark_safe(u''.join(htmlString))
+
+
+class ScheduleForm(forms.ModelForm):
+    DAYS_OF_WEEK = (
+        ("su", "Sunday"),
+        ("mo", "Monday"),
+        ("tu", "Tuesday"),
+        ("we", "Wednesday"),
+        ("th", "Thursday"),
+        ("fr", "Friday"),
+        ("sa", "Saturday"),
+    )
+
+    #time_slot_start = forms.TimeField(input_formats='%H:%M', widget=forms.TimeInput(format='%H:%M')) #, widget=TimePickerWidget(format='%I:%M %p'))
+    #time_slot_end = forms.TimeField(input_formats='%H:%M', widget=forms.TimeInput(format='%H:%M')) #, widget=TimePickerWidget(format='%I:%M %p'))
+    #days_of_week = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+    #                                         choices=DAYS_OF_WEEK)
+
+    def __init__(self, *args, **kwargs):
+        self.parent = kwargs.pop('parent', None)
+        super().__init__(*args, **kwargs)
+        self.fields['days_of_week'].choices = (
+                                                ("su", "Sunday"),
+                                                ("mo", "Monday"),
+                                                ("tu", "Tuesday"),
+                                                ("we", "Wednesday"),
+                                                ("th", "Thursday"),
+                                                ("fr", "Friday"),
+                                                ("sa", "Saturday"),
+                                            )
+
+    class Meta:
+        model = Schedule
+        fields = ('time_slot_start', 'time_slot_end', 'days_of_week')
+        widgets = {
+            'time_slot_start': TimePickerWidget(format='%H:%M'),
+            'time_slot_end': TimePickerWidget(format='%H:%M'),
+            'days_of_week': forms.CheckboxSelectMultiple(choices=(
+                                                                ("su", "Sunday"),
+                                                                ("mo", "Monday"),
+                                                                ("tu", "Tuesday"),
+                                                                ("we", "Wednesday"),
+                                                                ("th", "Thursday"),
+                                                                ("fr", "Friday"),
+                                                                ("sa", "Saturday"),
+                                                            ))
+        }
+        labels = {
+            'time_slot_start': pgettext_lazy(
+                'Start work hh24:mm',
+                'Start work hh:mm'),
+            'time_slot_end': pgettext_lazy(
+                'End work hh24:mm',
+                'End work hh:mm'),
+            'days_of_week': pgettext_lazy(
+                'Days of week applicable',
+                'Days of week applicable')}
+
+    def save(self, *args, **kwargs):
+        instance = super(ScheduleForm, self).save(commit=False)
+
+        days_of_week = self.cleaned_data.get("days_of_week")
+        instance.days_of_week = days_of_week
+        instance.save()
+        return instance
 
 class ChangePasswordForm(django_forms.PasswordChangeForm):
     def __init__(self, *args, **kwargs):

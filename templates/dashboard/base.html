@@ -96,15 +96,15 @@
                 {% trans "Home" context "Dashboard homepage" %}
               </a>
             </li>
-            {% if perms.product.manage_products %}
+            {% if perms.skill.manage_skills %}
             <li class="side-nav-section" id="first">
               <p>
                 {% trans "Catalogue" context "Dashboard catalogue" %}
               </p>
               <ul>
-                  <li class="{% block menu_products_class %}{% endblock %}">
-                    <a href="{% url 'dashboard:product-list' %}">
-                      {% trans "Products" context "Dashboard products list" %}
+                  <li class="{% block menu_skills_class %}{% endblock %}">
+                    <a href="{% url 'dashboard:skill-list' %}">
+                      {% trans "Skills" context "Dashboard skills list" %}
                     </a>
                   </li>
                   <li class="{% block menu_categories_class %}{% endblock %}">
@@ -176,16 +176,16 @@
                 </ul>
               </li>
             {% endif %}
-            {% if perms.site.manage_settings or perms.shipping.manage_shipping or perms.product.manage_products or perms.page.manage_pages %}
+            {% if perms.site.manage_settings or perms.shipping.manage_shipping or perms.skill.manage_skills or perms.page.manage_pages %}
               <li class="side-nav-section">
                 <p>
                   {% trans "Configuration"  context "Dashboard configuration" %}
                 </p>
                 <ul>
-                  {% if perms.product.manage_products %}
-                    <li class="{% block menu_product_types_class %}{% endblock %}">
-                      <a href="{% url 'dashboard:product-type-list' %}">
-                        {% trans "Product types" context "Dashboard product types list" %}
+                  {% if perms.skill.manage_skills %}
+                    <li class="{% block menu_skill_types_class %}{% endblock %}">
+                      <a href="{% url 'dashboard:skill-type-list' %}">
+                        {% trans "Skill types" context "Dashboard skill types list" %}
                       </a>
                     </li>
                     <li class="{% block menu_attributes_class %}{% endblock %}">

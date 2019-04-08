@@ -5,11 +5,11 @@
 {% block form_class %}{% endblock %}
 
 {% block action_url %}
-{% url 'dashboard:product-image-delete' product_pk=product.pk img_pk=image.pk %}
+{% url 'dashboard:skill-image-delete' skill_pk=skill.pk img_pk=image.pk %}
 {% endblock %}
 
 {% block title %}
-{% trans "Remove product image" context "Modal remove image text" %}
+{% trans "Remove skill image" context "Modal remove image text" %}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
     <div class="center-align">
       <img class="responsive-img" src="{{ image.image.thumbnail.255x255 }}"  srcset="{{ image.image.thumbnail.255x255 }} 1x, {{ image.image.thumbnail.510x510 }} 2x" alt="">
     </div>
-    <p>{% trans "Are you sure you want to remove product image?" context "Modal remove image text" %}</p>
+    <p>{% trans "Are you sure you want to remove skill image?" context "Modal remove image text" %}</p>
   </div>
 {% endblock content %}
 

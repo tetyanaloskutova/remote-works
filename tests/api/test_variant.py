@@ -38,7 +38,7 @@ def test_fetch_variant(staff_api_client, product, permission_manage_products):
                 currency
                 amount
             }
-            product {
+            skill {
                 id
             }
         }
@@ -69,7 +69,7 @@ def test_create_variant(
             $trackInventory: Boolean!) {
                 productVariantCreate(
                     input: {
-                        product: $productId,
+                        skill: $productId,
                         sku: $sku,
                         priceOverride: $priceOverride,
                         costPrice: $costPrice,
@@ -153,7 +153,7 @@ def test_create_product_variant_not_all_attributes(
                 $attributes: [AttributeValueInput]!) {
                     productVariantCreate(
                         input: {
-                            product: $productId,
+                            skill: $productId,
                             sku: $sku,
                             attributes: $attributes
                         }) {
@@ -353,7 +353,7 @@ def _fetch_variant(client, variant, permissions=None):
     query ProductVariantDetails($variantId: ID!) {
         productVariant(id: $variantId) {
             id
-            product {
+            skill {
                 id
             }
         }
@@ -379,7 +379,7 @@ def test_fetch_unpublished_variant_staff_user(
         'Product', unavailable_product_with_variant.pk)
 
     assert data['id'] == variant_id
-    assert data['product']['id'] == product_id
+    assert data['skill']['id'] == product_id
 
 
 def test_fetch_unpublished_variant_customer(

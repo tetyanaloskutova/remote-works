@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse, reverse_lazy
-from django.utils.translation import pgettext, ugettext_lazy as _
+from django.utils.translation import pgettext, ugettext_lazy as _, pgettext_lazy
 from django.views.decorators.http import require_POST
 
 from ..checkout.utils import find_and_assign_anonymous_cart
@@ -14,8 +14,9 @@ from ..core.utils import get_paginator_items
 from .emails import send_account_delete_confirmation_email
 from .forms import (
     ChangePasswordForm, LoginForm, NameForm, PasswordResetForm, SignupForm,
+    ScheduleForm,
     get_address_form, logout_on_password_change)
-from ..account.models import User
+from ..account.models import User, Schedule
 from django.db.models import Q
 from ..dashboard.customer.filters import UserFilter
 from ..skill.models import Skill
@@ -84,10 +85,12 @@ def details(request):
     orders = request.user.orders.confirmed().prefetch_related('lines')
     orders_paginated = get_paginator_items(
         orders, settings.PAGINATE_BY, request.GET.get('page'))
+    schedules = request.user.schedules.all()
     ctx = {'addresses': request.user.addresses.all(),
            'orders': orders_paginated,
            'change_password_form': password_form,
-           'user_name_form': name_form}
+           'user_name_form': name_form,
+           'schedules': schedules}
 
     return TemplateResponse(request, 'account/details.html', ctx)
 
@@ -196,7 +199,50 @@ def profile_details(request, pk):
     customer_orders = customer.orders.all()
     customer_skills = Skill.objects.filter(owner=customer.id)
     notes = customer.notes.all()
+    schedules = customer.time_availability.all()
+
     ctx = {
         'customer': customer, 'customer_orders': customer_orders,
-        'notes': notes, 'customer_skills':customer_skills }
+        'notes': notes, 'customer_skills':customer_skills, 'schedules': schedules }
     return TemplateResponse(request, 'account/profile_detail.html', ctx)
+
+
+def schedule_details(request, pk):
+    queryset = Schedule.objects.all()
+    schedule = get_object_or_404(queryset, pk=pk)
+    ctx = {
+        'profile': schedule}
+    return TemplateResponse(request, 'account/schedule_details.html', ctx)
+
+
+def schedule_create(request):
+    schedule = Schedule()
+    form = ScheduleForm(request.POST or None, instance=schedule)
+    if form.is_valid():
+        schedule = form.save()
+        schedule.owner = request.user
+        schedule.save()
+        msg = pgettext_lazy('Dashboard message', 'Added schedule')
+        messages.success(request, msg)
+        return redirect('account:details')
+    ctx = {'schedule': schedule, 'form': form}
+    return TemplateResponse(
+        request,
+        'account/schedule_form.html',
+        ctx)
+
+
+def schedule_delete(request, pk):
+    schedule = get_object_or_404(Schedule, pk=pk)
+    if request.method == 'POST':
+        schedule.delete()
+        msg = pgettext_lazy(
+            'Dashboard message', 'Removed schedule %s') % (schedule.name,)
+        messages.success(request, msg)
+        return redirect('account:details')
+    return TemplateResponse(
+        request,
+        'account/schedule/modal/'
+        'schedule_confirm_delete.html',
+        {'schedule': schedule})
+

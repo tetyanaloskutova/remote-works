@@ -36,7 +36,7 @@ class SiteSettingsForm(forms.ModelForm):
             'track_inventory_by_default': pgettext_lazy(
                 'handle stock by default settings field help text',
                 'This will set the default value of stock handling '
-                'on product and variant creation')}
+                'on skill and variant creation')}
 
 
 class AuthorizationKeyForm(forms.ModelForm):

@@ -33,12 +33,12 @@
         </ul>
       </p>
     {% endif %}
-    {% if products_count %}
+    {% if skills_count %}
       <p>
-        {% blocktrans count counter=products_count trimmed context "Remove category form text about products" %}
-          There is one product in this category that will be removed.
+        {% blocktrans count counter=skills_count trimmed context "Remove category form text about skills" %}
+          There is one skill in this category that will be removed.
           {% plural %}
-          There are {{ counter }} products in this category that will be removed.
+          There are {{ counter }} skills in this category that will be removed.
         {% endblocktrans %}
       </p>
     {% endif %}

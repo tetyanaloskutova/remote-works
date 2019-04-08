@@ -23,7 +23,7 @@
     <div class="col-12">
       {% if query and results %}
         <div class="row">
-          {% include "product/_items.html" with products=results %}
+          {% include "skill/_items.html" with skills=results %}
         </div>
         {% bootstrap_pagination results url=query_string %}
       {% else %}

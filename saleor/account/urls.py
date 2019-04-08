@@ -30,4 +30,11 @@ urlpatterns = [
         name='profiles'),    
     url(r'^profiles/(?P<pk>[0-9]+)/$', views.profile_details, name='profile-details'),
     url(r'^(?P<token>[0-9A-Za-z_\-]+)/delete-confirm/',
-        views.account_delete_confirm, name='delete-confirm')]
+        views.account_delete_confirm, name='delete-confirm'),
+
+
+    url(r'schedule/add/$',
+        views.schedule_create, name='schedule-add'),
+    url(r'schedule/(?P<pk>[0-9]+)/delete/$',
+        views.schedule_delete, name='schedule-delete'),
+    ]

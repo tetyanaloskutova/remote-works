@@ -565,7 +565,7 @@ def test_order_weight_delete_line(order_with_lines):
 
 
 def test_get_order_weight_non_existing_product(order_with_lines, product):
-    # Removing product should not affect order's weight
+    # Removing skill should not affect order's weight
     order = order_with_lines
     variant = product.variants.first()
     add_variant_to_order(order, variant, 1)

@@ -51,7 +51,7 @@ def create_image():
 
 
 def create_pdf_file_with_image_ext():
-    file_name = 'product.jpg'
+    file_name = 'skill.jpg'
     file_data = SimpleUploadedFile(
         file_name, b'product_data', 'application/pdf')
     return file_data, file_name

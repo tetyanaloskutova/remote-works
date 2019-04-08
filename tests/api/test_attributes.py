@@ -29,7 +29,7 @@ def test_attributes_to_hstore(product, color_attribute):
     assert str(color_attribute.pk) in ids
     assert ids[str(color_attribute.pk)] == str(new_value.pk)
 
-    # test passing an attribute that doesn't belong to this product raises
+    # test passing an attribute that doesn't belong to this skill raises
     # an error
     input_data = [{'slug': 'not-an-attribute', 'value': 'not-a-value'}]
     with pytest.raises(ValueError):

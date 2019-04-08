@@ -18,7 +18,7 @@ from ..utils import create_image
 
 
 def test_view_product_list_with_filters(admin_client, product_list):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {
         'price_max': [''], 'price_min': [''], 'is_featured': [''],
         'name': ['Test'], 'sort_by': [''], 'is_published': ['']}
@@ -30,7 +30,7 @@ def test_view_product_list_with_filters(admin_client, product_list):
 
 
 def test_view_product_list_with_filters_sort_by(admin_client, product_list):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {
         'price_max': [''], 'price_min': [''], 'is_featured': [''],
         'name': ['Test'], 'sort_by': ['name'], 'is_published': ['']}
@@ -41,7 +41,7 @@ def test_view_product_list_with_filters_sort_by(admin_client, product_list):
     assert list(response.context['filter_set'].qs) == product_list
 
     data['sort_by'] = ['-name']
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
 
     response = admin_client.get(url, data)
 
@@ -51,7 +51,7 @@ def test_view_product_list_with_filters_sort_by(admin_client, product_list):
 
 def test_view_product_list_with_filters_is_published(
         admin_client, product_list, category):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {
         'price_max': [''], 'price_min': [''], 'is_featured': [''],
         'name': ['Test'], 'sort_by': ['name'], 'category': category.pk,
@@ -65,7 +65,7 @@ def test_view_product_list_with_filters_is_published(
 
 
 def test_view_product_list_with_filters_no_results(admin_client, product_list):
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {
         'price_max': [''], 'price_min': [''], 'is_featured': [''],
         'name': ['BADTest'], 'sort_by': [''], 'is_published': ['']}
@@ -78,7 +78,7 @@ def test_view_product_list_with_filters_no_results(admin_client, product_list):
 
 def test_view_product_list_pagination(admin_client, product_list, settings):
     settings.DASHBOARD_PAGINATE_BY = 1
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {'page': '1'}
 
     response = admin_client.get(url, data)
@@ -97,7 +97,7 @@ def test_view_product_list_pagination(admin_client, product_list, settings):
 def test_view_product_list_pagination_with_filters(
         admin_client, product_list, settings):
     settings.DASHBOARD_PAGINATE_BY = 1
-    url = reverse('dashboard:product-list')
+    url = reverse('dashboard:skill-list')
     data = {
         'page': '1', 'price_max': [''], 'price_min': [''], 'is_featured': [''],
         'name': ['Test'], 'sort_by': ['name'], 'is_published': ['']}
@@ -119,20 +119,20 @@ def test_view_product_details(admin_client, product):
     price = TaxedMoney(net=Money(10, 'USD'), gross=Money(10, 'USD'))
     sale_price = TaxedMoneyRange(start=price, stop=price)
     purchase_cost = MoneyRange(start=Money(1, 'USD'), stop=Money(1, 'USD'))
-    url = reverse('dashboard:product-details', kwargs={'pk': product.pk})
+    url = reverse('dashboard:skill-details', kwargs={'pk': product.pk})
 
     response = admin_client.get(url)
 
     assert response.status_code == 200
     context = response.context
-    assert context['product'] == product
+    assert context['skill'] == product
     assert context['sale_price'] == sale_price
     assert context['purchase_cost'] == purchase_cost
     assert context['margin'] == (90, 90)
 
 
 def test_view_product_toggle_publish(db, admin_client, product):
-    url = reverse('dashboard:product-publish', kwargs={'pk': product.pk})
+    url = reverse('dashboard:skill-publish', kwargs={'pk': product.pk})
     expected_response = {'success': True, 'is_published': False}
 
     response = admin_client.post(url)
@@ -149,25 +149,25 @@ def test_view_product_toggle_publish(db, admin_client, product):
 
 
 def test_view_product_select_type_display_modal(admin_client):
-    url = reverse('dashboard:product-add-select-type')
+    url = reverse('dashboard:skill-add-select-type')
     response = admin_client.get(url)
     assert response.status_code == 200
 
 
 def test_view_product_select_type(admin_client, product_type):
-    url = reverse('dashboard:product-add-select-type')
-    data = {'product_type': product_type.pk}
+    url = reverse('dashboard:skill-add-select-type')
+    data = {'skill_type': product_type.pk}
 
     response = admin_client.post(url, data)
 
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-add', kwargs={'type_pk': product_type.pk})
+        'dashboard:skill-add', kwargs={'type_pk': product_type.pk})
     assert response.status_code == 302
 
 
 def test_view_product_select_type_by_ajax(admin_client, product_type):
-    url = reverse('dashboard:product-add-select-type')
-    data = {'product_type': product_type.pk}
+    url = reverse('dashboard:skill-add-select-type')
+    data = {'skill_type': product_type.pk}
 
     response = admin_client.post(
         url, data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -175,13 +175,13 @@ def test_view_product_select_type_by_ajax(admin_client, product_type):
     assert response.status_code == 200
     resp_decoded = json.loads(response.content.decode('utf-8'))
     assert resp_decoded.get('redirectUrl') == reverse(
-        'dashboard:product-add', kwargs={'type_pk': product_type.pk})
+        'dashboard:skill-add', kwargs={'type_pk': product_type.pk})
 
 
 def test_view_product_create(admin_client, product_type, category):
-    url = reverse('dashboard:product-add', kwargs={'type_pk': product_type.pk})
+    url = reverse('dashboard:skill-add', kwargs={'type_pk': product_type.pk})
     data = {
-        'name': 'Product', 'description': 'This is product description.',
+        'name': 'Product', 'description': 'This is skill description.',
         'price': 10, 'category': category.pk, 'variant-sku': '123',
         'variant-quantity': 2}
 
@@ -190,12 +190,12 @@ def test_view_product_create(admin_client, product_type, category):
     assert response.status_code == 302
     product = Product.objects.first()
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-details', kwargs={'pk': product.pk})
+        'dashboard:skill-details', kwargs={'pk': product.pk})
     assert Product.objects.count() == 1
 
 
 def test_view_product_edit(admin_client, product):
-    url = reverse('dashboard:product-update', kwargs={'pk': product.pk})
+    url = reverse('dashboard:skill-update', kwargs={'pk': product.pk})
     data = {
         'name': 'Product second name', 'description': 'Product description.',
         'price': 10, 'category': product.category.pk, 'variant-sku': '123',
@@ -206,12 +206,12 @@ def test_view_product_edit(admin_client, product):
     assert response.status_code == 302
     product.refresh_from_db()
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-details', kwargs={'pk': product.pk})
+        'dashboard:skill-details', kwargs={'pk': product.pk})
     assert product.name == 'Product second name'
 
 
 def test_view_product_delete(db, admin_client, product):
-    url = reverse('dashboard:product-delete', kwargs={'pk': product.pk})
+    url = reverse('dashboard:skill-delete', kwargs={'pk': product.pk})
 
     response = admin_client.post(url)
 
@@ -221,7 +221,7 @@ def test_view_product_delete(db, admin_client, product):
 
 def test_view_product_not_deleted_before_confirmation(
         db, admin_client, product):
-    url = reverse('dashboard:product-delete', kwargs={'pk': product.pk})
+    url = reverse('dashboard:skill-delete', kwargs={'pk': product.pk})
 
     response = admin_client.get(url)
 
@@ -230,14 +230,14 @@ def test_view_product_not_deleted_before_confirmation(
 
 
 def test_view_product_bulk_update_publish(admin_client, product_list):
-    url = reverse('dashboard:product-bulk-update')
+    url = reverse('dashboard:skill-bulk-update')
     products = [product.pk for product in product_list]
     data = {'action': ProductBulkAction.PUBLISH, 'products': products}
 
     response = admin_client.post(url, data)
 
     assert response.status_code == 302
-    assert get_redirect_location(response) == reverse('dashboard:product-list')
+    assert get_redirect_location(response) == reverse('dashboard:skill-list')
 
     for p in product_list:
         p.refresh_from_db()
@@ -245,7 +245,7 @@ def test_view_product_bulk_update_publish(admin_client, product_list):
 
 
 def test_view_product_bulk_update_unpublish(admin_client, product_list):
-    url = reverse('dashboard:product-bulk-update')
+    url = reverse('dashboard:skill-bulk-update')
     products = [product.pk for product in product_list]
     data = {'action': ProductBulkAction.UNPUBLISH, 'products': products}
 
@@ -264,7 +264,7 @@ def test_view_ajax_products_list(admin_client, product):
 
 
 def test_view_product_type_list(admin_client, product_type):
-    url = reverse('dashboard:product-type-list')
+    url = reverse('dashboard:skill-type-list')
 
     response = admin_client.get(url)
 
@@ -273,7 +273,7 @@ def test_view_product_type_list(admin_client, product_type):
 
 
 def test_view_product_type_list_with_filters(admin_client, product_type):
-    url = reverse('dashboard:product-type-list')
+    url = reverse('dashboard:skill-type-list')
     data = {'name': ['Default Ty'], 'sort_by': ['']}
 
     response = admin_client.get(url, data)
@@ -285,7 +285,7 @@ def test_view_product_type_list_with_filters(admin_client, product_type):
 
 def test_view_product_type_create(
         admin_client, color_attribute, size_attribute):
-    url = reverse('dashboard:product-type-add')
+    url = reverse('dashboard:skill-type-add')
     data = {
         'name': 'Testing Type',
         'product_attributes': [color_attribute.pk],
@@ -297,13 +297,13 @@ def test_view_product_type_create(
 
     assert response.status_code == 302
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-type-list')
+        'dashboard:skill-type-list')
     assert ProductType.objects.count() == 1
 
 
 def test_view_product_type_create_invalid(
         admin_client, color_attribute, size_attribute):
-    url = reverse('dashboard:product-type-add')
+    url = reverse('dashboard:skill-type-add')
     # Don't allow same attribute in both fields
     data = {
         'name': 'Testing Type',
@@ -320,7 +320,7 @@ def test_view_product_type_create_invalid(
 
 def test_view_product_type_create_missing_variant_attributes(
         admin_client, color_attribute, size_attribute):
-    url = reverse('dashboard:product-type-add')
+    url = reverse('dashboard:skill-type-add')
     data = {
         'name': 'Testing Type',
         'product_attributes': [color_attribute.pk],
@@ -335,7 +335,7 @@ def test_view_product_type_create_missing_variant_attributes(
 
 def test_view_product_type_create_variantless(
         admin_client, color_attribute, size_attribute):
-    url = reverse('dashboard:product-type-add')
+    url = reverse('dashboard:skill-type-add')
     data = {
         'name': 'Testing Type',
         'product_attributes': [color_attribute.pk],
@@ -346,13 +346,13 @@ def test_view_product_type_create_variantless(
 
     assert response.status_code == 302
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-type-list')
+        'dashboard:skill-type-list')
     assert ProductType.objects.count() == 1
 
 
 def test_view_product_type_create_variantless_invalid(
         admin_client, color_attribute, size_attribute):
-    url = reverse('dashboard:product-type-add')
+    url = reverse('dashboard:skill-type-add')
     # Don't allow variant attributes when no variants
     data = {
         'name': 'Testing Type',
@@ -368,12 +368,12 @@ def test_view_product_type_create_variantless_invalid(
 
 def test_view_product_type_edit_to_no_variants_valid(admin_client, product):
     product_type = ProductType.objects.create(
-        name='New product type', has_variants=True)
+        name='New skill type', has_variants=True)
     product.product_type = product_type
     product.save()
 
     url = reverse(
-        'dashboard:product-type-update', kwargs={'pk': product_type.pk})
+        'dashboard:skill-type-update', kwargs={'pk': product_type.pk})
     # When all products have only one variant you can change
     # has_variants to false
     data = {
@@ -396,15 +396,15 @@ def test_view_product_type_edit_to_no_variants_valid(admin_client, product):
 
 def test_view_product_type_edit_to_no_variants_invalid(admin_client, product):
     product_type = ProductType.objects.create(
-        name='New product type', has_variants=True)
+        name='New skill type', has_variants=True)
     product.product_type = product_type
     product.save()
 
     product.variants.create(sku='12345')
 
     url = reverse(
-        'dashboard:product-type-update', kwargs={'pk': product_type.pk})
-    # Test has_variants validator which prevents turning off when product
+        'dashboard:skill-type-update', kwargs={'pk': product_type.pk})
+    # Test has_variants validator which prevents turning off when skill
     # has multiple variants
     data = {
         'name': product_type.name,
@@ -426,7 +426,7 @@ def test_view_product_type_edit_to_no_variants_invalid(admin_client, product):
 def test_view_product_type_delete(db, admin_client, product):
     product_type = product.product_type
     url = reverse(
-        'dashboard:product-type-delete', kwargs={'pk': product_type.pk})
+        'dashboard:skill-type-delete', kwargs={'pk': product_type.pk})
 
     response = admin_client.post(url)
 
@@ -438,7 +438,7 @@ def test_view_product_type_not_deleted_before_confirmation(
         admin_client, product):
     product_type = product.product_type
     url = reverse(
-        'dashboard:product-type-delete', kwargs={'pk': product_type.pk})
+        'dashboard:skill-type-delete', kwargs={'pk': product_type.pk})
 
     response = admin_client.get(url)
 
@@ -459,7 +459,7 @@ def test_view_product_variant_details(admin_client, product):
 
     assert response.status_code == 200
     context = response.context
-    assert context['product'] == product
+    assert context['skill'] == product
     assert context['variant'] == variant
     assert context['images'].count() == 0
     assert context['margin'] == 90
@@ -478,7 +478,7 @@ def test_view_product_variant_details_redirect_to_product(
 
     assert response.status_code == 302
     assert get_redirect_location(response) == reverse(
-        'dashboard:product-details', kwargs={'pk': product.pk})
+        'dashboard:skill-details', kwargs={'pk': product.pk})
 
 
 def test_view_product_variant_create(admin_client, product):
@@ -563,7 +563,7 @@ def test_view_variant_images(admin_client, product_with_image):
 def test_view_ajax_available_variants_list(
         admin_client, product, category, settings):
     unavailable_product = Product.objects.create(
-        name='Test product', price=Money(10, settings.DEFAULT_CURRENCY),
+        name='Test skill', price=Money(10, settings.DEFAULT_CURRENCY),
         product_type=product.product_type,
         category=category, is_published=False)
     unavailable_product.variants.create()
@@ -581,13 +581,13 @@ def test_view_ajax_available_variants_list(
 def test_view_product_images(admin_client, product_with_image):
     product_image = product_with_image.images.get()
     url = reverse(
-        'dashboard:product-image-list',
+        'dashboard:skill-image-list',
         kwargs={'product_pk': product_with_image.pk})
 
     response = admin_client.get(url)
 
     assert response.status_code == 200
-    assert response.context['product'] == product_with_image
+    assert response.context['skill'] == product_with_image
     assert not response.context['is_empty']
     images = response.context['images']
     assert len(images) == 1
@@ -598,10 +598,10 @@ def test_view_product_image_create(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.product.forms.create_product_thumbnails.delay',
+        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     url = reverse(
-        'dashboard:product-image-add',
+        'dashboard:skill-image-add',
         kwargs={'product_pk': product_with_image.pk})
 
     response = admin_client.get(url)
@@ -627,11 +627,11 @@ def test_view_product_image_edit_same_image_add_description(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.product.forms.create_product_thumbnails.delay',
+        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product_image = product_with_image.images.all()[0]
     url = reverse(
-        'dashboard:product-image-update',
+        'dashboard:skill-image-update',
         kwargs={
             'img_pk': product_image.pk,
             'product_pk': product_with_image.pk})
@@ -654,11 +654,11 @@ def test_view_product_image_edit_new_image(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.product.forms.create_product_thumbnails.delay',
+        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product_image = product_with_image.images.all()[0]
     url = reverse(
-        'dashboard:product-image-update',
+        'dashboard:skill-image-update',
         kwargs={
             'img_pk': product_image.pk,
             'product_pk': product_with_image.pk})
@@ -683,7 +683,7 @@ def test_view_product_image_edit_new_image(
 def test_view_product_image_delete(admin_client, product_with_image):
     product_image = product_with_image.images.all()[0]
     url = reverse(
-        'dashboard:product-image-delete',
+        'dashboard:skill-image-delete',
         kwargs={
             'img_pk': product_image.pk,
             'product_pk': product_with_image.pk})
@@ -698,7 +698,7 @@ def test_view_product_image_not_deleted_before_confirmation(
         admin_client, product_with_image):
     product_image = product_with_image.images.all()[0]
     url = reverse(
-        'dashboard:product-image-delete',
+        'dashboard:skill-image-delete',
         kwargs={
             'img_pk': product_image.pk,
             'product_pk': product_with_image.pk})
@@ -713,7 +713,7 @@ def test_view_ajax_reorder_product_images(admin_client, product_with_images):
     order_before = [img.pk for img in product_with_images.images.all()]
     ordered_images = list(reversed(order_before))
     url = reverse(
-        'dashboard:product-images-reorder',
+        'dashboard:skill-images-reorder',
         kwargs={'product_pk': product_with_images.pk})
     data = {'ordered_images': ordered_images}
 
@@ -730,7 +730,7 @@ def test_view_ajax_reorder_product_images_invalid(
     order_before = [img.pk for img in product_with_images.images.all()]
     ordered_images = list(reversed(order_before)).append(3)
     url = reverse(
-        'dashboard:product-images-reorder',
+        'dashboard:skill-images-reorder',
         kwargs={'product_pk': product_with_images.pk})
     data = {'ordered_images': ordered_images}
 
@@ -746,11 +746,11 @@ def test_view_ajax_reorder_product_images_invalid(
 def test_view_ajax_upload_image(monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.product.forms.create_product_thumbnails.delay',
+        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product = product_with_image
     url = reverse(
-        'dashboard:product-images-upload', kwargs={'product_pk': product.pk})
+        'dashboard:skill-images-upload', kwargs={'product_pk': product.pk})
     image, image_name = create_image()
     data = {'image_0': image, 'alt': ['description']}
 
@@ -1074,7 +1074,7 @@ def test_product_form_sanitize_product_description(
 
 def test_product_form_seo_description(unavailable_product):
     seo_description = (
-        'This is a dummy product. '
+        'This is a dummy skill. '
         'HTML <b>shouldn\'t be removed</b> since it\'s a simple text field.')
     data = model_to_dict(unavailable_product)
     data['price'] = 20

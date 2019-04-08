@@ -136,7 +136,7 @@
       <div class="card">
         <div class="data-table-header{% if not low_stock %} data-table-header--no-data{% endif %}">
           <span class="data-table-title" title="{% blocktrans trimmed with counter=low_stock.count context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
-            {% trans "Products with low stock" context "Dashboard homepage table title" %}
+            {% trans "Skills with low stock" context "Dashboard homepage table title" %}
           </span>
         </div>
         {% if low_stock %}
@@ -145,21 +145,21 @@
               <thead>
                 <tr>
                   <th>
-                    {% trans "Product name" context "Low stock product list" %}
+                    {% trans "Skill name" context "Low stock skill list" %}
                   </th>
                   <th class="right-align">
-                    {% trans "Stock left" context "Low stock product list" %}
+                    {% trans "Stock left" context "Low stock skill list" %}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {% for product in low_stock %}
-                  <tr data-action-go="{% url "dashboard:product-details" pk=product.pk %}">
+                {% for skill in low_stock %}
+                  <tr data-action-go="{% url "dashboard:skill-details" pk=skill.pk %}">
                     <td>
-                      {{ product }}
+                      {{ skill }}
                     </td>
                     <td class="right-align">
-                      {{ product.total_stock }}
+                      {{ skill.total_stock }}
                     </td>
                   </tr>
                 {% endfor %}
@@ -169,7 +169,7 @@
         {% else %}
           <div class="card-content card-content--no-data not-found">
             <p class="grey-text">
-              {% trans "No products are low in stock." context "Empty low stock table message" %}
+              {% trans "No skills are low in stock." context "Empty low stock table message" %}
             </p>
           </div>
         {% endif %}

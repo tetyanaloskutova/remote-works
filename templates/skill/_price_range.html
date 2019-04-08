@@ -3,7 +3,7 @@
 
 <span>
   <span>
-    {% if price_range.start != price_range.stop %}{% trans "from" context "product price range" %} {% endif %}
+    {% if price_range.start != price_range.stop %}{% trans "from" context "skill price range" %} {% endif %}
     {% if display_gross %}
       {{ price_range.start.gross|amount:'html' }}
     {% else %}

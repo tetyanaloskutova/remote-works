@@ -207,14 +207,6 @@ def profile_details(request, pk):
     return TemplateResponse(request, 'account/profile_detail.html', ctx)
 
 
-def schedule_details(request, pk):
-    queryset = Schedule.objects.all()
-    schedule = get_object_or_404(queryset, pk=pk)
-    ctx = {
-        'profile': schedule}
-    return TemplateResponse(request, 'account/schedule_details.html', ctx)
-
-
 def schedule_create(request):
     schedule = Schedule()
     form = ScheduleForm(request.POST or None, instance=schedule)

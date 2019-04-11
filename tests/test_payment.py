@@ -6,13 +6,13 @@ from django.conf import settings as dj_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import get_template
 
-from saleor.order import OrderEvents, OrderEventsEmails
-from saleor.order.views import PAYMENT_TEMPLATE
-from saleor.payment import (
+from remote_works.order import OrderEvents, OrderEventsEmails
+from remote_works.order.views import PAYMENT_TEMPLATE
+from remote_works.payment import (
     ChargeStatus, GatewayError, OperationType, PaymentError, TransactionKind,
     get_payment_gateway)
-from saleor.payment.models import Payment
-from saleor.payment.utils import (
+from remote_works.payment.models import Payment
+from remote_works.payment.utils import (
     ALLOWED_GATEWAY_KINDS, REQUIRED_GATEWAY_KEYS, call_gateway,
     clean_authorize, clean_capture, clean_charge, clean_mark_order_as_paid,
     create_payment, create_payment_information, create_transaction,
@@ -94,7 +94,7 @@ def test_get_payment_gateway(settings):
     assert gateway_params == gateway['connection_params']
 
 
-@patch('saleor.order.emails.send_payment_confirmation.delay')
+@patch('remote_works.order.emails.send_payment_confirmation.delay')
 def test_handle_fully_paid_order_no_email(
         mock_send_payment_confirmation, order):
     order.user = None
@@ -106,7 +106,7 @@ def test_handle_fully_paid_order_no_email(
     assert not mock_send_payment_confirmation.called
 
 
-@patch('saleor.order.emails.send_payment_confirmation.delay')
+@patch('remote_works.order.emails.send_payment_confirmation.delay')
 def test_handle_fully_paid_order(mock_send_payment_confirmation, order):
     handle_fully_paid_order(order)
     event_order_paid, event_email_sent = order.events.all()
@@ -182,7 +182,7 @@ def test_create_transaction_no_gateway_response(transaction_data):
     assert txn.gateway_response == {}
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_get_client_token(get_payment_gateway_mock, gateway_params):
     get_client_token_mock = Mock(return_value='client-token')
     get_payment_gateway_mock.return_value = (
@@ -218,7 +218,7 @@ def test_payment_needs_to_be_active_for_any_action(func, payment_dummy):
     assert exc.value.message == NOT_ACTIVE_PAYMENT_ERROR
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_process_payment(
         mock_get_payment_gateway, payment_txn_preauth, gateway_params,
         transaction_token, dummy_response):
@@ -236,7 +236,7 @@ def test_gateway_process_payment(
         payment_information=payment_info, connection_params=gateway_params)
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_authorize(
         mock_get_payment_gateway, payment_txn_preauth, gateway_params,
         transaction_token, dummy_response):
@@ -255,7 +255,7 @@ def test_gateway_authorize(
         payment_information=payment_info, connection_params=gateway_params)
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_authorize_failed(
         mock_get_payment_gateway, payment_txn_preauth, gateway_params,
         transaction_token, dummy_response):
@@ -282,8 +282,8 @@ def test_gateway_authorize_errors(payment_dummy):
         'Charged transactions cannot be authorized again.')
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_capture(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, dummy_response):
@@ -309,8 +309,8 @@ def test_gateway_capture(
     mock_handle_fully_paid_order.assert_called_once_with(payment.order)
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_capture_partial_capture(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, settings, dummy_response):
@@ -335,8 +335,8 @@ def test_gateway_capture_partial_capture(
     assert not mock_handle_fully_paid_order.called
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_capture_failed(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, dummy_response):
@@ -377,8 +377,8 @@ def test_gateway_capture_errors(payment_txn_preauth):
         'Unable to capture more than authorized amount.')
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_charge(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, transaction_token, dummy_response):
@@ -406,8 +406,8 @@ def test_gateway_charge(
     mock_handle_fully_paid_order.assert_called_once_with(payment.order)
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_capture_partial_charge(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, transaction_token, settings, dummy_response):
@@ -433,8 +433,8 @@ def test_gateway_capture_partial_charge(
     assert not mock_handle_fully_paid_order.called
 
 
-@patch('saleor.payment.utils.handle_fully_paid_order')
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.handle_fully_paid_order')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_charge_failed(
         mock_get_payment_gateway, mock_handle_fully_paid_order, payment_txn_preauth,
         gateway_params, transaction_token, dummy_response):
@@ -479,7 +479,7 @@ def test_gateway_charge_errors(payment_dummy, transaction_token):
         'Unable to charge more than un-captured amount.')
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_void(
         mock_get_payment_gateway, payment_txn_preauth,
         gateway_params, dummy_response):
@@ -502,7 +502,7 @@ def test_gateway_void(
     assert payment.is_active == False
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_void_failed(
         mock_get_payment_gateway, payment_txn_preauth, gateway_params,
         dummy_response):
@@ -529,7 +529,7 @@ def test_gateway_void_errors(payment_dummy):
     exc.value.message == 'Only pre-authorized transactions can be voided.'
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_refund(
         mock_get_payment_gateway, payment_txn_captured, gateway_params,
         dummy_response):
@@ -554,7 +554,7 @@ def test_gateway_refund(
     assert not payment.captured_amount
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_refund_partial_refund(
         mock_get_payment_gateway, payment_txn_captured, gateway_params,
         settings, dummy_response):
@@ -577,7 +577,7 @@ def test_gateway_refund_partial_refund(
     assert payment.captured_amount == payment.total - amount
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_gateway_refund_failed(
         mock_get_payment_gateway, payment_txn_captured, gateway_params,
         settings, dummy_response):
@@ -861,7 +861,7 @@ def test_validate_gateway_response_incorrect_field_type(gateway_response):
         Decimal, str)
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_call_gateway_invalid_response(
         mock_get_payment_gateway, payment_dummy):
     mock_get_payment_gateway.return_value = (
@@ -874,7 +874,7 @@ def test_call_gateway_invalid_response(
     assert str(e.value) == 'Gateway response validation failed'
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_call_gateway_function_not_implemented(
         mock_get_payment_gateway, payment_dummy):
     class CustomClass:
@@ -889,7 +889,7 @@ def test_call_gateway_function_not_implemented(
     assert str(e.value) == 'Gateway doesn\'t implement AUTH operation'
 
 
-@patch('saleor.payment.utils.get_payment_gateway')
+@patch('remote_works.payment.utils.get_payment_gateway')
 def test_call_gateway_generic_error(
         mock_get_payment_gateway, payment_dummy):
     mock_get_payment_gateway.return_value = (

@@ -13,12 +13,12 @@ from django.template import Context, Template
 from django.urls import reverse
 from django_countries.fields import Country
 
-from saleor.account import forms, i18n
-from saleor.account.forms import FormWithReCaptcha, NameForm
-from saleor.account.models import User
-from saleor.account.templatetags.i18n_address_tags import format_address
-from saleor.account.utils import get_user_first_name, get_user_last_name
-from saleor.account.validators import validate_possible_number
+from remote_works.account import forms, i18n
+from remote_works.account.forms import FormWithReCaptcha, NameForm
+from remote_works.account.models import User
+from remote_works.account.templatetags.i18n_address_tags import format_address
+from remote_works.account.utils import get_user_first_name, get_user_last_name
+from remote_works.account.validators import validate_possible_number
 
 
 @pytest.mark.parametrize('country', ['CN', 'PL', 'US'])
@@ -323,7 +323,7 @@ def test_view_account_post_required(customer_user, authorized_client):
     assert response.status_code == 405
 
 
-@patch('saleor.account.views.send_account_delete_confirmation_email.delay')
+@patch('remote_works.account.views.send_account_delete_confirmation_email.delay')
 def test_view_account_delete(
         send_confirmation_mock, customer_user, authorized_client, staff_user):
     url = reverse('account:delete')

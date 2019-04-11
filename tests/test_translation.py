@@ -1,9 +1,9 @@
 import pytest
 
-from saleor.product.models import (
+from remote_works.product.models import (
     AttributeTranslation, AttributeValueTranslation, CategoryTranslation,
     CollectionTranslation, ProductTranslation, ProductVariantTranslation)
-from saleor.shipping.models import ShippingMethodTranslation
+from remote_works.shipping.models import ShippingMethodTranslation
 
 
 @pytest.fixture

@@ -9,7 +9,7 @@ services:
         STATIC_URL: '/static/'
     restart: unless-stopped
     networks:
-      - saleor-backend-tier
+      - remote_works-backend-tier
     env_file: common.env
     depends_on:
       - db
@@ -19,20 +19,20 @@ services:
     image: library/postgres:11.1-alpine
     restart: unless-stopped
     networks:
-      - saleor-backend-tier
+      - remote_works-backend-tier
     volumes:
-      - saleor-db:/var/lib/postgresql
+      - remote_works-db:/var/lib/postgresql
     environment:
-      - POSTGRES_USER=saleor
-      - POSTGRES_PASSWORD=saleor
+      - POSTGRES_USER=remote_works
+      - POSTGRES_PASSWORD=remote_works
 
   redis:
     image: library/redis:5.0-alpine
     restart: unless-stopped
     networks:
-      - saleor-backend-tier
+      - remote_works-backend-tier
     volumes:
-      - saleor-redis:/data
+      - remote_works-redis:/data
 
   celery:
     build:
@@ -40,10 +40,10 @@ services:
       dockerfile: ./Dockerfile
       args:
         STATIC_URL: '/static/'
-    command: celery -A saleor worker --app=saleor.celeryconf:app --loglevel=info
+    command: celery -A remote_works worker --app=remote_works.celeryconf:app --loglevel=info
     restart: unless-stopped
     networks:
-      - saleor-backend-tier
+      - remote_works-backend-tier
     env_file: common.env
     depends_on:
       - redis

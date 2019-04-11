@@ -10,17 +10,17 @@ from django.urls import translate_url
 from measurement.measures import Weight
 from prices import Money
 
-from saleor.account.models import Address, User
-from saleor.core.storages import S3MediaStorage
-from saleor.core.utils import (
+from remote_works.account.models import Address, User
+from remote_works.core.storages import S3MediaStorage
+from remote_works.core.utils import (
     Country, build_absolute_uri, create_superuser, create_thumbnails,
     format_money, get_country_by_ip, get_currency_for_country, random_data)
-from saleor.core.utils.text import get_cleaner, strip_html
-from saleor.core.weight import WeightUnits, convert_weight
-from saleor.discount.models import Sale, Voucher
-from saleor.order.models import Order
-from saleor.product.models import ProductImage
-from saleor.shipping.models import ShippingZone
+from remote_works.core.utils.text import get_cleaner, strip_html
+from remote_works.core.weight import WeightUnits, convert_weight
+from remote_works.discount.models import Sale, Voucher
+from remote_works.order.models import Order
+from remote_works.product.models import ProductImage
+from remote_works.shipping.models import ShippingZone
 
 type_schema = {
     'Vegetable': {
@@ -49,7 +49,7 @@ def test_format_money():
     ({'country': {}}, None)])
 def test_get_country_by_ip(ip_data, expected_country, monkeypatch):
     monkeypatch.setattr(
-        'saleor.core.utils.georeader.get',
+        'remote_works.core.utils.georeader.get',
         Mock(return_value=ip_data))
     country = get_country_by_ip('127.0.0.1')
     assert country == expected_country
@@ -114,7 +114,7 @@ def test_create_address(db):
 def test_create_fake_order(db, monkeypatch, image):
     # Tests shouldn't depend on images present in placeholder folder
     monkeypatch.setattr(
-        'saleor.core.utils.random_data.get_image',
+        'remote_works.core.utils.random_data.get_image',
         Mock(return_value=image))
     for _ in random_data.create_shipping_zones():
         pass

@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from saleor.account.models import User
+from remote_works.account.models import User
 
 
 def test_staff_can_access_product_details(
@@ -573,10 +573,10 @@ def test_staff_can_access_product_image_list(
 
 
 def test_staff_can_access_product_image_add(
-        staff_client, staff_user, permission_manage_products, product):
+        staff_client, staff_user, permission_manage_products, skill):
     assert not staff_user.has_perm('skill.manage_products')
     url = reverse(
-        'dashboard:skill-image-add', kwargs={'product_pk': product.pk})
+        'dashboard:skill-image-add', kwargs={'skill_pk': skill.pk})
 
     response = staff_client.get(url)
     assert response.status_code == 302

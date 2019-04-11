@@ -5,20 +5,20 @@ import pytest
 from django.urls import reverse
 from prices import Money
 
-from saleor.checkout import AddressType
-from saleor.core.utils.taxes import ZERO_MONEY, ZERO_TAXED_MONEY
-from saleor.dashboard.order.forms import ChangeQuantityForm
-from saleor.dashboard.order.utils import (
+from remote_works.checkout import AddressType
+from remote_works.core.utils.taxes import ZERO_MONEY, ZERO_TAXED_MONEY
+from remote_works.dashboard.order.forms import ChangeQuantityForm
+from remote_works.dashboard.order.utils import (
     fulfill_order_line, remove_customer_from_order, save_address_in_order,
     update_order_with_user_addresses)
-from saleor.discount.utils import increase_voucher_usage
-from saleor.order import (
+from remote_works.discount.utils import increase_voucher_usage
+from remote_works.order import (
     FulfillmentStatus, OrderEvents, OrderEventsEmails, OrderStatus)
-from saleor.order.models import Order, OrderEvent, OrderLine
-from saleor.order.utils import add_variant_to_order, change_order_line_quantity
-from saleor.payment import ChargeStatus, TransactionKind
-from saleor.product.models import ProductVariant
-from saleor.shipping.models import ShippingZone
+from remote_works.order.models import Order, OrderEvent, OrderLine
+from remote_works.order.utils import add_variant_to_order, change_order_line_quantity
+from remote_works.payment import ChargeStatus, TransactionKind
+from remote_works.product.models import ProductVariant
+from remote_works.shipping.models import ShippingZone
 from tests.utils import get_form_errors, get_redirect_location
 
 

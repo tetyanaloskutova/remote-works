@@ -10,16 +10,16 @@ from django.urls import reverse
 from measurement.measures import Weight
 from prices import Money, TaxedMoney
 
-from saleor.checkout import forms, utils
-from saleor.checkout.context_processors import cart_counter
-from saleor.checkout.models import Cart
-from saleor.checkout.utils import (
+from remote_works.checkout import forms, utils
+from remote_works.checkout.context_processors import cart_counter
+from remote_works.checkout.models import Cart
+from remote_works.checkout.utils import (
     add_variant_to_cart, change_cart_user, find_open_cart_for_user)
-from saleor.checkout.views import clear_cart, update_cart_line
-from saleor.core.exceptions import InsufficientStock
-from saleor.core.utils.taxes import ZERO_TAXED_MONEY
-from saleor.discount.models import Sale
-from saleor.shipping.utils import get_shipping_price_estimate
+from remote_works.checkout.views import clear_cart, update_cart_line
+from remote_works.core.exceptions import InsufficientStock
+from remote_works.core.utils.taxes import ZERO_TAXED_MONEY
+from remote_works.discount.models import Sale
+from remote_works.shipping.utils import get_shipping_price_estimate
 
 
 @pytest.fixture()
@@ -52,7 +52,7 @@ def user_cart(customer_user):
 def local_currency(monkeypatch):
     def side_effect(price, currency):
         return price
-    monkeypatch.setattr('saleor.checkout.views.to_local_currency', side_effect)
+    monkeypatch.setattr('remote_works.checkout.views.to_local_currency', side_effect)
 
 
 def test_get_or_create_anonymous_cart_from_token(anonymous_cart, user_cart):
@@ -124,9 +124,9 @@ def test_get_or_create_cart_from_request(
     mock_get_for_user = Mock(return_value=(user_cart, False))
     mock_get_for_anonymous = Mock(return_value=anonymous_cart)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_or_create_user_cart', mock_get_for_user)
+        'remote_works.checkout.utils.get_or_create_user_cart', mock_get_for_user)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_or_create_anonymous_cart_from_token',
+        'remote_works.checkout.utils.get_or_create_anonymous_cart_from_token',
         mock_get_for_anonymous)
     returned_cart = utils.get_or_create_cart_from_request(request, queryset)
     mock_get_for_user.assert_called_once_with(customer_user, queryset)
@@ -147,14 +147,14 @@ def test_get_cart_from_request(
     user_cart = Cart(user=customer_user)
     mock_get_for_user = Mock(return_value=user_cart)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_user_cart', mock_get_for_user)
+        'remote_works.checkout.utils.get_user_cart', mock_get_for_user)
     returned_cart = utils.get_cart_from_request(request, queryset)
     mock_get_for_user.assert_called_once_with(customer_user, queryset)
     assert returned_cart == user_cart
 
     mock_get_for_user = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_user_cart', mock_get_for_user)
+        'remote_works.checkout.utils.get_user_cart', mock_get_for_user)
     returned_cart = utils.get_cart_from_request(request, queryset)
     mock_get_for_user.assert_called_once_with(customer_user, queryset)
     assert not Cart.objects.filter(token=returned_cart.token).exists()
@@ -162,7 +162,7 @@ def test_get_cart_from_request(
     anonymous_cart = Cart()
     mock_get_for_anonymous = Mock(return_value=anonymous_cart)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_anonymous_cart_from_token',
+        'remote_works.checkout.utils.get_anonymous_cart_from_token',
         mock_get_for_anonymous)
     request = cart_request_factory(user=None, token=token)
     returned_cart = utils.get_cart_from_request(request, queryset)
@@ -171,7 +171,7 @@ def test_get_cart_from_request(
 
     mock_get_for_anonymous = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_anonymous_cart_from_token',
+        'remote_works.checkout.utils.get_anonymous_cart_from_token',
         mock_get_for_anonymous)
     returned_cart = utils.get_cart_from_request(request, queryset)
     assert not Cart.objects.filter(token=returned_cart.token).exists()
@@ -281,7 +281,7 @@ def test_shipping_detection(cart, product):
 
 def test_cart_counter(monkeypatch):
     monkeypatch.setattr(
-        'saleor.checkout.context_processors.get_cart_from_request',
+        'remote_works.checkout.context_processors.get_cart_from_request',
         Mock(return_value=Mock(quantity=4)))
     ret = cart_counter(Mock())
     assert ret == {'cart_counter': 4}
@@ -326,17 +326,17 @@ def test_check_product_availability_and_warn(
     monkeypatch.setattr(
         'django.contrib.messages.warning', Mock(warning=Mock()))
     monkeypatch.setattr(
-        'saleor.checkout.utils.contains_unavailable_variants',
+        'remote_works.checkout.utils.contains_unavailable_variants',
         Mock(return_value=False))
 
     utils.check_product_availability_and_warn(MagicMock(), cart)
     assert len(cart) == 1
 
     monkeypatch.setattr(
-        'saleor.checkout.utils.contains_unavailable_variants',
+        'remote_works.checkout.utils.contains_unavailable_variants',
         Mock(return_value=True))
     monkeypatch.setattr(
-        'saleor.checkout.utils.remove_unavailable_variants',
+        'remote_works.checkout.utils.remove_unavailable_variants',
         lambda c: add_variant_to_cart(cart, variant, 0, replace=True))
 
     utils.check_product_availability_and_warn(MagicMock(), cart)
@@ -420,7 +420,7 @@ def test_replace_cartline_form_when_insufficient_stock(
     exception_mock = InsufficientStock(
         Mock(quantity_available=2))
     monkeypatch.setattr(
-        'saleor.skill.models.ProductVariant.check_quantity',
+        'remote_works.skill.models.ProductVariant.check_quantity',
         Mock(side_effect=exception_mock))
     data = {'quantity': replaced_quantity}
     form = forms.ReplaceCartLineForm(data=data, cart=cart, variant=variant)

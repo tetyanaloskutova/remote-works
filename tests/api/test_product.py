@@ -9,13 +9,13 @@ from django.utils.text import slugify
 from graphql_relay import to_global_id
 from prices import Money
 
-from saleor.graphql.core.enums import ReportingPeriod
-from saleor.graphql.product.enums import StockAvailability
-from saleor.graphql.product.types import resolve_attribute_list
-from saleor.product.models import (
+from remote_works.graphql.core.enums import ReportingPeriod
+from remote_works.graphql.product.enums import StockAvailability
+from remote_works.graphql.product.types import resolve_attribute_list
+from remote_works.product.models import (
     Attribute, AttributeValue, Category, Product, ProductImage, ProductType,
     ProductVariant)
-from saleor.product.tasks import update_variants_names
+from remote_works.product.tasks import update_variants_names
 from tests.api.utils import get_graphql_content
 from tests.utils import create_image, create_pdf_file_with_image_ext
 
@@ -150,7 +150,7 @@ def test_product_query(staff_api_client, product, permission_manage_products):
     assert product_data['url'] == product.get_absolute_url()
     gross = product_data['availability']['priceRange']['start']['gross']
     assert float(gross['amount']) == float(product.price.amount)
-    from saleor.product.utils.costs import get_product_costs_data
+    from remote_works.product.utils.costs import get_product_costs_data
     purchase_cost, margin = get_product_costs_data(product)
     assert purchase_cost.start.amount == product_data[
         'purchaseCost']['start']['amount']
@@ -1176,7 +1176,7 @@ def test_product_image_create_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.graphql.skill.mutations.products.'
+        ('remote_works.graphql.skill.mutations.products.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -1243,7 +1243,7 @@ def test_product_image_update_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.graphql.skill.mutations.products.'
+        ('remote_works.graphql.skill.mutations.products.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -1424,7 +1424,7 @@ def test_unassign_not_assigned_variant_image(
         'imageId')
 
 
-@patch('saleor.skill.tasks.update_variants_names.delay')
+@patch('remote_works.skill.tasks.update_variants_names.delay')
 def test_product_type_update_changes_variant_name(
         mock_update_variants_names, staff_api_client, product_type,
         product, permission_manage_products):
@@ -1473,7 +1473,7 @@ def test_product_type_update_changes_variant_name(
         product_type.pk, variant_attributes_ids)
 
 
-@patch('saleor.skill.tasks._update_variants_names')
+@patch('remote_works.skill.tasks._update_variants_names')
 def test_product_update_variants_names(mock__update_variants_names,
                                        product_type):
     variant_attributes = [product_type.variant_attributes.first()]

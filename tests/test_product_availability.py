@@ -1,9 +1,9 @@
 import datetime
 from unittest.mock import Mock
 
-from saleor.product import (
+from remote_works.product import (
     ProductAvailabilityStatus, VariantAvailabilityStatus, models)
-from saleor.product.utils.availability import (
+from remote_works.product.utils.availability import (
     get_availability, get_product_availability_status,
     get_variant_availability_status)
 

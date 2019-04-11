@@ -6,13 +6,13 @@ services:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./saleor/:/app/saleor:Z
+      - ./remote_works/:/app/remote_works:Z
       - ./templates/:/app/templates:Z
       # prevents overshadowing of build-time assets
-      - /app/saleor/static/assets
+      - /app/remote_works/static/assets
       - /app/templates/templated_email/compiled
       # shared volume between celery and web for media
-      - saleor-media:/app/media
+      - remote_works-media:/app/media
 
   db:
     ports:
@@ -24,12 +24,12 @@ services:
 
   celery:
     volumes:
-      - ./saleor/:/app/saleor:Z
+      - ./remote_works/:/app/remote_works:Z
       - ./templates/:/app/templates:Z
       # prevents overshadowing of build-time assets
       - /app/templates/templated_email/compiled
       # shared volume between celery and web for media
-      - saleor-media:/app/media
+      - remote_works-media:/app/media
 
 volumes:
   saleor-media:

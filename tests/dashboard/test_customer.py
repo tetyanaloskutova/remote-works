@@ -8,11 +8,11 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from templated_email import send_templated_mail
 
-from saleor.account.models import CustomerNote, User
-from saleor.core.utils import build_absolute_uri
-from saleor.dashboard.customer.forms import (
+from remote_works.account.models import CustomerNote, User
+from remote_works.core.utils import build_absolute_uri
+from remote_works.dashboard.customer.forms import (
     CustomerDeleteForm, CustomerForm, CustomerNoteForm)
-from saleor.settings import DEFAULT_FROM_EMAIL
+from remote_works.settings import DEFAULT_FROM_EMAIL
 
 
 def test_ajax_users_list(admin_client, admin_user, customer_user):

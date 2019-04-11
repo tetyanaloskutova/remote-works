@@ -6,10 +6,10 @@ from django.forms.models import model_to_dict
 from django.urls import reverse
 from prices import Money, MoneyRange, TaxedMoney, TaxedMoneyRange
 
-from saleor.dashboard.product import ProductBulkAction
-from saleor.dashboard.product.forms import ProductForm, ProductVariantForm
-from saleor.product.forms import VariantChoiceField
-from saleor.product.models import (
+from remote_works.dashboard.product import ProductBulkAction
+from remote_works.dashboard.product.forms import ProductForm, ProductVariantForm
+from remote_works.product.forms import VariantChoiceField
+from remote_works.product.models import (
     Attribute, AttributeValue, Collection, Product, ProductImage, ProductType,
     ProductVariant)
 from tests.utils import get_redirect_location
@@ -598,7 +598,7 @@ def test_view_product_image_create(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
+        'remote_works.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     url = reverse(
         'dashboard:skill-image-add',
@@ -627,7 +627,7 @@ def test_view_product_image_edit_same_image_add_description(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
+        'remote_works.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product_image = product_with_image.images.all()[0]
     url = reverse(
@@ -654,7 +654,7 @@ def test_view_product_image_edit_new_image(
         monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
+        'remote_works.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product_image = product_with_image.images.all()[0]
     url = reverse(
@@ -746,7 +746,7 @@ def test_view_ajax_reorder_product_images_invalid(
 def test_view_ajax_upload_image(monkeypatch, admin_client, product_with_image):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        'saleor.dashboard.skill.forms.create_product_thumbnails.delay',
+        'remote_works.dashboard.skill.forms.create_product_thumbnails.delay',
         mock_create_thumbnails)
     product = product_with_image
     url = reverse(

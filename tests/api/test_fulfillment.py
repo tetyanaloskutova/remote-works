@@ -1,8 +1,8 @@
 import graphene
 import pytest
 
-from saleor.order import OrderEvents, OrderEventsEmails
-from saleor.order.models import FulfillmentStatus
+from remote_works.order import OrderEvents, OrderEventsEmails
+from remote_works.order.models import FulfillmentStatus
 from tests.api.utils import get_graphql_content
 
 CREATE_FULFILLMENT_QUERY = """

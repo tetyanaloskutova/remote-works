@@ -15,29 +15,29 @@ from django_prices_vatlayer.utils import get_tax_for_rate
 from PIL import Image
 from prices import Money
 
-from saleor.account.backends import BaseBackend
-from saleor.account.models import Address, User
-from saleor.checkout import utils
-from saleor.checkout.models import Cart
-from saleor.checkout.utils import add_variant_to_cart
-from saleor.dashboard.menu.utils import update_menu
-from saleor.dashboard.order.utils import fulfill_order_line
-from saleor.discount import VoucherType
-from saleor.discount.models import Sale, Voucher, VoucherTranslation
-from saleor.menu.models import Menu, MenuItem
-from saleor.order import OrderEvents, OrderStatus
-from saleor.order.models import FulfillmentStatus, Order, OrderEvent
-from saleor.order.utils import recalculate_order
-from saleor.page.models import Page
-from saleor.payment import ChargeStatus, TransactionKind
-from saleor.payment.models import Payment
-from saleor.product.models import (
+from remote_works.account.backends import BaseBackend
+from remote_works.account.models import Address, User
+from remote_works.checkout import utils
+from remote_works.checkout.models import Cart
+from remote_works.checkout.utils import add_variant_to_cart
+from remote_works.dashboard.menu.utils import update_menu
+from remote_works.dashboard.order.utils import fulfill_order_line
+from remote_works.discount import VoucherType
+from remote_works.discount.models import Sale, Voucher, VoucherTranslation
+from remote_works.menu.models import Menu, MenuItem
+from remote_works.order import OrderEvents, OrderStatus
+from remote_works.order.models import FulfillmentStatus, Order, OrderEvent
+from remote_works.order.utils import recalculate_order
+from remote_works.page.models import Page
+from remote_works.payment import ChargeStatus, TransactionKind
+from remote_works.payment.models import Payment
+from remote_works.product.models import (
     Attribute, AttributeTranslation, AttributeValue, Category, Collection,
     Product, ProductImage, ProductTranslation, ProductType, ProductVariant)
-from saleor.shipping.models import (
+from remote_works.shipping.models import (
     ShippingMethod, ShippingMethodType, ShippingZone)
-from saleor.site import AuthenticationBackends
-from saleor.site.models import AuthorizationKey, SiteSettings
+from remote_works.site import AuthenticationBackends
+from remote_works.site.models import AuthorizationKey, SiteSettings
 
 
 @pytest.fixture(autouse=True)
@@ -45,7 +45,7 @@ def site_settings(db, settings):
     """Create a site and matching site settings.
 
     This fixture is autouse because django.contrib.sites.models.Site and
-    saleor.site.models.SiteSettings have a one-to-one relationship and a site
+    remote_works.site.models.SiteSettings have a one-to-one relationship and a site
     should never exist without a matching settings object.
     """
     site = Site.objects.get_or_create(

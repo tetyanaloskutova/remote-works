@@ -16,19 +16,19 @@
 {% block menu_skills_class %}active{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:skill-details" pk=skill.pk as url %}
+  {% url "dashboard:skill-type-update" pk=skill_type.pk as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:skill-details" pk=skill.pk %}" class="breadcrumbs--ellipsed-item">
-        {{ skill }}
+      <a href="{% url "dashboard:skill-type-update" pk=skill_type.pk %}" class="breadcrumbs--ellipsed-item">
+        {{ skill_type }}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:skill-details" pk=skill.pk %}" class="breadcrumb">
+      <a href="{% url "dashboard:skill-type-update" pk=skill_type.pk %}" class="breadcrumb">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
@@ -50,7 +50,7 @@
         </span>
         <span class="hide-on-large-only breadcrumbs--ellipsed-item">
           {% blocktrans trimmed context "Image form breadcrumbs"  %}
-            Add image for {{ skill }}
+            Add image for {{ skill_type }}
           {% endblocktrans %}
         </span>
       </li>
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="card-action right-align">
-            <a href="{% url "dashboard:skill-image-list" skill.pk %}" class="btn-flat waves-effect">
+            <a href="{% url "dashboard:skill-image-list" skill_type.pk %}" class="btn-flat waves-effect">
               {% trans "Cancel" context "Dashboard cancel action" %}
             </a>
             {% if skill_image.pk %}

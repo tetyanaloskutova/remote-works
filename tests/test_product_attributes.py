@@ -2,10 +2,10 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from saleor.product.models import (
+from remote_works.product.models import (
     Attribute, AttributeValue, Product, ProductType)
-from saleor.product.tasks import _update_variants_names
-from saleor.product.utils.attributes import (
+from remote_works.product.tasks import _update_variants_names
+from remote_works.product.utils.attributes import (
     generate_name_from_values, get_attributes_display_map,
     get_name_from_attributes)
 

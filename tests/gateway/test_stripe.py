@@ -6,20 +6,20 @@ import pytest
 import stripe
 from django_countries import countries
 
-from saleor.payment import ChargeStatus
-from saleor.payment.gateways.stripe import (
+from remote_works.payment import ChargeStatus
+from remote_works.payment.gateways.stripe import (
     TransactionKind, _create_response, _get_client,
     _get_error_response_from_exc, _get_stripe_charge_payload, authorize,
     capture, charge, create_form, get_amount_for_stripe,
     get_amount_from_stripe, get_client_token, get_currency_for_stripe,
     get_currency_from_stripe, refund, void)
-from saleor.payment.gateways.stripe.errors import (
+from remote_works.payment.gateways.stripe.errors import (
     ORDER_NOT_AUTHORIZED, ORDER_NOT_CHARGED)
-from saleor.payment.gateways.stripe.forms import (
+from remote_works.payment.gateways.stripe.forms import (
     StripeCheckoutWidget, StripePaymentModalForm)
-from saleor.payment.gateways.stripe.utils import (
+from remote_works.payment.gateways.stripe.utils import (
     get_payment_billing_fullname, shipping_to_stripe_dict)
-from saleor.payment.utils import create_payment_information
+from remote_works.payment.utils import create_payment_information
 
 TRANSACTION_AMOUNT = Decimal(42.42)
 TRANSACTION_REFUND_AMOUNT = Decimal(24.24)

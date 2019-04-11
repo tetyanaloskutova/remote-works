@@ -3,7 +3,7 @@ from unittest import mock
 from django.forms.models import model_to_dict
 from django.urls import reverse
 
-from saleor.dashboard.page.forms import PageForm
+from remote_works.dashboard.page.forms import PageForm
 
 
 def test_page_list(admin_client):
@@ -44,8 +44,8 @@ def test_page_add(admin_client):
     assert response.status_code == 302
 
 
-@mock.patch('saleor.dashboard.page.views.get_menus_that_needs_update')
-@mock.patch('saleor.dashboard.page.views.update_menus')
+@mock.patch('remote_works.dashboard.page.views.get_menus_that_needs_update')
+@mock.patch('remote_works.dashboard.page.views.update_menus')
 def test_page_delete(mock_update_menus, mock_get_menus, admin_client, page):
     url = reverse('dashboard:page-delete', args=[page.pk])
 
@@ -59,8 +59,8 @@ def test_page_delete(mock_update_menus, mock_get_menus, admin_client, page):
     mock_update_menus.assert_called_once_with([page.pk])
 
 
-@mock.patch('saleor.dashboard.page.views.get_menus_that_needs_update')
-@mock.patch('saleor.dashboard.page.views.update_menus')
+@mock.patch('remote_works.dashboard.page.views.get_menus_that_needs_update')
+@mock.patch('remote_works.dashboard.page.views.update_menus')
 def test_page_delete_menu_not_updated(
         mock_update_menus, mock_get_menus, admin_client, page):
     url = reverse('dashboard:page-delete', args=[page.pk])

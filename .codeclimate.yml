@@ -34,4 +34,4 @@ exclude_patterns:
 - "tests/"
 ratings:
   paths:
-  - saleor/**
+  - remote_works/**

@@ -6,11 +6,11 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from templated_email import send_templated_mail
 
-from saleor.account.models import User
-from saleor.core.utils import build_absolute_uri
-from saleor.dashboard.staff.forms import StaffForm
-from saleor.dashboard.staff.utils import remove_staff_member
-from saleor.settings import DEFAULT_FROM_EMAIL
+from remote_works.account.models import User
+from remote_works.core.utils import build_absolute_uri
+from remote_works.dashboard.staff.forms import StaffForm
+from remote_works.dashboard.staff.utils import remove_staff_member
+from remote_works.settings import DEFAULT_FROM_EMAIL
 
 
 def test_remove_staff_member_with_orders(

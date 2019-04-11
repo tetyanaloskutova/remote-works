@@ -1,7 +1,7 @@
 from django.urls import reverse
 
-from saleor.core.templatetags.shop import get_sort_by_url, menu
-from saleor.core.templatetags.status import (
+from remote_works.core.templatetags.shop import get_sort_by_url, menu
+from remote_works.core.templatetags.status import (
     LABEL_SUCCESS, render_page_availability)
 
 

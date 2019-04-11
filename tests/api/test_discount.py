@@ -4,9 +4,9 @@ import graphene
 import pytest
 from django_countries import countries
 
-from saleor.discount import DiscountValueType, VoucherType
-from saleor.discount.models import Sale, Voucher
-from saleor.graphql.discount.enums import (
+from remote_works.discount import DiscountValueType, VoucherType
+from remote_works.discount.models import Sale, Voucher
+from remote_works.graphql.discount.enums import (
     DiscountValueTypeEnum, VoucherTypeEnum)
 from tests.api.utils import get_graphql_content
 

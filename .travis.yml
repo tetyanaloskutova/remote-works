@@ -19,7 +19,7 @@ script:
   - tox
 env:
   global:
-    - DATABASE_URL="postgres://postgres@localhost:5432/saleor"
+    - DATABASE_URL="postgres://postgres@localhost:5432/remote_works"
     - SECRET_KEY="irrelevant"
   matrix:
   - DJANGO="1.11"

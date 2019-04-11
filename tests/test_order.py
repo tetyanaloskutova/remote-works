@@ -6,21 +6,21 @@ from django_countries.fields import Country
 from prices import Money, TaxedMoney
 from tests.utils import get_redirect_location
 
-from saleor.account.models import User
-from saleor.checkout.utils import create_order
-from saleor.core.exceptions import InsufficientStock
-from saleor.core.utils.taxes import (
+from remote_works.account.models import User
+from remote_works.checkout.utils import create_order
+from remote_works.core.exceptions import InsufficientStock
+from remote_works.core.utils.taxes import (
     DEFAULT_TAX_RATE_NAME, get_tax_rate_by_name, get_taxes_for_country)
-from saleor.core.weight import zero_weight
-from saleor.order import FulfillmentStatus, OrderStatus, models
-from saleor.order.models import Order
-from saleor.order.utils import (
+from remote_works.core.weight import zero_weight
+from remote_works.order import FulfillmentStatus, OrderStatus, models
+from remote_works.order.models import Order
+from remote_works.order.utils import (
     add_variant_to_order, cancel_fulfillment, cancel_order,
     change_order_line_quantity, delete_order_line, recalculate_order,
     recalculate_order_weight, restock_fulfillment_lines, restock_order_lines,
     update_order_prices, update_order_status)
-from saleor.payment import ChargeStatus
-from saleor.payment.models import Payment
+from remote_works.payment import ChargeStatus
+from remote_works.payment.models import Payment
 
 
 def test_total_setter():

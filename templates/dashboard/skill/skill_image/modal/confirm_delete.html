@@ -5,7 +5,7 @@
 {% block form_class %}{% endblock %}
 
 {% block action_url %}
-{% url 'dashboard:skill-image-delete' skill_pk=skill.pk img_pk=image.pk %}
+{% url 'dashboard:skill-image-delete' skill_type_pk=skill_type.pk img_pk=image.pk %}
 {% endblock %}
 
 {% block title %}

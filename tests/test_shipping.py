@@ -4,9 +4,9 @@ import pytest
 from measurement.measures import Weight
 from prices import Money, TaxedMoney
 
-from saleor.core.utils import format_money
-from saleor.core.utils.taxes import get_taxed_shipping_price
-from saleor.shipping.models import (
+from remote_works.core.utils import format_money
+from remote_works.core.utils.taxes import get_taxed_shipping_price
+from remote_works.shipping.models import (
     ShippingMethod, ShippingMethodType, ShippingZone)
 
 from .utils import money
@@ -34,7 +34,7 @@ def test_shipping_get_total(monkeypatch, shipping_zone, vatlayer):
         net=Money('8.13', 'USD'), gross=Money(10, 'USD'))
     mock_get_price = Mock(return_value=taxed_price)
     monkeypatch.setattr(
-        'saleor.shipping.models.get_taxed_shipping_price', mock_get_price)
+        'remote_works.shipping.models.get_taxed_shipping_price', mock_get_price)
     method.get_total(taxes=vatlayer)
     mock_get_price.assert_called_once_with(price, vatlayer)
 

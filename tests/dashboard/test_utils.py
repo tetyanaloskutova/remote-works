@@ -1,7 +1,7 @@
 from django.test.client import RequestFactory
 from django.urls import reverse
 
-from saleor.dashboard.templatetags.utils import construct_get_query, paginate
+from remote_works.dashboard.templatetags.utils import construct_get_query, paginate
 
 
 def test_construct_get_query_get_and_params():

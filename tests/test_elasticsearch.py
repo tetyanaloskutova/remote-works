@@ -4,9 +4,9 @@ import pytest
 from django.urls import reverse
 from elasticsearch_dsl.connections import connections
 
-from saleor.account.models import User
-from saleor.order.models import Order
-from saleor.product.models import Product
+from remote_works.account.models import User
+from remote_works.order.models import Order
+from remote_works.product.models import Product
 
 MATCH_SEARCH_REQUEST = ['method', 'host', 'port', 'path']
 STOREFRONT_PRODUCTS = {15, 56}  # same as in recorded data!
@@ -28,7 +28,7 @@ def elasticsearch_connection():
 def elasticsearch_enabled(settings):
     settings.ES_URL = ES_URL
     settings.ENABLE_SEARCH = True
-    settings.SEARCH_BACKEND = 'saleor.search.backends.elasticsearch'
+    settings.SEARCH_BACKEND = 'remote_works.search.backends.elasticsearch'
 
 
 @pytest.fixture(scope='function', autouse=True)

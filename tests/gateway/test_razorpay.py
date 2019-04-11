@@ -4,14 +4,14 @@ from unittest.mock import patch
 import pytest
 from razorpay.errors import BadRequestError, ServerError
 
-from saleor.payment import ChargeStatus
-from saleor.payment.gateways.razorpay import (
+from remote_works.payment import ChargeStatus
+from remote_works.payment.gateways.razorpay import (
     TransactionKind, charge, check_payment_supported, clean_razorpay_response,
     create_form, errors, get_amount_for_razorpay, get_client, get_client_token,
     logger, refund)
-from saleor.payment.gateways.razorpay.forms import (
+from remote_works.payment.gateways.razorpay.forms import (
     RazorPayCheckoutWidget, RazorPaymentForm)
-from saleor.payment.utils import create_payment_information
+from remote_works.payment.utils import create_payment_information
 
 TRANSACTION_AMOUNT = Decimal('61.33')
 

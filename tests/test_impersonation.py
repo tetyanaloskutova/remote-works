@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 
-from saleor.account.models import User
+from remote_works.account.models import User
 
 
 def test_staff_with_permission_can_impersonate(

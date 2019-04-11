@@ -4,9 +4,9 @@ from unittest.mock import Mock, patch
 
 from django.utils.encoding import smart_text
 
-from saleor.data_feeds.google_merchant import (
+from remote_works.data_feeds.google_merchant import (
     get_feed_items, item_attributes, item_google_product_category, write_feed)
-from saleor.product.models import AttributeValue, Category
+from remote_works.product.models import AttributeValue, Category
 
 
 def test_saleor_feed_items(product, site_settings):
@@ -56,7 +56,7 @@ def test_write_feed(product, monkeypatch):
         assert field in header
 
 
-@patch('saleor.data_feeds.google_merchant.item_link')
+@patch('remote_works.data_feeds.google_merchant.item_link')
 def test_feed_contains_site_settings_domain(
         mocked_item_link, product, site_settings):
     write_feed(StringIO())

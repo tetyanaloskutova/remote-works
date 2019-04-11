@@ -7,10 +7,10 @@ from django_countries.fields import Country
 from django_prices_vatlayer.models import VAT
 from prices import Money, MoneyRange, TaxedMoney, TaxedMoneyRange
 
-from saleor.core.utils import get_country_name_by_code
-from saleor.core.utils.taxes import (
+from remote_works.core.utils import get_country_name_by_code
+from remote_works.core.utils.taxes import (
     apply_tax_to_price, get_taxes_for_address, get_taxes_for_country)
-from saleor.dashboard.taxes.filters import get_country_choices_for_vat
+from remote_works.dashboard.taxes.filters import get_country_choices_for_vat
 
 from ..utils import compare_taxes, get_redirect_location
 
@@ -57,8 +57,8 @@ def test_configure_taxes(admin_client, site_settings):
     assert not site_settings.charge_taxes_on_shipping
 
 
-@mock.patch('saleor.dashboard.taxes.views.messages', create=True)
-@mock.patch('saleor.dashboard.taxes.views.call_command', create=True)
+@mock.patch('remote_works.dashboard.taxes.views.messages', create=True)
+@mock.patch('remote_works.dashboard.taxes.views.call_command', create=True)
 def test_fetch_tax_rates(
         mocked_call_command, mocked_messages, admin_client):
     """Ensure a valid fetch VAT rates request is correctly handled,
@@ -75,10 +75,10 @@ def test_fetch_tax_rates(
     mocked_call_command.assert_called_once_with('get_vat_rates')
 
 
-@mock.patch('saleor.dashboard.taxes.views.messages', create=True)
-@mock.patch('saleor.dashboard.taxes.views.logger', create=True)
+@mock.patch('remote_works.dashboard.taxes.views.messages', create=True)
+@mock.patch('remote_works.dashboard.taxes.views.logger', create=True)
 @mock.patch(
-    'saleor.dashboard.taxes.views.call_command',
+    'remote_works.dashboard.taxes.views.call_command',
     side_effect=ImproperlyConfigured('Test'), create=True)
 def test_fetch_tax_rates_improperly_configured(
         mocked_call_command, mocked_logger, mocked_messages, admin_client):

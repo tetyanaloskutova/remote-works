@@ -3,14 +3,14 @@ from datetime import date, timedelta
 import pytest
 from prices import Money, TaxedMoney
 
-from saleor.checkout.utils import get_voucher_discount_for_cart
-from saleor.discount import DiscountValueType, VoucherType
-from saleor.discount.models import NotApplicable, Sale, Voucher
-from saleor.discount.utils import (
+from remote_works.checkout.utils import get_voucher_discount_for_cart
+from remote_works.discount import DiscountValueType, VoucherType
+from remote_works.discount.models import NotApplicable, Sale, Voucher
+from remote_works.discount.utils import (
     decrease_voucher_usage, get_product_discount_on_sale,
     get_products_voucher_discount, get_shipping_voucher_discount,
     get_value_voucher_discount, increase_voucher_usage)
-from saleor.product.models import Product, ProductVariant
+from remote_works.product.models import Product, ProductVariant
 
 
 def get_min_amount_spent(min_amount_spent):
@@ -92,7 +92,7 @@ def test_products_voucher_checkout_discount_not(
         settings, monkeypatch, prices, discount_value, discount_type,
         expected_value, apply_once_per_order, cart_with_item):
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_prices_of_discounted_products',
+        'remote_works.checkout.utils.get_prices_of_discounted_products',
         lambda lines, discounted_products: (
             TaxedMoney(net=Money(price, 'USD'), gross=Money(price, 'USD'))
             for price in prices))

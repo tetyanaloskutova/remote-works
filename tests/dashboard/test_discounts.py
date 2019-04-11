@@ -7,10 +7,10 @@ import pytest
 from django.urls import reverse
 from prices import Money, TaxedMoney
 
-from saleor.dashboard.order.utils import get_voucher_discount_for_order
-from saleor.discount import DiscountValueType, VoucherType
-from saleor.discount.models import NotApplicable, Sale, Voucher
-from saleor.product.models import Collection
+from remote_works.dashboard.order.utils import get_voucher_discount_for_order
+from remote_works.discount import DiscountValueType, VoucherType
+from remote_works.discount.models import NotApplicable, Sale, Voucher
+from remote_works.product.models import Collection
 
 
 def test_sales_list(admin_client, sale):

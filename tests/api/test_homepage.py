@@ -1,4 +1,4 @@
-from saleor.order import OrderEvents
+from remote_works.order import OrderEvents
 
 from .utils import get_graphql_content
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# saleor documentation build configuration file, created by
+# remote_works documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan  5 11:54:57 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -224,7 +224,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'saleor.tex', u'saleor Documentation',
+  (master_doc, 'remote_works.tex', u'remote_works Documentation',
    u'Mirumee Software', 'manual'),
 ]
 
@@ -254,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'saleor', u'saleor Documentation',
+    (master_doc, 'remote_works', u'remote_works Documentation',
      [author], 1)
 ]
 
@@ -268,8 +268,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'saleor', u'saleor Documentation',
-   author, 'saleor', 'One line description of project.',
+  (master_doc, 'remote_works', u'remote_works Documentation',
+   author, 'remote_works', 'One line description of project.',
    'Miscellaneous'),
 ]
 

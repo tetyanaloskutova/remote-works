@@ -7,10 +7,10 @@ from django_countries.fields import Country
 from freezegun import freeze_time
 from prices import Money, TaxedMoney
 
-from saleor.account.models import Address
-from saleor.checkout import views
-from saleor.checkout.forms import CartVoucherForm, CountryForm
-from saleor.checkout.utils import (
+from remote_works.account.models import Address
+from remote_works.checkout import views
+from remote_works.checkout.forms import CartVoucherForm, CountryForm
+from remote_works.checkout.utils import (
     add_variant_to_cart, add_voucher_to_cart, change_billing_address_in_cart,
     change_shipping_address_in_cart, clear_shipping_method, create_order,
     get_cart_data_for_checkout,
@@ -18,13 +18,13 @@ from saleor.checkout.utils import (
     get_voucher_discount_for_cart, get_voucher_for_cart,
     is_valid_shipping_method, recalculate_cart_discount,
     remove_voucher_from_cart)
-from saleor.core.exceptions import InsufficientStock
-from saleor.core.utils.taxes import (
+from remote_works.core.exceptions import InsufficientStock
+from remote_works.core.utils.taxes import (
     ZERO_MONEY, ZERO_TAXED_MONEY, get_taxes_for_country)
-from saleor.discount import DiscountValueType, VoucherType
-from saleor.discount.models import NotApplicable, Voucher
-from saleor.product.models import Category
-from saleor.shipping.models import ShippingZone
+from remote_works.discount import DiscountValueType, VoucherType
+from remote_works.discount.models import NotApplicable, Voucher
+from remote_works.product.models import Category
+from remote_works.shipping.models import ShippingZone
 
 from .utils import compare_taxes, get_redirect_location
 
@@ -81,7 +81,7 @@ def test_view_checkout_index(
         __len__=Mock(return_value=cart_length),
         is_shipping_required=Mock(return_value=is_shipping_required))
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_cart_from_request', lambda req, qs: cart)
+        'remote_works.checkout.utils.get_cart_from_request', lambda req, qs: cart)
     url = reverse('checkout:index')
     request = rf.get(url, follow=True)
 
@@ -236,7 +236,7 @@ def test_view_checkout_shipping_method_without_address(
     assert get_redirect_location(response) == redirect_url
 
 
-@patch('saleor.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_order_confirmation')
 def test_view_checkout_summary(
         mock_send_confirmation, client, shipping_zone, address,
         request_cart_with_item):
@@ -264,7 +264,7 @@ def test_view_checkout_summary(
     assert request_cart_with_item.pk is None
 
 
-@patch('saleor.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_order_confirmation')
 def test_view_checkout_summary_authorized_user(
         mock_send_confirmation, authorized_client, customer_user,
         shipping_zone, address, request_cart_with_item):
@@ -290,7 +290,7 @@ def test_view_checkout_summary_authorized_user(
     mock_send_confirmation.delay.assert_called_once_with(order.pk)
 
 
-@patch('saleor.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_order_confirmation')
 def test_view_checkout_summary_save_language(
         mock_send_confirmation, authorized_client, customer_user,
         shipping_zone, address, request_cart_with_item, settings):
@@ -692,7 +692,7 @@ def test_get_discount_for_cart_shipping_voucher_not_applicable(
 
 def test_get_discount_for_cart_product_voucher_not_applicable(monkeypatch):
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_prices_of_discounted_products',
+        'remote_works.checkout.utils.get_prices_of_discounted_products',
         lambda cart, product: [])
     voucher = Voucher(
         code='unique', type=VoucherType.PRODUCT,
@@ -708,7 +708,7 @@ def test_get_discount_for_cart_product_voucher_not_applicable(monkeypatch):
 
 def test_get_discount_for_cart_collection_voucher_not_applicable(monkeypatch):
     monkeypatch.setattr(
-        'saleor.checkout.utils.get_prices_of_products_in_discounted_collections',  # noqa
+        'remote_works.checkout.utils.get_prices_of_products_in_discounted_collections',  # noqa
         lambda cart, product: [])
     voucher = Voucher(
         code='unique', type=VoucherType.COLLECTION,

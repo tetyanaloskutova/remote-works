@@ -1,12 +1,12 @@
 import django_filters
 from django.http import QueryDict
 
-from saleor.dashboard.templatetags.chips import (
+from remote_works.dashboard.templatetags.chips import (
     CHIPS_PATTERN, handle_default, handle_multiple_choice,
     handle_multiple_model_choice, handle_nullboolean, handle_range,
     handle_single_choice, handle_single_model_choice)
-from saleor.dashboard.widgets import MoneyRangeWidget
-from saleor.product.models import Category, Product
+from remote_works.dashboard.widgets import MoneyRangeWidget
+from remote_works.product.models import Category, Product
 
 
 def querydict(data):

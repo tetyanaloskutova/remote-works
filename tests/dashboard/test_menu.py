@@ -6,11 +6,11 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.formats import localize
 
-from saleor.dashboard.menu.forms import AssignMenuForm
-from saleor.dashboard.menu.utils import (
+from remote_works.dashboard.menu.forms import AssignMenuForm
+from remote_works.dashboard.menu.utils import (
     get_menu_as_json, get_menu_item_as_dict, get_menus_that_needs_update,
     update_menu, update_menu_item_linked_object, update_menus)
-from saleor.menu.models import Menu, MenuItem, MenuItemTranslation
+from remote_works.menu.models import Menu, MenuItem, MenuItemTranslation
 
 from ..utils import get_redirect_location
 
@@ -343,13 +343,13 @@ def test_get_menu_as_json(menu):
     assert proper_data == get_menu_as_json(menu)
 
 
-@mock.patch('saleor.dashboard.menu.utils.update_menu')
+@mock.patch('remote_works.dashboard.menu.utils.update_menu')
 def test_update_menus(mock_update_menu, menu):
     update_menus([menu.pk])
     mock_update_menu.assert_called_once_with(menu)
 
 
-@mock.patch('saleor.dashboard.menu.utils.get_menu_as_json')
+@mock.patch('remote_works.dashboard.menu.utils.get_menu_as_json')
 def test_update_menu(mock_json_menu, menu):
     mock_json_menu.return_value = 'Return value'
     update_menu(menu)

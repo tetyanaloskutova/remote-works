@@ -4,11 +4,11 @@ from unittest.mock import ANY, patch
 import graphene
 import pytest
 
-from saleor.checkout.models import Cart
-from saleor.checkout.utils import (
+from remote_works.checkout.models import Cart
+from remote_works.checkout.utils import (
     add_voucher_to_cart, is_fully_paid, ready_to_place_order)
-from saleor.graphql.core.utils import str_to_enum
-from saleor.order.models import Order
+from remote_works.graphql.core.utils import str_to_enum
+from remote_works.order.models import Order
 from tests.api.utils import get_graphql_content
 
 MUTATION_CHECKOUT_CREATE = """
@@ -987,7 +987,7 @@ def test_checkout_prices(user_api_client, cart_with_item):
         cart_with_item.get_subtotal().gross.amount)
 
 
-@patch('saleor.graphql.checkout.mutations.clean_shipping_method')
+@patch('remote_works.graphql.checkout.mutations.clean_shipping_method')
 def test_checkout_shipping_method_update(
         mock_clean_shipping, staff_api_client, shipping_method, cart_with_item,
         sale, vatlayer):

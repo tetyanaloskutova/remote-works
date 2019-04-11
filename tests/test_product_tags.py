@@ -4,7 +4,7 @@ import pytest
 from django.templatetags.static import static
 from django.test import override_settings
 
-from saleor.skill.templatetags.skill_images import (
+from remote_works.skill.templatetags.skill_images import (
     choose_placeholder, get_skill_image_thumbnail, get_thumbnail)
 
 
@@ -24,7 +24,7 @@ def test_get_thumbnail():
 
 def test_get_thumbnail_no_instance(monkeypatch):
     monkeypatch.setattr(
-        'saleor.skill.templatetags.skill_images.choose_placeholder',
+        'remote_works.skill.templatetags.skill_images.choose_placeholder',
         lambda x: 'placeholder')
     output = get_thumbnail(image_file=None, size=10, method='crop')
     assert output == static('placeholder')
@@ -32,14 +32,14 @@ def test_get_thumbnail_no_instance(monkeypatch):
 
 def test_get_skill_image_thumbnail_no_instance(monkeypatch):
     monkeypatch.setattr(
-        'saleor.skill.templatetags.skill_images.choose_placeholder',
+        'remote_works.skill.templatetags.skill_images.choose_placeholder',
         lambda x: 'placeholder')
     output = get_skill_image_thumbnail(instance=None, size=10, method='crop')
     assert output == static('placeholder')
 
 
 @patch(
-    'saleor.skill.templatetags.skill_images.AVAILABLE_SIZES',
+    'remote_works.skill.templatetags.skill_images.AVAILABLE_SIZES',
     {'skills': (
         'thumbnail__800x800', 'crop__100x100', 'crop__1000x1000',
         'crop__2000x2000')})
@@ -54,7 +54,7 @@ def test_get_thumbnail_to_larger():
 
 
 @patch(
-    'saleor.skill.templatetags.skill_images.AVAILABLE_SIZES',
+    'remote_works.skill.templatetags.skill_images.AVAILABLE_SIZES',
     {'skills': (
         'crop__10x10', 'crop__100x100', 'crop__1000x1000', 'crop__2000x2000')})
 @override_settings(
@@ -68,7 +68,7 @@ def test_get_thumbnail_to_smaller():
 
 
 @patch(
-    'saleor.skill.templatetags.skill_images.AVAILABLE_SIZES',
+    'remote_works.skill.templatetags.skill_images.AVAILABLE_SIZES',
     {'skills': ('thumbnail__800x800', )})
 @override_settings(
     VERSATILEIMAGEFIELD_SETTINGS={'create_images_on_demand': False},

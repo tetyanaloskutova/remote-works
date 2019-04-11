@@ -4,8 +4,8 @@ import graphene
 import pytest
 from django.core.exceptions import ImproperlyConfigured
 
-from saleor.graphql.core.mutations import BaseMutation
-from saleor.graphql.product import types as product_types
+from remote_works.graphql.core.mutations import BaseMutation
+from remote_works.graphql.product import types as product_types
 
 
 class Mutation(BaseMutation):

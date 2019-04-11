@@ -10,9 +10,9 @@ from django.test import RequestFactory
 from graphql_jwt.shortcuts import get_token
 from graphql_relay import to_global_id
 
-from saleor.graphql.middleware import jwt_middleware
-from saleor.graphql.product.types import Product
-from saleor.graphql.utils import (
+from remote_works.graphql.middleware import jwt_middleware
+from remote_works.graphql.product.types import Product
+from remote_works.graphql.utils import (
     filter_by_query_param, generate_query_argument_description, get_nodes)
 from tests.api.utils import get_graphql_content
 
@@ -229,7 +229,7 @@ def test_get_nodes(product_list):
         get_nodes(global_ids, Product)
 
 
-@patch('saleor.skill.models.Product.objects')
+@patch('remote_works.skill.models.Product.objects')
 def test_filter_by_query_param(qs):
     qs.filter.return_value = qs
 

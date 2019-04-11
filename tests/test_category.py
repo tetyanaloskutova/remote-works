@@ -1,4 +1,4 @@
-from saleor.product.filters import ProductCategoryFilter
+from remote_works.product.filters import ProductCategoryFilter
 
 
 def test_product_category_filter_filters_from_child_category(

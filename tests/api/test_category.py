@@ -6,7 +6,7 @@ import pytest
 from django.template.defaultfilters import slugify
 from graphql_relay import to_global_id
 
-from saleor.product.models import Category
+from remote_works.product.models import Category
 from tests.api.utils import get_graphql_content, get_multipart_request_body
 from tests.utils import create_image, create_pdf_file_with_image_ext
 
@@ -90,7 +90,7 @@ def test_category_create_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -156,7 +156,7 @@ def test_category_create_mutation_without_background_image(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -210,7 +210,7 @@ def test_category_update_mutation(
         monkeypatch, staff_api_client, category, permission_manage_products):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -292,7 +292,7 @@ def test_category_update_mutation_without_background_image(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 

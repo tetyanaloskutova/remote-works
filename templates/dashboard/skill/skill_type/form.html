@@ -134,6 +134,22 @@
         It also controls which attributes can be used during skill creation process.
         {% endblocktrans %}
       </p>
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{% trans "Images" %}</span>
+          <div class="row">
+            {% for image in images %}
+              <div class="col s4">
+                <img class="responsive-img" src="{{ image.image.thumbnail.255x255 }}" srcset="{{ image.image.thumbnail.255x255 }} 1x, {{ image.image.thumbnail.510x510 }} 2x" alt="{{ image.alt }}">
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'dashboard:skill-image-list' skill_type.pk %}" class="btn-flat waves-effect">{% trans "Edit images" %}</a>
+        </div>
+      </div>
     </div>
+
   </div>
 {% endblock %}

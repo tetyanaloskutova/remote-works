@@ -15,7 +15,7 @@
   <div class="btn-fab-fixed">
     <a class="btn-fab-default waves-effect waves-light"
        id="images-btn"
-       href="{% url 'dashboard:skill-image-add' skill_pk=skill.pk %}"
+       href="{% url 'dashboard:skill-image-add' skill_type_pk=skill_type.pk %}"
        title="{% trans "Add image" context "Add image button text" %}">
       <svg data-src="{% static "dashboard/images/add.svg" %}" />
     </a>
@@ -25,17 +25,17 @@
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:skill-list" %}" class="breadcrumb">
-        {% trans "Skills" context "Dashboard skills list" %}
+      <a href="{% url "dashboard:skill-type-list" %}" class="breadcrumb">
+        {% trans "Skill type list" context "Dashboard skill type list" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:skill-list" %}">
+      <a href="{% url "dashboard:skill-type-list" %}">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
     <li>
-      <a href="{% url "dashboard:skill-details" skill.pk %}">{{ skill }}</a>
+      <a href="{% url "dashboard:skill-type-update" skill_type.pk %}">{{ skill }}</a>
     </li>
     <li>
       <span class="breadcrumbs--ellipsed-item">{% trans "Images" %}</span>
@@ -48,11 +48,11 @@
 {% block content %}
   <div class="row">
     <div id="images" class="tab-content col s12 m9">
-      <form action="{% url 'dashboard:skill-images-upload' skill_pk=skill.pk %}" id="skill-image-form" novalidate>
+      <form action="{% url 'dashboard:skill-images-upload' skill_type_pk=skill_type.pk %}" id="skill-image-form" novalidate>
         <div class="dz-message"></div>
         {% csrf_token %}
         <div class="row">
-          <ul class="skill-gallery sortable-items" data-post-url="{% url 'dashboard:skill-images-reorder' skill_pk=skill.pk %}" data-post-name="ordered_images">
+          <ul class="skill-gallery sortable-items" data-post-url="{% url 'dashboard:skill-images-reorder' skill_type_pk=skill_type.pk %}" data-post-name="ordered_images">
             {% if images %}
               {% for image in images %}
                 <li class="col s12 m6 l4 sortable-item"
@@ -78,12 +78,12 @@
                     <div class="sortable__drag-area"></div>
                     <div class="card-action">
                       <a class="btn-flat waves-effect"
-                         href="{% url 'dashboard:skill-image-update' skill_pk=skill.pk img_pk=image.pk %}">
+                         href="{% url 'dashboard:skill-image-update' skill_type_pk=skill_type.pk img_pk=image.pk %}">
                         {% trans "Edit" context "Dashboard edit action" %}
                       </a>
                       <a href="#base-modal"
                          class="btn-flat waves-effect modal-trigger-custom"
-                         data-href="{% url 'dashboard:skill-image-delete' skill_pk=skill.pk img_pk=image.pk %}">
+                         data-href="{% url 'dashboard:skill-image-delete' skill_type_pk=skill_type.pk img_pk=image.pk %}">
                         {% trans "Remove" context "Dashboard remove action" %}
                       </a>
                     </div>
@@ -123,11 +123,11 @@
             </div>
             <div class="sortable__drag-area"></div>
             <div class="card-action">
-              <a class="btn-flat waves-effect card-action-edit" data-href-template="{% url 'dashboard:skill-image-update' skill_pk=skill.pk img_pk=0 %}">
+              <a class="btn-flat waves-effect card-action-edit" data-href-template="{% url 'dashboard:skill-image-update' skill_type_pk=skill_type.pk img_pk=0 %}">
                 {% trans "Edit" context "Dashboard edit action" %}
               </a>
               <a href="#base-modal" class="btn-flat waves-effect card-action-delete modal-trigger-custom"
-              data-href-template="{% url 'dashboard:skill-image-delete' skill_pk=skill.pk img_pk=0 %}">
+              data-href-template="{% url 'dashboard:skill-image-delete' skill_type_pk=skill_type.pk img_pk=0 %}">
                 {% trans "Remove" context "Dashboard remove action" %}
               </a>
             </div>

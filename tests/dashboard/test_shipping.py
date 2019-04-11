@@ -2,14 +2,14 @@ import pytest
 from django.urls import reverse
 from prices import Money
 
-from saleor.account.i18n import COUNTRY_CHOICES
-from saleor.core.weight import WeightUnits
-from saleor.dashboard.shipping.forms import (
+from remote_works.account.i18n import COUNTRY_CHOICES
+from remote_works.core.weight import WeightUnits
+from remote_works.dashboard.shipping.forms import (
     PriceShippingMethodForm, ShippingZoneForm, WeightShippingMethodForm,
     currently_used_countries, default_shipping_zone_exists,
     get_available_countries)
-from saleor.shipping import ShippingMethodType
-from saleor.shipping.models import ShippingMethod, ShippingZone
+from remote_works.shipping import ShippingMethodType
+from remote_works.shipping.models import ShippingMethod, ShippingZone
 
 
 def test_default_shipping_zone_exists(shipping_zone):

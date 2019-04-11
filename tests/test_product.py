@@ -10,19 +10,19 @@ from django.core.serializers.base import DeserializationError
 from django.urls import reverse
 from prices import Money, TaxedMoney, TaxedMoneyRange
 
-from saleor.checkout import utils
-from saleor.checkout.models import Cart
-from saleor.checkout.utils import add_variant_to_cart
-from saleor.dashboard.menu.utils import update_menu
-from saleor.discount.models import Sale
-from saleor.menu.models import MenuItemTranslation
-from saleor.product import ProductAvailabilityStatus, models
-from saleor.product.thumbnails import create_product_thumbnails
-from saleor.product.utils import (
+from remote_works.checkout import utils
+from remote_works.checkout.models import Cart
+from remote_works.checkout.utils import add_variant_to_cart
+from remote_works.dashboard.menu.utils import update_menu
+from remote_works.discount.models import Sale
+from remote_works.menu.models import MenuItemTranslation
+from remote_works.product import ProductAvailabilityStatus, models
+from remote_works.product.thumbnails import create_product_thumbnails
+from remote_works.product.utils import (
     allocate_stock, deallocate_stock, decrease_stock, increase_stock)
-from saleor.product.utils.attributes import get_product_attributes_data
-from saleor.product.utils.availability import get_product_availability_status
-from saleor.product.utils.variants_picker import get_variant_picker_data
+from remote_works.product.utils.attributes import get_product_attributes_data
+from remote_works.product.utils.availability import get_product_availability_status
+from remote_works.product.utils.variants_picker import get_variant_picker_data
 
 from .utils import filter_products_by_attribute
 
@@ -444,7 +444,7 @@ def test_include_products_from_subcategories_in_main_view(
     assert product in response.context_data['products'][0]
 
 
-@patch('saleor.skill.thumbnails.create_thumbnails')
+@patch('remote_works.skill.thumbnails.create_thumbnails')
 def test_create_product_thumbnails(
         mock_create_thumbnails, product_with_image):
     product_image = product_with_image.images.first()

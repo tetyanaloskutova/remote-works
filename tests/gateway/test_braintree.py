@@ -9,15 +9,15 @@ from braintree.exceptions import NotFoundError
 from braintree.validation_error import ValidationError
 from django.core.exceptions import ImproperlyConfigured
 
-from saleor.payment.gateways.braintree import (
+from remote_works.payment.gateways.braintree import (
     CONFIRM_MANUALLY, THREE_D_SECURE_REQUIRED, TransactionKind, authorize,
     capture, create_form, extract_gateway_response, get_braintree_gateway,
     get_client_token, get_customer_data, get_error_for_client, process_payment,
     refund, void)
-from saleor.payment.gateways.braintree.errors import (
+from remote_works.payment.gateways.braintree.errors import (
     DEFAULT_ERROR_MESSAGE, BraintreeException)
-from saleor.payment.gateways.braintree.forms import BraintreePaymentForm
-from saleor.payment.utils import create_payment_information
+from remote_works.payment.gateways.braintree.forms import BraintreePaymentForm
+from remote_works.payment.utils import create_payment_information
 
 INCORRECT_TOKEN_ERROR = (
     'Unable to process the transaction. Transaction\'s token is incorrect '
@@ -119,16 +119,16 @@ def test_get_error_for_client(braintree_error, monkeypatch):
 
     # error not whitelisted
     monkeypatch.setattr(
-        'saleor.payment.gateways.braintree.ERROR_CODES_WHITELIST', {})
+        'remote_works.payment.gateways.braintree.ERROR_CODES_WHITELIST', {})
     assert get_error_for_client([error]) == DEFAULT_ERROR
 
     monkeypatch.setattr(
-        'saleor.payment.gateways.braintree.ERROR_CODES_WHITELIST',
+        'remote_works.payment.gateways.braintree.ERROR_CODES_WHITELIST',
         {braintree_error.code: ''})
     assert get_error_for_client([error]) == braintree_error.message
 
     monkeypatch.setattr(
-        'saleor.payment.gateways.braintree.ERROR_CODES_WHITELIST',
+        'remote_works.payment.gateways.braintree.ERROR_CODES_WHITELIST',
         {braintree_error.code: 'Error msg override'})
     assert get_error_for_client([error]) == 'Error msg override'
 
@@ -178,7 +178,7 @@ def test_get_braintree_gateway_inproperly_configured(gateway_config):
         get_braintree_gateway(**gateway_config)
 
 
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_get_client_token(mock_gateway, gateway_config):
     client_token = 'client-token'
     mock_generate = Mock(return_value='client-token')
@@ -190,7 +190,7 @@ def test_get_client_token(mock_gateway, gateway_config):
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_process_payment_error_response(
         mock_gateway, payment_dummy, braintree_error_response, gateway_config):
     payment = payment_dummy
@@ -209,7 +209,7 @@ def test_process_payment_error_response(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_process_payment(
         mock_gateway, payment_dummy, braintree_success_response,
         gateway_config):
@@ -228,7 +228,7 @@ def test_process_payment(
     assert capture_resp['kind'] == TransactionKind.CAPTURE
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_authorize_error_response(
         mock_gateway, payment_dummy, braintree_error_response, gateway_config):
     payment = payment_dummy
@@ -245,7 +245,7 @@ def test_authorize_error_response(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_authorize_incorrect_token(
         mock_gateway, payment_dummy, braintree_not_found_error,
         gateway_config):
@@ -261,7 +261,7 @@ def test_authorize_incorrect_token(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_authorize(
         mock_gateway, payment_dummy, braintree_success_response,
         gateway_config):
@@ -290,7 +290,7 @@ def test_authorize(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_refund(
         mock_gateway, payment_txn_captured, braintree_success_response,
         settings, gateway_config):
@@ -313,7 +313,7 @@ def test_refund(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_refund_incorrect_token(
         mock_gateway, payment_txn_captured, braintree_not_found_error,
         gateway_config):
@@ -330,7 +330,7 @@ def test_refund_incorrect_token(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_refund_error_response(
         mock_gateway, payment_txn_captured, braintree_error_response,
         gateway_config):
@@ -349,7 +349,7 @@ def test_refund_error_response(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_capture(
         mock_gateway, payment_txn_preauth, braintree_success_response,
         settings, gateway_config):
@@ -374,7 +374,7 @@ def test_capture(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_capture_incorrect_token(
         mock_gateway, payment_txn_preauth, braintree_not_found_error,
         gateway_config):
@@ -391,7 +391,7 @@ def test_capture_incorrect_token(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_capture_error_response(
         mock_gateway, payment_txn_preauth, braintree_error_response,
         gateway_config):
@@ -411,7 +411,7 @@ def test_capture_error_response(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_void(
         mock_gateway, payment_txn_preauth, braintree_success_response,
         gateway_config):
@@ -432,7 +432,7 @@ def test_void(
 
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_void_incorrect_token(
         mock_gateway, payment_txn_preauth, braintree_not_found_error,
         gateway_config):
@@ -447,7 +447,7 @@ def test_void_incorrect_token(
     assert str(e.value) == DEFAULT_ERROR_MESSAGE
 
 @pytest.mark.integration
-@patch('saleor.payment.gateways.braintree.get_braintree_gateway')
+@patch('remote_works.payment.gateways.braintree.get_braintree_gateway')
 def test_void_error_response(
         mock_gateway, payment_txn_preauth, braintree_error_response,
         gateway_config):

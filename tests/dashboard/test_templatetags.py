@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from saleor.dashboard.templatetags.utils import sorting_header
+from remote_works.dashboard.templatetags.utils import sorting_header
 
 
 def test_sorting_header_prepare_initial_data(admin_client):

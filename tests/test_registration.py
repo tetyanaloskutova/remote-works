@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 
-from saleor.account.forms import LoginForm, SignupForm
+from remote_works.account.forms import LoginForm, SignupForm
 
 from .utils import get_redirect_location
 

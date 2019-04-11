@@ -4,9 +4,9 @@ import pytest
 from django.templatetags.static import static
 from templated_email import get_connection
 
-import saleor.order.emails as emails
-from saleor.core.emails import get_email_base_context
-from saleor.core.utils import build_absolute_uri
+import remote_works.order.emails as emails
+from remote_works.core.emails import get_email_base_context
+from remote_works.core.utils import build_absolute_uri
 
 
 def test_get_email_base_context(site_settings):
@@ -57,7 +57,7 @@ def test_collect_data_for_email(order):
 @pytest.mark.parametrize('send_email,template', [
     (emails.send_payment_confirmation, emails.CONFIRM_PAYMENT_TEMPLATE),
     (emails.send_order_confirmation, emails.CONFIRM_ORDER_TEMPLATE)])
-@mock.patch('saleor.order.emails.send_templated_mail')
+@mock.patch('remote_works.order.emails.send_templated_mail')
 def test_send_emails(mocked_templated_email, order, template, send_email, settings):
     send_email(order.pk)
     email_data = emails.collect_data_for_email(order.pk, template)
@@ -80,7 +80,7 @@ def test_send_emails(mocked_templated_email, order, template, send_email, settin
 @pytest.mark.parametrize('send_email,template', [
     (emails.send_fulfillment_confirmation, emails.CONFIRM_FULFILLMENT_TEMPLATE),  # noqa
     (emails.send_fulfillment_update, emails.UPDATE_FULFILLMENT_TEMPLATE)])
-@mock.patch('saleor.order.emails.send_templated_mail')
+@mock.patch('remote_works.order.emails.send_templated_mail')
 def test_send_fulfillment_emails(
         mocked_templated_email, template, send_email, fulfilled_order,
         settings):

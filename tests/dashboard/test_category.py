@@ -2,7 +2,7 @@ from unittest.mock import Mock, patch
 
 from django.urls import reverse
 
-from saleor.product.models import Category
+from remote_works.product.models import Category
 from tests.utils import create_image
 
 
@@ -15,7 +15,7 @@ def test_category_list(admin_client, category):
 def test_category_add(monkeypatch, admin_client):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -31,7 +31,7 @@ def test_category_add(monkeypatch, admin_client):
 def test_category_add_with_background_image(monkeypatch, admin_client):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -73,7 +73,7 @@ def test_category_add_subcategory(admin_client, category):
 def test_category_edit(monkeypatch, admin_client, category):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -92,7 +92,7 @@ def test_category_edit_with_background_image(
         monkeypatch, admin_client, category):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.category.forms.'
+        ('remote_works.dashboard.category.forms.'
          'create_category_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -118,8 +118,8 @@ def test_category_details(admin_client, category):
     assert response.status_code == 200
 
 
-@patch('saleor.dashboard.category.views.get_menus_that_needs_update')
-@patch('saleor.dashboard.category.views.update_menus')
+@patch('remote_works.dashboard.category.views.get_menus_that_needs_update')
+@patch('remote_works.dashboard.category.views.update_menus')
 def test_category_delete(
         mock_update_menus, mock_get_menus, admin_client, category):
     assert Category.objects.count() == 1
@@ -133,8 +133,8 @@ def test_category_delete(
     assert Category.objects.count() == 0
 
 
-@patch('saleor.dashboard.category.views.get_menus_that_needs_update')
-@patch('saleor.dashboard.category.views.update_menus')
+@patch('remote_works.dashboard.category.views.get_menus_that_needs_update')
+@patch('remote_works.dashboard.category.views.update_menus')
 def test_category_delete_menus_not_updated(
         mock_update_menus, mock_get_menus, admin_client, category):
     url = reverse('dashboard:category-delete',

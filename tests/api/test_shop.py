@@ -4,10 +4,10 @@ import graphene
 from django_countries import countries
 from django_prices_vatlayer.models import VAT
 
-from saleor.core.permissions import MODELS_PERMISSIONS
-from saleor.graphql.core.utils import str_to_enum
-from saleor.site import AuthenticationBackends
-from saleor.site.models import Site
+from remote_works.core.permissions import MODELS_PERMISSIONS
+from remote_works.graphql.core.utils import str_to_enum
+from remote_works.site import AuthenticationBackends
+from remote_works.site.models import Site
 from tests.api.utils import get_graphql_content
 
 
@@ -296,7 +296,7 @@ def test_shop_domain_update(staff_api_client, permission_manage_settings):
             }
         }
     """
-    new_name = 'saleor test store'
+    new_name = 'remote_works test store'
     variables = {
         'input': {
             'domain': 'lorem-ipsum.com',
@@ -502,7 +502,7 @@ def test_shop_fetch_tax_rates_no_api_access_key(
     assert data['errors'][0]['message'] == error_message
 
 
-@patch('saleor.graphql.shop.mutations.call_command')
+@patch('remote_works.graphql.shop.mutations.call_command')
 def test_shop_fetch_tax_rates(
         mock_call_command, staff_api_client, permission_manage_settings,
         settings):

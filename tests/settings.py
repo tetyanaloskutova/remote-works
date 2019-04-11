@@ -1,5 +1,5 @@
 # pylint: disable=W0401, W0614
-from saleor.settings import *  # noqa
+from remote_works.settings import *  # noqa
 
 CELERY_TASK_ALWAYS_EAGER = True
 
@@ -10,7 +10,7 @@ DEFAULT_CURRENCY = 'USD'
 LANGUAGE_CODE = 'en'
 
 ES_URL = None
-SEARCH_BACKEND = 'saleor.search.backends.postgresql'
+SEARCH_BACKEND = 'remote_works.search.backends.postgresql'
 INSTALLED_APPS = [a for a in INSTALLED_APPS if a != 'django_elasticsearch_dsl']
 
 RECAPTCHA_PUBLIC_KEY = ''

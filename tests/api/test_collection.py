@@ -7,7 +7,7 @@ import pytest
 from django.utils.text import slugify
 from graphql_relay import to_global_id
 
-from saleor.product.models import Collection
+from remote_works.product.models import Collection
 from tests.utils import create_image, create_pdf_file_with_image_ext
 
 from .utils import get_graphql_content, get_multipart_request_body
@@ -92,7 +92,7 @@ def test_create_collection(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.collection.forms.'
+        ('remote_works.dashboard.collection.forms.'
          'create_collection_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -144,7 +144,7 @@ def test_create_collection_without_background_image(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.collection.forms.'
+        ('remote_works.dashboard.collection.forms.'
          'create_collection_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -175,7 +175,7 @@ def test_update_collection(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.collection.forms.'
+        ('remote_works.dashboard.collection.forms.'
          'create_collection_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -225,7 +225,7 @@ def test_update_collection_with_background_image(
         monkeypatch, staff_api_client, collection, permission_manage_products):
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('saleor.dashboard.collection.forms.'
+        ('remote_works.dashboard.collection.forms.'
          'create_collection_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 

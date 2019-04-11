@@ -3,15 +3,15 @@ from decimal import Decimal
 import pytest
 from django.urls import reverse
 
-from saleor.account.models import Address, User
-from saleor.order.models import Order
-from saleor.product.models import Product
+from remote_works.account.models import Address, User
+from remote_works.order.models import Order
+from remote_works.product.models import Product
 
 
 @pytest.fixture(scope='function', autouse=True)
 def postgresql_search_enabled(settings):
     settings.ENABLE_SEARCH = True
-    settings.SEARCH_BACKEND = 'saleor.search.backends.postgresql'
+    settings.SEARCH_BACKEND = 'remote_works.search.backends.postgresql'
 
 
 PRODUCTS = [('Arabica Coffee', 'The best grains in galactic'),

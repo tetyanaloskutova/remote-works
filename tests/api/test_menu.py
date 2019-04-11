@@ -1,8 +1,8 @@
 import graphene
 import pytest
 
-from saleor.graphql.menu.mutations import NavigationType
-from saleor.menu.models import MenuItem
+from remote_works.graphql.menu.mutations import NavigationType
+from remote_works.menu.models import MenuItem
 from tests.api.utils import get_graphql_content
 
 from .utils import assert_no_permission

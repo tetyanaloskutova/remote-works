@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from saleor.core.analytics import (
+from remote_works.core.analytics import (
     get_order_payloads, get_view_payloads, report_order, report_view)
 
 

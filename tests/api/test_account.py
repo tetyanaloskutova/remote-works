@@ -8,11 +8,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import reverse
 
-from saleor.account.models import Address, User
-from saleor.graphql.account.mutations import (
+from remote_works.account.models import Address, User
+from remote_works.graphql.account.mutations import (
     CustomerDelete, SetPassword, StaffDelete, StaffUpdate, UserDelete)
-from saleor.graphql.core.enums import PermissionEnum
-from saleor.order.models import FulfillmentStatus
+from remote_works.graphql.core.enums import PermissionEnum
+from remote_works.order.models import FulfillmentStatus
 from tests.api.utils import get_graphql_content
 
 from .utils import assert_no_permission, convert_dict_keys_to_camel_case
@@ -418,7 +418,7 @@ def test_customer_register(user_api_client):
         'User with this Email already exists.')
 
 
-@patch('saleor.dashboard.emails.send_set_password_customer_email.delay')
+@patch('remote_works.dashboard.emails.send_set_password_customer_email.delay')
 def test_customer_create(
         send_set_password_customer_email_mock, staff_api_client, address,
         permission_manage_users):
@@ -682,7 +682,7 @@ def test_customer_delete_errors(customer_user, admin_user, staff_user):
     assert errors == []
 
 
-@patch('saleor.dashboard.emails.send_set_password_staff_email.delay')
+@patch('remote_works.dashboard.emails.send_set_password_staff_email.delay')
 def test_staff_create(
         send_set_password_staff_email_mock, staff_api_client, permission_manage_staff):
     query = """
@@ -879,7 +879,7 @@ def test_set_password(user_api_client, customer_user):
     assert customer_user.check_password(password)
 
 
-@patch('saleor.account.emails.send_password_reset_email.delay')
+@patch('remote_works.account.emails.send_password_reset_email.delay')
 def test_password_reset_email(
         send_password_reset_mock, staff_api_client, customer_user,
         permission_manage_users):
@@ -908,7 +908,7 @@ def test_password_reset_email(
     assert 'token' in call_context
 
 
-@patch('saleor.account.emails.send_password_reset_email.delay')
+@patch('remote_works.account.emails.send_password_reset_email.delay')
 def test_password_reset_email_non_existing_user(
         send_password_reset_mock, staff_api_client, permission_manage_users):
     query = """
@@ -1122,10 +1122,10 @@ def test_address_validator_uses_geip_when_country_code_missing(
             'cityArea': None}}
     mock_country_by_ip = Mock(return_value=Mock(code='US'))
     monkeypatch.setattr(
-        'saleor.graphql.account.resolvers.get_client_ip',
+        'remote_works.graphql.account.resolvers.get_client_ip',
         lambda request: Mock(return_value='127.0.0.1'))
     monkeypatch.setattr(
-        'saleor.graphql.account.resolvers.get_country_by_ip',
+        'remote_works.graphql.account.resolvers.get_country_by_ip',
         mock_country_by_ip)
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
@@ -1135,7 +1135,7 @@ def test_address_validator_uses_geip_when_country_code_missing(
     assert data['countryName'] == 'UNITED STATES'
 
 
-@patch('saleor.account.emails.send_password_reset_email.delay')
+@patch('remote_works.account.emails.send_password_reset_email.delay')
 def test_customer_reset_password(
         send_password_reset_mock, user_api_client, customer_user):
     query = """

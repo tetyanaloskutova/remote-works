@@ -2,10 +2,10 @@ from unittest.mock import patch
 
 import graphene
 
-from saleor.core.utils import get_country_name_by_code
-from saleor.graphql.payment.enums import (
+from remote_works.core.utils import get_country_name_by_code
+from remote_works.graphql.payment.enums import (
     OrderAction, PaymentChargeStatusEnum, PaymentGatewayEnum)
-from saleor.payment.models import ChargeStatus, Payment, TransactionKind
+from remote_works.payment.models import ChargeStatus, Payment, TransactionKind
 from tests.api.utils import get_graphql_content
 
 VOID_QUERY = """
@@ -50,7 +50,7 @@ def test_payment_void_gateway_error(
         'Payment', payment_txn_preauth.pk)
     variables = {'paymentId': payment_id}
     monkeypatch.setattr(
-        'saleor.payment.gateways.dummy.dummy_success', lambda: False)
+        'remote_works.payment.gateways.dummy.dummy_success', lambda: False)
     response = staff_api_client.post_graphql(
         VOID_QUERY, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
@@ -194,7 +194,7 @@ def test_payment_capture_gateway_error(
         'paymentId': payment_id,
         'amount': str(payment_txn_preauth.total)}
     monkeypatch.setattr(
-        'saleor.payment.gateways.dummy.dummy_success', lambda: False)
+        'remote_works.payment.gateways.dummy.dummy_success', lambda: False)
     response = staff_api_client.post_graphql(
         CAPTURE_QUERY, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
@@ -264,7 +264,7 @@ def test_payment_refund_error(
         'paymentId': payment_id,
         'amount': str(payment.total)}
     monkeypatch.setattr(
-        'saleor.payment.gateways.dummy.dummy_success', lambda: False)
+        'remote_works.payment.gateways.dummy.dummy_success', lambda: False)
     response = staff_api_client.post_graphql(
         REFUND_QUERY, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
@@ -411,7 +411,7 @@ def test_query_payments(
     assert payment_ids == [payment_id]
 
 
-@patch('saleor.graphql.payment.resolvers.gateway_get_client_token')
+@patch('remote_works.graphql.payment.resolvers.gateway_get_client_token')
 def test_query_payment_client_token(mock_get_client_token, user_api_client):
     query = """
     query paymentClientToken($gateway: GatewaysEnum) {

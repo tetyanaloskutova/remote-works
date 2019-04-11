@@ -1,6 +1,6 @@
 from django.urls import reverse, translate_url
 
-from saleor.core.utils import build_absolute_uri
+from remote_works.core.utils import build_absolute_uri
 
 
 def test_sitemap(client, product, settings):

@@ -3,19 +3,19 @@ from unittest.mock import MagicMock, Mock, patch
 import graphene
 import pytest
 
-from saleor.core.utils.taxes import ZERO_TAXED_MONEY
-from saleor.graphql.core.enums import ReportingPeriod
-from saleor.graphql.order.enums import OrderEventsEmailsEnum, OrderStatusFilter
-from saleor.graphql.order.mutations.orders import (
+from remote_works.core.utils.taxes import ZERO_TAXED_MONEY
+from remote_works.graphql.core.enums import ReportingPeriod
+from remote_works.graphql.order.enums import OrderEventsEmailsEnum, OrderStatusFilter
+from remote_works.graphql.order.mutations.orders import (
     clean_order_cancel, clean_order_capture, clean_refund_payment,
     clean_void_payment)
-from saleor.graphql.order.utils import can_finalize_draft_order
-from saleor.graphql.payment.types import PaymentChargeStatusEnum
-from saleor.order import OrderEvents, OrderEventsEmails, OrderStatus
-from saleor.order.models import Order, OrderEvent
-from saleor.payment import ChargeStatus, CustomPaymentChoices
-from saleor.payment.models import Payment
-from saleor.shipping.models import ShippingMethod
+from remote_works.graphql.order.utils import can_finalize_draft_order
+from remote_works.graphql.payment.types import PaymentChargeStatusEnum
+from remote_works.order import OrderEvents, OrderEventsEmails, OrderStatus
+from remote_works.order.models import Order, OrderEvent
+from remote_works.payment import ChargeStatus, CustomPaymentChoices
+from remote_works.payment.models import Payment
+from remote_works.shipping.models import ShippingMethod
 
 from .utils import assert_no_permission, get_graphql_content
 
@@ -1133,7 +1133,7 @@ def test_clean_order_void_payment():
 
     payment.is_active = True
     error_msg = 'error has happened.'
-    with patch('saleor.graphql.order.mutations.orders.gateway_void',
+    with patch('remote_works.graphql.order.mutations.orders.gateway_void',
                side_effect=ValueError(error_msg)):
         errors = clean_void_payment(payment, [])
     assert errors[0].field == 'payment'

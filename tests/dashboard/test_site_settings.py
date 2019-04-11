@@ -5,9 +5,9 @@ from django.test.client import RequestFactory
 from django.urls import reverse
 from django.utils.encoding import smart_text
 
-from saleor.dashboard.sites.forms import SiteForm, SiteSettingsForm
-from saleor.site import utils
-from saleor.site.models import AuthorizationKey, SiteSettings
+from remote_works.dashboard.sites.forms import SiteForm, SiteSettingsForm
+from remote_works.site import utils
+from remote_works.site.models import AuthorizationKey, SiteSettings
 
 
 def test_index_view(admin_client, site_settings):

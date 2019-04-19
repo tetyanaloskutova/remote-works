@@ -21,7 +21,7 @@ const providePlugin = new webpack.ProvidePlugin({
 });
 
 const checkerPlugin = new CheckerPlugin({
-  reportFiles: ['saleor/**/*.{ts,tsx}'],
+  reportFiles: ['remote_works/**/*.{ts,tsx}'],
   tslint: true
 });
 
@@ -36,7 +36,7 @@ module.exports = (env, argv) => {
     const baseStaticPath = process.env.STATIC_URL || '/static/';
     const publicPath = url.resolve(baseStaticPath, 'assets/');
     output = {
-      path: resolve('saleor/static/assets/'),
+      path: resolve('remote_works/static/assets/'),
       filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash].js',
       publicPath: publicPath
@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
     });
   } else {
     output = {
-      path: resolve('saleor/static/assets/'),
+      path: resolve('remote_works/static/assets/'),
       filename: '[name].js',
       chunkFilename: '[name].js',
       publicPath: '/static/assets/'
@@ -62,10 +62,10 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      dashboard: './saleor/static/dashboard/js/dashboard.js',
-      'dashboard-next': './saleor/static/dashboard-next/index.tsx',
-      document: './saleor/static/dashboard/js/document.js',
-      storefront: './saleor/static/js/storefront.js'
+      dashboard: './remote_works/static/dashboard/js/dashboard.js',
+      'dashboard-next': './remote_works/static/dashboard-next/index.tsx',
+      document: './remote_works/static/dashboard/js/document.js',
+      storefront: './remote_works/static/js/storefront.js'
     },
     output: output,
     module: {
@@ -116,9 +116,9 @@ module.exports = (env, argv) => {
           loader: fileLoaderPath,
           include: [
             resolve('node_modules'),
-            resolve('saleor/static/fonts'),
-            resolve('saleor/static/images'),
-            resolve('saleor/static/dashboard/images')
+            resolve('remote_works/static/fonts'),
+            resolve('remote_works/static/images'),
+            resolve('remote_works/static/dashboard/images')
           ]
         }
       ]

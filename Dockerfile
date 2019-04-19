@@ -25,7 +25,7 @@ WORKDIR /app
 RUN npm install
 
 # Build static
-COPY ./saleor/static /app/saleor/static/
+COPY ./remote_works/static /app/remote_works/static/
 COPY ./templates /app/templates/
 RUN STATIC_URL=${STATIC_URL} npm run build-assets --production \
   && npm run build-emails --production
@@ -36,7 +36,7 @@ FROM python:3.6-slim
 ARG STATIC_URL
 ENV STATIC_URL ${STATIC_URL:-/static/}
 
-RUN groupadd -r saleor && useradd -r -g saleor saleor
+RUN groupadd -r remote_works && useradd -r -g remote_works remote_works
 
 RUN apt-get update \
   && apt-get install -y \
@@ -54,7 +54,7 @@ RUN apt-get update \
 COPY . /app
 COPY --from=build-python /usr/local/lib/python3.6/site-packages/ /usr/local/lib/python3.6/site-packages/
 COPY --from=build-python /usr/local/bin/ /usr/local/bin/
-COPY --from=build-nodejs /app/saleor/static /app/saleor/static
+COPY --from=build-nodejs /app/remote_works/static /app/remote_works/static
 COPY --from=build-nodejs /app/webpack-bundle.json /app/
 COPY --from=build-nodejs /app/templates /app/templates
 WORKDIR /app
@@ -62,11 +62,11 @@ WORKDIR /app
 RUN SECRET_KEY=dummy STATIC_URL=${STATIC_URL} python3 manage.py collectstatic --no-input
 
 RUN mkdir -p /app/media /app/static \
-  && chown -R saleor:saleor /app/
+  && chown -R remote_works:remote_works /app/
 
 EXPOSE 8000
 ENV PORT 8000
 ENV PYTHONUNBUFFERED 1
 ENV PROCESSES 4
 
-CMD ["uwsgi", "--ini", "/app/saleor/wsgi/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "/app/remote_works/wsgi/uwsgi.ini"]

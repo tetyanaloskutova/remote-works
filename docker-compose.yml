@@ -49,11 +49,11 @@ services:
       - redis
 
 volumes:
-  saleor-db:
+  remote_works-db:
     driver: local
-  saleor-redis:
+  remote_works-redis:
     driver: local
 
 networks:
-  saleor-backend-tier:
+  remote_works-backend-tier:
     driver: bridge

@@ -32,4 +32,4 @@ services:
       - remote_works-media:/app/media
 
 volumes:
-  saleor-media:
+  remote_works-media:

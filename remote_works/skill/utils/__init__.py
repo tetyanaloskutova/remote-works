@@ -26,7 +26,7 @@ def skills_with_details(user):
     skills = skills_visible_to_user(user)
     skills = skills.prefetch_related(
         'translations', 'category__translations', 'collections__translations',
-        'images', 'variants__variant_images__image',
+        'variants__variant_images__image',
         'attributes__values__translations',
         'skill_type__skill_attributes__translations',
         'skill_type__skill_attributes__values__translations')
@@ -36,14 +36,14 @@ def skills_with_details(user):
 def skills_for_skills_list(user):
     skills = skills_visible_to_user(user)
     skills = skills.prefetch_related(
-        'translations', 'images', 'variants__variant_images__image')
+        'translations', 'variants__variant_images__image')
     return skills
 
 
 def skills_for_homepage(user, homepage_collection):
     skills = skills_visible_to_user(user)
     skills = skills.prefetch_related(
-        'translations', 'images', 'variants__variant_images__image')
+        'translations', 'variants__variant_images__image')
     skills = skills.filter(collections=homepage_collection)
     return skills
 

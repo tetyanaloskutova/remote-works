@@ -1,7 +1,7 @@
 Running with PyPy 3.5
 =====================
 
-Saleor works well with PyPy 3.5 and using it is an option when additional performance is required.
+Remote-works works well with PyPy 3.5 and using it is an option when additional performance is required.
 
 The default PostgreSQL driver is not compatible with PyPy so you will need to replace it with a ``cffi``-based one.
 

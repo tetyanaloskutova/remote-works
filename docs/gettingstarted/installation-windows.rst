@@ -7,7 +7,7 @@ This guide assumes a 64-bit installation of Windows.
 Prerequisites
 -------------
 
-Before you are ready to run Saleor you will need additional software installed on your computer.
+Before you are ready to run Remote-works you will need additional software installed on your computer.
 
 
 Python
@@ -29,7 +29,7 @@ Make sure that "**Add to PATH**" is selected.
 PostgreSQL
 ~~~~~~~~~~
 
-Saleor needs PostgreSQL version 9.4 or above to work. Get the Windows installer from the `project's download page <https://www.postgresql.org/download/windows/>`_.
+Remote-works needs PostgreSQL version 9.4 or above to work. Get the Windows installer from the `project's download page <https://www.postgresql.org/download/windows/>`_.
 
 Make sure you keep track of the password you set for the administration account during installation.
 
@@ -57,14 +57,14 @@ All commands need to be performed in either PowerShell or a Command Shell.
 
    .. code-block:: powershell
 
-    git clone https://github.com/mirumee/saleor.git
+    git clone https://github.com/mirumee/remote-works.git
 
 
 #. Enter the directory:
 
    .. code-block:: powershell
 
-    cd saleor/
+    cd remote-works/
 
 
 #. Install all dependencies:
@@ -96,7 +96,7 @@ All commands need to be performed in either PowerShell or a Command Shell.
 
    Use the **pgAdmin** tool that came with your PostgreSQL installation to create a database user for your store.
 
-   Unless configured otherwise the store will use ``saleor`` as both username and password. Remember to give your user the ``SUPERUSER`` privilege so it can create databases and database extensions.
+   Unless configured otherwise the store will use ``remote-works`` as both username and password. Remember to give your user the ``SUPERUSER`` privilege so it can create databases and database extensions.
 
 #. Create a PostgreSQL database
 
@@ -104,7 +104,7 @@ All commands need to be performed in either PowerShell or a Command Shell.
 
    .. note::
 
-       Database name is extracted from the ``DATABASE_URL`` environment variable. If absent it defaults to ``saleor``.
+       Database name is extracted from the ``DATABASE_URL`` environment variable. If absent it defaults to ``remote-works``.
 
 #. Prepare the database:
 

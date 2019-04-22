@@ -9,13 +9,13 @@ Installation for Linux
 Prerequisites
 -------------
 
-Before you are ready to run Saleor you will need additional software installed on your computer.
+Before you are ready to run Remote-works you will need additional software installed on your computer.
 
 
 Python 3
 ~~~~~~~~
 
-Saleor requires Python 3.5 or later. A compatible version comes preinstalled with most current Linux systems. If that is not the case consult your distribution for instructions on how to install Python 3.6 or 3.7.
+Remote-works requires Python 3.5 or later. A compatible version comes preinstalled with most current Linux systems. If that is not the case consult your distribution for instructions on how to install Python 3.6 or 3.7.
 
 
 Node.js
@@ -27,7 +27,7 @@ Version 10 or later is required. See the `installation instructions <https://nod
 PostgreSQL
 ~~~~~~~~~~
 
-Saleor needs PostgreSQL version 9.4 or above to work. Use the `PostgreSQL download page <https://www.postgresql.org/download/>`_ to get instructions for your distribution.
+Remote-works needs PostgreSQL version 9.4 or above to work. Use the `PostgreSQL download page <https://www.postgresql.org/download/>`_ to get instructions for your distribution.
 
 
 Gtk+
@@ -73,14 +73,14 @@ Installation
 
    .. code-block:: console
 
-    $ git clone https://github.com/mirumee/saleor.git
+    $ git clone https://github.com/mirumee/remote-works.git
 
 
 #. Enter the directory:
 
    .. code-block:: console
 
-    $ cd saleor/
+    $ cd remote-works/
 
 
 #. Install all dependencies:
@@ -115,7 +115,7 @@ Installation
    .. note::
 
        You need to create the user to use within your project.
-       Username and password are extracted from the ``DATABASE_URL`` environmental variable. If absent they both default to ``saleor``.
+       Username and password are extracted from the ``DATABASE_URL`` environmental variable. If absent they both default to ``remote-works``.
 
    .. warning::
 
@@ -130,7 +130,7 @@ Installation
 
    .. note::
 
-       Database name is extracted from the ``DATABASE_URL`` environment variable. If absent it defaults to ``saleor``.
+       Database name is extracted from the ``DATABASE_URL`` environment variable. If absent it defaults to ``remote-works``.
 
 
 #. Prepare the database:

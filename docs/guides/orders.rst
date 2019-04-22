@@ -1,7 +1,7 @@
 Orders
 ======
 
-Saleor gives a possibility to manage orders from dashboard. It can be done in dashboard ``Orders`` tab.
+Remote-works gives a possibility to manage orders from dashboard. It can be done in dashboard ``Orders`` tab.
 
 
 Draft orders

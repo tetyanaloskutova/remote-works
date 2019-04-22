@@ -1,7 +1,7 @@
 Search Engine Optimization (SEO)
 ================================
 
-Out of the box Saleor will automatically handle certain aspects of how search engines see and index your products.
+Out of the box Remote-works will automatically handle certain aspects of how search engines see and index your products.
 
 Sitemaps
 --------

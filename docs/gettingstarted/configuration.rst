@@ -3,7 +3,7 @@
 Configuration
 =============
 
-We are fans of the `12factor <https://12factor.net/>`_ approach and portable code so you can configure most of Saleor using just environment variables.
+We are fans of the `12factor <https://12factor.net/>`_ approach and portable code so you can configure most of Remote-works using just environment variables.
 
 
 .. _payment_gateways_configuration:

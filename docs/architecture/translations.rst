@@ -28,7 +28,7 @@ Consider a product.
 
    from django.db import models
 
-   from saleor.core.utils.translations import TranslationProxy
+   from remote-works.core.utils.translations import TranslationProxy
 
 
    class Product(models.Model):

@@ -1,4 +1,4 @@
-Saleor
+Remote-works
 ======
 
 An open source storefront written in Python.

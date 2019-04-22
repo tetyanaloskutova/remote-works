@@ -1,7 +1,7 @@
 Creating an Administrator Account
 =================================
 
-Saleor is a Django application so you can create your master account using the following command:
+Remote-works is a Django application so you can create your master account using the following command:
 
 .. code-block:: console
 

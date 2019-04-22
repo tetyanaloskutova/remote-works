@@ -4,7 +4,7 @@ Installation for macOS
 Prerequisites
 -------------
 
-Before you are ready to run Saleor you will need additional software installed on your computer.
+Before you are ready to run Remote-works you will need additional software installed on your computer.
 
 
 Node.js
@@ -16,7 +16,7 @@ Version 10 or later is required. Download the macOS installer from the `Node.js 
 PostgreSQL
 ~~~~~~~~~~
 
-Saleor needs PostgreSQL version 9.4 or above to work. Get the macOS installer from the `PostgreSQL download page <https://www.postgresql.org/download/macosx/>`_.
+Remote-works needs PostgreSQL version 9.4 or above to work. Get the macOS installer from the `PostgreSQL download page <https://www.postgresql.org/download/macosx/>`_.
 
 Command Line Tools for Xcode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,14 +77,14 @@ Installation
 
    .. code-block:: console
 
-    $ git clone https://github.com/mirumee/saleor.git
+    $ git clone https://github.com/mirumee/remote-works.git
 
 
 #. Enter the directory:
 
    .. code-block:: console
 
-    $ cd saleor/
+    $ cd remote-works/
 
 
 #. Install all dependencies:
@@ -114,21 +114,21 @@ Installation
 
 #. Create a PostgreSQL user:
 
-   Unless configured otherwise the store will use ``saleor`` as both username and password. Remember to give your user the ``SUPERUSER`` privilege so it can create databases and database extensions.
+   Unless configured otherwise the store will use ``remote-works`` as both username and password. Remember to give your user the ``SUPERUSER`` privilege so it can create databases and database extensions.
 
    .. code-block:: console
 
-    $ createuser --superuser --pwprompt saleor
+    $ createuser --superuser --pwprompt remote-works
 
-   Enter ``saleor`` when prompted for password.
+   Enter ``remote-works`` when prompted for password.
 
 #. Create a PostgreSQL database:
 
-   Unless configured otherwise the store will use ``saleor`` as the database name.
+   Unless configured otherwise the store will use ``remote-works`` as the database name.
 
    .. code-block:: console
 
-    $ createdb saleor
+    $ createdb remote-works
 
 #. Prepare the database:
 

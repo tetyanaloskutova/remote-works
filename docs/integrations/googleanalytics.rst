@@ -1,7 +1,7 @@
 Google Analytics
 ================
 
-Because of EU law regulations, Saleor will not use any tracking cookies by default.
+Because of EU law regulations, Remote-works will not use any tracking cookies by default.
 
 We do however support server-side Google Analytics out of the box using `Google Analytics Measurement Protocol <https://developers.google.com/analytics/devguides/collection/protocol/v1/>`_.
 

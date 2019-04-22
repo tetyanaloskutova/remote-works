@@ -4,13 +4,13 @@
 Handling Money Amounts
 ======================
 
-Saleor uses the `Prices <https://github.com/mirumee/prices/>`_ and `django-prices <https://github.com/mirumee/django-prices/>`_ libraries to store, calculate and display amounts of money, prices and ranges of those and `django-prices-vatlayer <https://github.com/mirumee/django-prices-vatlayer>`_ to handle VAT tax rates in European Union (optionally).
+Remote-works uses the `Prices <https://github.com/mirumee/prices/>`_ and `django-prices <https://github.com/mirumee/django-prices/>`_ libraries to store, calculate and display amounts of money, prices and ranges of those and `django-prices-vatlayer <https://github.com/mirumee/django-prices-vatlayer>`_ to handle VAT tax rates in European Union (optionally).
 
 
 Default currency
 ----------------
 
-All prices are entered and stored in a single default currency controlled by the :ref:`DEFAULT_CURRENCY <settings_configuration>` settings key. Saleor can display prices in a user's local currency (see :ref:`openexchangerates`) but all purchases are charged in the default currency.
+All prices are entered and stored in a single default currency controlled by the :ref:`DEFAULT_CURRENCY <settings_configuration>` settings key. Remote-works can display prices in a user's local currency (see :ref:`openexchangerates`) but all purchases are charged in the default currency.
 
 .. warning::
 
@@ -20,7 +20,7 @@ All prices are entered and stored in a single default currency controlled by the
 Money and TaxedMoney
 --------------------
 
-In Saleor's codebase, money amounts exist either as `Money` or `TaxedMoney` instances.
+In Remote-works's codebase, money amounts exist either as `Money` or `TaxedMoney` instances.
 
 `Money` is a type representing amount of money in specific currency: 100 USD is represented by `Money(100, 'USD')`.
 This type doesn't hold any additional information useful for commerce but, unlike `Decimal`, it implements safeguards and checks for calculations and comparisons of monetary values.

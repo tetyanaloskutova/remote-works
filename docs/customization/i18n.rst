@@ -50,4 +50,4 @@ For JavaScript code:
 
 .. code-block:: console
 
- $ python manage.py makemessages -l en -d djangojs --ignore="_build/*" --ignore="node_modules/*" --ignore="saleor/static/assets/*"
+ $ python manage.py makemessages -l en -d djangojs --ignore="_build/*" --ignore="node_modules/*" --ignore="remote-works/static/assets/*"

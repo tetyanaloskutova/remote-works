@@ -1,7 +1,7 @@
 Navigation
 ==========
 
-Saleor gives a possibility to configure storefront navigation. It can be done in dashboard ``Navigation`` tab.
+Remote-works gives a possibility to configure storefront navigation. It can be done in dashboard ``Navigation`` tab.
 
 You can add up to 3 levels of menu items inside every menu you create. Each menu item can point to an internal page with Category, Collection, Page or an external website by passing an extra URL.
 

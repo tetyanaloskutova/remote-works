@@ -18,7 +18,7 @@ You will need to install `Docker <https://docs.docker.com/install/>`_ and `docke
 
 .. note::
 
-   Our configuration uses `docker-compose.override.yml <https://docs.docker.com/compose/extends/#understanding-multiple-compose-files>`_ that exposes Saleor, PostgreSQL and Redis ports and runs Saleor via ``python manage.py runserver`` for local development. If you do not wish to use any overrides then you can tell compose to only use `docker-compose.yml` configuration using `-f`, like so `docker-compose -f docker-compose.yml up`.
+   Our configuration uses `docker-compose.override.yml <https://docs.docker.com/compose/extends/#understanding-multiple-compose-files>`_ that exposes Remote-works, PostgreSQL and Redis ports and runs Remote-works via ``python manage.py runserver`` for local development. If you do not wish to use any overrides then you can tell compose to only use `docker-compose.yml` configuration using `-f`, like so `docker-compose -f docker-compose.yml up`.
 
 
 Using local assets
@@ -29,7 +29,7 @@ and aren't present in the cloned repository, so what was built on the Docker wou
 
 However, we do know that there might be a case that you wish to mount them and see your changes reflected in the container, thus before proceeding you need to modify `docker-compose.override.yml`.
 
-In order for Docker to use your assets from the host, you need to remove ``/app/saleor/static/assets`` volume and add ``./webpack-bundle.json:/app/webpack-bundle.json`` volume.
+In order for Docker to use your assets from the host, you need to remove ``/app/remote-works/static/assets`` volume and add ``./webpack-bundle.json:/app/webpack-bundle.json`` volume.
 
 Additionally if you wish to have the compiled templated emails mounted then you need to also remove ``/app/templates/templated_email/compiled`` volume from web and celery services.
 

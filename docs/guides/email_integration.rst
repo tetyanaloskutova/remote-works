@@ -1,7 +1,7 @@
 Email Configuration and Integration
 ===================================
 
-Saleor offers a few ways to set-up your email settings over SMTP servers and relays
+Remote-works offers a few ways to set-up your email settings over SMTP servers and relays
 through the below environment variables.
 
 

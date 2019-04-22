@@ -30,4 +30,4 @@ To enable ReCaptcha, you need to set those keys in your environment:
     RECAPTCHA_PRIVATE_KEY 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
     ===================== ========================================
 
-  You only have to set them up if you are using Saleor for production (Google will remind you if you do not).
+  You only have to set them up if you are using Remote-works for production (Google will remind you if you do not).

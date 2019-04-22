@@ -1,7 +1,7 @@
 Google for Retail
 =================
 
-Saleor has tools for generating product feed which can be used with Google Merchant Center. Final file is compressed CSV and saved in location specified by ``saleor.data_feeds.google_merchant.FILE_PATH`` variable.
+Remote-works has tools for generating product feed which can be used with Google Merchant Center. Final file is compressed CSV and saved in location specified by ``remote-works.data_feeds.google_merchant.FILE_PATH`` variable.
 
 To generate feed use command:
 

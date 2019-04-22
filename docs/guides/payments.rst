@@ -3,14 +3,14 @@
 Payments
 ========
 
-Integrating a new Payment Gateway into Saleor
+Integrating a new Payment Gateway into Remote-works
 ---------------------------------------------
 
 We are using a universal flow, that each gateway should fulfill, there are
 several methods that should be implemented.
 
 Your changes should live under the
-``saleor.payment.gateways.<gateway name>`` module.
+``remote-works.payment.gateways.<gateway name>`` module.
 
 .. note::
 
@@ -54,7 +54,7 @@ Example
         # Handle connecting to the gateway and sending the auth request here
         response = gateway.authorize(token=payment_information['token'])
 
-        # Return a correct response format so Saleor can process it,
+        # Return a correct response format so Remote-works can process it,
         # the response must be json serializable
         return {
             'is_success': response.is_success,
@@ -83,7 +83,7 @@ Example
         # Handle connecting to the gateway and sending the refund request here
         response = gateway.refund(token=payment_information['token'])
 
-        # Return a correct response format so Saleor can process it,
+        # Return a correct response format so Remote-works can process it,
         # the response must be json serializable
         return {
             'is_success': response.is_success,
@@ -112,7 +112,7 @@ Example
         # Handle connecting to the gateway and sending the capture request here
         response = gateway.capture(token=payment_information['token'])
 
-        # Return a correct response format so Saleor can process it,
+        # Return a correct response format so Remote-works can process it,
         # the response must be json serializable
         return {
             'is_success': response.is_success,
@@ -141,7 +141,7 @@ Example
         # Handle connecting to the gateway and sending the void request here
         response = gateway.void(token=payment_information['token'])
 
-        # Return a correct response format so Saleor can process it,
+        # Return a correct response format so Remote-works can process it,
         # the response must be json serializable
         return {
             'is_success': response.is_success,
@@ -172,7 +172,7 @@ Example
             token=payment_information['token'],
             amount=payment_information['amount'])
 
-        # Return a correct response format so Saleor can process it,
+        # Return a correct response format so Remote-works can process it,
         # the response must be json serializable
         return {
             'is_success': response.is_success,
@@ -315,7 +315,7 @@ Example
 Handling errors
 ---------------
 
-Gateway-specific errors should be parsed to Saleor's universal format.
+Gateway-specific errors should be parsed to Remote-works's universal format.
 More on this can be found in :ref:`payments-architecture`.
 
 Adding payment method to the old checkout (optional)
@@ -333,7 +333,7 @@ must implement `get_payment_token` that returns a token required to process
 payments. All payment forms should inherit from ``django.forms.Form``.
 
 Your changes should live under
-``saleor.payment.gateways.<gateway name>.forms.py``
+``remote-works.payment.gateways.<gateway name>.forms.py``
 
 Example
 """""""
@@ -382,7 +382,7 @@ Add template
 
 Add a new template to handle the payment process with your payment form.
 Your changes should live under
-``saleor.templates.order.payment.<gateway name>.html``
+``remote-works.templates.order.payment.<gateway name>.html``
 
 Adding new payment gateway to the settings
 ------------------------------------------
@@ -391,7 +391,7 @@ Adding new payment gateway to the settings
 
     PAYMENT_GATEWAYS = {
         'braintree': {
-            'module': 'saleor.payment.gateways.braintree',
+            'module': 'remote-works.payment.gateways.braintree',
             'connection_params': {
                 'sandbox_mode': get_bool_from_env('BRAINTREE_SANDBOX_MODE', True),
                 'merchant_id': os.environ.get('BRAINTREE_MERCHANT_ID'),
@@ -411,7 +411,7 @@ Please take a moment to consider the example settings above.
 - ``module``
     The path to the integration module
     (assuming that your changes live within the
-    ``saleor.payment.gateways.braintree.__init__.py`` file)
+    ``remote-works.payment.gateways.braintree.__init__.py`` file)
 
 - ``connection_params``
     List of parameters used for connecting to the payment's gateway.

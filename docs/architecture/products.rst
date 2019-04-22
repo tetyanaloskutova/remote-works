@@ -6,7 +6,7 @@ Before filling your shop with products we need to introduce 3 product concepts -
 Overview
 --------
 
-Consider a book store. One of your *products* is a book titled "Introduction to Saleor".
+Consider a book store. One of your *products* is a book titled "Introduction to Remote-works".
 
 The book is available in hard and soft cover, so there would be 2 *product variants*.
 

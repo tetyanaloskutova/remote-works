@@ -3,7 +3,7 @@
 Supported Payment Gateways
 ==========================
 
-You will find below the list of payment gateways supported by Saleor
+You will find below the list of payment gateways supported by Remote-works
 and their configuration guide.
 
 .. toctree::
@@ -17,7 +17,7 @@ The default configuration only uses the `dummy` backend
 (see :ref:`how to enable/disable payment gateways <payment_gateways_configuration>`).
 It's meant to allow developers to easily simulate different payment results.
 
-For an how-to guide on adding new payments into your Saleor project
+For an how-to guide on adding new payments into your Remote-works project
 please check :ref:`adding-payments`.
 
 .. note::

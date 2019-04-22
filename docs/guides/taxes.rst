@@ -1,7 +1,7 @@
 Taxes
 =====
 
-Saleor gives a possibility to configure taxes. It can be done in dashboard ``Taxes`` tab.
+Remote-works gives a possibility to configure taxes. It can be done in dashboard ``Taxes`` tab.
 
 Taxes are charged according to the rates applicable in the country to which the order is delivered. If tax rate set for the product is not available, standard tax rate is used by default.
 
@@ -47,5 +47,5 @@ Fetching taxes
 
   .. warning::
 
-    By default, Saleor is making requests to the VatLayer API through HTTP (insecure),
+    By default, Remote-works is making requests to the VatLayer API through HTTP (insecure),
     if you are using a paid VatLayer subscription, you may want to set the settings ``VATLAYER_USE_HTTPS`` to ``True``.

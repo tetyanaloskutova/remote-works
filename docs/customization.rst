@@ -1,4 +1,4 @@
-Customizing Saleor
+Customizing Remote-works
 ==================
 
 .. toctree::

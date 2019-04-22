@@ -3,7 +3,7 @@ EditorConfig
 
 `EditorConfig <http://editorconfig.org/>`_ is a standard configuration file that aims to ensure consistent style across multiple programming environments.
 
-Saleor's repository contains an `.editorconfig file <https://github.com/mirumee/saleor/blob/master/.editorconfig>`_ that describes our formatting requirements.
+Remote-works's repository contains an `.editorconfig file <https://github.com/mirumee/remote-works/blob/master/.editorconfig>`_ that describes our formatting requirements.
 
 Most editors and IDEs support this file either directly or via plugins. Consult the `list of supported editors and IDEs <http://editorconfig.org/#download>`_ for instructions.
 

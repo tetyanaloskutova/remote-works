@@ -1,7 +1,7 @@
 Shippings
 =========
 
-Saleor uses the concept of Shipping Zones and Shipping Methods to fulfill the shipping process.
+Remote-works uses the concept of Shipping Zones and Shipping Methods to fulfill the shipping process.
 
 Shipping Zones
 --------------

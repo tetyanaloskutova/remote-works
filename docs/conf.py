@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Saleor'
+project = u'Remote-works'
 copyright = u'2015-2018, Mirumee Software'
 author = u'Mirumee Software'
 
@@ -122,7 +122,7 @@ html_theme = 'sphinx_rtd_theme'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'Saleor documentation'
+html_title = 'Remote-works documentation'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -202,7 +202,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'saleordoc'
+htmlhelp_basename = 'remote-worksdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 

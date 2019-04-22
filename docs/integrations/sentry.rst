@@ -3,7 +3,7 @@
 Error tracking with Sentry
 ==========================
 
-Saleor provides integration with `Sentry <https://sentry.io/>`_ - a comprehensive error tracking and reporting tool.
+Remote-works provides integration with `Sentry <https://sentry.io/>`_ - a comprehensive error tracking and reporting tool.
 
 To enable basic error reporting you have to export an environment variable:
 

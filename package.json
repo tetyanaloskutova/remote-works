@@ -4,9 +4,9 @@
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mirumee/remote_works.git"
+    "url": "git://github.com/tetyanaloskutova/remote-works.git"
   },
-  "author": "Mirumee Software",
+  "author": "Software",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/mirumee/remote_works/issues"

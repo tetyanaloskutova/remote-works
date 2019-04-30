@@ -30,10 +30,10 @@ All commands need to be performed in either PowerShell or a Command Shell.
 
 Clone the repository (replace the URL with your own fork where needed):
 
-git clone https://github.com/mirumee/saleor.git
+git clone https://github.com/tetyanaloskutova/remote-works.git
 Enter the directory:
 
-cd saleor/
+cd remote-works/
 ## Install all dependencies:
 
 We strongly recommend creating a virtual environment before installing any Python packages.

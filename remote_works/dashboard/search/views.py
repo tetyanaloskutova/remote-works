@@ -15,7 +15,7 @@ def limit_results(*results):
 def get_results(request, form):
     user = request.user
     results = form.search()
-    products = results['products']
+    products = results['skills']
     orders = results['orders']
     users = results['users']
     if not user.has_perm('order.manage_orders'):
@@ -40,7 +40,7 @@ def search(request):
     ctx = {
         'form': form,
         'query': query,
-        'products': products,
+        'skills': products,
         'orders': orders,
         'users': users,
         'query_string': '?q=%s' % query}

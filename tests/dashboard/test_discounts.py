@@ -52,7 +52,7 @@ def test_voucher_shipping_add(admin_client):
 def test_view_sale_add(admin_client, category, collection):
     url = reverse('dashboard:sale-add')
     data = {
-        'name': 'Free products',
+        'name': 'Free skills',
         'type': DiscountValueType.PERCENTAGE,
         'value': 100,
         'categories': [category.id],
@@ -74,7 +74,7 @@ def test_view_sale_add_requires_product_category_or_collection(
     initial_sales_count = Sale.objects.count()
     url = reverse('dashboard:sale-add')
     data = {
-        'name': 'Free products',
+        'name': 'Free skills',
         'type': DiscountValueType.PERCENTAGE,
         'value': 100,
         'start_date': '2018-01-01'}
@@ -85,7 +85,7 @@ def test_view_sale_add_requires_product_category_or_collection(
     assert Sale.objects.count() == initial_sales_count
     products_data = [
         {'categories': [category.id]},
-        {'products': [product.id]}, {'collections': [collection.pk]}]
+        {'skills': [product.id]}, {'collections': [collection.pk]}]
     for count, proper_data in enumerate(products_data):
         proper_data.update(data)
         response = admin_client.post(url, proper_data)
@@ -158,7 +158,7 @@ def test_product_voucher_checkout_discount_raises_not_applicable(
     voucher.products.add(discounted_product)
     order_with_lines.voucher = voucher
     order_with_lines.save()
-    # Offer is valid only for products listed in voucher
+    # Offer is valid only for skills listed in voucher
     with pytest.raises(NotApplicable):
         get_voucher_discount_for_order(order_with_lines)
 

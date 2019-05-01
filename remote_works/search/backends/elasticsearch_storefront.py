@@ -4,7 +4,7 @@ from ..documents import ProductDocument
 
 
 def get_search_query(phrase):
-    """Return matching products for storefront views."""
+    """Return matching skills for storefront views."""
     query = MultiMatch(fields=['title', 'name', 'description'], query=phrase)
     return (
         ProductDocument.search()

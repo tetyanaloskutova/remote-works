@@ -5,7 +5,7 @@ from ...product.models import Product
 
 
 def search(phrase):
-    """Return matching products for storefront views.
+    """Return matching skills for storefront views.
 
     Fuzzy storefront search that is resistant to small typing errors made
     by user. Name is matched using trigram similarity, description uses

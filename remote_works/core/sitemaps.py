@@ -40,5 +40,5 @@ class PageSitemap(I18nSitemap):
 sitemaps = {
     'categories': CategorySitemap,
     'collections': CollectionSitemap,
-    'products': ProductSitemap,
+    'skills': ProductSitemap,
     'pages': PageSitemap}

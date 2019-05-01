@@ -164,7 +164,7 @@ def test_utils_strip_html():
 
 def test_create_thumbnails(product_with_image, settings):
     settings.VERSATILEIMAGEFIELD_SETTINGS['create_images_on_demand'] = False
-    sizeset = settings.VERSATILEIMAGEFIELD_RENDITION_KEY_SETS['products']
+    sizeset = settings.VERSATILEIMAGEFIELD_RENDITION_KEY_SETS['skills']
     product_image = product_with_image.images.first()
 
     # There's no way to list images created by versatile prewarmer
@@ -176,7 +176,7 @@ def test_create_thumbnails(product_with_image, settings):
     # Image didn't have any thumbnails/crops created, so there's no log
     assert not log_deleted_images
 
-    create_thumbnails(product_image.pk, ProductImage, 'products')
+    create_thumbnails(product_image.pk, ProductImage, 'skills')
     log_deleted_images = io.StringIO()
     with redirect_stdout(log_deleted_images):
         product_image.image.delete_all_created_images()

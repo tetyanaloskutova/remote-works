@@ -105,14 +105,14 @@ def test_view_product_list_pagination_with_filters(
     response = admin_client.get(url, data)
 
     assert response.status_code == 200
-    assert list(response.context['products'])[0] == product_list[0]
+    assert list(response.context['skills'])[0] == product_list[0]
 
     data['page'] = '2'
 
     response = admin_client.get(url, data)
 
     assert response.status_code == 200
-    assert list(response.context['products'])[0] == product_list[1]
+    assert list(response.context['skills'])[0] == product_list[1]
 
 
 def test_view_product_details(admin_client, product):
@@ -232,7 +232,7 @@ def test_view_product_not_deleted_before_confirmation(
 def test_view_product_bulk_update_publish(admin_client, product_list):
     url = reverse('dashboard:skill-bulk-update')
     products = [product.pk for product in product_list]
-    data = {'action': ProductBulkAction.PUBLISH, 'products': products}
+    data = {'action': ProductBulkAction.PUBLISH, 'skills': products}
 
     response = admin_client.post(url, data)
 
@@ -247,13 +247,13 @@ def test_view_product_bulk_update_publish(admin_client, product_list):
 def test_view_product_bulk_update_unpublish(admin_client, product_list):
     url = reverse('dashboard:skill-bulk-update')
     products = [product.pk for product in product_list]
-    data = {'action': ProductBulkAction.UNPUBLISH, 'products': products}
+    data = {'action': ProductBulkAction.UNPUBLISH, 'skills': products}
 
     response = admin_client.post(url, data)
 
 
 def test_view_ajax_products_list(admin_client, product):
-    url = reverse('dashboard:ajax-products')
+    url = reverse('dashboard:ajax-skills')
 
     response = admin_client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
@@ -374,7 +374,7 @@ def test_view_product_type_edit_to_no_variants_valid(admin_client, product):
 
     url = reverse(
         'dashboard:skill-type-update', kwargs={'pk': product_type.pk})
-    # When all products have only one variant you can change
+    # When all skills have only one variant you can change
     # has_variants to false
     data = {
         'name': product_type.name,

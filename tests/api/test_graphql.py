@@ -50,7 +50,7 @@ def test_real_query(user_api_client, product):
             ...CategoryPageFragmentQuery
             __typename
         }
-        products(first: $first, sortBy: $sortBy, categories:[$categoryId], attributes: $attributesFilter, priceGte: $minPrice, priceLte: $maxPrice) {
+        skills(first: $first, sortBy: $sortBy, categories:[$categoryId], attributes: $attributesFilter, priceGte: $minPrice, priceLte: $maxPrice) {
             ...ProductListFragmentQuery
             __typename
         }
@@ -192,7 +192,7 @@ def test_get_nodes(product_list):
         to_global_id('Product', product.pk) for product in product_list]
     # Make sure function works even if duplicated ids are provided
     global_ids.append(to_global_id('Product', product_list[0].pk))
-    # Return products corresponding to global ids
+    # Return skills corresponding to global ids
     products = get_nodes(global_ids, Product)
     assert products == product_list
 

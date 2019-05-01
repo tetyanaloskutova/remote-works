@@ -69,7 +69,7 @@ def search_dashboard(client, phrase):
     response = client.get(reverse('dashboard:search'), {'q': phrase})
     assert response.context['query'] in phrase
     context = response.context
-    return context['products'], context['orders'], context['users']
+    return context['skills'], context['orders'], context['users']
 
 
 @pytest.mark.integration

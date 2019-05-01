@@ -405,7 +405,7 @@ def test_product_filter_sorted_by_wrong_parameter(
     response = authorized_client.get(url, data)
 
     assert not response.context['filter_set'].form.is_valid()
-    assert not response.context['products']
+    assert not response.context['skills']
 
 
 def test_get_variant_picker_data_proper_variant_count(product):
@@ -441,7 +441,7 @@ def test_include_products_from_subcategories_in_main_view(
         'skill:category', kwargs={
             'slug': category.slug, 'category_id': category.pk})
     response = authorized_client.get(url)
-    assert product in response.context_data['products'][0]
+    assert product in response.context_data['skills'][0]
 
 
 @patch('remote_works.skill.thumbnails.create_thumbnails')
@@ -450,7 +450,7 @@ def test_create_product_thumbnails(
     product_image = product_with_image.images.first()
     create_product_thumbnails(product_image.pk)
     assert mock_create_thumbnails.called_once_with(
-        product_image.pk, models.ProductImage, 'products')
+        product_image.pk, models.ProductImage, 'skills')
 
 
 @pytest.mark.parametrize(
@@ -703,7 +703,7 @@ def test_homepage_collection_render(
     response = client.get(reverse('home'))
     assert response.status_code == 200
     products_in_context = {
-        product[0] for product in response.context['products']}
+        product[0] for product in response.context['skills']}
     products_available = {
         product for product in product_list if product.is_published}
     assert products_in_context == products_available

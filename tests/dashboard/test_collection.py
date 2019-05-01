@@ -40,7 +40,7 @@ def test_set_unpublished_homepage_collection(
 
 
 def test_collection_form_name():
-    data = {'name': 'Test Collection', 'products': []}
+    data = {'name': 'Test Collection', 'skills': []}
     form = CollectionForm(data)
     assert form.is_valid()
 
@@ -52,7 +52,7 @@ def test_collection_form_name():
 
 
 def test_collection_form_with_products(product):
-    data = {'name': 'Test collection', 'products': [product.id]}
+    data = {'name': 'Test collection', 'skills': [product.id]}
     form = CollectionForm(data)
     assert form.is_valid()
 
@@ -113,7 +113,7 @@ def test_collection_update_view(
     assert response.status_code == 200
 
     current_name = collection.name
-    data = {'name': 'New name', 'products': [product.id]}
+    data = {'name': 'New name', 'skills': [product.id]}
     response = admin_client.post(url, data)
     assert response.status_code == 302
 

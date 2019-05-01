@@ -111,7 +111,7 @@ def test_reporting_period_to_date():
 def test_require_pagination(api_client):
     query = """
     query {
-        products {
+        skills {
             edges {
                 node {
                     name
@@ -125,20 +125,20 @@ def test_require_pagination(api_client):
     assert 'errors' in content
     assert content['errors'][0]['message'] == (
         'You must provide a `first` or `last` value to properly paginate the '
-        '`products` connection.')
+        '`skills` connection.')
 
 
 def test_total_count_query(api_client, product):
     query = """
     query {
-        products {
+        skills {
             totalCount
         }
     }
     """
     response = api_client.post_graphql(query)
     content = get_graphql_content(response)
-    assert content['data']['products']['totalCount'] == Product.objects.count()
+    assert content['data']['skills']['totalCount'] == Product.objects.count()
 
 
 def test_mutation_decimal_input(

@@ -261,7 +261,7 @@ def test_voucher_add_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'products': [product_id],
+            'skills': [product_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -299,7 +299,7 @@ def test_voucher_remove_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'products': [product_id],
+            'skills': [product_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -329,7 +329,7 @@ def test_voucher_add_no_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'products': [],
+            'skills': [],
             'collections': [],
             'categories': []}}
     response = staff_api_client.post_graphql(
@@ -363,7 +363,7 @@ def test_voucher_remove_no_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'products': [],
+            'skills': [],
             'collections': [],
             'categories': []}}
     response = staff_api_client.post_graphql(
@@ -494,7 +494,7 @@ def test_sale_add_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'products': [product_id],
+            'skills': [product_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -532,7 +532,7 @@ def test_sale_remove_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'products': [product_id],
+            'skills': [product_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -562,7 +562,7 @@ def test_sale_add_no_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'products': [],
+            'skills': [],
             'collections': [],
             'categories': []}}
     response = staff_api_client.post_graphql(
@@ -596,7 +596,7 @@ def test_sale_remove_no_catalogues(
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'products': [],
+            'skills': [],
             'collections': [],
             'categories': []}}
     response = staff_api_client.post_graphql(

@@ -101,7 +101,7 @@ def test_new_search_doesnt_show_unpublished(
 def execute_dashboard_search(client, phrase):
     response = client.get(reverse('dashboard:search'), {'q': phrase})
     assert phrase == response.context['query']
-    found_prod = {p.pk for p in response.context['products']}
+    found_prod = {p.pk for p in response.context['skills']}
     found_users = {p.pk for p in response.context['users']}
     found_orders = {p.pk for p in response.context['orders']}
     return found_prod, found_users, found_orders

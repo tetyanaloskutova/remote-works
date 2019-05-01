@@ -35,7 +35,7 @@ def discounts(get_response):
     """Assign active discounts to `request.discounts`."""
     def middleware(request):
         discounts = Sale.objects.active(date.today()).prefetch_related(
-            'products', 'categories', 'collections')
+            'skills', 'categories', 'collections')
         request.discounts = discounts
         return get_response(request)
 

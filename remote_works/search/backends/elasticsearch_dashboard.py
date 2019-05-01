@@ -35,7 +35,7 @@ def get_search_queries(phrase):
         phrase (str): searched phrase
     """
     return {
-        'products': _search_products(phrase),
+        'skills': _search_products(phrase),
         'users': _search_users(phrase),
         'orders': _search_orders(phrase)}
 

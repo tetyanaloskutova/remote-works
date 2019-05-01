@@ -7,7 +7,7 @@ from ...product.models import Product
 
 
 def search_products(phrase):
-    """Return matching products for dashboard views."""
+    """Return matching skills for dashboard views."""
     sv = (SearchVector('name', weight='A') +
           SearchVector('description', weight='B'))
     rank = SearchRank(sv, SearchQuery(phrase))
@@ -60,6 +60,6 @@ def search(phrase):
         phrase (str): searched phrase
     """
     return {
-        'products': search_products(phrase),
+        'skills': search_products(phrase),
         'orders': search_orders(phrase),
         'users': search_users(phrase)}

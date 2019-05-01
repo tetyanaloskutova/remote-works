@@ -41,7 +41,7 @@ def test_resolve_attribute_list(color_attribute):
 def test_fetch_all_products(user_api_client, product):
     query = """
     query {
-        products(first: 1) {
+        skills(first: 1) {
             totalCount
             edges {
                 node {
@@ -54,8 +54,8 @@ def test_fetch_all_products(user_api_client, product):
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
     num_products = Product.objects.count()
-    assert content['data']['products']['totalCount'] == num_products
-    assert len(content['data']['products']['edges']) == num_products
+    assert content['data']['skills']['totalCount'] == num_products
+    assert len(content['data']['skills']['edges']) == num_products
 
 
 @pytest.mark.djangodb
@@ -63,7 +63,7 @@ def test_fetch_unavailable_products(user_api_client, product):
     Product.objects.update(is_published=False)
     query = """
     query {
-        products(first: 1) {
+        skills(first: 1) {
             totalCount
             edges {
                 node {
@@ -75,8 +75,8 @@ def test_fetch_unavailable_products(user_api_client, product):
     """
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    assert content['data']['products']['totalCount'] == 0
-    assert not content['data']['products']['edges']
+    assert content['data']['skills']['totalCount'] == 0
+    assert not content['data']['skills']['edges']
 
 
 def test_product_query(staff_api_client, product, permission_manage_products):
@@ -85,7 +85,7 @@ def test_product_query(staff_api_client, product, permission_manage_products):
     query = """
     query {
         category(id: "%(category_id)s") {
-            products(first: 20) {
+            skills(first: 20) {
                 edges {
                     node {
                         id
@@ -143,7 +143,7 @@ def test_product_query(staff_api_client, product, permission_manage_products):
     response = staff_api_client.post_graphql(query)
     content = get_graphql_content(response)
     assert content['data']['category'] is not None
-    product_edges_data = content['data']['category']['products']['edges']
+    product_edges_data = content['data']['category']['skills']['edges']
     assert len(product_edges_data) == category.products.count()
     product_data = product_edges_data[0]['node']
     assert product_data['name'] == product.name
@@ -170,7 +170,7 @@ def test_product_query_search(user_api_client, product_type, category):
 
     query = """
     query productSearch($query: String) {
-        products(query: $query, first: 10) {
+        skills(query: $query, first: 10) {
             edges {
                 node {
                     name
@@ -182,7 +182,7 @@ def test_product_query_search(user_api_client, product_type, category):
 
     response = user_api_client.post_graphql(query, {'query': 'blu p4int'})
     content = get_graphql_content(response)
-    products = content['data']['products']['edges']
+    products = content['data']['skills']['edges']
 
     assert len(products) == 1
     assert products[0]['node']['name'] == blue_product.name
@@ -235,7 +235,7 @@ def test_filter_product_by_category(user_api_client, product):
     category = product.category
     query = """
     query getProducts($categoryId: ID) {
-        products(categories: [$categoryId], first: 1) {
+        skills(categories: [$categoryId], first: 1) {
             edges {
                 node {
                     name
@@ -248,7 +248,7 @@ def test_filter_product_by_category(user_api_client, product):
         'categoryId': graphene.Node.to_global_id('Category', category.id)}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    product_data = content['data']['products']['edges'][0]['node']
+    product_data = content['data']['skills']['edges'][0]['node']
     assert product_data['name'] == product.name
 
 
@@ -317,7 +317,7 @@ def test_filter_products_by_attributes(user_api_client, product):
     filter_by = '%s:%s' % (product_attr.slug, attr_value.slug)
     query = """
     query {
-        products(attributes: ["%(filter_by)s"], first: 1) {
+        skills(attributes: ["%(filter_by)s"], first: 1) {
             edges {
                 node {
                     name
@@ -328,7 +328,7 @@ def test_filter_products_by_attributes(user_api_client, product):
     """ % {'filter_by': filter_by}
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    product_data = content['data']['products']['edges'][0]['node']
+    product_data = content['data']['skills']['edges'][0]['node']
     assert product_data['name'] == product.name
 
 
@@ -339,7 +339,7 @@ def test_filter_products_by_categories(
     product.save()
     query = """
     query {
-        products(categories: ["%(category_id)s"], first: 1) {
+        skills(categories: ["%(category_id)s"], first: 1) {
             edges {
                 node {
                     name
@@ -350,7 +350,7 @@ def test_filter_products_by_categories(
     """ % {'category_id': graphene.Node.to_global_id('Category', category.id)}
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    product_data = content['data']['products']['edges'][0]['node']
+    product_data = content['data']['skills']['edges'][0]['node']
     assert product_data['name'] == product.name
 
 
@@ -359,7 +359,7 @@ def test_filter_products_by_collections(
     collection.products.add(product)
     query = """
     query {
-        products(collections: ["%(collection_id)s"], first: 1) {
+        skills(collections: ["%(collection_id)s"], first: 1) {
             edges {
                 node {
                     name
@@ -371,7 +371,7 @@ def test_filter_products_by_collections(
         'Collection', collection.id)}
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    product_data = content['data']['products']['edges'][0]['node']
+    product_data = content['data']['skills']['edges'][0]['node']
     assert product_data['name'] == product.name
 
 
@@ -389,7 +389,7 @@ def test_sort_products(user_api_client, product):
 
     query = """
     query {
-        products(sortBy: %(sort_by_product_order)s, first: 2) {
+        skills(sortBy: %(sort_by_product_order)s, first: 2) {
             edges {
                 node {
                     price {
@@ -406,32 +406,32 @@ def test_sort_products(user_api_client, product):
         'sort_by_product_order': '{field: PRICE, direction:ASC}'}
     response = user_api_client.post_graphql(asc_price_query)
     content = get_graphql_content(response)
-    price_0 = content['data']['products']['edges'][0]['node']['price']['amount']
-    price_1 = content['data']['products']['edges'][1]['node']['price']['amount']
+    price_0 = content['data']['skills']['edges'][0]['node']['price']['amount']
+    price_1 = content['data']['skills']['edges'][1]['node']['price']['amount']
     assert price_0 < price_1
 
     desc_price_query = query % {
         'sort_by_product_order': '{field: PRICE, direction:DESC}'}
     response = user_api_client.post_graphql(desc_price_query)
     content = get_graphql_content(response)
-    price_0 = content['data']['products']['edges'][0]['node']['price']['amount']
-    price_1 = content['data']['products']['edges'][1]['node']['price']['amount']
+    price_0 = content['data']['skills']['edges'][0]['node']['price']['amount']
+    price_1 = content['data']['skills']['edges'][1]['node']['price']['amount']
     assert price_0 > price_1
 
     asc_date_query = query % {
         'sort_by_product_order': '{field: DATE, direction:ASC}'}
     response = user_api_client.post_graphql(asc_date_query)
     content = get_graphql_content(response)
-    date_0 = content['data']['products']['edges'][0]['node']['updatedAt'] ## parse_datetime
-    date_1 = content['data']['products']['edges'][1]['node']['updatedAt']
+    date_0 = content['data']['skills']['edges'][0]['node']['updatedAt'] ## parse_datetime
+    date_1 = content['data']['skills']['edges'][1]['node']['updatedAt']
     assert parse_datetime(date_0) < parse_datetime(date_1)
 
     desc_date_query = query % {
         'sort_by_product_order': '{field: DATE, direction:DESC}'}
     response = user_api_client.post_graphql(desc_date_query)
     content = get_graphql_content(response)
-    date_0 = content['data']['products']['edges'][0]['node']['updatedAt']
-    date_1 = content['data']['products']['edges'][1]['node']['updatedAt']
+    date_0 = content['data']['skills']['edges'][0]['node']['updatedAt']
+    date_1 = content['data']['skills']['edges'][1]['node']['updatedAt']
     assert parse_datetime(date_0) > parse_datetime(date_1)
 
 
@@ -931,13 +931,13 @@ def test_delete_product(staff_api_client, product, permission_manage_products):
 def test_product_type(user_api_client, product_type):
     query = """
     query {
-        productTypes(first: 20) {
+        skillTypes(first: 20) {
             totalCount
             edges {
                 node {
                     id
                     name
-                    products(first: 1) {
+                    skills(first: 1) {
                         edges {
                             node {
                                 id
@@ -952,8 +952,8 @@ def test_product_type(user_api_client, product_type):
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
     no_product_types = ProductType.objects.count()
-    assert content['data']['productTypes']['totalCount'] == no_product_types
-    assert len(content['data']['productTypes']['edges']) == no_product_types
+    assert content['data']['skillTypes']['totalCount'] == no_product_types
+    assert len(content['data']['skillTypes']['edges']) == no_product_types
 
 
 def test_product_type_query(
@@ -963,7 +963,7 @@ def test_product_type_query(
             query getProductType($id: ID!) {
                 productType(id: $id) {
                     name
-                    products(first: 20) {
+                    skills(first: 20) {
                         totalCount
                         edges {
                             node {
@@ -984,13 +984,13 @@ def test_product_type_query(
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     data = content['data']
-    assert data['productType']['products']['totalCount'] == no_products - 1
+    assert data['productType']['skills']['totalCount'] == no_products - 1
 
     staff_api_client.user.user_permissions.add(permission_manage_products)
     response = staff_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     data = content['data']
-    assert data['productType']['products']['totalCount'] == no_products
+    assert data['productType']['skills']['totalCount'] == no_products
     assert data['productType']['taxRate'] == product_type.tax_rate.upper()
 
 
@@ -1176,7 +1176,7 @@ def test_product_image_create_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('remote_works.graphql.skill.mutations.products.'
+        ('remote_works.graphql.skill.mutations.skills.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -1243,7 +1243,7 @@ def test_product_image_update_mutation(
 
     mock_create_thumbnails = Mock(return_value=None)
     monkeypatch.setattr(
-        ('remote_works.graphql.skill.mutations.products.'
+        ('remote_works.graphql.skill.mutations.skills.'
          'create_product_thumbnails.delay'),
         mock_create_thumbnails)
 
@@ -1565,7 +1565,7 @@ def test_product_variant_price(
 def test_stock_availability_filter(user_api_client, product):
     query = """
     query Products($stockAvailability: StockAvailability) {
-        products(stockAvailability: $stockAvailability, first: 1) {
+        skills(stockAvailability: $stockAvailability, first: 1) {
             totalCount
             edges {
                 node {
@@ -1576,26 +1576,26 @@ def test_stock_availability_filter(user_api_client, product):
     }
     """
 
-    # fetch products in stock
+    # fetch skills in stock
     variables = {'stockAvailability': StockAvailability.IN_STOCK.name}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    assert content['data']['products']['totalCount'] == 1
+    assert content['data']['skills']['totalCount'] == 1
 
     # fetch out of stock
     variables = {'stockAvailability': StockAvailability.OUT_OF_STOCK.name}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    assert content['data']['products']['totalCount'] == 0
+    assert content['data']['skills']['totalCount'] == 0
 
     # Change skill stock availability and test again
     product.variants.update(quantity=0)
 
-    # There should be no products in stock
+    # There should be no skills in stock
     variables = {'stockAvailability': StockAvailability.IN_STOCK.name}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
-    assert content['data']['products']['totalCount'] == 0
+    assert content['data']['skills']['totalCount'] == 0
 
 
 def test_report_product_sales(

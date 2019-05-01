@@ -38,10 +38,10 @@ class FulfillmentStatus:
 
     CHOICES = [
         (FULFILLED, pgettext_lazy(
-            'Status for a group of products in an order marked as fulfilled',
+            'Status for a group of skills in an order marked as fulfilled',
             'Fulfilled')),
         (CANCELED, pgettext_lazy(
-            'Status for a fulfilled group of products in an order marked '
+            'Status for a fulfilled group of skills in an order marked '
             'as canceled',
             'Canceled'))]
 

@@ -18,7 +18,7 @@ class Command(BaseCommand):
         self.stdout.write('Products thumbnails generation:')
         warmer = VersatileImageFieldWarmer(
             instance_or_queryset=ProductImage.objects.all(),
-            rendition_key_set='products', image_attr='image', verbose=True)
+            rendition_key_set='skills', image_attr='image', verbose=True)
         num_created, failed_to_create = warmer.warm()
         self.log_failed_images(failed_to_create)
 

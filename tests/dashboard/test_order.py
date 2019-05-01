@@ -600,7 +600,7 @@ def test_view_create_from_draft_order_empty_order(admin_client, draft_order):
     order.refresh_from_db()
     assert order.status == OrderStatus.DRAFT
     errors = get_form_errors(response)
-    assert 'Could not create order without any products' in errors
+    assert 'Could not create order without any skills' in errors
 
 
 def test_view_create_from_draft_order_not_draft_order(

@@ -29,7 +29,7 @@ class SiteSettingsForm(forms.ModelForm):
                 'Description', 'Description'),
             'track_inventory_by_default': pgettext_lazy(
                 'Inventory tracking by default settings toggle label',
-                'Enable inventory tracking for newly created products'),
+                'Enable inventory tracking for newly created skills'),
             'default_weight_unit': pgettext_lazy(
                 'Default weight unit', 'Default weight unit')}
         help_texts = {

@@ -26,11 +26,11 @@ class SkillOrderField(graphene.Enum):
     @property
     def description(self):
         if self == SkillOrderField.NAME:
-            return 'Sort products by name.'
+            return 'Sort skills by name.'
         if self == SkillOrderField.PRICE:
-            return 'Sort products by price.'
+            return 'Sort skills by price.'
         if self == SkillOrderField.DATE:
-            return 'Sort products by update date.'
+            return 'Sort skills by update date.'
         raise ValueError('Unsupported enum value: %s' % self.value)
 
 

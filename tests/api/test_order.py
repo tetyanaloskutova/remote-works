@@ -413,7 +413,7 @@ def test_can_finalize_draft_order_wrong_shipping(order_with_lines):
 
 def test_can_finalize_draft_order_no_order_lines(order):
     errors = can_finalize_draft_order(order, [])
-    assert errors[0].message == 'Could not create order without any products.'
+    assert errors[0].message == 'Could not create order without any skills.'
 
 
 def test_can_finalize_draft_order_non_existing_variant(order_with_lines):
@@ -427,7 +427,7 @@ def test_can_finalize_draft_order_non_existing_variant(order_with_lines):
     errors = can_finalize_draft_order(order, [])
     assert (
         errors[0].message ==
-        'Could not create orders with non-existing products.')
+        'Could not create orders with non-existing skills.')
 
 
 def test_draft_order_complete(

@@ -25,7 +25,7 @@ def test_collections_query(
                         name
                         slug
                         description
-                        products {
+                        skills {
                             totalCount
                         }
                     }
@@ -44,7 +44,7 @@ def test_collections_query(
     assert collection_data['name'] == collection.name
     assert collection_data['slug'] == collection.slug
     assert collection_data['description'] == collection.description
-    assert collection_data['products']['totalCount'] == collection.products.count()
+    assert collection_data['skills']['totalCount'] == collection.products.count()
 
     # query all collections only as a staff user with proper permissions
     staff_api_client.user.user_permissions.add(permission_manage_products)
@@ -59,7 +59,7 @@ def test_create_collection(
     query = """
         mutation createCollection(
                 $name: String!, $slug: String!, $description: String,
-                $descriptionJson: JSONString, $products: [ID],
+                $descriptionJson: JSONString, $skills: [ID],
                 $backgroundImage: Upload!, $backgroundImageAlt: String,
                 $isPublished: Boolean!, $publicationDate: Date) {
             collectionCreate(
@@ -68,7 +68,7 @@ def test_create_collection(
                     slug: $slug,
                     description: $description,
                     descriptionJson: $descriptionJson,
-                    products: $products,
+                    skills: $skills,
                     backgroundImage: $backgroundImage,
                     backgroundImageAlt: $backgroundImageAlt,
                     isPublished: $isPublished,
@@ -78,7 +78,7 @@ def test_create_collection(
                     slug
                     description
                     descriptionJson
-                    products {
+                    skills {
                         totalCount
                     }
                     publicationDate
@@ -107,7 +107,7 @@ def test_create_collection(
     publication_date = date.today()
     variables = {
         'name': name, 'slug': slug, 'description': description,
-        'descriptionJson': description_json, 'products': product_ids,
+        'descriptionJson': description_json, 'skills': product_ids,
         'backgroundImage': image_name, 'backgroundImageAlt': image_alt,
         'isPublished': True, 'publicationDate': publication_date}
     body = get_multipart_request_body(query, variables, image_file, image_name)
@@ -120,7 +120,7 @@ def test_create_collection(
     assert data['description'] == description
     assert data['descriptionJson'] == description_json
     assert data['publicationDate'] == publication_date.isoformat()
-    assert data['products']['totalCount'] == len(product_ids)
+    assert data['skills']['totalCount'] == len(product_ids)
     collection = Collection.objects.get(slug=slug)
     assert collection.background_image.file
     mock_create_thumbnails.assert_called_once_with(collection.pk)
@@ -131,9 +131,9 @@ def test_create_collection_without_background_image(
         monkeypatch, staff_api_client, product_list, permission_manage_products):
     query = """
         mutation createCollection(
-            $name: String!, $slug: String!, $products: [ID], $isPublished: Boolean!) {
+            $name: String!, $slug: String!, $skills: [ID], $isPublished: Boolean!) {
             collectionCreate(
-                input: {name: $name, slug: $slug, products: $products, isPublished: $isPublished}) {
+                input: {name: $name, slug: $slug, skills: $skills, isPublished: $isPublished}) {
                 errors {
                     field
                     message
@@ -326,10 +326,10 @@ def test_add_products_to_collection(
         permission_manage_products):
     query = """
         mutation collectionAddProducts(
-            $id: ID!, $products: [ID]!) {
-            collectionAddProducts(collectionId: $id, products: $products) {
+            $id: ID!, $skills: [ID]!) {
+            collectionAddProducts(collectionId: $id, skills: $skills) {
                 collection {
-                    products {
+                    skills {
                         totalCount
                     }
                 }
@@ -340,13 +340,13 @@ def test_add_products_to_collection(
     product_ids = [
         to_global_id('Product', product.pk) for product in product_list]
     no_products_before = collection.products.count()
-    variables = {'id': collection_id, 'products': product_ids}
+    variables = {'id': collection_id, 'skills': product_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['collectionAddProducts']['collection']
     assert data[
-        'products']['totalCount'] == no_products_before + len(product_ids)
+        'skills']['totalCount'] == no_products_before + len(product_ids)
 
 
 def test_remove_products_from_collection(
@@ -354,10 +354,10 @@ def test_remove_products_from_collection(
         permission_manage_products):
     query = """
         mutation collectionRemoveProducts(
-            $id: ID!, $products: [ID]!) {
-            collectionRemoveProducts(collectionId: $id, products: $products) {
+            $id: ID!, $skills: [ID]!) {
+            collectionRemoveProducts(collectionId: $id, skills: $skills) {
                 collection {
-                    products {
+                    skills {
                         totalCount
                     }
                 }
@@ -369,13 +369,13 @@ def test_remove_products_from_collection(
     product_ids = [
         to_global_id('Product', product.pk) for product in product_list]
     no_products_before = collection.products.count()
-    variables = {'id': collection_id, 'products': product_ids}
+    variables = {'id': collection_id, 'skills': product_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['collectionRemoveProducts']['collection']
     assert data[
-        'products']['totalCount'] == no_products_before - len(product_ids)
+        'skills']['totalCount'] == no_products_before - len(product_ids)
 
 
 FETCH_COLLECTION_QUERY = """

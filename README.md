@@ -85,3 +85,11 @@ npm run build-emails
 Start the development server:
 
 python manage.py runserver
+
+
+# Installation on Heroku
+Or launch the demo on a free Heroku instance.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+Login credentials: `admin@example.com`/`admin`

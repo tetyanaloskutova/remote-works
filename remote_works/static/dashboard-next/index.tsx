@@ -37,8 +37,8 @@ import i18n from "./i18n";
 import { NotFound } from "./NotFound";
 import OrdersSection from "./orders";
 import PageSection from "./pages";
-import ProductSection from "./products";
-import ProductTypesSection from "./productTypes";
+import SkillSection from "./products";
+import SkillTypesSection from "./productTypes";
 import SiteSettingsSection from "./siteSettings";
 import StaffSection from "./staff";
 import TaxesSection from "./taxes";
@@ -163,12 +163,12 @@ render(
                             <SectionRoute
                               permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                               path="/products"
-                              component={ProductSection}
+                              component={SkillSection}
                             />
                             <SectionRoute
                               permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                               path="/product-types"
-                              component={ProductTypesSection}
+                              component={SkillTypesSection}
                             />
                             <SectionRoute
                               permissions={[PermissionEnum.MANAGE_STAFF]}

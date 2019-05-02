@@ -76,7 +76,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderProductAddDialogProps extends WithStyles<typeof styles> {
+interface OrderSkillAddDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   products: OrderVariantSearch_products_edges_node[];
@@ -116,8 +116,8 @@ function isVariantSelected(
   );
 }
 
-const OrderProductAddDialog = withStyles(styles, {
-  name: "OrderProductAddDialog"
+const OrderSkillAddDialog = withStyles(styles, {
+  name: "OrderSkillAddDialog"
 })(
   ({
     classes,
@@ -130,7 +130,7 @@ const OrderProductAddDialog = withStyles(styles, {
     onFetchMore,
     onClose,
     onSubmit
-  }: OrderProductAddDialogProps) => (
+  }: OrderSkillAddDialogProps) => (
     <Dialog
       open={open}
       classes={{ paper: classes.overflow }}
@@ -146,17 +146,17 @@ const OrderProductAddDialog = withStyles(styles, {
                 )
               )
             : [];
-          const selectedProducts = products
+          const selectedSkills = products
             ? products.map(product =>
                 hasAllVariantsSelected(product.variants, data.variants)
               )
             : [];
 
-          const onProductAdd = (
+          const onSkillAdd = (
             product: OrderVariantSearch_products_edges_node,
             productIndex: number
           ) =>
-            selectedProducts[productIndex]
+            selectedSkills[productIndex]
               ? change({
                   target: {
                     name: "variants",
@@ -215,7 +215,7 @@ const OrderProductAddDialog = withStyles(styles, {
                       name="query"
                       value={data.query}
                       onChange={event => change(event, () => fetch(data.query))}
-                      label={i18n.t("Search Products", {
+                      label={i18n.t("Search Skills", {
                         context: "product search input label"
                       })}
                       placeholder={i18n.t(
@@ -260,10 +260,10 @@ const OrderProductAddDialog = withStyles(styles, {
                                 className={classes.productCheckboxCell}
                               >
                                 <Checkbox
-                                  checked={selectedProducts[productIndex]}
+                                  checked={selectedSkills[productIndex]}
                                   disabled={loading}
                                   onChange={() =>
-                                    onProductAdd(product, productIndex)
+                                    onSkillAdd(product, productIndex)
                                   }
                                 />
                               </TableCell>
@@ -348,5 +348,5 @@ const OrderProductAddDialog = withStyles(styles, {
     </Dialog>
   )
 );
-OrderProductAddDialog.displayName = "OrderProductAddDialog";
-export default OrderProductAddDialog;
+OrderSkillAddDialog.displayName = "OrderSkillAddDialog";
+export default OrderSkillAddDialog;

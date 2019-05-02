@@ -149,7 +149,7 @@ CREATE_ATTRIBUTES_QUERY = """
 def test_create_attribute_and_attribute_values(
         staff_api_client, permission_manage_products, product_type):
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('ProductType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', product_type.id)
 
     attribute_name = 'Example name'
     name = 'Value name'
@@ -185,7 +185,7 @@ def test_create_attribute_and_attribute_values_errors(
         staff_api_client, name_1, name_2, error_msg,
         permission_manage_products, product_type):
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('ProductType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', product_type.id)
     variables = {
         'name': 'Example name', 'id': id,
         'type': AttributeTypeEnum.PRODUCT.name,
@@ -207,7 +207,7 @@ def test_create_variant_attribute(
     product_type.save()
 
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('ProductType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', product_type.id)
     attribute_name = 'Example name'
     variables = {
         'name': attribute_name, 'id': id,

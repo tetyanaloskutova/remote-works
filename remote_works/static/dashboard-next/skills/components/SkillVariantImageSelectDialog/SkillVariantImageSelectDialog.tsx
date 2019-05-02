@@ -13,7 +13,7 @@ import * as classNames from "classnames";
 import * as React from "react";
 
 import i18n from "../../../i18n";
-import { ProductImage } from "../../types/ProductImage";
+import { SkillImage } from "../../types/SkillImage";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -50,17 +50,17 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantImageSelectDialogProps
+interface SkillVariantImageSelectDialogProps
   extends WithStyles<typeof styles> {
-  images?: ProductImage[];
+  images?: SkillImage[];
   selectedImages?: string[];
   open: boolean;
   onClose();
   onImageSelect(id: string);
 }
 
-const ProductVariantImageSelectDialog = withStyles(styles, {
-  name: "ProductVariantImageSelectDialog"
+const SkillVariantImageSelectDialog = withStyles(styles, {
+  name: "SkillVariantImageSelectDialog"
 })(
   ({
     classes,
@@ -69,7 +69,7 @@ const ProductVariantImageSelectDialog = withStyles(styles, {
     selectedImages,
     onClose,
     onImageSelect
-  }: ProductVariantImageSelectDialogProps) => (
+  }: SkillVariantImageSelectDialogProps) => (
     <Dialog open={open}>
       <DialogTitle>
         {i18n.t("Image selection", { context: "title" })}
@@ -103,5 +103,5 @@ const ProductVariantImageSelectDialog = withStyles(styles, {
     </Dialog>
   )
 );
-ProductVariantImageSelectDialog.displayName = "ProductVariantImageSelectDialog";
-export default ProductVariantImageSelectDialog;
+SkillVariantImageSelectDialog.displayName = "SkillVariantImageSelectDialog";
+export default SkillVariantImageSelectDialog;

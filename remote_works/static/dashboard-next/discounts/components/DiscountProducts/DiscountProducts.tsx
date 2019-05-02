@@ -27,10 +27,10 @@ import { ListProps } from "../../../types";
 import { SaleDetails_sale } from "../../types/SaleDetails";
 import { VoucherDetails_voucher } from "../../types/VoucherDetails";
 
-export interface SaleProductsProps extends ListProps {
+export interface SaleSkillsProps extends ListProps {
   discount: SaleDetails_sale | VoucherDetails_voucher;
-  onProductAssign: () => void;
-  onProductUnassign: (id: string) => void;
+  onSkillAssign: () => void;
+  onSkillUnassign: (id: string) => void;
 }
 
 const styles = (theme: Theme) =>
@@ -51,8 +51,8 @@ const styles = (theme: Theme) =>
       width: "40%"
     }
   });
-const DiscountProducts = withStyles(styles, {
-  name: "DiscountProducts"
+const DiscountSkills = withStyles(styles, {
+  name: "DiscountSkills"
 })(
   ({
     discount: sale,
@@ -61,17 +61,17 @@ const DiscountProducts = withStyles(styles, {
     pageInfo,
     onRowClick,
     onPreviousPage,
-    onProductAssign,
-    onProductUnassign,
+    onSkillAssign,
+    onSkillUnassign,
     onNextPage
-  }: SaleProductsProps & WithStyles<typeof styles>) => (
+  }: SaleSkillsProps & WithStyles<typeof styles>) => (
     <Card>
       <CardTitle
-        title={i18n.t("Products assigned to {{ saleName }}", {
+        title={i18n.t("Skills assigned to {{ saleName }}", {
           saleName: maybe(() => sale.name)
         })}
         toolbar={
-          <Button variant="flat" color="secondary" onClick={onProductAssign}>
+          <Button variant="flat" color="secondary" onClick={onSkillAssign}>
             {i18n.t("Assign products")}
           </Button>
         }
@@ -81,10 +81,10 @@ const DiscountProducts = withStyles(styles, {
           <TableRow>
             <TableCell />
             <TableCell className={classes.wideColumn}>
-              {i18n.t("Product name")}
+              {i18n.t("Skill name")}
             </TableCell>
             <TableCell className={classes.textRight}>
-              {i18n.t("Product Type")}
+              {i18n.t("Skill Type")}
             </TableCell>
             <TableCell className={classes.textRight}>
               {i18n.t("Published")}
@@ -148,7 +148,7 @@ const DiscountProducts = withStyles(styles, {
                     disabled={!product || disabled}
                     onClick={event => {
                       event.stopPropagation();
-                      onProductUnassign(product.id);
+                      onSkillUnassign(product.id);
                     }}
                   >
                     <DeleteIcon color="secondary" />
@@ -167,5 +167,5 @@ const DiscountProducts = withStyles(styles, {
     </Card>
   )
 );
-DiscountProducts.displayName = "DiscountProducts";
-export default DiscountProducts;
+DiscountSkills.displayName = "DiscountSkills";
+export default DiscountSkills;

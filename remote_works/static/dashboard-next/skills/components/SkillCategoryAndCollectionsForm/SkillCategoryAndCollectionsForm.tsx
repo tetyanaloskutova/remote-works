@@ -8,7 +8,7 @@ import PageHeader from "../../../components/PageHeader";
 import SingleSelectField from "../../../components/SingleSelectField";
 import i18n from "../../../i18n";
 
-interface ProductCategoryAndCollectionsFormProps {
+interface SkillCategoryAndCollectionsFormProps {
   categories?: Array<{ value: string; label: string }>;
   collections?: Array<{ value: string; label: string }>;
   errors: { [key: string]: string };
@@ -18,7 +18,7 @@ interface ProductCategoryAndCollectionsFormProps {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const ProductCategoryAndCollectionsForm = ({
+const SkillCategoryAndCollectionsForm = ({
   categories,
   collections,
   errors,
@@ -26,7 +26,7 @@ const ProductCategoryAndCollectionsForm = ({
   category,
   loading,
   onChange
-}: ProductCategoryAndCollectionsFormProps) => (
+}: SkillCategoryAndCollectionsFormProps) => (
   <Card>
     <PageHeader title={i18n.t("Organisation")} />
     <CardContent>
@@ -54,6 +54,6 @@ const ProductCategoryAndCollectionsForm = ({
     </CardContent>
   </Card>
 );
-ProductCategoryAndCollectionsForm.displayName =
-  "ProductCategoryAndCollectionsForm";
-export default ProductCategoryAndCollectionsForm;
+SkillCategoryAndCollectionsForm.displayName =
+  "SkillCategoryAndCollectionsForm";
+export default SkillCategoryAndCollectionsForm;

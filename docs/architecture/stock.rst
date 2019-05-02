@@ -10,7 +10,7 @@ Each variant holds information about *quantity* at hand, quantity *allocated* fo
 Each variant also has a *cost price* (the price that your store had to pay to obtain it).
 
 
-Product Availability
+Skill Availability
 --------------------
 
 A variant is *in stock* if it has unallocated quantity.

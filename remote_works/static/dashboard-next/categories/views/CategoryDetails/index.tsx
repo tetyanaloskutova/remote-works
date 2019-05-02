@@ -140,7 +140,7 @@ export const CategoryDetails: React.StatelessComponent<
                                   onAddCategory={() =>
                                     navigate(categoryAddUrl(id))
                                   }
-                                  onAddProduct={() => navigate(productAddUrl)}
+                                  onAddSkill={() => navigate(productAddUrl)}
                                   onBack={() =>
                                     navigate(
                                       maybe(
@@ -178,7 +178,7 @@ export const CategoryDetails: React.StatelessComponent<
                                   onNextPage={loadNextPage}
                                   onPreviousPage={loadPreviousPage}
                                   pageInfo={pageInfo}
-                                  onProductClick={id => () =>
+                                  onSkillClick={id => () =>
                                     navigate(productUrl(id))}
                                   onSubmit={formData =>
                                     updateCategory({

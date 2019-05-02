@@ -3,12 +3,12 @@ import gql from "graphql-tag";
 import { TypedMutation } from "../mutations";
 import {
   collectionDetailsFragment,
-  collectionProductFragment
+  collectionSkillFragment
 } from "./queries";
 import {
-  CollectionAssignProduct,
-  CollectionAssignProductVariables
-} from "./types/CollectionAssignProduct";
+  CollectionAssignSkill,
+  CollectionAssignSkillVariables
+} from "./types/CollectionAssignSkill";
 import {
   CollectionUpdate,
   CollectionUpdateVariables
@@ -26,9 +26,9 @@ import {
   RemoveCollectionVariables
 } from "./types/RemoveCollection";
 import {
-  UnassignCollectionProduct,
-  UnassignCollectionProductVariables
-} from "./types/UnassignCollectionProduct";
+  UnassignCollectionSkill,
+  UnassignCollectionSkillVariables
+} from "./types/UnassignCollectionSkill";
 
 const collectionUpdate = gql`
   ${collectionDetailsFragment}
@@ -83,9 +83,9 @@ export const TypedCollectionUpdateWithHomepageMutation = TypedMutation<
   CollectionUpdateWithHomepageVariables
 >(collectionUpdateWithHomepage);
 
-const assignCollectionProduct = gql`
-  ${collectionProductFragment}
-  mutation CollectionAssignProduct(
+const assignCollectionSkill = gql`
+  ${collectionSkillFragment}
+  mutation CollectionAssignSkill(
     $collectionId: ID!
     $productIds: [ID!]!
     $first: Int
@@ -93,7 +93,7 @@ const assignCollectionProduct = gql`
     $last: Int
     $before: String
   ) {
-    collectionAddProducts(collectionId: $collectionId, products: $productIds) {
+    collectionAddSkills(collectionId: $collectionId, products: $productIds) {
       errors {
         field
         message
@@ -103,7 +103,7 @@ const assignCollectionProduct = gql`
         products(first: $first, after: $after, before: $before, last: $last) {
           edges {
             node {
-              ...CollectionProductFragment
+              ...CollectionSkillFragment
             }
           }
           pageInfo {
@@ -117,10 +117,10 @@ const assignCollectionProduct = gql`
     }
   }
 `;
-export const TypedCollectionAssignProductMutation = TypedMutation<
-  CollectionAssignProduct,
-  CollectionAssignProductVariables
->(assignCollectionProduct);
+export const TypedCollectionAssignSkillMutation = TypedMutation<
+  CollectionAssignSkill,
+  CollectionAssignSkillVariables
+>(assignCollectionSkill);
 
 const createCollection = gql`
   ${collectionDetailsFragment}
@@ -156,8 +156,8 @@ export const TypedCollectionRemoveMutation = TypedMutation<
   RemoveCollectionVariables
 >(removeCollection);
 
-const unassignCollectionProduct = gql`
-  mutation UnassignCollectionProduct(
+const unassignCollectionSkill = gql`
+  mutation UnassignCollectionSkill(
     $collectionId: ID!
     $productId: ID!
     $first: Int
@@ -165,7 +165,7 @@ const unassignCollectionProduct = gql`
     $last: Int
     $before: String
   ) {
-    collectionRemoveProducts(
+    collectionRemoveSkills(
       collectionId: $collectionId
       products: [$productId]
     ) {
@@ -199,7 +199,7 @@ const unassignCollectionProduct = gql`
     }
   }
 `;
-export const TypedUnassignCollectionProductMutation = TypedMutation<
-  UnassignCollectionProduct,
-  UnassignCollectionProductVariables
->(unassignCollectionProduct);
+export const TypedUnassignCollectionSkillMutation = TypedMutation<
+  UnassignCollectionSkill,
+  UnassignCollectionSkillVariables
+>(unassignCollectionSkill);

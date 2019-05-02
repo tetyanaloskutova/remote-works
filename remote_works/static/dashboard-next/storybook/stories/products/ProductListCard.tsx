@@ -5,7 +5,7 @@ import * as placeholderImage from "../../../../images/placeholder255x255.png";
 import { category as categoryFixture } from "../../../categories/fixtures";
 import { Filter } from "../../../components/TableFilter";
 import { pageListProps } from "../../../fixtures";
-import ProductListCard from "../../../products/components/ProductListCard";
+import SkillListCard from "../../../products/components/SkillListCard";
 import Decorator from "../../Decorator";
 
 const products = categoryFixture(placeholderImage).products.edges.map(
@@ -27,51 +27,51 @@ const filtersList: Filter[] = [
   }
 ];
 
-storiesOf("Views / Products / Product list", module)
+storiesOf("Views / Skills / Skill list", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <ProductListCard
+    <SkillListCard
       filtersList={[]}
       currentTab="all"
       products={products}
       {...pageListProps.default}
-      onAllProducts={() => undefined}
+      onAllSkills={() => undefined}
       onAvailable={() => undefined}
       onOfStock={() => undefined}
       onCustomFilter={() => undefined}
     />
   ))
   .add("with custom filters", () => (
-    <ProductListCard
+    <SkillListCard
       products={products}
       {...pageListProps.default}
       filtersList={filtersList}
       currentTab="custom"
-      onAllProducts={() => undefined}
+      onAllSkills={() => undefined}
       onAvailable={() => undefined}
       onOfStock={() => undefined}
       onCustomFilter={() => undefined}
     />
   ))
   .add("loading", () => (
-    <ProductListCard
+    <SkillListCard
       {...pageListProps.loading}
       products={undefined}
       filtersList={undefined}
       currentTab={undefined}
-      onAllProducts={() => undefined}
+      onAllSkills={() => undefined}
       onAvailable={() => undefined}
       onOfStock={() => undefined}
       onCustomFilter={() => undefined}
     />
   ))
   .add("no data", () => (
-    <ProductListCard
+    <SkillListCard
       products={[]}
       {...pageListProps.default}
       filtersList={[]}
       currentTab="all"
-      onAllProducts={() => undefined}
+      onAllSkills={() => undefined}
       onAvailable={() => undefined}
       onOfStock={() => undefined}
       onCustomFilter={() => undefined}

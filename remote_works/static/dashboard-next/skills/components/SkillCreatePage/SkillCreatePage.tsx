@@ -11,11 +11,11 @@ import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 import SeoForm from "../../../components/SeoForm";
 import i18n from "../../../i18n";
 import { UserError } from "../../../types";
-import { ProductCreateData_productTypes_edges_node_productAttributes } from "../../types/ProductCreateData";
-import ProductAvailabilityForm from "../ProductAvailabilityForm";
-import ProductDetailsForm from "../ProductDetailsForm";
-import ProductOrganization from "../ProductOrganization";
-import ProductPricing from "../ProductPricing";
+import { SkillCreateData_productTypes_edges_node_productAttributes } from "../../types/SkillCreateData";
+import SkillAvailabilityForm from "../SkillAvailabilityForm";
+import SkillDetailsForm from "../SkillDetailsForm";
+import SkillOrganization from "../SkillOrganization";
+import SkillPricing from "../SkillPricing";
 
 interface ChoiceType {
   label: string;
@@ -40,7 +40,7 @@ export interface FormData {
       hasVariants: boolean;
       id: string;
       name: string;
-      productAttributes: ProductCreateData_productTypes_edges_node_productAttributes[];
+      productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
     };
   };
   seoDescription: string;
@@ -49,7 +49,7 @@ export interface FormData {
   stockQuantity: number;
 }
 
-interface ProductCreatePageProps {
+interface SkillCreatePageProps {
   errors: UserError[];
   collections?: Array<{
     id: string;
@@ -65,7 +65,7 @@ interface ProductCreatePageProps {
     id: string;
     name: string;
     hasVariants: boolean;
-    productAttributes: ProductCreateData_productTypes_edges_node_productAttributes[];
+    productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
   }>;
   header: string;
   saveButtonBarState: ConfirmButtonTransitionState;
@@ -76,8 +76,8 @@ interface ProductCreatePageProps {
   onSubmit?(data: FormData);
 }
 
-export const ProductCreatePage: React.StatelessComponent<
-  ProductCreatePageProps
+export const SkillCreatePage: React.StatelessComponent<
+  SkillCreatePageProps
 > = ({
   currency,
   disabled,
@@ -91,7 +91,7 @@ export const ProductCreatePage: React.StatelessComponent<
   saveButtonBarState,
   onBack,
   onSubmit
-}: ProductCreatePageProps) => {
+}: SkillCreatePageProps) => {
   const initialData: FormData = {
     attributes: [],
     available: false,
@@ -110,7 +110,7 @@ export const ProductCreatePage: React.StatelessComponent<
         hasVariants: false,
         id: "",
         name: "",
-        productAttributes: [] as ProductCreateData_productTypes_edges_node_productAttributes[]
+        productAttributes: [] as SkillCreateData_productTypes_edges_node_productAttributes[]
       }
     },
     publicationDate: "",
@@ -131,14 +131,14 @@ export const ProductCreatePage: React.StatelessComponent<
           <PageHeader title={header} onBack={onBack} />
           <Grid>
             <div>
-              <ProductDetailsForm
+              <SkillDetailsForm
                 data={data}
                 disabled={disabled}
                 errors={errors}
                 onChange={change}
               />
               <CardSpacer />
-              <ProductPricing
+              <SkillPricing
                 currency={currency}
                 data={data}
                 disabled={disabled}
@@ -158,7 +158,7 @@ export const ProductCreatePage: React.StatelessComponent<
               />
             </div>
             <div>
-              <ProductOrganization
+              <SkillOrganization
                 categories={
                   categories !== undefined && categories !== null
                     ? categories.map(category => ({
@@ -184,7 +184,7 @@ export const ProductCreatePage: React.StatelessComponent<
                 onChange={change}
               />
               <CardSpacer />
-              <ProductAvailabilityForm
+              <SkillAvailabilityForm
                 data={data}
                 errors={errors}
                 loading={disabled}
@@ -203,5 +203,5 @@ export const ProductCreatePage: React.StatelessComponent<
     </Form>
   );
 };
-ProductCreatePage.displayName = "ProductCreatePage";
-export default ProductCreatePage;
+SkillCreatePage.displayName = "SkillCreatePage";
+export default SkillCreatePage;

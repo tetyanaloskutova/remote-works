@@ -35,7 +35,7 @@ msgstr "\n"
 #: saleor/static/dashboard/js/components/bulk-actions.js:89
 msgid "item selected"
 msgid_plural "items selected"
-msgstr[0] "Producto seleccionado"
+msgstr[0] "Skillo seleccionado"
 msgstr[1] "Elementos seleccionados"
 
 #: saleor/static/dashboard/js/components/datepicker.js:4
@@ -373,6 +373,6 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 #: saleor/static/js/components/variantPicker/VariantPicker.js:167
-msgctxt "Product details primary action"
+msgctxt "Skill details primary action"
 msgid "Add to cart"
 msgstr "Agregar al carro"

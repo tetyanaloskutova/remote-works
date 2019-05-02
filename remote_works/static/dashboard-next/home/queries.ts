@@ -23,7 +23,7 @@ const home = gql`
     productsOutOfStock: products(stockAvailability: OUT_OF_STOCK) {
       totalCount
     }
-    productTopToday: reportProductSales(period: TODAY, first: 5) {
+    productTopToday: reportSkillSales(period: TODAY, first: 5) {
       edges {
         node {
           id

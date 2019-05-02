@@ -13,7 +13,7 @@ import { FormSpacer } from "../../../components/FormSpacer";
 import SingleAutocompleteSelectField from "../../../components/SingleAutocompleteSelectField";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
-import { ProductVariant_attributes_attribute } from "../../types/ProductVariant";
+import { SkillVariant_attributes_attribute } from "../../types/SkillVariant";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,8 +27,8 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantAttributesProps extends WithStyles<typeof styles> {
-  attributes?: ProductVariant_attributes_attribute[];
+interface SkillVariantAttributesProps extends WithStyles<typeof styles> {
+  attributes?: SkillVariant_attributes_attribute[];
   data: {
     attributes?: Array<{
       slug: string;
@@ -47,8 +47,8 @@ interface ProductVariantAttributesProps extends WithStyles<typeof styles> {
   ) => void;
 }
 
-const ProductVariantAttributes = withStyles(styles, {
-  name: "ProductVariantAttributes"
+const SkillVariantAttributes = withStyles(styles, {
+  name: "SkillVariantAttributes"
 })(
   ({
     attributes,
@@ -56,7 +56,7 @@ const ProductVariantAttributes = withStyles(styles, {
     data,
     disabled,
     onChange
-  }: ProductVariantAttributesProps) => {
+  }: SkillVariantAttributesProps) => {
     return (
       <Card className={classes.card}>
         <CardTitle title={i18n.t("General Information")} />
@@ -138,5 +138,5 @@ const ProductVariantAttributes = withStyles(styles, {
     );
   }
 );
-ProductVariantAttributes.displayName = "ProductVariantAttributes";
-export default ProductVariantAttributes;
+SkillVariantAttributes.displayName = "SkillVariantAttributes";
+export default SkillVariantAttributes;

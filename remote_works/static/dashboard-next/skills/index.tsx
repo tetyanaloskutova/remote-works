@@ -12,60 +12,60 @@ import {
   productVariantAddPath,
   productVariantEditPath
 } from "./urls";
-import ProductCreate from "./views/ProductCreate";
-import ProductImageComponent from "./views/ProductImage";
-import ProductListComponent, {
-  ProductListQueryParams
-} from "./views/ProductList";
-import ProductUpdateComponent from "./views/ProductUpdate";
-import ProductVariantComponent from "./views/ProductVariant";
-import ProductVariantCreateComponent from "./views/ProductVariantCreate";
+import SkillCreate from "./views/SkillCreate";
+import SkillImageComponent from "./views/SkillImage";
+import SkillListComponent, {
+  SkillListQueryParams
+} from "./views/SkillList";
+import SkillUpdateComponent from "./views/SkillUpdate";
+import SkillVariantComponent from "./views/SkillVariant";
+import SkillVariantCreateComponent from "./views/SkillVariantCreate";
 
-const ProductList: React.StatelessComponent<RouteComponentProps<any>> = ({
+const SkillList: React.StatelessComponent<RouteComponentProps<any>> = ({
   location
 }) => {
   const qs = parseQs(location.search.substr(1));
-  const params: ProductListQueryParams = {
+  const params: SkillListQueryParams = {
     after: qs.after,
     before: qs.before,
     status: qs.status
   };
-  return <ProductListComponent params={params} />;
+  return <SkillListComponent params={params} />;
 };
 
-const ProductUpdate: React.StatelessComponent<RouteComponentProps<any>> = ({
+const SkillUpdate: React.StatelessComponent<RouteComponentProps<any>> = ({
   match
 }) => {
-  return <ProductUpdateComponent id={decodeURIComponent(match.params.id)} />;
+  return <SkillUpdateComponent id={decodeURIComponent(match.params.id)} />;
 };
 
-const ProductVariant: React.StatelessComponent<RouteComponentProps<any>> = ({
+const SkillVariant: React.StatelessComponent<RouteComponentProps<any>> = ({
   match
 }) => {
   return (
-    <ProductVariantComponent
+    <SkillVariantComponent
       variantId={decodeURIComponent(match.params.variantId)}
       productId={decodeURIComponent(match.params.productId)}
     />
   );
 };
 
-const ProductImage: React.StatelessComponent<RouteComponentProps<any>> = ({
+const SkillImage: React.StatelessComponent<RouteComponentProps<any>> = ({
   match
 }) => {
   return (
-    <ProductImageComponent
+    <SkillImageComponent
       imageId={decodeURIComponent(match.params.imageId)}
       productId={decodeURIComponent(match.params.productId)}
     />
   );
 };
 
-const ProductVariantCreate: React.StatelessComponent<
+const SkillVariantCreate: React.StatelessComponent<
   RouteComponentProps<any>
 > = ({ match }) => {
   return (
-    <ProductVariantCreateComponent
+    <SkillVariantCreateComponent
       productId={decodeURIComponent(match.params.id)}
     />
   );
@@ -73,24 +73,24 @@ const ProductVariantCreate: React.StatelessComponent<
 
 const Component = () => (
   <>
-    <WindowTitle title={i18n.t("Products")} />
+    <WindowTitle title={i18n.t("Skills")} />
     <Switch>
-      <Route exact path={productListPath} component={ProductList} />
-      <Route exact path={productAddPath} component={ProductCreate} />
+      <Route exact path={productListPath} component={SkillList} />
+      <Route exact path={productAddPath} component={SkillCreate} />
       <Route
         exact
         path={productVariantAddPath(":id")}
-        component={ProductVariantCreate}
+        component={SkillVariantCreate}
       />
       <Route
         path={productVariantEditPath(":productId", ":variantId")}
-        component={ProductVariant}
+        component={SkillVariant}
       />
       <Route
         path={productImagePath(":productId", ":imageId")}
-        component={ProductImage}
+        component={SkillImage}
       />
-      <Route path={productPath(":id")} component={ProductUpdate} />
+      <Route path={productPath(":id")} component={SkillUpdate} />
     </Switch>
   </>
 );

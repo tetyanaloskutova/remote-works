@@ -1,16 +1,16 @@
 import * as React from "react";
 
 import { TypedMutationInnerProps } from "../../mutations";
-import { TypedProductImagesReorder } from "../mutations";
+import { TypedSkillImagesReorder } from "../mutations";
 import {
-  ProductImageReorder,
-  ProductImageReorderVariables
-} from "../types/ProductImageReorder";
+  SkillImageReorder,
+  SkillImageReorderVariables
+} from "../types/SkillImageReorder";
 
-interface ProductImagesReorderProviderProps
+interface SkillImagesReorderProviderProps
   extends TypedMutationInnerProps<
-    ProductImageReorder,
-    ProductImageReorderVariables
+    SkillImageReorder,
+    SkillImageReorderVariables
   > {
   productId: string;
   productImages: Array<{
@@ -19,29 +19,29 @@ interface ProductImagesReorderProviderProps
   }>;
 }
 
-const ProductImagesReorderProvider: React.StatelessComponent<
-  ProductImagesReorderProviderProps
+const SkillImagesReorderProvider: React.StatelessComponent<
+  SkillImagesReorderProviderProps
 > = ({ children, productId, productImages, ...mutationProps }) => (
-  <TypedProductImagesReorder {...mutationProps}>
+  <TypedSkillImagesReorder {...mutationProps}>
     {(mutate, mutationResult) =>
       children(opts => {
         const productImagesMap = productImages.reduce((prev, curr) => {
           prev[curr.id] = curr;
           return prev;
         }, {});
-        const newProductImages = opts.variables.imagesIds.map((id, index) => ({
-          __typename: "ProductImage",
+        const newSkillImages = opts.variables.imagesIds.map((id, index) => ({
+          __typename: "SkillImage",
           ...productImagesMap[id],
           sortOrder: index
         }));
         const optimisticResponse: typeof mutationResult["data"] = {
           productImageReorder: {
-            __typename: "ProductImageReorder",
+            __typename: "SkillImageReorder",
             errors: null,
             product: {
-              __typename: "Product",
+              __typename: "Skill",
               id: productId,
-              images: newProductImages
+              images: newSkillImages
             }
           }
         };
@@ -51,7 +51,7 @@ const ProductImagesReorderProvider: React.StatelessComponent<
         });
       }, mutationResult)
     }
-  </TypedProductImagesReorder>
+  </TypedSkillImagesReorder>
 );
 
-export default ProductImagesReorderProvider;
+export default SkillImagesReorderProvider;

@@ -17,17 +17,17 @@ import SingleSelectField from "../../../components/SingleSelectField";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { ProductCreateData_productTypes_edges_node_productAttributes } from "../../types/ProductCreateData";
+import { SkillCreateData_productTypes_edges_node_productAttributes } from "../../types/SkillCreateData";
 
 interface ChoiceType {
   label: string;
   value: string;
 }
-interface ProductType {
+interface SkillType {
   hasVariants: boolean;
   id: string;
   name: string;
-  productAttributes: ProductCreateData_productTypes_edges_node_productAttributes[];
+  productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
 }
 
 const styles = (theme: Theme) =>
@@ -47,7 +47,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductOrganizationProps extends WithStyles<typeof styles> {
+interface SkillOrganizationProps extends WithStyles<typeof styles> {
   categories?: Array<{ value: string; label: string }>;
   collections?: Array<{ value: string; label: string }>;
   data: {
@@ -63,7 +63,7 @@ interface ProductOrganizationProps extends WithStyles<typeof styles> {
         hasVariants: boolean;
         id: string;
         name: string;
-        productAttributes: ProductCreateData_productTypes_edges_node_productAttributes[];
+        productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
       };
     };
   };
@@ -75,13 +75,13 @@ interface ProductOrganizationProps extends WithStyles<typeof styles> {
       name?: string;
     };
   };
-  productTypes?: ProductType[];
+  productTypes?: SkillType[];
   fetchCategories: (query: string) => void;
   fetchCollections: (query: string) => void;
   onChange: (event: React.ChangeEvent<any>, cb?: () => void) => void;
 }
 
-const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
+const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
   ({
     categories,
     classes,
@@ -93,7 +93,7 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
     product,
     productTypes,
     onChange
-  }: ProductOrganizationProps) => {
+  }: SkillOrganizationProps) => {
     const unrolledAttributes = maybe(
       () => data.productType.value.productAttributes,
       []
@@ -119,12 +119,12 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
     };
     const getAttributeValues = (slug: string) =>
       unrolledAttributes.filter(a => a.slug === slug)[0].values;
-    const handleProductTypeSelect = (
+    const handleSkillTypeSelect = (
       event: React.ChangeEvent<{
         name: string;
         value: {
           label: string;
-          value: ProductType;
+          value: SkillType;
         };
       }>
     ) => {
@@ -168,12 +168,12 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
     };
     return (
       <Card className={classes.card}>
-        <CardTitle title={i18n.t("Organize Product")} />
+        <CardTitle title={i18n.t("Organize Skill")} />
         <CardContent>
           <SingleAutocompleteSelectField
             name="productType"
             disabled={!!product || disabled}
-            label={i18n.t("Product Type")}
+            label={i18n.t("Skill Type")}
             choices={
               product &&
               product.productType &&
@@ -184,7 +184,7 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
                 : []
             }
             value={data.productType}
-            onChange={handleProductTypeSelect}
+            onChange={handleSkillTypeSelect}
           />
           <FormSpacer />
           <SingleSelectField
@@ -261,5 +261,5 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
     );
   }
 );
-ProductOrganization.displayName = "ProductOrganization";
-export default ProductOrganization;
+SkillOrganization.displayName = "SkillOrganization";
+export default SkillOrganization;

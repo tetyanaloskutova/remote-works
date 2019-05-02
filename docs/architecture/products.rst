@@ -1,4 +1,4 @@
-Product Structure
+Skill Structure
 =================
 
 Before filling your shop with products we need to introduce 3 product concepts - *product types*, *products*, *product variants*.
@@ -17,12 +17,12 @@ Class Diagram
 
 .. image:: ../img/product_class_tree.png
 
-Product Variants
+Skill Variants
 ----------------
 
 Variants are the most important objects in your shop. All cart and stock operations use variants. Even if a product doesn't have multiple variants, the store will create one under the hood.
 
-Products
+Skills
 --------
 
 Describes common details of a few *product variants*. When the shop displays the category view, items on the list are distinct *products*. If the variant has no overridden property (example: price), the default value is taken from the *product*.
@@ -34,7 +34,7 @@ Describes common details of a few *product variants*. When the shop displays the
     Featured products are displayed on the front page.
 
 
-Product Types
+Skill Types
 ---------------
 
 Think about types as templates for your products. Multiple *products* can use the same product type.
@@ -94,18 +94,18 @@ Your shop sells Coffee from around the world. Customer can order 1kg, 500g and 2
                       * 250g
    =================  ===========
 
-.. table:: Product type
+.. table:: Skill type
 
    ======  ===================  =========  ==================  =========
-   Name    Product attributes   Variants?  Variant attributes  Shipping?
+   Name    Skill attributes   Variants?  Variant attributes  Shipping?
    ======  ===================  =========  ==================  =========
    Coffee  * Country of origin  Yes        * Package size      Yes
    ======  ===================  =========  ==================  =========
 
-.. table:: Product
+.. table:: Skill
 
    ============  ================  =================  =================================
-   Product type  Name              Country of origin  Description
+   Skill type  Name              Country of origin  Description
    ============  ================  =================  =================================
    Coffee        Best Java Coffee  Indonesia          Best coffee found on Java island!
    ============  ================  =================  =================================
@@ -137,19 +137,19 @@ You have great selection of online games items. Each item is unique, important d
    Max attack  ---
    ==========  ================
 
-.. table:: Product type
+.. table:: Skill type
 
    =========  ==================  =========  ==================  =========
-   Name       Product attributes  Variants?  Variant attributes  Shipping?
+   Name       Skill attributes  Variants?  Variant attributes  Shipping?
    =========  ==================  =========  ==================  =========
    Game item  * Game              No         ---                 No
               * Max attack
    =========  ==================  =========  ==================  =========
 
-.. table:: Products
+.. table:: Skills
 
    ============  ================  =====  ==============  ===========  =======================================================
-   Product type  Name              Price  Game            Max attack   Description
+   Skill type  Name              Price  Game            Max attack   Description
    ============  ================  =====  ==============  ===========  =======================================================
    Game item     Magic Fire Sword  $199   Kings Online    8000         Unique sword for any fighter. Set your enemies on fire!
    Game item     Rapid Pistol      $2500  Target Shooter  250          Fastest pistol in the whole game.

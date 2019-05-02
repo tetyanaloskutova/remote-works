@@ -50,7 +50,7 @@ export interface AttributeDelete_attributeDelete_productType_weight {
 }
 
 export interface AttributeDelete_attributeDelete_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;

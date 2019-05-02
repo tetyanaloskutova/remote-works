@@ -21,7 +21,7 @@ class Mutation(BaseMutation):
     def mutate(cls, root, info, product_id):
         errors = []
         product = cls.get_node_or_error(
-            info, product_id, errors, 'product_id', product_types.Product)
+            info, product_id, errors, 'product_id', product_types.Skill)
         if errors:
             return Mutation(errors=errors)
         return Mutation(name=product.name)
@@ -33,7 +33,7 @@ class Mutations(graphene.ObjectType):
 
 schema = graphene.Schema(
     mutation=Mutations,
-    types=[product_types.Product, product_types.ProductVariant])
+    types=[product_types.Skill, product_types.SkillVariant])
 
 
 def test_mutation_without_description_raises_error():
@@ -46,7 +46,7 @@ def test_mutation_without_description_raises_error():
 
 
 def test_resolve_id(product, schema_context):
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     query = """
         mutation testMutation($productId: ID!) {
             test(productId: $productId) {
@@ -104,7 +104,7 @@ def test_user_error_id_of_different_type(product, schema_context):
     # proper type. Providing correct ID but of different type than expected
     # should result in user error.
     variant = product.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
 
     variables = {'productId': variant_id}
     result = schema.execute(
@@ -113,7 +113,7 @@ def test_user_error_id_of_different_type(product, schema_context):
     user_errors = result.data['test']['errors']
     assert user_errors
     assert user_errors[0]['field'] == 'productId'
-    assert user_errors[0]['message'] == 'Must receive a Product id.'
+    assert user_errors[0]['message'] == 'Must receive a Skill id.'
 
 
 def test_get_node_or_error_returns_null_for_empty_id():

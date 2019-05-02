@@ -15,22 +15,22 @@ import { Home_activities_edges_node } from "../../types/Home";
 import { getActivityMessage } from "./activityMessages";
 
 const styles = createStyles({
-  loadingProducts: {
+  loadingSkills: {
     paddingBottom: "10px",
     paddingTop: "10px"
   },
-  noProducts: {
+  noSkills: {
     paddingBottom: "16px",
     paddingTop: "16px"
   }
 });
 
-interface HomeProductListCardProps extends WithStyles<typeof styles> {
+interface HomeSkillListCardProps extends WithStyles<typeof styles> {
   activities: Home_activities_edges_node[];
 }
 
-const HomeProductListCard = withStyles(styles, { name: "HomeProductListCard" })(
-  ({ classes, activities }: HomeProductListCardProps) => {
+const HomeSkillListCard = withStyles(styles, { name: "HomeSkillListCard" })(
+  ({ classes, activities }: HomeSkillListCardProps) => {
     return (
       <Card>
         <CardTitle title={i18n.t("Activity")} />
@@ -47,7 +47,7 @@ const HomeProductListCard = withStyles(styles, { name: "HomeProductListCard" })(
                     secondary={<DateTime date={activity.date} />}
                   />
                 ) : (
-                  <ListItemText className={classes.loadingProducts}>
+                  <ListItemText className={classes.loadingSkills}>
                     <Typography>
                       <Skeleton />
                     </Typography>
@@ -56,7 +56,7 @@ const HomeProductListCard = withStyles(styles, { name: "HomeProductListCard" })(
               </ListItem>
             ),
             () => (
-              <ListItem className={classes.noProducts}>
+              <ListItem className={classes.noSkills}>
                 <ListItemText
                   primary={
                     <Typography>{i18n.t("No activities found")}</Typography>
@@ -70,5 +70,5 @@ const HomeProductListCard = withStyles(styles, { name: "HomeProductListCard" })(
     );
   }
 );
-HomeProductListCard.displayName = "HomeProductListCard";
-export default HomeProductListCard;
+HomeSkillListCard.displayName = "HomeSkillListCard";
+export default HomeSkillListCard;

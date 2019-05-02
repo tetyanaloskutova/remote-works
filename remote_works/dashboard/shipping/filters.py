@@ -24,7 +24,7 @@ class ShippingZoneFilter(SortedFilterSet):
         field_name='countries', lookup_expr='contains',
         choices=COUNTRY_CODE_CHOICES)
     sort_by = OrderingFilter(
-        label=pgettext_lazy('Product list sorting filter label', 'Sort by'),
+        label=pgettext_lazy('Skill list sorting filter label', 'Sort by'),
         fields=SORT_BY_FIELDS.keys(),
         field_labels=SORT_BY_FIELDS)
 

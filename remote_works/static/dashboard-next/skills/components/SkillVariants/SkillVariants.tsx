@@ -23,8 +23,8 @@ import Skeleton from "../../../components/Skeleton";
 import StatusLabel from "../../../components/StatusLabel";
 import i18n from "../../../i18n";
 import { renderCollection } from "../../../misc";
-import { ProductDetails_product_variants } from "../../types/ProductDetails";
-import { ProductVariant_costPrice } from "../../types/ProductVariant";
+import { SkillDetails_product_variants } from "../../types/SkillDetails";
+import { SkillVariant_costPrice } from "../../types/SkillVariant";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -44,16 +44,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantsProps extends WithStyles<typeof styles> {
+interface SkillVariantsProps extends WithStyles<typeof styles> {
   disabled?: boolean;
-  variants: ProductDetails_product_variants[];
-  fallbackPrice?: ProductVariant_costPrice;
+  variants: SkillDetails_product_variants[];
+  fallbackPrice?: SkillVariant_costPrice;
   onAttributesEdit: () => void;
   onRowClick: (id: string) => () => void;
   onVariantAdd?();
 }
 
-export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
+export const SkillVariants = withStyles(styles, { name: "SkillVariants" })(
   ({
     classes,
     variants,
@@ -61,7 +61,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
     onAttributesEdit,
     onRowClick,
     onVariantAdd
-  }: ProductVariantsProps) => (
+  }: SkillVariantsProps) => (
     <Card>
       <CardTitle
         title={i18n.t("Variants")}
@@ -155,5 +155,5 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
     </Card>
   )
 );
-ProductVariants.displayName = "ProductVariants";
-export default ProductVariants;
+SkillVariants.displayName = "SkillVariants";
+export default SkillVariants;

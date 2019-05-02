@@ -31,7 +31,7 @@ const styles = (theme: Theme) =>
       paddingBottom: theme.spacing.unit * 2,
       paddingTop: theme.spacing.unit * 2
     },
-    noProducts: {
+    noSkills: {
       paddingBottom: 20,
       paddingTop: 20
     },
@@ -40,19 +40,19 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface HomeProductListProps extends WithStyles<typeof styles> {
-  topProducts: Home_productTopToday_edges_node[];
+interface HomeSkillListProps extends WithStyles<typeof styles> {
+  topSkills: Home_productTopToday_edges_node[];
   onRowClick: (productId: string, variantId: string) => void;
 }
 
-export const HomeProductList = withStyles(styles, { name: "HomeProductList" })(
-  ({ classes, topProducts, onRowClick }: HomeProductListProps) => (
+export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
+  ({ classes, topSkills, onRowClick }: HomeSkillListProps) => (
     <Card>
       <CardTitle title={i18n.t("Top products")} />
       <Table>
         <TableBody>
           {renderCollection(
-            topProducts,
+            topSkills,
             variant => (
               <TableRow
                 key={variant ? variant.id : "skeleton"}
@@ -114,7 +114,7 @@ export const HomeProductList = withStyles(styles, { name: "HomeProductList" })(
             ),
             () => (
               <TableRow>
-                <TableCell className={classes.noProducts}>
+                <TableCell className={classes.noSkills}>
                   <Typography>{i18n.t("No products found")}</Typography>
                 </TableCell>
               </TableRow>
@@ -126,5 +126,5 @@ export const HomeProductList = withStyles(styles, { name: "HomeProductList" })(
   )
 );
 
-HomeProductList.displayName = "HomeProductList";
-export default HomeProductList;
+HomeSkillList.displayName = "HomeSkillList";
+export default HomeSkillList;

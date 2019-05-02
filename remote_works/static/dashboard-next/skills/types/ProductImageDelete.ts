@@ -2,29 +2,29 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ProductImageDelete
+// GraphQL mutation operation: SkillImageDelete
 // ====================================================
 
-export interface ProductImageDelete_productImageDelete_product_images {
-  __typename: "ProductImage";
+export interface SkillImageDelete_productImageDelete_product_images {
+  __typename: "SkillImage";
   id: string;
 }
 
-export interface ProductImageDelete_productImageDelete_product {
-  __typename: "Product";
+export interface SkillImageDelete_productImageDelete_product {
+  __typename: "Skill";
   id: string;
-  images: (ProductImageDelete_productImageDelete_product_images | null)[] | null;
+  images: (SkillImageDelete_productImageDelete_product_images | null)[] | null;
 }
 
-export interface ProductImageDelete_productImageDelete {
-  __typename: "ProductImageDelete";
-  product: ProductImageDelete_productImageDelete_product | null;
+export interface SkillImageDelete_productImageDelete {
+  __typename: "SkillImageDelete";
+  product: SkillImageDelete_productImageDelete_product | null;
 }
 
-export interface ProductImageDelete {
-  productImageDelete: ProductImageDelete_productImageDelete | null;
+export interface SkillImageDelete {
+  productImageDelete: SkillImageDelete_productImageDelete | null;
 }
 
-export interface ProductImageDeleteVariables {
+export interface SkillImageDeleteVariables {
   id: string;
 }

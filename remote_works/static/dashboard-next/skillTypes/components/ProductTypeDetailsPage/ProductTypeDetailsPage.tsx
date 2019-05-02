@@ -15,18 +15,18 @@ import {
   TaxRateType,
   WeightUnitsEnum
 } from "../../../types/globalTypes";
-import { ProductTypeDetails_productType } from "../../types/ProductTypeDetails";
-import ProductTypeAttributes from "../ProductTypeAttributes/ProductTypeAttributes";
-import ProductTypeDetails from "../ProductTypeDetails/ProductTypeDetails";
-import ProductTypeShipping from "../ProductTypeShipping/ProductTypeShipping";
-import ProductTypeTaxes from "../ProductTypeTaxes/ProductTypeTaxes";
+import { SkillTypeDetails_productType } from "../../types/SkillTypeDetails";
+import SkillTypeAttributes from "../SkillTypeAttributes/SkillTypeAttributes";
+import SkillTypeDetails from "../SkillTypeDetails/SkillTypeDetails";
+import SkillTypeShipping from "../SkillTypeShipping/SkillTypeShipping";
+import SkillTypeTaxes from "../SkillTypeTaxes/SkillTypeTaxes";
 
 interface ChoiceType {
   label: string;
   value: string;
 }
 
-export interface ProductTypeForm {
+export interface SkillTypeForm {
   name: string;
   hasVariants: boolean;
   isShippingRequired: boolean;
@@ -36,12 +36,12 @@ export interface ProductTypeForm {
   weight: number;
 }
 
-export interface ProductTypeDetailsPageProps {
+export interface SkillTypeDetailsPageProps {
   errors: Array<{
     field: string;
     message: string;
   }>;
-  productType: ProductTypeDetails_productType;
+  productType: SkillTypeDetails_productType;
   defaultWeightUnit: WeightUnitsEnum;
   disabled: boolean;
   pageTitle: string;
@@ -51,11 +51,11 @@ export interface ProductTypeDetailsPageProps {
   onAttributeUpdate: (id: string) => void;
   onBack: () => void;
   onDelete: () => void;
-  onSubmit: (data: ProductTypeForm) => void;
+  onSubmit: (data: SkillTypeForm) => void;
 }
 
-const ProductTypeDetailsPage: React.StatelessComponent<
-  ProductTypeDetailsPageProps
+const SkillTypeDetailsPage: React.StatelessComponent<
+  SkillTypeDetailsPageProps
 > = ({
   defaultWeightUnit,
   disabled,
@@ -70,7 +70,7 @@ const ProductTypeDetailsPage: React.StatelessComponent<
   onDelete,
   onSubmit
 }) => {
-  const formInitialData: ProductTypeForm = {
+  const formInitialData: SkillTypeForm = {
     hasVariants:
       maybe(() => productType.hasVariants) !== undefined
         ? productType.hasVariants
@@ -112,13 +112,13 @@ const ProductTypeDetailsPage: React.StatelessComponent<
           <PageHeader title={pageTitle} onBack={onBack} />
           <Grid>
             <div>
-              <ProductTypeDetails
+              <SkillTypeDetails
                 data={data}
                 disabled={disabled}
                 onChange={change}
               />
               <CardSpacer />
-              <ProductTypeAttributes
+              <SkillTypeAttributes
                 attributes={maybe(() => productType.productAttributes)}
                 type={AttributeTypeEnum.PRODUCT}
                 onAttributeAdd={onAttributeAdd}
@@ -136,7 +136,7 @@ const ProductTypeDetailsPage: React.StatelessComponent<
               {data.hasVariants && (
                 <>
                   <CardSpacer />
-                  <ProductTypeAttributes
+                  <SkillTypeAttributes
                     attributes={maybe(() => productType.variantAttributes)}
                     type={AttributeTypeEnum.VARIANT}
                     onAttributeAdd={onAttributeAdd}
@@ -147,14 +147,14 @@ const ProductTypeDetailsPage: React.StatelessComponent<
               )}
             </div>
             <div>
-              <ProductTypeShipping
+              <SkillTypeShipping
                 disabled={disabled}
                 data={data}
                 defaultWeightUnit={defaultWeightUnit}
                 onChange={change}
               />
               <CardSpacer />
-              <ProductTypeTaxes
+              <SkillTypeTaxes
                 disabled={disabled}
                 data={data}
                 onChange={change}
@@ -173,5 +173,5 @@ const ProductTypeDetailsPage: React.StatelessComponent<
     </Form>
   );
 };
-ProductTypeDetailsPage.displayName = "ProductTypeDetailsPage";
-export default ProductTypeDetailsPage;
+SkillTypeDetailsPage.displayName = "SkillTypeDetailsPage";
+export default SkillTypeDetailsPage;

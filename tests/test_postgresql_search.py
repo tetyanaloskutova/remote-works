@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from remote_works.account.models import Address, User
 from remote_works.order.models import Order
-from remote_works.product.models import Product
+from remote_works.skill.models import Skill
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -20,16 +20,16 @@ PRODUCTS = [('Arabica Coffee', 'The best grains in galactic'),
 
 
 @pytest.fixture
-def named_products(category, product_type):
-    def gen_product(name, description):
-        product = Product.objects.create(
+def named_skills(category, skill_type):
+    def gen_skill(name, description):
+        skill = Skill.objects.create(
             name=name,
             description=description,
             price=Decimal(6.6),
-            product_type=product_type,
+            skill_type=skill_type,
             category=category)
-        return product
-    return [gen_product(name, desc) for name, desc in PRODUCTS]
+        return skill
+    return [gen_skill(name, desc) for name, desc in PRODUCTS]
 
 
 def search_storefront(client, phrase):
@@ -38,29 +38,29 @@ def search_storefront(client, phrase):
     return [prod for prod, _ in resp.context['results'].object_list]
 
 
-@pytest.mark.parametrize('phrase,product_num',
+@pytest.mark.parametrize('phrase,skill_num',
                          [('Arabika', 0), ('Aarabica', 0), ('Arab', 0),
                           ('czicken', 2), ('blue', 1), ('roast', 2),
                           ('coool', 1)])
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-def test_storefront_product_fuzzy_name_search(client, named_products, phrase,
-                                              product_num):
+def test_storefront_skill_fuzzy_name_search(client, named_skills, phrase,
+                                              skill_num):
     results = search_storefront(client, phrase)
     assert 1 == len(results)
-    assert named_products[product_num] in results
+    assert named_skills[skill_num] in results
 
 
-def unpublish_product(product):
-    prod_to_unpublish = product
+def unpublish_skill(skill):
+    prod_to_unpublish = skill
     prod_to_unpublish.is_published = False
     prod_to_unpublish.save()
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-def test_storefront_filter_published_products(client, named_products):
-    unpublish_product(named_products[0])
+def test_storefront_filter_published_skills(client, named_skills):
+    unpublish_skill(named_skills[0])
     assert search_storefront(client, 'Coffee') == []
 
 
@@ -74,31 +74,31 @@ def search_dashboard(client, phrase):
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-def test_dashboard_search_with_empty_results(admin_client, named_products):
-    products, orders, users = search_dashboard(admin_client, 'foo')
-    assert 0 == len(products) == len(orders) == len(users)
+def test_dashboard_search_with_empty_results(admin_client, named_skills):
+    skills, orders, users = search_dashboard(admin_client, 'foo')
+    assert 0 == len(skills) == len(orders) == len(users)
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,product_num', [('  coffee. ', 0),
+@pytest.mark.parametrize('phrase,skill_num', [('  coffee. ', 0),
                                                 ('shirt', 1), ('ROASTED', 2)])
-def test_find_product_by_name(admin_client, named_products, phrase,
-                              product_num):
-    products, _, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(products)
-    assert named_products[product_num] in products
+def test_find_skill_by_name(admin_client, named_skills, phrase,
+                              skill_num):
+    skills, _, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(skills)
+    assert named_skills[skill_num] in skills
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,product_num', [('BIG', 1), (' grains, ', 0),
+@pytest.mark.parametrize('phrase,skill_num', [('BIG', 1), (' grains, ', 0),
                                                 ('fabulous', 2)])
-def test_find_product_by_description(admin_client, named_products, phrase,
-                                     product_num):
-    products, _, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(products)
-    assert named_products[product_num] in products
+def test_find_skill_by_description(admin_client, named_skills, phrase,
+                                     skill_num):
+    skills, _, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(skills)
+    assert named_skills[skill_num] in skills
 
 
 USERS = [('Andreas', 'Knop', 'adreas.knop@example.com'),

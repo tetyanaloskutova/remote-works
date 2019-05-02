@@ -1,6 +1,6 @@
 from elasticsearch_dsl.query import MultiMatch
 
-from ..documents import OrderDocument, ProductDocument, UserDocument
+from ..documents import OrderDocument, SkillDocument, UserDocument
 
 
 def _search_products(phrase):
@@ -8,7 +8,7 @@ def _search_products(phrase):
         fields=['name', 'title', 'description'],
         query=phrase,
         type='cross_fields')
-    return ProductDocument.search().query(prod_query).sort('_score').source(
+    return SkillDocument.search().query(prod_query).sort('_score').source(
         False)
 
 

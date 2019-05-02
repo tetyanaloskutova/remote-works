@@ -8,7 +8,7 @@ import { SaleType } from "./../../types/globalTypes";
 // ====================================================
 
 export interface SaleDetailsFragment_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
@@ -19,7 +19,7 @@ export interface SaleDetailsFragment_products_edges_node_thumbnail {
 }
 
 export interface SaleDetailsFragment_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   isPublished: boolean;
@@ -28,7 +28,7 @@ export interface SaleDetailsFragment_products_edges_node {
 }
 
 export interface SaleDetailsFragment_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: SaleDetailsFragment_products_edges_node;
 }
 
@@ -41,14 +41,14 @@ export interface SaleDetailsFragment_products_pageInfo {
 }
 
 export interface SaleDetailsFragment_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: SaleDetailsFragment_products_edges[];
   pageInfo: SaleDetailsFragment_products_pageInfo;
   totalCount: number | null;
 }
 
 export interface SaleDetailsFragment_categories_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -80,7 +80,7 @@ export interface SaleDetailsFragment_categories {
 }
 
 export interface SaleDetailsFragment_collections_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

@@ -31,9 +31,9 @@ from remote_works.order.utils import recalculate_order
 from remote_works.page.models import Page
 from remote_works.payment import ChargeStatus, TransactionKind
 from remote_works.payment.models import Payment
-from remote_works.product.models import (
+from remote_works.skill.models import (
     Attribute, AttributeTranslation, AttributeValue, Category, Collection,
-    Product, ProductImage, ProductTranslation, ProductType, ProductVariant)
+    Skill, SkillImage, SkillTranslation, SkillType, SkillVariant)
 from remote_works.shipping.models import (
     ShippingMethod, ShippingMethodType, ShippingZone)
 from remote_works.site import AuthenticationBackends
@@ -71,16 +71,16 @@ def cart(db):
 
 
 @pytest.fixture
-def cart_with_item(cart, product):
-    variant = product.variants.get()
+def cart_with_item(cart, skill):
+    variant = skill.variants.get()
     add_variant_to_cart(cart, variant, 3)
     cart.save()
     return cart
 
 
 @pytest.fixture
-def cart_with_voucher(cart, product, voucher):
-    variant = product.variants.get()
+def cart_with_voucher(cart, skill, voucher):
+    variant = skill.variants.get()
     add_variant_to_cart(cart, variant, 3)
     cart.voucher_code = voucher.code
     cart.discount_amount = Money('20.00', 'USD')
@@ -149,8 +149,8 @@ def request_cart(cart, monkeypatch):
 
 
 @pytest.fixture
-def request_cart_with_item(product, request_cart):
-    variant = product.variants.get()
+def request_cart_with_item(skill, request_cart):
+    variant = skill.variants.get()
     add_variant_to_cart(request_cart, variant)
     return request_cart
 
@@ -280,18 +280,18 @@ def category_with_image(db, image):  # pylint: disable=W0613
 
 
 @pytest.fixture
-def categories_tree(db, product_type):  # pylint: disable=W0613
+def categories_tree(db, skill_type):  # pylint: disable=W0613
     parent = Category.objects.create(name='Parent', slug='parent')
     parent.children.create(name='Child', slug='child')
     child = parent.children.first()
 
-    product_attr = product_type.product_attributes.first()
-    attr_value = product_attr.values.first()
-    attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
+    skill_attr = skill_type.skill_attributes.first()
+    attr_value = skill_attr.values.first()
+    attributes = {smart_text(skill_attr.pk): smart_text(attr_value.pk)}
 
-    Product.objects.create(
+    Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, attributes=attributes, category=child)
+        skill_type=skill_type, attributes=attributes, category=child)
 
     return parent
 
@@ -312,95 +312,95 @@ def permission_manage_orders():
 
 
 @pytest.fixture
-def product_type(color_attribute, size_attribute):
-    product_type = ProductType.objects.create(
+def skill_type(color_attribute, size_attribute):
+    skill_type = SkillType.objects.create(
         name='Default Type', has_variants=True, is_shipping_required=True)
-    product_type.product_attributes.add(color_attribute)
-    product_type.variant_attributes.add(size_attribute)
-    return product_type
+    skill_type.skill_attributes.add(color_attribute)
+    skill_type.variant_attributes.add(size_attribute)
+    return skill_type
 
 
 @pytest.fixture
-def product_type_without_variant():
-    product_type = ProductType.objects.create(
+def skill_type_without_variant():
+    skill_type = SkillType.objects.create(
         name='Type', has_variants=False, is_shipping_required=True)
-    return product_type
+    return skill_type
 
 
 @pytest.fixture
-def product(product_type, category):
-    product_attr = product_type.product_attributes.first()
-    attr_value = product_attr.values.first()
-    attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
+def skill(skill_type, category):
+    skill_attr = skill_type.skill_attributes.first()
+    attr_value = skill_attr.values.first()
+    attributes = {smart_text(skill_attr.pk): smart_text(attr_value.pk)}
 
-    product = Product.objects.create(
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, attributes=attributes, category=category)
+        skill_type=skill_type, attributes=attributes, category=category)
 
-    variant_attr = product_type.variant_attributes.first()
+    variant_attr = skill_type.variant_attributes.first()
     variant_attr_value = variant_attr.values.first()
     variant_attributes = {
         smart_text(variant_attr.pk): smart_text(variant_attr_value.pk)}
 
-    ProductVariant.objects.create(
-        product=product, sku='123', attributes=variant_attributes,
+    SkillVariant.objects.create(
+        skill=skill, sku='123', attributes=variant_attributes,
         cost_price=Money('1.00', 'USD'), quantity=10, quantity_allocated=1)
-    return product
+    return skill
 
 
 @pytest.fixture
-def product_with_default_variant(product_type_without_variant, category):
-    product = Product.objects.create(
+def skill_with_default_variant(skill_type_without_variant, category):
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type_without_variant, category=category)
-    ProductVariant.objects.create(
-        product=product, sku='1234', track_inventory=True,
+        skill_type=skill_type_without_variant, category=category)
+    SkillVariant.objects.create(
+        skill=skill, sku='1234', track_inventory=True,
         quantity=100)
-    return product
+    return skill
 
 
 @pytest.fixture
-def variant(product):
-    product_variant = ProductVariant.objects.create(
-        product=product, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
+def variant(skill):
+    skill_variant = SkillVariant.objects.create(
+        skill=skill, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
         quantity_allocated=3)
-    return product_variant
+    return skill_variant
 
 
 @pytest.fixture
-def product_without_shipping(category):
-    product_type = ProductType.objects.create(
+def skill_without_shipping(category):
+    skill_type = SkillType.objects.create(
         name='Type with no shipping', has_variants=False,
         is_shipping_required=False)
-    product = Product.objects.create(
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, category=category)
-    ProductVariant.objects.create(product=product, sku='SKU_B')
-    return product
+        skill_type=skill_type, category=category)
+    SkillVariant.objects.create(skill=skill, sku='SKU_B')
+    return skill
 
 
 @pytest.fixture
-def product_list(product_type, category):
-    product_attr = product_type.product_attributes.first()
-    attr_value = product_attr.values.first()
-    attributes = {smart_text(product_attr.pk): smart_text(attr_value.pk)}
+def skill_list(skill_type, category):
+    skill_attr = skill_type.skill_attributes.first()
+    attr_value = skill_attr.values.first()
+    attributes = {smart_text(skill_attr.pk): smart_text(attr_value.pk)}
 
-    product_1 = Product.objects.create(
+    skill_1 = Skill.objects.create(
         pk=1486, name='Test skill 1', price=Money('10.00', 'USD'),
-        category=category, product_type=product_type, attributes=attributes,
+        category=category, skill_type=skill_type, attributes=attributes,
         is_published=True)
 
-    product_2 = Product.objects.create(
+    skill_2 = Skill.objects.create(
         pk=1487, name='Test skill 2', price=Money('20.00', 'USD'),
-        category=category, product_type=product_type, attributes=attributes,
+        category=category, skill_type=skill_type, attributes=attributes,
         is_published=False)
 
-    product_3 = Product.objects.create(
+    skill_3 = Skill.objects.create(
         pk=1489, name='Test skill 3', price=Money('20.00', 'USD'),
-        category=category, product_type=product_type, attributes=attributes,
+        category=category, skill_type=skill_type, attributes=attributes,
         is_published=True)
 
-    return [product_1, product_2, product_3]
+    return [skill_1, skill_2, skill_3]
 
 
 @pytest.fixture
@@ -417,49 +417,49 @@ def order_list(customer_user):
 
 
 @pytest.fixture
-def product_with_image(product, image):
-    ProductImage.objects.create(product=product, image=image)
-    return product
+def skill_with_image(skill, image):
+    SkillImage.objects.create(skill=skill, image=image)
+    return skill
 
 
 @pytest.fixture
-def unavailable_product(product_type, category):
-    product = Product.objects.create(
+def unavailable_skill(skill_type, category):
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, is_published=False, category=category)
-    return product
+        skill_type=skill_type, is_published=False, category=category)
+    return skill
 
 
 @pytest.fixture
-def unavailable_product_with_variant(product_type, category):
-    product = Product.objects.create(
+def unavailable_skill_with_variant(skill_type, category):
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, is_published=False, category=category)
+        skill_type=skill_type, is_published=False, category=category)
 
-    variant_attr = product_type.variant_attributes.first()
+    variant_attr = skill_type.variant_attributes.first()
     variant_attr_value = variant_attr.values.first()
     variant_attributes = {
         smart_text(variant_attr.pk): smart_text(variant_attr_value.pk)}
 
-    ProductVariant.objects.create(
-        product=product, sku='123', attributes=variant_attributes,
+    SkillVariant.objects.create(
+        skill=skill, sku='123', attributes=variant_attributes,
         cost_price=Money('1.00', 'USD'), quantity=10, quantity_allocated=1)
 
-    return product
+    return skill
 
 
 @pytest.fixture
-def product_with_images(product_type, category):
-    product = Product.objects.create(
+def skill_with_images(skill_type, category):
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, category=category)
+        skill_type=skill_type, category=category)
     file_mock_0 = MagicMock(spec=File, name='FileMock0')
     file_mock_0.name = 'image0.jpg'
     file_mock_1 = MagicMock(spec=File, name='FileMock1')
     file_mock_1.name = 'image1.jpg'
-    product.images.create(image=file_mock_0)
-    product.images.create(image=file_mock_1)
-    return product
+    skill.images.create(image=file_mock_0)
+    skill.images.create(image=file_mock_1)
+    return skill
 
 
 @pytest.fixture
@@ -486,32 +486,32 @@ def voucher_shipping_type():
 
 @pytest.fixture()
 def order_with_lines(
-        order, product_type, category, shipping_zone, vatlayer):
+        order, skill_type, category, shipping_zone, vatlayer):
     taxes = vatlayer
-    product = Product.objects.create(
+    skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
-        product_type=product_type, category=category)
-    variant = ProductVariant.objects.create(
-        product=product, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
+        skill_type=skill_type, category=category)
+    variant = SkillVariant.objects.create(
+        skill=skill, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
         quantity_allocated=3)
     order.lines.create(
-        product_name=variant.display_product(),
-        product_sku=variant.sku,
+        skill_name=variant.display_skill(),
+        skill_sku=variant.sku,
         is_shipping_required=variant.is_shipping_required(),
         quantity=3,
         variant=variant,
         unit_price=variant.get_price(taxes=taxes),
         tax_rate=taxes['standard']['value'])
 
-    product = Product.objects.create(
+    skill = Skill.objects.create(
         name='Test skill 2', price=Money('20.00', 'USD'),
-        product_type=product_type, category=category)
-    variant = ProductVariant.objects.create(
-        product=product, sku='SKU_B', cost_price=Money(2, 'USD'), quantity=2,
+        skill_type=skill_type, category=category)
+    variant = SkillVariant.objects.create(
+        skill=skill, sku='SKU_B', cost_price=Money(2, 'USD'), quantity=2,
         quantity_allocated=2)
     order.lines.create(
-        product_name=variant.display_product(),
-        product_sku=variant.sku,
+        skill_name=variant.display_skill(),
+        skill_sku=variant.sku,
         is_shipping_required=variant.is_shipping_required(),
         quantity=2,
         variant=variant,
@@ -665,8 +665,8 @@ def permission_manage_staff():
 
 
 @pytest.fixture
-def permission_manage_products():
-    return Permission.objects.get(codename='manage_products')
+def permission_manage_skills():
+    return Permission.objects.get(codename='manage_skills')
 
 
 @pytest.fixture
@@ -831,16 +831,16 @@ def vatlayer(db, settings, tax_rates, taxes):
 
 
 @pytest.fixture
-def translated_variant_fr(product):
-    attribute = product.product_type.variant_attributes.first()
+def translated_variant_fr(skill):
+    attribute = skill.skill_type.variant_attributes.first()
     return AttributeTranslation.objects.create(
         language_code='fr', attribute=attribute,
         name='Name tranlsated to french')
 
 
 @pytest.fixture
-def translated_attribute(product):
-    attribute = product.product_type.product_attributes.first()
+def translated_attribute(skill):
+    attribute = skill.skill_type.skill_attributes.first()
     return AttributeTranslation.objects.create(
         language_code='fr', attribute=attribute,
         name='Name tranlsated to french')
@@ -853,9 +853,9 @@ def voucher_translation_fr(voucher):
 
 
 @pytest.fixture
-def product_translation_fr(product):
-    return ProductTranslation.objects.create(
-        language_code='fr', product=product, name='French name',
+def skill_translation_fr(skill):
+    return SkillTranslation.objects.create(
+        language_code='fr', skill=skill, name='French name',
         description='French description')
 
 

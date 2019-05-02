@@ -1,2 +1,2 @@
-export { default } from "./ProductVariantImages";
-export * from "./ProductVariantImages";
+export { default } from "./SkillVariantImages";
+export * from "./SkillVariantImages";

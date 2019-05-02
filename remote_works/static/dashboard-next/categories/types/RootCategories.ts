@@ -11,7 +11,7 @@ export interface RootCategories_categories_edges_node_children {
 }
 
 export interface RootCategories_categories_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

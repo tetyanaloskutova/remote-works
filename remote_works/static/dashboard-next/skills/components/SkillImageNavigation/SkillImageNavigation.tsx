@@ -46,7 +46,7 @@ const styles = (theme: Theme) =>
     toolbar: { marginTop: -theme.spacing.unit / 2 }
   });
 
-interface ProductImageNavigationProps extends WithStyles<typeof styles> {
+interface SkillImageNavigationProps extends WithStyles<typeof styles> {
   disabled: boolean;
   images?: Array<{
     id: string;
@@ -56,15 +56,15 @@ interface ProductImageNavigationProps extends WithStyles<typeof styles> {
   onRowClick: (id: string) => () => void;
 }
 
-const ProductImageNavigation = withStyles(styles, {
-  name: "ProductImageNavigation"
+const SkillImageNavigation = withStyles(styles, {
+  name: "SkillImageNavigation"
 })(
   ({
     classes,
     highlighted,
     images,
     onRowClick
-  }: ProductImageNavigationProps) => (
+  }: SkillImageNavigationProps) => (
     <Card className={classes.card}>
       <CardTitle title={i18n.t("All photos")} />
       <CardContent>
@@ -90,5 +90,5 @@ const ProductImageNavigation = withStyles(styles, {
     </Card>
   )
 );
-ProductImageNavigation.displayName = "ProductImageNavigation";
-export default ProductImageNavigation;
+SkillImageNavigation.displayName = "SkillImageNavigation";
+export default SkillImageNavigation;

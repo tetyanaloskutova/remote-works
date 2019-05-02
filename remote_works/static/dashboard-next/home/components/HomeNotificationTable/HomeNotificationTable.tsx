@@ -32,7 +32,7 @@ interface HomeNotificationTableProps extends WithStyles<typeof styles> {
   productsOutOfStock: number;
   onOrdersToFulfillClick: () => void;
   onOrdersToCaptureClick: () => void;
-  onProductsOutOfStockClick: () => void;
+  onSkillsOutOfStockClick: () => void;
 }
 
 const HomeNotificationTable = withStyles(styles, {
@@ -42,7 +42,7 @@ const HomeNotificationTable = withStyles(styles, {
     classes,
     onOrdersToCaptureClick,
     onOrdersToFulfillClick,
-    onProductsOutOfStockClick,
+    onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
     productsOutOfStock
@@ -97,7 +97,7 @@ const HomeNotificationTable = withStyles(styles, {
                 <KeyboardArrowRight />
               </TableCell>
             </TableRow>
-            <TableRow hover={true} onClick={onProductsOutOfStockClick}>
+            <TableRow hover={true} onClick={onSkillsOutOfStockClick}>
               <TableCell>
                 {productsOutOfStock === undefined ? (
                   <Skeleton />
@@ -107,7 +107,7 @@ const HomeNotificationTable = withStyles(styles, {
                   <Typography
                     dangerouslySetInnerHTML={{
                       __html: i18n.t(
-                        "<b>{{ amount }} Products</b> out of stock",
+                        "<b>{{ amount }} Skills</b> out of stock",
                         { amount: productsOutOfStock }
                       )
                     }}

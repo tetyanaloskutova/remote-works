@@ -1111,13 +1111,13 @@ export const flatOrders = orders.map(order => ({
   paymentStatus: transformPaymentStatus(order.paymentStatus)
 }));
 export const variants = [
-  { id: "p1", name: "Product 1: variant 1", sku: "12345", stockQuantity: 3 },
-  { id: "p2", name: "Product 1: variant 2", sku: "12346", stockQuantity: 1 },
-  { id: "p3", name: "Product 2: variant 1", sku: "12355", stockQuantity: 10 },
-  { id: "p4", name: "Product 3: variant 1", sku: "12445", stockQuantity: 12 },
-  { id: "p5", name: "Product 3: variant 2", sku: "12545", stockQuantity: 7 },
-  { id: "p6", name: "Product 5: variant 1", sku: "13345", stockQuantity: 3 },
-  { id: "p7", name: "Product 5: variant 2", sku: "14345", stockQuantity: 11 }
+  { id: "p1", name: "Skill 1: variant 1", sku: "12345", stockQuantity: 3 },
+  { id: "p2", name: "Skill 1: variant 2", sku: "12346", stockQuantity: 1 },
+  { id: "p3", name: "Skill 2: variant 1", sku: "12355", stockQuantity: 10 },
+  { id: "p4", name: "Skill 3: variant 1", sku: "12445", stockQuantity: 12 },
+  { id: "p5", name: "Skill 3: variant 2", sku: "12545", stockQuantity: 7 },
+  { id: "p6", name: "Skill 5: variant 1", sku: "13345", stockQuantity: 3 },
+  { id: "p7", name: "Skill 5: variant 2", sku: "14345", stockQuantity: 11 }
 ];
 export const prefixes = ["01", "02", "41", "49"];
 export const countries = [
@@ -1133,7 +1133,7 @@ export const shippingMethods = [
 ];
 export const orderLineSearch = (placeholderImage: string) => [
   {
-    __typename: "Product" as "Product",
+    __typename: "Skill" as "Skill",
     id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
     thumbnail: {
@@ -1142,21 +1142,21 @@ export const orderLineSearch = (placeholderImage: string) => [
     },
     variants: [
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjAy",
         name: "500ml",
         price: { amount: 3.0, currency: "USD", __typename: "Money" as "Money" },
         sku: "93855755"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjAz",
         name: "1l",
         price: { amount: 5.0, currency: "USD", __typename: "Money" as "Money" },
         sku: "43226647"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjA0",
         name: "2l",
         price: { amount: 7.0, currency: "USD", __typename: "Money" as "Money" },
@@ -1165,7 +1165,7 @@ export const orderLineSearch = (placeholderImage: string) => [
     ]
   },
   {
-    __typename: "Product" as "Product",
+    __typename: "Skill" as "Skill",
     id: "UHJvZHVjdDo3NQ==",
     name: "Pineapple Juice",
     thumbnail: {
@@ -1174,21 +1174,21 @@ export const orderLineSearch = (placeholderImage: string) => [
     },
     variants: [
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjEx",
         name: "500ml",
         price: { amount: 3.0, currency: "USD", __typename: "Money" as "Money" },
         sku: "43200242"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjEy",
         name: "1l",
         price: { amount: 5.0, currency: "USD", __typename: "Money" as "Money" },
         sku: "79129513"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "SkillVariant" as "SkillVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6MjEz",
         name: "2l",
         price: { amount: 7.0, currency: "USD", __typename: "Money" as "Money" },

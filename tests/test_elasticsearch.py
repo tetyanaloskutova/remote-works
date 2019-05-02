@@ -6,7 +6,7 @@ from elasticsearch_dsl.connections import connections
 
 from remote_works.account.models import User
 from remote_works.order.models import Order
-from remote_works.product.models import Product
+from remote_works.product.models import Skill
 
 MATCH_SEARCH_REQUEST = ['method', 'host', 'port', 'path']
 STOREFRONT_PRODUCTS = {15, 56}  # same as in recorded data!
@@ -41,7 +41,7 @@ def elasticsearch_autosync_disabled(settings):
 @pytest.mark.vcr()
 @pytest.fixture
 def indexed_products(product_type, category):
-    """Products to be found by search backend.
+    """Skills to be found by search backend.
 
     We need existing objects with primary keys same as search service
     returned in response. Otherwise search view won't find anything.
@@ -49,7 +49,7 @@ def indexed_products(product_type, category):
     pks must be in response in appropiate recorded cassette.
     """
     def gen_product_with_id(object_id):
-        product = Product.objects.create(
+        product = Skill.objects.create(
             pk=object_id,
             name='Test skill ' + str(object_id),
             price=Decimal(10.0),
@@ -81,7 +81,7 @@ def test_new_search_with_result(db, indexed_products, client):
 
 @pytest.fixture
 def products_with_mixed_publishing(indexed_products):
-    products_to_unpublish = Product.objects.filter(
+    products_to_unpublish = Skill.objects.filter(
         pk__in=PRODUCTS_TO_UNPUBLISH)
     for prod in products_to_unpublish:
         prod.is_published = False

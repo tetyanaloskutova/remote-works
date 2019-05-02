@@ -3,72 +3,72 @@ import * as React from "react";
 import { getMutationProviderData, maybe } from "../../misc";
 import { PartialMutationProviderOutput } from "../../types";
 import {
-  TypedProductDeleteMutation,
-  TypedProductImageCreateMutation,
-  TypedProductImageDeleteMutation,
-  TypedProductUpdateMutation,
-  TypedSimpleProductUpdateMutation
+  TypedSkillDeleteMutation,
+  TypedSkillImageCreateMutation,
+  TypedSkillImageDeleteMutation,
+  TypedSkillUpdateMutation,
+  TypedSimpleSkillUpdateMutation
 } from "../mutations";
-import { ProductDelete, ProductDeleteVariables } from "../types/ProductDelete";
-import { ProductDetails_product } from "../types/ProductDetails";
+import { SkillDelete, SkillDeleteVariables } from "../types/SkillDelete";
+import { SkillDetails_product } from "../types/SkillDetails";
 import {
-  ProductImageCreate,
-  ProductImageCreateVariables
-} from "../types/ProductImageCreate";
+  SkillImageCreate,
+  SkillImageCreateVariables
+} from "../types/SkillImageCreate";
 import {
-  ProductImageDelete,
-  ProductImageDeleteVariables
-} from "../types/ProductImageDelete";
+  SkillImageDelete,
+  SkillImageDeleteVariables
+} from "../types/SkillImageDelete";
 import {
-  ProductImageReorder,
-  ProductImageReorderVariables
-} from "../types/ProductImageReorder";
-import { ProductUpdate, ProductUpdateVariables } from "../types/ProductUpdate";
+  SkillImageReorder,
+  SkillImageReorderVariables
+} from "../types/SkillImageReorder";
+import { SkillUpdate, SkillUpdateVariables } from "../types/SkillUpdate";
 import {
-  SimpleProductUpdate,
-  SimpleProductUpdateVariables
-} from "../types/SimpleProductUpdate";
-import ProductImagesReorderProvider from "./ProductImagesReorder";
+  SimpleSkillUpdate,
+  SimpleSkillUpdateVariables
+} from "../types/SimpleSkillUpdate";
+import SkillImagesReorderProvider from "./SkillImagesReorder";
 
-interface ProductUpdateOperationsProps {
-  product: ProductDetails_product;
+interface SkillUpdateOperationsProps {
+  product: SkillDetails_product;
   children: (
     props: {
-      createProductImage: PartialMutationProviderOutput<
-        ProductImageCreate,
-        ProductImageCreateVariables
+      createSkillImage: PartialMutationProviderOutput<
+        SkillImageCreate,
+        SkillImageCreateVariables
       >;
-      deleteProduct: PartialMutationProviderOutput<
-        ProductDelete,
-        ProductDeleteVariables
+      deleteSkill: PartialMutationProviderOutput<
+        SkillDelete,
+        SkillDeleteVariables
       >;
-      deleteProductImage: PartialMutationProviderOutput<
-        ProductImageDelete,
-        ProductImageDeleteVariables
+      deleteSkillImage: PartialMutationProviderOutput<
+        SkillImageDelete,
+        SkillImageDeleteVariables
       >;
-      reorderProductImages: PartialMutationProviderOutput<
-        ProductImageReorder,
-        ProductImageReorderVariables
+      reorderSkillImages: PartialMutationProviderOutput<
+        SkillImageReorder,
+        SkillImageReorderVariables
       >;
-      updateProduct: PartialMutationProviderOutput<
-        ProductUpdate,
-        ProductUpdateVariables
+      updateSkill: PartialMutationProviderOutput<
+        SkillUpdate,
+        SkillUpdateVariables
       >;
-      updateSimpleProduct: PartialMutationProviderOutput<
-        SimpleProductUpdate,
-        SimpleProductUpdateVariables
+      updateSimpleSkill: PartialMutationProviderOutput<
+        SimpleSkillUpdate,
+        SimpleSkillUpdateVariables
       >;
     }
   ) => React.ReactNode;
-  onDelete?: (data: ProductDelete) => void;
-  onImageCreate?: (data: ProductImageCreate) => void;
-  onImageDelete?: (data: ProductImageDelete) => void;
-  onImageReorder?: (data: ProductImageReorder) => void;
-  onUpdate?: (data: ProductUpdate) => void;
+  onDelete?: (data: SkillDelete) => void;
+  onImageCreate?: (data: SkillImageCreate) => void;
+  onImageDelete?: (data: SkillImageDelete) => void;
+  onImageReorder?: (data: SkillImageReorder) => void;
+  onUpdate?: (data: SkillUpdate) => void;
 }
 
-const ProductUpdateOperations: React.StatelessComponent<
-  ProductUpdateOperationsProps
+const SkillUpdateOperations: React.StatelessComponent<
+  SkillUpdateOperationsProps
 > = ({
   product,
   children,
@@ -80,58 +80,58 @@ const ProductUpdateOperations: React.StatelessComponent<
 }) => {
   const productId = product ? product.id : "";
   return (
-    <TypedProductUpdateMutation onCompleted={onUpdate}>
-      {(...updateProduct) => (
-        <ProductImagesReorderProvider
+    <TypedSkillUpdateMutation onCompleted={onUpdate}>
+      {(...updateSkill) => (
+        <SkillImagesReorderProvider
           productId={productId}
           productImages={maybe(() => product.images, [])}
           onCompleted={onImageReorder}
         >
-          {(...reorderProductImages) => (
-            <TypedProductImageCreateMutation onCompleted={onImageCreate}>
-              {(...createProductImage) => (
-                <TypedProductDeleteMutation onCompleted={onDelete}>
-                  {(...deleteProduct) => (
-                    <TypedProductImageDeleteMutation
+          {(...reorderSkillImages) => (
+            <TypedSkillImageCreateMutation onCompleted={onImageCreate}>
+              {(...createSkillImage) => (
+                <TypedSkillDeleteMutation onCompleted={onDelete}>
+                  {(...deleteSkill) => (
+                    <TypedSkillImageDeleteMutation
                       onCompleted={onImageDelete}
                     >
-                      {(...deleteProductImage) => (
-                        <TypedSimpleProductUpdateMutation
+                      {(...deleteSkillImage) => (
+                        <TypedSimpleSkillUpdateMutation
                           onCompleted={onUpdate}
                         >
-                          {(...updateSimpleProduct) =>
+                          {(...updateSimpleSkill) =>
                             children({
-                              createProductImage: getMutationProviderData(
-                                ...createProductImage
+                              createSkillImage: getMutationProviderData(
+                                ...createSkillImage
                               ),
-                              deleteProduct: getMutationProviderData(
-                                ...deleteProduct
+                              deleteSkill: getMutationProviderData(
+                                ...deleteSkill
                               ),
-                              deleteProductImage: getMutationProviderData(
-                                ...deleteProductImage
+                              deleteSkillImage: getMutationProviderData(
+                                ...deleteSkillImage
                               ),
-                              reorderProductImages: getMutationProviderData(
-                                ...reorderProductImages
+                              reorderSkillImages: getMutationProviderData(
+                                ...reorderSkillImages
                               ),
-                              updateProduct: getMutationProviderData(
-                                ...updateProduct
+                              updateSkill: getMutationProviderData(
+                                ...updateSkill
                               ),
-                              updateSimpleProduct: getMutationProviderData(
-                                ...updateSimpleProduct
+                              updateSimpleSkill: getMutationProviderData(
+                                ...updateSimpleSkill
                               )
                             })
                           }
-                        </TypedSimpleProductUpdateMutation>
+                        </TypedSimpleSkillUpdateMutation>
                       )}
-                    </TypedProductImageDeleteMutation>
+                    </TypedSkillImageDeleteMutation>
                   )}
-                </TypedProductDeleteMutation>
+                </TypedSkillDeleteMutation>
               )}
-            </TypedProductImageCreateMutation>
+            </TypedSkillImageCreateMutation>
           )}
-        </ProductImagesReorderProvider>
+        </SkillImagesReorderProvider>
       )}
-    </TypedProductUpdateMutation>
+    </TypedSkillUpdateMutation>
   );
 };
-export default ProductUpdateOperations;
+export default SkillUpdateOperations;

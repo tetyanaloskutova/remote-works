@@ -313,7 +313,7 @@ export interface PageInput {
   seo?: SeoInput | null;
 }
 
-export interface ProductTypeInput {
+export interface SkillTypeInput {
   name?: string | null;
   hasVariants?: boolean | null;
   productAttributes?: (string | null)[] | null;
@@ -323,7 +323,7 @@ export interface ProductTypeInput {
   taxRate?: TaxRateType | null;
 }
 
-export interface ProductVariantInput {
+export interface SkillVariantInput {
   attributes?: (AttributeValueInput | null)[] | null;
   costPrice?: any | null;
   priceOverride?: any | null;

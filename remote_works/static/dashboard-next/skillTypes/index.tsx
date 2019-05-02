@@ -9,43 +9,43 @@ import {
   productTypeListPath,
   productTypePath
 } from "./urls";
-import ProductTypeCreate from "./views/ProductTypeCreate";
-import ProductTypeListComponent, {
-  ProductTypeListQueryParams
-} from "./views/ProductTypeList";
-import ProductTypeUpdateComponent from "./views/ProductTypeUpdate";
+import SkillTypeCreate from "./views/SkillTypeCreate";
+import SkillTypeListComponent, {
+  SkillTypeListQueryParams
+} from "./views/SkillTypeList";
+import SkillTypeUpdateComponent from "./views/SkillTypeUpdate";
 
-const ProductTypeList: React.StatelessComponent<RouteComponentProps<{}>> = ({
+const SkillTypeList: React.StatelessComponent<RouteComponentProps<{}>> = ({
   location
 }) => {
   const qs = parseQs(location.search.substr(1));
-  const params: ProductTypeListQueryParams = {
+  const params: SkillTypeListQueryParams = {
     after: qs.after,
     before: qs.before
   };
-  return <ProductTypeListComponent params={params} />;
+  return <SkillTypeListComponent params={params} />;
 };
 
-interface ProductTypeUpdateRouteParams {
+interface SkillTypeUpdateRouteParams {
   id: string;
 }
-const ProductTypeUpdate: React.StatelessComponent<
-  RouteComponentProps<ProductTypeUpdateRouteParams>
+const SkillTypeUpdate: React.StatelessComponent<
+  RouteComponentProps<SkillTypeUpdateRouteParams>
 > = ({ match }) => (
-  <ProductTypeUpdateComponent id={decodeURIComponent(match.params.id)} />
+  <SkillTypeUpdateComponent id={decodeURIComponent(match.params.id)} />
 );
 
-export const ProductTypeRouter: React.StatelessComponent<
+export const SkillTypeRouter: React.StatelessComponent<
   RouteComponentProps<any>
 > = () => (
   <>
-    <WindowTitle title={i18n.t("Product types")} />
+    <WindowTitle title={i18n.t("Skill types")} />
     <Switch>
-      <Route exact path={productTypeListPath} component={ProductTypeList} />
-      <Route exact path={productTypeAddPath} component={ProductTypeCreate} />
-      <Route path={productTypePath(":id")} component={ProductTypeUpdate} />
+      <Route exact path={productTypeListPath} component={SkillTypeList} />
+      <Route exact path={productTypeAddPath} component={SkillTypeCreate} />
+      <Route path={productTypePath(":id")} component={SkillTypeUpdate} />
     </Switch>
   </>
 );
-ProductTypeRouter.displayName = "ProductTypeRouter";
-export default ProductTypeRouter;
+SkillTypeRouter.displayName = "SkillTypeRouter";
+export default SkillTypeRouter;

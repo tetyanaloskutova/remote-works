@@ -22,7 +22,7 @@ export interface CategoryDetails_category_children_edges_node_children {
 }
 
 export interface CategoryDetails_category_children_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -53,7 +53,7 @@ export interface CategoryDetails_category_products_pageInfo {
 }
 
 export interface CategoryDetails_category_products_edges_node_availability {
-  __typename: "ProductAvailability";
+  __typename: "SkillAvailability";
   available: boolean | null;
 }
 
@@ -69,13 +69,13 @@ export interface CategoryDetails_category_products_edges_node_price {
 }
 
 export interface CategoryDetails_category_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
 
 export interface CategoryDetails_category_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   availability: CategoryDetails_category_products_edges_node_availability | null;
@@ -85,13 +85,13 @@ export interface CategoryDetails_category_products_edges_node {
 }
 
 export interface CategoryDetails_category_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   cursor: string;
   node: CategoryDetails_category_products_edges_node;
 }
 
 export interface CategoryDetails_category_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   pageInfo: CategoryDetails_category_products_pageInfo;
   edges: CategoryDetails_category_products_edges[];
 }

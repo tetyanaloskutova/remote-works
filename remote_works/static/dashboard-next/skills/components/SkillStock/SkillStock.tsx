@@ -12,7 +12,7 @@ import * as React from "react";
 import CardTitle from "../../../components/CardTitle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { ProductDetails_product } from "../../types/ProductDetails";
+import { SkillDetails_product } from "../../types/SkillDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -23,18 +23,18 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductStockProps extends WithStyles<typeof styles> {
+interface SkillStockProps extends WithStyles<typeof styles> {
   data: {
     sku: string;
     stockQuantity: number;
   };
   disabled: boolean;
-  product: ProductDetails_product;
+  product: SkillDetails_product;
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const ProductStock = withStyles(styles, { name: "ProductStock" })(
-  ({ classes, data, disabled, product, onChange }: ProductStockProps) => (
+const SkillStock = withStyles(styles, { name: "SkillStock" })(
+  ({ classes, data, disabled, product, onChange }: SkillStockProps) => (
     <Card>
       <CardTitle title={i18n.t("Inventory")} />
       <CardContent>
@@ -62,5 +62,5 @@ const ProductStock = withStyles(styles, { name: "ProductStock" })(
     </Card>
   )
 );
-ProductStock.displayName = "ProductStock";
-export default ProductStock;
+SkillStock.displayName = "SkillStock";
+export default SkillStock;

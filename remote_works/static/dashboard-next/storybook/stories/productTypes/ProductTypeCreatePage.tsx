@@ -2,13 +2,13 @@ import { Omit } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import ProductTypeCreatePage, {
-  ProductTypeCreatePageProps
-} from "../../../productTypes/components/ProductTypeCreatePage";
+import SkillTypeCreatePage, {
+  SkillTypeCreatePageProps
+} from "../../../productTypes/components/SkillTypeCreatePage";
 import { WeightUnitsEnum } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
-const props: Omit<ProductTypeCreatePageProps, "classes"> = {
+const props: Omit<SkillTypeCreatePageProps, "classes"> = {
   defaultWeightUnit: "kg" as WeightUnitsEnum,
   disabled: false,
   errors: [],
@@ -18,9 +18,9 @@ const props: Omit<ProductTypeCreatePageProps, "classes"> = {
   saveButtonBarState: "default"
 };
 
-storiesOf("Views / Product types / Create product type", module)
+storiesOf("Views / Skill types / Create product type", module)
   .addDecorator(Decorator)
-  .add("default", () => <ProductTypeCreatePage {...props} />)
+  .add("default", () => <SkillTypeCreatePage {...props} />)
   .add("loading", () => (
-    <ProductTypeCreatePage {...props} disabled={true} pageTitle={undefined} />
+    <SkillTypeCreatePage {...props} disabled={true} pageTitle={undefined} />
   ));

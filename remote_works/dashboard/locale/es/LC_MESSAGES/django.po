@@ -155,9 +155,9 @@ msgstr[0] "Se encontró %(counter)d colección."
 msgstr[1] "Se encontraron %(counter)d colecciones"
 
 #: saleor/dashboard/collection/forms.py:18
-msgctxt "Products selection"
-msgid "Products"
-msgstr "Productos"
+msgctxt "Skills selection"
+msgid "Skills"
+msgstr "Skillos"
 
 #: saleor/dashboard/collection/forms.py:27
 msgctxt "Background image of a collection"
@@ -494,7 +494,7 @@ msgstr "Aplica solo si el valor de compra es mayor o igual que"
 #: saleor/dashboard/discount/forms.py:29
 msgctxt "Discounted products"
 msgid "Discounted products"
-msgstr "Productos con descuento"
+msgstr "Skillos con descuento"
 
 #: saleor/dashboard/discount/forms.py:37
 msgctxt "Sale name"
@@ -597,9 +597,9 @@ msgid ""
 msgstr "Si deshabilita, el valor del descuento será retirado"
 
 #: saleor/dashboard/discount/forms.py:170
-msgctxt "Product"
-msgid "Products"
-msgstr "Productos"
+msgctxt "Skill"
+msgid "Skills"
+msgstr "Skillos"
 
 #: saleor/dashboard/discount/forms.py:184
 msgctxt "Collections"
@@ -1294,52 +1294,52 @@ msgid "Unpublish"
 msgstr "Retirar publicación"
 
 #: saleor/dashboard/product/filters.py:12
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "name"
 msgstr "nombre"
 
 #: saleor/dashboard/product/filters.py:13
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "price"
 msgstr "precio"
 
 #: saleor/dashboard/product/filters.py:16
-msgctxt "Product attribute list sorting option"
+msgctxt "Skill attribute list sorting option"
 msgid "name"
 msgstr "nombre"
 
 #: saleor/dashboard/product/filters.py:19
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "name"
 msgstr "nombre"
 
 #: saleor/dashboard/product/filters.py:28
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Name"
 msgstr "Nombre"
 
 #: saleor/dashboard/product/filters.py:31
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Category"
 msgstr "Categoría"
 
 #: saleor/dashboard/product/filters.py:35
-msgctxt "Product list filter label"
-msgid "Product type"
+msgctxt "Skill list filter label"
+msgid "Skill type"
 msgstr "Tipo de producto"
 
 #: saleor/dashboard/product/filters.py:39
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Price"
 msgstr "Precio"
 
 #: saleor/dashboard/product/filters.py:43
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Is published"
 msgstr "Está publicado"
 
 #: saleor/dashboard/product/filters.py:48
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Sort by"
 msgstr "Ordenar por"
 
@@ -1370,22 +1370,22 @@ msgstr[0] "Se encontró %(counter)d atributo que coincide"
 msgstr[1] "Se encontraron %(counter)d atributos que coinciden"
 
 #: saleor/dashboard/product/filters.py:89
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Name"
 msgstr "Nombre"
 
 #: saleor/dashboard/product/filters.py:92
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Sort by"
 msgstr "Ordenar por"
 
 #: saleor/dashboard/product/filters.py:97
-msgctxt "Product type list filter label"
-msgid "Product attributes"
-msgstr "Atributos de Producto"
+msgctxt "Skill type list filter label"
+msgid "Skill attributes"
+msgstr "Atributos de Skillo"
 
 #: saleor/dashboard/product/filters.py:102
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Variant attributes"
 msgstr "Atributos de la variante"
 
@@ -1403,22 +1403,22 @@ msgid "Select text to enable text-formatting tools."
 msgstr "Selecciona el texto para habilitar herramientas de formateo de texto"
 
 #: saleor/dashboard/product/forms.py:56
-msgctxt "Product type form label"
-msgid "Product type"
+msgctxt "Skill type form label"
+msgid "Skill type"
 msgstr "Tipo de producto"
 
 #: saleor/dashboard/product/forms.py:73
-msgctxt "Product type tax rate type"
+msgctxt "Skill type tax rate type"
 msgid "Tax rate"
 msgstr "Tasa de impuesto"
 
 #: saleor/dashboard/product/forms.py:75 saleor/dashboard/product/forms.py:237
-msgctxt "ProductType weight"
+msgctxt "SkillType weight"
 msgid "Weight"
 msgstr "Peso"
 
 #: saleor/dashboard/product/forms.py:78
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Default weight that will be used for calculating shipping price for products"
 " of that type."
@@ -1427,12 +1427,12 @@ msgstr ""
 "productos de ese tipo."
 
 #: saleor/dashboard/product/forms.py:83
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes common to all variants."
 msgstr "Atributos comunes a todas las variantes."
 
 #: saleor/dashboard/product/forms.py:88
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes specific to each variant."
 msgstr "Atributos específicos de cada variante."
 
@@ -1447,23 +1447,23 @@ msgid "Require shipping"
 msgstr "Requiere envío"
 
 #: saleor/dashboard/product/forms.py:137
-msgctxt "Product type form error"
-msgid "Product variants are disabled."
+msgctxt "Skill type form error"
+msgid "Skill variants are disabled."
 msgstr "Las variantes de producto están deshabilitadas"
 
 #: saleor/dashboard/product/forms.py:142
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "A single attribute can't belong to both a product and its variant."
 msgstr ""
 "Un atributo no puede pertenecer al mismo tiempo a un producto y su variante"
 
 #: saleor/dashboard/product/forms.py:164
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "Some products of this type have more than one variant."
 msgstr "Algunos productos de este tipo tienen mas de una variante."
 
 #: saleor/dashboard/product/forms.py:226
-msgctxt "Product tax rate type"
+msgctxt "Skill tax rate type"
 msgid "Tax rate"
 msgstr "Tasa de impuesto"
 
@@ -1478,10 +1478,10 @@ msgid "Collections"
 msgstr "Colecciones"
 
 #: saleor/dashboard/product/forms.py:240
-msgctxt "Product weight field help text"
+msgctxt "Skill weight field help text"
 msgid ""
 "Weight will be used to calculate shipping price, if empty, equal to default "
-"value used on the ProductType."
+"value used on the SkillType."
 msgstr ""
 "El peso se utilizará para calcular el precio de envío, si está vacío, será "
 "igual al valor predeterminado usado en el tipo de producto."
@@ -1498,7 +1498,7 @@ msgid "Publish product on"
 msgstr "Publicar producto en"
 
 #: saleor/dashboard/product/forms.py:254
-msgctxt "Product published toggle"
+msgctxt "Skill published toggle"
 msgid "Published"
 msgstr "Publicado"
 
@@ -1518,15 +1518,15 @@ msgid "Net price"
 msgstr "Precio neto"
 
 #: saleor/dashboard/product/forms.py:307
-msgctxt "ProductVariant weight"
+msgctxt "SkillVariant weight"
 msgid "Weight"
 msgstr "Peso"
 
 #: saleor/dashboard/product/forms.py:310
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Weight will be used to calculate shipping price. If empty, weight from "
-"Product or ProductType will be used."
+"Skill or SkillType will be used."
 msgstr ""
 "El peso será usado para calcular el precio de envío. Si está vacío, se "
 "utilizará el peso del producto o del tipo de producto."
@@ -1582,17 +1582,17 @@ msgid "Cost net price"
 msgstr "Precio de coste neto"
 
 #: saleor/dashboard/product/forms.py:404 saleor/dashboard/product/forms.py:509
-msgctxt "Product image"
+msgctxt "Skill image"
 msgid "Image"
 msgstr "Imagen"
 
 #: saleor/dashboard/product/forms.py:445
-msgctxt "Product display name"
+msgctxt "Skill display name"
 msgid "Display name"
 msgstr "Nombre a mostrar"
 
 #: saleor/dashboard/product/forms.py:447
-msgctxt "Product internal name"
+msgctxt "Skill internal name"
 msgid "Internal name"
 msgstr "Nombre interno"
 
@@ -1600,13 +1600,13 @@ msgstr "Nombre interno"
 #, python-format
 msgctxt "Dashboard message"
 msgid "Added product %s"
-msgstr "Producto agregado %s"
+msgstr "Skillo agregado %s"
 
 #: saleor/dashboard/product/views.py:159
 #, python-format
 msgctxt "Dashboard message"
 msgid "Updated product %s"
-msgstr "Producto actualizado %s"
+msgstr "Skillo actualizado %s"
 
 #: saleor/dashboard/product/views.py:174
 #, python-format
@@ -1738,7 +1738,7 @@ msgid "Country"
 msgstr "País"
 
 #: saleor/dashboard/shipping/filters.py:27
-msgctxt "Product list sorting filter label"
+msgctxt "Skill list sorting filter label"
 msgid "Sort by"
 msgstr "Ordenar por"
 
@@ -2020,7 +2020,7 @@ msgid "Removed staff member %s"
 msgstr "Se ha borrado al miembro del personal %s"
 
 #: saleor/dashboard/taxes/filters.py:11
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "country_code"
 msgstr "country_code"
 

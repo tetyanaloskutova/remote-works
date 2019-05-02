@@ -10,16 +10,16 @@ import SaveButtonBar from "../../../components/SaveButtonBar";
 import Toggle from "../../../components/Toggle";
 import { maybe } from "../../../misc";
 import { UserError } from "../../../types";
-import { ProductVariant } from "../../types/ProductVariant";
-import ProductVariantAttributes from "../ProductVariantAttributes";
-import ProductVariantImages from "../ProductVariantImages";
-import ProductVariantImageSelectDialog from "../ProductVariantImageSelectDialog";
-import ProductVariantNavigation from "../ProductVariantNavigation";
-import ProductVariantPrice from "../ProductVariantPrice";
-import ProductVariantStock from "../ProductVariantStock";
+import { SkillVariant } from "../../types/SkillVariant";
+import SkillVariantAttributes from "../SkillVariantAttributes";
+import SkillVariantImages from "../SkillVariantImages";
+import SkillVariantImageSelectDialog from "../SkillVariantImageSelectDialog";
+import SkillVariantNavigation from "../SkillVariantNavigation";
+import SkillVariantPrice from "../SkillVariantPrice";
+import SkillVariantStock from "../SkillVariantStock";
 
-interface ProductVariantPageProps {
-  variant?: ProductVariant;
+interface SkillVariantPageProps {
+  variant?: SkillVariant;
   errors: UserError[];
   saveButtonBarState: ConfirmButtonTransitionState;
   loading?: boolean;
@@ -32,7 +32,7 @@ interface ProductVariantPageProps {
   onVariantClick(variantId: string);
 }
 
-const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
+const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
   errors: formErrors,
   loading,
   header,
@@ -90,7 +90,7 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
                 <>
                   <Grid variant="inverted">
                     <div>
-                      <ProductVariantNavigation
+                      <SkillVariantNavigation
                         current={variant ? variant.id : undefined}
                         variants={maybe(() => variant.product.variants)}
                         onRowClick={(variantId: string) => {
@@ -101,7 +101,7 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
                       />
                     </div>
                     <div>
-                      <ProductVariantAttributes
+                      <SkillVariantAttributes
                         attributes={
                           variant && variant.attributes
                             ? variant.attributes.map(a => a.attribute)
@@ -112,14 +112,14 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
                         onChange={change}
                       />
                       <CardSpacer />
-                      <ProductVariantImages
+                      <SkillVariantImages
                         disabled={loading}
                         images={images}
                         placeholderImage={placeholderImage}
                         onImageAdd={toggleImageSelectModal}
                       />
                       <CardSpacer />
-                      <ProductVariantPrice
+                      <SkillVariantPrice
                         errors={errors}
                         priceOverride={data.priceOverride}
                         currencySymbol={
@@ -134,7 +134,7 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
                         onChange={change}
                       />
                       <CardSpacer />
-                      <ProductVariantStock
+                      <SkillVariantStock
                         errors={errors}
                         sku={data.sku}
                         quantity={data.quantity}
@@ -159,7 +159,7 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
           </Container>
           {variant && (
             <>
-              <ProductVariantImageSelectDialog
+              <SkillVariantImageSelectDialog
                 onClose={toggleImageSelectModal}
                 onImageSelect={onImageSelect}
                 open={isImageSelectModalActive}
@@ -175,5 +175,5 @@ const ProductVariantPage: React.StatelessComponent<ProductVariantPageProps> = ({
     </Toggle>
   );
 };
-ProductVariantPage.displayName = "ProductVariantPage";
-export default ProductVariantPage;
+SkillVariantPage.displayName = "SkillVariantPage";
+export default SkillVariantPage;

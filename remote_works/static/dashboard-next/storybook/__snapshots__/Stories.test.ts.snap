@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Categories / CategoryProducts when loading data 1`] = `
+exports[`Storyshots Categories / CategorySkills when loading data 1`] = `
 <div>
   <div
     class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id"
@@ -11,7 +11,7 @@ exports[`Storyshots Categories / CategoryProducts when loading data 1`] = `
       <span
         class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
       >
-        Products
+        Skills
       </span>
       <div
         class="CardTitle-toolbar-id"
@@ -49,7 +49,7 @@ exports[`Storyshots Categories / CategoryProducts when loading data 1`] = `
             scope="col"
           />
           <th
-            class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
             scope="col"
           >
             Name
@@ -159,7 +159,7 @@ exports[`Storyshots Categories / CategoryProducts when loading data 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
               class="Skeleton-skeleton-id"
@@ -183,7 +183,7 @@ exports[`Storyshots Categories / CategoryProducts when loading data 1`] = `
 </div>
 `;
 
-exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
+exports[`Storyshots Categories / CategorySkills with clickable rows 1`] = `
 <div>
   <div
     class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id"
@@ -194,7 +194,7 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
       <span
         class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
       >
-        Products
+        Skills
       </span>
       <div
         class="CardTitle-toolbar-id"
@@ -232,7 +232,7 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
             scope="col"
           />
           <th
-            class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
             scope="col"
           >
             Name
@@ -331,10 +331,10 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -361,10 +361,10 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -391,10 +391,10 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -421,10 +421,10 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -441,7 +441,7 @@ exports[`Storyshots Categories / CategoryProducts with clickable rows 1`] = `
 </div>
 `;
 
-exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
+exports[`Storyshots Categories / CategorySkills with initial data 1`] = `
 <div>
   <div
     class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id"
@@ -452,7 +452,7 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
       <span
         class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
       >
-        Products
+        Skills
       </span>
       <div
         class="CardTitle-toolbar-id"
@@ -490,7 +490,7 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
             scope="col"
           />
           <th
-            class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
             scope="col"
           >
             Name
@@ -589,10 +589,10 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -619,10 +619,10 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -649,10 +649,10 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -679,10 +679,10 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
             </div>
           </td>
           <td
-            class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
           >
             <span
-              class="ProductList-link-id"
+              class="SkillList-link-id"
             >
               Gardner, Graham and King
             </span>
@@ -699,7 +699,7 @@ exports[`Storyshots Categories / CategoryProducts with initial data 1`] = `
 </div>
 `;
 
-exports[`Storyshots Categories / CategoryProducts without initial data 1`] = `
+exports[`Storyshots Categories / CategorySkills without initial data 1`] = `
 <div>
   <div
     class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id"
@@ -710,7 +710,7 @@ exports[`Storyshots Categories / CategoryProducts without initial data 1`] = `
       <span
         class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
       >
-        Products
+        Skills
       </span>
       <div
         class="CardTitle-toolbar-id"
@@ -744,7 +744,7 @@ exports[`Storyshots Categories / CategoryProducts without initial data 1`] = `
           class="MuiTableRow-root-id MuiTableRow-head-id"
         >
           <th
-            class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+            class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
             scope="col"
           >
             Name
@@ -6086,17 +6086,17 @@ exports[`Storyshots Orders / OrderPaymentDialog refund payment 1`] = `<div />`;
 
 exports[`Storyshots Orders / OrderPaymentVoidDialog default 1`] = `<div />`;
 
-exports[`Storyshots Orders / OrderProductAddDialog default 1`] = `<div />`;
+exports[`Storyshots Orders / OrderSkillAddDialog default 1`] = `<div />`;
 
 exports[`Storyshots Orders / OrderShippingMethodEditDialog default 1`] = `<div />`;
 
-exports[`Storyshots Product types / Edit attribute default 1`] = `<div />`;
+exports[`Storyshots Skill types / Edit attribute default 1`] = `<div />`;
 
-exports[`Storyshots Product types / Edit attribute form errors 1`] = `<div />`;
+exports[`Storyshots Skill types / Edit attribute form errors 1`] = `<div />`;
 
-exports[`Storyshots Product types / Edit attribute loading 1`] = `<div />`;
+exports[`Storyshots Skill types / Edit attribute loading 1`] = `<div />`;
 
-exports[`Storyshots Products / ProductVariantImageSelectDialog default 1`] = `null`;
+exports[`Storyshots Skills / SkillVariantImageSelectDialog default 1`] = `null`;
 
 exports[`Storyshots SiteSettings / Add key dialog default 1`] = `<div />`;
 
@@ -6567,7 +6567,7 @@ exports[`Storyshots Views / Categories / Category list default 1`] = `
               class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
               scope="col"
             >
-              No. Products
+              No. Skills
             </th>
           </tr>
         </thead>
@@ -6834,7 +6834,7 @@ exports[`Storyshots Views / Categories / Category list empty 1`] = `
               class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
               scope="col"
             >
-              No. Products
+              No. Skills
             </th>
           </tr>
         </thead>
@@ -6997,7 +6997,7 @@ exports[`Storyshots Views / Categories / Category list loading 1`] = `
               class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
               scope="col"
             >
-              No. Products
+              No. Skills
             </th>
           </tr>
         </thead>
@@ -8879,7 +8879,7 @@ Ctrl + K"
         <span
           class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
         >
-          Products
+          Skills
         </span>
       </div>
       <div
@@ -8943,7 +8943,7 @@ Ctrl + K"
                 class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
                 scope="col"
               >
-                No. Products
+                No. Skills
               </th>
             </tr>
           </thead>
@@ -9621,7 +9621,7 @@ Ctrl + K"
         <span
           class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
         >
-          Products
+          Skills
         </span>
       </div>
       <div
@@ -9685,7 +9685,7 @@ Ctrl + K"
                 class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
                 scope="col"
               >
-                No. Products
+                No. Skills
               </th>
             </tr>
           </thead>
@@ -10635,7 +10635,7 @@ Ctrl + K"
         <span
           class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
         >
-          Products
+          Skills
         </span>
       </div>
       <div
@@ -10699,7 +10699,7 @@ Ctrl + K"
                 class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
                 scope="col"
               >
-                No. Products
+                No. Skills
               </th>
             </tr>
           </thead>
@@ -11626,7 +11626,7 @@ Ctrl + K"
         <span
           class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id Tab-active-id"
         >
-          Products
+          Skills
         </span>
       </div>
       <div
@@ -11641,7 +11641,7 @@ Ctrl + K"
           <span
             class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
           >
-            Products in Coffees
+            Skills in Coffees
           </span>
           <div
             class="CardTitle-toolbar-id"
@@ -11675,7 +11675,7 @@ Ctrl + K"
               class="MuiTableRow-root-id MuiTableRow-head-id"
             >
               <th
-                class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+                class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
                 scope="col"
               >
                 Name
@@ -11693,7 +11693,7 @@ Ctrl + K"
                 Published
               </th>
               <th
-                class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textRight-id"
+                class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textRight-id"
                 scope="col"
               >
                 Price
@@ -12623,7 +12623,7 @@ Ctrl + K"
         <span
           class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
         >
-          Products
+          Skills
         </span>
       </div>
       <div
@@ -12687,7 +12687,7 @@ Ctrl + K"
                 class="MuiTableCell-root-id MuiTableCell-head-id CategoryList-centerText-id"
                 scope="col"
               >
-                No. Products
+                No. Skills
               </th>
             </tr>
           </thead>
@@ -13568,7 +13568,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Products in Summer collection
+                Skills in Summer collection
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -13612,7 +13612,7 @@ Ctrl + K"
                     Name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionSkills-textCenter-id"
                     scope="col"
                   >
                     Type
@@ -13700,7 +13700,7 @@ Ctrl + K"
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -13720,7 +13720,7 @@ Ctrl + K"
                     Murray Inc
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-textCenter-id"
                   >
                     Mugs
                   </td>
@@ -13734,7 +13734,7 @@ Ctrl + K"
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -13764,7 +13764,7 @@ Ctrl + K"
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -13784,7 +13784,7 @@ Ctrl + K"
                     Williams-Taylor
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-textCenter-id"
                   >
                     Coffee
                   </td>
@@ -13798,7 +13798,7 @@ Ctrl + K"
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -13828,7 +13828,7 @@ Ctrl + K"
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -13848,7 +13848,7 @@ Ctrl + K"
                     Hebert-Sherman
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-textCenter-id"
                   >
                     Coffee
                   </td>
@@ -13862,7 +13862,7 @@ Ctrl + K"
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -13892,7 +13892,7 @@ Ctrl + K"
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id CollectionSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -13912,7 +13912,7 @@ Ctrl + K"
                     Estes, Johnson and Graham
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-textCenter-id"
                   >
                     Books
                   </td>
@@ -13926,7 +13926,7 @@ Ctrl + K"
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -14708,7 +14708,7 @@ Ctrl + K"
                     Name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionSkills-textCenter-id"
                     scope="col"
                   >
                     Type
@@ -14796,7 +14796,7 @@ Ctrl + K"
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id CollectionProducts-tableRow-id"
+                  class="MuiTableRow-root-id CollectionSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -14831,7 +14831,7 @@ Ctrl + K"
                     </span>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-textCenter-id"
                   >
                     <span
                       class="Skeleton-skeleton-id"
@@ -14849,7 +14849,7 @@ Ctrl + K"
                     </span>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id CollectionSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiButtonBase-disabled-id MuiIconButton-root-id MuiIconButton-disabled-id"
@@ -15836,7 +15836,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Products in Summer collection
+                Skills in Summer collection
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -15881,7 +15881,7 @@ Ctrl + K"
                     Name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionProducts-textCenter-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id CollectionSkills-textCenter-id"
                     scope="col"
                   >
                     Type
@@ -16293,7 +16293,7 @@ exports[`Storyshots Views / Collections / Collection list default 1`] = `
               class="MuiTableCell-root-id MuiTableCell-head-id CollectionList-textCenter-id"
               scope="col"
             >
-              No. Products
+              No. Skills
             </th>
             <th
               class="MuiTableCell-root-id MuiTableCell-head-id CollectionList-textLeft-id"
@@ -16493,7 +16493,7 @@ exports[`Storyshots Views / Collections / Collection list loading 1`] = `
               class="MuiTableCell-root-id MuiTableCell-head-id CollectionList-textCenter-id"
               scope="col"
             >
-              No. Products
+              No. Skills
             </th>
             <th
               class="MuiTableCell-root-id MuiTableCell-head-id CollectionList-textLeft-id"
@@ -17981,7 +17981,7 @@ exports[`Storyshots Views / Configuration default 1`] = `
             <p
               class="MuiTypography-root-id MuiTypography-body1-id MuiTypography-colorPrimary-id ConfigurationPage-sectionTitle-id"
             >
-              Product Types
+              Skill Types
             </p>
             <p
               class="MuiTypography-root-id MuiTypography-body1-id ConfigurationPage-sectionDescription-id"
@@ -18348,7 +18348,7 @@ exports[`Storyshots Views / Configuration partial access 1`] = `
             <p
               class="MuiTypography-root-id MuiTypography-body1-id MuiTypography-colorPrimary-id ConfigurationPage-sectionTitle-id"
             >
-              Product Types
+              Skill Types
             </p>
             <p
               class="MuiTypography-root-id MuiTypography-body1-id ConfigurationPage-sectionDescription-id"
@@ -25849,7 +25849,7 @@ exports[`Storyshots Views / Discounts / Sale details collections 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
             >
-              Products (4)
+              Skills (4)
             </span>
           </div>
           <div
@@ -25907,7 +25907,7 @@ exports[`Storyshots Views / Discounts / Sale details collections 1`] = `
                     class="MuiTableCell-root-id MuiTableCell-head-id DiscountCollections-textRight-id"
                     scope="col"
                   >
-                    Products
+                    Skills
                   </th>
                   <th
                     class="MuiTableCell-root-id MuiTableCell-head-id"
@@ -26440,7 +26440,7 @@ exports[`Storyshots Views / Discounts / Sale details default 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
             >
-              Products (4)
+              Skills (4)
             </span>
           </div>
           <div
@@ -26498,7 +26498,7 @@ exports[`Storyshots Views / Discounts / Sale details default 1`] = `
                     class="MuiTableCell-root-id MuiTableCell-head-id DiscountCategories-textRight-id"
                     scope="col"
                   >
-                    Products
+                    Skills
                   </th>
                   <th
                     class="MuiTableCell-root-id MuiTableCell-head-id"
@@ -27051,7 +27051,7 @@ exports[`Storyshots Views / Discounts / Sale details form errors 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
             >
-              Products (4)
+              Skills (4)
             </span>
           </div>
           <div
@@ -27109,7 +27109,7 @@ exports[`Storyshots Views / Discounts / Sale details form errors 1`] = `
                     class="MuiTableCell-root-id MuiTableCell-head-id DiscountCategories-textRight-id"
                     scope="col"
                   >
-                    Products
+                    Skills
                   </th>
                   <th
                     class="MuiTableCell-root-id MuiTableCell-head-id"
@@ -27651,7 +27651,7 @@ exports[`Storyshots Views / Discounts / Sale details loading 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id"
             >
-              Products (…)
+              Skills (…)
             </span>
           </div>
           <div
@@ -27709,7 +27709,7 @@ exports[`Storyshots Views / Discounts / Sale details loading 1`] = `
                     class="MuiTableCell-root-id MuiTableCell-head-id DiscountCategories-textRight-id"
                     scope="col"
                   >
-                    Products
+                    Skills
                   </th>
                   <th
                     class="MuiTableCell-root-id MuiTableCell-head-id"
@@ -28268,7 +28268,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id Tab-root-id Tab-active-id"
             >
-              Products (4)
+              Skills (4)
             </span>
           </div>
           <div
@@ -28283,7 +28283,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Products assigned to Happy minute day!
+                Skills assigned to Happy minute day!
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -28321,19 +28321,19 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     scope="col"
                   />
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountProducts-wideColumn-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountSkills-wideColumn-id"
                     scope="col"
                   >
-                    Product name
+                    Skill name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountSkills-textRight-id"
                     scope="col"
                   >
-                    Product Type
+                    Skill Type
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id DiscountSkills-textRight-id"
                     scope="col"
                   >
                     Published
@@ -28415,7 +28415,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -28435,12 +28435,12 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     Orange Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     <div
                       class="StatusLabel-root-id undefined StatusLabel-successDot-id"
@@ -28449,7 +28449,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -28479,7 +28479,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -28499,12 +28499,12 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     Carrot Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     <div
                       class="StatusLabel-root-id undefined StatusLabel-successDot-id"
@@ -28513,7 +28513,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -28543,7 +28543,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -28563,12 +28563,12 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     Bean Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     Juice
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     <div
                       class="StatusLabel-root-id undefined StatusLabel-successDot-id"
@@ -28577,7 +28577,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -28607,7 +28607,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountProducts-tableRow-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id DiscountSkills-tableRow-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -28627,12 +28627,12 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     Black Hoodie
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     Top (clothing)
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-textRight-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-textRight-id"
                   >
                     <div
                       class="StatusLabel-root-id undefined StatusLabel-successDot-id"
@@ -28641,7 +28641,7 @@ exports[`Storyshots Views / Discounts / Sale details products 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountProducts-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id DiscountSkills-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -29658,7 +29658,7 @@ exports[`Storyshots Views / Discounts / Voucher create default 1`] = `
                         role="button"
                         tabindex="0"
                       >
-                        All Products
+                        All Skills
                       </div>
                       <input
                         name="type"
@@ -30163,7 +30163,7 @@ exports[`Storyshots Views / Discounts / Voucher create form errors 1`] = `
                         role="button"
                         tabindex="0"
                       >
-                        All Products
+                        All Skills
                       </div>
                       <input
                         name="type"
@@ -30672,7 +30672,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
                         class="MuiSelect-select-id MuiSelect-selectMenu-id MuiSelect-disabled-id MuiInputBase-input-id MuiInput-input-id MuiInputBase-disabled-id MuiInput-disabled-id"
                         role="button"
                       >
-                        All Products
+                        All Skills
                       </div>
                       <input
                         name="type"
@@ -30997,7 +30997,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body1-id"
               >
-                All Products
+                All Skills
               </p>
               <div
                 class="FormSpacer-spacer-id"
@@ -31310,7 +31310,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
                         class="MuiSelect-select-id MuiSelect-selectMenu-id MuiSelect-disabled-id MuiInputBase-input-id MuiInput-input-id MuiInputBase-disabled-id MuiInput-disabled-id"
                         role="button"
                       >
-                        All Products
+                        All Skills
                       </div>
                       <input
                         name="type"
@@ -31655,7 +31655,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body1-id"
               >
-                All Products
+                All Skills
               </p>
               <div
                 class="FormSpacer-spacer-id"
@@ -31965,7 +31965,7 @@ exports[`Storyshots Views / Discounts / Voucher details loading 1`] = `
                         class="MuiSelect-select-id MuiSelect-selectMenu-id MuiSelect-disabled-id MuiInputBase-input-id MuiInput-input-id MuiInputBase-disabled-id MuiInput-disabled-id"
                         role="button"
                       >
-                        All Products
+                        All Skills
                       </div>
                       <input
                         name="type"
@@ -33410,13 +33410,13 @@ exports[`Storyshots Views / HomePage default 1`] = `
               class="MuiTableBody-root-id"
             >
               <tr
-                class="MuiTableRow-root-id MuiTableRow-hover-id HomeProductList-tableRow-id"
+                class="MuiTableRow-root-id MuiTableRow-hover-id HomeSkillList-tableRow-id"
               >
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id HomeProductList-avatarSpacing-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id HomeSkillList-avatarSpacing-id"
                 >
                   <div
-                    class="MuiAvatar-root-id TableCellAvatar-avatar-id HomeProductList-avatarProps-id"
+                    class="MuiAvatar-root-id TableCellAvatar-avatar-id HomeSkillList-avatarProps-id"
                   >
                     <img
                       class="MuiAvatar-img-id"
@@ -34085,10 +34085,10 @@ exports[`Storyshots Views / HomePage loading 1`] = `
                 class="MuiTableRow-root-id"
               >
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id HomeProductList-avatarSpacing-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id HomeSkillList-avatarSpacing-id"
                 >
                   <div
-                    class="MuiAvatar-root-id MuiAvatar-colorDefault-id TableCellAvatar-avatar-id HomeProductList-avatarProps-id"
+                    class="MuiAvatar-root-id MuiAvatar-colorDefault-id TableCellAvatar-avatar-id HomeSkillList-avatarProps-id"
                   >
                     <svg
                       aria-hidden="true"
@@ -34166,7 +34166,7 @@ exports[`Storyshots Views / HomePage loading 1`] = `
               class="MuiListItem-root-id MuiListItem-default-id MuiListItem-dense-id MuiListItem-gutters-id"
             >
               <div
-                class="MuiListItemText-root-id MuiListItemText-dense-id HomeProductListCard-loadingProducts-id"
+                class="MuiListItemText-root-id MuiListItemText-dense-id HomeSkillListCard-loadingSkills-id"
               >
                 <p
                   class="MuiTypography-root-id MuiTypography-body1-id"
@@ -34450,7 +34450,7 @@ exports[`Storyshots Views / HomePage no data 1`] = `
                 class="MuiTableRow-root-id"
               >
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id HomeProductList-noProducts-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id HomeSkillList-noSkills-id"
                 >
                   <p
                     class="MuiTypography-root-id MuiTypography-body1-id"
@@ -34492,7 +34492,7 @@ exports[`Storyshots Views / HomePage no data 1`] = `
             class="MuiList-root-id MuiList-dense-id MuiList-padding-id"
           >
             <li
-              class="MuiListItem-root-id MuiListItem-default-id MuiListItem-dense-id MuiListItem-gutters-id HomeProductListCard-noProducts-id"
+              class="MuiListItem-root-id MuiListItem-default-id MuiListItem-dense-id MuiListItem-gutters-id HomeSkillListCard-noSkills-id"
             >
               <div
                 class="MuiListItemText-root-id MuiListItemText-dense-id"
@@ -34664,7 +34664,7 @@ exports[`Storyshots Views / Orders / Order details cancelled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -34775,7 +34775,7 @@ exports[`Storyshots Views / Orders / Order details cancelled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -34886,7 +34886,7 @@ exports[`Storyshots Views / Orders / Order details cancelled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -35504,7 +35504,7 @@ exports[`Storyshots Views / Orders / Order details default 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -35660,7 +35660,7 @@ exports[`Storyshots Views / Orders / Order details default 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -35816,7 +35816,7 @@ exports[`Storyshots Views / Orders / Order details default 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -36530,7 +36530,7 @@ exports[`Storyshots Views / Orders / Order details fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -36686,7 +36686,7 @@ exports[`Storyshots Views / Orders / Order details fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -36842,7 +36842,7 @@ exports[`Storyshots Views / Orders / Order details fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -37559,7 +37559,7 @@ exports[`Storyshots Views / Orders / Order details loading 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -38147,7 +38147,7 @@ exports[`Storyshots Views / Orders / Order details no customer note 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -38303,7 +38303,7 @@ exports[`Storyshots Views / Orders / Order details no customer note 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -38459,7 +38459,7 @@ exports[`Storyshots Views / Orders / Order details no customer note 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -39173,7 +39173,7 @@ exports[`Storyshots Views / Orders / Order details no payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -39329,7 +39329,7 @@ exports[`Storyshots Views / Orders / Order details no payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -39485,7 +39485,7 @@ exports[`Storyshots Views / Orders / Order details no payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -40199,7 +40199,7 @@ exports[`Storyshots Views / Orders / Order details no shipping address 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -40355,7 +40355,7 @@ exports[`Storyshots Views / Orders / Order details no shipping address 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -40511,7 +40511,7 @@ exports[`Storyshots Views / Orders / Order details no shipping address 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -41225,7 +41225,7 @@ exports[`Storyshots Views / Orders / Order details partially fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -41381,7 +41381,7 @@ exports[`Storyshots Views / Orders / Order details partially fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -41537,7 +41537,7 @@ exports[`Storyshots Views / Orders / Order details partially fulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -42251,7 +42251,7 @@ exports[`Storyshots Views / Orders / Order details payment confirmed 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -42407,7 +42407,7 @@ exports[`Storyshots Views / Orders / Order details payment confirmed 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -42563,7 +42563,7 @@ exports[`Storyshots Views / Orders / Order details payment confirmed 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -43277,7 +43277,7 @@ exports[`Storyshots Views / Orders / Order details payment error 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -43433,7 +43433,7 @@ exports[`Storyshots Views / Orders / Order details payment error 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -43589,7 +43589,7 @@ exports[`Storyshots Views / Orders / Order details payment error 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -44303,7 +44303,7 @@ exports[`Storyshots Views / Orders / Order details pending payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -44459,7 +44459,7 @@ exports[`Storyshots Views / Orders / Order details pending payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -44615,7 +44615,7 @@ exports[`Storyshots Views / Orders / Order details pending payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -45329,7 +45329,7 @@ exports[`Storyshots Views / Orders / Order details refunded payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -45485,7 +45485,7 @@ exports[`Storyshots Views / Orders / Order details refunded payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -45641,7 +45641,7 @@ exports[`Storyshots Views / Orders / Order details refunded payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -46355,7 +46355,7 @@ exports[`Storyshots Views / Orders / Order details rejected payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -46511,7 +46511,7 @@ exports[`Storyshots Views / Orders / Order details rejected payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -46667,7 +46667,7 @@ exports[`Storyshots Views / Orders / Order details rejected payment 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -47381,7 +47381,7 @@ exports[`Storyshots Views / Orders / Order details unfulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderUnfulfilledItems-textCenter-id"
@@ -47537,7 +47537,7 @@ exports[`Storyshots Views / Orders / Order details unfulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -47693,7 +47693,7 @@ exports[`Storyshots Views / Orders / Order details unfulfilled 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
                   class="MuiTableCell-root-id MuiTableCell-head-id OrderFulfillment-textCenter-id"
@@ -48415,22 +48415,22 @@ exports[`Storyshots Views / Orders / Order draft default 1`] = `
                   colspan="2"
                   scope="col"
                 >
-                  Product
+                  Skill
                 </th>
                 <th
-                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsSkills-textRight-id"
                   scope="col"
                 >
                   Quantity
                 </th>
                 <th
-                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsSkills-textRight-id"
                   scope="col"
                 >
                   Price
                 </th>
                 <th
-                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-head-id OrderDraftDetailsSkills-textRight-id"
                   scope="col"
                 >
                   Total
@@ -48474,11 +48474,11 @@ exports[`Storyshots Views / Orders / Order draft default 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   <form>
                     <div
-                      class="MuiFormControl-root-id MuiFormControl-fullWidth-id OrderDraftDetailsProducts-quantityField-id"
+                      class="MuiFormControl-root-id MuiFormControl-fullWidth-id OrderDraftDetailsSkills-quantityField-id"
                     >
                       <div
                         class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -48495,17 +48495,17 @@ exports[`Storyshots Views / Orders / Order draft default 1`] = `
                   </form>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   $65.95
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   $131.90
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-iconCell-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-iconCell-id"
                 >
                   <button
                     class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -48564,11 +48564,11 @@ exports[`Storyshots Views / Orders / Order draft default 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   <form>
                     <div
-                      class="MuiFormControl-root-id MuiFormControl-fullWidth-id OrderDraftDetailsProducts-quantityField-id"
+                      class="MuiFormControl-root-id MuiFormControl-fullWidth-id OrderDraftDetailsSkills-quantityField-id"
                     >
                       <div
                         class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -48585,17 +48585,17 @@ exports[`Storyshots Views / Orders / Order draft default 1`] = `
                   </form>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   $68.20
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   $136.40
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-iconCell-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-iconCell-id"
                 >
                   <button
                     class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -49150,7 +49150,7 @@ exports[`Storyshots Views / Orders / Order draft loading 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   <span
                     class="Skeleton-skeleton-id"
@@ -49159,7 +49159,7 @@ exports[`Storyshots Views / Orders / Order draft loading 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   <span
                     class="Skeleton-skeleton-id"
@@ -49168,7 +49168,7 @@ exports[`Storyshots Views / Orders / Order draft loading 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-textRight-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-textRight-id"
                 >
                   <span
                     class="Skeleton-skeleton-id"
@@ -49177,7 +49177,7 @@ exports[`Storyshots Views / Orders / Order draft loading 1`] = `
                   </span>
                 </td>
                 <td
-                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsProducts-iconCell-id"
+                  class="MuiTableCell-root-id MuiTableCell-body-id OrderDraftDetailsSkills-iconCell-id"
                 >
                   <button
                     class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -49637,7 +49637,7 @@ exports[`Storyshots Views / Orders / Order draft without lines 1`] = `
                   class="MuiTableCell-root-id MuiTableCell-body-id"
                   colspan="5"
                 >
-                  No Products added to Order
+                  No Skills added to Order
                 </td>
               </tr>
             </tbody>
@@ -56002,7 +56002,7 @@ exports[`Storyshots Views / Pages / Page list no data 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Create product type default 1`] = `
+exports[`Storyshots Views / Skill types / Create product type default 1`] = `
 <div>
   <form>
     <div
@@ -56050,7 +56050,7 @@ exports[`Storyshots Views / Product types / Create product type default 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductTypeDetails-root-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillTypeDetails-root-id"
           >
             <div
               class="CardTitle-root-id"
@@ -56080,7 +56080,7 @@ exports[`Storyshots Views / Product types / Create product type default 1`] = `
                   class="MuiFormLabel-root-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                   data-shrink="false"
                 >
-                  Product Type Name
+                  Skill Type Name
                 </label>
                 <div
                   class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -56305,7 +56305,7 @@ exports[`Storyshots Views / Product types / Create product type default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Create product type loading 1`] = `
+exports[`Storyshots Views / Skill types / Create product type loading 1`] = `
 <div>
   <form>
     <div
@@ -56358,7 +56358,7 @@ exports[`Storyshots Views / Product types / Create product type loading 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductTypeDetails-root-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillTypeDetails-root-id"
           >
             <div
               class="CardTitle-root-id"
@@ -56388,7 +56388,7 @@ exports[`Storyshots Views / Product types / Create product type loading 1`] = `
                   class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                   data-shrink="false"
                 >
-                  Product Type Name
+                  Skill Type Name
                 </label>
                 <div
                   class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-disabled-id MuiInput-disabled-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -56615,7 +56615,7 @@ exports[`Storyshots Views / Product types / Create product type loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Product type details default 1`] = `
+exports[`Storyshots Views / Skill types / Skill type details default 1`] = `
 <div>
   <form>
     <div
@@ -56663,7 +56663,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductTypeDetails-root-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillTypeDetails-root-id"
           >
             <div
               class="CardTitle-root-id"
@@ -56693,7 +56693,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                   class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                   data-shrink="true"
                 >
-                  Product Type Name
+                  Skill Type Name
                 </label>
                 <div
                   class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -56721,7 +56721,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Product Attributes
+                Skill Attributes
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -56761,7 +56761,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                     Attribute name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeAttributes-textLeft-id"
                     scope="col"
                   >
                     Values
@@ -56776,7 +56776,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeAttributes-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeAttributes-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -56784,12 +56784,12 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                     Author
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-textLeft-id"
                   >
                     John Doe, Milionare Pirate
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -56819,7 +56819,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeAttributes-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeAttributes-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -56827,12 +56827,12 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                     Language
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-textLeft-id"
                   >
                     English, Pirate
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -56862,7 +56862,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeAttributes-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeAttributes-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -56870,12 +56870,12 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
                     Publisher
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-textLeft-id"
                   >
                     Mirumee Press, Saleor Publishing
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -57164,7 +57164,7 @@ exports[`Storyshots Views / Product types / Product type details default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Product type details loading 1`] = `
+exports[`Storyshots Views / Skill types / Skill type details loading 1`] = `
 <div>
   <form>
     <div
@@ -57217,7 +57217,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductTypeDetails-root-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillTypeDetails-root-id"
           >
             <div
               class="CardTitle-root-id"
@@ -57247,7 +57247,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
                   class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                   data-shrink="false"
                 >
-                  Product Type Name
+                  Skill Type Name
                 </label>
                 <div
                   class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-disabled-id MuiInput-disabled-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -57276,7 +57276,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Product Attributes
+                Skill Attributes
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -57316,7 +57316,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
                     Attribute name
                   </th>
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeAttributes-textLeft-id"
                     scope="col"
                   >
                     Values
@@ -57343,7 +57343,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
                     </span>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-textLeft-id"
                   >
                     <span
                       class="Skeleton-skeleton-id"
@@ -57352,7 +57352,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
                     </span>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeAttributes-iconCell-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeAttributes-iconCell-id"
                   >
                     <button
                       class="MuiButtonBase-root-id MuiIconButton-root-id"
@@ -57646,7 +57646,7 @@ exports[`Storyshots Views / Product types / Product type details loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Product types list default 1`] = `
+exports[`Storyshots Views / Skill types / Skill types list default 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -57657,7 +57657,7 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Product types
+        Skill types
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -57703,19 +57703,19 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
             class="MuiTableRow-root-id MuiTableRow-head-id"
           >
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-wideCell-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-wideCell-id"
               scope="col"
             >
               Type Name
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-leftText-id"
               scope="col"
             >
               Type
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-leftText-id"
               scope="col"
             >
               Tax
@@ -57793,7 +57793,7 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
           class="MuiTableBody-root-id"
         >
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -57806,18 +57806,18 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Physical
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Foodstuffs
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -57830,18 +57830,18 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Digital
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Standard
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -57854,18 +57854,18 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Physical
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Standard
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -57878,18 +57878,18 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Physical
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Standard
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductTypeList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillTypeList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id"
@@ -57902,12 +57902,12 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Physical
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               Standard
             </td>
@@ -57919,7 +57919,7 @@ exports[`Storyshots Views / Product types / Product types list default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Product types / Product types list loading 1`] = `
+exports[`Storyshots Views / Skill types / Skill types list loading 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -57930,7 +57930,7 @@ exports[`Storyshots Views / Product types / Product types list loading 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Product types
+        Skill types
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -57977,19 +57977,19 @@ exports[`Storyshots Views / Product types / Product types list loading 1`] = `
             class="MuiTableRow-root-id MuiTableRow-head-id"
           >
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-wideCell-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-wideCell-id"
               scope="col"
             >
               Type Name
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-leftText-id"
               scope="col"
             >
               Type
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillTypeList-leftText-id"
               scope="col"
             >
               Tax
@@ -58080,7 +58080,7 @@ exports[`Storyshots Views / Product types / Product types list loading 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -58089,7 +58089,7 @@ exports[`Storyshots Views / Product types / Product types list loading 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductTypeList-leftText-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillTypeList-leftText-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -58105,7 +58105,7 @@ exports[`Storyshots Views / Product types / Product types list loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Create product When loading 1`] = `
+exports[`Storyshots Views / Skills / Create product When loading 1`] = `
 <div>
   <form>
     <div
@@ -58177,7 +58177,7 @@ exports[`Storyshots Views / Products / Create product When loading 1`] = `
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -58563,7 +58563,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -58649,7 +58649,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -58657,7 +58657,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -58682,7 +58682,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                     data-shrink="false"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -58765,7 +58765,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -58815,7 +58815,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -58889,7 +58889,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-switchContainer-id"
+                class="SkillAvailabilityForm-switchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id MuiFormControlLabel-disabled-id"
@@ -59007,7 +59007,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Create product default 1`] = `
+exports[`Storyshots Views / Skills / Create product default 1`] = `
 <div>
   <form>
     <div
@@ -59079,7 +59079,7 @@ exports[`Storyshots Views / Products / Create product default 1`] = `
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -59462,7 +59462,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -59547,7 +59547,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -59555,7 +59555,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -59580,7 +59580,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                     data-shrink="false"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -59662,7 +59662,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -59711,7 +59711,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -59785,7 +59785,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-switchContainer-id"
+                class="SkillAvailabilityForm-switchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id"
@@ -59901,7 +59901,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Create product variant default 1`] = `
+exports[`Storyshots Views / Skills / Create product variant default 1`] = `
 <div>
   <form>
     <div
@@ -59976,7 +59976,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -59991,13 +59991,13 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Cordoba Oro
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -60012,7 +60012,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     silver
                   </td>
@@ -60023,7 +60023,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductVariantAttributes-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillVariantAttributes-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -60044,7 +60044,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
               class="CardTitle-hr-id"
             />
             <div
-              class="MuiCardContent-root-id ProductVariantAttributes-grid-id"
+              class="MuiCardContent-root-id SkillVariantAttributes-grid-id"
             >
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -60119,7 +60119,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantPrice-grid-id"
+                class="SkillVariantPrice-grid-id"
               >
                 <div>
                   <div
@@ -60225,7 +60225,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantStock-grid-id"
+                class="SkillVariantStock-grid-id"
               >
                 <div>
                   <div
@@ -60351,7 +60351,7 @@ exports[`Storyshots Views / Products / Create product variant default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Create product variant when loading data 1`] = `
+exports[`Storyshots Views / Skills / Create product variant when loading data 1`] = `
 <div>
   <form>
     <div
@@ -60426,7 +60426,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -60452,7 +60452,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     <span
                       class="Skeleton-skeleton-id"
@@ -60467,7 +60467,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductVariantAttributes-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillVariantAttributes-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -60488,7 +60488,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
               class="CardTitle-hr-id"
             />
             <div
-              class="MuiCardContent-root-id ProductVariantAttributes-grid-id"
+              class="MuiCardContent-root-id SkillVariantAttributes-grid-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -60522,7 +60522,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantPrice-grid-id"
+                class="SkillVariantPrice-grid-id"
               >
                 <div>
                   <div
@@ -60630,7 +60630,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantStock-grid-id"
+                class="SkillVariantStock-grid-id"
               >
                 <div>
                   <div
@@ -60758,7 +60758,7 @@ exports[`Storyshots Views / Products / Create product variant when loading data 
 </div>
 `;
 
-exports[`Storyshots Views / Products / Create product variant with errors 1`] = `
+exports[`Storyshots Views / Skills / Create product variant with errors 1`] = `
 <div>
   <form>
     <div
@@ -60833,7 +60833,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -60848,13 +60848,13 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Cordoba Oro
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -60869,7 +60869,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     silver
                   </td>
@@ -60880,7 +60880,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductVariantAttributes-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillVariantAttributes-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -60901,7 +60901,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
               class="CardTitle-hr-id"
             />
             <div
-              class="MuiCardContent-root-id ProductVariantAttributes-grid-id"
+              class="MuiCardContent-root-id SkillVariantAttributes-grid-id"
             >
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -60976,7 +60976,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantPrice-grid-id"
+                class="SkillVariantPrice-grid-id"
               >
                 <div>
                   <div
@@ -61082,7 +61082,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantStock-grid-id"
+                class="SkillVariantStock-grid-id"
               >
                 <div>
                   <div
@@ -61213,7 +61213,7 @@ exports[`Storyshots Views / Products / Create product variant with errors 1`] = 
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product edit when data is fully loaded 1`] = `
+exports[`Storyshots Views / Skills / Skill edit when data is fully loaded 1`] = `
 <div>
   <form>
     <div
@@ -61285,7 +61285,7 @@ exports[`Storyshots Views / Products / Product edit when data is fully loaded 1`
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -61778,7 +61778,7 @@ Ctrl + K"
             class="CardSpacer-spacer-id"
           />
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImages-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImages-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -61803,7 +61803,7 @@ Ctrl + K"
                   </span>
                 </button>
                 <input
-                  class="ProductImages-fileField-id"
+                  class="SkillImages-fileField-id"
                   id="fileUpload"
                   type="file"
                 />
@@ -61816,14 +61816,14 @@ Ctrl + K"
               class="CardTitle-hr-id"
             />
             <div
-              class="ProductImages-imageGridContainer-id"
+              class="SkillImages-imageGridContainer-id"
             >
               <div
-                class="ImageUpload-photosIconContainer-id ProductImages-imageUpload-id"
+                class="ImageUpload-photosIconContainer-id SkillImages-imageUpload-id"
                 tabindex="0"
               >
                 <div
-                  class="ProductImages-imageUploadIcon-id"
+                  class="SkillImages-imageUploadIcon-id"
                 >
                   <input
                     autocomplete="off"
@@ -61861,7 +61861,7 @@ Ctrl + K"
                 class="MuiCardContent-root-id"
               >
                 <div
-                  class="ProductImages-root-id"
+                  class="SkillImages-root-id"
                 >
                   <div
                     class="ImageTile-imageContainer-id"
@@ -62011,7 +62011,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -62104,7 +62104,7 @@ Ctrl + K"
               </p>
             </div>
             <table
-              class="MuiTable-root-id ProductVariants-denseTable-id"
+              class="MuiTable-root-id SkillVariants-denseTable-id"
             >
               <thead
                 class="MuiTableHead-root-id"
@@ -62113,7 +62113,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-head-id"
                 >
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id ProductVariants-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id SkillVariants-textLeft-id"
                     scope="col"
                   >
                     Name
@@ -62139,7 +62139,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-hover-id"
                 >
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariants-textLeft-id ProductVariants-link-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariants-textLeft-id SkillVariants-link-id"
                   >
                     Cordoba Oro
                   </td>
@@ -62162,7 +62162,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-hover-id"
                 >
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariants-textLeft-id ProductVariants-link-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariants-textLeft-id SkillVariants-link-id"
                   >
                     silver
                   </td>
@@ -62233,7 +62233,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -62241,7 +62241,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -62266,7 +62266,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -62346,7 +62346,7 @@ Ctrl + K"
                 </div>
               </div>
               <p
-                class="MuiTypography-root-id MuiTypography-body1-id ProductOrganization-cardSubtitle-id"
+                class="MuiTypography-root-id MuiTypography-body1-id SkillOrganization-cardSubtitle-id"
               >
                 Attributes
               </p>
@@ -62443,7 +62443,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -62492,7 +62492,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -62588,7 +62588,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-expandedSwitchContainer-id"
+                class="SkillAvailabilityForm-expandedSwitchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id"
@@ -62629,7 +62629,7 @@ Ctrl + K"
                 </label>
               </div>
               <div
-                class="MuiFormControl-root-id MuiFormControl-fullWidth-id ProductAvailabilityForm-date-id"
+                class="MuiFormControl-root-id MuiFormControl-fullWidth-id SkillAvailabilityForm-date-id"
               >
                 <label
                   class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
@@ -62726,7 +62726,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product edit when loading data 1`] = `
+exports[`Storyshots Views / Skills / Skill edit when loading data 1`] = `
 <div>
   <form>
     <div
@@ -62803,7 +62803,7 @@ exports[`Storyshots Views / Products / Product edit when loading data 1`] = `
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -63127,7 +63127,7 @@ Ctrl + K"
             class="CardSpacer-spacer-id"
           />
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImages-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImages-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -63152,7 +63152,7 @@ Ctrl + K"
                   </span>
                 </button>
                 <input
-                  class="ProductImages-fileField-id"
+                  class="SkillImages-fileField-id"
                   id="fileUpload"
                   type="file"
                 />
@@ -63165,19 +63165,19 @@ Ctrl + K"
               class="CardTitle-hr-id"
             />
             <div
-              class="ProductImages-imageGridContainer-id"
+              class="SkillImages-imageGridContainer-id"
             >
               <div
                 class="MuiCardContent-root-id"
               >
                 <div
-                  class="ProductImages-root-id"
+                  class="SkillImages-root-id"
                 >
                   <div
-                    class="ProductImages-imageContainer-id"
+                    class="SkillImages-imageContainer-id"
                   >
                     <img
-                      class="ProductImages-image-id"
+                      class="SkillImages-image-id"
                       src="placeholder255x255.png"
                     />
                   </div>
@@ -63250,7 +63250,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -63307,7 +63307,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductStock-root-id"
+                class="SkillStock-root-id"
               >
                 <div
                   class="MuiFormControl-root-id"
@@ -63408,7 +63408,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -63416,7 +63416,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -63441,7 +63441,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id"
                     data-shrink="false"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -63524,7 +63524,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -63574,7 +63574,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -63648,7 +63648,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-switchContainer-id"
+                class="SkillAvailabilityForm-switchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id MuiFormControlLabel-disabled-id"
@@ -63766,7 +63766,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product edit when product has no images 1`] = `
+exports[`Storyshots Views / Skills / Skill edit when product has no images 1`] = `
 <div>
   <form>
     <div
@@ -63838,7 +63838,7 @@ exports[`Storyshots Views / Products / Product edit when product has no images 1
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -64331,7 +64331,7 @@ Ctrl + K"
             class="CardSpacer-spacer-id"
           />
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImages-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImages-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -64356,7 +64356,7 @@ Ctrl + K"
                   </span>
                 </button>
                 <input
-                  class="ProductImages-fileField-id"
+                  class="SkillImages-fileField-id"
                   id="fileUpload"
                   type="file"
                 />
@@ -64369,7 +64369,7 @@ Ctrl + K"
               class="CardTitle-hr-id"
             />
             <div
-              class="ProductImages-imageGridContainer-id"
+              class="SkillImages-imageGridContainer-id"
             >
               <div
                 class="ImageUpload-photosIconContainer-id"
@@ -64476,7 +64476,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -64569,7 +64569,7 @@ Ctrl + K"
               </p>
             </div>
             <table
-              class="MuiTable-root-id ProductVariants-denseTable-id"
+              class="MuiTable-root-id SkillVariants-denseTable-id"
             >
               <thead
                 class="MuiTableHead-root-id"
@@ -64578,7 +64578,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-head-id"
                 >
                   <th
-                    class="MuiTableCell-root-id MuiTableCell-head-id ProductVariants-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-head-id SkillVariants-textLeft-id"
                     scope="col"
                   >
                     Name
@@ -64604,7 +64604,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-hover-id"
                 >
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariants-textLeft-id ProductVariants-link-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariants-textLeft-id SkillVariants-link-id"
                   >
                     Cordoba Oro
                   </td>
@@ -64627,7 +64627,7 @@ Ctrl + K"
                   class="MuiTableRow-root-id MuiTableRow-hover-id"
                 >
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariants-textLeft-id ProductVariants-link-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariants-textLeft-id SkillVariants-link-id"
                   >
                     silver
                   </td>
@@ -64698,7 +64698,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -64706,7 +64706,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -64731,7 +64731,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -64811,7 +64811,7 @@ Ctrl + K"
                 </div>
               </div>
               <p
-                class="MuiTypography-root-id MuiTypography-body1-id ProductOrganization-cardSubtitle-id"
+                class="MuiTypography-root-id MuiTypography-body1-id SkillOrganization-cardSubtitle-id"
               >
                 Attributes
               </p>
@@ -64908,7 +64908,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -64957,7 +64957,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -65053,7 +65053,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-expandedSwitchContainer-id"
+                class="SkillAvailabilityForm-expandedSwitchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id"
@@ -65094,7 +65094,7 @@ Ctrl + K"
                 </label>
               </div>
               <div
-                class="MuiFormControl-root-id MuiFormControl-fullWidth-id ProductAvailabilityForm-date-id"
+                class="MuiFormControl-root-id MuiFormControl-fullWidth-id SkillAvailabilityForm-date-id"
               >
                 <label
                   class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
@@ -65191,7 +65191,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product edit when product has no variants 1`] = `
+exports[`Storyshots Views / Skills / Skill edit when product has no variants 1`] = `
 <div>
   <form>
     <div
@@ -65263,7 +65263,7 @@ exports[`Storyshots Views / Products / Product edit when product has no variants
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductDetailsForm-root-id"
+                class="SkillDetailsForm-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -65756,7 +65756,7 @@ Ctrl + K"
             class="CardSpacer-spacer-id"
           />
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImages-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImages-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -65781,7 +65781,7 @@ Ctrl + K"
                   </span>
                 </button>
                 <input
-                  class="ProductImages-fileField-id"
+                  class="SkillImages-fileField-id"
                   id="fileUpload"
                   type="file"
                 />
@@ -65794,14 +65794,14 @@ Ctrl + K"
               class="CardTitle-hr-id"
             />
             <div
-              class="ProductImages-imageGridContainer-id"
+              class="SkillImages-imageGridContainer-id"
             >
               <div
-                class="ImageUpload-photosIconContainer-id ProductImages-imageUpload-id"
+                class="ImageUpload-photosIconContainer-id SkillImages-imageUpload-id"
                 tabindex="0"
               >
                 <div
-                  class="ProductImages-imageUploadIcon-id"
+                  class="SkillImages-imageUploadIcon-id"
                 >
                   <input
                     autocomplete="off"
@@ -65839,7 +65839,7 @@ Ctrl + K"
                 class="MuiCardContent-root-id"
               >
                 <div
-                  class="ProductImages-root-id"
+                  class="SkillImages-root-id"
                 >
                   <div
                     class="ImageTile-imageContainer-id"
@@ -65989,7 +65989,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductPricing-root-id"
+                class="SkillPricing-root-id"
               >
                 <div
                   class="MuiFormControl-root-id MuiFormControl-fullWidth-id"
@@ -66053,7 +66053,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductStock-root-id"
+                class="SkillStock-root-id"
               >
                 <div
                   class="MuiFormControl-root-id"
@@ -66154,7 +66154,7 @@ Ctrl + K"
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductOrganization-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillOrganization-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -66162,7 +66162,7 @@ Ctrl + K"
               <span
                 class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
               >
-                Organize Product
+                Organize Skill
               </span>
               <div
                 class="CardTitle-toolbar-id"
@@ -66187,7 +66187,7 @@ Ctrl + K"
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Product Type
+                    Skill Type
                   </label>
                   <div
                     aria-autocomplete="list"
@@ -66267,7 +66267,7 @@ Ctrl + K"
                 </div>
               </div>
               <p
-                class="MuiTypography-root-id MuiTypography-body1-id ProductOrganization-cardSubtitle-id"
+                class="MuiTypography-root-id MuiTypography-body1-id SkillOrganization-cardSubtitle-id"
               >
                 Attributes
               </p>
@@ -66364,7 +66364,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -66413,7 +66413,7 @@ Ctrl + K"
                 class="FormSpacer-spacer-id"
               />
               <hr
-                class="ProductOrganization-hr-id"
+                class="SkillOrganization-hr-id"
               />
               <div
                 class="MultiAutocompleteSelectField-container-id"
@@ -66509,7 +66509,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductAvailabilityForm-expandedSwitchContainer-id"
+                class="SkillAvailabilityForm-expandedSwitchContainer-id"
               >
                 <label
                   class="MuiFormControlLabel-root-id"
@@ -66550,7 +66550,7 @@ Ctrl + K"
                 </label>
               </div>
               <div
-                class="MuiFormControl-root-id MuiFormControl-fullWidth-id ProductAvailabilityForm-date-id"
+                class="MuiFormControl-root-id MuiFormControl-fullWidth-id SkillAvailabilityForm-date-id"
               >
                 <label
                   class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
@@ -66647,7 +66647,7 @@ Ctrl + K"
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product image details when loaded data 1`] = `
+exports[`Storyshots Views / Skills / Skill image details when loaded data 1`] = `
 <div>
   <form>
     <div
@@ -66695,7 +66695,7 @@ exports[`Storyshots Views / Products / Product image details when loaded data 1`
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImageNavigation-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImageNavigation-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -66719,69 +66719,69 @@ exports[`Storyshots Views / Products / Product image details when loaded data 1`
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductImageNavigation-root-id"
+                class="SkillImageNavigation-root-id"
               >
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
                 <div
-                  class="ProductImageNavigation-imageContainer-id"
+                  class="SkillImageNavigation-imageContainer-id"
                 >
                   <img
-                    class="ProductImageNavigation-image-id"
+                    class="SkillImageNavigation-image-id"
                     src="placeholder1080x1080.png"
                   />
                 </div>
@@ -66889,10 +66889,10 @@ exports[`Storyshots Views / Products / Product image details when loaded data 1`
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductImagePage-imageContainer-id"
+                class="SkillImagePage-imageContainer-id"
               >
                 <img
-                  class="ProductImagePage-image-id"
+                  class="SkillImagePage-image-id"
                   src="placeholder1080x1080.png"
                 />
               </div>
@@ -66973,7 +66973,7 @@ exports[`Storyshots Views / Products / Product image details when loaded data 1`
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product image details when loading data 1`] = `
+exports[`Storyshots Views / Skills / Skill image details when loading data 1`] = `
 <div>
   <form>
     <div
@@ -67021,7 +67021,7 @@ exports[`Storyshots Views / Products / Product image details when loading data 1
       >
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductImageNavigation-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillImageNavigation-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -67230,7 +67230,7 @@ exports[`Storyshots Views / Products / Product image details when loading data 1
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product list default 1`] = `
+exports[`Storyshots Views / Skills / Skill list default 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -67241,7 +67241,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Products
+        Skills
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -67306,7 +67306,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
                     <span
                       class="MuiTab-label-id FilterTab-tabLabel-id"
                     >
-                      All Products
+                      All Skills
                     </span>
                   </span>
                 </span>
@@ -67369,7 +67369,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               scope="col"
             />
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
               scope="col"
             >
               Name
@@ -67387,7 +67387,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               Published
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textRight-id"
               scope="col"
             >
               Price
@@ -67465,7 +67465,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
           class="MuiTableBody-root-id"
         >
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67480,7 +67480,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Gardner-Schultz
             </td>
@@ -67499,13 +67499,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $83.30
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67520,7 +67520,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               James, Martinez and Murray
             </td>
@@ -67539,13 +67539,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $68.27
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67560,7 +67560,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Curtis, Joyce and Turner
             </td>
@@ -67579,13 +67579,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $21.43
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67600,7 +67600,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Davis, Brown and Ray
             </td>
@@ -67619,13 +67619,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $62.76
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67640,7 +67640,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Gallegos Ltd
             </td>
@@ -67659,13 +67659,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $7.13
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67680,7 +67680,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Franklin Inc
             </td>
@@ -67699,13 +67699,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $48.82
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67720,7 +67720,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Williams-Taylor
             </td>
@@ -67739,13 +67739,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $27.34
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67760,7 +67760,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Riddle, Evans and Hicks
             </td>
@@ -67779,13 +67779,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $75.42
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67800,7 +67800,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Hebert-Sherman
             </td>
@@ -67819,13 +67819,13 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $86.62
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -67840,7 +67840,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Carter and Sons
             </td>
@@ -67859,7 +67859,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $48.66
             </td>
@@ -67871,7 +67871,7 @@ exports[`Storyshots Views / Products / Product list default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product list loading 1`] = `
+exports[`Storyshots Views / Skills / Skill list loading 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -67882,7 +67882,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Products
+        Skills
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -67947,7 +67947,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
                     <span
                       class="MuiTab-label-id FilterTab-tabLabel-id"
                     >
-                      All Products
+                      All Skills
                     </span>
                   </span>
                 </span>
@@ -68010,7 +68010,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
               scope="col"
             />
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
               scope="col"
             >
               Name
@@ -68028,7 +68028,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
               Published
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textRight-id"
               scope="col"
             >
               Price
@@ -68107,7 +68107,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
           class="MuiTableBody-root-id"
         >
           <tr
-            class="MuiTableRow-root-id ProductList-link-id"
+            class="MuiTableRow-root-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68133,7 +68133,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -68160,7 +68160,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
               </span>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -68176,7 +68176,7 @@ exports[`Storyshots Views / Products / Product list loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product list no data 1`] = `
+exports[`Storyshots Views / Skills / Skill list no data 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -68187,7 +68187,7 @@ exports[`Storyshots Views / Products / Product list no data 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Products
+        Skills
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -68252,7 +68252,7 @@ exports[`Storyshots Views / Products / Product list no data 1`] = `
                     <span
                       class="MuiTab-label-id FilterTab-tabLabel-id"
                     >
-                      All Products
+                      All Skills
                     </span>
                   </span>
                 </span>
@@ -68311,7 +68311,7 @@ exports[`Storyshots Views / Products / Product list no data 1`] = `
             class="MuiTableRow-root-id MuiTableRow-head-id"
           >
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
               scope="col"
             >
               Name
@@ -68329,7 +68329,7 @@ exports[`Storyshots Views / Products / Product list no data 1`] = `
               Published
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textRight-id"
               scope="col"
             >
               Price
@@ -68423,7 +68423,7 @@ exports[`Storyshots Views / Products / Product list no data 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
+exports[`Storyshots Views / Skills / Skill list with custom filters 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -68434,7 +68434,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
       <h2
         class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
       >
-        Products
+        Skills
       </h2>
       <div
         class="ExtendedPageHeader-action-id"
@@ -68499,7 +68499,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
                     <span
                       class="MuiTab-label-id FilterTab-tabLabel-id"
                     >
-                      All Products
+                      All Skills
                     </span>
                   </span>
                 </span>
@@ -68682,7 +68682,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               scope="col"
             />
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textLeft-id"
               scope="col"
             >
               Name
@@ -68700,7 +68700,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               Published
             </th>
             <th
-              class="MuiTableCell-root-id MuiTableCell-head-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-head-id SkillList-textRight-id"
               scope="col"
             >
               Price
@@ -68778,7 +68778,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
           class="MuiTableBody-root-id"
         >
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68793,7 +68793,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Gardner-Schultz
             </td>
@@ -68812,13 +68812,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $83.30
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68833,7 +68833,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               James, Martinez and Murray
             </td>
@@ -68852,13 +68852,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $68.27
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68873,7 +68873,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Curtis, Joyce and Turner
             </td>
@@ -68892,13 +68892,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $21.43
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68913,7 +68913,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Davis, Brown and Ray
             </td>
@@ -68932,13 +68932,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $62.76
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68953,7 +68953,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Gallegos Ltd
             </td>
@@ -68972,13 +68972,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $7.13
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -68993,7 +68993,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Franklin Inc
             </td>
@@ -69012,13 +69012,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $48.82
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69033,7 +69033,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Williams-Taylor
             </td>
@@ -69052,13 +69052,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $27.34
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69073,7 +69073,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Riddle, Evans and Hicks
             </td>
@@ -69092,13 +69092,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $75.42
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69113,7 +69113,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Hebert-Sherman
             </td>
@@ -69132,13 +69132,13 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $86.62
             </td>
           </tr>
           <tr
-            class="MuiTableRow-root-id MuiTableRow-hover-id ProductList-link-id"
+            class="MuiTableRow-root-id MuiTableRow-hover-id SkillList-link-id"
           >
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69153,7 +69153,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textLeft-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textLeft-id"
             >
               Carter and Sons
             </td>
@@ -69172,7 +69172,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
               </div>
             </td>
             <td
-              class="MuiTableCell-root-id MuiTableCell-body-id ProductList-textRight-id"
+              class="MuiTableCell-root-id MuiTableCell-body-id SkillList-textRight-id"
             >
               $48.66
             </td>
@@ -69184,7 +69184,7 @@ exports[`Storyshots Views / Products / Product list with custom filters 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product variant details when loaded data 1`] = `
+exports[`Storyshots Views / Skills / Skill variant details when loaded data 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -69259,10 +69259,10 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id ProductVariantNavigation-tabActive-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id SkillVariantNavigation-tabActive-id"
                   >
                     <div
                       class="MuiAvatar-root-id TableCellAvatar-avatar-id"
@@ -69274,13 +69274,13 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Extended Hard
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69295,13 +69295,13 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Extended Soft
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69316,13 +69316,13 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Normal Hard
                   </td>
                 </tr>
                 <tr
-                  class="MuiTableRow-root-id MuiTableRow-hover-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id MuiTableRow-hover-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69337,7 +69337,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     Normal Soft
                   </td>
@@ -69348,7 +69348,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductVariantAttributes-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillVariantAttributes-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -69369,7 +69369,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
               class="CardTitle-hr-id"
             />
             <div
-              class="MuiCardContent-root-id ProductVariantAttributes-grid-id"
+              class="MuiCardContent-root-id SkillVariantAttributes-grid-id"
             >
               <div
                 class="SingleAutocompleteSelectField-container-id"
@@ -69505,37 +69505,37 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantImages-root-id"
+                class="SkillVariantImages-root-id"
               >
                 <div
-                  class="ProductVariantImages-imageContainer-id"
+                  class="SkillVariantImages-imageContainer-id"
                 >
                   <img
-                    class="ProductVariantImages-image-id"
+                    class="SkillVariantImages-image-id"
                     src="placeholder60x60.png"
                   />
                 </div>
                 <div
-                  class="ProductVariantImages-imageContainer-id"
+                  class="SkillVariantImages-imageContainer-id"
                 >
                   <img
-                    class="ProductVariantImages-image-id"
+                    class="SkillVariantImages-image-id"
                     src="placeholder60x60.png"
                   />
                 </div>
                 <div
-                  class="ProductVariantImages-imageContainer-id"
+                  class="SkillVariantImages-imageContainer-id"
                 >
                   <img
-                    class="ProductVariantImages-image-id"
+                    class="SkillVariantImages-image-id"
                     src="placeholder60x60.png"
                   />
                 </div>
                 <div
-                  class="ProductVariantImages-imageContainer-id"
+                  class="SkillVariantImages-imageContainer-id"
                 >
                   <img
-                    class="ProductVariantImages-image-id"
+                    class="SkillVariantImages-image-id"
                     src="placeholder60x60.png"
                   />
                 </div>
@@ -69570,7 +69570,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantPrice-grid-id"
+                class="SkillVariantPrice-grid-id"
               >
                 <div>
                   <div
@@ -69679,7 +69679,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantStock-grid-id"
+                class="SkillVariantStock-grid-id"
               >
                 <div>
                   <div
@@ -69810,7 +69810,7 @@ exports[`Storyshots Views / Products / Product variant details when loaded data 
 </div>
 `;
 
-exports[`Storyshots Views / Products / Product variant details when loading data 1`] = `
+exports[`Storyshots Views / Skills / Skill variant details when loading data 1`] = `
 <div>
   <div
     class="Container-md-id"
@@ -69890,7 +69890,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
                 class="MuiTableBody-root-id"
               >
                 <tr
-                  class="MuiTableRow-root-id ProductVariantNavigation-link-id"
+                  class="MuiTableRow-root-id SkillVariantNavigation-link-id"
                 >
                   <td
                     class="MuiTableCell-root-id MuiTableCell-body-id TableCellAvatar-root-id"
@@ -69916,7 +69916,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
                     </div>
                   </td>
                   <td
-                    class="MuiTableCell-root-id MuiTableCell-body-id ProductVariantNavigation-textLeft-id"
+                    class="MuiTableCell-root-id MuiTableCell-body-id SkillVariantNavigation-textLeft-id"
                   >
                     <span
                       class="Skeleton-skeleton-id"
@@ -69931,7 +69931,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
         </div>
         <div>
           <div
-            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id ProductVariantAttributes-card-id"
+            class="MuiPaper-root-id MuiPaper-elevation1-id MuiPaper-rounded-id MuiCard-root-id SkillVariantAttributes-card-id"
           >
             <div
               class="CardTitle-root-id"
@@ -69952,7 +69952,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
               class="CardTitle-hr-id"
             />
             <div
-              class="MuiCardContent-root-id ProductVariantAttributes-grid-id"
+              class="MuiCardContent-root-id SkillVariantAttributes-grid-id"
             >
               <span
                 class="Skeleton-skeleton-id"
@@ -70002,7 +70002,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantImages-root-id"
+                class="SkillVariantImages-root-id"
               >
                 <span
                   class="Skeleton-skeleton-id"
@@ -70040,7 +70040,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantPrice-grid-id"
+                class="SkillVariantPrice-grid-id"
               >
                 <div>
                   <div
@@ -70135,7 +70135,7 @@ exports[`Storyshots Views / Products / Product variant details when loading data
               class="MuiCardContent-root-id"
             >
               <div
-                class="ProductVariantStock-grid-id"
+                class="SkillVariantStock-grid-id"
               >
                 <div>
                   <div

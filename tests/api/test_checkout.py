@@ -33,7 +33,7 @@ MUTATION_CHECKOUT_CREATE = """
 
 def test_checkout_create(api_client, variant, graphql_address_data):
     """Create checkout object using GraphQL API."""
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     test_email = 'test@example.com'
     shipping_address = graphql_address_data
     variables = {
@@ -74,7 +74,7 @@ def test_checkout_create_reuse_cart(cart, user_api_client, variant):
     cart.user = user_api_client.user
     cart.save()
 
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {
         'checkoutInput': {
             'lines': [{'quantity': 1, 'variantId': variant_id}], }}
@@ -91,7 +91,7 @@ def test_checkout_create_reuse_cart(cart, user_api_client, variant):
 
 
 def test_checkout_create_required_email(api_client, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {
         'checkoutInput': {
             'lines': [{
@@ -110,7 +110,7 @@ def test_checkout_create_required_email(api_client, variant):
 
 def test_checkout_create_default_email_for_logged_in_customer(
         user_api_client, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {
         'checkoutInput': {
             'lines': [{
@@ -129,7 +129,7 @@ def test_checkout_create_default_email_for_logged_in_customer(
 
 
 def test_checkout_create_logged_in_customer(user_api_client, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {
         'checkoutInput': {
             'email': user_api_client.user.email,
@@ -154,7 +154,7 @@ def test_checkout_create_logged_in_customer(user_api_client, variant):
 
 def test_checkout_create_logged_in_customer_custom_email(
         user_api_client, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     customer = user_api_client.user
     custom_email = 'custom@example.com'
     variables = {
@@ -179,7 +179,7 @@ def test_checkout_create_logged_in_customer_custom_email(
 
 def test_checkout_create_logged_in_customer_custom_addresses(
         user_api_client, variant, graphql_address_data):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     shipping_address = graphql_address_data
     billing_address = graphql_address_data
     variables = {
@@ -212,7 +212,7 @@ def test_checkout_create_logged_in_customer_custom_addresses(
 
 def test_checkout_create_check_lines_quantity(
         user_api_client, variant, graphql_address_data):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     test_email = 'test@example.com'
     shipping_address = graphql_address_data
     variables = {
@@ -337,7 +337,7 @@ def test_checkout_lines_add(user_api_client, cart_with_item, variant):
     cart = cart_with_item
     line = cart.lines.first()
     assert line.quantity == 3
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
     variables = {
@@ -357,7 +357,7 @@ def test_checkout_lines_add(user_api_client, cart_with_item, variant):
 
 
 def test_checkout_lines_add_empty_checkout(user_api_client, cart, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
     variables = {
@@ -378,7 +378,7 @@ def test_checkout_lines_add_empty_checkout(user_api_client, cart, variant):
 
 def test_checkout_lines_add_check_lines_quantity(
         user_api_client, cart, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
     variables = {
@@ -396,7 +396,7 @@ def test_checkout_lines_add_check_lines_quantity(
 
 
 def test_checkout_lines_invalid_variant_id(user_api_client, cart, variant):
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     invalid_variant_id = 'InvalidId'
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
@@ -447,7 +447,7 @@ def test_checkout_lines_update(user_api_client, cart_with_item):
     variant = line.variant
     assert line.quantity == 3
 
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
     variables = {
@@ -483,7 +483,7 @@ def test_checkout_lines_update_check_lines_quantity(
     line = cart.lines.first()
     variant = line.variant
 
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     checkout_id = graphene.Node.to_global_id('Checkout', cart.pk)
 
     variables = {

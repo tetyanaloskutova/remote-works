@@ -2,14 +2,14 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
-import OrderProductAddDialog from "../../../orders/components/OrderProductAddDialog";
+import OrderSkillAddDialog from "../../../orders/components/OrderSkillAddDialog";
 import { orderLineSearch } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-storiesOf("Orders / OrderProductAddDialog", module)
+storiesOf("Orders / OrderSkillAddDialog", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderProductAddDialog
+    <OrderSkillAddDialog
       confirmButtonState="default"
       loading={false}
       open={true}

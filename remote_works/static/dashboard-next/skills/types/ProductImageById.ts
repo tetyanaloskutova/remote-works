@@ -2,34 +2,34 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: ProductImageById
+// GraphQL query operation: SkillImageById
 // ====================================================
 
-export interface ProductImageById_product_mainImage {
-  __typename: "ProductImage";
+export interface SkillImageById_product_mainImage {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   url: string;
 }
 
-export interface ProductImageById_product_images {
-  __typename: "ProductImage";
+export interface SkillImageById_product_images {
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface ProductImageById_product {
-  __typename: "Product";
+export interface SkillImageById_product {
+  __typename: "Skill";
   id: string;
-  mainImage: ProductImageById_product_mainImage | null;
-  images: (ProductImageById_product_images | null)[] | null;
+  mainImage: SkillImageById_product_mainImage | null;
+  images: (SkillImageById_product_images | null)[] | null;
 }
 
-export interface ProductImageById {
-  product: ProductImageById_product | null;
+export interface SkillImageById {
+  product: SkillImageById_product | null;
 }
 
-export interface ProductImageByIdVariables {
+export interface SkillImageByIdVariables {
   productId: string;
   imageId: string;
 }

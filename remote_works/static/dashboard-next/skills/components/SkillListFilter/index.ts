@@ -1,2 +1,2 @@
-export { default } from "./ProductListFilter";
-export * from "./ProductListFilter";
+export { default } from "./SkillListFilter";
+export * from "./SkillListFilter";

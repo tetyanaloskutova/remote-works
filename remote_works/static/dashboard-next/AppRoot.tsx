@@ -65,7 +65,7 @@ const menuStructure: IMenuItem[] = [
       {
         ariaLabel: "products",
         icon: <Shop />,
-        label: i18n.t("Products", { context: "Menu label" }),
+        label: i18n.t("Skills", { context: "Menu label" }),
         url: productListUrl()
       },
       {

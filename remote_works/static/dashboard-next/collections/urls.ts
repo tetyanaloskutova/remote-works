@@ -22,7 +22,7 @@ export const collectionImageRemovePath = (id: string) =>
 export const collectionImageRemoveUrl = (id: string) =>
   collectionImageRemovePath(encodeURIComponent(id));
 
-export const collectionAddProductPath = (id: string) =>
+export const collectionAddSkillPath = (id: string) =>
   urlJoin(collectionPath(id), "add");
-export const collectionAddProductUrl = (id: string) =>
-  collectionAddProductPath(encodeURIComponent(id));
+export const collectionAddSkillUrl = (id: string) =>
+  collectionAddSkillPath(encodeURIComponent(id));

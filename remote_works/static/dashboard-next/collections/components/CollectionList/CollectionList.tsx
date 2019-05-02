@@ -54,7 +54,7 @@ const CollectionList = withStyles(styles, { name: "CollectionList" })(
             </TableCell>
             <TableCell className={classes.textCenter}>
               {i18n
-                .t("No. Products", { context: "table cell" })
+                .t("No. Skills", { context: "table cell" })
                 .replace(" ", "\xa0")}
             </TableCell>
             <TableCell className={classes.textLeft}>

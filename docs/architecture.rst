@@ -5,7 +5,7 @@ Architecture
    :maxdepth: 1
 
    architecture/money
-   architecture/products
+   architecture/skills
    architecture/thumbnails
    architecture/stock
    architecture/orders

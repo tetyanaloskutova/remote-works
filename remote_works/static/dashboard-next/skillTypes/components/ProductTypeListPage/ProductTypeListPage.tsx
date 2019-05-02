@@ -6,15 +6,15 @@ import Container from "../../../components/Container";
 import PageHeader from "../../../components/PageHeader";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
-import { ProductTypeList_productTypes_edges_node } from "../../types/ProductTypeList";
-import ProductTypeList from "../ProductTypeList";
+import { SkillTypeList_productTypes_edges_node } from "../../types/SkillTypeList";
+import SkillTypeList from "../SkillTypeList";
 
-interface ProductTypeListPageProps extends PageListProps {
-  productTypes: ProductTypeList_productTypes_edges_node[];
+interface SkillTypeListPageProps extends PageListProps {
+  productTypes: SkillTypeList_productTypes_edges_node[];
 }
 
-const ProductTypeListPage: React.StatelessComponent<
-  ProductTypeListPageProps
+const SkillTypeListPage: React.StatelessComponent<
+  SkillTypeListPageProps
 > = ({
   productTypes,
   disabled,
@@ -25,7 +25,7 @@ const ProductTypeListPage: React.StatelessComponent<
   onRowClick
 }) => (
   <Container width="md">
-    <PageHeader title={i18n.t("Product types")}>
+    <PageHeader title={i18n.t("Skill types")}>
       <Button
         color="secondary"
         variant="contained"
@@ -35,7 +35,7 @@ const ProductTypeListPage: React.StatelessComponent<
         {i18n.t("Add product type")} <AddIcon />
       </Button>
     </PageHeader>
-    <ProductTypeList
+    <SkillTypeList
       productTypes={productTypes}
       disabled={disabled}
       pageInfo={pageInfo}
@@ -45,5 +45,5 @@ const ProductTypeListPage: React.StatelessComponent<
     />
   </Container>
 );
-ProductTypeListPage.displayName = "ProductTypeListPage";
-export default ProductTypeListPage;
+SkillTypeListPage.displayName = "SkillTypeListPage";
+export default SkillTypeListPage;

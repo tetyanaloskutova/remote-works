@@ -11,7 +11,7 @@ from graphql_jwt.shortcuts import get_token
 from graphql_relay import to_global_id
 
 from remote_works.graphql.middleware import jwt_middleware
-from remote_works.graphql.product.types import Product
+from remote_works.graphql.product.types import Skill
 from remote_works.graphql.utils import (
     filter_by_query_param, generate_query_argument_description, get_nodes)
 from tests.api.utils import get_graphql_content
@@ -45,19 +45,19 @@ def test_real_query(user_api_client, product):
     attr_value = product_attr.values.first()
     filter_by = '%s:%s' % (product_attr.slug, attr_value.slug)
     query = """
-    query Root($categoryId: ID!, $sortBy: ProductOrder, $first: Int, $attributesFilter: [AttributeScalar], $minPrice: Float, $maxPrice: Float) {
+    query Root($categoryId: ID!, $sortBy: SkillOrder, $first: Int, $attributesFilter: [AttributeScalar], $minPrice: Float, $maxPrice: Float) {
         category(id: $categoryId) {
             ...CategoryPageFragmentQuery
             __typename
         }
         skills(first: $first, sortBy: $sortBy, categories:[$categoryId], attributes: $attributesFilter, priceGte: $minPrice, priceLte: $maxPrice) {
-            ...ProductListFragmentQuery
+            ...SkillListFragmentQuery
             __typename
         }
         attributes(inCategory: $categoryId, first: 20) {
             edges {
                 node {
-                    ...ProductFiltersFragmentQuery
+                    ...SkillFiltersFragmentQuery
                     __typename
                 }
             }
@@ -92,10 +92,10 @@ def test_real_query(user_api_client, product):
         __typename
     }
 
-    fragment ProductListFragmentQuery on ProductCountableConnection {
+    fragment SkillListFragmentQuery on SkillCountableConnection {
         edges {
             node {
-                ...ProductFragmentQuery
+                ...SkillFragmentQuery
                 __typename
             }
             __typename
@@ -107,7 +107,7 @@ def test_real_query(user_api_client, product):
         __typename
     }
 
-    fragment ProductFragmentQuery on Product {
+    fragment SkillFragmentQuery on Skill {
         id
         name
         price {
@@ -117,7 +117,7 @@ def test_real_query(user_api_client, product):
             __typename
         }
         availability {
-            ...ProductPriceFragmentQuery
+            ...SkillPriceFragmentQuery
             __typename
         }
         thumbnailUrl1x: thumbnailUrl(size: 255)
@@ -126,7 +126,7 @@ def test_real_query(user_api_client, product):
         __typename
     }
 
-    fragment ProductPriceFragmentQuery on ProductAvailability {
+    fragment SkillPriceFragmentQuery on SkillAvailability {
         available
         discount {
             gross {
@@ -162,7 +162,7 @@ def test_real_query(user_api_client, product):
         __typename
     }
 
-    fragment ProductFiltersFragmentQuery on Attribute {
+    fragment SkillFiltersFragmentQuery on Attribute {
         id
         name
         slug
@@ -189,47 +189,47 @@ def test_real_query(user_api_client, product):
 
 def test_get_nodes(product_list):
     global_ids = [
-        to_global_id('Product', product.pk) for product in product_list]
+        to_global_id('Skill', product.pk) for product in product_list]
     # Make sure function works even if duplicated ids are provided
-    global_ids.append(to_global_id('Product', product_list[0].pk))
+    global_ids.append(to_global_id('Skill', product_list[0].pk))
     # Return skills corresponding to global ids
-    products = get_nodes(global_ids, Product)
+    products = get_nodes(global_ids, Skill)
     assert products == product_list
 
     # Raise an error if requested id has no related database object
-    nonexistent_item = Mock(type='Product', pk=123)
+    nonexistent_item = Mock(type='Skill', pk=123)
     nonexistent_item_global_id = to_global_id(
         nonexistent_item.type, nonexistent_item.pk)
     global_ids.append(nonexistent_item_global_id)
     msg = 'There is no node of type {} with pk {}'.format(
         nonexistent_item.type, nonexistent_item.pk)
     with pytest.raises(AssertionError, message=msg):
-        get_nodes(global_ids, Product)
+        get_nodes(global_ids, Skill)
     global_ids.pop()
 
     # Raise an error if one of the node is of wrong type
     invalid_item = Mock(type='test', pk=123)
     invalid_item_global_id = to_global_id(invalid_item.type, invalid_item.pk)
     global_ids.append(invalid_item_global_id)
-    with pytest.raises(AssertionError, message='Must receive an Product id.'):
-        get_nodes(global_ids, Product)
+    with pytest.raises(AssertionError, message='Must receive an Skill id.'):
+        get_nodes(global_ids, Skill)
 
     # Raise an error if no nodes were found
     global_ids = []
     msg = 'Could not resolve to a nodes with the global id list of {}.'.format(
         global_ids)
     with pytest.raises(Exception, message=msg):
-        get_nodes(global_ids, Product)
+        get_nodes(global_ids, Skill)
 
     # Raise an error if pass wrong ids
     global_ids = ['a', 'bb']
     msg = 'Could not resolve to a nodes with the global id list of {}.'.format(
         global_ids)
     with pytest.raises(Exception, message=msg):
-        get_nodes(global_ids, Product)
+        get_nodes(global_ids, Skill)
 
 
-@patch('remote_works.skill.models.Product.objects')
+@patch('remote_works.skill.models.Skill.objects')
 def test_filter_by_query_param(qs):
     qs.filter.return_value = qs
 

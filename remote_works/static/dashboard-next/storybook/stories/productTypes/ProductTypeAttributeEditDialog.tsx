@@ -1,15 +1,15 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import ProductTypeAttributeEditDialog, {
-  ProductTypeAttributeEditDialogProps
-} from "../../../productTypes/components/ProductTypeAttributeEditDialog";
+import SkillTypeAttributeEditDialog, {
+  SkillTypeAttributeEditDialogProps
+} from "../../../productTypes/components/SkillTypeAttributeEditDialog";
 import { attributes } from "../../../productTypes/fixtures";
 import Decorator from "../../Decorator";
 
 const attribute = attributes[0];
 
-const props: ProductTypeAttributeEditDialogProps = {
+const props: SkillTypeAttributeEditDialogProps = {
   disabled: false,
   errors: [],
   name: attribute.name,
@@ -23,14 +23,14 @@ const props: ProductTypeAttributeEditDialogProps = {
   }))
 };
 
-storiesOf("Product types / Edit attribute", module)
+storiesOf("Skill types / Edit attribute", module)
   .addDecorator(Decorator)
-  .add("default", () => <ProductTypeAttributeEditDialog {...props} />)
+  .add("default", () => <SkillTypeAttributeEditDialog {...props} />)
   .add("loading", () => (
-    <ProductTypeAttributeEditDialog {...props} disabled={true} />
+    <SkillTypeAttributeEditDialog {...props} disabled={true} />
   ))
   .add("form errors", () => (
-    <ProductTypeAttributeEditDialog
+    <SkillTypeAttributeEditDialog
       {...props}
       // errors={["name", "values"].map(field => formError(field))}
       errors={["name", "values"].map(field => ({

@@ -8,10 +8,10 @@ Accessing missing image will result in 404 error.
 In debug mode thumbnails are generated on demand.
 
 
-Generating Products Thumbnails Manually
+Generating Skills Thumbnails Manually
 ---------------------------------------
 
-Create missing thumbnails for all ProductImage instances.
+Create missing thumbnails for all SkillImage instances.
 
 .. code-block:: console
 

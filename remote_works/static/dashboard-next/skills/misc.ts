@@ -1,11 +1,11 @@
 import { empty, only } from "../misc";
 import { StockAvailability } from "../types/globalTypes";
-import { ProductListFilterTabs } from "./components/ProductListFilter";
-import { ProductListQueryParams } from "./views/ProductList";
+import { SkillListFilterTabs } from "./components/SkillListFilter";
+import { SkillListQueryParams } from "./views/SkillList";
 
 export const getTabName = (
-  qs: ProductListQueryParams
-): ProductListFilterTabs => {
+  qs: SkillListQueryParams
+): SkillListFilterTabs => {
   const filters = {
     status: qs.status
   };

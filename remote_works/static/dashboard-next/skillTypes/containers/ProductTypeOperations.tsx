@@ -6,8 +6,8 @@ import {
   TypedAttributeCreateMutation,
   TypedAttributeDeleteMutation,
   TypedAttributeUpdateMutation,
-  TypedProductTypeDeleteMutation,
-  TypedProductTypeUpdateMutation
+  TypedSkillTypeDeleteMutation,
+  TypedSkillTypeUpdateMutation
 } from "../mutations";
 import {
   AttributeCreate,
@@ -22,15 +22,15 @@ import {
   AttributeUpdateVariables
 } from "../types/AttributeUpdate";
 import {
-  ProductTypeDelete,
-  ProductTypeDeleteVariables
-} from "../types/ProductTypeDelete";
+  SkillTypeDelete,
+  SkillTypeDeleteVariables
+} from "../types/SkillTypeDelete";
 import {
-  ProductTypeUpdate,
-  ProductTypeUpdateVariables
-} from "../types/ProductTypeUpdate";
+  SkillTypeUpdate,
+  SkillTypeUpdateVariables
+} from "../types/SkillTypeUpdate";
 
-interface ProductTypeOperationsProps {
+interface SkillTypeOperationsProps {
   children: (
     props: {
       attributeCreate: PartialMutationProviderOutput<
@@ -41,42 +41,42 @@ interface ProductTypeOperationsProps {
         AttributeDelete,
         AttributeDeleteVariables
       >;
-      deleteProductType: PartialMutationProviderOutput<
-        ProductTypeDelete,
-        ProductTypeDeleteVariables
+      deleteSkillType: PartialMutationProviderOutput<
+        SkillTypeDelete,
+        SkillTypeDeleteVariables
       >;
       updateAttribute: PartialMutationProviderOutput<
         AttributeUpdate,
         AttributeUpdateVariables
       >;
-      updateProductType: PartialMutationProviderOutput<
-        ProductTypeUpdate,
-        ProductTypeUpdateVariables
+      updateSkillType: PartialMutationProviderOutput<
+        SkillTypeUpdate,
+        SkillTypeUpdateVariables
       >;
     }
   ) => React.ReactNode;
   onAttributeCreate: (data: AttributeCreate) => void;
   onAttributeDelete: (data: AttributeDelete) => void;
   onAttributeUpdate: (data: AttributeUpdate) => void;
-  onProductTypeDelete: (data: ProductTypeDelete) => void;
-  onProductTypeUpdate: (data: ProductTypeUpdate) => void;
+  onSkillTypeDelete: (data: SkillTypeDelete) => void;
+  onSkillTypeUpdate: (data: SkillTypeUpdate) => void;
 }
 
-const ProductTypeOperations: React.StatelessComponent<
-  ProductTypeOperationsProps
+const SkillTypeOperations: React.StatelessComponent<
+  SkillTypeOperationsProps
 > = ({
   children,
   onAttributeCreate,
   onAttributeDelete,
   onAttributeUpdate,
-  onProductTypeDelete,
-  onProductTypeUpdate
+  onSkillTypeDelete,
+  onSkillTypeUpdate
 }) => {
   return (
-    <TypedProductTypeDeleteMutation onCompleted={onProductTypeDelete}>
-      {(...deleteProductType) => (
-        <TypedProductTypeUpdateMutation onCompleted={onProductTypeUpdate}>
-          {(...updateProductType) => (
+    <TypedSkillTypeDeleteMutation onCompleted={onSkillTypeDelete}>
+      {(...deleteSkillType) => (
+        <TypedSkillTypeUpdateMutation onCompleted={onSkillTypeUpdate}>
+          {(...updateSkillType) => (
             <TypedAttributeCreateMutation onCompleted={onAttributeCreate}>
               {(...createAttribute) => (
                 <TypedAttributeDeleteMutation onCompleted={onAttributeDelete}>
@@ -92,14 +92,14 @@ const ProductTypeOperations: React.StatelessComponent<
                           deleteAttribute: getMutationProviderData(
                             ...deleteAttribute
                           ),
-                          deleteProductType: getMutationProviderData(
-                            ...deleteProductType
+                          deleteSkillType: getMutationProviderData(
+                            ...deleteSkillType
                           ),
                           updateAttribute: getMutationProviderData(
                             ...updateAttribute
                           ),
-                          updateProductType: getMutationProviderData(
-                            ...updateProductType
+                          updateSkillType: getMutationProviderData(
+                            ...updateSkillType
                           )
                         })
                       }
@@ -109,9 +109,9 @@ const ProductTypeOperations: React.StatelessComponent<
               )}
             </TypedAttributeCreateMutation>
           )}
-        </TypedProductTypeUpdateMutation>
+        </TypedSkillTypeUpdateMutation>
       )}
-    </TypedProductTypeDeleteMutation>
+    </TypedSkillTypeDeleteMutation>
   );
 };
-export default ProductTypeOperations;
+export default SkillTypeOperations;

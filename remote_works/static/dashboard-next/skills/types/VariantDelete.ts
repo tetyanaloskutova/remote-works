@@ -12,12 +12,12 @@ export interface VariantDelete_productVariantDelete_errors {
 }
 
 export interface VariantDelete_productVariantDelete_productVariant {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
 }
 
 export interface VariantDelete_productVariantDelete {
-  __typename: "ProductVariantDelete";
+  __typename: "SkillVariantDelete";
   errors: VariantDelete_productVariantDelete_errors[] | null;
   productVariant: VariantDelete_productVariantDelete_productVariant | null;
 }

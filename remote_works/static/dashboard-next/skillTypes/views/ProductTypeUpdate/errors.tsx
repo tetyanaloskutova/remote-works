@@ -2,15 +2,15 @@ import * as React from "react";
 
 import { UserError } from "../../../types";
 
-interface ProductTypeUpdateErrorsState {
+interface SkillTypeUpdateErrorsState {
   addAttributeErrors: UserError[];
   editAttributeErrors: UserError[];
   formErrors: UserError[];
 }
-interface ProductTypeUpdateErrorsProps {
+interface SkillTypeUpdateErrorsProps {
   children: (
     props: {
-      errors: ProductTypeUpdateErrorsState;
+      errors: SkillTypeUpdateErrorsState;
       set: {
         addAttributeErrors: (errors: UserError[]) => void;
         editAttributeErrors: (errors: UserError[]) => void;
@@ -20,11 +20,11 @@ interface ProductTypeUpdateErrorsProps {
   ) => React.ReactNode;
 }
 
-export class ProductTypeUpdateErrors extends React.Component<
-  ProductTypeUpdateErrorsProps,
-  ProductTypeUpdateErrorsState
+export class SkillTypeUpdateErrors extends React.Component<
+  SkillTypeUpdateErrorsProps,
+  SkillTypeUpdateErrorsState
 > {
-  state: ProductTypeUpdateErrorsState = {
+  state: SkillTypeUpdateErrorsState = {
     addAttributeErrors: [],
     editAttributeErrors: [],
     formErrors: []
@@ -43,4 +43,4 @@ export class ProductTypeUpdateErrors extends React.Component<
     });
   }
 }
-export default ProductTypeUpdateErrors;
+export default SkillTypeUpdateErrors;

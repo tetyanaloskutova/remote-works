@@ -17,8 +17,8 @@ import Skeleton from "../../../components/Skeleton";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
-import { ProductVariantCreateData_product_variants } from "../../types/ProductVariantCreateData";
-import { ProductVariantDetails_productVariant } from "../../types/ProductVariantDetails";
+import { SkillVariantCreateData_product_variants } from "../../types/SkillVariantCreateData";
+import { SkillVariantDetails_productVariant } from "../../types/SkillVariantDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -42,23 +42,23 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantNavigationProps extends WithStyles<typeof styles> {
+interface SkillVariantNavigationProps extends WithStyles<typeof styles> {
   current?: string;
   variants:
-    | ProductVariantDetails_productVariant[]
-    | ProductVariantCreateData_product_variants[];
+    | SkillVariantDetails_productVariant[]
+    | SkillVariantCreateData_product_variants[];
   onRowClick: (variantId: string) => void;
 }
 
-const ProductVariantNavigation = withStyles(styles, {
-  name: "ProductVariantNavigation"
+const SkillVariantNavigation = withStyles(styles, {
+  name: "SkillVariantNavigation"
 })(
   ({
     classes,
     current,
     variants,
     onRowClick
-  }: ProductVariantNavigationProps) => (
+  }: SkillVariantNavigationProps) => (
     <Card>
       <CardTitle title={i18n.t("Variants")} />
       <Table>
@@ -94,5 +94,5 @@ const ProductVariantNavigation = withStyles(styles, {
     </Card>
   )
 );
-ProductVariantNavigation.displayName = "ProductVariantNavigation";
-export default ProductVariantNavigation;
+SkillVariantNavigation.displayName = "SkillVariantNavigation";
+export default SkillVariantNavigation;

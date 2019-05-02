@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholder from "../../../../images/placeholder60x60.png";
-import CategoryProducts from "../../../categories/components/CategoryProducts";
+import CategorySkills from "../../../categories/components/CategorySkills";
 import Decorator from "../../Decorator";
 
 const products = [
@@ -44,44 +44,44 @@ const products = [
   }
 ];
 
-storiesOf("Categories / CategoryProducts", module)
+storiesOf("Categories / CategorySkills", module)
   .addDecorator(Decorator)
   .add("without initial data", () => (
-    <CategoryProducts
+    <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
       products={[]}
-      onAddProduct={undefined}
+      onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
     />
   ))
   .add("with initial data", () => (
-    <CategoryProducts
+    <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
       products={products}
-      onAddProduct={undefined}
+      onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
     />
   ))
   .add("with clickable rows", () => (
-    <CategoryProducts
+    <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
       products={products}
-      onAddProduct={undefined}
+      onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
       onRowClick={() => undefined}
     />
   ))
   .add("when loading data", () => (
-    <CategoryProducts
+    <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
-      onAddProduct={undefined}
+      onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
     />

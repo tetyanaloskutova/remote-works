@@ -1,2 +1,2 @@
-export { default } from "./ProductStock";
-export * from "./ProductStock";
+export { default } from "./SkillStock";
+export * from "./SkillStock";

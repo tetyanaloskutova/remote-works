@@ -9,24 +9,24 @@ import {
   CollectionSearch,
   CollectionSearchVariables
 } from "./types/CollectionSearch";
-import { ProductCreateData } from "./types/ProductCreateData";
+import { SkillCreateData } from "./types/SkillCreateData";
 import {
-  ProductDetails,
-  ProductDetailsVariables
-} from "./types/ProductDetails";
+  SkillDetails,
+  SkillDetailsVariables
+} from "./types/SkillDetails";
 import {
-  ProductImageById,
-  ProductImageByIdVariables
-} from "./types/ProductImageById";
-import { ProductList, ProductListVariables } from "./types/ProductList";
+  SkillImageById,
+  SkillImageByIdVariables
+} from "./types/SkillImageById";
+import { SkillList, SkillListVariables } from "./types/SkillList";
 import {
-  ProductVariantCreateData,
-  ProductVariantCreateDataVariables
-} from "./types/ProductVariantCreateData";
+  SkillVariantCreateData,
+  SkillVariantCreateDataVariables
+} from "./types/SkillVariantCreateData";
 import {
-  ProductVariantDetails,
-  ProductVariantDetailsVariables
-} from "./types/ProductVariantDetails";
+  SkillVariantDetails,
+  SkillVariantDetailsVariables
+} from "./types/SkillVariantDetails";
 
 export const fragmentMoney = gql`
   fragment Money on Money {
@@ -35,8 +35,8 @@ export const fragmentMoney = gql`
   }
 `;
 
-export const fragmentProductImage = gql`
-  fragment ProductImageFragment on ProductImage {
+export const fragmentSkillImage = gql`
+  fragment SkillImageFragment on SkillImage {
     id
     alt
     sortOrder
@@ -44,10 +44,10 @@ export const fragmentProductImage = gql`
   }
 `;
 
-export const fragmentProduct = gql`
-  ${fragmentProductImage}
+export const fragmentSkill = gql`
+  ${fragmentSkillImage}
   ${fragmentMoney}
-  fragment Product on Product {
+  fragment Skill on Skill {
     id
     name
     descriptionJson
@@ -111,7 +111,7 @@ export const fragmentProduct = gql`
       }
     }
     images {
-      ...ProductImageFragment
+      ...SkillImageFragment
     }
     variants {
       id
@@ -136,8 +136,8 @@ export const fragmentProduct = gql`
 
 export const fragmentVariant = gql`
   ${fragmentMoney}
-  ${fragmentProductImage}
-  fragment ProductVariant on ProductVariant {
+  ${fragmentSkillImage}
+  fragment SkillVariant on SkillVariant {
     id
     attributes {
       attribute {
@@ -170,7 +170,7 @@ export const fragmentVariant = gql`
     product {
       id
       images {
-        ...ProductImageFragment
+        ...SkillImageFragment
       }
       name
       thumbnail {
@@ -194,7 +194,7 @@ export const fragmentVariant = gql`
 
 const productListQuery = gql`
   ${fragmentMoney}
-  query ProductList(
+  query SkillList(
     $first: Int
     $after: String
     $last: Int
@@ -236,39 +236,39 @@ const productListQuery = gql`
     }
   }
 `;
-export const TypedProductListQuery = TypedQuery<
-  ProductList,
-  ProductListVariables
+export const TypedSkillListQuery = TypedQuery<
+  SkillList,
+  SkillListVariables
 >(productListQuery);
 
 const productDetailsQuery = gql`
-  ${fragmentProduct}
-  query ProductDetails($id: ID!) {
+  ${fragmentSkill}
+  query SkillDetails($id: ID!) {
     product(id: $id) {
-      ...Product
+      ...Skill
     }
   }
 `;
-export const TypedProductDetailsQuery = TypedQuery<
-  ProductDetails,
-  ProductDetailsVariables
+export const TypedSkillDetailsQuery = TypedQuery<
+  SkillDetails,
+  SkillDetailsVariables
 >(productDetailsQuery);
 
 const productVariantQuery = gql`
   ${fragmentVariant}
-  query ProductVariantDetails($id: ID!) {
+  query SkillVariantDetails($id: ID!) {
     productVariant(id: $id) {
-      ...ProductVariant
+      ...SkillVariant
     }
   }
 `;
-export const TypedProductVariantQuery = TypedQuery<
-  ProductVariantDetails,
-  ProductVariantDetailsVariables
+export const TypedSkillVariantQuery = TypedQuery<
+  SkillVariantDetails,
+  SkillVariantDetailsVariables
 >(productVariantQuery);
 
 const productCreateQuery = gql`
-  query ProductCreateData {
+  query SkillCreateData {
     productTypes(first: 20) {
       edges {
         node {
@@ -291,12 +291,12 @@ const productCreateQuery = gql`
     }
   }
 `;
-export const TypedProductCreateQuery = TypedQuery<ProductCreateData, {}>(
+export const TypedSkillCreateQuery = TypedQuery<SkillCreateData, {}>(
   productCreateQuery
 );
 
 const productVariantCreateQuery = gql`
-  query ProductVariantCreateData($id: ID!) {
+  query SkillVariantCreateData($id: ID!) {
     product(id: $id) {
       id
       images {
@@ -330,13 +330,13 @@ const productVariantCreateQuery = gql`
     }
   }
 `;
-export const TypedProductVariantCreateQuery = TypedQuery<
-  ProductVariantCreateData,
-  ProductVariantCreateDataVariables
+export const TypedSkillVariantCreateQuery = TypedQuery<
+  SkillVariantCreateData,
+  SkillVariantCreateDataVariables
 >(productVariantCreateQuery);
 
 const productImageQuery = gql`
-  query ProductImageById($productId: ID!, $imageId: ID!) {
+  query SkillImageById($productId: ID!, $imageId: ID!) {
     product(id: $productId) {
       id
       mainImage: imageById(id: $imageId) {
@@ -351,9 +351,9 @@ const productImageQuery = gql`
     }
   }
 `;
-export const TypedProductImageQuery = TypedQuery<
-  ProductImageById,
-  ProductImageByIdVariables
+export const TypedSkillImageQuery = TypedQuery<
+  SkillImageById,
+  SkillImageByIdVariables
 >(productImageQuery);
 
 const categorySearch = gql`

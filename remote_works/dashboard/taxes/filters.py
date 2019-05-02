@@ -8,7 +8,7 @@ from ...core.utils import get_country_name_by_code
 
 SORT_BY_FIELDS = {
     'country_code': pgettext_lazy(
-        'Product list sorting option', 'country_code')}
+        'Skill list sorting option', 'country_code')}
 
 
 def get_country_choices_for_vat():

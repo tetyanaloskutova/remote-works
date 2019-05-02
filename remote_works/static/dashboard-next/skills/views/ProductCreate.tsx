@@ -6,20 +6,20 @@ import Shop from "../../components/Shop";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
 import { decimal, getMutationState, maybe } from "../../misc";
-import ProductCreatePage, { FormData } from "../components/ProductCreatePage";
+import SkillCreatePage, { FormData } from "../components/SkillCreatePage";
 import { CategorySearchProvider } from "../containers/CategorySearch";
 import { CollectionSearchProvider } from "../containers/CollectionSearch";
-import { TypedProductCreateMutation } from "../mutations";
-import { TypedProductCreateQuery } from "../queries";
-import { ProductCreate } from "../types/ProductCreate";
+import { TypedSkillCreateMutation } from "../mutations";
+import { TypedSkillCreateQuery } from "../queries";
+import { SkillCreate } from "../types/SkillCreate";
 import { productListUrl, productUrl } from "../urls";
 
-interface ProductUpdateProps {
+interface SkillUpdateProps {
   id: string;
 }
 
-export const ProductUpdate: React.StatelessComponent<
-  ProductUpdateProps
+export const SkillUpdate: React.StatelessComponent<
+  SkillUpdateProps
 > = () => (
   <Shop>
     {shop => (
@@ -42,12 +42,12 @@ export const ProductUpdate: React.StatelessComponent<
                           search: searchCollection,
                           searchOpts: searchCollectionOpts
                         }) => (
-                          <TypedProductCreateQuery displayLoader>
+                          <TypedSkillCreateQuery displayLoader>
                             {({ data, loading }) => {
-                              const handleSuccess = (data: ProductCreate) => {
+                              const handleSuccess = (data: SkillCreate) => {
                                 if (data.productCreate.errors.length === 0) {
                                   pushMessage({
-                                    text: i18n.t("Product created")
+                                    text: i18n.t("Skill created")
                                   });
                                   navigate(
                                     productUrl(data.productCreate.product.id)
@@ -56,7 +56,7 @@ export const ProductUpdate: React.StatelessComponent<
                               };
 
                               return (
-                                <TypedProductCreateMutation
+                                <TypedSkillCreateMutation
                                   onCompleted={handleSuccess}
                                 >
                                   {(
@@ -110,7 +110,7 @@ export const ProductUpdate: React.StatelessComponent<
                                         <WindowTitle
                                           title={i18n.t("Create product")}
                                         />
-                                        <ProductCreatePage
+                                        <SkillCreatePage
                                           currency={maybe(
                                             () => shop.defaultCurrency
                                           )}
@@ -138,7 +138,7 @@ export const ProductUpdate: React.StatelessComponent<
                                           }
                                           fetchCategories={searchCategory}
                                           fetchCollections={searchCollection}
-                                          header={i18n.t("New Product")}
+                                          header={i18n.t("New Skill")}
                                           productTypes={
                                             data && data.productTypes
                                               ? data.productTypes.edges.map(
@@ -158,10 +158,10 @@ export const ProductUpdate: React.StatelessComponent<
                                       </>
                                     );
                                   }}
-                                </TypedProductCreateMutation>
+                                </TypedSkillCreateMutation>
                               );
                             }}
-                          </TypedProductCreateQuery>
+                          </TypedSkillCreateQuery>
                         )}
                       </CollectionSearchProvider>
                     )}
@@ -175,4 +175,4 @@ export const ProductUpdate: React.StatelessComponent<
     )}
   </Shop>
 );
-export default ProductUpdate;
+export default SkillUpdate;

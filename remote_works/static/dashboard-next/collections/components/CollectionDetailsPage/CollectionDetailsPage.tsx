@@ -15,7 +15,7 @@ import { PageListProps } from "../../../types";
 import { CollectionDetails_collection } from "../../types/CollectionDetails";
 import CollectionDetails from "../CollectionDetails/CollectionDetails";
 import { CollectionImage } from "../CollectionImage/CollectionImage";
-import CollectionProducts from "../CollectionProducts/CollectionProducts";
+import CollectionSkills from "../CollectionSkills/CollectionSkills";
 import CollectionStatus from "../CollectionStatus/CollectionStatus";
 
 export interface CollectionDetailsPageFormData {
@@ -36,7 +36,7 @@ export interface CollectionDetailsPageProps extends PageListProps {
   onCollectionRemove: () => void;
   onImageDelete: () => void;
   onImageUpload: (file: File) => void;
-  onProductUnassign: (id: string, event: React.MouseEvent<any>) => void;
+  onSkillUnassign: (id: string, event: React.MouseEvent<any>) => void;
   onSubmit: (data: CollectionDetailsPageFormData) => void;
 }
 
@@ -52,7 +52,7 @@ const CollectionDetailsPage: React.StatelessComponent<
   onImageDelete,
   onImageUpload,
   onSubmit,
-  ...collectionProductsProps
+  ...collectionSkillsProps
 }: CollectionDetailsPageProps) => (
   <Form
     initial={{
@@ -88,10 +88,10 @@ const CollectionDetailsPage: React.StatelessComponent<
               onChange={change}
             />
             <CardSpacer />
-            <CollectionProducts
+            <CollectionSkills
               disabled={disabled}
               collection={collection}
-              {...collectionProductsProps}
+              {...collectionSkillsProps}
             />
             <CardSpacer />
             <SeoForm

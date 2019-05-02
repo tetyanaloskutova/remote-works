@@ -8,15 +8,15 @@ import Navigator from "../../../components/Navigator";
 import { WindowTitle } from "../../../components/WindowTitle";
 import i18n from "../../../i18n";
 import { decimal, getMutationState, maybe } from "../../../misc";
-import ProductVariantDeleteDialog from "../../components/ProductVariantDeleteDialog";
-import ProductVariantPage from "../../components/ProductVariantPage";
-import ProductVariantOperations from "../../containers/ProductVariantOperations";
-import { TypedProductVariantQuery } from "../../queries";
+import SkillVariantDeleteDialog from "../../components/SkillVariantDeleteDialog";
+import SkillVariantPage from "../../components/SkillVariantPage";
+import SkillVariantOperations from "../../containers/SkillVariantOperations";
+import { TypedSkillVariantQuery } from "../../queries";
 import { VariantUpdate } from "../../types/VariantUpdate";
 import { productUrl, productVariantEditUrl } from "../../urls";
 import { productVariantRemovePath, productVariantRemoveUrl } from "./urls";
 
-interface ProductUpdateProps {
+interface SkillUpdateProps {
   variantId: string;
   productId: string;
 }
@@ -33,7 +33,7 @@ interface FormData {
   sku: string;
 }
 
-export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
+export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
   variantId,
   productId
 }) => (
@@ -41,7 +41,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
     {navigate => (
       <Messages>
         {pushMessage => (
-          <TypedProductVariantQuery
+          <TypedSkillVariantQuery
             displayLoader
             variables={{ id: variantId }}
             require={["productVariant"]}
@@ -63,7 +63,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
               };
 
               return (
-                <ProductVariantOperations
+                <SkillVariantOperations
                   onDelete={handleDelete}
                   onUpdate={handleUpdate}
                 >
@@ -120,7 +120,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                         <WindowTitle
                           title={maybe(() => data.productVariant.name)}
                         />
-                        <ProductVariantPage
+                        <SkillVariantPage
                           errors={maybe(
                             () =>
                               updateVariant.opts.data.productVariantUpdate
@@ -168,7 +168,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                             ":variantId"
                           )}
                           render={({ match }) => (
-                            <ProductVariantDeleteDialog
+                            <SkillVariantDeleteDialog
                               confirmButtonState={removeTransitionState}
                               onClose={() =>
                                 navigate(
@@ -188,13 +188,13 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                       </>
                     );
                   }}
-                </ProductVariantOperations>
+                </SkillVariantOperations>
               );
             }}
-          </TypedProductVariantQuery>
+          </TypedSkillVariantQuery>
         )}
       </Messages>
     )}
   </Navigator>
 );
-export default ProductVariant;
+export default SkillVariant;

@@ -2,12 +2,12 @@ import gql from "graphql-tag";
 
 import { TypedQuery } from "../../queries";
 import {
-  SearchProducts,
-  SearchProductsVariables
-} from "./types/SearchProducts";
+  SearchSkills,
+  SearchSkillsVariables
+} from "./types/SearchSkills";
 
-export const searchProducts = gql`
-  query SearchProducts($query: String!) {
+export const searchSkills = gql`
+  query SearchSkills($query: String!) {
     products(first: 5, query: $query) {
       edges {
         node {
@@ -21,7 +21,7 @@ export const searchProducts = gql`
     }
   }
 `;
-export const TypedSearchProductsQuery = TypedQuery<
-  SearchProducts,
-  SearchProductsVariables
->(searchProducts);
+export const TypedSearchSkillsQuery = TypedQuery<
+  SearchSkills,
+  SearchSkillsVariables
+>(searchSkills);

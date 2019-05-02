@@ -10,7 +10,7 @@ from remote_works.discount.utils import (
     decrease_voucher_usage, get_product_discount_on_sale,
     get_products_voucher_discount, get_shipping_voucher_discount,
     get_value_voucher_discount, increase_voucher_usage)
-from remote_works.product.models import Product, ProductVariant
+from remote_works.product.models import Skill, SkillVariant
 
 
 def get_min_amount_spent(min_amount_spent):
@@ -108,14 +108,14 @@ def test_products_voucher_checkout_discount_not(
 
 
 def test_sale_applies_to_correct_products(product_type, category):
-    product = Product.objects.create(
-        name='Test Product', price=Money(10, 'USD'), description='',
+    product = Skill.objects.create(
+        name='Test Skill', price=Money(10, 'USD'), description='',
         pk=111, product_type=product_type, category=category)
-    variant = ProductVariant.objects.create(product=product, sku='firstvar')
-    product2 = Product.objects.create(
+    variant = SkillVariant.objects.create(product=product, sku='firstvar')
+    product2 = Skill.objects.create(
         name='Second skill', price=Money(15, 'USD'), description='',
         product_type=product_type, category=category)
-    sec_variant = ProductVariant.objects.create(
+    sec_variant = SkillVariant.objects.create(
         product=product2, sku='secvar', pk=111)
     sale = Sale.objects.create(
         name='Test sale', value=3, type=DiscountValueType.FIXED)

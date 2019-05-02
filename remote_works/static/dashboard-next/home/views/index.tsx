@@ -22,10 +22,10 @@ const HomeSection = () => (
                 )}
                 orders={maybe(() => data.ordersToday.totalCount)}
                 sales={maybe(() => data.salesToday.gross)}
-                topProducts={maybe(() =>
+                topSkills={maybe(() =>
                   data.productTopToday.edges.map(edge => edge.node)
                 )}
-                onProductClick={(productId, variantId) =>
+                onSkillClick={(productId, variantId) =>
                   navigate(productVariantEditUrl(productId, variantId))
                 }
                 onOrdersToCaptureClick={() =>
@@ -42,7 +42,7 @@ const HomeSection = () => (
                     })
                   )
                 }
-                onProductsOutOfStockClick={() =>
+                onSkillsOutOfStockClick={() =>
                   navigate(
                     productListUrl({
                       status: StockAvailability.OUT_OF_STOCK

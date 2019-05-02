@@ -7,7 +7,7 @@ from remote_works.graphql.core.enums import ReportingPeriod
 from remote_works.graphql.core.utils import clean_seo_fields, snake_to_camel_case
 from remote_works.graphql.product import types as product_types
 from remote_works.graphql.utils import get_database_id, reporting_period_to_date
-from remote_works.product.models import Product
+from remote_works.product.models import Skill
 from tests.api.utils import (
     _get_graphql_content_from_response, get_graphql_content)
 
@@ -51,9 +51,9 @@ def test_get_database_id(product):
     info = Mock(
         schema=Mock(
             get_type=Mock(
-                return_value=Mock(graphene_type=product_types.Product))))
-    node_id = graphene.Node.to_global_id('Product', product.pk)
-    pk = get_database_id(info, node_id, product_types.Product)
+                return_value=Mock(graphene_type=product_types.Skill))))
+    node_id = graphene.Node.to_global_id('Skill', product.pk)
+    pk = get_database_id(info, node_id, product_types.Skill)
     assert int(pk) == product.pk
 
 
@@ -81,7 +81,7 @@ def test_mutation_returns_error_field_in_camel_case(
     }
     """
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.id),
+        'id': graphene.Node.to_global_id('SkillVariant', variant.id),
         'cost': 12.1234}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -138,7 +138,7 @@ def test_total_count_query(api_client, product):
     """
     response = api_client.post_graphql(query)
     content = get_graphql_content(response)
-    assert content['data']['skills']['totalCount'] == Product.objects.count()
+    assert content['data']['skills']['totalCount'] == Skill.objects.count()
 
 
 def test_mutation_decimal_input(
@@ -160,7 +160,7 @@ def test_mutation_decimal_input(
     }
     """
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.id),
+        'id': graphene.Node.to_global_id('SkillVariant', variant.id),
         'cost': 12.12}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -187,7 +187,7 @@ def test_mutation_decimal_input_without_arguments(
         }
     }
     """ % {
-        'variant_id': graphene.Node.to_global_id('ProductVariant', variant.id),
+        'variant_id': graphene.Node.to_global_id('SkillVariant', variant.id),
         'cost': 12.12
     }
     response = staff_api_client.post_graphql(

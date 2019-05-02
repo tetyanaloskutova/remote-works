@@ -5,33 +5,33 @@ import Navigator from "../../components/Navigator";
 import { createPaginationState, Paginator } from "../../components/Paginator";
 import { maybe } from "../../misc";
 import { StockAvailability } from "../../types/globalTypes";
-import ProductListCard from "../components/ProductListCard";
+import SkillListCard from "../components/SkillListCard";
 import { getTabName } from "../misc";
-import { TypedProductListQuery } from "../queries";
+import { TypedSkillListQuery } from "../queries";
 import { productAddUrl, productUrl } from "../urls";
 
-export interface ProductListFilters {
+export interface SkillListFilters {
   status: StockAvailability;
 }
-export type ProductListQueryParams = Partial<
+export type SkillListQueryParams = Partial<
   {
     after: string;
     before: string;
-  } & ProductListFilters
+  } & SkillListFilters
 >;
 
-interface ProductListProps {
-  params: ProductListQueryParams;
+interface SkillListProps {
+  params: SkillListQueryParams;
 }
 
 const PAGINATE_BY = 20;
 
-export const ProductList: React.StatelessComponent<ProductListProps> = ({
+export const SkillList: React.StatelessComponent<SkillListProps> = ({
   params
 }) => (
   <Navigator>
     {navigate => {
-      const changeFilters = (newParams: ProductListQueryParams) =>
+      const changeFilters = (newParams: SkillListQueryParams) =>
         navigate(
           "?" +
             stringifyQs({
@@ -41,7 +41,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
         );
       const paginationState = createPaginationState(PAGINATE_BY, params);
       return (
-        <TypedProductListQuery
+        <TypedSkillListQuery
           displayLoader
           variables={{
             ...paginationState,
@@ -57,7 +57,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                 queryString={params}
               >
                 {({ loadNextPage, loadPreviousPage, pageInfo }) => (
-                  <ProductListCard
+                  <SkillListCard
                     currentTab={currentTab}
                     filtersList={[]}
                     onAdd={() => navigate(productAddUrl)}
@@ -73,7 +73,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                     onPreviousPage={loadPreviousPage}
                     pageInfo={pageInfo}
                     onRowClick={id => () => navigate(productUrl(id))}
-                    onAllProducts={() =>
+                    onAllSkills={() =>
                       changeFilters({
                         status: undefined
                       })
@@ -94,9 +94,9 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
               </Paginator>
             );
           }}
-        </TypedProductListQuery>
+        </TypedSkillListQuery>
       );
     }}
   </Navigator>
 );
-export default ProductList;
+export default SkillList;

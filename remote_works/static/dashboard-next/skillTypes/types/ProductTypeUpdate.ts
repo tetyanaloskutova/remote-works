@@ -1,77 +1,77 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { ProductTypeInput, TaxRateType } from "./../../types/globalTypes";
+import { SkillTypeInput, TaxRateType } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: ProductTypeUpdate
+// GraphQL mutation operation: SkillTypeUpdate
 // ====================================================
 
-export interface ProductTypeUpdate_productTypeUpdate_errors {
+export interface SkillTypeUpdate_productTypeUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType_productAttributes_values {
+export interface SkillTypeUpdate_productTypeUpdate_productType_productAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType_productAttributes {
+export interface SkillTypeUpdate_productTypeUpdate_productType_productAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeUpdate_productTypeUpdate_productType_productAttributes_values | null)[] | null;
+  values: (SkillTypeUpdate_productTypeUpdate_productType_productAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType_variantAttributes_values {
+export interface SkillTypeUpdate_productTypeUpdate_productType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType_variantAttributes {
+export interface SkillTypeUpdate_productTypeUpdate_productType_variantAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeUpdate_productTypeUpdate_productType_variantAttributes_values | null)[] | null;
+  values: (SkillTypeUpdate_productTypeUpdate_productType_variantAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType_weight {
+export interface SkillTypeUpdate_productTypeUpdate_productType_weight {
   __typename: "Weight";
   unit: string;
   value: number;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate_productType {
-  __typename: "ProductType";
+export interface SkillTypeUpdate_productTypeUpdate_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
   isShippingRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (ProductTypeUpdate_productTypeUpdate_productType_productAttributes | null)[] | null;
-  variantAttributes: (ProductTypeUpdate_productTypeUpdate_productType_variantAttributes | null)[] | null;
-  weight: ProductTypeUpdate_productTypeUpdate_productType_weight | null;
+  productAttributes: (SkillTypeUpdate_productTypeUpdate_productType_productAttributes | null)[] | null;
+  variantAttributes: (SkillTypeUpdate_productTypeUpdate_productType_variantAttributes | null)[] | null;
+  weight: SkillTypeUpdate_productTypeUpdate_productType_weight | null;
 }
 
-export interface ProductTypeUpdate_productTypeUpdate {
-  __typename: "ProductTypeUpdate";
-  errors: ProductTypeUpdate_productTypeUpdate_errors[] | null;
-  productType: ProductTypeUpdate_productTypeUpdate_productType | null;
+export interface SkillTypeUpdate_productTypeUpdate {
+  __typename: "SkillTypeUpdate";
+  errors: SkillTypeUpdate_productTypeUpdate_errors[] | null;
+  productType: SkillTypeUpdate_productTypeUpdate_productType | null;
 }
 
-export interface ProductTypeUpdate {
-  productTypeUpdate: ProductTypeUpdate_productTypeUpdate | null;
+export interface SkillTypeUpdate {
+  productTypeUpdate: SkillTypeUpdate_productTypeUpdate | null;
 }
 
-export interface ProductTypeUpdateVariables {
+export interface SkillTypeUpdateVariables {
   id: string;
-  input: ProductTypeInput;
+  input: SkillTypeInput;
 }

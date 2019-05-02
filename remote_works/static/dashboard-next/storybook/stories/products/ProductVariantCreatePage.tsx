@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder255x255.png";
-import ProductVariantCreatePage from "../../../products/components/ProductVariantCreatePage";
+import SkillVariantCreatePage from "../../../products/components/SkillVariantCreatePage";
 import { product as productFixture } from "../../../products/fixtures";
 import Decorator from "../../Decorator";
 
@@ -26,10 +26,10 @@ const errors = [
   }
 ];
 
-storiesOf("Views / Products / Create product variant", module)
+storiesOf("Views / Skills / Create product variant", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <ProductVariantCreatePage
+    <SkillVariantCreatePage
       currencySymbol="USD"
       errors={[]}
       header="Add variant"
@@ -42,7 +42,7 @@ storiesOf("Views / Products / Create product variant", module)
     />
   ))
   .add("with errors", () => (
-    <ProductVariantCreatePage
+    <SkillVariantCreatePage
       currencySymbol="USD"
       errors={errors}
       header="Add variant"
@@ -55,7 +55,7 @@ storiesOf("Views / Products / Create product variant", module)
     />
   ))
   .add("when loading data", () => (
-    <ProductVariantCreatePage
+    <SkillVariantCreatePage
       currencySymbol="USD"
       errors={[]}
       header="Add variant"

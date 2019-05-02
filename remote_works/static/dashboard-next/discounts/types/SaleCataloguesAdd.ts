@@ -14,7 +14,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_errors {
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
@@ -25,7 +25,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges_node_th
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   isPublished: boolean;
@@ -34,7 +34,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges_node {
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges_node;
 }
 
@@ -47,14 +47,14 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_pageInfo {
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges[];
   pageInfo: SaleCataloguesAdd_saleCataloguesAdd_sale_products_pageInfo;
   totalCount: number | null;
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -86,7 +86,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories {
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

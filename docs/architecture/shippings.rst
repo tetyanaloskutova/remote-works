@@ -41,5 +41,5 @@ Weight
 
 Weight is used to calculate the ``WEIGHT_BASED`` shipping price.
 
-Weight is defined on the ``ProductType`` level and can be overridden
-for each ``Product`` and each ``ProductVariant`` within a ``Product``.
+Weight is defined on the ``SkillType`` level and can be overridden
+for each ``Skill`` and each ``SkillVariant`` within a ``Skill``.

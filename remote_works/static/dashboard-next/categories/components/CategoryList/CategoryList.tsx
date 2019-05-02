@@ -77,7 +77,7 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
             </TableCell>
             <TableCell className={classes.centerText}>
               {i18n
-                .t("No. Products", { context: "object" })
+                .t("No. Skills", { context: "object" })
                 .replace(" ", "\xa0")}
             </TableCell>
           </TableRow>

@@ -3,12 +3,12 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import ActionDialog from "../../components/ActionDialog";
-import AssignProductDialog from "../../components/AssignProductDialog";
+import AssignSkillDialog from "../../components/AssignSkillDialog";
 import Messages from "../../components/messages";
 import Navigator from "../../components/Navigator";
 import { createPaginationState, Paginator } from "../../components/Paginator";
 import { WindowTitle } from "../../components/WindowTitle";
-import { SearchProductsProvider } from "../../containers/SearchProducts";
+import { SearchSkillsProvider } from "../../containers/SearchSkills";
 import i18n from "../../i18n";
 import { getMutationState, maybe } from "../../misc";
 import { productUrl } from "../../products/urls";
@@ -18,13 +18,13 @@ import CollectionDetailsPage, {
 } from "../components/CollectionDetailsPage/CollectionDetailsPage";
 import CollectionOperations from "../containers/CollectionOperations";
 import { TypedCollectionDetailsQuery } from "../queries";
-import { CollectionAssignProduct } from "../types/CollectionAssignProduct";
+import { CollectionAssignSkill } from "../types/CollectionAssignSkill";
 import { CollectionUpdate } from "../types/CollectionUpdate";
 import { RemoveCollection } from "../types/RemoveCollection";
-import { UnassignCollectionProduct } from "../types/UnassignCollectionProduct";
+import { UnassignCollectionSkill } from "../types/UnassignCollectionSkill";
 import {
-  collectionAddProductPath,
-  collectionAddProductUrl,
+  collectionAddSkillPath,
+  collectionAddSkillUrl,
   collectionImageRemovePath,
   collectionImageRemoveUrl,
   collectionListUrl,
@@ -83,8 +83,8 @@ export const CollectionDetails: React.StatelessComponent<
                   }
                 };
 
-                const handleProductAssign = (data: CollectionAssignProduct) => {
-                  if (data.collectionAddProducts.errors.length === 0) {
+                const handleSkillAssign = (data: CollectionAssignSkill) => {
+                  if (data.collectionAddSkills.errors.length === 0) {
                     pushMessage({
                       text: i18n.t("Added product to collection", {
                         context: "notification"
@@ -94,10 +94,10 @@ export const CollectionDetails: React.StatelessComponent<
                   }
                 };
 
-                const handleProductUnassign = (
-                  data: UnassignCollectionProduct
+                const handleSkillUnassign = (
+                  data: UnassignCollectionSkill
                 ) => {
-                  if (data.collectionRemoveProducts.errors.length === 0) {
+                  if (data.collectionRemoveSkills.errors.length === 0) {
                     pushMessage({
                       text: i18n.t("Removed product from collection", {
                         context: "notification"
@@ -119,15 +119,15 @@ export const CollectionDetails: React.StatelessComponent<
                 return (
                   <CollectionOperations
                     onUpdate={handleCollectionUpdate}
-                    onProductAssign={handleProductAssign}
-                    onProductUnassign={handleProductUnassign}
+                    onSkillAssign={handleSkillAssign}
+                    onSkillUnassign={handleSkillUnassign}
                     onRemove={handleCollectionRemove}
                   >
                     {({
                       updateCollection,
                       updateCollectionWithHomepage,
-                      assignProduct,
-                      unassignProduct,
+                      assignSkill,
+                      unassignSkill,
                       removeCollection
                     }) => {
                       const handleSubmit = (
@@ -183,11 +183,11 @@ export const CollectionDetails: React.StatelessComponent<
                         )
                       );
                       const assignTransitionState = getMutationState(
-                        assignProduct.opts.called,
-                        assignProduct.opts.loading,
+                        assignSkill.opts.called,
+                        assignSkill.opts.loading,
                         maybe(
                           () =>
-                            assignProduct.opts.data.collectionAddProducts.errors
+                            assignSkill.opts.data.collectionAddSkills.errors
                         )
                       );
                       const removeTransitionState = getMutationState(
@@ -223,7 +223,7 @@ export const CollectionDetails: React.StatelessComponent<
                               <CollectionDetailsPage
                                 onAdd={() =>
                                   navigate(
-                                    collectionAddProductUrl(id),
+                                    collectionAddSkillUrl(id),
                                     false,
                                     true
                                   )
@@ -259,9 +259,9 @@ export const CollectionDetails: React.StatelessComponent<
                                 onNextPage={loadNextPage}
                                 onPreviousPage={loadPreviousPage}
                                 pageInfo={pageInfo}
-                                onProductUnassign={(productId, event) => {
+                                onSkillUnassign={(productId, event) => {
                                   event.stopPropagation();
-                                  unassignProduct.mutate({
+                                  unassignSkill.mutate({
                                     collectionId: id,
                                     productId,
                                     ...paginationState
@@ -274,20 +274,20 @@ export const CollectionDetails: React.StatelessComponent<
                             )}
                           </Paginator>
                           <Route
-                            path={collectionAddProductPath(":id")}
+                            path={collectionAddSkillPath(":id")}
                             render={({ match }) => (
-                              <SearchProductsProvider>
-                                {(searchProducts, searchProductsOpts) => (
-                                  <AssignProductDialog
+                              <SearchSkillsProvider>
+                                {(searchSkills, searchSkillsOpts) => (
+                                  <AssignSkillDialog
                                     confirmButtonState={assignTransitionState}
                                     open={!!match}
-                                    onFetch={searchProducts}
-                                    loading={searchProductsOpts.loading}
+                                    onFetch={searchSkills}
+                                    loading={searchSkillsOpts.loading}
                                     onClose={() =>
                                       navigate(collectionUrl(id), true, true)
                                     }
                                     onSubmit={formData =>
-                                      assignProduct.mutate({
+                                      assignSkill.mutate({
                                         ...paginationState,
                                         collectionId: id,
                                         productIds: formData.products.map(
@@ -296,16 +296,16 @@ export const CollectionDetails: React.StatelessComponent<
                                       })
                                     }
                                     products={maybe(() =>
-                                      searchProductsOpts.data.products.edges
+                                      searchSkillsOpts.data.products.edges
                                         .map(edge => edge.node)
                                         .filter(
-                                          suggestedProduct =>
-                                            suggestedProduct.id
+                                          suggestedSkill =>
+                                            suggestedSkill.id
                                         )
                                     )}
                                   />
                                 )}
-                              </SearchProductsProvider>
+                              </SearchSkillsProvider>
                             )}
                           />
                           <Route

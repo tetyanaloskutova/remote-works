@@ -7,13 +7,13 @@ import Shop from "../../components/Shop";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
 import { decimal, getMutationState, maybe } from "../../misc";
-import ProductVariantCreatePage from "../components/ProductVariantCreatePage";
+import SkillVariantCreatePage from "../components/SkillVariantCreatePage";
 import { TypedVariantCreateMutation } from "../mutations";
-import { TypedProductVariantCreateQuery } from "../queries";
+import { TypedSkillVariantCreateQuery } from "../queries";
 import { VariantCreate } from "../types/VariantCreate";
 import { productUrl, productVariantEditUrl } from "../urls";
 
-interface ProductUpdateProps {
+interface SkillUpdateProps {
   productId: string;
 }
 
@@ -28,7 +28,7 @@ interface FormData {
   sku: string;
 }
 
-export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
+export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
   productId
 }) => (
   <Shop>
@@ -37,7 +37,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
         {navigate => (
           <Messages>
             {pushMessage => (
-              <TypedProductVariantCreateQuery
+              <TypedSkillVariantCreateQuery
                 displayLoader
                 variables={{ id: productId }}
                 require={["product"]}
@@ -45,7 +45,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                 {({ data, loading: productLoading }) => {
                   const handleCreateSuccess = (data: VariantCreate) => {
                     if (data.productVariantCreate.errors.length === 0) {
-                      pushMessage({ text: i18n.t("Product created") });
+                      pushMessage({ text: i18n.t("Skill created") });
                       navigate(
                         productVariantEditUrl(
                           productId,
@@ -100,7 +100,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                         return (
                           <>
                             <WindowTitle title={i18n.t("Create variant")} />
-                            <ProductVariantCreatePage
+                            <SkillVariantCreatePage
                               currencySymbol={maybe(() => shop.defaultCurrency)}
                               errors={maybe(
                                 () =>
@@ -122,7 +122,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                     </TypedVariantCreateMutation>
                   );
                 }}
-              </TypedProductVariantCreateQuery>
+              </TypedSkillVariantCreateQuery>
             )}
           </Messages>
         )}
@@ -130,4 +130,4 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
     )}
   </Shop>
 );
-export default ProductVariant;
+export default SkillVariant;

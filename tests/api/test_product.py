@@ -13,8 +13,8 @@ from remote_works.graphql.core.enums import ReportingPeriod
 from remote_works.graphql.product.enums import StockAvailability
 from remote_works.graphql.product.types import resolve_attribute_list
 from remote_works.product.models import (
-    Attribute, AttributeValue, Category, Product, ProductImage, ProductType,
-    ProductVariant)
+    Attribute, AttributeValue, Category, Skill, SkillImage, SkillType,
+    SkillVariant)
 from remote_works.product.tasks import update_variants_names
 from tests.api.utils import get_graphql_content
 from tests.utils import create_image, create_pdf_file_with_image_ext
@@ -53,14 +53,14 @@ def test_fetch_all_products(user_api_client, product):
     """
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    num_products = Product.objects.count()
+    num_products = Skill.objects.count()
     assert content['data']['skills']['totalCount'] == num_products
     assert len(content['data']['skills']['edges']) == num_products
 
 
 @pytest.mark.djangodb
 def test_fetch_unavailable_products(user_api_client, product):
-    Product.objects.update(is_published=False)
+    Skill.objects.update(is_published=False)
     query = """
     query {
         skills(first: 1) {
@@ -161,10 +161,10 @@ def test_product_query(staff_api_client, product, permission_manage_products):
 
 
 def test_product_query_search(user_api_client, product_type, category):
-    blue_product = Product.objects.create(
+    blue_product = Skill.objects.create(
         name='Blue Paint', price=Money('10.00', 'USD'),
         product_type=product_type, category=category)
-    Product.objects.create(
+    Skill.objects.create(
         name='Red Paint', price=Money('10.00', 'USD'),
         product_type=product_type, category=category)
 
@@ -201,8 +201,8 @@ def test_query_product_image_by_id(user_api_client, product_with_image):
     }
     """
     variables = {
-        'productId': graphene.Node.to_global_id('Product', product_with_image.pk),
-        'imageId': graphene.Node.to_global_id('ProductImage', image.pk)}
+        'productId': graphene.Node.to_global_id('Skill', product_with_image.pk),
+        'imageId': graphene.Node.to_global_id('SkillImage', image.pk)}
     response = user_api_client.post_graphql(query, variables)
     get_graphql_content(response)
 
@@ -210,7 +210,7 @@ def test_query_product_image_by_id(user_api_client, product_with_image):
 def test_product_with_collections(
         staff_api_client, product, collection, permission_manage_products):
     query = """
-        query getProduct($productID: ID!) {
+        query getSkill($productID: ID!) {
             skill(id: $productID) {
                 collections {
                     name
@@ -220,7 +220,7 @@ def test_product_with_collections(
         """
     product.collections.add(collection)
     product.save()
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
 
     variables = {'productID': product_id}
     staff_api_client.user.user_permissions.add(permission_manage_products)
@@ -234,7 +234,7 @@ def test_product_with_collections(
 def test_filter_product_by_category(user_api_client, product):
     category = product.category
     query = """
-    query getProducts($categoryId: ID) {
+    query getSkills($categoryId: ID) {
         skills(categories: [$categoryId], first: 1) {
             edges {
                 node {
@@ -256,14 +256,14 @@ def test_fetch_product_by_id(user_api_client, product):
     query = """
     query ($productId: ID!) {
         node(id: $productId) {
-            ... on Product {
+            ... on Skill {
                 name
             }
         }
     }
     """
     variables = {
-        'productId': graphene.Node.to_global_id('Product', product.id)}
+        'productId': graphene.Node.to_global_id('Skill', product.id)}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     product_data = content['data']['node']
@@ -274,7 +274,7 @@ def _fetch_product(client, product, permissions=None):
     query = """
     query ($productId: ID!) {
         node(id: $productId) {
-            ... on Product {
+            ... on Skill {
                 name,
                 isPublished
             }
@@ -282,7 +282,7 @@ def _fetch_product(client, product, permissions=None):
     }
     """
     variables = {
-        'productId': graphene.Node.to_global_id('Product', product.id)}
+        'productId': graphene.Node.to_global_id('Skill', product.id)}
     response = client.post_graphql(
         query, variables, permissions=permissions, check_no_permissions=False)
     content = get_graphql_content(response)
@@ -439,7 +439,7 @@ def test_create_product(
         staff_api_client, product_type, category, size_attribute,
         permission_manage_products):
     query = """
-        mutation createProduct(
+        mutation createSkill(
             $productTypeId: ID!,
             $categoryId: ID!,
             $name: String!,
@@ -497,7 +497,7 @@ def test_create_product(
     """
 
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.pk)
+        'SkillType', product_type.pk)
     category_id = graphene.Node.to_global_id(
         'Category', category.pk)
     product_description = 'test description'
@@ -554,7 +554,7 @@ def test_create_product(
 
 
 QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS = """
-    mutation createProduct(
+    mutation createSkill(
         $productTypeId: ID!,
         $categoryId: ID!
         $name: String!,
@@ -608,7 +608,7 @@ def test_create_product_without_variants(
 
     product_type = product_type_without_variant
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.pk)
+        'SkillType', product_type.pk)
     category_id = graphene.Node.to_global_id(
         'Category', category.pk)
     product_name = 'test name'
@@ -648,7 +648,7 @@ def test_create_product_without_variants_sku_validation(
 
     product_type = product_type_without_variant
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.pk)
+        'SkillType', product_type.pk)
     category_id = graphene.Node.to_global_id(
         'Category', category.pk)
     product_name = 'test name'
@@ -682,7 +682,7 @@ def test_create_product_without_variants_sku_duplication(
 
     product_type = product_type_without_variant
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.pk)
+        'SkillType', product_type.pk)
     category_id = graphene.Node.to_global_id(
         'Category', category.pk)
     product_name = 'test name'
@@ -707,14 +707,14 @@ def test_create_product_without_variants_sku_duplication(
     content = get_graphql_content(response)
     data = content['data']['productCreate']
     assert data['errors'][0]['field'] == 'sku'
-    assert data['errors'][0]['message'] == 'Product with this SKU already exists.'
+    assert data['errors'][0]['message'] == 'Skill with this SKU already exists.'
 
 
 def test_update_product(
         staff_api_client, category, non_default_category, product,
         permission_manage_products):
     query = """
-        mutation updateProduct(
+        mutation updateSkill(
             $productId: ID!,
             $categoryId: ID!,
             $name: String!,
@@ -767,7 +767,7 @@ def test_update_product(
                         }
                       }
     """
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     category_id = graphene.Node.to_global_id(
         'Category', non_default_category.pk)
     product_description = 'updated description'
@@ -804,7 +804,7 @@ def test_update_product_without_variants(
         staff_api_client, product_with_default_variant,
         permission_manage_products):
     query = """
-    mutation updateProduct(
+    mutation updateSkill(
         $productId: ID!,
         $sku: String,
         $quantity: Int,
@@ -838,7 +838,7 @@ def test_update_product_without_variants(
     """
 
     product = product_with_default_variant
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     product_sku = "test_sku"
     product_quantity = 10
     product_track_inventory = False
@@ -866,7 +866,7 @@ def test_update_product_without_variants_sku_duplication(
         staff_api_client, product_with_default_variant,
         permission_manage_products, product):
     query = """
-    mutation updateProduct(
+    mutation updateSkill(
         $productId: ID!,
         $sku: String)
     {
@@ -886,7 +886,7 @@ def test_update_product_without_variants_sku_duplication(
         }
     }"""
     product = product_with_default_variant
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     product_sku = "123"
 
     variables = {
@@ -899,11 +899,11 @@ def test_update_product_without_variants_sku_duplication(
     data = content['data']['productUpdate']
     assert data['errors']
     assert data['errors'][0]['field'] == 'sku'
-    assert data['errors'][0]['message'] == 'Product with this SKU already exists.'
+    assert data['errors'][0]['message'] == 'Skill with this SKU already exists.'
 
 def test_delete_product(staff_api_client, product, permission_manage_products):
     query = """
-        mutation DeleteProduct($id: ID!) {
+        mutation DeleteSkill($id: ID!) {
             productDelete(id: $id) {
                 skill {
                     name
@@ -916,7 +916,7 @@ def test_delete_product(staff_api_client, product, permission_manage_products):
               }
             }
     """
-    node_id = graphene.Node.to_global_id('Product', product.id)
+    node_id = graphene.Node.to_global_id('Skill', product.id)
     variables = {'id': node_id}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -951,7 +951,7 @@ def test_product_type(user_api_client, product_type):
     """
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
-    no_product_types = ProductType.objects.count()
+    no_product_types = SkillType.objects.count()
     assert content['data']['skillTypes']['totalCount'] == no_product_types
     assert len(content['data']['skillTypes']['edges']) == no_product_types
 
@@ -960,7 +960,7 @@ def test_product_type_query(
         user_api_client, staff_api_client, product_type, product,
         permission_manage_products):
     query = """
-            query getProductType($id: ID!) {
+            query getSkillType($id: ID!) {
                 productType(id: $id) {
                     name
                     skills(first: 20) {
@@ -975,11 +975,11 @@ def test_product_type_query(
                 }
             }
         """
-    no_products = Product.objects.count()
+    no_products = Skill.objects.count()
     product.is_published = False
     product.save()
     variables = {
-        'id': graphene.Node.to_global_id('ProductType', product_type.id)}
+        'id': graphene.Node.to_global_id('SkillType', product_type.id)}
 
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
@@ -997,7 +997,7 @@ def test_product_type_query(
 def test_product_type_create_mutation(
         staff_api_client, product_type, permission_manage_products):
     query = """
-    mutation createProductType(
+    mutation createSkillType(
         $name: String!,
         $taxRate: TaxRateType!,
         $hasVariants: Boolean!,
@@ -1051,11 +1051,11 @@ def test_product_type_create_mutation(
         'isShippingRequired': require_shipping,
         'productAttributes': product_attributes_ids,
         'variantAttributes': variant_attributes_ids}
-    initial_count = ProductType.objects.count()
+    initial_count = SkillType.objects.count()
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
-    assert ProductType.objects.count() == initial_count + 1
+    assert SkillType.objects.count() == initial_count + 1
     data = content['data']['productTypeCreate']['productType']
     assert data['name'] == product_type_name
     assert data['hasVariants'] == has_variants
@@ -1073,14 +1073,14 @@ def test_product_type_create_mutation(
     assert sorted([value['name'] for value in va_values]) == sorted(
         [value.name for value in va.values.all()])
 
-    new_instance = ProductType.objects.latest('pk')
+    new_instance = SkillType.objects.latest('pk')
     assert new_instance.tax_rate == 'standard'
 
 
 def test_product_type_update_mutation(
         staff_api_client, product_type, permission_manage_products):
     query = """
-    mutation updateProductType(
+    mutation updateSkillType(
         $id: ID!,
         $name: String!,
         $hasVariants: Boolean!,
@@ -1113,7 +1113,7 @@ def test_product_type_update_mutation(
     has_variants = True
     require_shipping = False
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.id)
+        'SkillType', product_type.id)
 
     # Test scenario: remove all skill attributes using [] as input
     # but do not change variant attributes
@@ -1143,7 +1143,7 @@ def test_product_type_update_mutation(
 def test_product_type_delete_mutation(
         staff_api_client, product_type, permission_manage_products):
     query = """
-        mutation deleteProductType($id: ID!) {
+        mutation deleteSkillType($id: ID!) {
             productTypeDelete(id: $id) {
                 productType {
                     name
@@ -1152,7 +1152,7 @@ def test_product_type_delete_mutation(
         }
     """
     variables = {
-        'id': graphene.Node.to_global_id('ProductType', product_type.id)}
+        'id': graphene.Node.to_global_id('SkillType', product_type.id)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
@@ -1165,7 +1165,7 @@ def test_product_type_delete_mutation(
 def test_product_image_create_mutation(
         monkeypatch, staff_api_client, product, permission_manage_products):
     query = """
-    mutation createProductImage($image: Upload!, $skill: ID!) {
+    mutation createSkillImage($image: Upload!, $skill: ID!) {
         productImageCreate(input: {image: $image, skill: $skill}) {
             image {
                 id
@@ -1182,7 +1182,7 @@ def test_product_image_create_mutation(
 
     image_file, image_name = create_image()
     variables = {
-        'skill': graphene.Node.to_global_id('Product', product.id),
+        'skill': graphene.Node.to_global_id('Skill', product.id),
         'image': image_name}
     body = get_multipart_request_body(query, variables, image_file, image_name)
     response = staff_api_client.post_multipart(
@@ -1199,7 +1199,7 @@ def test_product_image_create_mutation(
 def test_invalid_product_image_create_mutation(
         staff_api_client, product, permission_manage_products):
     query = """
-    mutation createProductImage($image: Upload!, $skill: ID!) {
+    mutation createSkillImage($image: Upload!, $skill: ID!) {
         productImageCreate(input: {image: $image, skill: $skill}) {
             image {
                 id
@@ -1215,7 +1215,7 @@ def test_invalid_product_image_create_mutation(
     """
     image_file, image_name = create_pdf_file_with_image_ext()
     variables = {
-        'skill': graphene.Node.to_global_id('Product', product.id),
+        'skill': graphene.Node.to_global_id('Skill', product.id),
         'image': image_name}
     body = get_multipart_request_body(query, variables, image_file, image_name)
     response = staff_api_client.post_multipart(
@@ -1232,7 +1232,7 @@ def test_product_image_update_mutation(
         monkeypatch,
         staff_api_client, product_with_image, permission_manage_products):
     query = """
-    mutation updateProductImage($imageId: ID!, $alt: String) {
+    mutation updateSkillImage($imageId: ID!, $alt: String) {
         productImageUpdate(id: $imageId, input: {alt: $alt}) {
             image {
                 alt
@@ -1251,7 +1251,7 @@ def test_product_image_update_mutation(
     alt = 'damage alt'
     variables = {
         'alt': alt,
-        'imageId': graphene.Node.to_global_id('ProductImage', image_obj.id)}
+        'imageId': graphene.Node.to_global_id('SkillImage', image_obj.id)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
@@ -1266,7 +1266,7 @@ def test_product_image_delete(
         staff_api_client, product_with_image, permission_manage_products):
     product = product_with_image
     query = """
-            mutation deleteProductImage($id: ID!) {
+            mutation deleteSkillImage($id: ID!) {
                 productImageDelete(id: $id) {
                     image {
                         id
@@ -1276,7 +1276,7 @@ def test_product_image_delete(
             }
         """
     image_obj = product.images.first()
-    node_id = graphene.Node.to_global_id('ProductImage', image_obj.id)
+    node_id = graphene.Node.to_global_id('SkillImage', image_obj.id)
     variables = {'id': node_id}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -1303,9 +1303,9 @@ def test_reorder_images(
     images = product.images.all()
     image_0 = images[0]
     image_1 = images[1]
-    image_0_id = graphene.Node.to_global_id('ProductImage', image_0.id)
-    image_1_id = graphene.Node.to_global_id('ProductImage', image_1.id)
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    image_0_id = graphene.Node.to_global_id('SkillImage', image_0.id)
+    image_1_id = graphene.Node.to_global_id('SkillImage', image_1.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
 
     variables = {
         'product_id': product_id, 'images_ids': [image_1_id, image_0_id]}
@@ -1345,8 +1345,8 @@ def test_assign_variant_image(
     image = product_with_image.images.first()
 
     variables = {
-        'variantId': to_global_id('ProductVariant', variant.pk),
-        'imageId': to_global_id('ProductImage', image.pk)}
+        'variantId': to_global_id('SkillVariant', variant.pk),
+        'imageId': to_global_id('SkillImage', image.pk)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     get_graphql_content(response)
@@ -1362,10 +1362,10 @@ def test_assign_variant_image_from_different_product(
     product_with_image.pk = None
     product_with_image.save()
 
-    image_2 = ProductImage.objects.create(product=product_with_image)
+    image_2 = SkillImage.objects.create(product=product_with_image)
     variables = {
-        'variantId': to_global_id('ProductVariant', variant.pk),
-        'imageId': to_global_id('ProductImage', image_2.pk)}
+        'variantId': to_global_id('SkillVariant', variant.pk),
+        'imageId': to_global_id('SkillImage', image_2.pk)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
@@ -1400,8 +1400,8 @@ def test_unassign_variant_image(
     variant.variant_images.create(image=image)
 
     variables = {
-        'variantId': to_global_id('ProductVariant', variant.pk),
-        'imageId': to_global_id('ProductImage', image.pk)}
+        'variantId': to_global_id('SkillVariant', variant.pk),
+        'imageId': to_global_id('SkillImage', image.pk)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     get_graphql_content(response)
@@ -1413,10 +1413,10 @@ def test_unassign_not_assigned_variant_image(
         staff_api_client, product_with_image, permission_manage_products):
     query = UNASSIGN_VARIANT_IMAGE_QUERY
     variant = product_with_image.variants.first()
-    image_2 = ProductImage.objects.create(product=product_with_image)
+    image_2 = SkillImage.objects.create(product=product_with_image)
     variables = {
-        'variantId': to_global_id('ProductVariant', variant.pk),
-        'imageId': to_global_id('ProductImage', image_2.pk)}
+        'variantId': to_global_id('SkillVariant', variant.pk),
+        'imageId': to_global_id('SkillImage', image_2.pk)}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
@@ -1429,7 +1429,7 @@ def test_product_type_update_changes_variant_name(
         mock_update_variants_names, staff_api_client, product_type,
         product, permission_manage_products):
     query = """
-    mutation updateProductType(
+    mutation updateSkillType(
         $id: ID!,
         $hasVariants: Boolean!,
         $isShippingRequired: Boolean!,
@@ -1453,7 +1453,7 @@ def test_product_type_update_changes_variant_name(
     has_variants = True
     require_shipping = False
     product_type_id = graphene.Node.to_global_id(
-        'ProductType', product_type.id)
+        'SkillType', product_type.id)
 
     variant_attributes = product_type.variant_attributes.all()
     variant_attributes_ids = [
@@ -1484,7 +1484,7 @@ def test_product_update_variants_names(mock__update_variants_names,
 
 def test_product_variants_by_ids(user_api_client, variant):
     query = """
-        query getProduct($ids: [ID!]) {
+        query getSkill($ids: [ID!]) {
             productVariants(ids: $ids, first: 1) {
                 edges {
                     node {
@@ -1494,7 +1494,7 @@ def test_product_variants_by_ids(user_api_client, variant):
             }
         }
     """
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
 
     variables = {'ids': [variant_id]}
     response = user_api_client.post_graphql(query, variables)
@@ -1506,7 +1506,7 @@ def test_product_variants_by_ids(user_api_client, variant):
 
 def test_product_variants_no_ids_list(user_api_client, variant):
     query = """
-        query getProductVariants {
+        query getSkillVariants {
             productVariants(first: 10) {
                 edges {
                     node {
@@ -1519,7 +1519,7 @@ def test_product_variants_no_ids_list(user_api_client, variant):
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
     data = content['data']['productVariants']
-    assert len(data['edges']) == ProductVariant.objects.count()
+    assert len(data['edges']) == SkillVariant.objects.count()
 
 
 @pytest.mark.parametrize('product_price, variant_override, api_variant_price', [
@@ -1543,7 +1543,7 @@ def test_product_variant_price(
     # skill.variants.exclude(id=variant.pk).delete()
 
     query = """
-        query getProductVariants($id: ID!) {
+        query getSkillVariants($id: ID!) {
             skill(id: $id) {
                 variants {
                     price {
@@ -1553,7 +1553,7 @@ def test_product_variant_price(
             }
         }
         """
-    product_id = graphene.Node.to_global_id('Product', variant.product.id)
+    product_id = graphene.Node.to_global_id('Skill', variant.product.id)
     variables = {'id': product_id}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
@@ -1564,7 +1564,7 @@ def test_product_variant_price(
 
 def test_stock_availability_filter(user_api_client, product):
     query = """
-    query Products($stockAvailability: StockAvailability) {
+    query Skills($stockAvailability: StockAvailability) {
         skills(stockAvailability: $stockAvailability, first: 1) {
             totalCount
             edges {
@@ -1602,8 +1602,8 @@ def test_report_product_sales(
         staff_api_client, order_with_lines, permission_manage_products,
         permission_manage_orders):
     query = """
-    query TopProducts($period: ReportingPeriod!) {
-        reportProductSales(period: $period, first: 20) {
+    query TopSkills($period: ReportingPeriod!) {
+        reportSkillSales(period: $period, first: 20) {
             edges {
                 node {
                     revenue(period: $period) {
@@ -1622,7 +1622,7 @@ def test_report_product_sales(
     permissions = [permission_manage_orders, permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)
-    edges = content['data']['reportProductSales']['edges']
+    edges = content['data']['reportSkillSales']['edges']
 
     node_a = edges[0]['node']
     line_a = order_with_lines.lines.get(product_sku=node_a['sku'])
@@ -1655,7 +1655,7 @@ def test_variant_revenue_permissions(
     """
     variant = product.variants.first()
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.pk)}
+        'id': graphene.Node.to_global_id('SkillVariant', variant.pk)}
     permissions = [permission_manage_orders, permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)
@@ -1673,7 +1673,7 @@ def test_variant_quantity_permissions(
     """
     variant = product.variants.first()
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.pk)}
+        'id': graphene.Node.to_global_id('SkillVariant', variant.pk)}
     permissions = [permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)
@@ -1692,7 +1692,7 @@ def test_variant_quantity_ordered_permissions(
     """
     variant = product.variants.first()
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.pk)}
+        'id': graphene.Node.to_global_id('SkillVariant', variant.pk)}
     permissions = [permission_manage_orders, permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)
@@ -1711,7 +1711,7 @@ def test_variant_quantity_allocated_permissions(
     """
     variant = product.variants.first()
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.pk)}
+        'id': graphene.Node.to_global_id('SkillVariant', variant.pk)}
     permissions = [permission_manage_orders, permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)
@@ -1730,7 +1730,7 @@ def test_variant_margin_permissions(
     """
     variant = product.variants.first()
     variables = {
-        'id': graphene.Node.to_global_id('ProductVariant', variant.pk)}
+        'id': graphene.Node.to_global_id('SkillVariant', variant.pk)}
     permissions = [permission_manage_orders, permission_manage_products]
     response = staff_api_client.post_graphql(query, variables, permissions)
     content = get_graphql_content(response)

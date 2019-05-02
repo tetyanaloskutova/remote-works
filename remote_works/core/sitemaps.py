@@ -10,7 +10,7 @@ class I18nSitemap(Sitemap):
     i18n = True
 
 
-class ProductSitemap(I18nSitemap):
+class SkillSitemap(I18nSitemap):
 
     def items(self):
         return Skill.objects.only('id', 'name').order_by('-id')
@@ -40,5 +40,5 @@ class PageSitemap(I18nSitemap):
 sitemaps = {
     'categories': CategorySitemap,
     'collections': CollectionSitemap,
-    'skills': ProductSitemap,
+    'skills': SkillSitemap,
     'pages': PageSitemap}

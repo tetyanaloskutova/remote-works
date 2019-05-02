@@ -19,7 +19,7 @@ from remote_works.core.utils.text import get_cleaner, strip_html
 from remote_works.core.weight import WeightUnits, convert_weight
 from remote_works.discount.models import Sale, Voucher
 from remote_works.order.models import Order
-from remote_works.product.models import ProductImage
+from remote_works.skill.models import SkillImage
 from remote_works.shipping.models import ShippingZone
 
 type_schema = {
@@ -27,7 +27,7 @@ type_schema = {
         'category': {
             'name': 'Food',
             'image_name': 'books.jpg'},
-        'product_attributes': {
+        'skill_attributes': {
             'Sweetness': ['Sweet', 'Sour'],
             'Healthiness': ['Healthy', 'Not really']},
         'variant_attributes': {
@@ -119,16 +119,16 @@ def test_create_fake_order(db, monkeypatch, image):
     for _ in random_data.create_shipping_zones():
         pass
     for _ in random_data.create_users(3):
-        random_data.create_products_by_schema('/', 10)
+        random_data.create_skills_by_schema('/', 10)
     how_many = 5
     for _ in random_data.create_orders(how_many):
         pass
     assert Order.objects.all().count() == 5
 
 
-def test_create_product_sales(db):
+def test_create_skill_sales(db):
     how_many = 5
-    for _ in random_data.create_product_sales(how_many):
+    for _ in random_data.create_skill_sales(how_many):
         pass
     assert Sale.objects.all().count() == 5
 
@@ -162,32 +162,32 @@ def test_utils_strip_html():
     assert text == 'Hello World'
 
 
-def test_create_thumbnails(product_with_image, settings):
+def test_create_thumbnails(skill_with_image, settings):
     settings.VERSATILEIMAGEFIELD_SETTINGS['create_images_on_demand'] = False
     sizeset = settings.VERSATILEIMAGEFIELD_RENDITION_KEY_SETS['skills']
-    product_image = product_with_image.images.first()
+    skill_image = skill_with_image.images.first()
 
     # There's no way to list images created by versatile prewarmer
     # So we delete all created thumbnails/crops and count them
     log_deleted_images = io.StringIO()
     with redirect_stdout(log_deleted_images):
-        product_image.image.delete_all_created_images()
+        skill_image.image.delete_all_created_images()
     log_deleted_images = log_deleted_images.getvalue()
     # Image didn't have any thumbnails/crops created, so there's no log
     assert not log_deleted_images
 
-    create_thumbnails(product_image.pk, ProductImage, 'skills')
+    create_thumbnails(skill_image.pk, SkillImage, 'skills')
     log_deleted_images = io.StringIO()
     with redirect_stdout(log_deleted_images):
-        product_image.image.delete_all_created_images()
+        skill_image.image.delete_all_created_images()
     log_deleted_images = log_deleted_images.getvalue()
 
     for image_name, method_size in sizeset:
         method, size = method_size.split('__')
         if method == 'crop':
-            assert product_image.image.crop[size].name in log_deleted_images
+            assert skill_image.image.crop[size].name in log_deleted_images
         elif method == 'thumbnail':
-            assert product_image.image.thumbnail[size].name in log_deleted_images  # noqa
+            assert skill_image.image.thumbnail[size].name in log_deleted_images  # noqa
 
 
 @patch('storages.backends.s3boto3.S3Boto3Storage')

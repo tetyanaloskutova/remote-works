@@ -48,7 +48,7 @@ export interface VariantCreate_productVariantCreate_productVariant_costPrice {
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
@@ -60,7 +60,7 @@ export interface VariantCreate_productVariantCreate_productVariant_priceOverride
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_product_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
@@ -73,13 +73,13 @@ export interface VariantCreate_productVariantCreate_productVariant_product_thumb
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_product_variants_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_product_variants {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
@@ -87,7 +87,7 @@ export interface VariantCreate_productVariantCreate_productVariant_product_varia
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_product {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   images: (VariantCreate_productVariantCreate_productVariant_product_images | null)[] | null;
   name: string;
@@ -96,7 +96,7 @@ export interface VariantCreate_productVariantCreate_productVariant_product {
 }
 
 export interface VariantCreate_productVariantCreate_productVariant {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   attributes: VariantCreate_productVariantCreate_productVariant_attributes[];
   costPrice: VariantCreate_productVariantCreate_productVariant_costPrice | null;
@@ -110,7 +110,7 @@ export interface VariantCreate_productVariantCreate_productVariant {
 }
 
 export interface VariantCreate_productVariantCreate {
-  __typename: "ProductVariantCreate";
+  __typename: "SkillVariantCreate";
   errors: VariantCreate_productVariantCreate_errors[] | null;
   productVariant: VariantCreate_productVariantCreate_productVariant | null;
 }

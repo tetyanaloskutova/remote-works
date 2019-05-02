@@ -284,11 +284,11 @@ def test_draft_order_create(
         }
     """
     user_id = graphene.Node.to_global_id('User', customer_user.id)
-    variant_0_id = graphene.Node.to_global_id('ProductVariant', variant_0.id)
+    variant_0_id = graphene.Node.to_global_id('SkillVariant', variant_0.id)
     variant_1 = product_without_shipping.variants.first()
     variant_1.quantity = 2
     variant_1.save()
-    variant_1_id = graphene.Node.to_global_id('ProductVariant', variant_1.id)
+    variant_1_id = graphene.Node.to_global_id('SkillVariant', variant_1.id)
     discount = '10'
     variant_list = [
         {'variantId': variant_0_id, 'quantity': 2},
@@ -579,7 +579,7 @@ def test_draft_order_lines_create(
     old_quantity = line.quantity
     quantity = 1
     order_id = graphene.Node.to_global_id('Order', order.id)
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {
         'orderId': order_id, 'variantId': variant_id, 'quantity': quantity}
 
@@ -611,7 +611,7 @@ def test_require_draft_order_when_creating_lines(
     line = order.lines.first()
     variant = line.variant
     order_id = graphene.Node.to_global_id('Order', order.id)
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.id)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.id)
     variables = {'orderId': order_id, 'variantId': variant_id, 'quantity': 1}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])

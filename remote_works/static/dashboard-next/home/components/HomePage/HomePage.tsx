@@ -22,7 +22,7 @@ import HomeActivityCard from "../HomeActivityCard";
 import HomeAnalyticsCard from "../HomeAnalyticsCard";
 import HomeHeader from "../HomeHeader";
 import HomeNotificationTable from "../HomeNotificationTable/HomeNotificationTable";
-import HomeProductListCard from "../HomeProductListCard";
+import HomeSkillListCard from "../HomeSkillListCard";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -46,12 +46,12 @@ export interface HomePageProps extends WithStyles<typeof styles> {
   ordersToFulfill: number;
   productsOutOfStock: number;
   sales: Home_salesToday_gross;
-  topProducts: Home_productTopToday_edges_node[];
+  topSkills: Home_productTopToday_edges_node[];
   userName: string;
   onOrdersToCaptureClick: () => void;
   onOrdersToFulfillClick: () => void;
-  onProductClick: (productId: string, variantId: string) => void;
-  onProductsOutOfStockClick: () => void;
+  onSkillClick: (productId: string, variantId: string) => void;
+  onSkillsOutOfStockClick: () => void;
 }
 
 const HomePage = withStyles(styles, { name: "HomePage" })(
@@ -60,12 +60,12 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
     userName,
     orders,
     sales,
-    topProducts,
-    onProductClick,
+    topSkills,
+    onSkillClick,
     activities,
     onOrdersToCaptureClick,
     onOrdersToFulfillClick,
-    onProductsOutOfStockClick,
+    onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
     productsOutOfStock
@@ -100,15 +100,15 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
           <HomeNotificationTable
             onOrdersToCaptureClick={onOrdersToCaptureClick}
             onOrdersToFulfillClick={onOrdersToFulfillClick}
-            onProductsOutOfStockClick={onProductsOutOfStockClick}
+            onSkillsOutOfStockClick={onSkillsOutOfStockClick}
             ordersToCapture={ordersToCapture}
             ordersToFulfill={ordersToFulfill}
             productsOutOfStock={productsOutOfStock}
           />
           <CardSpacer />
-          <HomeProductListCard
-            onRowClick={onProductClick}
-            topProducts={topProducts}
+          <HomeSkillListCard
+            onRowClick={onSkillClick}
+            topSkills={topSkills}
           />
           <CardSpacer />
         </div>

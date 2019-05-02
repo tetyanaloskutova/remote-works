@@ -374,6 +374,6 @@ msgid "Quantity"
 msgstr "Počet"
 
 #: saleor/static/js/components/variantPicker/VariantPicker.js:167
-msgctxt "Product details primary action"
+msgctxt "Skill details primary action"
 msgid "Add to cart"
 msgstr "Pridať do košíka"

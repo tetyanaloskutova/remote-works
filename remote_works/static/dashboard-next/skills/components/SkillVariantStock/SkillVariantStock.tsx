@@ -21,7 +21,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantStockProps extends WithStyles<typeof styles> {
+interface SkillVariantStockProps extends WithStyles<typeof styles> {
   errors: {
     quantity?: string;
     sku?: string;
@@ -33,7 +33,7 @@ interface ProductVariantStockProps extends WithStyles<typeof styles> {
   onChange(event: any);
 }
 
-const ProductVariantStock = withStyles(styles, { name: "ProductVariantStock" })(
+const SkillVariantStock = withStyles(styles, { name: "SkillVariantStock" })(
   ({
     classes,
     errors,
@@ -42,7 +42,7 @@ const ProductVariantStock = withStyles(styles, { name: "ProductVariantStock" })(
     stockAllocated,
     loading,
     onChange
-  }: ProductVariantStockProps) => (
+  }: SkillVariantStockProps) => (
     <Card>
       <CardTitle title={i18n.t("Stock")} />
       <CardContent>
@@ -85,5 +85,5 @@ const ProductVariantStock = withStyles(styles, { name: "ProductVariantStock" })(
     </Card>
   )
 );
-ProductVariantStock.displayName = "ProductVariantStock";
-export default ProductVariantStock;
+SkillVariantStock.displayName = "SkillVariantStock";
+export default SkillVariantStock;

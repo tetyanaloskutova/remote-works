@@ -31,7 +31,7 @@ Consider a product.
    from remote-works.core.utils.translations import TranslationProxy
 
 
-   class Product(models.Model):
+   class Skill(models.Model):
        name = models.CharField(max_length=128)
        description = models.CharField(max_length=256)
        ...
@@ -43,7 +43,7 @@ The product has several properties, but we want to translate just its ``name`` a
 
 We've also set a ``translated`` property to an instance of ``TranslationProxy``.
 
-We will use ``ProductTranslation``  to store our translated properties, it requires two base fields:
+We will use ``SkillTranslation``  to store our translated properties, it requires two base fields:
 
 - ``language_code``
     A language code that this translation correlates to.
@@ -60,10 +60,10 @@ We will use ``ProductTranslation``  to store our translated properties, it requi
    from django.db import models
 
 
-   class ProductTranslation(models.Model):
+   class SkillTranslation(models.Model):
        language_code = models.CharField(max_length=10)
        product = models.ForeignKey(
-           Product, related_name='translations', on_delete=models.CASCADE)
+           Skill, related_name='translations', on_delete=models.CASCADE)
        name = models.CharField(max_length=128)
        description = models.CharField(max_length=256)
 

@@ -151,8 +151,8 @@ msgstr[2] "Našlo sa %(counter)d odpovedajúcich kolekcií"
 msgstr[3] "Našlo sa %(counter)d odpovedajúcich kolekcií"
 
 #: saleor/dashboard/collection/forms.py:18
-msgctxt "Products selection"
-msgid "Products"
+msgctxt "Skills selection"
+msgid "Skills"
 msgstr "Produkty"
 
 #: saleor/dashboard/collection/forms.py:27
@@ -598,8 +598,8 @@ msgstr ""
 "Ak neoznačené. výška zľavy sa uplatní z každej vhodnej položky v poradí."
 
 #: saleor/dashboard/discount/forms.py:170
-msgctxt "Product"
-msgid "Products"
+msgctxt "Skill"
+msgid "Skills"
 msgstr "Produkty"
 
 #: saleor/dashboard/discount/forms.py:184
@@ -1311,52 +1311,52 @@ msgid "Unpublish"
 msgstr "Stiahnuť zo zverejnenia"
 
 #: saleor/dashboard/product/filters.py:12
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "name"
 msgstr "meno"
 
 #: saleor/dashboard/product/filters.py:13
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "price"
 msgstr "cena"
 
 #: saleor/dashboard/product/filters.py:16
-msgctxt "Product attribute list sorting option"
+msgctxt "Skill attribute list sorting option"
 msgid "name"
 msgstr "meno"
 
 #: saleor/dashboard/product/filters.py:19
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "name"
 msgstr "meno"
 
 #: saleor/dashboard/product/filters.py:28
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Name"
 msgstr "Meno"
 
 #: saleor/dashboard/product/filters.py:31
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Category"
 msgstr "Kategória"
 
 #: saleor/dashboard/product/filters.py:35
-msgctxt "Product list filter label"
-msgid "Product type"
+msgctxt "Skill list filter label"
+msgid "Skill type"
 msgstr "Typ produktu"
 
 #: saleor/dashboard/product/filters.py:39
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Price"
 msgstr "Cena"
 
 #: saleor/dashboard/product/filters.py:43
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Is published"
 msgstr "Je zverejnené"
 
 #: saleor/dashboard/product/filters.py:48
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Sort by"
 msgstr "Zoradiť podľa"
 
@@ -1391,22 +1391,22 @@ msgstr[2] "Našlo sa %(counter)d odpovedajúcich atribútov"
 msgstr[3] "Našlo sa %(counter)d odpovedajúcich atribútov"
 
 #: saleor/dashboard/product/filters.py:89
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Name"
 msgstr "Meno"
 
 #: saleor/dashboard/product/filters.py:92
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Sort by"
 msgstr "Zoradiť podľa"
 
 #: saleor/dashboard/product/filters.py:97
-msgctxt "Product type list filter label"
-msgid "Product attributes"
+msgctxt "Skill type list filter label"
+msgid "Skill attributes"
 msgstr "Atribúty produktu"
 
 #: saleor/dashboard/product/filters.py:102
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Variant attributes"
 msgstr "Variantné atribúty"
 
@@ -1426,22 +1426,22 @@ msgid "Select text to enable text-formatting tools."
 msgstr "Vyznačte text na zobrazenie formátovacích nástrojov"
 
 #: saleor/dashboard/product/forms.py:56
-msgctxt "Product type form label"
-msgid "Product type"
+msgctxt "Skill type form label"
+msgid "Skill type"
 msgstr "Typ produktu"
 
 #: saleor/dashboard/product/forms.py:73
-msgctxt "Product type tax rate type"
+msgctxt "Skill type tax rate type"
 msgid "Tax rate"
 msgstr "Sadzba dane"
 
 #: saleor/dashboard/product/forms.py:75 saleor/dashboard/product/forms.py:237
-msgctxt "ProductType weight"
+msgctxt "SkillType weight"
 msgid "Weight"
 msgstr "Hmotnosť"
 
 #: saleor/dashboard/product/forms.py:78
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Default weight that will be used for calculating shipping price for products"
 " of that type."
@@ -1450,12 +1450,12 @@ msgstr ""
 "produkty tohto typu."
 
 #: saleor/dashboard/product/forms.py:83
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes common to all variants."
 msgstr ""
 
 #: saleor/dashboard/product/forms.py:88
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes specific to each variant."
 msgstr ""
 
@@ -1470,22 +1470,22 @@ msgid "Require shipping"
 msgstr "Vyžaduje dopravu"
 
 #: saleor/dashboard/product/forms.py:137
-msgctxt "Product type form error"
-msgid "Product variants are disabled."
+msgctxt "Skill type form error"
+msgid "Skill variants are disabled."
 msgstr "Varianty produktu nie sú povolené"
 
 #: saleor/dashboard/product/forms.py:142
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "A single attribute can't belong to both a product and its variant."
 msgstr "Jeden atribút nemôže patriť súčasne produktu aj variantu"
 
 #: saleor/dashboard/product/forms.py:164
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "Some products of this type have more than one variant."
 msgstr "Niektoré produkty tohto typu majú viac než jednu variantu."
 
 #: saleor/dashboard/product/forms.py:226
-msgctxt "Product tax rate type"
+msgctxt "Skill tax rate type"
 msgid "Tax rate"
 msgstr "Sadzba dane"
 
@@ -1500,10 +1500,10 @@ msgid "Collections"
 msgstr "Kolekcie"
 
 #: saleor/dashboard/product/forms.py:240
-msgctxt "Product weight field help text"
+msgctxt "Skill weight field help text"
 msgid ""
 "Weight will be used to calculate shipping price, if empty, equal to default "
-"value used on the ProductType."
+"value used on the SkillType."
 msgstr ""
 "Hmotnosť bude použitá na vypočítanie ceny dopravy, ak prázdna, bude sa "
 "rovnať predvolenej hodnote typu produktu."
@@ -1520,7 +1520,7 @@ msgid "Publish product on"
 msgstr "Dátum zverejnenia produktu"
 
 #: saleor/dashboard/product/forms.py:254
-msgctxt "Product published toggle"
+msgctxt "Skill published toggle"
 msgid "Published"
 msgstr "Zverejnené"
 
@@ -1540,15 +1540,15 @@ msgid "Net price"
 msgstr "Cena netto"
 
 #: saleor/dashboard/product/forms.py:307
-msgctxt "ProductVariant weight"
+msgctxt "SkillVariant weight"
 msgid "Weight"
 msgstr "Hmotnosť"
 
 #: saleor/dashboard/product/forms.py:310
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Weight will be used to calculate shipping price. If empty, weight from "
-"Product or ProductType will be used."
+"Skill or SkillType will be used."
 msgstr ""
 "Hmotnosť bude použitá na vypočítanie ceny dopravy. Ak prázdna, použije sa "
 "predvolená hodnota z produktu alebo typu produktu."
@@ -1604,17 +1604,17 @@ msgid "Cost net price"
 msgstr "Náklad netto"
 
 #: saleor/dashboard/product/forms.py:404 saleor/dashboard/product/forms.py:509
-msgctxt "Product image"
+msgctxt "Skill image"
 msgid "Image"
 msgstr "Obrázok"
 
 #: saleor/dashboard/product/forms.py:445
-msgctxt "Product display name"
+msgctxt "Skill display name"
 msgid "Display name"
 msgstr "Zobrazované meno"
 
 #: saleor/dashboard/product/forms.py:447
-msgctxt "Product internal name"
+msgctxt "Skill internal name"
 msgid "Internal name"
 msgstr "Interný názov"
 
@@ -1762,7 +1762,7 @@ msgid "Country"
 msgstr "Krajina"
 
 #: saleor/dashboard/shipping/filters.py:27
-msgctxt "Product list sorting filter label"
+msgctxt "Skill list sorting filter label"
 msgid "Sort by"
 msgstr "Zoradiť podľa"
 
@@ -2049,7 +2049,7 @@ msgid "Removed staff member %s"
 msgstr "Zamestnanec %s bol odstránený"
 
 #: saleor/dashboard/taxes/filters.py:11
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "country_code"
 msgstr "kód_krajiny"
 

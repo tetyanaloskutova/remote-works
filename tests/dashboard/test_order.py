@@ -17,7 +17,7 @@ from remote_works.order import (
 from remote_works.order.models import Order, OrderEvent, OrderLine
 from remote_works.order.utils import add_variant_to_order, change_order_line_quantity
 from remote_works.payment import ChargeStatus, TransactionKind
-from remote_works.product.models import ProductVariant
+from remote_works.product.models import SkillVariant
 from remote_works.shipping.models import ShippingZone
 from tests.utils import get_form_errors, get_redirect_location
 
@@ -464,7 +464,7 @@ def test_view_fulfillment_packing_slips_without_shipping(
 def test_view_add_variant_to_order(admin_client, order_with_lines):
     order_with_lines.status = OrderStatus.DRAFT
     order_with_lines.save()
-    variant = ProductVariant.objects.get(sku='SKU_A')
+    variant = SkillVariant.objects.get(sku='SKU_A')
     line = OrderLine.objects.get(product_sku='SKU_A')
     line_quantity_before = line.quantity
 

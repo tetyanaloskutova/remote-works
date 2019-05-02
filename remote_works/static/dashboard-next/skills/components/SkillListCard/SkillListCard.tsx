@@ -6,24 +6,24 @@ import * as React from "react";
 import { CategoryDetails_category_products_edges_node } from "../../../categories/types/CategoryDetails";
 import Container from "../../../components/Container";
 import PageHeader from "../../../components/PageHeader";
-import ProductList from "../../../components/ProductList";
+import SkillList from "../../../components/SkillList";
 import { Filter } from "../../../components/TableFilter";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
-import ProductListFilter, { ProductListFilterTabs } from "../ProductListFilter";
+import SkillListFilter, { SkillListFilterTabs } from "../SkillListFilter";
 
-interface ProductListCardProps extends PageListProps {
-  currentTab: ProductListFilterTabs;
+interface SkillListCardProps extends PageListProps {
+  currentTab: SkillListFilterTabs;
   filtersList: Filter[];
   products: CategoryDetails_category_products_edges_node[];
-  onAllProducts: () => void;
+  onAllSkills: () => void;
   onAvailable: () => void;
   onOfStock: () => void;
   onCustomFilter: () => void;
 }
 
-export const ProductListCard: React.StatelessComponent<
-  ProductListCardProps
+export const SkillListCard: React.StatelessComponent<
+  SkillListCardProps
 > = ({
   products,
   disabled,
@@ -34,27 +34,27 @@ export const ProductListCard: React.StatelessComponent<
   onRowClick,
   filtersList,
   currentTab,
-  onAllProducts,
+  onAllSkills,
   onAvailable,
   onOfStock,
   onCustomFilter
 }) => (
   <Container width="md">
-    <PageHeader title={i18n.t("Products")}>
+    <PageHeader title={i18n.t("Skills")}>
       <Button onClick={onAdd} color="secondary" variant="contained">
         {i18n.t("Add product")} <AddIcon />
       </Button>
     </PageHeader>
     <Card>
-      <ProductListFilter
+      <SkillListFilter
         currentTab={currentTab}
         filtersList={filtersList}
         onAvailable={onAvailable}
-        onAllProducts={onAllProducts}
+        onAllSkills={onAllSkills}
         onOfStock={onOfStock}
         onCustomFilter={onCustomFilter}
       />
-      <ProductList
+      <SkillList
         products={products}
         disabled={disabled}
         pageInfo={pageInfo}
@@ -65,5 +65,5 @@ export const ProductListCard: React.StatelessComponent<
     </Card>
   </Container>
 );
-ProductListCard.displayName = "ProductListCard";
-export default ProductListCard;
+SkillListCard.displayName = "SkillListCard";
+export default SkillListCard;

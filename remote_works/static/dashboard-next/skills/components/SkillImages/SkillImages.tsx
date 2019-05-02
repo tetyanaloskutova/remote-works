@@ -15,7 +15,7 @@ import CardTitle from "../../../components/CardTitle";
 import ImageTile from "../../../components/ImageTile";
 import ImageUpload from "../../../components/ImageUpload";
 import i18n from "../../../i18n";
-import { ProductDetails_skill_images } from "../../types/ProductDetails";
+import { SkillDetails_skill_images } from "../../types/SkillDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -107,9 +107,9 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductImagesProps extends WithStyles<typeof styles> {
+interface SkillImagesProps extends WithStyles<typeof styles> {
   placeholderImage?: string;
-  images: ProductDetails_skill_images[];
+  images: SkillDetails_skill_images[];
   loading?: boolean;
   onImageDelete: (id: string) => () => void;
   onImageEdit: (id: string) => () => void;
@@ -159,7 +159,7 @@ const ImageListContainer = SortableContainer(
   )
 );
 
-const ProductImages = withStyles(styles, { name: "ProductImages" })(
+const SkillImages = withStyles(styles, { name: "SkillImages" })(
   ({
     classes,
     images,
@@ -169,7 +169,7 @@ const ProductImages = withStyles(styles, { name: "ProductImages" })(
     onImageDelete,
     onImageReorder,
     onImageUpload
-  }: ProductImagesProps) => (
+  }: SkillImagesProps) => (
     <Card className={classes.card}>
       <CardTitle
         title={i18n.t("Images")}
@@ -238,5 +238,5 @@ const ProductImages = withStyles(styles, { name: "ProductImages" })(
     </Card>
   )
 );
-ProductImages.displayName = "ProductImages";
-export default ProductImages;
+SkillImages.displayName = "SkillImages";
+export default SkillImages;

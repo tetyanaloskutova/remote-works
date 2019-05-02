@@ -18,7 +18,7 @@ import PageHeader from "../../../components/PageHeader";
 import SaveButtonBar from "../../../components/SaveButtonBar";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
-import ProductImageNavigation from "../ProductImageNavigation";
+import SkillImageNavigation from "../SkillImageNavigation";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -37,7 +37,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductImagePageProps extends WithStyles<typeof styles> {
+interface SkillImagePageProps extends WithStyles<typeof styles> {
   image?: {
     id: string;
     alt: string;
@@ -55,7 +55,7 @@ interface ProductImagePageProps extends WithStyles<typeof styles> {
   onSubmit: (data: { description: string }) => void;
 }
 
-const ProductImagePage = withStyles(styles, { name: "ProductImagePage" })(
+const SkillImagePage = withStyles(styles, { name: "SkillImagePage" })(
   ({
     classes,
     disabled,
@@ -66,7 +66,7 @@ const ProductImagePage = withStyles(styles, { name: "ProductImagePage" })(
     onDelete,
     onRowClick,
     onSubmit
-  }: ProductImagePageProps) => (
+  }: SkillImagePageProps) => (
     <Form
       initial={{ description: image ? image.alt : "" }}
       onSubmit={onSubmit}
@@ -78,7 +78,7 @@ const ProductImagePage = withStyles(styles, { name: "ProductImagePage" })(
             <PageHeader title={i18n.t("Edit Photo")} onBack={onBack} />
             <Grid variant="inverted">
               <div>
-                <ProductImageNavigation
+                <SkillImageNavigation
                   disabled={disabled}
                   images={images}
                   highlighted={image ? image.id : undefined}
@@ -128,5 +128,5 @@ const ProductImagePage = withStyles(styles, { name: "ProductImagePage" })(
     </Form>
   )
 );
-ProductImagePage.displayName = "ProductImagePage";
-export default ProductImagePage;
+SkillImagePage.displayName = "SkillImagePage";
+export default SkillImagePage;

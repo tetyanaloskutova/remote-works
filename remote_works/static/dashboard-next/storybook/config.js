@@ -36,7 +36,7 @@ function loadStories() {
   require("./stories/auth/LoginLoading");
 
   // Categories
-  require("./stories/categories/CategoryProducts");
+  require("./stories/categories/CategorySkills");
   require("./stories/categories/CategoryCreatePage");
   require("./stories/categories/CategoryUpdatePage");
   require("./stories/categories/CategoryListPage");
@@ -74,14 +74,14 @@ function loadStories() {
   require("./stories/pages/PageDetailsPage")
   require("./stories/pages/PageListPage")
 
-  // Products
-  require("./stories/products/ProductCreatePage");
-  require("./stories/products/ProductImagePage");
-  require("./stories/products/ProductListCard");
-  require("./stories/products/ProductUpdatePage");
-  require("./stories/products/ProductVariantCreatePage");
-  require("./stories/products/ProductVariantImageSelectDialog");
-  require("./stories/products/ProductVariantPage");
+  // Skills
+  require("./stories/products/SkillCreatePage");
+  require("./stories/products/SkillImagePage");
+  require("./stories/products/SkillListCard");
+  require("./stories/products/SkillUpdatePage");
+  require("./stories/products/SkillVariantCreatePage");
+  require("./stories/products/SkillVariantImageSelectDialog");
+  require("./stories/products/SkillVariantPage");
 
   // Orders
   require("./stories/orders/OrderAddressEditDialog");
@@ -100,14 +100,14 @@ function loadStories() {
   require("./stories/orders/OrderMarkAsPaidDialog");
   require("./stories/orders/OrderPaymentDialog");
   require("./stories/orders/OrderPaymentVoidDialog");
-  require("./stories/orders/OrderProductAddDialog");
+  require("./stories/orders/OrderSkillAddDialog");
   require("./stories/orders/OrderShippingMethodEditDialog");
 
-  // Product types
-  require("./stories/productTypes/ProductTypeAttributeEditDialog");
-  require("./stories/productTypes/ProductTypeCreatePage");
-  require("./stories/productTypes/ProductTypeDetailsPage");
-  require("./stories/productTypes/ProductTypeListPage");
+  // Skill types
+  require("./stories/productTypes/SkillTypeAttributeEditDialog");
+  require("./stories/productTypes/SkillTypeCreatePage");
+  require("./stories/productTypes/SkillTypeDetailsPage");
+  require("./stories/productTypes/SkillTypeListPage");
 
   // Site settings
   require("./stories/siteSettings/SiteSettingsKeyDialog");

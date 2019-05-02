@@ -269,7 +269,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Restyle categories section - #3072 by @Bonifacy1
 
 ### Other
-- Change relation between `ProductType` and `Attribute` models - #3097 by @maarcingebala
+- Change relation between `SkillType` and `Attribute` models - #3097 by @maarcingebala
 - Remove `quantity-allocated` generation in `populatedb` script - #3084 by @MartinSeibert
 - Handle `Money` serialization - #3131 by @Pacu2
 - Do not collect unnecessary static files - #3050 by @jxltom

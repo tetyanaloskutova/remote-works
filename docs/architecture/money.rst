@@ -29,7 +29,7 @@ Money amounts are stored on model using `MoneyField` that provides its own safec
 
 If you ever need to get to the `Decimal` of your `Money` object, you'll find it on the `amount` property.
 
-Products and shipping methods prices are stored using `MoneyField`. All prices displayed in dashboard, excluding orders, are as they have been entered in the forms. You can decide if those prices are treated as gross or net in dashboard ``Taxes`` tab.
+Skills and shipping methods prices are stored using `MoneyField`. All prices displayed in dashboard, excluding orders, are as they have been entered in the forms. You can decide if those prices are treated as gross or net in dashboard ``Taxes`` tab.
 
 Prices displayed in orders are gross or net depending on setting how prices are displayed for customers, both in storefront and dashboard. This way staff users will always see the same state of an order as the customer.
 
@@ -39,5 +39,5 @@ TaxedMoneyRange
 
 Sometimes a product may be available under more than single price due to its variants defining custom prices different from the base price.
 
-For such situations `Product` defines additional `get_price_range` method that return `TaxedMoneyRange` object defining minimum and maximum prices on its `start` and `stop` attributes.
+For such situations `Skill` defines additional `get_price_range` method that return `TaxedMoneyRange` object defining minimum and maximum prices on its `start` and `stop` attributes.
 This object is then used by the UI to differentiate between displaying price as "10 USD" or "from 10 USD" in case of products where prices differ between variants.

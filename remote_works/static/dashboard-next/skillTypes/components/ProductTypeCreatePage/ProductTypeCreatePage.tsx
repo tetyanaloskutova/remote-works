@@ -8,11 +8,11 @@ import Grid from "../../../components/Grid";
 import PageHeader from "../../../components/PageHeader";
 import SaveButtonBar from "../../../components/SaveButtonBar";
 import { TaxRateType, WeightUnitsEnum } from "../../../types/globalTypes";
-import ProductTypeDetails from "../ProductTypeDetails/ProductTypeDetails";
-import ProductTypeShipping from "../ProductTypeShipping/ProductTypeShipping";
-import ProductTypeTaxes from "../ProductTypeTaxes/ProductTypeTaxes";
+import SkillTypeDetails from "../SkillTypeDetails/SkillTypeDetails";
+import SkillTypeShipping from "../SkillTypeShipping/SkillTypeShipping";
+import SkillTypeTaxes from "../SkillTypeTaxes/SkillTypeTaxes";
 
-export interface ProductTypeForm {
+export interface SkillTypeForm {
   chargeTaxes: boolean;
   name: string;
   isShippingRequired: boolean;
@@ -20,7 +20,7 @@ export interface ProductTypeForm {
   weight: number;
 }
 
-export interface ProductTypeCreatePageProps {
+export interface SkillTypeCreatePageProps {
   errors: Array<{
     field: string;
     message: string;
@@ -30,11 +30,11 @@ export interface ProductTypeCreatePageProps {
   pageTitle: string;
   saveButtonBarState: ConfirmButtonTransitionState;
   onBack: () => void;
-  onSubmit: (data: ProductTypeForm) => void;
+  onSubmit: (data: SkillTypeForm) => void;
 }
 
-const ProductTypeCreatePage: React.StatelessComponent<
-  ProductTypeCreatePageProps
+const SkillTypeCreatePage: React.StatelessComponent<
+  SkillTypeCreatePageProps
 > = ({
   defaultWeightUnit,
   disabled,
@@ -43,8 +43,8 @@ const ProductTypeCreatePage: React.StatelessComponent<
   saveButtonBarState,
   onBack,
   onSubmit
-}: ProductTypeCreatePageProps) => {
-  const formInitialData: ProductTypeForm = {
+}: SkillTypeCreatePageProps) => {
+  const formInitialData: SkillTypeForm = {
     chargeTaxes: true,
     isShippingRequired: false,
     name: "",
@@ -63,21 +63,21 @@ const ProductTypeCreatePage: React.StatelessComponent<
           <PageHeader title={pageTitle} onBack={onBack} />
           <Grid>
             <div>
-              <ProductTypeDetails
+              <SkillTypeDetails
                 data={data}
                 disabled={disabled}
                 onChange={change}
               />
             </div>
             <div>
-              <ProductTypeShipping
+              <SkillTypeShipping
                 disabled={disabled}
                 data={data}
                 defaultWeightUnit={defaultWeightUnit}
                 onChange={change}
               />
               <CardSpacer />
-              <ProductTypeTaxes
+              <SkillTypeTaxes
                 disabled={disabled}
                 data={data}
                 onChange={change}
@@ -95,5 +95,5 @@ const ProductTypeCreatePage: React.StatelessComponent<
     </Form>
   );
 };
-ProductTypeCreatePage.displayName = "ProductTypeCreatePage";
-export default ProductTypeCreatePage;
+SkillTypeCreatePage.displayName = "SkillTypeCreatePage";
+export default SkillTypeCreatePage;

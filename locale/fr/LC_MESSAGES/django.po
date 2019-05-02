@@ -1047,32 +1047,32 @@ msgid "Orders with payments can not be manually marked as paid."
 msgstr ""
 
 #: saleor/product/__init__.py:15
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "not published"
 msgstr "non publié"
 
 #: saleor/product/__init__.py:17
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "variants missing"
 msgstr "variations manquantes"
 
 #: saleor/product/__init__.py:19
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "out of stock"
 msgstr "en rupture de stock"
 
 #: saleor/product/__init__.py:21
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "stock running low"
 msgstr "stock faible"
 
 #: saleor/product/__init__.py:23
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "not yet available"
 msgstr "indisponible pour le moment"
 
 #: saleor/product/__init__.py:25
-msgctxt "Product status"
+msgctxt "Skill status"
 msgid "ready for purchase"
 msgstr "prêt à être acheté"
 
@@ -1087,22 +1087,22 @@ msgid "out of stock"
 msgstr "en rupture de stock"
 
 #: saleor/product/filters.py:12
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "name"
 msgstr "nom"
 
 #: saleor/product/filters.py:13
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "price"
 msgstr "prix"
 
 #: saleor/product/filters.py:15
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "last updated"
 msgstr "dernière mise à jour"
 
 #: saleor/product/filters.py:20
-msgctxt "Product list sorting form"
+msgctxt "Skill list sorting form"
 msgid "Sort by"
 msgstr "Trier par"
 
@@ -1901,12 +1901,12 @@ msgstr "Panier"
 
 #: templates/checkout/index.html:22
 msgctxt "Cart message"
-msgid "Product has been removed from cart"
+msgid "Skill has been removed from cart"
 msgstr "Le produit a été supprimé de votre panier"
 
 #: templates/checkout/index.html:30
 msgctxt "Cart table header"
-msgid "Product"
+msgid "Skill"
 msgstr "Produit"
 
 #: templates/checkout/index.html:33
@@ -2125,7 +2125,7 @@ msgstr "Catalogue"
 #: templates/dashboard/product/product_type/form.html:12
 #: templates/dashboard/product/product_variant/form.html:26
 msgctxt "Dashboard products list"
-msgid "Products"
+msgid "Skills"
 msgstr "Produits"
 
 #: templates/dashboard/base.html:112
@@ -2210,7 +2210,7 @@ msgstr "Configuration"
 #: templates/dashboard/product/product_type/list.html:8
 #: templates/dashboard/product/product_type/list.html:28
 msgctxt "Dashboard product types list"
-msgid "Product types"
+msgid "Skill types"
 msgstr "Types de produits"
 
 #: templates/dashboard/base.html:193
@@ -2590,7 +2590,7 @@ msgid "Visibility"
 msgstr "Visibilitée"
 
 #: templates/dashboard/collection/list.html:58
-msgid "Products in collection:"
+msgid "Skills in collection:"
 msgstr "Produits dans la collection :"
 
 #: templates/dashboard/collection/list.html:79
@@ -3183,12 +3183,12 @@ msgstr "Pas de paiements pré-autorisés."
 
 #: templates/dashboard/index.html:139
 msgctxt "Dashboard homepage table title"
-msgid "Products with low stock"
+msgid "Skills with low stock"
 msgstr "Produits dont le stock est bas"
 
 #: templates/dashboard/index.html:148
 msgctxt "Low stock product list"
-msgid "Product name"
+msgid "Skill name"
 msgstr "Nom de produit"
 
 #: templates/dashboard/index.html:151
@@ -4406,7 +4406,7 @@ msgid "Attributes"
 msgstr "Attributs"
 
 #: templates/dashboard/product/attribute/detail.html:46
-msgid "Product type"
+msgid "Skill type"
 msgstr "Type du produit"
 
 #: templates/dashboard/product/attribute/detail.html:53
@@ -4479,7 +4479,7 @@ msgstr "Nom"
 
 #: templates/dashboard/product/attribute/list.html:44
 msgctxt "Name of product type related to the attribute"
-msgid "Product type"
+msgid "Skill type"
 msgstr "Type du produit"
 
 #: templates/dashboard/product/attribute/list.html:46
@@ -4544,32 +4544,32 @@ msgstr ""
 
 #: templates/dashboard/product/detail.html:19
 #: templates/dashboard/product/product_variant/detail.html:20
-msgctxt "Product form breadcrumbs"
-msgid "Products"
+msgctxt "Skill form breadcrumbs"
+msgid "Skills"
 msgstr "Produits"
 
 #: templates/dashboard/product/detail.html:54
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Published"
 msgstr "Publié"
 
 #: templates/dashboard/product/detail.html:56
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Draft"
 msgstr "Brouillon"
 
 #: templates/dashboard/product/detail.html:77
-msgctxt "Product action"
+msgctxt "Skill action"
 msgid "Edit product"
 msgstr "Modifier le produit"
 
 #: templates/dashboard/product/detail.html:80
-msgctxt "Product action"
+msgctxt "Skill action"
 msgid "Remove product"
 msgstr "Supprimer le produit"
 
 #: templates/dashboard/product/detail.html:83
-msgctxt "Product action"
+msgctxt "Skill action"
 msgid "View on site"
 msgstr "Voir sur le site"
 
@@ -4612,66 +4612,66 @@ msgstr "Aucune variation trouvée"
 
 #: templates/dashboard/product/detail.html:152
 #: templates/dashboard/product/product_variant/detail.html:77
-msgctxt "Product pricing card header"
+msgctxt "Skill pricing card header"
 msgid "Pricing"
 msgstr "Prix"
 
 #: templates/dashboard/product/detail.html:156
 #, python-format
-msgctxt "Product pricing card header subtitle"
+msgctxt "Skill pricing card header subtitle"
 msgid "Taxes are charged (%(tax_rate)s tax rate)"
 msgstr "La TVA est appliquée (Taux %(tax_rate)s)"
 
 #: templates/dashboard/product/detail.html:160
-msgctxt "Product pricing card header subtitle"
+msgctxt "Skill pricing card header subtitle"
 msgid "Taxes are not charged"
 msgstr "La TVA n'est pas appliquée"
 
 #: templates/dashboard/product/detail.html:171
 #: templates/dashboard/product/product_variant/detail.html:87
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Gross sale price"
 msgstr "Prix de vente TTC"
 
 #: templates/dashboard/product/detail.html:173
 #: templates/dashboard/product/product_variant/detail.html:89
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Net sale price"
 msgstr "Prix de vente HT"
 
 #: templates/dashboard/product/detail.html:184
 #: templates/dashboard/product/product_variant/detail.html:100
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Gross discounted price"
 msgstr "Prix remisé TTC"
 
 #: templates/dashboard/product/detail.html:186
 #: templates/dashboard/product/product_variant/detail.html:102
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Net discounted price"
 msgstr "Prix remisé HT"
 
 #: templates/dashboard/product/detail.html:197
 #: templates/dashboard/product/product_variant/detail.html:113
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Gross purchase cost"
 msgstr "Coût d'achat TTC"
 
 #: templates/dashboard/product/detail.html:199
 #: templates/dashboard/product/product_variant/detail.html:115
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Net purchase cost"
 msgstr "Coût d'achat HT"
 
 #: templates/dashboard/product/detail.html:208
 #: templates/dashboard/product/product_variant/detail.html:128
-msgctxt "Product field"
+msgctxt "Skill field"
 msgid "Margin"
 msgstr "Marge"
 
 #: templates/dashboard/product/detail.html:231
 #: templates/dashboard/product/product_variant/detail.html:146
-msgctxt "Product variant inventory card header"
+msgctxt "Skill variant inventory card header"
 msgid "Inventory"
 msgstr "Inventaire"
 
@@ -4703,17 +4703,17 @@ msgid "Edit"
 msgstr "Modifier"
 
 #: templates/dashboard/product/form.html:10
-msgctxt "Product form page title"
+msgctxt "Skill form page title"
 msgid "Add new product"
 msgstr "Ajouter un nouveau produit"
 
 #: templates/dashboard/product/form.html:43
-msgctxt "Product form breadcrumbs"
+msgctxt "Skill form breadcrumbs"
 msgid "Add new product"
 msgstr "Ajouter un nouveau produit"
 
 #: templates/dashboard/product/form.html:50
-msgctxt "Product form breadcrumbs"
+msgctxt "Skill form breadcrumbs"
 msgid "Edit"
 msgstr "Modifier"
 
@@ -4732,7 +4732,7 @@ msgstr "Attributs"
 #, python-format
 msgid ""
 "\n"
-"                    Product Type: %(product_type_name)s\n"
+"                    Skill Type: %(product_type_name)s\n"
 "                  "
 msgstr ""
 "\n"
@@ -4741,17 +4741,17 @@ msgstr ""
 
 #: templates/dashboard/product/list.html:21
 #: templates/dashboard/product/list.html:25
-msgctxt "Product list add button text"
+msgctxt "Skill list add button text"
 msgid "Add product"
 msgstr "Ajouter un produit"
 
 #: templates/dashboard/product/list.html:61
-msgctxt "Products list table header"
+msgctxt "Skills list table header"
 msgid "Name"
 msgstr "Nom"
 
 #: templates/dashboard/product/list.html:64
-msgctxt "Products list table header"
+msgctxt "Skills list table header"
 msgid "Price"
 msgstr "Prix"
 
@@ -4775,7 +4775,7 @@ msgstr ""
 
 #: templates/dashboard/product/modal/select_type.html:11
 msgctxt "Modal select product types title"
-msgid "Product type"
+msgid "Skill type"
 msgstr "Type du produit"
 
 #: templates/dashboard/product/modal/select_type.html:19
@@ -4861,17 +4861,17 @@ msgstr ""
 "Choisissez la partie de l'image la plus significative dans le cercle rouge."
 
 #: templates/dashboard/product/product_type/form.html:10
-msgctxt "Product type page title"
+msgctxt "Skill type page title"
 msgid "Add new product type"
 msgstr "Ajouter un nouveau type de produit"
 
 #: templates/dashboard/product/product_type/form.html:41
-msgctxt "Product type breadcrumbs"
+msgctxt "Skill type breadcrumbs"
 msgid "Add new product type"
 msgstr "Ajouter un nouveau type de produit"
 
 #: templates/dashboard/product/product_type/form.html:57
-msgctxt "Product type action"
+msgctxt "Skill type action"
 msgid "Remove product type"
 msgstr "Supprimer le type de produit"
 
@@ -4880,9 +4880,9 @@ msgid "Taxes"
 msgstr "TVA"
 
 #: templates/dashboard/product/product_type/form.html:132
-msgctxt "Product type help text"
+msgctxt "Skill type help text"
 msgid ""
-"Product Type is a template used for creating new products. It also controls "
+"Skill Type is a template used for creating new products. It also controls "
 "which attributes can be used during product creation process."
 msgstr ""
 "Les types de produits sont des modèles utilisés pour créer des nouveau "
@@ -4890,7 +4890,7 @@ msgstr ""
 "la création d'un produit."
 
 #: templates/dashboard/product/product_type/list.html:18
-msgctxt "Product type list add button text"
+msgctxt "Skill type list add button text"
 msgid "Add product type"
 msgstr "Ajouter un type de produit"
 
@@ -4900,12 +4900,12 @@ msgid "Name"
 msgstr "Nom"
 
 #: templates/dashboard/product/product_type/list.html:48
-msgctxt "Product type item list text"
-msgid "Product attributes"
+msgctxt "Skill type item list text"
+msgid "Skill attributes"
 msgstr "Attributs du produit"
 
 #: templates/dashboard/product/product_type/list.html:51
-msgctxt "Product type item list text"
+msgctxt "Skill type item list text"
 msgid "Variant attributes"
 msgstr "Attributs de la variante"
 
@@ -4949,7 +4949,7 @@ msgstr "Aucun type de produit trouvé."
 #, python-format
 msgid ""
 "\n"
-"    Product types are templates used to create new products. They allow assigning custom attributes to the products of the same type.<br>\n"
+"    Skill types are templates used to create new products. They allow assigning custom attributes to the products of the same type.<br>\n"
 "    You can add product types by using the <span class=\"btn-fab-presentation\"><svg data-src=\"%(img_path)s\" /></span> button.\n"
 "  "
 msgstr ""
@@ -5088,7 +5088,7 @@ msgstr "Résultats de la recherche"
 
 #: templates/dashboard/search/results.html:25
 msgctxt "Search results list products"
-msgid "Products"
+msgid "Skills"
 msgstr "Produits"
 
 #: templates/dashboard/search/results.html:47
@@ -5824,7 +5824,7 @@ msgstr "Adresse de facturation"
 #: templates/order/_ordered_items_table.html:38
 #: templates/order/_ordered_items_table.html:183
 msgctxt "Order details column title"
-msgid "Product"
+msgid "Skill"
 msgstr "Produit"
 
 #: templates/order/_ordered_items_table.html:43
@@ -6105,17 +6105,17 @@ msgstr ""
 "que le <strong>%(date)s</strong>."
 
 #: templates/product/_filters.html:46
-msgctxt "Product price filter"
+msgctxt "Skill price filter"
 msgid "from"
 msgstr "de"
 
 #: templates/product/_filters.html:48
-msgctxt "Product price filter"
+msgctxt "Skill price filter"
 msgid "to"
 msgstr "à"
 
 #: templates/product/_filters.html:56
-msgctxt "Product list page filters"
+msgctxt "Skill list page filters"
 msgid "Clear filters"
 msgstr "Effacer les filtres"
 
@@ -6137,7 +6137,7 @@ msgstr "de"
 
 #: templates/product/details.html:62
 #, python-format
-msgctxt "Product details text"
+msgctxt "Skill details text"
 msgid ""
 "<strong>Warning!</strong> You are previewing a product that will become "
 "visible on <strong>%(date)s</strong>."
@@ -6146,34 +6146,34 @@ msgstr ""
 " que le <strong>%(date)s</strong>."
 
 #: templates/product/details.html:124
-msgctxt "Product details link text"
+msgctxt "Skill details link text"
 msgid "Edit in dashboard"
 msgstr "Modifier dans le tableau de bord"
 
 #: templates/product/details.html:150
 #, python-format
-msgctxt "Product details page vat rate value"
+msgctxt "Skill details page vat rate value"
 msgid "including %(tax_rate)s%% VAT"
 msgstr "TTC (%(tax_rate)s%%)"
 
 #: templates/product/details.html:154
 #, python-format
-msgctxt "Product details page vat rate value"
+msgctxt "Skill details page vat rate value"
 msgid "excluding %(tax_rate)s%% VAT"
 msgstr "HT (%(tax_rate)s%%)"
 
 #: templates/product/details.html:178
-msgctxt "Product details primary action"
+msgctxt "Skill details primary action"
 msgid "Add to cart"
 msgstr "Ajouter au panier"
 
 #: templates/product/details.html:190
-msgctxt "Product details text"
+msgctxt "Skill details text"
 msgid "This product is currently <strong>unavailable</strong>."
 msgstr "Ce produit n'est <strong>pas disponible</strong> actuellement."
 
 #: templates/product/details.html:194
-msgctxt "Product details title"
+msgctxt "Skill details title"
 msgid "Description"
 msgstr "Description"
 
@@ -6191,7 +6191,7 @@ msgid "Sort by: <b>price</b>"
 msgstr "Trier par : <b>prix</b>"
 
 #: templates/product/product_list_base.html:114
-msgctxt "Product list filters"
+msgctxt "Skill list filters"
 msgid "Sort by"
 msgstr "Trier par"
 

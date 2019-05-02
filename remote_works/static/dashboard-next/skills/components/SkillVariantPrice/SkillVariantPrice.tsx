@@ -21,7 +21,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantPriceProps extends WithStyles<typeof styles> {
+interface SkillVariantPriceProps extends WithStyles<typeof styles> {
   currencySymbol?: string;
   priceOverride?: string;
   costPrice?: string;
@@ -30,7 +30,7 @@ interface ProductVariantPriceProps extends WithStyles<typeof styles> {
   onChange(event: any);
 }
 
-const ProductVariantPrice = withStyles(styles, { name: "ProductVariantPrice" })(
+const SkillVariantPrice = withStyles(styles, { name: "SkillVariantPrice" })(
   ({
     classes,
     currencySymbol,
@@ -39,7 +39,7 @@ const ProductVariantPrice = withStyles(styles, { name: "ProductVariantPrice" })(
     priceOverride,
     loading,
     onChange
-  }: ProductVariantPriceProps) => (
+  }: SkillVariantPriceProps) => (
     <Card>
       <CardTitle title={i18n.t("Pricing")} />
       <CardContent>
@@ -77,5 +77,5 @@ const ProductVariantPrice = withStyles(styles, { name: "ProductVariantPrice" })(
     </Card>
   )
 );
-ProductVariantPrice.displayName = "ProductVariantPrice";
-export default ProductVariantPrice;
+SkillVariantPrice.displayName = "SkillVariantPrice";
+export default SkillVariantPrice;

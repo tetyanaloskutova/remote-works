@@ -2,11 +2,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ProductImage
+// GraphQL fragment: SkillImage
 // ====================================================
 
-export interface ProductImage {
-  __typename: "ProductImage";
+export interface SkillImage {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;

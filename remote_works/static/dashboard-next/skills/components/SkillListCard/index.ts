@@ -1,2 +1,2 @@
-export { default } from "./ProductListCard";
-export * from "./ProductListCard";
+export { default } from "./SkillListCard";
+export * from "./SkillListCard";

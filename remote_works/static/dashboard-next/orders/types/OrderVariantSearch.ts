@@ -17,7 +17,7 @@ export interface OrderVariantSearch_products_edges_node_variants_price {
 }
 
 export interface OrderVariantSearch_products_edges_node_variants {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
@@ -25,7 +25,7 @@ export interface OrderVariantSearch_products_edges_node_variants {
 }
 
 export interface OrderVariantSearch_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   thumbnail: OrderVariantSearch_products_edges_node_thumbnail | null;
@@ -33,7 +33,7 @@ export interface OrderVariantSearch_products_edges_node {
 }
 
 export interface OrderVariantSearch_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: OrderVariantSearch_products_edges_node;
 }
 
@@ -46,7 +46,7 @@ export interface OrderVariantSearch_products_pageInfo {
 }
 
 export interface OrderVariantSearch_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: OrderVariantSearch_products_edges[];
   pageInfo: OrderVariantSearch_products_pageInfo;
 }

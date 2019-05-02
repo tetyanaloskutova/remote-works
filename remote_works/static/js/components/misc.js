@@ -31,16 +31,16 @@ export default $(document).ready((e) => {
   window.lazySizesConfig.preloadAfterLoad = true;
 
   // Function for update product image height
-  function updateProductImageHeight() {
+  function updateSkillImageHeight() {
     let productImageWidth = $('.product-image').width();
     $('.product-image').css({'height': productImageWidth + 'px'});
   }
 
   // Update product-image height when window is initialized
-  updateProductImageHeight();
+  updateSkillImageHeight();
 
   // Update product-image height
   $(window).bind('resized', function() {
-    updateProductImageHeight();
+    updateSkillImageHeight();
   });
 });

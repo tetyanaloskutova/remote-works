@@ -1,13 +1,13 @@
 import { content } from "../storybook/stories/components/RichTextEditor";
-import { ProductDetails_product } from "./types/ProductDetails";
-import { ProductVariant } from "./types/ProductVariant";
-import { ProductVariantCreateData_product } from "./types/ProductVariantCreateData";
+import { SkillDetails_product } from "./types/SkillDetails";
+import { SkillVariant } from "./types/SkillVariant";
+import { SkillVariantCreateData_product } from "./types/SkillVariantCreateData";
 
 export const product: (
   placeholderImage: string
-) => ProductDetails_product &
-  ProductVariantCreateData_product = placeholderImage => ({
-  __typename: "Product",
+) => SkillDetails_product &
+  SkillVariantCreateData_product = placeholderImage => ({
+  __typename: "Skill",
   attributes: [
     {
       __typename: "SelectedAttribute",
@@ -91,7 +91,7 @@ export const product: (
     }
   ],
   availability: {
-    __typename: "ProductAvailability",
+    __typename: "SkillAvailability",
     available: false,
     priceRange: {
       __typename: "TaxedMoneyRange",
@@ -136,35 +136,35 @@ export const product: (
   id: "p10171",
   images: [
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYWdlOjE=",
       sortOrder: 0,
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYWdlOaE=",
       sortOrder: 2,
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UPJvZHVjdEltYWdlOjV=",
       sortOrder: 1,
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYHdlOjX=",
       sortOrder: 3,
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdIlnYWdlOjX=",
       sortOrder: 4,
@@ -182,7 +182,7 @@ export const product: (
     localized: "339.39 NZD"
   },
   productType: {
-    __typename: "ProductType",
+    __typename: "SkillType",
     hasVariants: true,
     id: "pt76406",
     name: "Versatile",
@@ -237,16 +237,16 @@ export const product: (
   url: "/example-url",
   variants: [
     {
-      __typename: "ProductVariant",
+      __typename: "SkillVariant",
       id: "pv75934",
       images: [
         {
-          __typename: "ProductImage",
+          __typename: "SkillImage",
           id: "pi92837",
           url: placeholderImage
         },
         {
-          __typename: "ProductImage",
+          __typename: "SkillImage",
           id: "pi92838",
           url: placeholderImage
         }
@@ -264,16 +264,16 @@ export const product: (
       stockQuantity: 48
     },
     {
-      __typename: "ProductVariant",
+      __typename: "SkillVariant",
       id: "pv68615",
       images: [
         {
-          __typename: "ProductImage",
+          __typename: "SkillImage",
           id: "pi81234",
           url: placeholderImage
         },
         {
-          __typename: "ProductImage",
+          __typename: "SkillImage",
           id: "pi1236912",
           url: placeholderImage
         }
@@ -2179,8 +2179,8 @@ export const products = (placeholderImage: string) => [
     }
   }
 ];
-export const variant = (placeholderImage: string): ProductVariant => ({
-  __typename: "ProductVariant",
+export const variant = (placeholderImage: string): SkillVariant => ({
+  __typename: "SkillVariant",
   attributes: [
     {
       __typename: "SelectedAttribute",
@@ -2261,22 +2261,22 @@ export const variant = (placeholderImage: string): ProductVariant => ({
   id: "var1",
   images: [
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       id: "img1",
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       id: "img2",
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       id: "img7",
       url: placeholderImage
     },
     {
-      __typename: "ProductImage",
+      __typename: "SkillImage",
       id: "img8",
       url: placeholderImage
     }
@@ -2288,67 +2288,67 @@ export const variant = (placeholderImage: string): ProductVariant => ({
     currency: "USD"
   },
   product: {
-    __typename: "Product",
+    __typename: "Skill",
     id: "prod1",
     images: [
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Front",
         id: "img1",
         sortOrder: 1,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Back",
         id: "img2",
         sortOrder: 4,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Right side",
         id: "img3",
         sortOrder: 2,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Left side",
         id: "img4",
         sortOrder: 3,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Paper",
         id: "img5",
         sortOrder: 0,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Hard cover",
         id: "img6",
         sortOrder: 1,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Extended version",
         id: "img7",
         sortOrder: 0,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Cut version",
         id: "img8",
         sortOrder: 2,
         url: placeholderImage
       },
       {
-        __typename: "ProductImage",
+        __typename: "SkillImage",
         alt: "Soft cover",
         id: "img9",
         sortOrder: 2,
@@ -2359,11 +2359,11 @@ export const variant = (placeholderImage: string): ProductVariant => ({
     thumbnail: { __typename: "Image", url: placeholderImage },
     variants: [
       {
-        __typename: "ProductVariant",
+        __typename: "SkillVariant",
         id: "var1",
         images: [
           {
-            __typename: "ProductImage",
+            __typename: "SkillImage",
             id: "23123",
             url: placeholderImage
           }
@@ -2372,11 +2372,11 @@ export const variant = (placeholderImage: string): ProductVariant => ({
         sku: "13-1337"
       },
       {
-        __typename: "ProductVariant",
+        __typename: "SkillVariant",
         id: "var2",
         images: [
           {
-            __typename: "ProductImage",
+            __typename: "SkillImage",
             id: "23123",
             url: placeholderImage
           }
@@ -2385,11 +2385,11 @@ export const variant = (placeholderImage: string): ProductVariant => ({
         sku: "13-1338"
       },
       {
-        __typename: "ProductVariant",
+        __typename: "SkillVariant",
         id: "var3",
         images: [
           {
-            __typename: "ProductImage",
+            __typename: "SkillImage",
             id: "23123",
             url: placeholderImage
           }
@@ -2398,11 +2398,11 @@ export const variant = (placeholderImage: string): ProductVariant => ({
         sku: "13-1339"
       },
       {
-        __typename: "ProductVariant",
+        __typename: "SkillVariant",
         id: "var4",
         images: [
           {
-            __typename: "ProductImage",
+            __typename: "SkillImage",
             id: "23123",
             url: placeholderImage
           }
@@ -2418,7 +2418,7 @@ export const variant = (placeholderImage: string): ProductVariant => ({
 });
 export const variantImages = (placeholderImage: string) =>
   variant(placeholderImage).images;
-export const variantProductImages = (placeholderImage: string) =>
+export const variantSkillImages = (placeholderImage: string) =>
   variant(placeholderImage).product.images;
 export const variantSiblings = (placeholderImage: string) =>
   variant(placeholderImage).product.variants;

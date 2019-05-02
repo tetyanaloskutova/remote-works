@@ -2,10 +2,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: ProductCreateData
+// GraphQL query operation: SkillCreateData
 // ====================================================
 
-export interface ProductCreateData_productTypes_edges_node_productAttributes_values {
+export interface SkillCreateData_productTypes_edges_node_productAttributes_values {
   __typename: "AttributeValue";
   id: string;
   sortOrder: number;
@@ -13,32 +13,32 @@ export interface ProductCreateData_productTypes_edges_node_productAttributes_val
   slug: string | null;
 }
 
-export interface ProductCreateData_productTypes_edges_node_productAttributes {
+export interface SkillCreateData_productTypes_edges_node_productAttributes {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (ProductCreateData_productTypes_edges_node_productAttributes_values | null)[] | null;
+  values: (SkillCreateData_productTypes_edges_node_productAttributes_values | null)[] | null;
 }
 
-export interface ProductCreateData_productTypes_edges_node {
-  __typename: "ProductType";
+export interface SkillCreateData_productTypes_edges_node {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
-  productAttributes: (ProductCreateData_productTypes_edges_node_productAttributes | null)[] | null;
+  productAttributes: (SkillCreateData_productTypes_edges_node_productAttributes | null)[] | null;
 }
 
-export interface ProductCreateData_productTypes_edges {
-  __typename: "ProductTypeCountableEdge";
-  node: ProductCreateData_productTypes_edges_node;
+export interface SkillCreateData_productTypes_edges {
+  __typename: "SkillTypeCountableEdge";
+  node: SkillCreateData_productTypes_edges_node;
 }
 
-export interface ProductCreateData_productTypes {
-  __typename: "ProductTypeCountableConnection";
-  edges: ProductCreateData_productTypes_edges[];
+export interface SkillCreateData_productTypes {
+  __typename: "SkillTypeCountableConnection";
+  edges: SkillCreateData_productTypes_edges[];
 }
 
-export interface ProductCreateData {
-  productTypes: ProductCreateData_productTypes | null;
+export interface SkillCreateData {
+  productTypes: SkillCreateData_productTypes | null;
 }

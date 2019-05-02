@@ -3,16 +3,16 @@ import * as React from "react";
 import { getMutationProviderData } from "../../misc";
 import { PartialMutationProviderOutput } from "../../types";
 import {
-  TypedCollectionAssignProductMutation,
+  TypedCollectionAssignSkillMutation,
   TypedCollectionRemoveMutation,
   TypedCollectionUpdateMutation,
   TypedCollectionUpdateWithHomepageMutation,
-  TypedUnassignCollectionProductMutation
+  TypedUnassignCollectionSkillMutation
 } from "../mutations";
 import {
-  CollectionAssignProduct,
-  CollectionAssignProductVariables
-} from "../types/CollectionAssignProduct";
+  CollectionAssignSkill,
+  CollectionAssignSkillVariables
+} from "../types/CollectionAssignSkill";
 import {
   CollectionUpdate,
   CollectionUpdateVariables
@@ -26,9 +26,9 @@ import {
   RemoveCollectionVariables
 } from "../types/RemoveCollection";
 import {
-  UnassignCollectionProduct,
-  UnassignCollectionProductVariables
-} from "../types/UnassignCollectionProduct";
+  UnassignCollectionSkill,
+  UnassignCollectionSkillVariables
+} from "../types/UnassignCollectionSkill";
 
 interface CollectionUpdateOperationsProps {
   children: (
@@ -37,13 +37,13 @@ interface CollectionUpdateOperationsProps {
         CollectionUpdateWithHomepage,
         CollectionUpdateWithHomepageVariables
       >;
-      assignProduct: PartialMutationProviderOutput<
-        CollectionAssignProduct,
-        CollectionAssignProductVariables
+      assignSkill: PartialMutationProviderOutput<
+        CollectionAssignSkill,
+        CollectionAssignSkillVariables
       >;
-      unassignProduct: PartialMutationProviderOutput<
-        UnassignCollectionProduct,
-        UnassignCollectionProductVariables
+      unassignSkill: PartialMutationProviderOutput<
+        UnassignCollectionSkill,
+        UnassignCollectionSkillVariables
       >;
       updateCollection: PartialMutationProviderOutput<
         CollectionUpdate,
@@ -56,35 +56,35 @@ interface CollectionUpdateOperationsProps {
     }
   ) => React.ReactNode;
   onUpdate: (data: CollectionUpdate) => void;
-  onProductAssign: (data: CollectionAssignProduct) => void;
-  onProductUnassign: (data: UnassignCollectionProduct) => void;
+  onSkillAssign: (data: CollectionAssignSkill) => void;
+  onSkillUnassign: (data: UnassignCollectionSkill) => void;
   onRemove: (data: RemoveCollection) => void;
 }
 
 const CollectionOperations: React.StatelessComponent<
   CollectionUpdateOperationsProps
-> = ({ children, onUpdate, onProductAssign, onProductUnassign, onRemove }) => (
+> = ({ children, onUpdate, onSkillAssign, onSkillUnassign, onRemove }) => (
   <TypedCollectionUpdateMutation onCompleted={onUpdate}>
     {(...updateCollection) => (
       <TypedCollectionRemoveMutation onCompleted={onRemove}>
         {(...removeCollection) => (
-          <TypedCollectionAssignProductMutation onCompleted={onProductAssign}>
-            {(...assignProduct) => (
+          <TypedCollectionAssignSkillMutation onCompleted={onSkillAssign}>
+            {(...assignSkill) => (
               <TypedCollectionUpdateWithHomepageMutation onCompleted={onUpdate}>
                 {(...updateWithHomepage) => (
-                  <TypedUnassignCollectionProductMutation
-                    onCompleted={onProductUnassign}
+                  <TypedUnassignCollectionSkillMutation
+                    onCompleted={onSkillUnassign}
                   >
-                    {(...unassignProduct) =>
+                    {(...unassignSkill) =>
                       children({
-                        assignProduct: getMutationProviderData(
-                          ...assignProduct
+                        assignSkill: getMutationProviderData(
+                          ...assignSkill
                         ),
                         removeCollection: getMutationProviderData(
                           ...removeCollection
                         ),
-                        unassignProduct: getMutationProviderData(
-                          ...unassignProduct
+                        unassignSkill: getMutationProviderData(
+                          ...unassignSkill
                         ),
                         updateCollection: getMutationProviderData(
                           ...updateCollection
@@ -94,11 +94,11 @@ const CollectionOperations: React.StatelessComponent<
                         )
                       })
                     }
-                  </TypedUnassignCollectionProductMutation>
+                  </TypedUnassignCollectionSkillMutation>
                 )}
               </TypedCollectionUpdateWithHomepageMutation>
             )}
-          </TypedCollectionAssignProductMutation>
+          </TypedCollectionAssignSkillMutation>
         )}
       </TypedCollectionRemoveMutation>
     )}

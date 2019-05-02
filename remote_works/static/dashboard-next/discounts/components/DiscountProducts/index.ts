@@ -1,2 +1,2 @@
-export { default } from "./DiscountProducts";
-export * from "./DiscountProducts";
+export { default } from "./DiscountSkills";
+export * from "./DiscountSkills";

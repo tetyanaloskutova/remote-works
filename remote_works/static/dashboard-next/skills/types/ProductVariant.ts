@@ -2,100 +2,100 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ProductVariant
+// GraphQL fragment: SkillVariant
 // ====================================================
 
-export interface ProductVariant_attributes_attribute_values {
+export interface SkillVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductVariant_attributes_attribute {
+export interface SkillVariant_attributes_attribute {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductVariant_attributes_attribute_values | null)[] | null;
+  values: (SkillVariant_attributes_attribute_values | null)[] | null;
 }
 
-export interface ProductVariant_attributes_value {
+export interface SkillVariant_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductVariant_attributes {
+export interface SkillVariant_attributes {
   __typename: "SelectedAttribute";
-  attribute: ProductVariant_attributes_attribute;
-  value: ProductVariant_attributes_value;
+  attribute: SkillVariant_attributes_attribute;
+  value: SkillVariant_attributes_value;
 }
 
-export interface ProductVariant_costPrice {
+export interface SkillVariant_costPrice {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductVariant_images {
-  __typename: "ProductImage";
+export interface SkillVariant_images {
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface ProductVariant_priceOverride {
+export interface SkillVariant_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductVariant_product_images {
-  __typename: "ProductImage";
+export interface SkillVariant_product_images {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
   url: string;
 }
 
-export interface ProductVariant_product_thumbnail {
+export interface SkillVariant_product_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface ProductVariant_product_variants_images {
-  __typename: "ProductImage";
+export interface SkillVariant_product_variants_images {
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface ProductVariant_product_variants {
-  __typename: "ProductVariant";
+export interface SkillVariant_product_variants {
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (ProductVariant_product_variants_images | null)[] | null;
+  images: (SkillVariant_product_variants_images | null)[] | null;
 }
 
-export interface ProductVariant_product {
-  __typename: "Product";
+export interface SkillVariant_product {
+  __typename: "Skill";
   id: string;
-  images: (ProductVariant_product_images | null)[] | null;
+  images: (SkillVariant_product_images | null)[] | null;
   name: string;
-  thumbnail: ProductVariant_product_thumbnail | null;
-  variants: (ProductVariant_product_variants | null)[] | null;
+  thumbnail: SkillVariant_product_thumbnail | null;
+  variants: (SkillVariant_product_variants | null)[] | null;
 }
 
-export interface ProductVariant {
-  __typename: "ProductVariant";
+export interface SkillVariant {
+  __typename: "SkillVariant";
   id: string;
-  attributes: ProductVariant_attributes[];
-  costPrice: ProductVariant_costPrice | null;
-  images: (ProductVariant_images | null)[] | null;
+  attributes: SkillVariant_attributes[];
+  costPrice: SkillVariant_costPrice | null;
+  images: (SkillVariant_images | null)[] | null;
   name: string;
-  priceOverride: ProductVariant_priceOverride | null;
-  product: ProductVariant_product;
+  priceOverride: SkillVariant_priceOverride | null;
+  product: SkillVariant_product;
   sku: string;
   quantity: number;
   quantityAllocated: number;

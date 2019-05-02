@@ -20,7 +20,7 @@ const updateProps: Omit<CategoryUpdatePageProps, "classes"> = {
   disabled: false,
   errors: [],
   onAddCategory: undefined,
-  onAddProduct: undefined,
+  onAddSkill: undefined,
   onBack: () => undefined,
   onCategoryClick: () => undefined,
   onDelete: () => undefined,
@@ -28,7 +28,7 @@ const updateProps: Omit<CategoryUpdatePageProps, "classes"> = {
   onImageUpload: () => undefined,
   onNextPage: undefined,
   onPreviousPage: undefined,
-  onProductClick: () => undefined,
+  onSkillClick: () => undefined,
   onSubmit: () => undefined,
   pageInfo: {
     hasNextPage: true,

@@ -1721,13 +1721,13 @@ export interface PageDetailsQuery {
   } | null;
 }
 
-export interface ProductImageCreateMutationVariables {
+export interface SkillImageCreateMutationVariables {
   product: string;
   image: string;
   alt?: string | null;
 }
 
-export interface ProductImageCreateMutation {
+export interface SkillImageCreateMutation {
   productImageCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -1894,11 +1894,11 @@ export interface ProductImageCreateMutation {
   } | null;
 }
 
-export interface ProductDeleteMutationVariables {
+export interface SkillDeleteMutationVariables {
   id: string;
 }
 
-export interface ProductDeleteMutation {
+export interface SkillDeleteMutation {
   productDelete: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -1916,12 +1916,12 @@ export interface ProductDeleteMutation {
   } | null;
 }
 
-export interface ProductImageReorderMutationVariables {
+export interface SkillImageReorderMutationVariables {
   productId: string;
   imagesIds: Array<string | null>;
 }
 
-export interface ProductImageReorderMutation {
+export interface SkillImageReorderMutation {
   productImageReorder: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -1952,7 +1952,7 @@ export interface ProductImageReorderMutation {
   } | null;
 }
 
-export interface ProductUpdateMutationVariables {
+export interface SkillUpdateMutationVariables {
   id: string;
   attributes?: Array<AttributeValueInput | null> | null;
   publicationDate?: string | null;
@@ -1965,7 +1965,7 @@ export interface ProductUpdateMutationVariables {
   price?: string | null;
 }
 
-export interface ProductUpdateMutation {
+export interface SkillUpdateMutation {
   productUpdate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -2132,7 +2132,7 @@ export interface ProductUpdateMutation {
   } | null;
 }
 
-export interface ProductCreateMutationVariables {
+export interface SkillCreateMutationVariables {
   attributes?: Array<AttributeValueInput | null> | null;
   publicationDate?: string | null;
   category: string;
@@ -2145,7 +2145,7 @@ export interface ProductCreateMutationVariables {
   productType: string;
 }
 
-export interface ProductCreateMutation {
+export interface SkillCreateMutation {
   productCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -2594,11 +2594,11 @@ export interface VariantCreateMutation {
   } | null;
 }
 
-export interface ProductImageDeleteMutationVariables {
+export interface SkillImageDeleteMutationVariables {
   id: string;
 }
 
-export interface ProductImageDeleteMutation {
+export interface SkillImageDeleteMutation {
   productImageDelete: {
     product: {
       // The ID of the object.
@@ -2616,12 +2616,12 @@ export interface ProductImageDeleteMutation {
   } | null;
 }
 
-export interface ProductImageUpdateMutationVariables {
+export interface SkillImageUpdateMutationVariables {
   id: string;
   alt: string;
 }
 
-export interface ProductImageUpdateMutation {
+export interface SkillImageUpdateMutation {
   productImageUpdate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -3038,14 +3038,14 @@ export interface VariantImageUnassignMutation {
   } | null;
 }
 
-export interface ProductListQueryVariables {
+export interface SkillListQueryVariables {
   first?: number | null;
   after?: string | null;
   last?: number | null;
   before?: string | null;
 }
 
-export interface ProductListQuery {
+export interface SkillListQuery {
   // List of the shop's products.
   products: {
     edges: Array<{
@@ -3089,11 +3089,11 @@ export interface ProductListQuery {
   } | null;
 }
 
-export interface ProductDetailsQueryVariables {
+export interface SkillDetailsQueryVariables {
   id: string;
 }
 
-export interface ProductDetailsQuery {
+export interface SkillDetailsQuery {
   // Lookup a product by ID.
   product: {
     // The ID of the object.
@@ -3272,11 +3272,11 @@ export interface ProductDetailsQuery {
   } | null;
 }
 
-export interface ProductVariantDetailsQueryVariables {
+export interface SkillVariantDetailsQueryVariables {
   id: string;
 }
 
-export interface ProductVariantDetailsQuery {
+export interface SkillVariantDetailsQuery {
   // Lookup a variant by ID.
   productVariant: {
     // The ID of the object.
@@ -3386,7 +3386,7 @@ export interface ProductVariantDetailsQuery {
   } | null;
 }
 
-export interface ProductCreateDataQuery {
+export interface SkillCreateDataQuery {
   // List of the shop's product types.
   productTypes: {
     edges: Array<{
@@ -3446,11 +3446,11 @@ export interface ProductCreateDataQuery {
   } | null;
 }
 
-export interface ProductVariantCreateDataQueryVariables {
+export interface SkillVariantCreateDataQueryVariables {
   id: string;
 }
 
-export interface ProductVariantCreateDataQuery {
+export interface SkillVariantCreateDataQuery {
   // Lookup a product by ID.
   product: {
     // The ID of the object.
@@ -3519,12 +3519,12 @@ export interface ProductVariantCreateDataQuery {
   } | null;
 }
 
-export interface ProductImageQueryVariables {
+export interface SkillImageQueryVariables {
   productId: string;
   imageId: string;
 }
 
-export interface ProductImageQuery {
+export interface SkillImageQuery {
   // Lookup a product by ID.
   product: {
     // The ID of the object.
@@ -3756,7 +3756,7 @@ export interface MoneyFragment {
   currency: string;
 }
 
-export interface ProductImageFragment {
+export interface SkillImageFragment {
   // The ID of the object.
   id: string;
   alt: string;
@@ -3765,7 +3765,7 @@ export interface ProductImageFragment {
   url: string;
 }
 
-export interface ProductFragment {
+export interface SkillFragment {
   // The ID of the object.
   id: string;
   name: string;
@@ -3919,7 +3919,7 @@ export interface ProductFragment {
   url: string;
 }
 
-export interface ProductVariantFragment {
+export interface SkillVariantFragment {
   // The ID of the object.
   id: string;
   // List of attributes assigned to this variant.

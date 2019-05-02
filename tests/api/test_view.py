@@ -8,7 +8,7 @@ from .utils import _get_graphql_content_from_response, get_graphql_content
 
 def test_batch_queries(category, product, api_client):
     query_product = """
-        query GetProduct($id: ID!) {
+        query GetSkill($id: ID!) {
             skill(id: $id) {
                 name
             }
@@ -25,7 +25,7 @@ def test_batch_queries(category, product, api_client):
         {'query': query_category, 'variables': {
             'id': graphene.Node.to_global_id('Category', category.pk)}},
         {'query': query_product, 'variables': {
-            'id': graphene.Node.to_global_id('Product', product.pk)}}]
+            'id': graphene.Node.to_global_id('Skill', product.pk)}}]
     response = api_client.post(data)
     batch_content = get_graphql_content(response)
     assert 'errors' not in batch_content

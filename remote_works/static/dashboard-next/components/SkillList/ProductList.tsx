@@ -40,11 +40,11 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductListProps extends ListProps, WithStyles<typeof styles> {
+interface SkillListProps extends ListProps, WithStyles<typeof styles> {
   products: CategoryDetails_category_products_edges_node[];
 }
 
-export const ProductList = withStyles(styles, { name: "ProductList" })(
+export const SkillList = withStyles(styles, { name: "SkillList" })(
   ({
     classes,
     disabled,
@@ -53,7 +53,7 @@ export const ProductList = withStyles(styles, { name: "ProductList" })(
     onPreviousPage,
     onRowClick,
     products
-  }: ProductListProps) => (
+  }: SkillListProps) => (
     <Table>
       <TableHead>
         <TableRow>
@@ -142,5 +142,5 @@ export const ProductList = withStyles(styles, { name: "ProductList" })(
     </Table>
   )
 );
-ProductList.displayName = "ProductList";
-export default ProductList;
+SkillList.displayName = "SkillList";
+export default SkillList;

@@ -21,7 +21,7 @@ import OrderFulfillmentTrackingDialog from "../../components/OrderFulfillmentTra
 import OrderMarkAsPaidDialog from "../../components/OrderMarkAsPaidDialog/OrderMarkAsPaidDialog";
 import OrderPaymentDialog from "../../components/OrderPaymentDialog";
 import OrderPaymentVoidDialog from "../../components/OrderPaymentVoidDialog";
-import OrderProductAddDialog from "../../components/OrderProductAddDialog";
+import OrderSkillAddDialog from "../../components/OrderSkillAddDialog";
 import OrderShippingMethodEditDialog from "../../components/OrderShippingMethodEditDialog";
 import OrderOperations from "../../containers/OrderOperations";
 import { OrderVariantSearchProvider } from "../../containers/OrderVariantSearch";
@@ -223,7 +223,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                   onPaymentRefund={() =>
                                     navigate(orderPaymentRefundUrl(id))
                                   }
-                                  onProductClick={id => () =>
+                                  onSkillClick={id => () =>
                                     navigate(productUrl(id))}
                                   onBillingAddressEdit={() =>
                                     navigate(orderBillingAddressEditUrl(id))
@@ -526,7 +526,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     code: country.code,
                                     label: country.country
                                   }))}
-                                  onProductClick={id => () =>
+                                  onSkillClick={id => () =>
                                     navigate(
                                       productUrl(encodeURIComponent(id))
                                     )}
@@ -665,7 +665,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                             }
                                           );
                                         return (
-                                          <OrderProductAddDialog
+                                          <OrderSkillAddDialog
                                             confirmButtonState={getMutationState(
                                               orderLineAdd.opts.called,
                                               orderLineAdd.opts.loading,

@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../queries";
-import { ProductTypeCreateData } from "./types/ProductTypeCreateData";
+import { SkillTypeCreateData } from "./types/SkillTypeCreateData";
 import {
-  ProductTypeDetails,
-  ProductTypeDetailsVariables
-} from "./types/ProductTypeDetails";
+  SkillTypeDetails,
+  SkillTypeDetailsVariables
+} from "./types/SkillTypeDetails";
 import {
-  ProductTypeList,
-  ProductTypeListVariables
-} from "./types/ProductTypeList";
+  SkillTypeList,
+  SkillTypeListVariables
+} from "./types/SkillTypeList";
 import {
   SearchAttribute,
   SearchAttributeVariables
@@ -28,7 +28,7 @@ export const attributeFragment = gql`
   }
 `;
 export const productTypeFragment = gql`
-  fragment ProductTypeFragment on ProductType {
+  fragment SkillTypeFragment on SkillType {
     id
     name
     hasVariants
@@ -40,8 +40,8 @@ export const productTypeFragment = gql`
 export const productTypeDetailsFragment = gql`
   ${attributeFragment}
   ${productTypeFragment}
-  fragment ProductTypeDetailsFragment on ProductType {
-    ...ProductTypeFragment
+  fragment SkillTypeDetailsFragment on SkillType {
+    ...SkillTypeFragment
     productAttributes {
       ...AttributeFragment
     }
@@ -57,7 +57,7 @@ export const productTypeDetailsFragment = gql`
 
 export const productTypeListQuery = gql`
   ${productTypeFragment}
-  query ProductTypeList(
+  query SkillTypeList(
     $after: String
     $before: String
     $first: Int
@@ -66,7 +66,7 @@ export const productTypeListQuery = gql`
     productTypes(after: $after, before: $before, first: $first, last: $last) {
       edges {
         node {
-          ...ProductTypeFragment
+          ...SkillTypeFragment
         }
       }
       pageInfo {
@@ -78,36 +78,36 @@ export const productTypeListQuery = gql`
     }
   }
 `;
-export const TypedProductTypeListQuery = TypedQuery<
-  ProductTypeList,
-  ProductTypeListVariables
+export const TypedSkillTypeListQuery = TypedQuery<
+  SkillTypeList,
+  SkillTypeListVariables
 >(productTypeListQuery);
 
 export const productTypeDetailsQuery = gql`
   ${productTypeDetailsFragment}
-  query ProductTypeDetails($id: ID!) {
+  query SkillTypeDetails($id: ID!) {
     productType(id: $id) {
-      ...ProductTypeDetailsFragment
+      ...SkillTypeDetailsFragment
     }
     shop {
       defaultWeightUnit
     }
   }
 `;
-export const TypedProductTypeDetailsQuery = TypedQuery<
-  ProductTypeDetails,
-  ProductTypeDetailsVariables
+export const TypedSkillTypeDetailsQuery = TypedQuery<
+  SkillTypeDetails,
+  SkillTypeDetailsVariables
 >(productTypeDetailsQuery);
 
 export const productTypeCreateDataQuery = gql`
-  query ProductTypeCreateData {
+  query SkillTypeCreateData {
     shop {
       defaultWeightUnit
     }
   }
 `;
-export const TypedProductTypeCreateDataQuery = TypedQuery<
-  ProductTypeCreateData,
+export const TypedSkillTypeCreateDataQuery = TypedQuery<
+  SkillTypeCreateData,
   {}
 >(productTypeCreateDataQuery);
 

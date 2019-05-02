@@ -13,7 +13,7 @@ const styles = createStyles({
   }
 });
 
-interface ProductTypeDetailsProps extends WithStyles<typeof styles> {
+interface SkillTypeDetailsProps extends WithStyles<typeof styles> {
   data?: {
     name: string;
   };
@@ -21,15 +21,15 @@ interface ProductTypeDetailsProps extends WithStyles<typeof styles> {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const ProductTypeDetails = withStyles(styles, { name: "ProductTypeDetails" })(
-  ({ classes, data, disabled, onChange }: ProductTypeDetailsProps) => (
+const SkillTypeDetails = withStyles(styles, { name: "SkillTypeDetails" })(
+  ({ classes, data, disabled, onChange }: SkillTypeDetailsProps) => (
     <Card className={classes.root}>
       <CardTitle title={i18n.t("Information")} />
       <CardContent>
         <TextField
           disabled={disabled}
           fullWidth
-          label={i18n.t("Product Type Name")}
+          label={i18n.t("Skill Type Name")}
           name="name"
           onChange={onChange}
           value={data.name}
@@ -38,5 +38,5 @@ const ProductTypeDetails = withStyles(styles, { name: "ProductTypeDetails" })(
     </Card>
   )
 );
-ProductTypeDetails.displayName = "ProductTypeDetails";
-export default ProductTypeDetails;
+SkillTypeDetails.displayName = "SkillTypeDetails";
+export default SkillTypeDetails;

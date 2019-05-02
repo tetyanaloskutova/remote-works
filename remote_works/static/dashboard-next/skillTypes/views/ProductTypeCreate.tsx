@@ -5,21 +5,21 @@ import Messages from "../../components/messages";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
 import { maybe } from "../../misc";
-import ProductTypeCreatePage, {
-  ProductTypeForm
-} from "../components/ProductTypeCreatePage";
-import { TypedProductTypeCreateMutation } from "../mutations";
-import { TypedProductTypeCreateDataQuery } from "../queries";
-import { ProductTypeCreate as ProductTypeCreateMutation } from "../types/ProductTypeCreate";
+import SkillTypeCreatePage, {
+  SkillTypeForm
+} from "../components/SkillTypeCreatePage";
+import { TypedSkillTypeCreateMutation } from "../mutations";
+import { TypedSkillTypeCreateDataQuery } from "../queries";
+import { SkillTypeCreate as SkillTypeCreateMutation } from "../types/SkillTypeCreate";
 import { productTypeListUrl, productTypeUrl } from "../urls";
 
-export const ProductTypeCreate: React.StatelessComponent = () => (
+export const SkillTypeCreate: React.StatelessComponent = () => (
   <Messages>
     {pushMessage => (
       <Navigator>
         {navigate => {
           const handleCreateSuccess = (
-            updateData: ProductTypeCreateMutation
+            updateData: SkillTypeCreateMutation
           ) => {
             if (updateData.productTypeCreate.errors.length === 0) {
               pushMessage({
@@ -31,13 +31,13 @@ export const ProductTypeCreate: React.StatelessComponent = () => (
             }
           };
           return (
-            <TypedProductTypeCreateMutation onCompleted={handleCreateSuccess}>
+            <TypedSkillTypeCreateMutation onCompleted={handleCreateSuccess}>
               {(
-                createProductType,
-                { loading: loadingCreate, data: createProductTypeData }
+                createSkillType,
+                { loading: loadingCreate, data: createSkillTypeData }
               ) => {
-                const handleCreate = (formData: ProductTypeForm) =>
-                  createProductType({
+                const handleCreate = (formData: SkillTypeForm) =>
+                  createSkillType({
                     variables: {
                       input: {
                         hasVariants: false,
@@ -49,21 +49,21 @@ export const ProductTypeCreate: React.StatelessComponent = () => (
                     }
                   });
                 return (
-                  <TypedProductTypeCreateDataQuery displayLoader>
+                  <TypedSkillTypeCreateDataQuery displayLoader>
                     {({ data, loading }) => (
                       <>
                         <WindowTitle title={i18n.t("Create product type")} />
-                        <ProductTypeCreatePage
+                        <SkillTypeCreatePage
                           defaultWeightUnit={maybe(
                             () => data.shop.defaultWeightUnit
                           )}
                           disabled={loadingCreate || loading}
                           errors={
-                            createProductTypeData
-                              ? createProductTypeData.productTypeCreate.errors
+                            createSkillTypeData
+                              ? createSkillTypeData.productTypeCreate.errors
                               : undefined
                           }
-                          pageTitle={i18n.t("Create Product Type", {
+                          pageTitle={i18n.t("Create Skill Type", {
                             context: "page title"
                           })}
                           saveButtonBarState={
@@ -74,14 +74,14 @@ export const ProductTypeCreate: React.StatelessComponent = () => (
                         />
                       </>
                     )}
-                  </TypedProductTypeCreateDataQuery>
+                  </TypedSkillTypeCreateDataQuery>
                 );
               }}
-            </TypedProductTypeCreateMutation>
+            </TypedSkillTypeCreateMutation>
           );
         }}
       </Navigator>
     )}
   </Messages>
 );
-export default ProductTypeCreate;
+export default SkillTypeCreate;

@@ -9,11 +9,11 @@ import SaveButtonBar from "../../../components/SaveButtonBar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
 import { UserError } from "../../../types";
-import { ProductVariantCreateData_product } from "../../types/ProductVariantCreateData";
-import ProductVariantAttributes from "../ProductVariantAttributes";
-import ProductVariantNavigation from "../ProductVariantNavigation";
-import ProductVariantPrice from "../ProductVariantPrice";
-import ProductVariantStock from "../ProductVariantStock";
+import { SkillVariantCreateData_product } from "../../types/SkillVariantCreateData";
+import SkillVariantAttributes from "../SkillVariantAttributes";
+import SkillVariantNavigation from "../SkillVariantNavigation";
+import SkillVariantPrice from "../SkillVariantPrice";
+import SkillVariantStock from "../SkillVariantStock";
 
 interface FormData {
   attributes?: Array<{
@@ -27,20 +27,20 @@ interface FormData {
   sku?: string;
 }
 
-interface ProductVariantCreatePageProps {
+interface SkillVariantCreatePageProps {
   currencySymbol: string;
   errors: UserError[];
   header: string;
   loading: boolean;
-  product: ProductVariantCreateData_product;
+  product: SkillVariantCreateData_product;
   saveButtonBarState: ConfirmButtonTransitionState;
   onBack: () => void;
   onSubmit: (data: FormData) => void;
   onVariantClick: (variantId: string) => void;
 }
 
-const ProductVariantCreatePage: React.StatelessComponent<
-  ProductVariantCreatePageProps
+const SkillVariantCreatePage: React.StatelessComponent<
+  SkillVariantCreatePageProps
 > = ({
   currencySymbol,
   errors: formErrors,
@@ -77,7 +77,7 @@ const ProductVariantCreatePage: React.StatelessComponent<
           <PageHeader title={header} onBack={onBack} />
           <Grid variant="inverted">
             <div>
-              <ProductVariantNavigation
+              <SkillVariantNavigation
                 variants={maybe(() => product.variants)}
                 onRowClick={(variantId: string) => {
                   if (product && product.variants) {
@@ -87,13 +87,13 @@ const ProductVariantCreatePage: React.StatelessComponent<
               />
             </div>
             <div>
-              <ProductVariantAttributes
+              <SkillVariantAttributes
                 attributes={maybe(() => product.productType.variantAttributes)}
                 data={data}
                 disabled={loading}
                 onChange={change}
               />
-              <ProductVariantPrice
+              <SkillVariantPrice
                 errors={errors}
                 priceOverride={data.priceOverride}
                 currencySymbol={currencySymbol}
@@ -101,7 +101,7 @@ const ProductVariantCreatePage: React.StatelessComponent<
                 loading={loading}
                 onChange={change}
               />
-              <ProductVariantStock
+              <SkillVariantStock
                 errors={errors}
                 sku={data.sku}
                 quantity={data.quantity}
@@ -125,5 +125,5 @@ const ProductVariantCreatePage: React.StatelessComponent<
     </Form>
   );
 };
-ProductVariantCreatePage.displayName = "ProductVariantCreatePage";
-export default ProductVariantCreatePage;
+SkillVariantCreatePage.displayName = "SkillVariantCreatePage";
+export default SkillVariantCreatePage;

@@ -8,7 +8,7 @@ import { collectionUrl } from "../../../collections/urls";
 import ActionDialog from "../../../components/ActionDialog";
 import AssignCategoriesDialog from "../../../components/AssignCategoryDialog";
 import AssignCollectionDialog from "../../../components/AssignCollectionDialog";
-import AssignProductDialog from "../../../components/AssignProductDialog";
+import AssignSkillDialog from "../../../components/AssignSkillDialog";
 import Messages from "../../../components/messages";
 import Navigator from "../../../components/Navigator";
 import {
@@ -19,7 +19,7 @@ import Shop from "../../../components/Shop";
 import { WindowTitle } from "../../../components/WindowTitle";
 import { SearchCategoriesProvider } from "../../../containers/SearchCategories";
 import { SearchCollectionsProvider } from "../../../containers/SearchCollections";
-import { SearchProductsProvider } from "../../../containers/SearchProducts";
+import { SearchSkillsProvider } from "../../../containers/SearchSkills";
 import i18n from "../../../i18n";
 import { decimal, getMutationState, maybe } from "../../../misc";
 import { productUrl } from "../../../products/urls";
@@ -49,8 +49,8 @@ import {
   voucherAssignCollectionsUrl,
   voucherAssignCountriesPath,
   voucherAssignCountriesUrl,
-  voucherAssignProductsPath,
-  voucherAssignProductsUrl,
+  voucherAssignSkillsPath,
+  voucherAssignSkillsUrl,
   voucherDeletePath,
   voucherDeleteUrl
 } from "./urls";
@@ -300,16 +300,16 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                 }
                                                 onCollectionClick={id => () =>
                                                   navigate(collectionUrl(id))}
-                                                onProductAssign={() =>
+                                                onSkillAssign={() =>
                                                   navigate(
-                                                    voucherAssignProductsUrl(
+                                                    voucherAssignSkillsUrl(
                                                       id
                                                     ),
                                                     false,
                                                     true
                                                   )
                                                 }
-                                                onProductUnassign={productId =>
+                                                onSkillUnassign={productId =>
                                                   voucherCataloguesRemove({
                                                     variables: {
                                                       ...paginationState,
@@ -320,7 +320,7 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                     }
                                                   })
                                                 }
-                                                onProductClick={id => () =>
+                                                onSkillClick={id => () =>
                                                   navigate(productUrl(id))}
                                                 activeTab={params.tab}
                                                 onBack={() =>
@@ -361,23 +361,23 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                 }
                                               />
                                               <Route
-                                                path={voucherAssignProductsPath(
+                                                path={voucherAssignSkillsPath(
                                                   ":id"
                                                 )}
                                                 render={({ match }) => (
-                                                  <SearchProductsProvider>
+                                                  <SearchSkillsProvider>
                                                     {(
-                                                      searchProducts,
-                                                      searchProductsOpts
+                                                      searchSkills,
+                                                      searchSkillsOpts
                                                     ) => (
-                                                      <AssignProductDialog
+                                                      <AssignSkillDialog
                                                         confirmButtonState={
                                                           assignTransitionState
                                                         }
                                                         open={!!match}
-                                                        onFetch={searchProducts}
+                                                        onFetch={searchSkills}
                                                         loading={
-                                                          searchProductsOpts.loading
+                                                          searchSkillsOpts.loading
                                                         }
                                                         onClose={() =>
                                                           navigate(
@@ -401,18 +401,18 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                           })
                                                         }
                                                         products={maybe(() =>
-                                                          searchProductsOpts.data.products.edges
+                                                          searchSkillsOpts.data.products.edges
                                                             .map(
                                                               edge => edge.node
                                                             )
                                                             .filter(
-                                                              suggestedProduct =>
-                                                                suggestedProduct.id
+                                                              suggestedSkill =>
+                                                                suggestedSkill.id
                                                             )
                                                         )}
                                                       />
                                                     )}
-                                                  </SearchProductsProvider>
+                                                  </SearchSkillsProvider>
                                                 )}
                                               />
                                               <Route

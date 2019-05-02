@@ -91,7 +91,7 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
                             onNextPage={loadNextPage}
                             onPreviousPage={loadPreviousPage}
                             onRowClick={id => () => navigate(orderUrl(id))}
-                            onAllProducts={() =>
+                            onAllSkills={() =>
                               changeFilters({
                                 status: undefined
                               })

@@ -4,14 +4,14 @@
 import { WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: ProductTypeCreateData
+// GraphQL query operation: SkillTypeCreateData
 // ====================================================
 
-export interface ProductTypeCreateData_shop {
+export interface SkillTypeCreateData_shop {
   __typename: "Shop";
   defaultWeightUnit: WeightUnitsEnum | null;
 }
 
-export interface ProductTypeCreateData {
-  shop: ProductTypeCreateData_shop | null;
+export interface SkillTypeCreateData {
+  shop: SkillTypeCreateData_shop | null;
 }

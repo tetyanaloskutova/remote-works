@@ -2,30 +2,30 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ProductDelete
+// GraphQL mutation operation: SkillDelete
 // ====================================================
 
-export interface ProductDelete_productDelete_errors {
+export interface SkillDelete_productDelete_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface ProductDelete_productDelete_product {
-  __typename: "Product";
+export interface SkillDelete_productDelete_product {
+  __typename: "Skill";
   id: string;
 }
 
-export interface ProductDelete_productDelete {
-  __typename: "ProductDelete";
-  errors: ProductDelete_productDelete_errors[] | null;
-  product: ProductDelete_productDelete_product | null;
+export interface SkillDelete_productDelete {
+  __typename: "SkillDelete";
+  errors: SkillDelete_productDelete_errors[] | null;
+  product: SkillDelete_productDelete_product | null;
 }
 
-export interface ProductDelete {
-  productDelete: ProductDelete_productDelete | null;
+export interface SkillDelete {
+  productDelete: SkillDelete_productDelete | null;
 }
 
-export interface ProductDeleteVariables {
+export interface SkillDeleteVariables {
   id: string;
 }

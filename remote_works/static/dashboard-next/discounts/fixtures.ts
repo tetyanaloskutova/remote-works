@@ -106,7 +106,7 @@ export const sale: SaleDetails_sale = {
           id: "U2FsZTo1=",
           name: "Apparel",
           products: {
-            __typename: "ProductCountableConnection",
+            __typename: "SkillCountableConnection",
             totalCount: 18
           }
         }
@@ -131,7 +131,7 @@ export const sale: SaleDetails_sale = {
           id: "U2FsZBo4=",
           name: "Winter Collection",
           products: {
-            __typename: "ProductCountableConnection",
+            __typename: "SkillCountableConnection",
             totalCount: 110
           }
         }
@@ -150,17 +150,17 @@ export const sale: SaleDetails_sale = {
   id: "U2FsZTo1",
   name: "Happy minute day!",
   products: {
-    __typename: "ProductCountableConnection",
+    __typename: "SkillCountableConnection",
     edges: [
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDo3MQ==",
           isPublished: true,
           name: "Orange Juice",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
           },
@@ -171,14 +171,14 @@ export const sale: SaleDetails_sale = {
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDo3Mw==",
           isPublished: true,
           name: "Carrot Juice",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
           },
@@ -189,14 +189,14 @@ export const sale: SaleDetails_sale = {
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDo3OQ==",
           isPublished: true,
           name: "Bean Juice",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
           },
@@ -207,14 +207,14 @@ export const sale: SaleDetails_sale = {
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDoxMTU=",
           isPublished: true,
           name: "Black Hoodie",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6MTQ=",
             name: "Top (clothing)"
           },
@@ -285,7 +285,7 @@ export const voucherDetails: VoucherDetails_voucher = {
   },
   name: "Big order discount",
   products: {
-    __typename: "ProductCountableConnection",
+    __typename: "SkillCountableConnection",
     edges: [],
     pageInfo: {
       __typename: "PageInfo",

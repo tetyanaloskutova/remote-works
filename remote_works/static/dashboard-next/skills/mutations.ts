@@ -1,29 +1,29 @@
 import gql from "graphql-tag";
 
 import { TypedMutation } from "../mutations";
-import { ProductCreate, ProductCreateVariables } from "./types/ProductCreate";
-import { ProductDelete, ProductDeleteVariables } from "./types/ProductDelete";
+import { SkillCreate, SkillCreateVariables } from "./types/SkillCreate";
+import { SkillDelete, SkillDeleteVariables } from "./types/SkillDelete";
 import {
-  ProductImageCreate,
-  ProductImageCreateVariables
-} from "./types/ProductImageCreate";
+  SkillImageCreate,
+  SkillImageCreateVariables
+} from "./types/SkillImageCreate";
 import {
-  ProductImageDelete,
-  ProductImageDeleteVariables
-} from "./types/ProductImageDelete";
+  SkillImageDelete,
+  SkillImageDeleteVariables
+} from "./types/SkillImageDelete";
 import {
-  ProductImageReorder,
-  ProductImageReorderVariables
-} from "./types/ProductImageReorder";
+  SkillImageReorder,
+  SkillImageReorderVariables
+} from "./types/SkillImageReorder";
 import {
-  ProductImageUpdate,
-  ProductImageUpdateVariables
-} from "./types/ProductImageUpdate";
-import { ProductUpdate, ProductUpdateVariables } from "./types/ProductUpdate";
+  SkillImageUpdate,
+  SkillImageUpdateVariables
+} from "./types/SkillImageUpdate";
+import { SkillUpdate, SkillUpdateVariables } from "./types/SkillUpdate";
 import {
-  SimpleProductUpdate,
-  SimpleProductUpdateVariables
-} from "./types/SimpleProductUpdate";
+  SimpleSkillUpdate,
+  SimpleSkillUpdateVariables
+} from "./types/SimpleSkillUpdate";
 import { VariantCreate, VariantCreateVariables } from "./types/VariantCreate";
 import { VariantDelete, VariantDeleteVariables } from "./types/VariantDelete";
 import {
@@ -36,29 +36,29 @@ import {
 } from "./types/VariantImageUnassign";
 import { VariantUpdate, VariantUpdateVariables } from "./types/VariantUpdate";
 
-import { fragmentProduct, fragmentVariant } from "./queries";
+import { fragmentSkill, fragmentVariant } from "./queries";
 
 export const productImageCreateMutation = gql`
-  ${fragmentProduct}
-  mutation ProductImageCreate($product: ID!, $image: Upload!, $alt: String) {
+  ${fragmentSkill}
+  mutation SkillImageCreate($product: ID!, $image: Upload!, $alt: String) {
     productImageCreate(input: { alt: $alt, image: $image, product: $product }) {
       errors {
         field
         message
       }
       product {
-        ...Product
+        ...Skill
       }
     }
   }
 `;
-export const TypedProductImageCreateMutation = TypedMutation<
-  ProductImageCreate,
-  ProductImageCreateVariables
+export const TypedSkillImageCreateMutation = TypedMutation<
+  SkillImageCreate,
+  SkillImageCreateVariables
 >(productImageCreateMutation);
 
 export const productDeleteMutation = gql`
-  mutation ProductDelete($id: ID!) {
+  mutation SkillDelete($id: ID!) {
     productDelete(id: $id) {
       errors {
         field
@@ -70,13 +70,13 @@ export const productDeleteMutation = gql`
     }
   }
 `;
-export const TypedProductDeleteMutation = TypedMutation<
-  ProductDelete,
-  ProductDeleteVariables
+export const TypedSkillDeleteMutation = TypedMutation<
+  SkillDelete,
+  SkillDeleteVariables
 >(productDeleteMutation);
 
 export const productImagesReorder = gql`
-  mutation ProductImageReorder($productId: ID!, $imagesIds: [ID]!) {
+  mutation SkillImageReorder($productId: ID!, $imagesIds: [ID]!) {
     productImageReorder(productId: $productId, imagesIds: $imagesIds) {
       errors {
         field
@@ -94,14 +94,14 @@ export const productImagesReorder = gql`
     }
   }
 `;
-export const TypedProductImagesReorder = TypedMutation<
-  ProductImageReorder,
-  ProductImageReorderVariables
+export const TypedSkillImagesReorder = TypedMutation<
+  SkillImageReorder,
+  SkillImageReorderVariables
 >(productImagesReorder);
 
 export const productUpdateMutation = gql`
-  ${fragmentProduct}
-  mutation ProductUpdate(
+  ${fragmentSkill}
+  mutation SkillUpdate(
     $id: ID!
     $attributes: [AttributeValueInput]
     $publicationDate: Date
@@ -132,20 +132,20 @@ export const productUpdateMutation = gql`
         message
       }
       product {
-        ...Product
+        ...Skill
       }
     }
   }
 `;
-export const TypedProductUpdateMutation = TypedMutation<
-  ProductUpdate,
-  ProductUpdateVariables
+export const TypedSkillUpdateMutation = TypedMutation<
+  SkillUpdate,
+  SkillUpdateVariables
 >(productUpdateMutation);
 
-export const simpleProductUpdateMutation = gql`
-  ${fragmentProduct}
+export const simpleSkillUpdateMutation = gql`
+  ${fragmentSkill}
   ${fragmentVariant}
-  mutation SimpleProductUpdate(
+  mutation SimpleSkillUpdate(
     $id: ID!
     $attributes: [AttributeValueInput]
     $publicationDate: Date
@@ -157,7 +157,7 @@ export const simpleProductUpdateMutation = gql`
     $name: String
     $price: Decimal
     $productVariantId: ID!
-    $productVariantInput: ProductVariantInput!
+    $productVariantInput: SkillVariantInput!
   ) {
     productUpdate(
       id: $id
@@ -178,7 +178,7 @@ export const simpleProductUpdateMutation = gql`
         message
       }
       product {
-        ...Product
+        ...Skill
       }
     }
     productVariantUpdate(id: $productVariantId, input: $productVariantInput) {
@@ -187,19 +187,19 @@ export const simpleProductUpdateMutation = gql`
         message
       }
       productVariant {
-        ...ProductVariant
+        ...SkillVariant
       }
     }
   }
 `;
-export const TypedSimpleProductUpdateMutation = TypedMutation<
-  SimpleProductUpdate,
-  SimpleProductUpdateVariables
->(simpleProductUpdateMutation);
+export const TypedSimpleSkillUpdateMutation = TypedMutation<
+  SimpleSkillUpdate,
+  SimpleSkillUpdateVariables
+>(simpleSkillUpdateMutation);
 
 export const productCreateMutation = gql`
-  ${fragmentProduct}
-  mutation ProductCreate(
+  ${fragmentSkill}
+  mutation SkillCreate(
     $attributes: [AttributeValueInput]
     $publicationDate: Date
     $category: ID!
@@ -230,14 +230,14 @@ export const productCreateMutation = gql`
         message
       }
       product {
-        ...Product
+        ...Skill
       }
     }
   }
 `;
-export const TypedProductCreateMutation = TypedMutation<
-  ProductCreate,
-  ProductCreateVariables
+export const TypedSkillCreateMutation = TypedMutation<
+  SkillCreate,
+  SkillCreateVariables
 >(productCreateMutation);
 
 export const variantDeleteMutation = gql`
@@ -285,7 +285,7 @@ export const variantUpdateMutation = gql`
         message
       }
       productVariant {
-        ...ProductVariant
+        ...SkillVariant
       }
     }
   }
@@ -322,7 +322,7 @@ export const variantCreateMutation = gql`
         message
       }
       productVariant {
-        ...ProductVariant
+        ...SkillVariant
       }
     }
   }
@@ -333,7 +333,7 @@ export const TypedVariantCreateMutation = TypedMutation<
 >(variantCreateMutation);
 
 export const productImageDeleteMutation = gql`
-  mutation ProductImageDelete($id: ID!) {
+  mutation SkillImageDelete($id: ID!) {
     productImageDelete(id: $id) {
       product {
         id
@@ -344,28 +344,28 @@ export const productImageDeleteMutation = gql`
     }
   }
 `;
-export const TypedProductImageDeleteMutation = TypedMutation<
-  ProductImageDelete,
-  ProductImageDeleteVariables
+export const TypedSkillImageDeleteMutation = TypedMutation<
+  SkillImageDelete,
+  SkillImageDeleteVariables
 >(productImageDeleteMutation);
 
 export const productImageUpdateMutation = gql`
-  ${fragmentProduct}
-  mutation ProductImageUpdate($id: ID!, $alt: String!) {
+  ${fragmentSkill}
+  mutation SkillImageUpdate($id: ID!, $alt: String!) {
     productImageUpdate(id: $id, input: { alt: $alt }) {
       errors {
         field
         message
       }
       product {
-        ...Product
+        ...Skill
       }
     }
   }
 `;
-export const TypedProductImageUpdateMutation = TypedMutation<
-  ProductImageUpdate,
-  ProductImageUpdateVariables
+export const TypedSkillImageUpdateMutation = TypedMutation<
+  SkillImageUpdate,
+  SkillImageUpdateVariables
 >(productImageUpdateMutation);
 
 export const variantImageAssignMutation = gql`
@@ -377,7 +377,7 @@ export const variantImageAssignMutation = gql`
         message
       }
       productVariant {
-        ...ProductVariant
+        ...SkillVariant
       }
     }
   }
@@ -396,7 +396,7 @@ export const variantImageUnassignMutation = gql`
         message
       }
       productVariant {
-        ...ProductVariant
+        ...SkillVariant
       }
     }
   }

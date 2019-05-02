@@ -3,18 +3,18 @@ import Card from "@material-ui/core/Card";
 import * as React from "react";
 
 import CardTitle from "../../../components/CardTitle";
-import ProductList from "../../../components/ProductList";
+import SkillList from "../../../components/SkillList";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
 import { CategoryDetails_category_products_edges_node } from "../../types/CategoryDetails";
 
-interface CategoryProductsCardProps extends PageListProps {
+interface CategorySkillsCardProps extends PageListProps {
   products: CategoryDetails_category_products_edges_node[];
   categoryName: string;
 }
 
-export const CategoryProductsCard: React.StatelessComponent<
-  CategoryProductsCardProps
+export const CategorySkillsCard: React.StatelessComponent<
+  CategorySkillsCardProps
 > = ({
   products,
   disabled,
@@ -27,14 +27,14 @@ export const CategoryProductsCard: React.StatelessComponent<
 }) => (
   <Card>
     <CardTitle
-      title={i18n.t("Products in {{ categoryName }}", { categoryName })}
+      title={i18n.t("Skills in {{ categoryName }}", { categoryName })}
       toolbar={
         <Button color="secondary" variant="text" onClick={onAdd}>
           {i18n.t("Add product")}
         </Button>
       }
     />
-    <ProductList
+    <SkillList
       products={products}
       disabled={disabled}
       pageInfo={pageInfo}
@@ -45,5 +45,5 @@ export const CategoryProductsCard: React.StatelessComponent<
   </Card>
 );
 
-CategoryProductsCard.displayName = "CategoryProductsCard";
-export default CategoryProductsCard;
+CategorySkillsCard.displayName = "CategorySkillsCard";
+export default CategorySkillsCard;

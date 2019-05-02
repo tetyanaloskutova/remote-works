@@ -4,29 +4,29 @@ import ErrorMessageCard from "../../components/ErrorMessageCard";
 import Navigator from "../../components/Navigator";
 import { createPaginationState, Paginator } from "../../components/Paginator";
 import { maybe } from "../../misc";
-import ProductTypeListPage from "../components/ProductTypeListPage";
-import { TypedProductTypeListQuery } from "../queries";
+import SkillTypeListPage from "../components/SkillTypeListPage";
+import { TypedSkillTypeListQuery } from "../queries";
 import { productTypeAddUrl, productTypeUrl } from "../urls";
 
-export type ProductTypeListQueryParams = Partial<{
+export type SkillTypeListQueryParams = Partial<{
   after: string;
   before: string;
 }>;
 
-interface ProductTypeListProps {
-  params: ProductTypeListQueryParams;
+interface SkillTypeListProps {
+  params: SkillTypeListQueryParams;
 }
 
 const PAGINATE_BY = 20;
 
-export const ProductTypeList: React.StatelessComponent<
-  ProductTypeListProps
+export const SkillTypeList: React.StatelessComponent<
+  SkillTypeListProps
 > = ({ params }) => (
   <Navigator>
     {navigate => {
       const paginationState = createPaginationState(PAGINATE_BY, params);
       return (
-        <TypedProductTypeListQuery displayLoader variables={paginationState}>
+        <TypedSkillTypeListQuery displayLoader variables={paginationState}>
           {({ data, loading, error }) => {
             if (error) {
               return <ErrorMessageCard message="Something went wrong" />;
@@ -38,7 +38,7 @@ export const ProductTypeList: React.StatelessComponent<
                 queryString={params}
               >
                 {({ loadNextPage, loadPreviousPage, pageInfo }) => (
-                  <ProductTypeListPage
+                  <SkillTypeListPage
                     disabled={loading}
                     productTypes={maybe(() =>
                       data.productTypes.edges.map(edge => edge.node)
@@ -53,10 +53,10 @@ export const ProductTypeList: React.StatelessComponent<
               </Paginator>
             );
           }}
-        </TypedProductTypeListQuery>
+        </TypedSkillTypeListQuery>
       );
     }}
   </Navigator>
 );
-ProductTypeList.displayName = "ProductTypeList";
-export default ProductTypeList;
+SkillTypeList.displayName = "SkillTypeList";
+export default SkillTypeList;

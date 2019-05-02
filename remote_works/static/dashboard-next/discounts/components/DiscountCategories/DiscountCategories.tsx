@@ -81,7 +81,7 @@ const DiscountCategories = withStyles(styles, {
               {i18n.t("Category name")}
             </TableCell>
             <TableCell className={classes.textRight}>
-              {i18n.t("Products")}
+              {i18n.t("Skills")}
             </TableCell>
             <TableCell />
           </TableRow>

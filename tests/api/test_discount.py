@@ -255,7 +255,7 @@ def test_voucher_add_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
@@ -293,7 +293,7 @@ def test_voucher_remove_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
@@ -488,7 +488,7 @@ def test_sale_add_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
@@ -526,7 +526,7 @@ def test_sale_remove_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {

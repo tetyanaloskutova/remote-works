@@ -280,12 +280,12 @@ export const shop: (placeholderImage: string) => Home = (
     totalCount: 1
   },
   productTopToday: {
-    __typename: "ProductVariantCountableConnection",
+    __typename: "SkillVariantCountableConnection",
     edges: [
       {
-        __typename: "ProductVariantCountableEdge",
+        __typename: "SkillVariantCountableEdge",
         node: {
-          __typename: "ProductVariant",
+          __typename: "SkillVariant",
           attributes: [
             {
               __typename: "SelectedAttribute",
@@ -299,7 +299,7 @@ export const shop: (placeholderImage: string) => Home = (
           ],
           id: "UHJvZHVjdFZhcmlhbnQ6NDM=",
           product: {
-            __typename: "Product",
+            __typename: "Skill",
             id: "UHJvZHVjdDo4",
             name: "Gardner-Martin",
             price: {
@@ -326,7 +326,7 @@ export const shop: (placeholderImage: string) => Home = (
     ]
   },
   productsOutOfStock: {
-    __typename: "ProductCountableConnection",
+    __typename: "SkillCountableConnection",
     totalCount: 0
   },
   salesToday: {

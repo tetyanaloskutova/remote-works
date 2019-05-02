@@ -7,9 +7,9 @@ import CardTitle from "../../../components/CardTitle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
 import { OrderDetails_order } from "../../types/OrderDetails";
-import OrderDraftDetailsProducts, {
-  FormData as OrderDraftDetailsProductsFormData
-} from "../OrderDraftDetailsProducts";
+import OrderDraftDetailsSkills, {
+  FormData as OrderDraftDetailsSkillsFormData
+} from "../OrderDraftDetailsSkills";
 import OrderDraftDetailsSummary from "../OrderDraftDetailsSummary/OrderDraftDetailsSummary";
 
 interface OrderDraftDetailsProps {
@@ -17,7 +17,7 @@ interface OrderDraftDetailsProps {
   onOrderLineAdd: () => void;
   onOrderLineChange: (
     id: string,
-    data: OrderDraftDetailsProductsFormData
+    data: OrderDraftDetailsSkillsFormData
   ) => void;
   onOrderLineRemove: (id: string) => void;
   onShippingMethodEdit: () => void;
@@ -43,7 +43,7 @@ const OrderDraftDetails: React.StatelessComponent<OrderDraftDetailsProps> = ({
         </Button>
       }
     />
-    <OrderDraftDetailsProducts
+    <OrderDraftDetailsSkills
       lines={maybe(() => order.lines)}
       onOrderLineChange={onOrderLineChange}
       onOrderLineRemove={onOrderLineRemove}

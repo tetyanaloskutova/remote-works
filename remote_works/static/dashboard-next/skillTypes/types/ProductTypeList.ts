@@ -4,11 +4,11 @@
 import { TaxRateType } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: ProductTypeList
+// GraphQL query operation: SkillTypeList
 // ====================================================
 
-export interface ProductTypeList_productTypes_edges_node {
-  __typename: "ProductType";
+export interface SkillTypeList_productTypes_edges_node {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
@@ -16,12 +16,12 @@ export interface ProductTypeList_productTypes_edges_node {
   taxRate: TaxRateType | null;
 }
 
-export interface ProductTypeList_productTypes_edges {
-  __typename: "ProductTypeCountableEdge";
-  node: ProductTypeList_productTypes_edges_node;
+export interface SkillTypeList_productTypes_edges {
+  __typename: "SkillTypeCountableEdge";
+  node: SkillTypeList_productTypes_edges_node;
 }
 
-export interface ProductTypeList_productTypes_pageInfo {
+export interface SkillTypeList_productTypes_pageInfo {
   __typename: "PageInfo";
   hasNextPage: boolean;
   hasPreviousPage: boolean;
@@ -29,17 +29,17 @@ export interface ProductTypeList_productTypes_pageInfo {
   endCursor: string | null;
 }
 
-export interface ProductTypeList_productTypes {
-  __typename: "ProductTypeCountableConnection";
-  edges: ProductTypeList_productTypes_edges[];
-  pageInfo: ProductTypeList_productTypes_pageInfo;
+export interface SkillTypeList_productTypes {
+  __typename: "SkillTypeCountableConnection";
+  edges: SkillTypeList_productTypes_edges[];
+  pageInfo: SkillTypeList_productTypes_pageInfo;
 }
 
-export interface ProductTypeList {
-  productTypes: ProductTypeList_productTypes | null;
+export interface SkillTypeList {
+  productTypes: SkillTypeList_productTypes | null;
 }
 
-export interface ProductTypeListVariables {
+export interface SkillTypeListVariables {
   after?: string | null;
   before?: string | null;
   first?: number | null;

@@ -16,7 +16,7 @@ interface OrderListPageProps extends PageListProps {
   orders: OrderList_orders_edges_node[];
   currentTab: OrderListFilterTabs;
   filtersList: Filter[];
-  onAllProducts: () => void;
+  onAllSkills: () => void;
   onToFulfill: () => void;
   onToCapture: () => void;
   onCustomFilter: () => void;
@@ -32,7 +32,7 @@ const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
   onRowClick,
   currentTab,
   filtersList,
-  onAllProducts,
+  onAllSkills,
   onToFulfill,
   onToCapture,
   onCustomFilter
@@ -52,7 +52,7 @@ const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
       <OrderListFilter
         currentTab={currentTab}
         filtersList={filtersList}
-        onAllProducts={onAllProducts}
+        onAllSkills={onAllSkills}
         onToFulfill={onToFulfill}
         onToCapture={onToCapture}
         onCustomFilter={onCustomFilter}

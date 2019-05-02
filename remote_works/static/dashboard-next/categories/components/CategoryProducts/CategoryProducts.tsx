@@ -32,7 +32,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductListProps extends WithStyles<typeof styles> {
+interface SkillListProps extends WithStyles<typeof styles> {
   hasNextPage?: boolean;
   hasPreviousPage?: boolean;
   products?: Array<{
@@ -43,28 +43,28 @@ interface ProductListProps extends WithStyles<typeof styles> {
     };
     thumbnailUrl: string;
   }>;
-  onAddProduct?();
+  onAddSkill?();
   onNextPage?();
   onPreviousPage?();
   onRowClick?(id: string): () => void;
 }
 
-export const ProductList = withStyles(styles, { name: "ProductList" })(
+export const SkillList = withStyles(styles, { name: "SkillList" })(
   ({
     classes,
     hasNextPage,
     hasPreviousPage,
     products,
-    onAddProduct,
+    onAddSkill,
     onNextPage,
     onPreviousPage,
     onRowClick
-  }: ProductListProps) => (
+  }: SkillListProps) => (
     <Card>
       <CardTitle
-        title={i18n.t("Products")}
+        title={i18n.t("Skills")}
         toolbar={
-          <Button variant="text" color="secondary" onClick={onAddProduct}>
+          <Button variant="text" color="secondary" onClick={onAddSkill}>
             {i18n.t("Add product")}
           </Button>
         }
@@ -128,5 +128,5 @@ export const ProductList = withStyles(styles, { name: "ProductList" })(
     </Card>
   )
 );
-ProductList.displayName = "CategoryProductList";
-export default ProductList;
+SkillList.displayName = "CategorySkillList";
+export default SkillList;

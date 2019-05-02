@@ -2,16 +2,16 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
-import ProductVariantPage from "../../../products/components/ProductVariantPage";
+import SkillVariantPage from "../../../products/components/SkillVariantPage";
 import { variant as variantFixture } from "../../../products/fixtures";
 import Decorator from "../../Decorator";
 
 const variant = variantFixture(placeholderImage);
 
-storiesOf("Views / Products / Product variant details", module)
+storiesOf("Views / Skills / Skill variant details", module)
   .addDecorator(Decorator)
   .add("when loaded data", () => (
-    <ProductVariantPage
+    <SkillVariantPage
       header={variant.name || variant.sku}
       errors={[]}
       variant={variant}
@@ -24,7 +24,7 @@ storiesOf("Views / Products / Product variant details", module)
     />
   ))
   .add("when loading data", () => (
-    <ProductVariantPage
+    <SkillVariantPage
       header={undefined}
       errors={[]}
       loading={true}

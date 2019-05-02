@@ -14,9 +14,9 @@ import FormSpacer from "../../../components/FormSpacer";
 import RichTextEditor from "../../../components/RichTextEditor";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { ProductDetails_product } from "../../types/ProductDetails";
-import { FormData as CreateFormData } from "../ProductCreatePage";
-import { FormData as UpdateFormData } from "../ProductUpdatePage";
+import { SkillDetails_product } from "../../types/SkillDetails";
+import { FormData as CreateFormData } from "../SkillCreatePage";
+import { FormData as UpdateFormData } from "../SkillUpdatePage";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,16 +27,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductDetailsFormProps extends WithStyles<typeof styles> {
+interface SkillDetailsFormProps extends WithStyles<typeof styles> {
   data: CreateFormData & UpdateFormData;
   disabled?: boolean;
   errors: { [key: string]: string };
-  product?: ProductDetails_product;
+  product?: SkillDetails_product;
   onChange(event: any);
 }
 
-export const ProductDetailsForm = withStyles(styles, {
-  name: "ProductDetailsForm"
+export const SkillDetailsForm = withStyles(styles, {
+  name: "SkillDetailsForm"
 })(
   ({
     classes,
@@ -45,7 +45,7 @@ export const ProductDetailsForm = withStyles(styles, {
     errors,
     product,
     onChange
-  }: ProductDetailsFormProps) => (
+  }: SkillDetailsFormProps) => (
     <Card>
       <CardTitle title={i18n.t("General information")} />
       <CardContent>
@@ -76,5 +76,5 @@ export const ProductDetailsForm = withStyles(styles, {
     </Card>
   )
 );
-ProductDetailsForm.displayName = "ProductDetailsForm";
-export default ProductDetailsForm;
+SkillDetailsForm.displayName = "SkillDetailsForm";
+export default SkillDetailsForm;

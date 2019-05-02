@@ -8,7 +8,7 @@ import i18n from "../../../i18n";
 import { translatedTaxRates as taxRates } from "../../../misc";
 import { TaxRateType } from "../../../types/globalTypes";
 
-interface ProductTypeTaxesProps {
+interface SkillTypeTaxesProps {
   data: {
     taxRate: TaxRateType | null;
   };
@@ -19,7 +19,7 @@ const taxRateChoices = Object.keys(taxRates()).map(key => ({
   label: taxRates()[key],
   value: key
 }));
-const ProductTypeTaxes: React.StatelessComponent<ProductTypeTaxesProps> = ({
+const SkillTypeTaxes: React.StatelessComponent<SkillTypeTaxesProps> = ({
   data,
   disabled,
   onChange
@@ -40,5 +40,5 @@ const ProductTypeTaxes: React.StatelessComponent<ProductTypeTaxesProps> = ({
     </CardContent>
   </Card>
 );
-ProductTypeTaxes.displayName = "ProductTypeTaxes";
-export default ProductTypeTaxes;
+SkillTypeTaxes.displayName = "SkillTypeTaxes";
+export default SkillTypeTaxes;

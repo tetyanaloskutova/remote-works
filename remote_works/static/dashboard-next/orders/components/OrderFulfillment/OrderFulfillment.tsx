@@ -119,7 +119,7 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
           <TableHead>
             <TableRow>
               <TableCell className={classes.wideCell} colSpan={2}>
-                {i18n.t("Product")}
+                {i18n.t("Skill")}
               </TableCell>
               <TableCell className={classes.textCenter}>
                 {i18n.t("Quantity")}

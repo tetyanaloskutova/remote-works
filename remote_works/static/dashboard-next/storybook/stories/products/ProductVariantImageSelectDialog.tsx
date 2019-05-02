@@ -2,20 +2,20 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder255x255.png";
-import ProductVariantImageSelectDialog from "../../../products/components/ProductVariantImageSelectDialog";
+import SkillVariantImageSelectDialog from "../../../products/components/SkillVariantImageSelectDialog";
 import {
   variantImages as variantImagesFixture,
-  variantProductImages as variantProductImagesFixture
+  variantSkillImages as variantSkillImagesFixture
 } from "../../../products/fixtures";
 
 const variantImages = variantImagesFixture(placeholderImage);
-const variantProductImages = variantProductImagesFixture(placeholderImage);
+const variantSkillImages = variantSkillImagesFixture(placeholderImage);
 
-storiesOf("Products / ProductVariantImageSelectDialog", module).add(
+storiesOf("Skills / SkillVariantImageSelectDialog", module).add(
   "default",
   () => (
-    <ProductVariantImageSelectDialog
-      images={variantProductImages}
+    <SkillVariantImageSelectDialog
+      images={variantSkillImages}
       selectedImages={variantImages.map(image => image.id)}
       onClose={() => undefined}
       onImageSelect={() => undefined}

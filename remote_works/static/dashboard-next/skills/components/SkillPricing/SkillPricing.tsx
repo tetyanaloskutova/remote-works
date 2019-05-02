@@ -22,7 +22,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductPricingProps extends WithStyles<typeof styles> {
+interface SkillPricingProps extends WithStyles<typeof styles> {
   currency?: string;
   data: {
     chargeTaxes: boolean;
@@ -32,8 +32,8 @@ interface ProductPricingProps extends WithStyles<typeof styles> {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const ProductPricing = withStyles(styles, { name: "ProductPricing" })(
-  ({ classes, currency, data, disabled, onChange }: ProductPricingProps) => (
+const SkillPricing = withStyles(styles, { name: "SkillPricing" })(
+  ({ classes, currency, data, disabled, onChange }: SkillPricingProps) => (
     <Card>
       <CardTitle title={i18n.t("Pricing")}>
         <ControlledCheckbox
@@ -59,5 +59,5 @@ const ProductPricing = withStyles(styles, { name: "ProductPricing" })(
     </Card>
   )
 );
-ProductPricing.displayName = "ProductPricing";
-export default ProductPricing;
+SkillPricing.displayName = "SkillPricing";
+export default SkillPricing;

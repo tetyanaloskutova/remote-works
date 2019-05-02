@@ -149,8 +149,8 @@ msgstr[0] "Eşleşen %(counter)d koleksiyon bulundu"
 msgstr[1] "Eşleşen %(counter)d koleksiyon bulundu"
 
 #: saleor/dashboard/collection/forms.py:18
-msgctxt "Products selection"
-msgid "Products"
+msgctxt "Skills selection"
+msgid "Skills"
 msgstr "Ürünler"
 
 #: saleor/dashboard/collection/forms.py:27
@@ -589,8 +589,8 @@ msgstr ""
 "kaldırılacak."
 
 #: saleor/dashboard/discount/forms.py:170
-msgctxt "Product"
-msgid "Products"
+msgctxt "Skill"
+msgid "Skills"
 msgstr "Ürünler"
 
 #: saleor/dashboard/discount/forms.py:184
@@ -1282,52 +1282,52 @@ msgid "Unpublish"
 msgstr "Yayından kaldır"
 
 #: saleor/dashboard/product/filters.py:12
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "name"
 msgstr "isim"
 
 #: saleor/dashboard/product/filters.py:13
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "price"
 msgstr "ücret"
 
 #: saleor/dashboard/product/filters.py:16
-msgctxt "Product attribute list sorting option"
+msgctxt "Skill attribute list sorting option"
 msgid "name"
 msgstr "isim"
 
 #: saleor/dashboard/product/filters.py:19
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "name"
 msgstr "isim"
 
 #: saleor/dashboard/product/filters.py:28
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Name"
 msgstr "İsim"
 
 #: saleor/dashboard/product/filters.py:31
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Category"
 msgstr "Kategori"
 
 #: saleor/dashboard/product/filters.py:35
-msgctxt "Product list filter label"
-msgid "Product type"
+msgctxt "Skill list filter label"
+msgid "Skill type"
 msgstr "Ürün tipi"
 
 #: saleor/dashboard/product/filters.py:39
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Price"
 msgstr "Ücret"
 
 #: saleor/dashboard/product/filters.py:43
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Is published"
 msgstr "Yayında mı"
 
 #: saleor/dashboard/product/filters.py:48
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Sort by"
 msgstr "Sırala"
 
@@ -1358,22 +1358,22 @@ msgstr[0] "Eşleşen %(counter)d özellik bulundu"
 msgstr[1] "Eşleşen %(counter)d özellik bulundu"
 
 #: saleor/dashboard/product/filters.py:89
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Name"
 msgstr "İsim"
 
 #: saleor/dashboard/product/filters.py:92
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Sort by"
 msgstr "Sırala"
 
 #: saleor/dashboard/product/filters.py:97
-msgctxt "Product type list filter label"
-msgid "Product attributes"
+msgctxt "Skill type list filter label"
+msgid "Skill attributes"
 msgstr "Ürün özellikleri"
 
 #: saleor/dashboard/product/filters.py:102
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Variant attributes"
 msgstr "Varyant özellikleri"
 
@@ -1391,22 +1391,22 @@ msgid "Select text to enable text-formatting tools."
 msgstr "Metin düzenleme aracını etkinleştirmek için metin seçin."
 
 #: saleor/dashboard/product/forms.py:56
-msgctxt "Product type form label"
-msgid "Product type"
+msgctxt "Skill type form label"
+msgid "Skill type"
 msgstr "Ürün tipi"
 
 #: saleor/dashboard/product/forms.py:73
-msgctxt "Product type tax rate type"
+msgctxt "Skill type tax rate type"
 msgid "Tax rate"
 msgstr "Vergi oranı"
 
 #: saleor/dashboard/product/forms.py:75 saleor/dashboard/product/forms.py:237
-msgctxt "ProductType weight"
+msgctxt "SkillType weight"
 msgid "Weight"
 msgstr "Ağırlık"
 
 #: saleor/dashboard/product/forms.py:78
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Default weight that will be used for calculating shipping price for products"
 " of that type."
@@ -1414,12 +1414,12 @@ msgstr ""
 "Bu tipteki ürünlerin kargo ücretini hesaplamak için varsayılan ağırlık."
 
 #: saleor/dashboard/product/forms.py:83
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes common to all variants."
 msgstr "Tüm varyanlardaki genel özellikler."
 
 #: saleor/dashboard/product/forms.py:88
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes specific to each variant."
 msgstr "Her varyanttaki belirli özellikler."
 
@@ -1434,22 +1434,22 @@ msgid "Require shipping"
 msgstr "Kargo gerektirir"
 
 #: saleor/dashboard/product/forms.py:137
-msgctxt "Product type form error"
-msgid "Product variants are disabled."
+msgctxt "Skill type form error"
+msgid "Skill variants are disabled."
 msgstr "Ürün varyantları etkin değil."
 
 #: saleor/dashboard/product/forms.py:142
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "A single attribute can't belong to both a product and its variant."
 msgstr "Tek bir özellik ürün ve onun varyantına ait olamaz."
 
 #: saleor/dashboard/product/forms.py:164
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "Some products of this type have more than one variant."
 msgstr "Bu tipteki bazı ürünler, birden fazla varyanta sahip."
 
 #: saleor/dashboard/product/forms.py:226
-msgctxt "Product tax rate type"
+msgctxt "Skill tax rate type"
 msgid "Tax rate"
 msgstr "Vergi oranı"
 
@@ -1464,10 +1464,10 @@ msgid "Collections"
 msgstr "Koleksiyonlar"
 
 #: saleor/dashboard/product/forms.py:240
-msgctxt "Product weight field help text"
+msgctxt "Skill weight field help text"
 msgid ""
 "Weight will be used to calculate shipping price, if empty, equal to default "
-"value used on the ProductType."
+"value used on the SkillType."
 msgstr ""
 "Ağırlık kargo ücreti hesaplamak için kullanılacak, eğer boşsa, ürüntipinde "
 "kullanılan varsayılan değere eşittir."
@@ -1484,7 +1484,7 @@ msgid "Publish product on"
 msgstr "Ürünü yayınla"
 
 #: saleor/dashboard/product/forms.py:255
-msgctxt "Product published toggle"
+msgctxt "Skill published toggle"
 msgid "Published"
 msgstr "Yayınlandı"
 
@@ -1504,15 +1504,15 @@ msgid "Net price"
 msgstr "Net fiyat"
 
 #: saleor/dashboard/product/forms.py:308
-msgctxt "ProductVariant weight"
+msgctxt "SkillVariant weight"
 msgid "Weight"
 msgstr "Ağırlık"
 
 #: saleor/dashboard/product/forms.py:311
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Weight will be used to calculate shipping price. If empty, weight from "
-"Product or ProductType will be used."
+"Skill or SkillType will be used."
 msgstr ""
 "Ağırlık kargo ücretini hesaplarken kullanılabilir. Eğer boşsa, ürün veya "
 "ürün tipinden ağırlık kullanılacaktır."
@@ -1568,17 +1568,17 @@ msgid "Cost net price"
 msgstr "Maliyet net fiyat"
 
 #: saleor/dashboard/product/forms.py:405 saleor/dashboard/product/forms.py:510
-msgctxt "Product image"
+msgctxt "Skill image"
 msgid "Image"
 msgstr "İmaj"
 
 #: saleor/dashboard/product/forms.py:446
-msgctxt "Product display name"
+msgctxt "Skill display name"
 msgid "Display name"
 msgstr "Görünecek isim"
 
 #: saleor/dashboard/product/forms.py:448
-msgctxt "Product internal name"
+msgctxt "Skill internal name"
 msgid "Internal name"
 msgstr "İç isim"
 
@@ -1724,7 +1724,7 @@ msgid "Country"
 msgstr "Ülke"
 
 #: saleor/dashboard/shipping/filters.py:27
-msgctxt "Product list sorting filter label"
+msgctxt "Skill list sorting filter label"
 msgid "Sort by"
 msgstr "Sırala"
 
@@ -2006,7 +2006,7 @@ msgid "Removed staff member %s"
 msgstr "%s üye personel kaldırıldı"
 
 #: saleor/dashboard/taxes/filters.py:11
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "country_code"
 msgstr "Ülke kodu"
 

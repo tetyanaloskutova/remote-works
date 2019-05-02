@@ -20,7 +20,7 @@ export interface VoucherDetails_voucher_minAmountSpent {
 }
 
 export interface VoucherDetails_voucher_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
@@ -31,7 +31,7 @@ export interface VoucherDetails_voucher_products_edges_node_thumbnail {
 }
 
 export interface VoucherDetails_voucher_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   productType: VoucherDetails_voucher_products_edges_node_productType;
@@ -40,7 +40,7 @@ export interface VoucherDetails_voucher_products_edges_node {
 }
 
 export interface VoucherDetails_voucher_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: VoucherDetails_voucher_products_edges_node;
 }
 
@@ -53,14 +53,14 @@ export interface VoucherDetails_voucher_products_pageInfo {
 }
 
 export interface VoucherDetails_voucher_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: VoucherDetails_voucher_products_edges[];
   totalCount: number | null;
   pageInfo: VoucherDetails_voucher_products_pageInfo;
 }
 
 export interface VoucherDetails_voucher_collections_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -92,7 +92,7 @@ export interface VoucherDetails_voucher_collections {
 }
 
 export interface VoucherDetails_voucher_categories_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

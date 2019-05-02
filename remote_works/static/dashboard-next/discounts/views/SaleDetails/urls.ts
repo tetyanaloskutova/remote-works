@@ -2,10 +2,10 @@ import * as urlJoin from "url-join";
 
 import { salePath } from "../../urls";
 
-export const saleAssignProductsPath = (id: string) =>
+export const saleAssignSkillsPath = (id: string) =>
   urlJoin(salePath(id), "assign-products");
-export const saleAssignProductsUrl = (id: string) =>
-  saleAssignProductsPath(encodeURIComponent(id));
+export const saleAssignSkillsUrl = (id: string) =>
+  saleAssignSkillsPath(encodeURIComponent(id));
 
 export const saleAssignCategoriesPath = (id: string) =>
   urlJoin(salePath(id), "assign-categories");

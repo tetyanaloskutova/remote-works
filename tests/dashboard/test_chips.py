@@ -6,7 +6,7 @@ from remote_works.dashboard.templatetags.chips import (
     handle_multiple_model_choice, handle_nullboolean, handle_range,
     handle_single_choice, handle_single_model_choice)
 from remote_works.dashboard.widgets import MoneyRangeWidget
-from remote_works.product.models import Category, Product
+from remote_works.product.models import Category, Skill
 
 
 def querydict(data):
@@ -50,7 +50,7 @@ class RangeFieldFilterSet(django_filters.FilterSet):
 
 def test_char_field_chip():
     data = querydict({'name': 'Milionare Pirate'})
-    filter_set = CharFieldFilterSet(data, queryset=Product.objects.all())
+    filter_set = CharFieldFilterSet(data, queryset=Skill.objects.all())
     field = filter_set.form['name']
     items = handle_default(field, data)
     assert len(items) == 1
@@ -61,7 +61,7 @@ def test_char_field_chip():
 
 def test_single_choice_chip():
     data = querydict({'is_featured': 0})
-    filter_set = ChoiceFieldFilterSet(data, queryset=Product.objects.all())
+    filter_set = ChoiceFieldFilterSet(data, queryset=Skill.objects.all())
     field = filter_set.form['is_featured']
     items = handle_single_choice(field, data)
     assert len(items) == 1
@@ -75,7 +75,7 @@ def test_multiple_choice_chip():
     data.update({'is_featured': 0})
     data.update({'is_featured': 1})
     filter_set = MultipleChoiceFieldFilterSet(
-        data, queryset=Product.objects.all())
+        data, queryset=Skill.objects.all())
     field = filter_set.form['is_featured']
     items = handle_multiple_choice(field, data)
 
@@ -93,7 +93,7 @@ def test_multiple_choice_chip():
 
 def test_nullboolean_field_chip():
     data = querydict({'is_featured': 1})
-    filter_set = ChoiceFieldFilterSet(data, queryset=Product.objects.all())
+    filter_set = ChoiceFieldFilterSet(data, queryset=Skill.objects.all())
     field = filter_set.form['is_featured']
     items = handle_nullboolean(field, data)
     assert len(items) == 1
@@ -106,7 +106,7 @@ def test_model_choice_field_chip(category):
     obj = Category.objects.first()
     data = querydict({'categories': obj.pk})
     filter_set = ModelChoiceFieldFilterSet(
-        data, queryset=Product.objects.all())
+        data, queryset=Skill.objects.all())
     field = filter_set.form['categories']
     items = handle_single_model_choice(field, data)
     assert len(items) == 1
@@ -124,7 +124,7 @@ def test_model_multiple_choice_field_chip():
     data.update({'categories': obj_2.pk})
 
     filter_set = ModelMultipleChoiceFieldFilterSet(
-        data, queryset=Product.objects.all())
+        data, queryset=Skill.objects.all())
     field = filter_set.form['categories']
     items = handle_multiple_model_choice(field, data)
     assert len(items) == 2
@@ -142,7 +142,7 @@ def test_model_multiple_choice_field_chip():
 
 def test_range_field_chip():
     data = querydict({'price_min': 1, 'price_max': 50})
-    filter_set = RangeFieldFilterSet(data, queryset=Product.objects.all())
+    filter_set = RangeFieldFilterSet(data, queryset=Skill.objects.all())
     field = filter_set.form['price']
     items = handle_range(field, data)
 

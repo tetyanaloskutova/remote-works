@@ -47,27 +47,27 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderDraftDetailsProductsProps extends WithStyles<typeof styles> {
+interface OrderDraftDetailsSkillsProps extends WithStyles<typeof styles> {
   lines: OrderDetails_order_lines[];
   onOrderLineChange: (id: string, data: FormData) => void;
   onOrderLineRemove: (id: string) => void;
 }
 
-const OrderDraftDetailsProducts = withStyles(styles, {
-  name: "OrderDraftDetailsProducts"
+const OrderDraftDetailsSkills = withStyles(styles, {
+  name: "OrderDraftDetailsSkills"
 })(
   ({
     classes,
     lines,
     onOrderLineChange,
     onOrderLineRemove
-  }: OrderDraftDetailsProductsProps) => (
+  }: OrderDraftDetailsSkillsProps) => (
     <Table>
       {maybe(() => !!lines.length) && (
         <TableHead>
           <TableRow>
             <TableCell colSpan={2}>
-              {i18n.t("Product", { context: "table header" })}
+              {i18n.t("Skill", { context: "table header" })}
             </TableCell>
             <TableCell className={classes.textRight}>
               {i18n.t("Quantity", { context: "table header" })}
@@ -86,7 +86,7 @@ const OrderDraftDetailsProducts = withStyles(styles, {
         {maybe(() => lines.length) === 0 ? (
           <TableRow>
             <TableCell colSpan={5}>
-              {i18n.t("No Products added to Order")}
+              {i18n.t("No Skills added to Order")}
             </TableCell>
           </TableRow>
         ) : (
@@ -163,5 +163,5 @@ const OrderDraftDetailsProducts = withStyles(styles, {
     </Table>
   )
 );
-OrderDraftDetailsProducts.displayName = "OrderDraftDetailsProducts";
-export default OrderDraftDetailsProducts;
+OrderDraftDetailsSkills.displayName = "OrderDraftDetailsSkills";
+export default OrderDraftDetailsSkills;

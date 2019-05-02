@@ -14,7 +14,7 @@ import TablePagination from "../../../components/TablePagination";
 import i18n from "../../../i18n";
 import { maybe, renderCollection, translatedTaxRates } from "../../../misc";
 import { ListProps } from "../../../types";
-import { ProductTypeList_productTypes_edges_node } from "../../types/ProductTypeList";
+import { SkillTypeList_productTypes_edges_node } from "../../types/SkillTypeList";
 
 const styles = createStyles({
   leftText: {
@@ -28,11 +28,11 @@ const styles = createStyles({
   }
 });
 
-interface ProductTypeListProps extends ListProps, WithStyles<typeof styles> {
-  productTypes: ProductTypeList_productTypes_edges_node[];
+interface SkillTypeListProps extends ListProps, WithStyles<typeof styles> {
+  productTypes: SkillTypeList_productTypes_edges_node[];
 }
 
-const ProductTypeList = withStyles(styles, { name: "ProductTypeList" })(
+const SkillTypeList = withStyles(styles, { name: "SkillTypeList" })(
   ({
     classes,
     disabled,
@@ -41,7 +41,7 @@ const ProductTypeList = withStyles(styles, { name: "ProductTypeList" })(
     onNextPage,
     onPreviousPage,
     onRowClick
-  }: ProductTypeListProps) => (
+  }: SkillTypeListProps) => (
     <Card>
       <Table>
         <TableHead>
@@ -130,5 +130,5 @@ const ProductTypeList = withStyles(styles, { name: "ProductTypeList" })(
     </Card>
   )
 );
-ProductTypeList.displayName = "ProductTypeList";
-export default ProductTypeList;
+SkillTypeList.displayName = "SkillTypeList";
+export default SkillTypeList;

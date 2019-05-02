@@ -159,7 +159,7 @@ def test_extract_gateway_response_no_transaction(
 def test_get_braintree_gateway(gateway_config):
     result = get_braintree_gateway(**gateway_config)
     assert gateway_config['sandbox_mode'] == False
-    assert result.config.environment == Environment.Production
+    assert result.config.environment == Environment.Skillion
     assert result.config.merchant_id == gateway_config['merchant_id']
     assert result.config.public_key == gateway_config['public_key']
     assert result.config.private_key == gateway_config['private_key']

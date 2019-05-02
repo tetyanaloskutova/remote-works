@@ -8,7 +8,7 @@ import { ControlledCheckbox } from "../../../components/ControlledCheckbox";
 import i18n from "../../../i18n";
 import { WeightUnitsEnum } from "../../../types/globalTypes";
 
-interface ProductTypeShippingProps {
+interface SkillTypeShippingProps {
   data: {
     isShippingRequired: boolean;
     weight: number | null;
@@ -18,8 +18,8 @@ interface ProductTypeShippingProps {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const ProductTypeShipping: React.StatelessComponent<
-  ProductTypeShippingProps
+const SkillTypeShipping: React.StatelessComponent<
+  SkillTypeShippingProps
 > = ({ data, defaultWeightUnit, disabled, onChange }) => (
   <Card>
     <CardTitle title={i18n.t("Shipping")} />
@@ -49,5 +49,5 @@ const ProductTypeShipping: React.StatelessComponent<
   </Card>
 );
 
-ProductTypeShipping.displayName = "ProductTypeShipping";
-export default ProductTypeShipping;
+SkillTypeShipping.displayName = "SkillTypeShipping";
+export default SkillTypeShipping;

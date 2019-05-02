@@ -4,47 +4,47 @@
 import { StockAvailability } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: ProductList
+// GraphQL query operation: SkillList
 // ====================================================
 
-export interface ProductList_products_edges_node_thumbnail {
+export interface SkillList_products_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface ProductList_products_edges_node_availability {
-  __typename: "ProductAvailability";
+export interface SkillList_products_edges_node_availability {
+  __typename: "SkillAvailability";
   available: boolean | null;
 }
 
-export interface ProductList_products_edges_node_price {
+export interface SkillList_products_edges_node_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductList_products_edges_node_productType {
-  __typename: "ProductType";
+export interface SkillList_products_edges_node_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface ProductList_products_edges_node {
-  __typename: "Product";
+export interface SkillList_products_edges_node {
+  __typename: "Skill";
   id: string;
   name: string;
-  thumbnail: ProductList_products_edges_node_thumbnail | null;
-  availability: ProductList_products_edges_node_availability | null;
-  price: ProductList_products_edges_node_price | null;
-  productType: ProductList_products_edges_node_productType;
+  thumbnail: SkillList_products_edges_node_thumbnail | null;
+  availability: SkillList_products_edges_node_availability | null;
+  price: SkillList_products_edges_node_price | null;
+  productType: SkillList_products_edges_node_productType;
 }
 
-export interface ProductList_products_edges {
-  __typename: "ProductCountableEdge";
-  node: ProductList_products_edges_node;
+export interface SkillList_products_edges {
+  __typename: "SkillCountableEdge";
+  node: SkillList_products_edges_node;
 }
 
-export interface ProductList_products_pageInfo {
+export interface SkillList_products_pageInfo {
   __typename: "PageInfo";
   hasPreviousPage: boolean;
   hasNextPage: boolean;
@@ -52,17 +52,17 @@ export interface ProductList_products_pageInfo {
   endCursor: string | null;
 }
 
-export interface ProductList_products {
-  __typename: "ProductCountableConnection";
-  edges: ProductList_products_edges[];
-  pageInfo: ProductList_products_pageInfo;
+export interface SkillList_products {
+  __typename: "SkillCountableConnection";
+  edges: SkillList_products_edges[];
+  pageInfo: SkillList_products_pageInfo;
 }
 
-export interface ProductList {
-  products: ProductList_products | null;
+export interface SkillList {
+  products: SkillList_products | null;
 }
 
-export interface ProductListVariables {
+export interface SkillListVariables {
   first?: number | null;
   after?: string | null;
   last?: number | null;

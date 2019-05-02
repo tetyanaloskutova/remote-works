@@ -6,7 +6,7 @@ from tests.api.utils import get_graphql_content
 
 def test_fetch_variant(staff_api_client, product, permission_manage_products):
     query = """
-    query ProductVariantDetails($id: ID!) {
+    query SkillVariantDetails($id: ID!) {
         productVariant(id: $id) {
             id
             attributes {
@@ -46,7 +46,7 @@ def test_fetch_variant(staff_api_client, product, permission_manage_products):
     """
 
     variant = product.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     variables = {'id': variant_id}
     staff_api_client.user.user_permissions.add(permission_manage_products)
     response = staff_api_client.post_graphql(query, variables)
@@ -109,7 +109,7 @@ def test_create_variant(
             }
 
     """
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     sku = "1"
     price_override = 1.32
     cost_price = 3.22
@@ -165,7 +165,7 @@ def test_create_product_variant_not_all_attributes(
                 }
 
         """
-    product_id = graphene.Node.to_global_id('Product', product.pk)
+    product_id = graphene.Node.to_global_id('Skill', product.pk)
     sku = "1"
     variant_slug = product_type.variant_attributes.first().slug
     variant_value = 'test-value'
@@ -216,7 +216,7 @@ def test_update_product_variant(
 
     """
     variant = product.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     sku = "test sku"
     cost_price = 3.3
     quantity = 123
@@ -262,7 +262,7 @@ def test_update_product_variant_not_all_attributes(
 
     """
     variant = product.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     sku = "test sku"
     variant_slug = product_type.variant_attributes.first().slug
     variant_value = 'test-value'
@@ -295,7 +295,7 @@ def test_delete_variant(staff_api_client, product, permission_manage_products):
             }
     """
     variant = product.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     variables = {'id': variant_id}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -331,7 +331,7 @@ def test_fetch_all_variants_staff_user(
     data = _fetch_all_variants(
         staff_api_client, permissions=[permission_manage_products])
     variant = unavailable_product_with_variant.variants.first()
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     assert data['totalCount'] == 1
     assert data['edges'][0]['node']['id'] == variant_id
 
@@ -350,7 +350,7 @@ def test_fetch_all_variants_anonymous_user(
 
 def _fetch_variant(client, variant, permissions=None):
     query = """
-    query ProductVariantDetails($variantId: ID!) {
+    query SkillVariantDetails($variantId: ID!) {
         productVariant(id: $variantId) {
             id
             skill {
@@ -360,7 +360,7 @@ def _fetch_variant(client, variant, permissions=None):
     }
     """
     variables = {
-        'variantId': graphene.Node.to_global_id('ProductVariant', variant.id)}
+        'variantId': graphene.Node.to_global_id('SkillVariant', variant.id)}
     response = client.post_graphql(
         query, variables, permissions=permissions, check_no_permissions=False)
     content = get_graphql_content(response)
@@ -374,9 +374,9 @@ def test_fetch_unpublished_variant_staff_user(
     data = _fetch_variant(
         staff_api_client, variant, permissions=[permission_manage_products])
 
-    variant_id = graphene.Node.to_global_id('ProductVariant', variant.pk)
+    variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     product_id = graphene.Node.to_global_id(
-        'Product', unavailable_product_with_variant.pk)
+        'Skill', unavailable_product_with_variant.pk)
 
     assert data['id'] == variant_id
     assert data['skill']['id'] == product_id

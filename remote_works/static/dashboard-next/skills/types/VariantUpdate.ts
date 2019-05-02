@@ -48,7 +48,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant_costPrice {
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
@@ -60,7 +60,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant_priceOverride
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant_product_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
@@ -73,13 +73,13 @@ export interface VariantUpdate_productVariantUpdate_productVariant_product_thumb
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant_product_variants_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant_product_variants {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
@@ -87,7 +87,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant_product_varia
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant_product {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   images: (VariantUpdate_productVariantUpdate_productVariant_product_images | null)[] | null;
   name: string;
@@ -96,7 +96,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant_product {
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   attributes: VariantUpdate_productVariantUpdate_productVariant_attributes[];
   costPrice: VariantUpdate_productVariantUpdate_productVariant_costPrice | null;
@@ -110,7 +110,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant {
 }
 
 export interface VariantUpdate_productVariantUpdate {
-  __typename: "ProductVariantUpdate";
+  __typename: "SkillVariantUpdate";
   errors: VariantUpdate_productVariantUpdate_errors[] | null;
   productVariant: VariantUpdate_productVariantUpdate_productVariant | null;
 }

@@ -7,22 +7,22 @@ import Messages from "../../../components/messages";
 import Navigator from "../../../components/Navigator";
 import i18n from "../../../i18n";
 import { getMutationState, maybe } from "../../../misc";
-import ProductImagePage from "../../components/ProductImagePage";
+import SkillImagePage from "../../components/SkillImagePage";
 import {
-  TypedProductImageDeleteMutation,
-  TypedProductImageUpdateMutation
+  TypedSkillImageDeleteMutation,
+  TypedSkillImageUpdateMutation
 } from "../../mutations";
-import { TypedProductImageQuery } from "../../queries";
-import { ProductImageUpdate } from "../../types/ProductImageUpdate";
+import { TypedSkillImageQuery } from "../../queries";
+import { SkillImageUpdate } from "../../types/SkillImageUpdate";
 import { productImageUrl, productUrl } from "../../urls";
 import { productImageRemovePath, productImageRemoveUrl } from "./urls";
 
-interface ProductImageProps {
+interface SkillImageProps {
   imageId: string;
   productId: string;
 }
 
-export const ProductImage: React.StatelessComponent<ProductImageProps> = ({
+export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
   imageId,
   productId
 }) => (
@@ -31,13 +31,13 @@ export const ProductImage: React.StatelessComponent<ProductImageProps> = ({
       <Navigator>
         {navigate => {
           const handleBack = () => navigate(productUrl(productId));
-          const handleUpdateSuccess = (data: ProductImageUpdate) => {
+          const handleUpdateSuccess = (data: SkillImageUpdate) => {
             if (data.productImageUpdate.errors.length === 0) {
               pushMessage({ text: "Saved changes" });
             }
           };
           return (
-            <TypedProductImageQuery
+            <TypedSkillImageQuery
               displayLoader
               variables={{
                 imageId,
@@ -47,11 +47,11 @@ export const ProductImage: React.StatelessComponent<ProductImageProps> = ({
             >
               {({ data, loading }) => {
                 return (
-                  <TypedProductImageUpdateMutation
+                  <TypedSkillImageUpdateMutation
                     onCompleted={handleUpdateSuccess}
                   >
                     {(updateImage, updateResult) => (
-                      <TypedProductImageDeleteMutation onCompleted={handleBack}>
+                      <TypedSkillImageDeleteMutation onCompleted={handleBack}>
                         {(deleteImage, deleteResult) => {
                           const handleDelete = () =>
                             deleteImage({ variables: { id: imageId } });
@@ -84,7 +84,7 @@ export const ProductImage: React.StatelessComponent<ProductImageProps> = ({
                           );
                           return (
                             <>
-                              <ProductImagePage
+                              <SkillImagePage
                                 disabled={loading}
                                 image={image || null}
                                 images={maybe(() => data.product.images)}
@@ -132,16 +132,16 @@ export const ProductImage: React.StatelessComponent<ProductImageProps> = ({
                             </>
                           );
                         }}
-                      </TypedProductImageDeleteMutation>
+                      </TypedSkillImageDeleteMutation>
                     )}
-                  </TypedProductImageUpdateMutation>
+                  </TypedSkillImageUpdateMutation>
                 );
               }}
-            </TypedProductImageQuery>
+            </TypedSkillImageQuery>
           );
         }}
       </Navigator>
     )}
   </Messages>
 );
-export default ProductImage;
+export default SkillImage;

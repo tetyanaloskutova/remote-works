@@ -12,20 +12,20 @@ import SeoForm from "../../../components/SeoForm";
 import { maybe } from "../../../misc";
 import { UserError } from "../../../types";
 import {
-  ProductDetails_skill,
-  ProductDetails_skill_attributes_attribute,
-  ProductDetails_skill_images,
-  ProductDetails_skill_variants
-} from "../../types/ProductDetails";
-import ProductAvailabilityForm from "../ProductAvailabilityForm";
-import ProductDetailsForm from "../ProductDetailsForm";
-import ProductImages from "../ProductImages";
-import ProductOrganization from "../ProductOrganization";
-import ProductPricing from "../ProductPricing";
-import ProductStock from "../ProductStock";
-import ProductVariants from "../ProductVariants";
+  SkillDetails_skill,
+  SkillDetails_skill_attributes_attribute,
+  SkillDetails_skill_images,
+  SkillDetails_skill_variants
+} from "../../types/SkillDetails";
+import SkillAvailabilityForm from "../SkillAvailabilityForm";
+import SkillDetailsForm from "../SkillDetailsForm";
+import SkillImages from "../SkillImages";
+import SkillOrganization from "../SkillOrganization";
+import SkillPricing from "../SkillPricing";
+import SkillStock from "../SkillStock";
+import SkillVariants from "../SkillVariants";
 
-interface ProductUpdateProps {
+interface SkillUpdateProps {
   errors: UserError[];
   placeholderImage: string;
   collections?: Array<{
@@ -41,9 +41,9 @@ interface ProductUpdateProps {
     id: string;
     name: string;
   }>;
-  variants: ProductDetails_skill_variants[];
-  images?: ProductDetails_skill_images[];
-  skill?: ProductDetails_skill;
+  variants: SkillDetails_skill_variants[];
+  images?: SkillDetails_skill_images[];
+  skill?: SkillDetails_skill;
   header: string;
   saveButtonBarState: ConfirmButtonTransitionState;
   fetchCategories: (query: string) => void;
@@ -56,7 +56,7 @@ interface ProductUpdateProps {
   onImageEdit?(id: string);
   onImageReorder?(event: { oldIndex: number; newIndex: number });
   onImageUpload(file: File);
-  onProductShow?();
+  onSkillShow?();
   onSeoClick?();
   onSubmit?(data: any);
   onVariantAdd?();
@@ -85,7 +85,7 @@ export interface FormData {
       id: string;
       name: string;
       skillAttributes: Array<
-        Exclude<ProductDetails_skill_attributes_attribute, "__typename">
+        Exclude<SkillDetails_skill_attributes_attribute, "__typename">
       >;
     };
   } | null;
@@ -96,7 +96,7 @@ export interface FormData {
   stockQuantity: number;
 }
 
-export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
+export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
   disabled,
   categories: categoryChoiceList,
   collections: collectionChoiceList,
@@ -205,7 +205,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
             <PageHeader title={header} onBack={onBack} />
             <Grid>
               <div>
-                <ProductDetailsForm
+                <SkillDetailsForm
                   data={data}
                   disabled={disabled}
                   errors={errors}
@@ -213,7 +213,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   onChange={change}
                 />
                 <CardSpacer />
-                <ProductImages
+                <SkillImages
                   images={images}
                   placeholderImage={placeholderImage}
                   onImageDelete={onImageDelete}
@@ -222,7 +222,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   onImageUpload={onImageUpload}
                 />
                 <CardSpacer />
-                <ProductPricing
+                <SkillPricing
                   currency={currency}
                   data={data}
                   disabled={disabled}
@@ -230,7 +230,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                 />
                 <CardSpacer />
                 {hasVariants ? (
-                  <ProductVariants
+                  <SkillVariants
                     variants={variants}
                     fallbackPrice={skill ? skill.price : undefined}
                     onAttributesEdit={onAttributesEdit}
@@ -238,7 +238,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                     onVariantAdd={onVariantAdd}
                   />
                 ) : (
-                  <ProductStock
+                  <SkillStock
                     data={data}
                     disabled={disabled}
                     skill={skill}
@@ -257,7 +257,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                 />
               </div>
               <div>
-                <ProductOrganization
+                <SkillOrganization
                   categories={categories}
                   errors={errors}
                   fetchCategories={fetchCategories}
@@ -269,7 +269,7 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
                   onChange={change}
                 />
                 <CardSpacer />
-                <ProductAvailabilityForm
+                <SkillAvailabilityForm
                   data={data}
                   errors={errors}
                   loading={disabled}
@@ -290,5 +290,5 @@ export const ProductUpdate: React.StatelessComponent<ProductUpdateProps> = ({
     </Form>
   );
 };
-ProductUpdate.displayName = "ProductUpdate";
-export default ProductUpdate;
+SkillUpdate.displayName = "SkillUpdate";
+export default SkillUpdate;

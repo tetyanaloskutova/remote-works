@@ -21,7 +21,7 @@ def test_product_translation(user_api_client, product):
     }
     """
 
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     response = user_api_client.post_graphql(query, {'productId': product_id})
     data = get_graphql_content(response)['data']
 
@@ -46,7 +46,7 @@ def test_product_variant_translation(user_api_client, variant):
     """
 
     product_variant_id = graphene.Node.to_global_id(
-        'ProductVariant', variant.id)
+        'SkillVariant', variant.id)
     response = user_api_client.post_graphql(
         query, {'productVariantId': product_variant_id})
     data = get_graphql_content(response)['data']
@@ -310,7 +310,7 @@ def test_product_no_translation(user_api_client, product):
     }
     """
 
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     response = user_api_client.post_graphql(query, {'productId': product_id})
     data = get_graphql_content(response)['data']
 
@@ -332,7 +332,7 @@ def test_product_variant_no_translation(user_api_client, variant):
     """
 
     product_variant_id = graphene.Node.to_global_id(
-        'ProductVariant', variant.id)
+        'SkillVariant', variant.id)
     response = user_api_client.post_graphql(
         query, {'productVariantId': product_variant_id})
     data = get_graphql_content(response)['data']
@@ -572,7 +572,7 @@ def test_product_create_translation(
     }
     """
 
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     response = staff_api_client.post_graphql(
         query, {'productId': product_id},
         permissions=[permission_manage_translations])
@@ -603,7 +603,7 @@ def test_product_update_translation(
     }
     """
 
-    product_id = graphene.Node.to_global_id('Product', product.id)
+    product_id = graphene.Node.to_global_id('Skill', product.id)
     response = staff_api_client.post_graphql(
         query, {'productId': product_id},
         permissions=[permission_manage_translations])
@@ -633,7 +633,7 @@ def test_product_variant_create_translation(
     """
 
     product_variant_id = graphene.Node.to_global_id(
-        'ProductVariant', variant.id)
+        'SkillVariant', variant.id)
     response = staff_api_client.post_graphql(
         query, {'productVariantId': product_variant_id},
         permissions=[permission_manage_translations])
@@ -665,7 +665,7 @@ def test_product_variant_update_translation(
     """
 
     product_variant_id = graphene.Node.to_global_id(
-        'ProductVariant', variant.id)
+        'SkillVariant', variant.id)
     response = staff_api_client.post_graphql(
         query, {'productVariantId': product_variant_id},
         permissions=[permission_manage_translations])
@@ -1189,7 +1189,7 @@ def test_shop_update_translation(
 
 
 @pytest.mark.parametrize('kind, expected_typename', [
-    (TranslatableKinds.PRODUCT, 'Product'),
+    (TranslatableKinds.PRODUCT, 'Skill'),
     (TranslatableKinds.COLLECTION, 'Collection'),
     (TranslatableKinds.CATEGORY, 'Category'),
     (TranslatableKinds.PAGE, 'Page'),
@@ -1197,7 +1197,7 @@ def test_shop_update_translation(
     (TranslatableKinds.VOUCHER, 'Voucher'),
     (TranslatableKinds.ATTRIBUTE, 'Attribute'),
     (TranslatableKinds.ATTRIBUTE_VALUE, 'AttributeValue'),
-    (TranslatableKinds.VARIANT, 'ProductVariant'),
+    (TranslatableKinds.VARIANT, 'SkillVariant'),
     (TranslatableKinds.MENU_ITEM, 'MenuItem')])
 def test_translations_query(
         user_api_client, product, collection, voucher, shipping_method,
@@ -1228,7 +1228,7 @@ def test_translations_query_inline_fragment(user_api_client, product):
         translations(kind: PRODUCT, first: 1) {
             edges {
                 node {
-                    ... on Product {
+                    ... on Skill {
                         name
                         translation(languageCode: "pl") {
                             name

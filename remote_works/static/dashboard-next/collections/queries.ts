@@ -37,8 +37,8 @@ export const collectionDetailsFragment = gql`
 // are always the same - fixes apollo cache
 // https://github.com/apollographql/apollo-client/issues/2496
 // https://github.com/apollographql/apollo-client/issues/3468
-export const collectionProductFragment = gql`
-  fragment CollectionProductFragment on Product {
+export const collectionSkillFragment = gql`
+  fragment CollectionSkillFragment on Skill {
     id
     isPublished
     name
@@ -85,7 +85,7 @@ export const TypedCollectionListQuery = TypedQuery<
 
 export const collectionDetails = gql`
   ${collectionDetailsFragment}
-  ${collectionProductFragment}
+  ${collectionSkillFragment}
   query CollectionDetails(
     $id: ID!
     $first: Int
@@ -98,7 +98,7 @@ export const collectionDetails = gql`
       products(first: $first, after: $after, before: $before, last: $last) {
         edges {
           node {
-            ...CollectionProductFragment
+            ...CollectionSkillFragment
           }
         }
         pageInfo {

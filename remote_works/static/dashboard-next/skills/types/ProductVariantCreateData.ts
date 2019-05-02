@@ -2,17 +2,17 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: ProductVariantCreateData
+// GraphQL query operation: SkillVariantCreateData
 // ====================================================
 
-export interface ProductVariantCreateData_product_images {
-  __typename: "ProductImage";
+export interface SkillVariantCreateData_product_images {
+  __typename: "SkillImage";
   id: string;
   sortOrder: number;
   url: string;
 }
 
-export interface ProductVariantCreateData_product_productType_variantAttributes_values {
+export interface SkillVariantCreateData_product_productType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   sortOrder: number;
@@ -20,46 +20,46 @@ export interface ProductVariantCreateData_product_productType_variantAttributes_
   slug: string | null;
 }
 
-export interface ProductVariantCreateData_product_productType_variantAttributes {
+export interface SkillVariantCreateData_product_productType_variantAttributes {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (ProductVariantCreateData_product_productType_variantAttributes_values | null)[] | null;
+  values: (SkillVariantCreateData_product_productType_variantAttributes_values | null)[] | null;
 }
 
-export interface ProductVariantCreateData_product_productType {
-  __typename: "ProductType";
+export interface SkillVariantCreateData_product_productType {
+  __typename: "SkillType";
   id: string;
-  variantAttributes: (ProductVariantCreateData_product_productType_variantAttributes | null)[] | null;
+  variantAttributes: (SkillVariantCreateData_product_productType_variantAttributes | null)[] | null;
 }
 
-export interface ProductVariantCreateData_product_variants_images {
-  __typename: "ProductImage";
+export interface SkillVariantCreateData_product_variants_images {
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface ProductVariantCreateData_product_variants {
-  __typename: "ProductVariant";
+export interface SkillVariantCreateData_product_variants {
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (ProductVariantCreateData_product_variants_images | null)[] | null;
+  images: (SkillVariantCreateData_product_variants_images | null)[] | null;
 }
 
-export interface ProductVariantCreateData_product {
-  __typename: "Product";
+export interface SkillVariantCreateData_product {
+  __typename: "Skill";
   id: string;
-  images: (ProductVariantCreateData_product_images | null)[] | null;
-  productType: ProductVariantCreateData_product_productType;
-  variants: (ProductVariantCreateData_product_variants | null)[] | null;
+  images: (SkillVariantCreateData_product_images | null)[] | null;
+  productType: SkillVariantCreateData_product_productType;
+  variants: (SkillVariantCreateData_product_variants | null)[] | null;
 }
 
-export interface ProductVariantCreateData {
-  product: ProductVariantCreateData_product | null;
+export interface SkillVariantCreateData {
+  product: SkillVariantCreateData_product | null;
 }
 
-export interface ProductVariantCreateDataVariables {
+export interface SkillVariantCreateDataVariables {
   id: string;
 }

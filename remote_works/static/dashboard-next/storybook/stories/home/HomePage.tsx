@@ -13,14 +13,14 @@ const HomePageProps: Omit<HomePageProps, "classes"> = {
   activities: shop.activities.edges.map(edge => edge.node),
   onOrdersToCaptureClick: () => undefined,
   onOrdersToFulfillClick: () => undefined,
-  onProductClick: () => undefined,
-  onProductsOutOfStockClick: () => undefined,
+  onSkillClick: () => undefined,
+  onSkillsOutOfStockClick: () => undefined,
   orders: shop.ordersToday.totalCount,
   ordersToCapture: shop.ordersToCapture.totalCount,
   ordersToFulfill: shop.ordersToFulfill.totalCount,
   productsOutOfStock: shop.productsOutOfStock.totalCount,
   sales: shop.salesToday.gross,
-  topProducts: shop.productTopToday.edges.map(edge => edge.node),
+  topSkills: shop.productTopToday.edges.map(edge => edge.node),
   userName: "admin@example.com"
 };
 
@@ -36,10 +36,10 @@ storiesOf("Views / HomePage", module)
       ordersToFulfill={undefined}
       productsOutOfStock={undefined}
       sales={undefined}
-      topProducts={undefined}
+      topSkills={undefined}
       userName={undefined}
     />
   ))
   .add("no data", () => (
-    <HomePage {...HomePageProps} topProducts={[]} activities={[]} />
+    <HomePage {...HomePageProps} topSkills={[]} activities={[]} />
   ));

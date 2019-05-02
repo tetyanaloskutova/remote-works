@@ -4,53 +4,53 @@
 import { TaxRateType } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL fragment: ProductTypeDetailsFragment
+// GraphQL fragment: SkillTypeDetailsFragment
 // ====================================================
 
-export interface ProductTypeDetailsFragment_productAttributes_values {
+export interface SkillTypeDetailsFragment_productAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeDetailsFragment_productAttributes {
+export interface SkillTypeDetailsFragment_productAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeDetailsFragment_productAttributes_values | null)[] | null;
+  values: (SkillTypeDetailsFragment_productAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeDetailsFragment_variantAttributes_values {
+export interface SkillTypeDetailsFragment_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeDetailsFragment_variantAttributes {
+export interface SkillTypeDetailsFragment_variantAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeDetailsFragment_variantAttributes_values | null)[] | null;
+  values: (SkillTypeDetailsFragment_variantAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeDetailsFragment_weight {
+export interface SkillTypeDetailsFragment_weight {
   __typename: "Weight";
   unit: string;
   value: number;
 }
 
-export interface ProductTypeDetailsFragment {
-  __typename: "ProductType";
+export interface SkillTypeDetailsFragment {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
   isShippingRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (ProductTypeDetailsFragment_productAttributes | null)[] | null;
-  variantAttributes: (ProductTypeDetailsFragment_variantAttributes | null)[] | null;
-  weight: ProductTypeDetailsFragment_weight | null;
+  productAttributes: (SkillTypeDetailsFragment_productAttributes | null)[] | null;
+  variantAttributes: (SkillTypeDetailsFragment_variantAttributes | null)[] | null;
+  weight: SkillTypeDetailsFragment_weight | null;
 }

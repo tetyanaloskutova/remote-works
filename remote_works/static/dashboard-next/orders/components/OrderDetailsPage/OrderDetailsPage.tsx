@@ -54,7 +54,7 @@ export interface OrderDetailsPageProps extends WithStyles<typeof styles> {
   onFulfillmentCancel(id: string);
   onFulfillmentTrackingNumberUpdate(id: string);
   onOrderFulfill();
-  onProductClick?(id: string);
+  onSkillClick?(id: string);
   onPaymentCapture();
   onPaymentPaid();
   onPaymentRefund();

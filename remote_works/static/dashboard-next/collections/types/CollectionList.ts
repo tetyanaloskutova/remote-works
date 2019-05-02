@@ -6,7 +6,7 @@
 // ====================================================
 
 export interface CollectionList_collections_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

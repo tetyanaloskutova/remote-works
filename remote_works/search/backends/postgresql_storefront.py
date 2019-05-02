@@ -1,7 +1,7 @@
 from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models import Q
 
-from ...product.models import Product
+from ...product.models import Skill
 
 
 def search(phrase):
@@ -19,5 +19,5 @@ def search(phrase):
     published = Q(is_published=True)
     ft_in_description = Q(description__search=phrase)
     name_similar = Q(name_sim__gt=0.2)
-    return Product.objects.annotate(name_sim=name_sim).filter(
+    return Skill.objects.annotate(name_sim=name_sim).filter(
         (ft_in_description | name_similar) & published)

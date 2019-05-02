@@ -4,67 +4,67 @@
 import { TaxRateType, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: ProductTypeDetails
+// GraphQL query operation: SkillTypeDetails
 // ====================================================
 
-export interface ProductTypeDetails_productType_productAttributes_values {
+export interface SkillTypeDetails_productType_productAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeDetails_productType_productAttributes {
+export interface SkillTypeDetails_productType_productAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeDetails_productType_productAttributes_values | null)[] | null;
+  values: (SkillTypeDetails_productType_productAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeDetails_productType_variantAttributes_values {
+export interface SkillTypeDetails_productType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductTypeDetails_productType_variantAttributes {
+export interface SkillTypeDetails_productType_variantAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (ProductTypeDetails_productType_variantAttributes_values | null)[] | null;
+  values: (SkillTypeDetails_productType_variantAttributes_values | null)[] | null;
 }
 
-export interface ProductTypeDetails_productType_weight {
+export interface SkillTypeDetails_productType_weight {
   __typename: "Weight";
   unit: string;
   value: number;
 }
 
-export interface ProductTypeDetails_productType {
-  __typename: "ProductType";
+export interface SkillTypeDetails_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
   isShippingRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (ProductTypeDetails_productType_productAttributes | null)[] | null;
-  variantAttributes: (ProductTypeDetails_productType_variantAttributes | null)[] | null;
-  weight: ProductTypeDetails_productType_weight | null;
+  productAttributes: (SkillTypeDetails_productType_productAttributes | null)[] | null;
+  variantAttributes: (SkillTypeDetails_productType_variantAttributes | null)[] | null;
+  weight: SkillTypeDetails_productType_weight | null;
 }
 
-export interface ProductTypeDetails_shop {
+export interface SkillTypeDetails_shop {
   __typename: "Shop";
   defaultWeightUnit: WeightUnitsEnum | null;
 }
 
-export interface ProductTypeDetails {
-  productType: ProductTypeDetails_productType | null;
-  shop: ProductTypeDetails_shop | null;
+export interface SkillTypeDetails {
+  productType: SkillTypeDetails_productType | null;
+  shop: SkillTypeDetails_shop | null;
 }
 
-export interface ProductTypeDetailsVariables {
+export interface SkillTypeDetailsVariables {
   id: string;
 }

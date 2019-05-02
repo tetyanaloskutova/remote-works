@@ -2,35 +2,35 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: SearchProducts
+// GraphQL query operation: SearchSkills
 // ====================================================
 
-export interface SearchProducts_products_edges_node_thumbnail {
+export interface SearchSkills_products_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface SearchProducts_products_edges_node {
-  __typename: "Product";
+export interface SearchSkills_products_edges_node {
+  __typename: "Skill";
   id: string;
-  thumbnail: SearchProducts_products_edges_node_thumbnail | null;
+  thumbnail: SearchSkills_products_edges_node_thumbnail | null;
   name: string;
 }
 
-export interface SearchProducts_products_edges {
-  __typename: "ProductCountableEdge";
-  node: SearchProducts_products_edges_node;
+export interface SearchSkills_products_edges {
+  __typename: "SkillCountableEdge";
+  node: SearchSkills_products_edges_node;
 }
 
-export interface SearchProducts_products {
-  __typename: "ProductCountableConnection";
-  edges: SearchProducts_products_edges[];
+export interface SearchSkills_products {
+  __typename: "SkillCountableConnection";
+  edges: SearchSkills_products_edges[];
 }
 
-export interface SearchProducts {
-  products: SearchProducts_products | null;
+export interface SearchSkills {
+  products: SearchSkills_products | null;
 }
 
-export interface SearchProductsVariables {
+export interface SearchSkillsVariables {
   query: string;
 }

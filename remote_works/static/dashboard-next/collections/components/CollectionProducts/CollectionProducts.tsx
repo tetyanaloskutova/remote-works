@@ -42,14 +42,14 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface CollectionProductsProps
+export interface CollectionSkillsProps
   extends PageListProps,
     WithStyles<typeof styles> {
   collection: CollectionDetails_collection;
-  onProductUnassign: (id: string, event: React.MouseEvent<any>) => void;
+  onSkillUnassign: (id: string, event: React.MouseEvent<any>) => void;
 }
 
-const CollectionProducts = withStyles(styles, { name: "CollectionProducts" })(
+const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
   ({
     classes,
     collection,
@@ -57,15 +57,15 @@ const CollectionProducts = withStyles(styles, { name: "CollectionProducts" })(
     onAdd,
     onNextPage,
     onPreviousPage,
-    onProductUnassign,
+    onSkillUnassign,
     onRowClick,
     pageInfo
-  }: CollectionProductsProps) => (
+  }: CollectionSkillsProps) => (
     <Card>
       <CardTitle
         title={
           !!collection ? (
-            i18n.t("Products in {{ collectionName }}", {
+            i18n.t("Skills in {{ collectionName }}", {
               collectionName: collection.name
             })
           ) : (
@@ -150,7 +150,7 @@ const CollectionProducts = withStyles(styles, { name: "CollectionProducts" })(
                 <TableCell className={classes.iconCell}>
                   <IconButton
                     disabled={!product}
-                    onClick={event => onProductUnassign(product.id, event)}
+                    onClick={event => onSkillUnassign(product.id, event)}
                   >
                     <DeleteIcon color="secondary" />
                   </IconButton>
@@ -169,5 +169,5 @@ const CollectionProducts = withStyles(styles, { name: "CollectionProducts" })(
     </Card>
   )
 );
-CollectionProducts.displayName = "CollectionProducts";
-export default CollectionProducts;
+CollectionSkills.displayName = "CollectionSkills";
+export default CollectionSkills;

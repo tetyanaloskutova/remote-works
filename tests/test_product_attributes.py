@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, Mock
 import pytest
 
 from remote_works.product.models import (
-    Attribute, AttributeValue, Product, ProductType)
+    Attribute, AttributeValue, Skill, SkillType)
 from remote_works.product.tasks import _update_variants_names
 from remote_works.product.utils.attributes import (
     generate_name_from_values, get_attributes_display_map,
@@ -12,7 +12,7 @@ from remote_works.product.utils.attributes import (
 
 @pytest.fixture()
 def product_with_no_attributes(product_type, category):
-    product = Product.objects.create(
+    product = Skill.objects.create(
         name='Test skill', price='10.00', product_type=product_type,
         category=category)
     return product
@@ -87,7 +87,7 @@ def test_product_type_update_changes_variant_name(product):
 
 
 def test_update_variants_changed_does_nothing_with_no_attributes():
-    product_type = MagicMock(spec=ProductType)
+    product_type = MagicMock(spec=SkillType)
     product_type.variant_attributes.all = Mock(return_value=[])
     saved_attributes = []
     assert _update_variants_names(product_type, saved_attributes) is None

@@ -1,2 +1,2 @@
-export { default } from "./ProductTypeAttributeEditDialog";
-export * from "./ProductTypeAttributeEditDialog";
+export { default } from "./SkillTypeAttributeEditDialog";
+export * from "./SkillTypeAttributeEditDialog";

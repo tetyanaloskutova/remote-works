@@ -12,7 +12,7 @@ export interface CollectionDetails_collection_backgroundImage {
 }
 
 export interface CollectionDetails_collection_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
@@ -23,7 +23,7 @@ export interface CollectionDetails_collection_products_edges_node_thumbnail {
 }
 
 export interface CollectionDetails_collection_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   isPublished: boolean;
   name: string;
@@ -32,7 +32,7 @@ export interface CollectionDetails_collection_products_edges_node {
 }
 
 export interface CollectionDetails_collection_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: CollectionDetails_collection_products_edges_node;
 }
 
@@ -45,7 +45,7 @@ export interface CollectionDetails_collection_products_pageInfo {
 }
 
 export interface CollectionDetails_collection_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: CollectionDetails_collection_products_edges[];
   pageInfo: CollectionDetails_collection_products_pageInfo;
 }

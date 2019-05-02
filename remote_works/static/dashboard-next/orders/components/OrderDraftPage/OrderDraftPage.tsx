@@ -22,7 +22,7 @@ import { OrderDetails_order } from "../../types/OrderDetails";
 import { UserSearch_customers_edges_node } from "../../types/UserSearch";
 import OrderCustomer from "../OrderCustomer";
 import OrderDraftDetails from "../OrderDraftDetails/OrderDraftDetails";
-import { FormData as OrderDraftDetailsProductsFormData } from "../OrderDraftDetailsProducts";
+import { FormData as OrderDraftDetailsSkillsFormData } from "../OrderDraftDetailsSkills";
 import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
 
 const styles = (theme: Theme) =>
@@ -59,10 +59,10 @@ export interface OrderDraftPageProps extends WithStyles<typeof styles> {
   onOrderLineAdd: () => void;
   onOrderLineChange: (
     id: string,
-    data: OrderDraftDetailsProductsFormData
+    data: OrderDraftDetailsSkillsFormData
   ) => void;
   onOrderLineRemove: (id: string) => void;
-  onProductClick: (id: string) => void;
+  onSkillClick: (id: string) => void;
   onShippingAddressEdit: () => void;
   onShippingMethodEdit: () => void;
 }

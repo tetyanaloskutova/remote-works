@@ -13,7 +13,7 @@ export type OrderListFilterTabs = "all" | "toFulfill" | "toCapture" | "custom";
 interface OrderListFilterProps {
   currentTab: OrderListFilterTabs;
   filtersList: Filter[];
-  onAllProducts: () => void;
+  onAllSkills: () => void;
   onToFulfill: () => void;
   onToCapture: () => void;
   onCustomFilter: () => void;
@@ -22,7 +22,7 @@ interface OrderListFilterProps {
 const OrderListFilter: React.StatelessComponent<OrderListFilterProps> = ({
   filtersList,
   currentTab,
-  onAllProducts,
+  onAllSkills,
   onToFulfill,
   onToCapture,
   onCustomFilter
@@ -33,7 +33,7 @@ const OrderListFilter: React.StatelessComponent<OrderListFilterProps> = ({
         currentTab
       )}
     >
-      <FilterTab label={i18n.t("All Orders")} onClick={onAllProducts} />
+      <FilterTab label={i18n.t("All Orders")} onClick={onAllSkills} />
       <FilterTab label={i18n.t("Ready to fulfill")} onClick={onToFulfill} />
       <FilterTab label={i18n.t("Ready to capture")} onClick={onToCapture} />
       {currentTab === "custom" && filtersList && filtersList.length > 0 && (

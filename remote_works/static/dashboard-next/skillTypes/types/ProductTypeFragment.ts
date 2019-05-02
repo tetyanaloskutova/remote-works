@@ -4,11 +4,11 @@
 import { TaxRateType } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL fragment: ProductTypeFragment
+// GraphQL fragment: SkillTypeFragment
 // ====================================================
 
-export interface ProductTypeFragment {
-  __typename: "ProductType";
+export interface SkillTypeFragment {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;

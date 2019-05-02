@@ -16,7 +16,7 @@ import { SaleType } from "../../../types/globalTypes";
 import { SaleDetails_sale } from "../../types/SaleDetails";
 import DiscountCategories from "../DiscountCategories";
 import DiscountCollections from "../DiscountCollections";
-import DiscountProducts from "../DiscountProducts";
+import DiscountSkills from "../DiscountSkills";
 import SaleInfo from "../SaleInfo";
 import SalePricing from "../SalePricing";
 import SaleSummary from "../SaleSummary";
@@ -56,9 +56,9 @@ export interface SaleDetailsPageProps
   onCollectionAssign: () => void;
   onCollectionUnassign: (id: string) => void;
   onCollectionClick: (id: string) => () => void;
-  onProductAssign: () => void;
-  onProductUnassign: (id: string) => void;
-  onProductClick: (id: string) => () => void;
+  onSkillAssign: () => void;
+  onSkillUnassign: (id: string) => void;
+  onSkillClick: (id: string) => () => void;
   onRemove: () => void;
   onSubmit: (data: FormData) => void;
   onTabClick: (index: SaleDetailsPageTab) => void;
@@ -66,7 +66,7 @@ export interface SaleDetailsPageProps
 
 const CategoriesTab = Tab(SaleDetailsPageTab.categories);
 const CollectionsTab = Tab(SaleDetailsPageTab.collections);
-const ProductsTab = Tab(SaleDetailsPageTab.products);
+const SkillsTab = Tab(SaleDetailsPageTab.products);
 
 const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
   activeTab,
@@ -88,9 +88,9 @@ const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
   onCollectionClick,
   onNextPage,
   onPreviousPage,
-  onProductAssign,
-  onProductUnassign,
-  onProductClick
+  onSkillAssign,
+  onSkillUnassign,
+  onSkillClick
 }) => {
   const initialForm: FormData = {
     endDate: maybe(() => (sale.endDate ? sale.endDate : ""), ""),
@@ -144,17 +144,17 @@ const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
                     )
                   })}
                 </CollectionsTab>
-                <ProductsTab
+                <SkillsTab
                   isActive={activeTab === SaleDetailsPageTab.products}
                   changeTab={onTabClick}
                 >
-                  {i18n.t("Products ({{ number }})", {
+                  {i18n.t("Skills ({{ number }})", {
                     number: maybe(
                       () => sale.products.totalCount.toString(),
                       "…"
                     )
                   })}
-                </ProductsTab>
+                </SkillsTab>
               </TabContainer>
               <CardSpacer />
               {activeTab === SaleDetailsPageTab.categories ? (
@@ -180,13 +180,13 @@ const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
                   discount={sale}
                 />
               ) : (
-                <DiscountProducts
+                <DiscountSkills
                   disabled={disabled}
                   onNextPage={onNextPage}
                   onPreviousPage={onPreviousPage}
-                  onProductAssign={onProductAssign}
-                  onProductUnassign={onProductUnassign}
-                  onRowClick={onProductClick}
+                  onSkillAssign={onSkillAssign}
+                  onSkillUnassign={onSkillUnassign}
+                  onRowClick={onSkillClick}
                   pageInfo={pageInfo}
                   discount={sale}
                 />

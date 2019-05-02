@@ -1,2 +1,2 @@
-export { default } from "./ProductCreatePage";
-export * from "./ProductCreatePage";
+export { default } from "./SkillCreatePage";
+export * from "./SkillCreatePage";

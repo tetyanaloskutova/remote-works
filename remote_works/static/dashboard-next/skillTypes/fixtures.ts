@@ -1,12 +1,12 @@
 import {
-  ProductCreateData_productTypes_edges_node,
-  ProductCreateData_productTypes_edges_node_productAttributes
-} from "../products/types/ProductCreateData";
+  SkillCreateData_productTypes_edges_node,
+  SkillCreateData_productTypes_edges_node_productAttributes
+} from "../products/types/SkillCreateData";
 import { TaxRateType } from "../types/globalTypes";
-import { ProductTypeDetails_productType } from "./types/ProductTypeDetails";
-import { ProductTypeList_productTypes_edges_node } from "./types/ProductTypeList";
+import { SkillTypeDetails_productType } from "./types/SkillTypeDetails";
+import { SkillTypeList_productTypes_edges_node } from "./types/SkillTypeList";
 
-export const attributes: ProductCreateData_productTypes_edges_node_productAttributes[] = [
+export const attributes: SkillCreateData_productTypes_edges_node_productAttributes[] = [
   {
     node: {
       __typename: "Attribute" as "Attribute",
@@ -445,11 +445,11 @@ export const attributes: ProductCreateData_productTypes_edges_node_productAttrib
 ].map(edge => edge.node);
 
 export const productTypes: Array<
-  ProductCreateData_productTypes_edges_node &
-    ProductTypeList_productTypes_edges_node
+  SkillCreateData_productTypes_edges_node &
+    SkillTypeList_productTypes_edges_node
 > = [
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "SkillType" as "SkillType",
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6NA==",
     isShippingRequired: true,
@@ -459,7 +459,7 @@ export const productTypes: Array<
     variantAttributes: [attributes[1], attributes[2]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "SkillType" as "SkillType",
     hasVariants: false,
     id: "UHJvZHVjdFR5cGU6NQ==",
     isShippingRequired: false,
@@ -469,7 +469,7 @@ export const productTypes: Array<
     variantAttributes: [attributes[0], attributes[3]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "SkillType" as "SkillType",
     hasVariants: false,
     id: "UHJvZHVjdFR5cGU6Mg==",
     isShippingRequired: true,
@@ -479,7 +479,7 @@ export const productTypes: Array<
     variantAttributes: [attributes[2], attributes[5]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "SkillType" as "SkillType",
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6Mw==",
     isShippingRequired: true,
@@ -489,7 +489,7 @@ export const productTypes: Array<
     variantAttributes: [attributes[1], attributes[4]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "SkillType" as "SkillType",
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6MQ==",
     isShippingRequired: true,
@@ -499,11 +499,11 @@ export const productTypes: Array<
     variantAttributes: [attributes[1], attributes[6]]
   }
 ].map(productType => ({
-  __typename: "ProductType" as "ProductType",
+  __typename: "SkillType" as "SkillType",
   ...productType
 }));
-export const productType: ProductTypeDetails_productType = {
-  __typename: "ProductType" as "ProductType",
+export const productType: SkillTypeDetails_productType = {
+  __typename: "SkillType" as "SkillType",
   hasVariants: false,
   id: "UHJvZHVjdFR5cGU6NQ==",
   isShippingRequired: false,

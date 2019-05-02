@@ -1,2 +1,2 @@
-export { default } from "./AssignProductDialog";
-export * from "./AssignProductDialog";
+export { default } from "./AssignSkillDialog";
+export * from "./AssignSkillDialog";

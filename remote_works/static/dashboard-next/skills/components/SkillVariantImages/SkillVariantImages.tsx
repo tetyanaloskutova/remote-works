@@ -13,7 +13,7 @@ import * as React from "react";
 import CardTitle from "../../../components/CardTitle";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
-import { ProductImage } from "../../types/ProductImage";
+import { SkillImage } from "../../types/SkillImage";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -42,16 +42,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductVariantImagesProps extends WithStyles<typeof styles> {
-  images?: ProductImage[];
+interface SkillVariantImagesProps extends WithStyles<typeof styles> {
+  images?: SkillImage[];
   placeholderImage?: string;
   disabled: boolean;
   onImageAdd();
 }
 
-export const ProductVariantImages = withStyles(styles, {
-  name: "ProductVariantImages"
-})(({ classes, disabled, images, onImageAdd }: ProductVariantImagesProps) => (
+export const SkillVariantImages = withStyles(styles, {
+  name: "SkillVariantImages"
+})(({ classes, disabled, images, onImageAdd }: SkillVariantImagesProps) => (
   <Card>
     <CardTitle
       title={i18n.t("Images")}
@@ -85,5 +85,5 @@ export const ProductVariantImages = withStyles(styles, {
     </CardContent>
   </Card>
 ));
-ProductVariantImages.displayName = "ProductVariantImages";
-export default ProductVariantImages;
+SkillVariantImages.displayName = "SkillVariantImages";
+export default SkillVariantImages;

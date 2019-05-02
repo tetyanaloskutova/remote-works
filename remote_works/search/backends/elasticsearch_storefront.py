@@ -1,13 +1,13 @@
 from elasticsearch_dsl.query import MultiMatch
 
-from ..documents import ProductDocument
+from ..documents import SkillDocument
 
 
 def get_search_query(phrase):
     """Return matching skills for storefront views."""
     query = MultiMatch(fields=['title', 'name', 'description'], query=phrase)
     return (
-        ProductDocument.search()
+        SkillDocument.search()
         .query(query)
         .source(False)
         .filter('term', is_published=True))

@@ -2,164 +2,164 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Product
+// GraphQL fragment: Skill
 // ====================================================
 
-export interface Product_category {
+export interface Skill_category {
   __typename: "Category";
   id: string;
   name: string;
 }
 
-export interface Product_collections {
+export interface Skill_collections {
   __typename: "Collection";
   id: string;
   name: string;
 }
 
-export interface Product_price {
+export interface Skill_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_margin {
+export interface Skill_margin {
   __typename: "Margin";
   start: number | null;
   stop: number | null;
 }
 
-export interface Product_purchaseCost_start {
+export interface Skill_purchaseCost_start {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_purchaseCost_stop {
+export interface Skill_purchaseCost_stop {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_purchaseCost {
+export interface Skill_purchaseCost {
   __typename: "MoneyRange";
-  start: Product_purchaseCost_start | null;
-  stop: Product_purchaseCost_stop | null;
+  start: Skill_purchaseCost_start | null;
+  stop: Skill_purchaseCost_stop | null;
 }
 
-export interface Product_attributes_attribute_values {
+export interface Skill_attributes_attribute_values {
   __typename: "AttributeValue";
   name: string | null;
   slug: string | null;
 }
 
-export interface Product_attributes_attribute {
+export interface Skill_attributes_attribute {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (Product_attributes_attribute_values | null)[] | null;
+  values: (Skill_attributes_attribute_values | null)[] | null;
 }
 
-export interface Product_attributes_value {
+export interface Skill_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface Product_attributes {
+export interface Skill_attributes {
   __typename: "SelectedAttribute";
-  attribute: Product_attributes_attribute;
-  value: Product_attributes_value;
+  attribute: Skill_attributes_attribute;
+  value: Skill_attributes_value;
 }
 
-export interface Product_availability_priceRange_start_net {
+export interface Skill_availability_priceRange_start_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_availability_priceRange_start {
+export interface Skill_availability_priceRange_start {
   __typename: "TaxedMoney";
-  net: Product_availability_priceRange_start_net;
+  net: Skill_availability_priceRange_start_net;
 }
 
-export interface Product_availability_priceRange_stop_net {
+export interface Skill_availability_priceRange_stop_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_availability_priceRange_stop {
+export interface Skill_availability_priceRange_stop {
   __typename: "TaxedMoney";
-  net: Product_availability_priceRange_stop_net;
+  net: Skill_availability_priceRange_stop_net;
 }
 
-export interface Product_availability_priceRange {
+export interface Skill_availability_priceRange {
   __typename: "TaxedMoneyRange";
-  start: Product_availability_priceRange_start | null;
-  stop: Product_availability_priceRange_stop | null;
+  start: Skill_availability_priceRange_start | null;
+  stop: Skill_availability_priceRange_stop | null;
 }
 
-export interface Product_availability {
-  __typename: "ProductAvailability";
+export interface Skill_availability {
+  __typename: "SkillAvailability";
   available: boolean | null;
-  priceRange: Product_availability_priceRange | null;
+  priceRange: Skill_availability_priceRange | null;
 }
 
-export interface Product_images {
-  __typename: "ProductImage";
+export interface Skill_images {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
   url: string;
 }
 
-export interface Product_variants_priceOverride {
+export interface Skill_variants_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Product_variants {
-  __typename: "ProductVariant";
+export interface Skill_variants {
+  __typename: "SkillVariant";
   id: string;
   sku: string;
   name: string;
-  priceOverride: Product_variants_priceOverride | null;
+  priceOverride: Skill_variants_priceOverride | null;
   margin: number | null;
   quantity: number;
   quantityAllocated: number;
   stockQuantity: number;
 }
 
-export interface Product_productType {
-  __typename: "ProductType";
+export interface Skill_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
 }
 
-export interface Product {
-  __typename: "Product";
+export interface Skill {
+  __typename: "Skill";
   id: string;
   name: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
-  category: Product_category;
-  collections: (Product_collections | null)[] | null;
-  price: Product_price | null;
-  margin: Product_margin | null;
-  purchaseCost: Product_purchaseCost | null;
+  category: Skill_category;
+  collections: (Skill_collections | null)[] | null;
+  price: Skill_price | null;
+  margin: Skill_margin | null;
+  purchaseCost: Skill_purchaseCost | null;
   isPublished: boolean;
   chargeTaxes: boolean;
   publicationDate: any | null;
-  attributes: Product_attributes[];
-  availability: Product_availability | null;
-  images: (Product_images | null)[] | null;
-  variants: (Product_variants | null)[] | null;
-  productType: Product_productType;
+  attributes: Skill_attributes[];
+  availability: Skill_availability | null;
+  images: (Skill_images | null)[] | null;
+  variants: (Skill_variants | null)[] | null;
+  productType: Skill_productType;
   url: string;
 }

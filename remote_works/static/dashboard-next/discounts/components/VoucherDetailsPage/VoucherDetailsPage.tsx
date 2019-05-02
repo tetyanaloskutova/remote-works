@@ -19,7 +19,7 @@ import {
 import { VoucherDetails_voucher } from "../../types/VoucherDetails";
 import DiscountCategories from "../DiscountCategories";
 import DiscountCollections from "../DiscountCollections";
-import DiscountProducts from "../DiscountProducts";
+import DiscountSkills from "../DiscountSkills";
 import VoucherCountries from "../VoucherCountries";
 import VoucherInfo from "../VoucherInfo";
 import VoucherOptions from "../VoucherOptions";
@@ -67,9 +67,9 @@ export interface VoucherDetailsPageProps
   onCollectionClick: (id: string) => () => void;
   onCountryAssign: () => void;
   onCountryUnassign: (code: string) => void;
-  onProductAssign: () => void;
-  onProductUnassign: (id: string) => void;
-  onProductClick: (id: string) => () => void;
+  onSkillAssign: () => void;
+  onSkillUnassign: (id: string) => void;
+  onSkillClick: (id: string) => () => void;
   onRemove: () => void;
   onSubmit: (data: FormData) => void;
   onTabClick: (index: VoucherDetailsPageTab) => void;
@@ -77,7 +77,7 @@ export interface VoucherDetailsPageProps
 
 const CategoriesTab = Tab(VoucherDetailsPageTab.categories);
 const CollectionsTab = Tab(VoucherDetailsPageTab.collections);
-const ProductsTab = Tab(VoucherDetailsPageTab.products);
+const SkillsTab = Tab(VoucherDetailsPageTab.products);
 
 const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
   activeTab,
@@ -98,9 +98,9 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
   onCollectionUnassign,
   onNextPage,
   onPreviousPage,
-  onProductAssign,
-  onProductClick,
-  onProductUnassign,
+  onSkillAssign,
+  onSkillClick,
+  onSkillUnassign,
   onTabClick,
   onRemove,
   onSubmit
@@ -171,17 +171,17 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
                         )
                       })}
                     </CollectionsTab>
-                    <ProductsTab
+                    <SkillsTab
                       isActive={activeTab === VoucherDetailsPageTab.products}
                       changeTab={onTabClick}
                     >
-                      {i18n.t("Products ({{ number }})", {
+                      {i18n.t("Skills ({{ number }})", {
                         number: maybe(
                           () => voucher.products.totalCount.toString(),
                           "…"
                         )
                       })}
-                    </ProductsTab>
+                    </SkillsTab>
                   </TabContainer>
                   <CardSpacer />
                   {activeTab === VoucherDetailsPageTab.categories ? (
@@ -207,13 +207,13 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
                       discount={voucher}
                     />
                   ) : (
-                    <DiscountProducts
+                    <DiscountSkills
                       disabled={disabled}
                       onNextPage={onNextPage}
                       onPreviousPage={onPreviousPage}
-                      onProductAssign={onProductAssign}
-                      onProductUnassign={onProductUnassign}
-                      onRowClick={onProductClick}
+                      onSkillAssign={onSkillAssign}
+                      onSkillUnassign={onSkillUnassign}
+                      onRowClick={onSkillClick}
                       pageInfo={pageInfo}
                       discount={voucher}
                     />

@@ -46,7 +46,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant_costPrice 
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
@@ -58,7 +58,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant_priceOverr
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_product_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
@@ -71,13 +71,13 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product_th
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_product_variants_images {
-  __typename: "ProductImage";
+  __typename: "SkillImage";
   id: string;
   url: string;
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_product_variants {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
@@ -85,7 +85,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product_va
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_product {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   images: (VariantImageAssign_variantImageAssign_productVariant_product_images | null)[] | null;
   name: string;
@@ -94,7 +94,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product {
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   attributes: VariantImageAssign_variantImageAssign_productVariant_attributes[];
   costPrice: VariantImageAssign_variantImageAssign_productVariant_costPrice | null;

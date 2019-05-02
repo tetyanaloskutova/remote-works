@@ -28,7 +28,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface ProductVariantDeleteDialogProps
+export interface SkillVariantDeleteDialogProps
   extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
@@ -37,8 +37,8 @@ export interface ProductVariantDeleteDialogProps
   onConfirm?();
 }
 
-const ProductVariantDeleteDialog = withStyles(styles, {
-  name: "ProductVariantDeleteDialog"
+const SkillVariantDeleteDialog = withStyles(styles, {
+  name: "SkillVariantDeleteDialog"
 })(
   ({
     classes,
@@ -47,7 +47,7 @@ const ProductVariantDeleteDialog = withStyles(styles, {
     open,
     onConfirm,
     onClose
-  }: ProductVariantDeleteDialogProps) => (
+  }: SkillVariantDeleteDialogProps) => (
     <Dialog open={open}>
       <DialogTitle>
         {i18n.t("Delete variant", { context: "title" })}
@@ -78,5 +78,5 @@ const ProductVariantDeleteDialog = withStyles(styles, {
     </Dialog>
   )
 );
-ProductVariantDeleteDialog.displayName = "ProductVariantDeleteDialog";
-export default ProductVariantDeleteDialog;
+SkillVariantDeleteDialog.displayName = "SkillVariantDeleteDialog";
+export default SkillVariantDeleteDialog;

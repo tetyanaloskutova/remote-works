@@ -3,7 +3,7 @@ from django.contrib.postgres.search import (
 
 from ...account.models import User
 from ...order.models import Order
-from ...product.models import Product
+from ...product.models import Skill
 
 
 def search_products(phrase):
@@ -11,7 +11,7 @@ def search_products(phrase):
     sv = (SearchVector('name', weight='A') +
           SearchVector('description', weight='B'))
     rank = SearchRank(sv, SearchQuery(phrase))
-    return Product.objects.annotate(rank=rank).filter(
+    return Skill.objects.annotate(rank=rank).filter(
         rank__gte=0.2).order_by('-rank')
 
 

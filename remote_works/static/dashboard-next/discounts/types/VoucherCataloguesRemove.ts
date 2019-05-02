@@ -26,7 +26,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_minAmou
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges_node_productType {
-  __typename: "ProductType";
+  __typename: "SkillType";
   id: string;
   name: string;
 }
@@ -37,7 +37,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_product
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges_node {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   productType: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges_node_productType;
@@ -46,7 +46,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_product
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges {
-  __typename: "ProductCountableEdge";
+  __typename: "SkillCountableEdge";
   node: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges_node;
 }
 
@@ -59,14 +59,14 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_product
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   edges: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges[];
   totalCount: number | null;
   pageInfo: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_pageInfo;
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -98,7 +98,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collect
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges_node_products {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 

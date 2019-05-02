@@ -84,15 +84,15 @@ export const category: (
     id: "Q2F0ZWdvcnk6Mw=="
   },
   products: {
-    __typename: "ProductCountableConnection",
+    __typename: "SkillCountableConnection",
     edges: [
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjA=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyMQ==",
@@ -103,7 +103,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -111,12 +111,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjE=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyMg==",
@@ -127,7 +127,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -135,12 +135,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjI=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyMw==",
@@ -151,7 +151,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -159,12 +159,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjM=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyNA==",
@@ -175,7 +175,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -183,12 +183,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjQ=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyNQ==",
@@ -199,7 +199,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -207,12 +207,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjU=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyNg==",
@@ -223,7 +223,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -231,12 +231,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjY=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyNw==",
@@ -247,7 +247,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -255,12 +255,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjc=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyOA==",
@@ -271,7 +271,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -279,12 +279,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjg=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDoyOQ==",
@@ -295,7 +295,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -303,12 +303,12 @@ export const category: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjk=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           availability: {
-            __typename: "ProductAvailability",
+            __typename: "SkillAvailability",
             available: true
           },
           id: "UHJvZHVjdDozMA==",
@@ -319,7 +319,7 @@ export const category: (
             currency: "USD"
           },
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },

@@ -21,9 +21,9 @@ import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { AttributeTypeEnum } from "../../../types/globalTypes";
 import {
-  ProductTypeDetails_productType_productAttributes,
-  ProductTypeDetails_productType_variantAttributes
-} from "../../types/ProductTypeDetails";
+  SkillTypeDetails_productType_productAttributes,
+  SkillTypeDetails_productType_variantAttributes
+} from "../../types/SkillTypeDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -41,18 +41,18 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductTypeAttributesProps extends WithStyles<typeof styles> {
+interface SkillTypeAttributesProps extends WithStyles<typeof styles> {
   attributes:
-    | ProductTypeDetails_productType_productAttributes[]
-    | ProductTypeDetails_productType_variantAttributes[];
+    | SkillTypeDetails_productType_productAttributes[]
+    | SkillTypeDetails_productType_variantAttributes[];
   type: AttributeTypeEnum;
   onAttributeAdd: (type: AttributeTypeEnum) => void;
   onAttributeDelete: (id: string, event: React.MouseEvent<any>) => void;
   onAttributeUpdate: (id: string) => void;
 }
 
-const ProductTypeAttributes = withStyles(styles, {
-  name: "ProductTypeAttributes"
+const SkillTypeAttributes = withStyles(styles, {
+  name: "SkillTypeAttributes"
 })(
   ({
     attributes,
@@ -61,12 +61,12 @@ const ProductTypeAttributes = withStyles(styles, {
     onAttributeAdd,
     onAttributeDelete,
     onAttributeUpdate
-  }: ProductTypeAttributesProps) => (
+  }: SkillTypeAttributesProps) => (
     <Card>
       <CardTitle
         title={
           type === AttributeTypeEnum.PRODUCT
-            ? i18n.t("Product Attributes")
+            ? i18n.t("Skill Attributes")
             : i18n.t("Variant Attributes")
         }
         toolbar={
@@ -135,5 +135,5 @@ const ProductTypeAttributes = withStyles(styles, {
     </Card>
   )
 );
-ProductTypeAttributes.displayName = "ProductTypeAttributes";
-export default ProductTypeAttributes;
+SkillTypeAttributes.displayName = "SkillTypeAttributes";
+export default SkillTypeAttributes;

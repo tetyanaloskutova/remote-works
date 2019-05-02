@@ -2,36 +2,36 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: UnassignCollectionProduct
+// GraphQL mutation operation: UnassignCollectionSkill
 // ====================================================
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_errors {
+export interface UnassignCollectionSkill_collectionRemoveSkills_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges_node_productType {
-  __typename: "ProductType";
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges_node {
-  __typename: "Product";
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node {
+  __typename: "Skill";
   id: string;
   isPublished: boolean;
   name: string;
-  productType: UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges_node_productType;
+  productType: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node_productType;
   thumbnailUrl: string | null;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges {
-  __typename: "ProductCountableEdge";
-  node: UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges_node;
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges {
+  __typename: "SkillCountableEdge";
+  node: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection_products_pageInfo {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -39,29 +39,29 @@ export interface UnassignCollectionProduct_collectionRemoveProducts_collection_p
   startCursor: string | null;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection_products {
-  __typename: "ProductCountableConnection";
-  edges: UnassignCollectionProduct_collectionRemoveProducts_collection_products_edges[];
-  pageInfo: UnassignCollectionProduct_collectionRemoveProducts_collection_products_pageInfo;
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products {
+  __typename: "SkillCountableConnection";
+  edges: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges[];
+  pageInfo: UnassignCollectionSkill_collectionRemoveSkills_collection_products_pageInfo;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts_collection {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection {
   __typename: "Collection";
   id: string;
-  products: UnassignCollectionProduct_collectionRemoveProducts_collection_products | null;
+  products: UnassignCollectionSkill_collectionRemoveSkills_collection_products | null;
 }
 
-export interface UnassignCollectionProduct_collectionRemoveProducts {
-  __typename: "CollectionRemoveProducts";
-  errors: UnassignCollectionProduct_collectionRemoveProducts_errors[] | null;
-  collection: UnassignCollectionProduct_collectionRemoveProducts_collection | null;
+export interface UnassignCollectionSkill_collectionRemoveSkills {
+  __typename: "CollectionRemoveSkills";
+  errors: UnassignCollectionSkill_collectionRemoveSkills_errors[] | null;
+  collection: UnassignCollectionSkill_collectionRemoveSkills_collection | null;
 }
 
-export interface UnassignCollectionProduct {
-  collectionRemoveProducts: UnassignCollectionProduct_collectionRemoveProducts | null;
+export interface UnassignCollectionSkill {
+  collectionRemoveSkills: UnassignCollectionSkill_collectionRemoveSkills | null;
 }
 
-export interface UnassignCollectionProductVariables {
+export interface UnassignCollectionSkillVariables {
   collectionId: string;
   productId: string;
   first?: number | null;

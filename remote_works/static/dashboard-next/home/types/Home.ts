@@ -34,7 +34,7 @@ export interface Home_ordersToCapture {
 }
 
 export interface Home_productsOutOfStock {
-  __typename: "ProductCountableConnection";
+  __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
@@ -67,14 +67,14 @@ export interface Home_productTopToday_edges_node_product_thumbnail {
 }
 
 export interface Home_productTopToday_edges_node_product {
-  __typename: "Product";
+  __typename: "Skill";
   id: string;
   name: string;
   thumbnail: Home_productTopToday_edges_node_product_thumbnail | null;
 }
 
 export interface Home_productTopToday_edges_node {
-  __typename: "ProductVariant";
+  __typename: "SkillVariant";
   id: string;
   revenue: Home_productTopToday_edges_node_revenue | null;
   attributes: Home_productTopToday_edges_node_attributes[];
@@ -83,12 +83,12 @@ export interface Home_productTopToday_edges_node {
 }
 
 export interface Home_productTopToday_edges {
-  __typename: "ProductVariantCountableEdge";
+  __typename: "SkillVariantCountableEdge";
   node: Home_productTopToday_edges_node;
 }
 
 export interface Home_productTopToday {
-  __typename: "ProductVariantCountableConnection";
+  __typename: "SkillVariantCountableConnection";
   edges: Home_productTopToday_edges[];
 }
 

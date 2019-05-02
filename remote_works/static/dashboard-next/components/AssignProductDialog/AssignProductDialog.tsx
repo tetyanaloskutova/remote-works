@@ -20,11 +20,11 @@ import Debounce from "../../components/Debounce";
 import Form from "../../components/Form";
 import FormSpacer from "../../components/FormSpacer";
 import TableCellAvatar from "../../components/TableCellAvatar";
-import { SearchProducts_products_edges_node } from "../../containers/SearchProducts/types/SearchProducts";
+import { SearchSkills_products_edges_node } from "../../containers/SearchSkills/types/SearchSkills";
 import i18n from "../../i18n";
 
 export interface FormData {
-  products: SearchProducts_products_edges_node[];
+  products: SearchSkills_products_edges_node[];
   query: string;
 }
 
@@ -45,10 +45,10 @@ const styles = createStyles({
   }
 });
 
-interface AssignProductDialogProps extends WithStyles<typeof styles> {
+interface AssignSkillDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  products: SearchProducts_products_edges_node[];
+  products: SearchSkills_products_edges_node[];
   loading: boolean;
   onClose: () => void;
   onFetch: (value: string) => void;
@@ -59,8 +59,8 @@ const initialForm: FormData = {
   products: [],
   query: ""
 };
-const AssignProductDialog = withStyles(styles, {
-  name: "AssignProductDialog"
+const AssignSkillDialog = withStyles(styles, {
+  name: "AssignSkillDialog"
 })(
   ({
     classes,
@@ -71,7 +71,7 @@ const AssignProductDialog = withStyles(styles, {
     onClose,
     onFetch,
     onSubmit
-  }: AssignProductDialogProps) => (
+  }: AssignSkillDialogProps) => (
     <Dialog
       open={open}
       classes={{ paper: classes.overflow }}
@@ -81,7 +81,7 @@ const AssignProductDialog = withStyles(styles, {
       <Form initial={initialForm} onSubmit={onSubmit}>
         {({ data, change }) => (
           <>
-            <DialogTitle>{i18n.t("Assign Product")}</DialogTitle>
+            <DialogTitle>{i18n.t("Assign Skill")}</DialogTitle>
             <DialogContent className={classes.overflow}>
               <Debounce debounceFn={onFetch}>
                 {fetch => (
@@ -89,7 +89,7 @@ const AssignProductDialog = withStyles(styles, {
                     name="query"
                     value={data.query}
                     onChange={event => change(event, () => fetch(data.query))}
-                    label={i18n.t("Search Products", {
+                    label={i18n.t("Search Skills", {
                       context: "product search input label"
                     })}
                     placeholder={i18n.t(
@@ -112,7 +112,7 @@ const AssignProductDialog = withStyles(styles, {
                   {products &&
                     products.map(product => {
                       const isChecked = !!data.products.find(
-                        selectedProduct => selectedProduct.id === product.id
+                        selectedSkill => selectedSkill.id === product.id
                       );
 
                       return (
@@ -136,8 +136,8 @@ const AssignProductDialog = withStyles(styles, {
                                       target: {
                                         name: "products",
                                         value: data.products.filter(
-                                          selectedProduct =>
-                                            selectedProduct.id !== product.id
+                                          selectedSkill =>
+                                            selectedSkill.id !== product.id
                                         )
                                       }
                                     } as any)
@@ -175,5 +175,5 @@ const AssignProductDialog = withStyles(styles, {
     </Dialog>
   )
 );
-AssignProductDialog.displayName = "AssignProductDialog";
-export default AssignProductDialog;
+AssignSkillDialog.displayName = "AssignSkillDialog";
+export default AssignSkillDialog;

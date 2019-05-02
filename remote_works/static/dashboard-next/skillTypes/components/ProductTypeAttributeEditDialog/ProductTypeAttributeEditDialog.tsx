@@ -19,7 +19,7 @@ export interface FormData {
   }>;
 }
 
-export interface ProductTypeAttributeEditDialogProps {
+export interface SkillTypeAttributeEditDialogProps {
   disabled: boolean;
   errors: Array<{
     field: string;
@@ -36,8 +36,8 @@ export interface ProductTypeAttributeEditDialogProps {
   onConfirm: (data: FormData) => void;
 }
 
-const ProductTypeAttributeEditDialog: React.StatelessComponent<
-  ProductTypeAttributeEditDialogProps
+const SkillTypeAttributeEditDialog: React.StatelessComponent<
+  SkillTypeAttributeEditDialogProps
 > = ({ disabled, errors, name, opened, title, values, onClose, onConfirm }) => {
   const initialForm: FormData = {
     name: name || "",
@@ -95,5 +95,5 @@ const ProductTypeAttributeEditDialog: React.StatelessComponent<
     </Dialog>
   );
 };
-ProductTypeAttributeEditDialog.displayName = "ProductTypeAttributeEditDialog";
-export default ProductTypeAttributeEditDialog;
+SkillTypeAttributeEditDialog.displayName = "SkillTypeAttributeEditDialog";
+export default SkillTypeAttributeEditDialog;

@@ -26,7 +26,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface ProductAvailabilityFormProps extends WithStyles<typeof styles> {
+interface SkillAvailabilityFormProps extends WithStyles<typeof styles> {
   data: {
     available: boolean;
     publicationDate: string;
@@ -36,8 +36,8 @@ interface ProductAvailabilityFormProps extends WithStyles<typeof styles> {
   onChange(event: any);
 }
 
-export const ProductAvailabilityForm = withStyles(styles, {
-  name: "ProductAvailabilityForm"
+export const SkillAvailabilityForm = withStyles(styles, {
+  name: "SkillAvailabilityForm"
 })(
   ({
     classes,
@@ -45,7 +45,7 @@ export const ProductAvailabilityForm = withStyles(styles, {
     errors,
     loading,
     onChange
-  }: ProductAvailabilityFormProps) => (
+  }: SkillAvailabilityFormProps) => (
     <Card>
       <CardTitle title={i18n.t("Availability")} />
       <CardContent>
@@ -87,5 +87,5 @@ export const ProductAvailabilityForm = withStyles(styles, {
     </Card>
   )
 );
-ProductAvailabilityForm.displayName = "ProductAvailabilityForm";
-export default ProductAvailabilityForm;
+SkillAvailabilityForm.displayName = "SkillAvailabilityForm";
+export default SkillAvailabilityForm;

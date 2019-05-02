@@ -101,7 +101,7 @@ const OrderFulfillmentDialog = withStyles(styles, {
                 <TableHead>
                   <TableRow>
                     <TableCell />
-                    <TableCell>{i18n.t("Product name")}</TableCell>
+                    <TableCell>{i18n.t("Skill name")}</TableCell>
                     <TableCell>{i18n.t("SKU")}</TableCell>
                     <TableCell className={classes.textRight}>
                       {i18n.t("Quantity")}

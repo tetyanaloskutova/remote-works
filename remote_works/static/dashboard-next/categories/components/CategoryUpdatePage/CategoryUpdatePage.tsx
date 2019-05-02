@@ -21,7 +21,7 @@ import {
   CategoryDetails_category_products_edges_node
 } from "../../types/CategoryDetails";
 import CategoryBackground from "../CategoryBackground";
-import CategoryProductsCard from "../CategoryProductsCard";
+import CategorySkillsCard from "../CategorySkillsCard";
 
 export interface FormData {
   backgroundImageAlt: string;
@@ -54,8 +54,8 @@ export interface CategoryUpdatePageProps {
   onImageUpload(file: File);
   onNextPage();
   onPreviousPage();
-  onProductClick(id: string): () => void;
-  onAddProduct();
+  onSkillClick(id: string): () => void;
+  onAddSkill();
   onBack();
   onDelete();
   onAddCategory();
@@ -63,7 +63,7 @@ export interface CategoryUpdatePageProps {
 }
 
 const CategoriesTab = Tab(CategoryPageTab.categories);
-const ProductsTab = Tab(CategoryPageTab.products);
+const SkillsTab = Tab(CategoryPageTab.products);
 
 export const CategoryUpdatePage: React.StatelessComponent<
   CategoryUpdatePageProps
@@ -78,13 +78,13 @@ export const CategoryUpdatePage: React.StatelessComponent<
   saveButtonBarState,
   subcategories,
   onAddCategory,
-  onAddProduct,
+  onAddSkill,
   onBack,
   onCategoryClick,
   onDelete,
   onNextPage,
   onPreviousPage,
-  onProductClick,
+  onSkillClick,
   onSubmit,
   onImageDelete,
   onImageUpload
@@ -153,12 +153,12 @@ export const CategoryUpdatePage: React.StatelessComponent<
             >
               {i18n.t("Subcategories")}
             </CategoriesTab>
-            <ProductsTab
+            <SkillsTab
               isActive={currentTab === CategoryPageTab.products}
               changeTab={changeTab}
             >
-              {i18n.t("Products")}
-            </ProductsTab>
+              {i18n.t("Skills")}
+            </SkillsTab>
           </TabContainer>
           <CardSpacer />
           {currentTab === CategoryPageTab.categories && (
@@ -174,15 +174,15 @@ export const CategoryUpdatePage: React.StatelessComponent<
             />
           )}
           {currentTab === CategoryPageTab.products && (
-            <CategoryProductsCard
+            <CategorySkillsCard
               categoryName={maybe(() => category.name)}
               products={products}
               disabled={disabled}
               pageInfo={pageInfo}
               onNextPage={onNextPage}
               onPreviousPage={onPreviousPage}
-              onRowClick={onProductClick}
-              onAdd={onAddProduct}
+              onRowClick={onSkillClick}
+              onAdd={onAddSkill}
             />
           )}
           <SaveButtonBar

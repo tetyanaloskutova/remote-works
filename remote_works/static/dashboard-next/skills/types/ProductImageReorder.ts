@@ -2,40 +2,40 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ProductImageReorder
+// GraphQL mutation operation: SkillImageReorder
 // ====================================================
 
-export interface ProductImageReorder_productImageReorder_errors {
+export interface SkillImageReorder_productImageReorder_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface ProductImageReorder_productImageReorder_product_images {
-  __typename: "ProductImage";
+export interface SkillImageReorder_productImageReorder_product_images {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
   url: string;
 }
 
-export interface ProductImageReorder_productImageReorder_product {
-  __typename: "Product";
+export interface SkillImageReorder_productImageReorder_product {
+  __typename: "Skill";
   id: string;
-  images: (ProductImageReorder_productImageReorder_product_images | null)[] | null;
+  images: (SkillImageReorder_productImageReorder_product_images | null)[] | null;
 }
 
-export interface ProductImageReorder_productImageReorder {
-  __typename: "ProductImageReorder";
-  errors: ProductImageReorder_productImageReorder_errors[] | null;
-  product: ProductImageReorder_productImageReorder_product | null;
+export interface SkillImageReorder_productImageReorder {
+  __typename: "SkillImageReorder";
+  errors: SkillImageReorder_productImageReorder_errors[] | null;
+  product: SkillImageReorder_productImageReorder_product | null;
 }
 
-export interface ProductImageReorder {
-  productImageReorder: ProductImageReorder_productImageReorder | null;
+export interface SkillImageReorder {
+  productImageReorder: SkillImageReorder_productImageReorder | null;
 }
 
-export interface ProductImageReorderVariables {
+export interface SkillImageReorderVariables {
   productId: string;
   imagesIds: (string | null)[];
 }

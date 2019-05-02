@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderCollectionImage from "../../../../images/block1.jpg";
-import * as placeholderProductImage from "../../../../images/placeholder60x60.png";
+import * as placeholderSkillImage from "../../../../images/placeholder60x60.png";
 import CollectionDetailsPage, {
   CollectionDetailsPageProps
 } from "../../../collections/components/CollectionDetailsPage";
@@ -13,7 +13,7 @@ import Decorator from "../../Decorator";
 
 const collection = collectionFixture(
   placeholderCollectionImage,
-  placeholderProductImage
+  placeholderSkillImage
 );
 
 const props: Omit<CollectionDetailsPageProps, "classes"> = {
@@ -25,7 +25,7 @@ const props: Omit<CollectionDetailsPageProps, "classes"> = {
   onCollectionRemove: () => undefined,
   onImageDelete: () => undefined,
   onImageUpload: () => undefined,
-  onProductUnassign: () => undefined,
+  onSkillUnassign: () => undefined,
   onSubmit: () => undefined,
   saveButtonBarState: "default"
 };

@@ -4,7 +4,7 @@ from elasticsearch_dsl import analyzer, token_filter
 from ..account.models import User
 from ..account.utils import get_user_first_name, get_user_last_name
 from ..order.models import Order
-from ..product.models import Product
+from ..product.models import Skill
 
 storefront = Index('storefront')
 storefront.settings(number_of_shards=1, number_of_replicas=0)
@@ -20,14 +20,14 @@ email_analyzer = analyzer('email_analyzer', tokenizer='uax_url_email')
 
 
 @storefront.doc_type
-class ProductDocument(DocType):
+class SkillDocument(DocType):
     title = fields.StringField(analyzer=title_analyzer)
 
     def prepare_title(self, instance):
         return instance.name
 
     class Meta:
-        model = Product
+        model = Skill
         fields = ['name', 'description', 'is_published']
 
 

@@ -9,7 +9,7 @@ export const collections: CollectionList_collections_edges_node[] = [
     isPublished: true,
     name: "Summer collection",
     products: {
-      __typename: "ProductCountableConnection",
+      __typename: "SkillCountableConnection",
       totalCount: 4
     }
   },
@@ -19,14 +19,14 @@ export const collections: CollectionList_collections_edges_node[] = [
     isPublished: true,
     name: "Winter sale",
     products: {
-      __typename: "ProductCountableConnection",
+      __typename: "SkillCountableConnection",
       totalCount: 4
     }
   }
 ];
 export const collection: (
   placeholderCollectionImage: string,
-  placeholderProductImage: string
+  placeholderSkillImage: string
 ) => CollectionDetails_collection = (
   placeholderCollectionImage,
   placeholderImage
@@ -42,18 +42,18 @@ export const collection: (
   isPublished: true,
   name: "Summer collection",
   products: {
-    __typename: "ProductCountableConnection",
+    __typename: "SkillCountableConnection",
     edges: [
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjA=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDoxNw==",
           isPublished: true,
           name: "Murray Inc",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mg==",
             name: "Mugs"
           },
@@ -61,15 +61,15 @@ export const collection: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjE=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDoyNw==",
           isPublished: true,
           name: "Williams-Taylor",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -77,15 +77,15 @@ export const collection: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjI=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDoyOQ==",
           isPublished: true,
           name: "Hebert-Sherman",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
           },
@@ -93,15 +93,15 @@ export const collection: (
         }
       },
       {
-        __typename: "ProductCountableEdge",
+        __typename: "SkillCountableEdge",
         cursor: "YXJyYXljb25uZWN0aW9uOjM=",
         node: {
-          __typename: "Product",
+          __typename: "Skill",
           id: "UHJvZHVjdDo1Mw==",
           isPublished: true,
           name: "Estes, Johnson and Graham",
           productType: {
-            __typename: "ProductType",
+            __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Ng==",
             name: "Books"
           },

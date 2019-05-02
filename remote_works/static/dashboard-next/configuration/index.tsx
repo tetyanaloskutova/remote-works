@@ -24,7 +24,7 @@ export const configurationMenu: MenuItem[] = [
     description: i18n.t("Define types of products you sell"),
     icon: <Folder fontSize="inherit" />,
     permission: PermissionEnum.MANAGE_PRODUCTS,
-    title: i18n.t("Product Types"),
+    title: i18n.t("Skill Types"),
     url: productTypeListUrl
   },
   {

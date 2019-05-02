@@ -1,2 +1,2 @@
-export { default } from "./ProductAvailabilityForm";
-export * from "./ProductAvailabilityForm";
+export { default } from "./SkillAvailabilityForm";
+export * from "./SkillAvailabilityForm";

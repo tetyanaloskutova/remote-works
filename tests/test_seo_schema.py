@@ -17,7 +17,7 @@ def test_get_organization(site_settings):
 
 
 def test_get_product_data_without_image(order_with_lines):
-    """Tested OrderLine Product has no image assigned."""
+    """Tested OrderLine Skill has no image assigned."""
     line = order_with_lines.lines.first()
     organization = get_organization()
     result = get_product_data(line, organization)

@@ -4,185 +4,185 @@
 import { AttributeValueInput } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: ProductUpdate
+// GraphQL mutation operation: SkillUpdate
 // ====================================================
 
-export interface ProductUpdate_productUpdate_errors {
+export interface SkillUpdate_productUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface ProductUpdate_productUpdate_product_category {
+export interface SkillUpdate_productUpdate_product_category {
   __typename: "Category";
   id: string;
   name: string;
 }
 
-export interface ProductUpdate_productUpdate_product_collections {
+export interface SkillUpdate_productUpdate_product_collections {
   __typename: "Collection";
   id: string;
   name: string;
 }
 
-export interface ProductUpdate_productUpdate_product_price {
+export interface SkillUpdate_productUpdate_product_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_margin {
+export interface SkillUpdate_productUpdate_product_margin {
   __typename: "Margin";
   start: number | null;
   stop: number | null;
 }
 
-export interface ProductUpdate_productUpdate_product_purchaseCost_start {
+export interface SkillUpdate_productUpdate_product_purchaseCost_start {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_purchaseCost_stop {
+export interface SkillUpdate_productUpdate_product_purchaseCost_stop {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_purchaseCost {
+export interface SkillUpdate_productUpdate_product_purchaseCost {
   __typename: "MoneyRange";
-  start: ProductUpdate_productUpdate_product_purchaseCost_start | null;
-  stop: ProductUpdate_productUpdate_product_purchaseCost_stop | null;
+  start: SkillUpdate_productUpdate_product_purchaseCost_start | null;
+  stop: SkillUpdate_productUpdate_product_purchaseCost_stop | null;
 }
 
-export interface ProductUpdate_productUpdate_product_attributes_attribute_values {
+export interface SkillUpdate_productUpdate_product_attributes_attribute_values {
   __typename: "AttributeValue";
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductUpdate_productUpdate_product_attributes_attribute {
+export interface SkillUpdate_productUpdate_product_attributes_attribute {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (ProductUpdate_productUpdate_product_attributes_attribute_values | null)[] | null;
+  values: (SkillUpdate_productUpdate_product_attributes_attribute_values | null)[] | null;
 }
 
-export interface ProductUpdate_productUpdate_product_attributes_value {
+export interface SkillUpdate_productUpdate_product_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface ProductUpdate_productUpdate_product_attributes {
+export interface SkillUpdate_productUpdate_product_attributes {
   __typename: "SelectedAttribute";
-  attribute: ProductUpdate_productUpdate_product_attributes_attribute;
-  value: ProductUpdate_productUpdate_product_attributes_value;
+  attribute: SkillUpdate_productUpdate_product_attributes_attribute;
+  value: SkillUpdate_productUpdate_product_attributes_value;
 }
 
-export interface ProductUpdate_productUpdate_product_availability_priceRange_start_net {
+export interface SkillUpdate_productUpdate_product_availability_priceRange_start_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_availability_priceRange_start {
+export interface SkillUpdate_productUpdate_product_availability_priceRange_start {
   __typename: "TaxedMoney";
-  net: ProductUpdate_productUpdate_product_availability_priceRange_start_net;
+  net: SkillUpdate_productUpdate_product_availability_priceRange_start_net;
 }
 
-export interface ProductUpdate_productUpdate_product_availability_priceRange_stop_net {
+export interface SkillUpdate_productUpdate_product_availability_priceRange_stop_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_availability_priceRange_stop {
+export interface SkillUpdate_productUpdate_product_availability_priceRange_stop {
   __typename: "TaxedMoney";
-  net: ProductUpdate_productUpdate_product_availability_priceRange_stop_net;
+  net: SkillUpdate_productUpdate_product_availability_priceRange_stop_net;
 }
 
-export interface ProductUpdate_productUpdate_product_availability_priceRange {
+export interface SkillUpdate_productUpdate_product_availability_priceRange {
   __typename: "TaxedMoneyRange";
-  start: ProductUpdate_productUpdate_product_availability_priceRange_start | null;
-  stop: ProductUpdate_productUpdate_product_availability_priceRange_stop | null;
+  start: SkillUpdate_productUpdate_product_availability_priceRange_start | null;
+  stop: SkillUpdate_productUpdate_product_availability_priceRange_stop | null;
 }
 
-export interface ProductUpdate_productUpdate_product_availability {
-  __typename: "ProductAvailability";
+export interface SkillUpdate_productUpdate_product_availability {
+  __typename: "SkillAvailability";
   available: boolean | null;
-  priceRange: ProductUpdate_productUpdate_product_availability_priceRange | null;
+  priceRange: SkillUpdate_productUpdate_product_availability_priceRange | null;
 }
 
-export interface ProductUpdate_productUpdate_product_images {
-  __typename: "ProductImage";
+export interface SkillUpdate_productUpdate_product_images {
+  __typename: "SkillImage";
   id: string;
   alt: string;
   sortOrder: number;
   url: string;
 }
 
-export interface ProductUpdate_productUpdate_product_variants_priceOverride {
+export interface SkillUpdate_productUpdate_product_variants_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface ProductUpdate_productUpdate_product_variants {
-  __typename: "ProductVariant";
+export interface SkillUpdate_productUpdate_product_variants {
+  __typename: "SkillVariant";
   id: string;
   sku: string;
   name: string;
-  priceOverride: ProductUpdate_productUpdate_product_variants_priceOverride | null;
+  priceOverride: SkillUpdate_productUpdate_product_variants_priceOverride | null;
   margin: number | null;
   quantity: number;
   quantityAllocated: number;
   stockQuantity: number;
 }
 
-export interface ProductUpdate_productUpdate_product_productType {
-  __typename: "ProductType";
+export interface SkillUpdate_productUpdate_product_productType {
+  __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
 }
 
-export interface ProductUpdate_productUpdate_product {
-  __typename: "Product";
+export interface SkillUpdate_productUpdate_product {
+  __typename: "Skill";
   id: string;
   name: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
-  category: ProductUpdate_productUpdate_product_category;
-  collections: (ProductUpdate_productUpdate_product_collections | null)[] | null;
-  price: ProductUpdate_productUpdate_product_price | null;
-  margin: ProductUpdate_productUpdate_product_margin | null;
-  purchaseCost: ProductUpdate_productUpdate_product_purchaseCost | null;
+  category: SkillUpdate_productUpdate_product_category;
+  collections: (SkillUpdate_productUpdate_product_collections | null)[] | null;
+  price: SkillUpdate_productUpdate_product_price | null;
+  margin: SkillUpdate_productUpdate_product_margin | null;
+  purchaseCost: SkillUpdate_productUpdate_product_purchaseCost | null;
   isPublished: boolean;
   chargeTaxes: boolean;
   publicationDate: any | null;
-  attributes: ProductUpdate_productUpdate_product_attributes[];
-  availability: ProductUpdate_productUpdate_product_availability | null;
-  images: (ProductUpdate_productUpdate_product_images | null)[] | null;
-  variants: (ProductUpdate_productUpdate_product_variants | null)[] | null;
-  productType: ProductUpdate_productUpdate_product_productType;
+  attributes: SkillUpdate_productUpdate_product_attributes[];
+  availability: SkillUpdate_productUpdate_product_availability | null;
+  images: (SkillUpdate_productUpdate_product_images | null)[] | null;
+  variants: (SkillUpdate_productUpdate_product_variants | null)[] | null;
+  productType: SkillUpdate_productUpdate_product_productType;
   url: string;
 }
 
-export interface ProductUpdate_productUpdate {
-  __typename: "ProductUpdate";
-  errors: ProductUpdate_productUpdate_errors[] | null;
-  product: ProductUpdate_productUpdate_product | null;
+export interface SkillUpdate_productUpdate {
+  __typename: "SkillUpdate";
+  errors: SkillUpdate_productUpdate_errors[] | null;
+  product: SkillUpdate_productUpdate_product | null;
 }
 
-export interface ProductUpdate {
-  productUpdate: ProductUpdate_productUpdate | null;
+export interface SkillUpdate {
+  productUpdate: SkillUpdate_productUpdate | null;
 }
 
-export interface ProductUpdateVariables {
+export interface SkillUpdateVariables {
   id: string;
   attributes?: (AttributeValueInput | null)[] | null;
   publicationDate?: any | null;

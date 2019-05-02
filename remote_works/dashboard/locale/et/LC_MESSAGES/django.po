@@ -145,8 +145,8 @@ msgstr[0] "Leitud %(counter)dsobiv kollektsioon"
 msgstr[1] "Leitud %(counter)d sobivat kollektsiooni"
 
 #: saleor/dashboard/collection/forms.py:18
-msgctxt "Products selection"
-msgid "Products"
+msgctxt "Skills selection"
+msgid "Skills"
 msgstr "Tooted"
 
 #: saleor/dashboard/collection/forms.py:27
@@ -588,8 +588,8 @@ msgstr ""
 "üksuselt "
 
 #: saleor/dashboard/discount/forms.py:170
-msgctxt "Product"
-msgid "Products"
+msgctxt "Skill"
+msgid "Skills"
 msgstr "Tooted"
 
 #: saleor/dashboard/discount/forms.py:184
@@ -1278,52 +1278,52 @@ msgid "Unpublish"
 msgstr "Kustuta"
 
 #: saleor/dashboard/product/filters.py:12
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "name"
 msgstr "nimi"
 
 #: saleor/dashboard/product/filters.py:13
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "price"
 msgstr "hind"
 
 #: saleor/dashboard/product/filters.py:16
-msgctxt "Product attribute list sorting option"
+msgctxt "Skill attribute list sorting option"
 msgid "name"
 msgstr "nimi"
 
 #: saleor/dashboard/product/filters.py:19
-msgctxt "Product type list sorting option"
+msgctxt "Skill type list sorting option"
 msgid "name"
 msgstr "nimi"
 
 #: saleor/dashboard/product/filters.py:28
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Name"
 msgstr "Nimi"
 
 #: saleor/dashboard/product/filters.py:31
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Category"
 msgstr "Kategooria"
 
 #: saleor/dashboard/product/filters.py:35
-msgctxt "Product list filter label"
-msgid "Product type"
+msgctxt "Skill list filter label"
+msgid "Skill type"
 msgstr "Toote tüüp"
 
 #: saleor/dashboard/product/filters.py:39
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Price"
 msgstr "Hind"
 
 #: saleor/dashboard/product/filters.py:43
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Is published"
 msgstr "On avaldatud"
 
 #: saleor/dashboard/product/filters.py:48
-msgctxt "Product list filter label"
+msgctxt "Skill list filter label"
 msgid "Sort by"
 msgstr "Sorteeri"
 
@@ -1354,22 +1354,22 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: saleor/dashboard/product/filters.py:89
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Name"
 msgstr "Nimi"
 
 #: saleor/dashboard/product/filters.py:92
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Sort by"
 msgstr "Sorteeri"
 
 #: saleor/dashboard/product/filters.py:97
-msgctxt "Product type list filter label"
-msgid "Product attributes"
+msgctxt "Skill type list filter label"
+msgid "Skill attributes"
 msgstr "Toote omadused"
 
 #: saleor/dashboard/product/filters.py:102
-msgctxt "Product type list filter label"
+msgctxt "Skill type list filter label"
 msgid "Variant attributes"
 msgstr "Variandi omadused"
 
@@ -1387,22 +1387,22 @@ msgid "Select text to enable text-formatting tools."
 msgstr "Teksti vormindamistööriistade kasutamiseks valige tekst."
 
 #: saleor/dashboard/product/forms.py:56
-msgctxt "Product type form label"
-msgid "Product type"
+msgctxt "Skill type form label"
+msgid "Skill type"
 msgstr "Toote tüüp"
 
 #: saleor/dashboard/product/forms.py:73
-msgctxt "Product type tax rate type"
+msgctxt "Skill type tax rate type"
 msgid "Tax rate"
 msgstr "Maksumäär"
 
 #: saleor/dashboard/product/forms.py:75 saleor/dashboard/product/forms.py:237
-msgctxt "ProductType weight"
+msgctxt "SkillType weight"
 msgid "Weight"
 msgstr "Kaal"
 
 #: saleor/dashboard/product/forms.py:78
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Default weight that will be used for calculating shipping price for products"
 " of that type."
@@ -1411,12 +1411,12 @@ msgstr ""
 "tüüpi toodetel."
 
 #: saleor/dashboard/product/forms.py:83
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes common to all variants."
 msgstr "Kõikidele variantidele iseloomulikud omadused"
 
 #: saleor/dashboard/product/forms.py:88
-msgctxt "Product type attributes"
+msgctxt "Skill type attributes"
 msgid "Attributes specific to each variant."
 msgstr "Spetsiifilised omadused igale variandile."
 
@@ -1431,22 +1431,22 @@ msgid "Require shipping"
 msgstr ""
 
 #: saleor/dashboard/product/forms.py:137
-msgctxt "Product type form error"
-msgid "Product variants are disabled."
+msgctxt "Skill type form error"
+msgid "Skill variants are disabled."
 msgstr "Toote variandid on blokeeritud."
 
 #: saleor/dashboard/product/forms.py:142
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "A single attribute can't belong to both a product and its variant."
 msgstr "Üks omadus ei saa kuuluda nii toote kui ka selle variandi hulka."
 
 #: saleor/dashboard/product/forms.py:164
-msgctxt "Product type form error"
+msgctxt "Skill type form error"
 msgid "Some products of this type have more than one variant."
 msgstr "Mõnel seda tüüpi tootel on rohkem kui üks variant."
 
 #: saleor/dashboard/product/forms.py:226
-msgctxt "Product tax rate type"
+msgctxt "Skill tax rate type"
 msgid "Tax rate"
 msgstr "Maksumäär"
 
@@ -1461,10 +1461,10 @@ msgid "Collections"
 msgstr "Kogud"
 
 #: saleor/dashboard/product/forms.py:240
-msgctxt "Product weight field help text"
+msgctxt "Skill weight field help text"
 msgid ""
 "Weight will be used to calculate shipping price, if empty, equal to default "
-"value used on the ProductType."
+"value used on the SkillType."
 msgstr ""
 "Kaalu kasutatakse saatmise hinna arvutamiseks, kui tühi, on see võrdne "
 "TooteTüüpi vaikimisi väärtusega"
@@ -1481,7 +1481,7 @@ msgid "Publish product on"
 msgstr "Avalda toode"
 
 #: saleor/dashboard/product/forms.py:254
-msgctxt "Product published toggle"
+msgctxt "Skill published toggle"
 msgid "Published"
 msgstr "Avaldatud"
 
@@ -1501,15 +1501,15 @@ msgid "Net price"
 msgstr "Netohind"
 
 #: saleor/dashboard/product/forms.py:307
-msgctxt "ProductVariant weight"
+msgctxt "SkillVariant weight"
 msgid "Weight"
 msgstr "Kaal"
 
 #: saleor/dashboard/product/forms.py:310
-msgctxt "ProductVariant weight help text"
+msgctxt "SkillVariant weight help text"
 msgid ""
 "Weight will be used to calculate shipping price. If empty, weight from "
-"Product or ProductType will be used."
+"Skill or SkillType will be used."
 msgstr ""
 "Kaalu kasutatakse saatmise tasu arvutamiseks. Tühjaks jäetuna kasutatakse "
 "Toote või TooteTüübi kaalu."
@@ -1565,17 +1565,17 @@ msgid "Cost net price"
 msgstr ""
 
 #: saleor/dashboard/product/forms.py:404 saleor/dashboard/product/forms.py:509
-msgctxt "Product image"
+msgctxt "Skill image"
 msgid "Image"
 msgstr ""
 
 #: saleor/dashboard/product/forms.py:445
-msgctxt "Product display name"
+msgctxt "Skill display name"
 msgid "Display name"
 msgstr ""
 
 #: saleor/dashboard/product/forms.py:447
-msgctxt "Product internal name"
+msgctxt "Skill internal name"
 msgid "Internal name"
 msgstr ""
 
@@ -1721,7 +1721,7 @@ msgid "Country"
 msgstr ""
 
 #: saleor/dashboard/shipping/filters.py:27
-msgctxt "Product list sorting filter label"
+msgctxt "Skill list sorting filter label"
 msgid "Sort by"
 msgstr "Sorteeri"
 
@@ -1996,7 +1996,7 @@ msgid "Removed staff member %s"
 msgstr ""
 
 #: saleor/dashboard/taxes/filters.py:11
-msgctxt "Product list sorting option"
+msgctxt "Skill list sorting option"
 msgid "country_code"
 msgstr ""
 

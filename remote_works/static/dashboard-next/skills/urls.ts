@@ -1,6 +1,6 @@
 import { stringify as stringifyQs } from "qs";
 import * as urlJoin from "url-join";
-import { ProductListQueryParams } from "./views/ProductList";
+import { SkillListQueryParams } from "./views/SkillList";
 
 const productSection = "/products/";
 
@@ -8,7 +8,7 @@ export const productAddPath = urlJoin(productSection, "add");
 export const productAddUrl = productAddPath;
 
 export const productListPath = productSection;
-export const productListUrl = (params?: ProductListQueryParams): string => {
+export const productListUrl = (params?: SkillListQueryParams): string => {
   if (params === undefined) {
     return productListPath;
   } else {

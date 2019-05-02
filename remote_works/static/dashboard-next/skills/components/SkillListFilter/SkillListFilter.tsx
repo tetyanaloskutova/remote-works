@@ -8,25 +8,25 @@ import {
 } from "../../../components/TableFilter";
 import i18n from "../../../i18n";
 
-export type ProductListFilterTabs =
+export type SkillListFilterTabs =
   | "all"
   | "available"
   | "outOfStock"
   | "custom";
 
-interface ProductListFilterProps {
-  currentTab: ProductListFilterTabs;
+interface SkillListFilterProps {
+  currentTab: SkillListFilterTabs;
   filtersList: Filter[];
-  onAllProducts: () => void;
+  onAllSkills: () => void;
   onAvailable: () => void;
   onOfStock: () => void;
   onCustomFilter: () => void;
 }
 
-const ProductListFilter: React.StatelessComponent<ProductListFilterProps> = ({
+const SkillListFilter: React.StatelessComponent<SkillListFilterProps> = ({
   filtersList,
   currentTab,
-  onAllProducts,
+  onAllSkills,
   onAvailable,
   onOfStock,
   onCustomFilter
@@ -37,7 +37,7 @@ const ProductListFilter: React.StatelessComponent<ProductListFilterProps> = ({
         currentTab
       )}
     >
-      <FilterTab label={i18n.t("All Products")} onClick={onAllProducts} />
+      <FilterTab label={i18n.t("All Skills")} onClick={onAllSkills} />
       <FilterTab label={i18n.t("Available")} onClick={onAvailable} />
       <FilterTab label={i18n.t("Out Of Stock")} onClick={onOfStock} />
       {currentTab === "custom" && filtersList && filtersList.length > 0 && (
@@ -53,5 +53,5 @@ const ProductListFilter: React.StatelessComponent<ProductListFilterProps> = ({
     )}
   </>
 );
-ProductListFilter.displayName = "ProductListFilter";
-export default ProductListFilter;
+SkillListFilter.displayName = "SkillListFilter";
+export default SkillListFilter;

@@ -15,20 +15,20 @@ import {
   AttributeUpdateVariables
 } from "./types/AttributeUpdate";
 import {
-  ProductTypeCreate,
-  ProductTypeCreateVariables
-} from "./types/ProductTypeCreate";
+  SkillTypeCreate,
+  SkillTypeCreateVariables
+} from "./types/SkillTypeCreate";
 import {
-  ProductTypeDelete,
-  ProductTypeDeleteVariables
-} from "./types/ProductTypeDelete";
+  SkillTypeDelete,
+  SkillTypeDeleteVariables
+} from "./types/SkillTypeDelete";
 import {
-  ProductTypeUpdate,
-  ProductTypeUpdateVariables
-} from "./types/ProductTypeUpdate";
+  SkillTypeUpdate,
+  SkillTypeUpdateVariables
+} from "./types/SkillTypeUpdate";
 
 export const productTypeDeleteMutation = gql`
-  mutation ProductTypeDelete($id: ID!) {
+  mutation SkillTypeDelete($id: ID!) {
     productTypeDelete(id: $id) {
       errors {
         field
@@ -40,47 +40,47 @@ export const productTypeDeleteMutation = gql`
     }
   }
 `;
-export const TypedProductTypeDeleteMutation = TypedMutation<
-  ProductTypeDelete,
-  ProductTypeDeleteVariables
+export const TypedSkillTypeDeleteMutation = TypedMutation<
+  SkillTypeDelete,
+  SkillTypeDeleteVariables
 >(productTypeDeleteMutation);
 
 export const productTypeUpdateMutation = gql`
   ${productTypeDetailsFragment}
-  mutation ProductTypeUpdate($id: ID!, $input: ProductTypeInput!) {
+  mutation SkillTypeUpdate($id: ID!, $input: SkillTypeInput!) {
     productTypeUpdate(id: $id, input: $input) {
       errors {
         field
         message
       }
       productType {
-        ...ProductTypeDetailsFragment
+        ...SkillTypeDetailsFragment
       }
     }
   }
 `;
-export const TypedProductTypeUpdateMutation = TypedMutation<
-  ProductTypeUpdate,
-  ProductTypeUpdateVariables
+export const TypedSkillTypeUpdateMutation = TypedMutation<
+  SkillTypeUpdate,
+  SkillTypeUpdateVariables
 >(productTypeUpdateMutation);
 
 export const productTypeCreateMutation = gql`
   ${productTypeDetailsFragment}
-  mutation ProductTypeCreate($input: ProductTypeInput!) {
+  mutation SkillTypeCreate($input: SkillTypeInput!) {
     productTypeCreate(input: $input) {
       errors {
         field
         message
       }
       productType {
-        ...ProductTypeDetailsFragment
+        ...SkillTypeDetailsFragment
       }
     }
   }
 `;
-export const TypedProductTypeCreateMutation = TypedMutation<
-  ProductTypeCreate,
-  ProductTypeCreateVariables
+export const TypedSkillTypeCreateMutation = TypedMutation<
+  SkillTypeCreate,
+  SkillTypeCreateVariables
 >(productTypeCreateMutation);
 
 export const attributeCreateMutation = gql`
@@ -96,7 +96,7 @@ export const attributeCreateMutation = gql`
         message
       }
       productType {
-        ...ProductTypeDetailsFragment
+        ...SkillTypeDetailsFragment
       }
     }
   }
@@ -134,7 +134,7 @@ export const attributeDeleteMutation = gql`
         message
       }
       productType {
-        ...ProductTypeDetailsFragment
+        ...SkillTypeDetailsFragment
       }
     }
   }

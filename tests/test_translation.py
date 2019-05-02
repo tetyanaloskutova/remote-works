@@ -2,13 +2,13 @@ import pytest
 
 from remote_works.product.models import (
     AttributeTranslation, AttributeValueTranslation, CategoryTranslation,
-    CollectionTranslation, ProductTranslation, ProductVariantTranslation)
+    CollectionTranslation, SkillTranslation, SkillVariantTranslation)
 from remote_works.shipping.models import ShippingMethodTranslation
 
 
 @pytest.fixture
 def product_translation_pl(product):
-    return ProductTranslation.objects.create(
+    return SkillTranslation.objects.create(
         language_code='pl', product=product, name='Polish name',
         description="Polish description")
 
@@ -92,7 +92,7 @@ def test_category_translation(settings, category):
 def test_product_variant_translation(settings, variant):
     settings.LANGUAGE_CODE = 'fr'
     french_name = 'French name'
-    ProductVariantTranslation.objects.create(
+    SkillVariantTranslation.objects.create(
         language_code='fr', name=french_name, product_variant=variant)
     assert variant.translated.name == french_name
 

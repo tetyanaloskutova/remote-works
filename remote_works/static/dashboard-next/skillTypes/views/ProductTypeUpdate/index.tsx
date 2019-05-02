@@ -9,21 +9,21 @@ import { WindowTitle } from "../../../components/WindowTitle";
 import i18n from "../../../i18n";
 import { getMutationState, maybe } from "../../../misc";
 import { AttributeTypeEnum } from "../../../types/globalTypes";
-import ProductTypeAttributeEditDialog, {
+import SkillTypeAttributeEditDialog, {
   FormData as AttributeForm
-} from "../../components/ProductTypeAttributeEditDialog";
-import ProductTypeDetailsPage, {
-  ProductTypeForm
-} from "../../components/ProductTypeDetailsPage";
-import ProductTypeOperations from "../../containers/ProductTypeOperations";
-import { TypedProductTypeDetailsQuery } from "../../queries";
+} from "../../components/SkillTypeAttributeEditDialog";
+import SkillTypeDetailsPage, {
+  SkillTypeForm
+} from "../../components/SkillTypeDetailsPage";
+import SkillTypeOperations from "../../containers/SkillTypeOperations";
+import { TypedSkillTypeDetailsQuery } from "../../queries";
 import { AttributeCreate } from "../../types/AttributeCreate";
 import { AttributeDelete } from "../../types/AttributeDelete";
 import { AttributeUpdate } from "../../types/AttributeUpdate";
-import { ProductTypeDelete } from "../../types/ProductTypeDelete";
-import { ProductTypeUpdate as ProductTypeUpdateMutation } from "../../types/ProductTypeUpdate";
+import { SkillTypeDelete } from "../../types/SkillTypeDelete";
+import { SkillTypeUpdate as SkillTypeUpdateMutation } from "../../types/SkillTypeUpdate";
 import { productTypeListUrl, productTypeUrl } from "../../urls";
-import { ProductTypeUpdateErrors } from "./errors";
+import { SkillTypeUpdateErrors } from "./errors";
 import {
   addAttributePath,
   addAttributeUrl,
@@ -33,20 +33,20 @@ import {
   productTypeRemoveUrl
 } from "./urls";
 
-interface ProductTypeUpdateProps {
+interface SkillTypeUpdateProps {
   id: string;
 }
 
-export const ProductTypeUpdate: React.StatelessComponent<
-  ProductTypeUpdateProps
+export const SkillTypeUpdate: React.StatelessComponent<
+  SkillTypeUpdateProps
 > = ({ id }) => (
   <Messages>
     {pushMessage => (
       <Navigator>
         {navigate => (
-          <ProductTypeUpdateErrors>
+          <SkillTypeUpdateErrors>
             {({ errors, set: setErrors }) => (
-              <TypedProductTypeDetailsQuery
+              <TypedSkillTypeDetailsQuery
                 displayLoader
                 variables={{ id }}
                 require={["productType"]}
@@ -104,27 +104,27 @@ export const ProductTypeUpdate: React.StatelessComponent<
                       );
                     }
                   };
-                  const handleProductTypeDeleteSuccess = (
-                    deleteData: ProductTypeDelete
+                  const handleSkillTypeDeleteSuccess = (
+                    deleteData: SkillTypeDelete
                   ) => {
                     if (deleteData.productTypeDelete.errors.length === 0) {
                       pushMessage({
-                        text: i18n.t("Product type deleted", {
+                        text: i18n.t("Skill type deleted", {
                           context: "notification"
                         })
                       });
                       navigate(productTypeListUrl);
                     }
                   };
-                  const handleProductTypeUpdateSuccess = (
-                    updateData: ProductTypeUpdateMutation
+                  const handleSkillTypeUpdateSuccess = (
+                    updateData: SkillTypeUpdateMutation
                   ) => {
                     if (
                       !updateData.productTypeUpdate.errors ||
                       updateData.productTypeUpdate.errors.length === 0
                     ) {
                       pushMessage({
-                        text: i18n.t("Product type updated", {
+                        text: i18n.t("Skill type updated", {
                           context: "notification"
                         })
                       });
@@ -137,26 +137,26 @@ export const ProductTypeUpdate: React.StatelessComponent<
                   };
 
                   return (
-                    <ProductTypeOperations
+                    <SkillTypeOperations
                       onAttributeCreate={handleAttributeCreateSuccess}
                       onAttributeDelete={handleAttributeDeleteSuccess}
                       onAttributeUpdate={handleAttributeUpdateSuccess}
-                      onProductTypeDelete={handleProductTypeDeleteSuccess}
-                      onProductTypeUpdate={handleProductTypeUpdateSuccess}
+                      onSkillTypeDelete={handleSkillTypeDeleteSuccess}
+                      onSkillTypeUpdate={handleSkillTypeUpdateSuccess}
                     >
                       {({
                         attributeCreate,
                         deleteAttribute,
-                        deleteProductType,
+                        deleteSkillType,
                         updateAttribute,
-                        updateProductType
+                        updateSkillType
                       }) => {
-                        const handleProductTypeDelete = () =>
-                          deleteProductType.mutate({ id });
-                        const handleProductTypeUpdate = (
-                          formData: ProductTypeForm
+                        const handleSkillTypeDelete = () =>
+                          deleteSkillType.mutate({ id });
+                        const handleSkillTypeUpdate = (
+                          formData: SkillTypeForm
                         ) => {
-                          updateProductType.mutate({
+                          updateSkillType.mutate({
                             id,
                             input: {
                               hasVariants: formData.hasVariants,
@@ -227,13 +227,13 @@ export const ProductTypeUpdate: React.StatelessComponent<
                           });
                         };
                         const loading =
-                          updateProductType.opts.loading || dataLoading;
+                          updateSkillType.opts.loading || dataLoading;
                         const deleteTransactionState = getMutationState(
-                          deleteProductType.opts.called,
-                          deleteProductType.opts.loading,
+                          deleteSkillType.opts.called,
+                          deleteSkillType.opts.loading,
                           maybe(
                             () =>
-                              deleteProductType.opts.data.productTypeDelete
+                              deleteSkillType.opts.data.productTypeDelete
                                 .errors
                           )
                         );
@@ -242,7 +242,7 @@ export const ProductTypeUpdate: React.StatelessComponent<
                             <WindowTitle
                               title={maybe(() => data.productType.name)}
                             />
-                            <ProductTypeDetailsPage
+                            <SkillTypeDetailsPage
                               defaultWeightUnit={maybe(
                                 () => data.shop.defaultWeightUnit
                               )}
@@ -271,7 +271,7 @@ export const ProductTypeUpdate: React.StatelessComponent<
                               onDelete={() =>
                                 navigate(productTypeRemoveUrl(id))
                               }
-                              onSubmit={handleProductTypeUpdate}
+                              onSubmit={handleSkillTypeUpdate}
                             />
                             {!dataLoading && (
                               <>
@@ -285,7 +285,7 @@ export const ProductTypeUpdate: React.StatelessComponent<
                                     key={key}
                                   >
                                     {({ match }) => (
-                                      <ProductTypeAttributeEditDialog
+                                      <SkillTypeAttributeEditDialog
                                         disabled={attributeCreate.opts.loading}
                                         errors={errors.addAttributeErrors}
                                         name=""
@@ -328,7 +328,7 @@ export const ProductTypeUpdate: React.StatelessComponent<
                                           )[0]
                                     );
                                     return (
-                                      <ProductTypeAttributeEditDialog
+                                      <SkillTypeAttributeEditDialog
                                         disabled={updateAttribute.opts.loading}
                                         errors={errors.editAttributeErrors}
                                         name={maybe(() => attribute.name)}
@@ -364,7 +364,7 @@ export const ProductTypeUpdate: React.StatelessComponent<
                                       onClose={() =>
                                         navigate(productTypeUrl(id))
                                       }
-                                      onConfirm={handleProductTypeDelete}
+                                      onConfirm={handleSkillTypeDelete}
                                       title={i18n.t("Remove product type")}
                                       variant="delete"
                                     >
@@ -388,15 +388,15 @@ export const ProductTypeUpdate: React.StatelessComponent<
                           </>
                         );
                       }}
-                    </ProductTypeOperations>
+                    </SkillTypeOperations>
                   );
                 }}
-              </TypedProductTypeDetailsQuery>
+              </TypedSkillTypeDetailsQuery>
             )}
-          </ProductTypeUpdateErrors>
+          </SkillTypeUpdateErrors>
         )}
       </Navigator>
     )}
   </Messages>
 );
-export default ProductTypeUpdate;
+export default SkillTypeUpdate;

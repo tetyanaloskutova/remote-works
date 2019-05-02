@@ -97,7 +97,7 @@ def test_create_collection(
         mock_create_thumbnails)
 
     product_ids = [
-        to_global_id('Product', product.pk) for product in product_list]
+        to_global_id('Skill', product.pk) for product in product_list]
     image_file, image_name = create_image()
     image_alt = 'Alt text for an image.'
     name = 'test-name'
@@ -325,9 +325,9 @@ def test_add_products_to_collection(
         staff_api_client, collection, product_list,
         permission_manage_products):
     query = """
-        mutation collectionAddProducts(
+        mutation collectionAddSkills(
             $id: ID!, $skills: [ID]!) {
-            collectionAddProducts(collectionId: $id, skills: $skills) {
+            collectionAddSkills(collectionId: $id, skills: $skills) {
                 collection {
                     skills {
                         totalCount
@@ -338,13 +338,13 @@ def test_add_products_to_collection(
     """
     collection_id = to_global_id('Collection', collection.id)
     product_ids = [
-        to_global_id('Product', product.pk) for product in product_list]
+        to_global_id('Skill', product.pk) for product in product_list]
     no_products_before = collection.products.count()
     variables = {'id': collection_id, 'skills': product_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
-    data = content['data']['collectionAddProducts']['collection']
+    data = content['data']['collectionAddSkills']['collection']
     assert data[
         'skills']['totalCount'] == no_products_before + len(product_ids)
 
@@ -353,9 +353,9 @@ def test_remove_products_from_collection(
         staff_api_client, collection, product_list,
         permission_manage_products):
     query = """
-        mutation collectionRemoveProducts(
+        mutation collectionRemoveSkills(
             $id: ID!, $skills: [ID]!) {
-            collectionRemoveProducts(collectionId: $id, skills: $skills) {
+            collectionRemoveSkills(collectionId: $id, skills: $skills) {
                 collection {
                     skills {
                         totalCount
@@ -367,13 +367,13 @@ def test_remove_products_from_collection(
     collection.products.add(*product_list)
     collection_id = to_global_id('Collection', collection.id)
     product_ids = [
-        to_global_id('Product', product.pk) for product in product_list]
+        to_global_id('Skill', product.pk) for product in product_list]
     no_products_before = collection.products.count()
     variables = {'id': collection_id, 'skills': product_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
-    data = content['data']['collectionRemoveProducts']['collection']
+    data = content['data']['collectionRemoveSkills']['collection']
     assert data[
         'skills']['totalCount'] == no_products_before - len(product_ids)
 

@@ -23,6 +23,8 @@ Make sure you keep track of the password you set for the administration account 
 Download the 64-bit Windows installer.
 
 Make sure that “Set up PATH environment variable to include GTK+” is selected.
+#### Seems that the above installer is not available anymore but this instruction with vspkg works:
+https://www.gtk.org/download/windows.php
 
 ## Compilers
 Please download and install the latest version of the Build Tools for Visual Studio.

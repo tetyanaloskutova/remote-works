@@ -7,6 +7,8 @@ Download the latest 3.7 Windows installer from the Python download page and foll
 
 Make sure that “Add Python 3.7 to PATH” is checked.
 
+Alternatively, make your life easier and install the latest Anaconda
+
 ## Node.js
 Version 10 or later is required. Download the Windows installer from the Node.js downloads page.
 
@@ -52,7 +54,7 @@ Secret key should be a unique string only your team knows. Running code with a k
 
 Use the pgAdmin tool that came with your PostgreSQL installation to create a database user for your store.
 
-Unless configured otherwise the store will use saleor as both username and password. Remember to give your user the SUPERUSER privilege so it can create databases and database extensions.
+Unless configured otherwise the store will use remote_works as both username and password. Remember to give your user the SUPERUSER privilege so it can create databases and database extensions.
 
 ### Create a PostgreSQL database
 

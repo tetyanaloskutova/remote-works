@@ -11,6 +11,7 @@ import django_measurement.models
 import django_prices.models
 import remote_works.core.weight
 import versatileimagefield.fields
+from django.contrib.postgres.operations import (HStoreExtension, UnaccentExtension, )
 
 
 class Migration(migrations.Migration):
@@ -22,6 +23,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        HStoreExtension(),
+        UnaccentExtension(),
         migrations.CreateModel(
             name='Attribute',
             fields=[

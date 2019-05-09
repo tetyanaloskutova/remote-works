@@ -7,7 +7,6 @@ import django.utils.timezone
 import django_countries.fields
 import remote_works.account.models
 
-
 class Migration(migrations.Migration):
 
     initial = True

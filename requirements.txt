@@ -11,7 +11,7 @@ braintree==3.49.0
 cairocffi==0.9.0
 cairosvg==2.2.1
 celery[redis]==4.2.1
-certifi==2018.11.29
+certifi
 cffi==1.11.5
 chardet==3.0.4
 cssselect2==0.2.1

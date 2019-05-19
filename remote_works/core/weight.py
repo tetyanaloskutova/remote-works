@@ -59,7 +59,7 @@ def get_default_weight_unit():
 
 
 class WeightInput(forms.TextInput):
-    template = 'dashboard/shipping/weight_widget.html'
+    template = 'dashboard/delivery/weight_widget.html'
     input_type = 'number'
 
     def format_value(self, value):

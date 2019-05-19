@@ -14,7 +14,7 @@ import FormSpacer from "../../../components/FormSpacer";
 import RichTextEditor from "../../../components/RichTextEditor";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { SkillDetails_product } from "../../types/SkillDetails";
+import { SkillDetails_skill } from "../../types/SkillDetails";
 import { FormData as CreateFormData } from "../SkillCreatePage";
 import { FormData as UpdateFormData } from "../SkillUpdatePage";
 

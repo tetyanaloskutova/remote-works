@@ -4,23 +4,23 @@
 {% load static %}
 
 {% block title %}
-  {% trans "Edit address" context "" %} - {% trans "Orders" context "Dashboard orders list" %} - {{ block.super }}
+  {% trans "Edit address" context "" %} - {% trans "Tasks" context "Dashboard tasks list" %} - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-orders{% endblock %}
+{% block body_class %}body-tasks{% endblock %}
 
 {% block menu_orders_class %}active{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:orders" as url %}
+  {% url "dashboard:tasks" as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:orders" %}">
-        {% trans "Orders" context "Dashboard orders list" %}
+      <a href="{% url "dashboard:tasks" %}">
+        {% trans "Tasks" context "Dashboard tasks list" %}
       </a>
     </li>
     <li class="hide-on-med-and-down">
@@ -35,8 +35,8 @@
     </li>
     <li>
       <span class="breadcrumbs--ellipsed-item">
-        {% if address_type == "shipping" %}
-          {% trans "Shipping address" context "" %}
+        {% if address_type == "delivery" %}
+          {% trans "Delivery address" context "" %}
         {% else %}
           {% trans "Billing address" context "" %}
         {% endif %}

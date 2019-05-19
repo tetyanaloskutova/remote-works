@@ -35,7 +35,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderCustomerEditDialogProps extends WithStyles<typeof styles> {
+interface TaskCustomerEditDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   user?: {
@@ -53,8 +53,8 @@ interface OrderCustomerEditDialogProps extends WithStyles<typeof styles> {
   onConfirm?(event: React.FormEvent<any>);
 }
 
-const OrderCustomerEditDialog = withStyles(styles, {
-  name: "OrderCustomerEditDialog"
+const TaskCustomerEditDialog = withStyles(styles, {
+  name: "TaskCustomerEditDialog"
 })(
   ({
     classes,
@@ -67,7 +67,7 @@ const OrderCustomerEditDialog = withStyles(styles, {
     onChange,
     onClose,
     onConfirm
-  }: OrderCustomerEditDialogProps) => {
+  }: TaskCustomerEditDialogProps) => {
     const choices =
       !loading && users
         ? users.map(v => ({
@@ -106,5 +106,5 @@ const OrderCustomerEditDialog = withStyles(styles, {
     );
   }
 );
-OrderCustomerEditDialog.displayName = "OrderCustomerEditDialog";
-export default OrderCustomerEditDialog;
+TaskCustomerEditDialog.displayName = "TaskCustomerEditDialog";
+export default TaskCustomerEditDialog;

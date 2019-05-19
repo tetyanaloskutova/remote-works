@@ -12,7 +12,7 @@ from remote_works.account.models import Address, User
 from remote_works.graphql.account.mutations import (
     CustomerDelete, SetPassword, StaffDelete, StaffUpdate, UserDelete)
 from remote_works.graphql.core.enums import PermissionEnum
-from remote_works.order.models import FulfillmentStatus
+from remote_works.task.models import FulfillmentStatus
 from tests.api.utils import get_graphql_content
 
 from .utils import assert_no_permission, convert_dict_keys_to_camel_case
@@ -102,12 +102,12 @@ def test_query_user(staff_api_client, customer_user, permission_manage_users):
             addresses {
                 id
             }
-            orders {
+            tasks {
                 totalCount
             }
             dateJoined
             lastLogin
-            defaultShippingAddress {
+            defaultDeliveryAddress {
                 firstName
                 lastName
                 companyName
@@ -137,9 +137,9 @@ def test_query_user(staff_api_client, customer_user, permission_manage_users):
     assert data['isStaff'] == user.is_staff
     assert data['isActive'] == user.is_active
     assert len(data['addresses']) == user.addresses.count()
-    assert data['orders']['totalCount'] == user.orders.count()
-    address = data['defaultShippingAddress']
-    user_address = user.default_shipping_address
+    assert data['tasks']['totalCount'] == user.tasks.count()
+    address = data['defaultDeliveryAddress']
+    user_address = user.default_delivery_address
     assert address['firstName'] == user_address.first_name
     assert address['lastName'] == user_address.last_name
     assert address['companyName'] == user_address.company_name
@@ -327,7 +327,7 @@ def test_me_with_cancelled_fulfillments(
     query = """
     query Me {
         me {
-            orders (first: 1) {
+            tasks (first: 1) {
                 edges {
                     node {
                         id
@@ -343,9 +343,9 @@ def test_me_with_cancelled_fulfillments(
     response = user_api_client.post_graphql(query)
     content = get_graphql_content(response)
     order_id = graphene.Node.to_global_id(
-        'Order', fulfilled_order_with_cancelled_fulfillment.id)
+        'Task', fulfilled_order_with_cancelled_fulfillment.id)
     data = content['data']['me']
-    order = data['orders']['edges'][0]['node']
+    order = data['tasks']['edges'][0]['node']
     assert order['id'] == order_id
     fulfillments = order['fulfillments']
     assert len(fulfillments) == 1
@@ -358,7 +358,7 @@ def test_user_with_cancelled_fulfillments(
     query = """
     query User($id: ID!) {
         user(id: $id) {
-            orders (first: 1) {
+            tasks (first: 1) {
                 edges {
                     node {
                         id
@@ -377,9 +377,9 @@ def test_user_with_cancelled_fulfillments(
     response = staff_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     order_id = graphene.Node.to_global_id(
-        'Order', fulfilled_order_with_cancelled_fulfillment.id)
+        'Task', fulfilled_order_with_cancelled_fulfillment.id)
     data = content['data']['user']
-    order = data['orders']['edges'][0]['node']
+    order = data['tasks']['edges'][0]['node']
     assert order['id'] == order_id
     fulfillments = order['fulfillments']
     assert len(fulfillments) == 2
@@ -425,14 +425,14 @@ def test_customer_create(
     query = """
     mutation CreateCustomer(
         $email: String, $firstName: String, $lastName: String,
-        $note: String, $billing: AddressInput, $shipping: AddressInput,
+        $note: String, $billing: AddressInput, $delivery: AddressInput,
         $send_mail: Boolean) {
         customerCreate(input: {
             email: $email,
             firstName: $firstName,
             lastName: $lastName,
             note: $note,
-            defaultShippingAddress: $shipping,
+            defaultDeliveryAddress: $delivery,
             defaultBillingAddress: $billing
             sendPasswordEmail: $send_mail
         }) {
@@ -445,7 +445,7 @@ def test_customer_create(
                 defaultBillingAddress {
                     id
                 }
-                defaultShippingAddress {
+                defaultDeliveryAddress {
                     id
                 }
                 email
@@ -469,7 +469,7 @@ def test_customer_create(
         'firstName': first_name,
         'lastName': last_name,
         'note': note,
-        'shipping': address_data,
+        'delivery': address_data,
         'billing': address_data,
         'send_mail': True}
 
@@ -480,11 +480,11 @@ def test_customer_create(
     User = get_user_model()
     customer = User.objects.get(email=email)
 
-    shipping_address, billing_address = (
-        customer.default_shipping_address, customer.default_billing_address)
-    assert shipping_address == address
+    delivery_address, billing_address = (
+        customer.default_delivery_address, customer.default_billing_address)
+    assert delivery_address == address
     assert billing_address == address
-    assert shipping_address.pk != billing_address.pk
+    assert delivery_address.pk != billing_address.pk
 
     data = content['data']['customerCreate']
     assert data['errors'] == []
@@ -507,14 +507,14 @@ def test_customer_update(
     mutation UpdateCustomer(
             $id: ID!, $firstName: String, $lastName: String,
             $isActive: Boolean, $note: String, $billing: AddressInput,
-            $shipping: AddressInput) {
+            $delivery: AddressInput) {
         customerUpdate(id: $id, input: {
             isActive: $isActive,
             firstName: $firstName,
             lastName: $lastName,
             note: $note,
             defaultBillingAddress: $billing
-            defaultShippingAddress: $shipping
+            defaultDeliveryAddress: $delivery
         }) {
             errors {
                 field
@@ -527,7 +527,7 @@ def test_customer_update(
                 defaultBillingAddress {
                     id
                 }
-                defaultShippingAddress {
+                defaultDeliveryAddress {
                     id
                 }
                 isActive
@@ -540,9 +540,9 @@ def test_customer_update(
     # this test requires addresses to be set and checks whether new address
     # instances weren't created, but the existing ones got updated
     assert customer_user.default_billing_address
-    assert customer_user.default_shipping_address
+    assert customer_user.default_delivery_address
     billing_address_pk = customer_user.default_billing_address.pk
-    shipping_address_pk = customer_user.default_shipping_address.pk
+    delivery_address_pk = customer_user.default_delivery_address.pk
 
     id = graphene.Node.to_global_id('User', customer_user.id)
     first_name = 'new_first_name'
@@ -560,7 +560,7 @@ def test_customer_update(
         'isActive': False,
         'note': note,
         'billing': address_data,
-        'shipping': address_data}
+        'delivery': address_data}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_users])
     content = get_graphql_content(response)
@@ -569,13 +569,13 @@ def test_customer_update(
     customer = User.objects.get(email=customer_user.email)
 
     # check that existing instances are updated
-    shipping_address, billing_address = (
-        customer.default_shipping_address, customer.default_billing_address)
+    delivery_address, billing_address = (
+        customer.default_delivery_address, customer.default_billing_address)
     assert billing_address.pk == billing_address_pk
-    assert shipping_address.pk == shipping_address_pk
+    assert delivery_address.pk == delivery_address_pk
 
     assert billing_address.street_address_1 == new_street_address
-    assert shipping_address.street_address_1 == new_street_address
+    assert delivery_address.street_address_1 == new_street_address
 
     data = content['data']['customerUpdate']
     assert data['errors'] == []
@@ -587,11 +587,11 @@ def test_customer_update(
 
 UPDATE_LOGGED_CUSTOMER_QUERY = """
     mutation UpdateLoggedCustomer($billing: AddressInput,
-                                  $shipping: AddressInput) {
+                                  $delivery: AddressInput) {
         loggedUserUpdate(
           input: {
             defaultBillingAddress: $billing,
-            defaultShippingAddress: $shipping,
+            defaultDeliveryAddress: $delivery,
         }) {
             errors {
                 field
@@ -602,7 +602,7 @@ UPDATE_LOGGED_CUSTOMER_QUERY = """
                 defaultBillingAddress {
                     id
                 }
-                defaultShippingAddress {
+                defaultDeliveryAddress {
                     id
                 }
             }
@@ -617,12 +617,12 @@ def test_logged_customer_update(user_api_client, graphql_address_data):
     user = user_api_client.user
     new_first_name = graphql_address_data['firstName']
     assert user.default_billing_address
-    assert user.default_shipping_address
+    assert user.default_delivery_address
     assert user.default_billing_address.first_name != new_first_name
-    assert user.default_shipping_address.first_name != new_first_name
+    assert user.default_delivery_address.first_name != new_first_name
     variables = {
         'billing': graphql_address_data,
-        'shipping': graphql_address_data}
+        'delivery': graphql_address_data}
     response = user_api_client.post_graphql(
         UPDATE_LOGGED_CUSTOMER_QUERY, variables)
     content = get_graphql_content(response)
@@ -631,13 +631,13 @@ def test_logged_customer_update(user_api_client, graphql_address_data):
 
     # check that existing instances are updated
     billing_address_pk = user.default_billing_address.pk
-    shipping_address_pk = user.default_shipping_address.pk
+    delivery_address_pk = user.default_delivery_address.pk
     user = User.objects.get(email=user.email)
     assert user.default_billing_address.pk == billing_address_pk
-    assert user.default_shipping_address.pk == shipping_address_pk
+    assert user.default_delivery_address.pk == delivery_address_pk
 
     assert user.default_billing_address.first_name == new_first_name
-    assert user.default_shipping_address.first_name == new_first_name
+    assert user.default_delivery_address.first_name == new_first_name
 
 
 def test_logged_customer_update_anonymus_user(api_client):
@@ -1211,24 +1211,24 @@ mutation($id: ID!, $type: AddressTypeEnum!) {
 def test_customer_set_address_as_default(user_api_client, address):
     user = user_api_client.user
     user.default_billing_address = None
-    user.default_shipping_address = None
+    user.default_delivery_address = None
     user.save()
     assert not user.default_billing_address
-    assert not user.default_shipping_address
+    assert not user.default_delivery_address
 
     assert address in user.addresses.all()
 
     query = CUSTOMER_SET_DEFAULT_ADDRESS_MUTATION
     variables = {
         'id': graphene.Node.to_global_id('Address', address.id),
-        'type': 'SHIPPING'}
+        'type': 'DELIVERY'}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     data = content['data']['customerSetDefaultAddress']
     assert not data['errors']
 
     user.refresh_from_db()
-    assert user.default_shipping_address == address
+    assert user.default_delivery_address == address
 
     variables['type'] = 'BILLING'
     response = user_api_client.post_graphql(query, variables)
@@ -1246,11 +1246,11 @@ def test_customer_change_default_address(
     user = user_api_client.user
     assert user.default_billing_address
     assert user.default_billing_address
-    address = user.default_shipping_address
+    address = user.default_delivery_address
     assert address in user.addresses.all()
     assert address_other_country not in user.addresses.all()
 
-    user.default_shipping_address = address_other_country
+    user.default_delivery_address = address_other_country
     user.save()
     user.refresh_from_db()
     assert address_other_country not in user.addresses.all()
@@ -1258,14 +1258,14 @@ def test_customer_change_default_address(
     query = CUSTOMER_SET_DEFAULT_ADDRESS_MUTATION
     variables = {
         'id': graphene.Node.to_global_id('Address', address.id),
-        'type': 'SHIPPING'}
+        'type': 'DELIVERY'}
     response = user_api_client.post_graphql(query, variables)
     content = get_graphql_content(response)
     data = content['data']['customerSetDefaultAddress']
     assert not data['errors']
 
     user.refresh_from_db()
-    assert user.default_shipping_address == address
+    assert user.default_delivery_address == address
     assert address_other_country in user.addresses.all()
 
 
@@ -1277,6 +1277,6 @@ def test_customer_change_default_address_invalid_address(
     query = CUSTOMER_SET_DEFAULT_ADDRESS_MUTATION
     variables = {
         'id': graphene.Node.to_global_id('Address', address_other_country.id),
-        'type': 'SHIPPING'}
+        'type': 'DELIVERY'}
     response = user_api_client.post_graphql(query, variables)
     assert_no_permission(response)

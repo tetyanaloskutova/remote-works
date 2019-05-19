@@ -23,7 +23,7 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
           ) => {
             if (updateData.productTypeCreate.errors.length === 0) {
               pushMessage({
-                text: i18n.t("Successfully created product type")
+                text: i18n.t("Successfully created skill type")
               });
               navigate(
                 productTypeUrl(updateData.productTypeCreate.productType.id)
@@ -41,7 +41,7 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
                     variables: {
                       input: {
                         hasVariants: false,
-                        isShippingRequired: formData.isShippingRequired,
+                        isDeliveryRequired: formData.isDeliveryRequired,
                         name: formData.name,
                         taxRate: formData.chargeTaxes ? formData.taxRate : null,
                         weight: formData.weight
@@ -52,7 +52,7 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
                   <TypedSkillTypeCreateDataQuery displayLoader>
                     {({ data, loading }) => (
                       <>
-                        <WindowTitle title={i18n.t("Create product type")} />
+                        <WindowTitle title={i18n.t("Create skill type")} />
                         <SkillTypeCreatePage
                           defaultWeightUnit={maybe(
                             () => data.shop.defaultWeightUnit

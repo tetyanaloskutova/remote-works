@@ -53,7 +53,7 @@ def skill_details(request, pk):
     purchase_cost, margin = get_skill_costs_data(skill)
 
     # no_variants is True for skill types that doesn't require variant.
-    # In this case we're using the first variant under the hood to allow stock
+    # In this case we're using the first variant under the hood to allow availability
     # management.
     no_variants = not skill.skill_type.has_variants
     only_variant = variants.first() if no_variants else None
@@ -504,7 +504,7 @@ def ajax_upload_image(request, skill_pk):
     status = 200
     if form.is_valid():
         image = form.save()
-        ctx = {'id': image.pk, 'image': None, 'order': image.sort_order}
+        ctx = {'id': image.pk, 'image': None, 'task': image.sort_order}
     elif form.errors:
         status = 400
         ctx = {'error': form.errors}

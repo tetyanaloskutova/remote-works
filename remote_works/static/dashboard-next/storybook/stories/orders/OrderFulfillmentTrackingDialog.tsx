@@ -1,13 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderFulfillmentTrackingDialog from "../../../orders/components/OrderFulfillmentTrackingDialog";
+import TaskFulfillmentTrackingDialog from "../../../tasks/components/TaskFulfillmentTrackingDialog";
 import Decorator from "../../Decorator";
 
-storiesOf("Orders / OrderFulfillmentTrackingDialog", module)
+storiesOf("Tasks / TaskFulfillmentTrackingDialog", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderFulfillmentTrackingDialog
+    <TaskFulfillmentTrackingDialog
       confirmButtonState="default"
       open={true}
       trackingNumber="21kn7526v1"

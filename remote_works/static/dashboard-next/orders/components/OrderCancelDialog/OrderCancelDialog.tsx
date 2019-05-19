@@ -34,7 +34,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderCancelDialogProps extends WithStyles<typeof styles> {
+interface TaskCancelDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   number: string;
   open: boolean;
@@ -42,7 +42,7 @@ interface OrderCancelDialogProps extends WithStyles<typeof styles> {
   onSubmit(data: FormData);
 }
 
-const OrderCancelDialog = withStyles(styles, { name: "OrderCancelDialog" })(
+const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
   ({
     classes,
     confirmButtonState,
@@ -50,7 +50,7 @@ const OrderCancelDialog = withStyles(styles, { name: "OrderCancelDialog" })(
     open,
     onSubmit,
     onClose
-  }: OrderCancelDialogProps) => (
+  }: TaskCancelDialogProps) => (
     <Dialog open={open}>
       <Form
         initial={{
@@ -62,20 +62,20 @@ const OrderCancelDialog = withStyles(styles, { name: "OrderCancelDialog" })(
           return (
             <>
               <DialogTitle>
-                {i18n.t("Cancel order", { context: "title" })}
+                {i18n.t("Cancel task", { context: "title" })}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText
                   dangerouslySetInnerHTML={{
                     __html: i18n.t(
-                      "Are you sure you want to cancel order <strong>{{ orderNumber }}</strong>?",
+                      "Are you sure you want to cancel task <strong>{{ orderNumber }}</strong>?",
                       { orderNumber }
                     )
                   }}
                 />
                 <ControlledCheckbox
                   checked={data.restock}
-                  label={i18n.t("Release all stock allocated to this order")}
+                  label={i18n.t("Release all availability allocated to this task")}
                   name="restock"
                   onChange={change}
                 />
@@ -90,7 +90,7 @@ const OrderCancelDialog = withStyles(styles, { name: "OrderCancelDialog" })(
                   variant="contained"
                   type="submit"
                 >
-                  {i18n.t("Cancel order", { context: "button" })}
+                  {i18n.t("Cancel task", { context: "button" })}
                 </ConfirmButton>
               </DialogActions>
             </>
@@ -100,5 +100,5 @@ const OrderCancelDialog = withStyles(styles, { name: "OrderCancelDialog" })(
     </Dialog>
   )
 );
-OrderCancelDialog.displayName = "OrderCancelDialog";
-export default OrderCancelDialog;
+TaskCancelDialog.displayName = "TaskCancelDialog";
+export default TaskCancelDialog;

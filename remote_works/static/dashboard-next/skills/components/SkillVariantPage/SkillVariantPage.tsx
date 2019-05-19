@@ -48,13 +48,13 @@ const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
   const variantImages = variant ? variant.images.map(image => image.id) : [];
   const productImages = variant
     ? variant.product.images.sort((prev, next) =>
-        prev.sortOrder > next.sortOrder ? 1 : -1
+        prev.sortTask > next.sortTask ? 1 : -1
       )
     : undefined;
   const images = productImages
     ? productImages
         .filter(image => variantImages.indexOf(image.id) !== -1)
-        .sort((prev, next) => (prev.sortOrder > next.sortOrder ? 1 : -1))
+        .sort((prev, next) => (prev.sortTask > next.sortTask ? 1 : -1))
     : undefined;
   return (
     <Toggle>

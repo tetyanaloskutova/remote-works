@@ -5,7 +5,7 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import AttachMoney from "@material-ui/icons/AttachMoney";
-import LocalShipping from "@material-ui/icons/LocalShipping";
+import LocalDelivery from "@material-ui/icons/LocalDelivery";
 import * as React from "react";
 
 import CardSpacer from "../../../components/CardSpacer";
@@ -41,15 +41,15 @@ const styles = (theme: Theme) =>
 
 export interface HomePageProps extends WithStyles<typeof styles> {
   activities: Home_activities_edges_node[];
-  orders: number;
+  tasks: number;
   ordersToCapture: number;
   ordersToFulfill: number;
   productsOutOfStock: number;
   sales: Home_salesToday_gross;
   topSkills: Home_productTopToday_edges_node[];
   userName: string;
-  onOrdersToCaptureClick: () => void;
-  onOrdersToFulfillClick: () => void;
+  onTasksToCaptureClick: () => void;
+  onTasksToFulfillClick: () => void;
   onSkillClick: (productId: string, variantId: string) => void;
   onSkillsOutOfStockClick: () => void;
 }
@@ -58,13 +58,13 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
   ({
     classes,
     userName,
-    orders,
+    tasks,
     sales,
     topSkills,
     onSkillClick,
     activities,
-    onOrdersToCaptureClick,
-    onOrdersToFulfillClick,
+    onTasksToCaptureClick,
+    onTasksToFulfillClick,
     onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
@@ -87,19 +87,19 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
               )}
             </HomeAnalyticsCard>
             <HomeAnalyticsCard
-              title={"Orders"}
-              icon={<LocalShipping fontSize={"inherit"} />}
+              title={"Tasks"}
+              icon={<LocalDelivery fontSize={"inherit"} />}
             >
-              {orders === undefined ? (
+              {tasks === undefined ? (
                 <Skeleton style={{ width: "5em" }} />
               ) : (
-                orders
+                tasks
               )}
             </HomeAnalyticsCard>
           </div>
           <HomeNotificationTable
-            onOrdersToCaptureClick={onOrdersToCaptureClick}
-            onOrdersToFulfillClick={onOrdersToFulfillClick}
+            onTasksToCaptureClick={onTasksToCaptureClick}
+            onTasksToFulfillClick={onTasksToFulfillClick}
             onSkillsOutOfStockClick={onSkillsOutOfStockClick}
             ordersToCapture={ordersToCapture}
             ordersToFulfill={ordersToFulfill}

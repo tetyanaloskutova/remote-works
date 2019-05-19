@@ -72,7 +72,7 @@ export const voucherList: VoucherList_vouchers_edges_node[] = [
     endDate: null,
     id: "Vm91Y2hlcjox",
     minAmountSpent: null,
-    name: "Free shipping",
+    name: "Free delivery",
     startDate: "2019-01-03",
     usageLimit: null
   },
@@ -88,7 +88,7 @@ export const voucherList: VoucherList_vouchers_edges_node[] = [
       amount: 200,
       currency: "USD"
     },
-    name: "Big order discount",
+    name: "Big task discount",
     startDate: "2019-01-03",
     usageLimit: 150
   }
@@ -241,7 +241,7 @@ export const sale: SaleDetails_sale = {
 
 export const voucherDetails: VoucherDetails_voucher = {
   __typename: "Voucher",
-  applyOncePerOrder: false,
+  applyOncePerTask: false,
   categories: {
     __typename: "CategoryCountableConnection",
     edges: [],
@@ -283,7 +283,7 @@ export const voucherDetails: VoucherDetails_voucher = {
     amount: 200,
     currency: "USD"
   },
-  name: "Big order discount",
+  name: "Big task discount",
   products: {
     __typename: "SkillCountableConnection",
     edges: [],

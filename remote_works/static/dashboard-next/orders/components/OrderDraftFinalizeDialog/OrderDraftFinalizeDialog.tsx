@@ -5,39 +5,39 @@ import ActionDialog from "../../../components/ActionDialog";
 import { ConfirmButtonTransitionState } from "../../../components/ConfirmButton/ConfirmButton";
 import i18n from "../../../i18n";
 
-export type OrderDraftFinalizeWarning =
-  | "no-shipping"
+export type TaskDraftFinalizeWarning =
+  | "no-delivery"
   | "no-billing"
   | "no-user"
-  | "no-shipping-method"
-  | "unnecessary-shipping-method";
+  | "no-delivery-method"
+  | "unnecessary-delivery-method";
 
-export interface OrderDraftFinalizeDialogProps {
+export interface TaskDraftFinalizeDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   orderNumber: string;
-  warnings: OrderDraftFinalizeWarning[];
+  warnings: TaskDraftFinalizeWarning[];
   onClose: () => void;
   onConfirm: () => void;
 }
 
-const warningToText = (warning: OrderDraftFinalizeWarning) => {
+const warningToText = (warning: TaskDraftFinalizeWarning) => {
   switch (warning) {
-    case "no-shipping":
-      return i18n.t("No shipping address");
+    case "no-delivery":
+      return i18n.t("No delivery address");
     case "no-billing":
       return i18n.t("No billing address");
     case "no-user":
       return i18n.t("No user information");
-    case "no-shipping-method":
-      return i18n.t("Some products require shipping, but no method provided");
-    case "unnecessary-shipping-method":
-      return i18n.t("Shipping method provided, but no product requires it");
+    case "no-delivery-method":
+      return i18n.t("Some skills require delivery, but no method provided");
+    case "unnecessary-delivery-method":
+      return i18n.t("Delivery method provided, but no skill requires it");
   }
 };
 
-const OrderDraftFinalizeDialog: React.StatelessComponent<
-  OrderDraftFinalizeDialogProps
+const TaskDraftFinalizeDialog: React.StatelessComponent<
+  TaskDraftFinalizeDialogProps
 > = ({
   confirmButtonState,
   open,
@@ -50,7 +50,7 @@ const OrderDraftFinalizeDialog: React.StatelessComponent<
     onClose={onClose}
     onConfirm={onConfirm}
     open={open}
-    title={i18n.t("Finalize draft order", {
+    title={i18n.t("Finalize draft task", {
       context: "modal title"
     })}
     confirmButtonLabel={
@@ -64,7 +64,7 @@ const OrderDraftFinalizeDialog: React.StatelessComponent<
         <>
           <p>
             {i18n.t(
-              "There are missing or incorrect informations about this order:"
+              "There are missing or incorrect informations about this task:"
             )}
           </p>
           <ul>
@@ -88,5 +88,5 @@ const OrderDraftFinalizeDialog: React.StatelessComponent<
     </DialogContentText>
   </ActionDialog>
 );
-OrderDraftFinalizeDialog.displayName = "OrderDraftFinalize";
-export default OrderDraftFinalizeDialog;
+TaskDraftFinalizeDialog.displayName = "TaskDraftFinalize";
+export default TaskDraftFinalizeDialog;

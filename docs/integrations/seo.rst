@@ -28,11 +28,11 @@ We've restricted Dashboard Admin Panel from crawling and indexation, content-les
 Structured Data
 ---------------
 
-Homepage and product pages contain semantic descriptions in JSON-LD `Structured Data <https://developers.google.com/search/docs/guides/intro-structured-data>`_ format.
+Homepage and skill pages contain semantic descriptions in JSON-LD `Structured Data <https://developers.google.com/search/docs/guides/intro-structured-data>`_ format.
 
 It does not directly affect the search engine ranking but it allows search engines to better understand the data ("this is a product, it's available, it costs $10").
 
-It allows search engines like Google to show product photos, prices, availability, ratings etc. along with their search results.
+It allows search engines like Google to show skill photos, prices, availability, ratings etc. along with their search results.
 
 
 Nofollow links

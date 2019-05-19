@@ -68,7 +68,7 @@ class BaseDiscountCatalogueMutation(BaseMutation):
 
 class VoucherInput(graphene.InputObjectType):
     type = VoucherTypeEnum(
-        description='Voucher type: skill, category shipping or value.')
+        description='Voucher type: skill, category delivery or value.')
     name = graphene.String(description='Voucher name.')
     code = graphene.String(decription='Code to use the voucher.')
     start_date = graphene.types.datetime.Date(
@@ -94,7 +94,7 @@ class VoucherInput(graphene.InputObjectType):
         description='Min purchase amount required to apply the voucher.')
     countries = graphene.List(
         graphene.String,
-        description='Country codes that can be used with the shipping voucher')
+        description='Country codes that can be used with the delivery voucher')
 
 
 class VoucherCreate(ModelMutation):

@@ -19,8 +19,8 @@
         </li>
         <li>
           <a href="{{ order.get_absolute_url }}">
-            {% blocktrans trimmed context "Order details breadcrumb" %}
-              Order {{ order }}
+            {% blocktrans trimmed context "Task details breadcrumb" %}
+              Task {{ order }}
             {% endblocktrans %}
           </a>
         </li>
@@ -41,7 +41,7 @@
     </div>
   </div>
   <h2 class="order-details__header">
-    {% trans "Order details" context "Header of the order summary table" %}
+    {% trans "Task details" context "Header of the order summary table" %}
   </h2>
   {% include "order/_ordered_items_table.html" %}
 {% endblock content %}

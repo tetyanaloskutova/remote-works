@@ -3,43 +3,43 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
-import OrderDetailsPage, {
-  OrderDetailsPageProps
-} from "../../../orders/components/OrderDetailsPage";
-import { countries, order as orderFixture } from "../../../orders/fixtures";
+import TaskDetailsPage, {
+  TaskDetailsPageProps
+} from "../../../tasks/components/TaskDetailsPage";
+import { countries, order as orderFixture } from "../../../tasks/fixtures";
 import {
   FulfillmentStatus,
-  OrderStatus,
+  TaskStatus,
   PaymentChargeStatusEnum
 } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
 const order = orderFixture(placeholderImage);
 
-const props: Omit<OrderDetailsPageProps, "classes"> = {
+const props: Omit<TaskDetailsPageProps, "classes"> = {
   countries,
   onBack: () => undefined,
   onBillingAddressEdit: undefined,
   onFulfillmentCancel: () => undefined,
   onFulfillmentTrackingNumberUpdate: () => undefined,
   onNoteAdd: undefined,
-  onOrderCancel: undefined,
-  onOrderFulfill: undefined,
+  onTaskCancel: undefined,
+  onTaskFulfill: undefined,
   onPaymentCapture: undefined,
   onPaymentPaid: undefined,
   onPaymentRefund: undefined,
   onPaymentVoid: undefined,
   onSkillClick: undefined,
-  onShippingAddressEdit: undefined,
+  onDeliveryAddressEdit: undefined,
   order
 };
 
-storiesOf("Views / Orders / Order details", module)
+storiesOf("Views / Tasks / Task details", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderDetailsPage {...props} />)
-  .add("loading", () => <OrderDetailsPage {...props} order={undefined} />)
+  .add("default", () => <TaskDetailsPage {...props} />)
+  .add("loading", () => <TaskDetailsPage {...props} order={undefined} />)
   .add("pending payment", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -48,7 +48,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("payment error", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -57,7 +57,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("payment confirmed", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -66,7 +66,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("no payment", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -75,7 +75,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("refunded payment", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -84,7 +84,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("rejected payment", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -93,7 +93,7 @@ storiesOf("Views / Orders / Order details", module)
     />
   ))
   .add("cancelled", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
@@ -101,48 +101,48 @@ storiesOf("Views / Orders / Order details", module)
           ...fulfillment,
           status: FulfillmentStatus.CANCELED
         })),
-        status: OrderStatus.CANCELED
+        status: TaskStatus.CANCELED
       }}
     />
   ))
   .add("fulfilled", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
-        status: OrderStatus.FULFILLED
+        status: TaskStatus.FULFILLED
       }}
     />
   ))
   .add("partially fulfilled", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
-        status: OrderStatus.PARTIALLY_FULFILLED
+        status: TaskStatus.PARTIALLY_FULFILLED
       }}
     />
   ))
   .add("unfulfilled", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
-        status: OrderStatus.UNFULFILLED
+        status: TaskStatus.UNFULFILLED
       }}
     />
   ))
-  .add("no shipping address", () => (
-    <OrderDetailsPage
+  .add("no delivery address", () => (
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,
-        shippingAddress: null
+        deliveryAddress: null
       }}
     />
   ))
   .add("no customer note", () => (
-    <OrderDetailsPage
+    <TaskDetailsPage
       {...props}
       order={{
         ...props.order,

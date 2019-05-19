@@ -32,7 +32,7 @@ export default observer(class VariantPrice extends Component {
         }
       }
     } else {
-      // if there's no variant, fall back to product price
+      // if there's no variant, fall back to skill price
       const { discount, priceRange, priceRangeUndiscounted } = availability;
       isDiscount = discount && !!Object.keys(discount).length;
       if (displayGross) {
@@ -50,10 +50,10 @@ export default observer(class VariantPrice extends Component {
       }
     }
     return (
-      <h2 className="product__info__price">
+      <h2 className="skill__info__price">
         <span>{priceText}&nbsp;</span>
         {isDiscount && (
-          <small className="product__info__price__undiscounted">{priceUndiscountedText}</small>
+          <small className="skill__info__price__undiscounted">{priceUndiscountedText}</small>
         )}
         {priceLocalCurrency && (
           <p><small className="text-info">&asymp; {priceLocalCurrency}</small></p>

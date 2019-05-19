@@ -39,7 +39,7 @@ Consider a product.
        translated = TranslationProxy()
 
 
-The product has several properties, but we want to translate just its ``name`` and ``description``.
+The skill has several properties, but we want to translate just its ``name`` and ``description``.
 
 We've also set a ``translated`` property to an instance of ``TranslationProxy``.
 
@@ -62,7 +62,7 @@ We will use ``SkillTranslation``  to store our translated properties, it require
 
    class SkillTranslation(models.Model):
        language_code = models.CharField(max_length=10)
-       product = models.ForeignKey(
+       skill = models.ForeignKey(
            Skill, related_name='translations', on_delete=models.CASCADE)
        name = models.CharField(max_length=128)
        description = models.CharField(max_length=256)
@@ -70,7 +70,7 @@ We will use ``SkillTranslation``  to store our translated properties, it require
        class Meta:
            unique_together = ('product', 'language_code')
 
-.. note:: Don't forget to set ``unique_together`` on the ``product`` and ``language_code``, there should be only one translation per product per language.
+.. note:: Don't forget to set ``unique_together`` on the ``product`` and ``language_code``, there should be only one translation per skill per language.
 
 .. warning:: ``ModelTranslation`` fields must always take the same arguments as the existing translatable model, eg. inconsistency in ``max_length`` attribute could lead to UI bugs with translation turned on.
 

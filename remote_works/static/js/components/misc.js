@@ -30,7 +30,7 @@ export default $(document).ready((e) => {
   // Preload all images
   window.lazySizesConfig.preloadAfterLoad = true;
 
-  // Function for update product image height
+  // Function for update skill image height
   function updateSkillImageHeight() {
     let productImageWidth = $('.product-image').width();
     $('.product-image').css({'height': productImageWidth + 'px'});

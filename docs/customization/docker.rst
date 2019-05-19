@@ -29,7 +29,7 @@ and aren't present in the cloned repository, so what was built on the Docker wou
 
 However, we do know that there might be a case that you wish to mount them and see your changes reflected in the container, thus before proceeding you need to modify `docker-compose.override.yml`.
 
-In order for Docker to use your assets from the host, you need to remove ``/app/remote-works/static/assets`` volume and add ``./webpack-bundle.json:/app/webpack-bundle.json`` volume.
+In task for Docker to use your assets from the host, you need to remove ``/app/remote-works/static/assets`` volume and add ``./webpack-bundle.json:/app/webpack-bundle.json`` volume.
 
 Additionally if you wish to have the compiled templated emails mounted then you need to also remove ``/app/templates/templated_email/compiled`` volume from web and celery services.
 

@@ -7,14 +7,14 @@ logger = logging.getLogger(__name__)
 
 class AddressType:
     BILLING = 'billing'
-    SHIPPING = 'shipping'
+    DELIVERY = 'delivery'
 
     CHOICES = [
         (BILLING, pgettext_lazy(
-            'Type of address used to fulfill order',
+            'Type of address used to fulfill task',
             'Billing'
         )),
-        (SHIPPING, pgettext_lazy(
-            'Type of address used to fulfill order',
-            'Shipping'
+        (DELIVERY, pgettext_lazy(
+            'Type of address used to fulfill task',
+            'Delivery'
         ))]

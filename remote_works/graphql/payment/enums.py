@@ -9,7 +9,7 @@ PaymentChargeStatusEnum = graphene.Enum(
 PaymentGatewayEnum = graphene.Enum.from_enum(GATEWAYS_ENUM)
 
 
-class OrderAction(graphene.Enum):
+class TaskAction(graphene.Enum):
     CAPTURE = 'CAPTURE'
     MARK_AS_PAID = 'MARK_AS_PAID'
     REFUND = 'REFUND'
@@ -17,12 +17,12 @@ class OrderAction(graphene.Enum):
 
     @property
     def description(self):
-        if self == OrderAction.CAPTURE:
+        if self == TaskAction.CAPTURE:
             return 'Represents the capture action.'
-        if self == OrderAction.MARK_AS_PAID:
+        if self == TaskAction.MARK_AS_PAID:
             return 'Represents a mark-as-paid action.'
-        if self == OrderAction.REFUND:
+        if self == TaskAction.REFUND:
             return 'Represents a refund action.'
-        if self == OrderAction.VOID:
+        if self == TaskAction.VOID:
             return 'Represents a void action.'
         raise ValueError('Unsupported enum value: %s' % self.value)

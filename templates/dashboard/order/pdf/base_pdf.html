@@ -15,7 +15,7 @@
 
         @bottom-right {
           content:
-            {% blocktrans trimmed context "Order PDF footer page counter" %}
+            {% blocktrans trimmed context "Task PDF footer page counter" %}
               "Page " counter(page) "/" counter(pages)
             {% endblocktrans %};
         }
@@ -31,8 +31,8 @@
 
       <div style="float: right">
         {{ order.created }}<br />
-        {% blocktrans trimmed context "Order PDF header" with order_id=order.id %}
-          Order #{{ order_id }}
+        {% blocktrans trimmed context "Task PDF header" with order_id=order.id %}
+          Task #{{ order_id }}
         {% endblocktrans %}
       </div>
     </header>

@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderCancel
+// GraphQL mutation operation: TaskCancel
 // ====================================================
 
-export interface OrderCancel_orderCancel_errors {
+export interface TaskCancel_orderCancel_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderCancel_orderCancel_order_billingAddress_country {
+export interface TaskCancel_orderCancel_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderCancel_orderCancel_order_billingAddress {
+export interface TaskCancel_orderCancel_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderCancel_orderCancel_order_billingAddress_country;
+  country: TaskCancel_orderCancel_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderCancel_orderCancel_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderCancel_orderCancel_order_events_user {
+export interface TaskCancel_orderCancel_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderCancel_orderCancel_order_events {
-  __typename: "OrderEvent";
+export interface TaskCancel_orderCancel_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderCancel_orderCancel_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskCancel_orderCancel_order_events_user | null;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskCancel_orderCancel_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskCancel_orderCancel_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments_lines {
+export interface TaskCancel_orderCancel_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderCancel_orderCancel_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskCancel_orderCancel_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderCancel_orderCancel_order_fulfillments {
+export interface TaskCancel_orderCancel_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderCancel_orderCancel_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskCancel_orderCancel_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderCancel_orderCancel_order_lines_unitPrice_gross {
+export interface TaskCancel_orderCancel_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_lines_unitPrice_net {
+export interface TaskCancel_orderCancel_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_lines_unitPrice {
+export interface TaskCancel_orderCancel_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderCancel_orderCancel_order_lines_unitPrice_gross;
-  net: OrderCancel_orderCancel_order_lines_unitPrice_net;
+  gross: TaskCancel_orderCancel_order_lines_unitPrice_gross;
+  net: TaskCancel_orderCancel_order_lines_unitPrice_net;
 }
 
-export interface OrderCancel_orderCancel_order_lines {
-  __typename: "OrderLine";
+export interface TaskCancel_orderCancel_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderCancel_orderCancel_order_lines_unitPrice | null;
+  unitPrice: TaskCancel_orderCancel_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderCancel_orderCancel_order_shippingAddress_country {
+export interface TaskCancel_orderCancel_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderCancel_orderCancel_order_shippingAddress {
+export interface TaskCancel_orderCancel_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderCancel_orderCancel_order_shippingAddress_country;
+  country: TaskCancel_orderCancel_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderCancel_orderCancel_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderCancel_orderCancel_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskCancel_orderCancel_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderCancel_orderCancel_order_shippingPrice_gross {
+export interface TaskCancel_orderCancel_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_shippingPrice {
+export interface TaskCancel_orderCancel_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderCancel_orderCancel_order_shippingPrice_gross;
+  gross: TaskCancel_orderCancel_order_deliveryPrice_gross;
 }
 
-export interface OrderCancel_orderCancel_order_subtotal_gross {
+export interface TaskCancel_orderCancel_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_subtotal {
+export interface TaskCancel_orderCancel_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderCancel_orderCancel_order_subtotal_gross;
+  gross: TaskCancel_orderCancel_order_subtotal_gross;
 }
 
-export interface OrderCancel_orderCancel_order_total_gross {
+export interface TaskCancel_orderCancel_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_total_tax {
+export interface TaskCancel_orderCancel_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_total {
+export interface TaskCancel_orderCancel_order_total {
   __typename: "TaxedMoney";
-  gross: OrderCancel_orderCancel_order_total_gross;
-  tax: OrderCancel_orderCancel_order_total_tax;
+  gross: TaskCancel_orderCancel_order_total_gross;
+  tax: TaskCancel_orderCancel_order_total_tax;
 }
 
-export interface OrderCancel_orderCancel_order_totalAuthorized {
+export interface TaskCancel_orderCancel_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_totalCaptured {
+export interface TaskCancel_orderCancel_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_user {
+export interface TaskCancel_orderCancel_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderCancel_orderCancel_order_availableShippingMethods_price {
+export interface TaskCancel_orderCancel_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCancel_orderCancel_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskCancel_orderCancel_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderCancel_orderCancel_order_availableShippingMethods_price | null;
+  price: TaskCancel_orderCancel_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderCancel_orderCancel_order {
-  __typename: "Order";
+export interface TaskCancel_orderCancel_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderCancel_orderCancel_order_billingAddress | null;
+  billingAddress: TaskCancel_orderCancel_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderCancel_orderCancel_order_events | null)[] | null;
-  fulfillments: (OrderCancel_orderCancel_order_fulfillments | null)[];
-  lines: (OrderCancel_orderCancel_order_lines | null)[];
+  events: (TaskCancel_orderCancel_order_events | null)[] | null;
+  fulfillments: (TaskCancel_orderCancel_order_fulfillments | null)[];
+  lines: (TaskCancel_orderCancel_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderCancel_orderCancel_order_shippingAddress | null;
-  shippingMethod: OrderCancel_orderCancel_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderCancel_orderCancel_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderCancel_orderCancel_order_subtotal | null;
-  total: OrderCancel_orderCancel_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderCancel_orderCancel_order_totalAuthorized | null;
-  totalCaptured: OrderCancel_orderCancel_order_totalCaptured | null;
-  user: OrderCancel_orderCancel_order_user | null;
+  deliveryAddress: TaskCancel_orderCancel_order_deliveryAddress | null;
+  deliveryMethod: TaskCancel_orderCancel_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskCancel_orderCancel_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskCancel_orderCancel_order_subtotal | null;
+  total: TaskCancel_orderCancel_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskCancel_orderCancel_order_totalAuthorized | null;
+  totalCaptured: TaskCancel_orderCancel_order_totalCaptured | null;
+  user: TaskCancel_orderCancel_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderCancel_orderCancel_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskCancel_orderCancel_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderCancel_orderCancel {
-  __typename: "OrderCancel";
-  errors: OrderCancel_orderCancel_errors[] | null;
-  order: OrderCancel_orderCancel_order | null;
+export interface TaskCancel_orderCancel {
+  __typename: "TaskCancel";
+  errors: TaskCancel_orderCancel_errors[] | null;
+  task: TaskCancel_orderCancel_order | null;
 }
 
-export interface OrderCancel {
-  orderCancel: OrderCancel_orderCancel | null;
+export interface TaskCancel {
+  orderCancel: TaskCancel_orderCancel | null;
 }
 
-export interface OrderCancelVariables {
+export interface TaskCancelVariables {
   id: string;
   restock: boolean;
 }

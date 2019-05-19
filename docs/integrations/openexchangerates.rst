@@ -3,7 +3,7 @@
 Open Exchange Rates
 ===================
 
-This integration will allow your customers to see product prices in their local currencies.
+This integration will allow your customers to see skill prices in their local currencies.
 Local prices are only provided as an estimate, customers are still charged in your store's default currency.
 
 Before you begin you will need an `Open Exchange Rates account <https://openexchangerates.org/>`_.

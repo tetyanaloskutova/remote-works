@@ -15,11 +15,11 @@ export default class QuantityInput extends Component {
     const formGroupClasses = classNames({
       'form-group': true,
       'has-error': errors && !!errors.length,
-      'product__info__quantity': true
+      'skill__info__quantity': true
     });
     return (
       <div className={formGroupClasses}>
-        <label className="control-label product__variant-picker__label" htmlFor="id_quantity">{pgettext('Add to cart form field label', 'Quantity')}</label>
+        <label className="control-label skill__variant-picker__label" htmlFor="id_quantity">{pgettext('Add to cart form field label', 'Quantity')}</label>
         <input
           className="form-control"
           defaultValue={quantity}

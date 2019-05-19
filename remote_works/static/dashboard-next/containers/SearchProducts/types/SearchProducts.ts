@@ -22,13 +22,13 @@ export interface SearchSkills_products_edges {
   node: SearchSkills_products_edges_node;
 }
 
-export interface SearchSkills_products {
+export interface SearchSkills_skills {
   __typename: "SkillCountableConnection";
   edges: SearchSkills_products_edges[];
 }
 
 export interface SearchSkills {
-  products: SearchSkills_products | null;
+  products: SearchSkills_skills | null;
 }
 
 export interface SearchSkillsVariables {

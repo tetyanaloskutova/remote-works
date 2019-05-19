@@ -72,7 +72,7 @@ export const SkillVariantImages = withStyles(styles, {
           <Skeleton />
         ) : images.length > 0 ? (
           images
-            .sort((prev, next) => (prev.sortOrder > next.sortOrder ? 1 : -1))
+            .sort((prev, next) => (prev.sortTask > next.sortTask ? 1 : -1))
             .map(tile => (
               <div className={classes.imageContainer} key={tile.id}>
                 <img className={classes.image} src={tile.url} />

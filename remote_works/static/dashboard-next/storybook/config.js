@@ -83,25 +83,25 @@ function loadStories() {
   require("./stories/products/SkillVariantImageSelectDialog");
   require("./stories/products/SkillVariantPage");
 
-  // Orders
-  require("./stories/orders/OrderAddressEditDialog");
-  require("./stories/orders/OrderCancelDialog");
-  require("./stories/orders/OrderCustomer");
-  require("./stories/orders/OrderCustomerEditDialog");
-  require("./stories/orders/OrderDetailsPage");
-  require("./stories/orders/OrderDraftCancelDialog");
-  require("./stories/orders/OrderDraftFinalizeDialog");
-  require("./stories/orders/OrderDraftPage");
-  require("./stories/orders/OrderFulfillmentCancelDialog");
-  require("./stories/orders/OrderFulfillmentDialog");
-  require("./stories/orders/OrderFulfillmentTrackingDialog");
-  require("./stories/orders/OrderHistory");
-  require("./stories/orders/OrderListPage");
-  require("./stories/orders/OrderMarkAsPaidDialog");
-  require("./stories/orders/OrderPaymentDialog");
-  require("./stories/orders/OrderPaymentVoidDialog");
-  require("./stories/orders/OrderSkillAddDialog");
-  require("./stories/orders/OrderShippingMethodEditDialog");
+  // Tasks
+  require("./stories/tasks/TaskAddressEditDialog");
+  require("./stories/tasks/TaskCancelDialog");
+  require("./stories/tasks/TaskCustomer");
+  require("./stories/tasks/TaskCustomerEditDialog");
+  require("./stories/tasks/TaskDetailsPage");
+  require("./stories/tasks/TaskDraftCancelDialog");
+  require("./stories/tasks/TaskDraftFinalizeDialog");
+  require("./stories/tasks/TaskDraftPage");
+  require("./stories/tasks/TaskFulfillmentCancelDialog");
+  require("./stories/tasks/TaskFulfillmentDialog");
+  require("./stories/tasks/TaskFulfillmentTrackingDialog");
+  require("./stories/tasks/TaskHistory");
+  require("./stories/tasks/TaskListPage");
+  require("./stories/tasks/TaskMarkAsPaidDialog");
+  require("./stories/tasks/TaskPaymentDialog");
+  require("./stories/tasks/TaskPaymentVoidDialog");
+  require("./stories/tasks/TaskSkillAddDialog");
+  require("./stories/tasks/TaskDeliveryMethodEditDialog");
 
   // Skill types
   require("./stories/productTypes/SkillTypeAttributeEditDialog");

@@ -52,14 +52,14 @@ export interface SkillList_products_pageInfo {
   endCursor: string | null;
 }
 
-export interface SkillList_products {
+export interface SkillList_skills {
   __typename: "SkillCountableConnection";
   edges: SkillList_products_edges[];
   pageInfo: SkillList_products_pageInfo;
 }
 
 export interface SkillList {
-  products: SkillList_products | null;
+  products: SkillList_skills | null;
 }
 
 export interface SkillListVariables {

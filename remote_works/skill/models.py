@@ -78,7 +78,7 @@ class CategoryTranslation(SeoModelTranslation):
 class SkillType(models.Model):
     name = models.CharField(max_length=128)
     has_variants = models.BooleanField(default=True)
-    is_shipping_required = models.BooleanField(default=True)
+    is_delivery_required = models.BooleanField(default=True)
     tax_rate = models.CharField(
         max_length=128, default=DEFAULT_TAX_RATE_NAME,
         choices=TaxRateType.CHOICES)
@@ -234,8 +234,8 @@ class SkillVariant(models.Model):
         return max(self.quantity - self.quantity_allocated, 0)
 
     def check_quantity(self, quantity):
-        """Check if there is at least the given quantity in stock
-        if stock handling is enabled.
+        """Check if there is at least the given quantity in availability
+        if availability handling is enabled.
         """
         if self.track_inventory and quantity > self.quantity_available:
             raise InsufficientStock(self)
@@ -264,8 +264,8 @@ class SkillVariant(models.Model):
         return reverse('skill:details',
                        kwargs={'slug': slug, 'skill_id': skill_id})
 
-    def is_shipping_required(self):
-        return self.skill.skill_type.is_shipping_required
+    def is_delivery_required(self):
+        return self.skill.skill_type.is_delivery_required
 
     def is_in_stock(self):
         return self.quantity_available > 0

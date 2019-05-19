@@ -57,7 +57,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
     <Table>
       <TableHead>
         <TableRow>
-          {(products === undefined || products.length > 0) && <TableCell />}
+          {(skills === undefined || products.length > 0) && <TableCell />}
           <TableCell className={classes.textLeft}>
             {i18n.t("Name", { context: "object" })}
           </TableCell>
@@ -84,33 +84,33 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
       <TableBody>
         {renderCollection(
           products,
-          product => (
+          skill => (
             <TableRow
               hover={!!product}
-              key={product ? product.id : "skeleton"}
-              onClick={product && onRowClick(product.id)}
+              key={skill ? product.id : "skeleton"}
+              onClick={skill && onRowClick(product.id)}
               className={classes.link}
             >
               <TableCellAvatar thumbnail={maybe(() => product.thumbnail.url)} />
               <TableCell className={classes.textLeft}>
-                {product ? product.name : <Skeleton />}
+                {skill ? product.name : <Skeleton />}
               </TableCell>
               <TableCell>
-                {product && product.productType ? (
+                {skill && product.productType ? (
                   product.productType.name
                 ) : (
                   <Skeleton />
                 )}
               </TableCell>
               <TableCell>
-                {product &&
+                {skill &&
                 product.availability &&
                 product.availability.available !== undefined ? (
                   <StatusLabel
                     label={
                       product.availability.available
-                        ? i18n.t("Published", { context: "product status" })
-                        : i18n.t("Not published", { context: "product status" })
+                        ? i18n.t("Published", { context: "skill status" })
+                        : i18n.t("Not published", { context: "skill status" })
                     }
                     status={
                       product.availability.available ? "success" : "error"
@@ -121,7 +121,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
                 )}
               </TableCell>
               <TableCell className={classes.textRight}>
-                {product &&
+                {skill &&
                 product.price &&
                 product.price.amount !== undefined &&
                 product.price.currency !== undefined ? (
@@ -134,7 +134,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
           ),
           () => (
             <TableRow>
-              <TableCell colSpan={5}>{i18n.t("No products found")}</TableCell>
+              <TableCell colSpan={5}>{i18n.t("No skills found")}</TableCell>
             </TableRow>
           )
         )}

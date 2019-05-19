@@ -16,7 +16,7 @@ export interface FormData {
   trackingNumber: string;
 }
 
-interface OrderFulfillmentTrackingDialogProps {
+interface TaskFulfillmentTrackingDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   trackingNumber: string;
@@ -24,8 +24,8 @@ interface OrderFulfillmentTrackingDialogProps {
   onConfirm(data: FormData);
 }
 
-const OrderFulfillmentTrackingDialog: React.StatelessComponent<
-  OrderFulfillmentTrackingDialogProps
+const TaskFulfillmentTrackingDialog: React.StatelessComponent<
+  TaskFulfillmentTrackingDialogProps
 > = ({ confirmButtonState, open, trackingNumber, onConfirm, onClose }) => (
   <Dialog open={open}>
     <Form initial={{ trackingNumber }} onSubmit={onConfirm}>
@@ -61,5 +61,5 @@ const OrderFulfillmentTrackingDialog: React.StatelessComponent<
     </Form>
   </Dialog>
 );
-OrderFulfillmentTrackingDialog.displayName = "OrderFulfillmentTrackingDialog";
-export default OrderFulfillmentTrackingDialog;
+TaskFulfillmentTrackingDialog.displayName = "TaskFulfillmentTrackingDialog";
+export default TaskFulfillmentTrackingDialog;

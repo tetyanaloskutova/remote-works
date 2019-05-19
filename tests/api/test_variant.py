@@ -56,7 +56,7 @@ def test_fetch_variant(staff_api_client, product, permission_manage_products):
 
 
 def test_create_variant(
-        staff_api_client, product, product_type, permission_manage_products):
+        staff_api_client, product, skill_type, permission_manage_products):
     query = """
         mutation createVariant (
             $productId: ID!,
@@ -109,17 +109,17 @@ def test_create_variant(
             }
 
     """
-    product_id = graphene.Node.to_global_id('Skill', product.pk)
+    skill_id = graphene.Node.to_global_id('Skill', product.pk)
     sku = "1"
     price_override = 1.32
     cost_price = 3.22
     quantity = 10
     weight = 10.22
-    variant_slug = product_type.variant_attributes.first().slug
+    variant_slug = skill_type.variant_attributes.first().slug
     variant_value = 'test-value'
 
     variables = {
-        'productId': product_id,
+        'productId': skill_id,
         'sku': sku,
         'quantity': quantity,
         'costPrice': cost_price,
@@ -143,8 +143,8 @@ def test_create_variant(
     assert data['weight']['value'] == weight
 
 
-def test_create_product_variant_not_all_attributes(
-        staff_api_client, product, product_type, color_attribute,
+def test_create_skill_variant_not_all_attributes(
+        staff_api_client, product, skill_type, color_attribute,
         permission_manage_products):
     query = """
             mutation createVariant (
@@ -165,14 +165,14 @@ def test_create_product_variant_not_all_attributes(
                 }
 
         """
-    product_id = graphene.Node.to_global_id('Skill', product.pk)
+    skill_id = graphene.Node.to_global_id('Skill', product.pk)
     sku = "1"
-    variant_slug = product_type.variant_attributes.first().slug
+    variant_slug = skill_type.variant_attributes.first().slug
     variant_value = 'test-value'
-    product_type.variant_attributes.add(color_attribute)
+    skill_type.variant_attributes.add(color_attribute)
 
     variables = {
-        'productId': product_id,
+        'productId': skill_id,
         'sku': sku,
         'attributes': [{'slug': variant_slug, 'value': variant_value}]}
     response = staff_api_client.post_graphql(
@@ -184,7 +184,7 @@ def test_create_product_variant_not_all_attributes(
     assert not product.variants.filter(sku=sku).exists()
 
 
-def test_update_product_variant(
+def test_update_skill_variant(
         staff_api_client, product, permission_manage_products):
     query = """
         mutation updateVariant (
@@ -239,8 +239,8 @@ def test_update_product_variant(
     assert data['sku'] == sku
 
 
-def test_update_product_variant_not_all_attributes(
-        staff_api_client, product, product_type, color_attribute,
+def test_update_skill_variant_not_all_attributes(
+        staff_api_client, product, skill_type, color_attribute,
         permission_manage_products):
     query = """
         mutation updateVariant (
@@ -264,9 +264,9 @@ def test_update_product_variant_not_all_attributes(
     variant = product.variants.first()
     variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     sku = "test sku"
-    variant_slug = product_type.variant_attributes.first().slug
+    variant_slug = skill_type.variant_attributes.first().slug
     variant_value = 'test-value'
-    product_type.variant_attributes.add(color_attribute)
+    skill_type.variant_attributes.add(color_attribute)
 
     variables = {
         'id': variant_id,
@@ -326,24 +326,24 @@ def _fetch_all_variants(client, permissions=None):
 
 
 def test_fetch_all_variants_staff_user(
-        staff_api_client, unavailable_product_with_variant,
+        staff_api_client, unavailable_skill_with_variant,
         permission_manage_products):
     data = _fetch_all_variants(
         staff_api_client, permissions=[permission_manage_products])
-    variant = unavailable_product_with_variant.variants.first()
+    variant = unavailable_skill_with_variant.variants.first()
     variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
     assert data['totalCount'] == 1
     assert data['edges'][0]['node']['id'] == variant_id
 
 
 def test_fetch_all_variants_customer(
-        user_api_client, unavailable_product_with_variant):
+        user_api_client, unavailable_skill_with_variant):
     data = _fetch_all_variants(user_api_client)
     assert data['totalCount'] == 0
 
 
 def test_fetch_all_variants_anonymous_user(
-        api_client, unavailable_product_with_variant):
+        api_client, unavailable_skill_with_variant):
     data = _fetch_all_variants(api_client)
     assert data['totalCount'] == 0
 
@@ -368,29 +368,29 @@ def _fetch_variant(client, variant, permissions=None):
 
 
 def test_fetch_unpublished_variant_staff_user(
-        staff_api_client, unavailable_product_with_variant,
+        staff_api_client, unavailable_skill_with_variant,
         permission_manage_products):
-    variant = unavailable_product_with_variant.variants.first()
+    variant = unavailable_skill_with_variant.variants.first()
     data = _fetch_variant(
         staff_api_client, variant, permissions=[permission_manage_products])
 
     variant_id = graphene.Node.to_global_id('SkillVariant', variant.pk)
-    product_id = graphene.Node.to_global_id(
-        'Skill', unavailable_product_with_variant.pk)
+    skill_id = graphene.Node.to_global_id(
+        'Skill', unavailable_skill_with_variant.pk)
 
     assert data['id'] == variant_id
-    assert data['skill']['id'] == product_id
+    assert data['skill']['id'] == skill_id
 
 
 def test_fetch_unpublished_variant_customer(
-        user_api_client, unavailable_product_with_variant):
-    variant = unavailable_product_with_variant.variants.first()
+        user_api_client, unavailable_skill_with_variant):
+    variant = unavailable_skill_with_variant.variants.first()
     data = _fetch_variant(user_api_client, variant)
     assert data is None
 
 
 def test_fetch_unpublished_variant_anonymous_user(
-        api_client, unavailable_product_with_variant):
-    variant = unavailable_product_with_variant.variants.first()
+        api_client, unavailable_skill_with_variant):
+    variant = unavailable_skill_with_variant.variants.first()
     data = _fetch_variant(api_client, variant)
     assert data is None

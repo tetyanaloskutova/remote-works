@@ -1,68 +1,68 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderUpdateShippingInput } from "./../../types/globalTypes";
+import { TaskUpdateDeliveryInput } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderShippingMethodUpdate
+// GraphQL mutation operation: TaskDeliveryMethodUpdate
 // ====================================================
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_errors {
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order_shippingMethod_price {
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryMethod_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderShippingMethodUpdate_orderUpdateShipping_order_shippingMethod_price | null;
+  price: TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryMethod_price | null;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order_shippingPrice_gross {
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order_shippingPrice {
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderShippingMethodUpdate_orderUpdateShipping_order_shippingPrice_gross;
+  gross: TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryPrice_gross;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping_order {
-  __typename: "Order";
-  availableShippingMethods: (OrderShippingMethodUpdate_orderUpdateShipping_order_availableShippingMethods | null)[] | null;
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order {
+  __typename: "Task";
+  availableDeliveryMethods: (TaskDeliveryMethodUpdate_orderUpdateDelivery_order_availableDeliveryMethods | null)[] | null;
   id: string;
-  shippingMethod: OrderShippingMethodUpdate_orderUpdateShipping_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderShippingMethodUpdate_orderUpdateShipping_order_shippingPrice | null;
+  deliveryMethod: TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskDeliveryMethodUpdate_orderUpdateDelivery_order_deliveryPrice | null;
 }
 
-export interface OrderShippingMethodUpdate_orderUpdateShipping {
-  __typename: "OrderUpdateShipping";
-  errors: OrderShippingMethodUpdate_orderUpdateShipping_errors[] | null;
-  order: OrderShippingMethodUpdate_orderUpdateShipping_order | null;
+export interface TaskDeliveryMethodUpdate_orderUpdateDelivery {
+  __typename: "TaskUpdateDelivery";
+  errors: TaskDeliveryMethodUpdate_orderUpdateDelivery_errors[] | null;
+  task: TaskDeliveryMethodUpdate_orderUpdateDelivery_order | null;
 }
 
-export interface OrderShippingMethodUpdate {
-  orderUpdateShipping: OrderShippingMethodUpdate_orderUpdateShipping | null;
+export interface TaskDeliveryMethodUpdate {
+  orderUpdateDelivery: TaskDeliveryMethodUpdate_orderUpdateDelivery | null;
 }
 
-export interface OrderShippingMethodUpdateVariables {
+export interface TaskDeliveryMethodUpdateVariables {
   id: string;
-  input: OrderUpdateShippingInput;
+  input: TaskUpdateDeliveryInput;
 }

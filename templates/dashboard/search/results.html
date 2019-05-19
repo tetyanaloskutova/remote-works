@@ -43,16 +43,16 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if orders %}
-        <h6>{% trans 'Orders' context 'Search results list orders' %}</h6>
+      {% if tasks %}
+        <h6>{% trans 'Tasks' context 'Search results list tasks' %}</h6>
         <ul class="collection list card">
-          {% for order in orders %}
+          {% for order in tasks %}
             <li class="collection-item avatar list-item">
               <a href="{% url 'dashboard:order-details' order_pk=order.pk %}">
                 <i class="small material-icons circle">payment</i>
                 <span class="list-item-name">
                   {% blocktrans trimmed with order_number=order.pk context "Dashboard order" %}
-                    Order #{{ order_number }}
+                    Task #{{ order_number }}
                   {% endblocktrans %}
                 </span>
                 <p class="list-item-price">
@@ -94,7 +94,7 @@
           {% endfor %}
         </ul>
       {% endif %}
-      {% if not users and not orders and not skills and query %}
+      {% if not users and not tasks and not skills and query %}
         <div class="not-found">
           <p class="grey-text">
             {% blocktrans trimmed with full_name=result.get_full_name context "No Search result message" %}

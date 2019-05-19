@@ -1,13 +1,13 @@
-Order Management
+Task Management
 ================
 
-Orders are created after customers complete the checkout process. The `Order` object itself contains only general information about the customer's order.
+Tasks are created after customers complete the checkout process. The `Task` object itself contains only general information about the customer's task.
 
 
 Fulfillment
 -----------
 
-The fulfillment represents a group of shipped items with corresponding tracking number. Fulfillments are created by a shop operator to mark selected products in an order as fulfilled.
+The fulfillment represents a group of shipped items with corresponding tracking number. Fulfillments are created by a shop operator to mark selected skills in an task as fulfilled.
 
 There are two possible fulfillment statuses:
 
@@ -18,21 +18,21 @@ There are two possible fulfillment statuses:
     The fulfillment canceled by a shop operator. This action is irreversible.
 
 
-Order statuses
+Task statuses
 --------------
 
-There are four possible order statuses, based on statuses of its fulfillments:
+There are four possible task statuses, based on statuses of its fulfillments:
 
 - ``UNFULFILLED``
-    There are no fulfillments related to an order or each one is canceled. An action by a shop operator is required to continue order processing.
+    There are no fulfillments related to an task or each one is canceled. An action by a shop operator is required to continue task processing.
 
 - ``PARTIALLY FULFILLED``
-    There are some fulfillments with ``FULFILLED`` status related to an order. An action by a shop operator is required to continue order processing.
+    There are some fulfillments with ``FULFILLED`` status related to an task. An action by a shop operator is required to continue task processing.
 
 - ``FULFILLED``
-    Each order line is fulfilled in existing fulfillments. Order doesn't require further actions by a shop operator.
+    Each task line is fulfilled in existing fulfillments. Task doesn't require further actions by a shop operator.
 
 - ``CANCELED``
-    Order has been canceled. Every fulfillment (if there is any) has ``CANCELED`` status. Order doesn't require further actions by a shop operator.
+    Task has been canceled. Every fulfillment (if there is any) has ``CANCELED`` status. Task doesn't require further actions by a shop operator.
 
-There is also ``DRAFT`` status, used for orders newly created from dashboard and not yet published.
+There is also ``DRAFT`` status, used for tasks newly created from dashboard and not yet published.

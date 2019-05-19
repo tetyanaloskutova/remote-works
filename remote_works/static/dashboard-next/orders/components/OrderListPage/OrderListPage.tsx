@@ -8,13 +8,13 @@ import PageHeader from "../../../components/PageHeader";
 import { Filter } from "../../../components/TableFilter";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
-import { OrderList_orders_edges_node } from "../../types/OrderList";
-import OrderList from "../OrderList";
-import OrderListFilter, { OrderListFilterTabs } from "../OrderListFilter";
+import { TaskList_orders_edges_node } from "../../types/TaskList";
+import TaskList from "../TaskList";
+import TaskListFilter, { TaskListFilterTabs } from "../TaskListFilter";
 
-interface OrderListPageProps extends PageListProps {
-  orders: OrderList_orders_edges_node[];
-  currentTab: OrderListFilterTabs;
+interface TaskListPageProps extends PageListProps {
+  tasks: TaskList_orders_edges_node[];
+  currentTab: TaskListFilterTabs;
   filtersList: Filter[];
   onAllSkills: () => void;
   onToFulfill: () => void;
@@ -22,9 +22,9 @@ interface OrderListPageProps extends PageListProps {
   onCustomFilter: () => void;
 }
 
-const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
+const TaskListPage: React.StatelessComponent<TaskListPageProps> = ({
   disabled,
-  orders,
+  tasks,
   pageInfo,
   onAdd,
   onNextPage,
@@ -38,18 +38,18 @@ const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
   onCustomFilter
 }) => (
   <Container width="md">
-    <PageHeader title={i18n.t("Orders")}>
+    <PageHeader title={i18n.t("Tasks")}>
       <Button
         color="secondary"
         variant="contained"
         disabled={disabled}
         onClick={onAdd}
       >
-        {i18n.t("Create order", { context: "button" })} <AddIcon />
+        {i18n.t("Create task", { context: "button" })} <AddIcon />
       </Button>
     </PageHeader>
     <Card>
-      <OrderListFilter
+      <TaskListFilter
         currentTab={currentTab}
         filtersList={filtersList}
         onAllSkills={onAllSkills}
@@ -57,10 +57,10 @@ const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
         onToCapture={onToCapture}
         onCustomFilter={onCustomFilter}
       />
-      <OrderList
+      <TaskList
         disabled={disabled}
         onRowClick={onRowClick}
-        orders={orders}
+        tasks={tasks}
         pageInfo={pageInfo}
         onNextPage={onNextPage}
         onPreviousPage={onPreviousPage}
@@ -68,5 +68,5 @@ const OrderListPage: React.StatelessComponent<OrderListPageProps> = ({
     </Card>
   </Container>
 );
-OrderListPage.displayName = "OrderListPage";
-export default OrderListPage;
+TaskListPage.displayName = "TaskListPage";
+export default TaskListPage;

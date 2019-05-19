@@ -6,10 +6,10 @@ MODELS_PERMISSIONS = [
     'account.impersonate_users',
     'discount.manage_discounts',
     'menu.manage_menus',
-    'order.manage_orders',
+    'task.manage_orders',
     'page.manage_pages',
     'skill.manage_skills',
-    'shipping.manage_shipping',
+    'delivery.manage_delivery',
     'site.manage_settings',
     'site.manage_translations']
 

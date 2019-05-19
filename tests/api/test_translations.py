@@ -5,7 +5,7 @@ from tests.api.utils import get_graphql_content
 from remote_works.graphql.translations.schema import TranslatableKinds
 
 
-def test_product_translation(user_api_client, product):
+def test_skill_translation(user_api_client, product):
     product.translations.create(language_code='pl', name='Produkt')
 
     query = """
@@ -21,15 +21,15 @@ def test_product_translation(user_api_client, product):
     }
     """
 
-    product_id = graphene.Node.to_global_id('Skill', product.id)
-    response = user_api_client.post_graphql(query, {'productId': product_id})
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
+    response = user_api_client.post_graphql(query, {'productId': skill_id})
     data = get_graphql_content(response)['data']
 
     assert data['skill']['translation']['name'] == 'Produkt'
     assert data['skill']['translation']['language']['code'] == 'pl'
 
 
-def test_product_variant_translation(user_api_client, variant):
+def test_skill_variant_translation(user_api_client, variant):
     variant.translations.create(language_code='pl', name='Wariant')
 
     query = """
@@ -45,10 +45,10 @@ def test_product_variant_translation(user_api_client, variant):
     }
     """
 
-    product_variant_id = graphene.Node.to_global_id(
+    skill_variant_id = graphene.Node.to_global_id(
         'SkillVariant', variant.id)
     response = user_api_client.post_graphql(
-        query, {'productVariantId': product_variant_id})
+        query, {'productVariantId': skill_variant_id})
     data = get_graphql_content(response)['data']
 
     assert data['productVariant']['translation']['name'] == 'Wariant'
@@ -216,14 +216,14 @@ def test_attribute_value_translation(user_api_client, pink_attribute_value):
     assert attribute_value['translation']['language']['code'] == 'pl'
 
 
-def test_shipping_method_translation(
-        staff_api_client, shipping_method, permission_manage_shipping):
-    shipping_method.translations.create(language_code='pl', name='DHL Polska')
+def test_delivery_method_translation(
+        staff_api_client, delivery_method, permission_manage_delivery):
+    delivery_method.translations.create(language_code='pl', name='DHL Polska')
 
     query = """
-    query shippingZoneById($shippingZoneId: ID!) {
-        shippingZone(id: $shippingZoneId) {
-            shippingMethods {
+    query deliveryZoneById($deliveryZoneId: ID!) {
+        deliveryZone(id: $deliveryZoneId) {
+            deliveryMethods {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -235,16 +235,16 @@ def test_shipping_method_translation(
     }
     """
 
-    shipping_zone_id = graphene.Node.to_global_id(
-        'ShippingZone', shipping_method.shipping_zone.id)
+    delivery_zone_id = graphene.Node.to_global_id(
+        'DeliveryZone', delivery_method.delivery_zone.id)
     response = staff_api_client.post_graphql(
-        query, {'shippingZoneId': shipping_zone_id},
-        permissions=[permission_manage_shipping])
+        query, {'deliveryZoneId': delivery_zone_id},
+        permissions=[permission_manage_delivery])
     data = get_graphql_content(response)['data']
 
-    shipping_method = data['shippingZone']['shippingMethods'][0]
-    assert shipping_method['translation']['name'] == 'DHL Polska'
-    assert shipping_method['translation']['language']['code'] == 'pl'
+    delivery_method = data['deliveryZone']['deliveryMethods'][0]
+    assert delivery_method['translation']['name'] == 'DHL Polska'
+    assert delivery_method['translation']['language']['code'] == 'pl'
 
 
 def test_menu_item_translation(user_api_client, menu_item):
@@ -296,7 +296,7 @@ def test_shop_translation(user_api_client, site_settings):
     assert data['shop']['translation']['language']['code'] == 'pl'
 
 
-def test_product_no_translation(user_api_client, product):
+def test_skill_no_translation(user_api_client, product):
     query = """
     query productById($productId: ID!) {
         skill(id: $productId) {
@@ -310,14 +310,14 @@ def test_product_no_translation(user_api_client, product):
     }
     """
 
-    product_id = graphene.Node.to_global_id('Skill', product.id)
-    response = user_api_client.post_graphql(query, {'productId': product_id})
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
+    response = user_api_client.post_graphql(query, {'productId': skill_id})
     data = get_graphql_content(response)['data']
 
     assert data['skill']['translation'] is None
 
 
-def test_product_variant_no_translation(user_api_client, variant):
+def test_skill_variant_no_translation(user_api_client, variant):
     query = """
     query productVariantById($productVariantId: ID!) {
         productVariant(id: $productVariantId) {
@@ -331,10 +331,10 @@ def test_product_variant_no_translation(user_api_client, variant):
     }
     """
 
-    product_variant_id = graphene.Node.to_global_id(
+    skill_variant_id = graphene.Node.to_global_id(
         'SkillVariant', variant.id)
     response = user_api_client.post_graphql(
-        query, {'productVariantId': product_variant_id})
+        query, {'productVariantId': skill_variant_id})
     data = get_graphql_content(response)['data']
 
     assert data['productVariant']['translation'] is None
@@ -483,12 +483,12 @@ def test_attribute_value_no_translation(user_api_client, pink_attribute_value):
     assert attribute_value['translation'] is None
 
 
-def test_shipping_method_no_translation(
-        staff_api_client, shipping_method, permission_manage_shipping):
+def test_delivery_method_no_translation(
+        staff_api_client, delivery_method, permission_manage_delivery):
     query = """
-    query shippingZoneById($shippingZoneId: ID!) {
-        shippingZone(id: $shippingZoneId) {
-            shippingMethods {
+    query deliveryZoneById($deliveryZoneId: ID!) {
+        deliveryZone(id: $deliveryZoneId) {
+            deliveryMethods {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -500,15 +500,15 @@ def test_shipping_method_no_translation(
     }
     """
 
-    shipping_zone_id = graphene.Node.to_global_id(
-        'ShippingZone', shipping_method.shipping_zone.id)
+    delivery_zone_id = graphene.Node.to_global_id(
+        'DeliveryZone', delivery_method.delivery_zone.id)
     response = staff_api_client.post_graphql(
-        query, {'shippingZoneId': shipping_zone_id},
-        permissions=[permission_manage_shipping])
+        query, {'deliveryZoneId': delivery_zone_id},
+        permissions=[permission_manage_delivery])
     data = get_graphql_content(response)['data']
 
-    shipping_method = data['shippingZone']['shippingMethods'][0]
-    assert shipping_method['translation'] is None
+    delivery_method = data['deliveryZone']['deliveryMethods'][0]
+    assert delivery_method['translation'] is None
 
 
 def test_menu_item_no_translation(user_api_client, menu_item):
@@ -553,7 +553,7 @@ def test_shop_no_translation(user_api_client, site_settings):
     assert data['shop']['translation'] is None
 
 
-def test_product_create_translation(
+def test_skill_create_translation(
         staff_api_client, product, permission_manage_translations):
     query = """
     mutation productTranslate($productId: ID!) {
@@ -572,9 +572,9 @@ def test_product_create_translation(
     }
     """
 
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     response = staff_api_client.post_graphql(
-        query, {'productId': product_id},
+        query, {'productId': skill_id},
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productTranslate']
 
@@ -582,7 +582,7 @@ def test_product_create_translation(
     assert data['skill']['translation']['language']['code'] == 'pl'
 
 
-def test_product_update_translation(
+def test_skill_update_translation(
         staff_api_client, product, permission_manage_translations):
     product.translations.create(language_code='pl', name='Produkt')
 
@@ -603,9 +603,9 @@ def test_product_update_translation(
     }
     """
 
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     response = staff_api_client.post_graphql(
-        query, {'productId': product_id},
+        query, {'productId': skill_id},
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productTranslate']
 
@@ -613,7 +613,7 @@ def test_product_update_translation(
     assert data['skill']['translation']['language']['code'] == 'pl'
 
 
-def test_product_variant_create_translation(
+def test_skill_variant_create_translation(
         staff_api_client, variant, permission_manage_translations):
     query = """
     mutation productVariantTranslate($productVariantId: ID!) {
@@ -632,10 +632,10 @@ def test_product_variant_create_translation(
     }
     """
 
-    product_variant_id = graphene.Node.to_global_id(
+    skill_variant_id = graphene.Node.to_global_id(
         'SkillVariant', variant.id)
     response = staff_api_client.post_graphql(
-        query, {'productVariantId': product_variant_id},
+        query, {'productVariantId': skill_variant_id},
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productVariantTranslate']
 
@@ -643,7 +643,7 @@ def test_product_variant_create_translation(
     assert data['productVariant']['translation']['language']['code'] == 'pl'
 
 
-def test_product_variant_update_translation(
+def test_skill_variant_update_translation(
         staff_api_client, variant, permission_manage_translations):
     variant.translations.create(language_code='pl', name='Wariant')
 
@@ -664,10 +664,10 @@ def test_product_variant_update_translation(
     }
     """
 
-    product_variant_id = graphene.Node.to_global_id(
+    skill_variant_id = graphene.Node.to_global_id(
         'SkillVariant', variant.id)
     response = staff_api_client.post_graphql(
-        query, {'productVariantId': product_variant_id},
+        query, {'productVariantId': skill_variant_id},
         permissions=[permission_manage_translations])
     data = get_graphql_content(response)['data']['productVariantTranslate']
 
@@ -1040,14 +1040,14 @@ def test_attribute_value_update_translation(
     assert data['attributeValue']['translation']['language']['code'] == 'pl'
 
 
-def test_shipping_method_create_translation(
-        staff_api_client, shipping_method, permission_manage_translations):
+def test_delivery_method_create_translation(
+        staff_api_client, delivery_method, permission_manage_translations):
     query = """
-    mutation shippingPriceTranslate($shippingMethodId: ID!) {
-        shippingPriceTranslate(
-                id: $shippingMethodId, languageCode: "pl",
+    mutation deliveryPriceTranslate($deliveryMethodId: ID!) {
+        deliveryPriceTranslate(
+                id: $deliveryMethodId, languageCode: "pl",
                 input: {name: "DHL PL"}) {
-            shippingMethod {
+            deliveryMethod {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -1059,27 +1059,27 @@ def test_shipping_method_create_translation(
     }
     """
 
-    shipping_method_id = graphene.Node.to_global_id(
-        'ShippingMethod', shipping_method.id)
+    delivery_method_id = graphene.Node.to_global_id(
+        'DeliveryMethod', delivery_method.id)
     response = staff_api_client.post_graphql(
-        query, {'shippingMethodId': shipping_method_id},
+        query, {'deliveryMethodId': delivery_method_id},
         permissions=[permission_manage_translations])
-    data = get_graphql_content(response)['data']['shippingPriceTranslate']
+    data = get_graphql_content(response)['data']['deliveryPriceTranslate']
 
-    assert data['shippingMethod']['translation']['name'] == 'DHL PL'
-    assert data['shippingMethod']['translation']['language']['code'] == 'pl'
+    assert data['deliveryMethod']['translation']['name'] == 'DHL PL'
+    assert data['deliveryMethod']['translation']['language']['code'] == 'pl'
 
 
-def test_shipping_method_update_translation(
-        staff_api_client, shipping_method, permission_manage_translations):
-    shipping_method.translations.create(language_code='pl', name='DHL')
+def test_delivery_method_update_translation(
+        staff_api_client, delivery_method, permission_manage_translations):
+    delivery_method.translations.create(language_code='pl', name='DHL')
 
     query = """
-    mutation shippingPriceTranslate($shippingMethodId: ID!) {
-        shippingPriceTranslate(
-                id: $shippingMethodId, languageCode: "pl",
+    mutation deliveryPriceTranslate($deliveryMethodId: ID!) {
+        deliveryPriceTranslate(
+                id: $deliveryMethodId, languageCode: "pl",
                 input: {name: "DHL PL"}) {
-            shippingMethod {
+            deliveryMethod {
                 translation(languageCode: "pl") {
                     name
                     language {
@@ -1091,15 +1091,15 @@ def test_shipping_method_update_translation(
     }
     """
 
-    shipping_method_id = graphene.Node.to_global_id(
-        'ShippingMethod', shipping_method.id)
+    delivery_method_id = graphene.Node.to_global_id(
+        'DeliveryMethod', delivery_method.id)
     response = staff_api_client.post_graphql(
-        query, {'shippingMethodId': shipping_method_id},
+        query, {'deliveryMethodId': delivery_method_id},
         permissions=[permission_manage_translations])
-    data = get_graphql_content(response)['data']['shippingPriceTranslate']
+    data = get_graphql_content(response)['data']['deliveryPriceTranslate']
 
-    assert data['shippingMethod']['translation']['name'] == 'DHL PL'
-    assert data['shippingMethod']['translation']['language']['code'] == 'pl'
+    assert data['deliveryMethod']['translation']['name'] == 'DHL PL'
+    assert data['deliveryMethod']['translation']['language']['code'] == 'pl'
 
 
 def test_menu_item_update_translation(
@@ -1193,14 +1193,14 @@ def test_shop_update_translation(
     (TranslatableKinds.COLLECTION, 'Collection'),
     (TranslatableKinds.CATEGORY, 'Category'),
     (TranslatableKinds.PAGE, 'Page'),
-    (TranslatableKinds.SHIPPING_METHOD, 'ShippingMethod'),
+    (TranslatableKinds.DELIVERY_METHOD, 'DeliveryMethod'),
     (TranslatableKinds.VOUCHER, 'Voucher'),
     (TranslatableKinds.ATTRIBUTE, 'Attribute'),
     (TranslatableKinds.ATTRIBUTE_VALUE, 'AttributeValue'),
     (TranslatableKinds.VARIANT, 'SkillVariant'),
     (TranslatableKinds.MENU_ITEM, 'MenuItem')])
 def test_translations_query(
-        user_api_client, product, collection, voucher, shipping_method,
+        user_api_client, product, collection, voucher, delivery_method,
         page, menu_item, kind, expected_typename):
     query = """
     query TranslationsQuery($kind: TranslatableKinds!) {

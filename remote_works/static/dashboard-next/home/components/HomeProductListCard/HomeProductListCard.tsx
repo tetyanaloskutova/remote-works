@@ -83,15 +83,15 @@ export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
                           variant.attributes
                             .map(attribute => attribute.value)
                             .sort((a, b) =>
-                              a.sortOrder > b.sortOrder ? 1 : -1
+                              a.sortTask > b.sortTask ? 1 : -1
                             )
                             .map(attribute => attribute.name)
                             .join(" / ")
                         )}
                       </Typography>
                       <Typography color={"textSecondary"}>
-                        {i18n.t("{{ordersCount}} Orders", {
-                          ordersCount: variant.quantityOrdered
+                        {i18n.t("{{ordersCount}} Tasks", {
+                          ordersCount: variant.quantityTasked
                         })}
                       </Typography>
                     </>
@@ -115,7 +115,7 @@ export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
             () => (
               <TableRow>
                 <TableCell className={classes.noSkills}>
-                  <Typography>{i18n.t("No products found")}</Typography>
+                  <Typography>{i18n.t("No skills found")}</Typography>
                 </TableCell>
               </TableRow>
             )

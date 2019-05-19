@@ -19,7 +19,7 @@ import Skeleton from "../../../components/Skeleton";
 import Toggle from "../../../components/Toggle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { TaskDetails_order } from "../../types/TaskDetails";
 import { UserSearch_customers_edges_node } from "../../types/UserSearch";
 
 const styles = (theme: Theme) =>
@@ -44,8 +44,8 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface OrderCustomerProps extends WithStyles<typeof styles> {
-  order: OrderDetails_order;
+export interface TaskCustomerProps extends WithStyles<typeof styles> {
+  task: TaskDetails_order;
   users?: UserSearch_customers_edges_node[];
   loading?: boolean;
   canEditAddresses: boolean;
@@ -58,25 +58,25 @@ export interface OrderCustomerProps extends WithStyles<typeof styles> {
     }
   ) => void;
   onBillingAddressEdit?: () => void;
-  onShippingAddressEdit?: () => void;
+  onDeliveryAddressEdit?: () => void;
 }
 
-const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
+const TaskCustomer = withStyles(styles, { name: "TaskCustomer" })(
   ({
     classes,
     canEditAddresses,
     canEditCustomer,
     fetchUsers,
     loading,
-    order,
+    task,
     users,
     onCustomerEdit,
     onBillingAddressEdit,
-    onShippingAddressEdit
-  }: OrderCustomerProps) => {
-    const billingAddress = maybe(() => order.billingAddress);
-    const shippingAddress = maybe(() => order.shippingAddress);
-    const user = maybe(() => order.user);
+    onDeliveryAddressEdit
+  }: TaskCustomerProps) => {
+    const billingAddress = maybe(() => task.billingAddress);
+    const deliveryAddress = maybe(() => task.deliveryAddress);
+    const user = maybe(() => task.user);
     return (
       <Card>
         <Toggle>
@@ -141,7 +141,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                       <Link underline={false}>{i18n.t("View Profile")}</Link>
                     </div>
                     <div>
-                      <Link underline={false}>{i18n.t("View Orders")}</Link>
+                      <Link underline={false}>{i18n.t("View Tasks")}</Link>
                     </div> */}
                   </>
                 )}
@@ -157,16 +157,16 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
             </Typography>
           </div>
 
-          {maybe(() => order.userEmail) === undefined ? (
+          {maybe(() => task.userEmail) === undefined ? (
             <Skeleton />
-          ) : order.userEmail === null ? (
+          ) : task.userEmail === null ? (
             <Typography>{i18n.t("Not set")}</Typography>
           ) : (
             <ExternalLink
-              href={`mailto:${maybe(() => order.userEmail)}`}
+              href={`mailto:${maybe(() => task.userEmail)}`}
               typographyProps={{ color: "primary" }}
             >
-              {maybe(() => order.userEmail)}
+              {maybe(() => task.userEmail)}
             </ExternalLink>
           )}
         </CardContent>
@@ -174,52 +174,52 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
         <CardContent>
           <div className={classes.sectionHeader}>
             <Typography className={classes.sectionHeaderTitle}>
-              {i18n.t("Shipping Address")}
+              {i18n.t("Delivery Address")}
             </Typography>
             {canEditAddresses && (
               <div className={classes.sectionHeaderToolbar}>
                 <Button
                   color="secondary"
                   variant="text"
-                  onClick={onShippingAddressEdit}
-                  disabled={!onShippingAddressEdit && user === undefined}
+                  onClick={onDeliveryAddressEdit}
+                  disabled={!onDeliveryAddressEdit && user === undefined}
                 >
                   {i18n.t("Edit")}
                 </Button>
               </div>
             )}
           </div>
-          {shippingAddress === undefined ? (
+          {deliveryAddress === undefined ? (
             <Skeleton />
-          ) : shippingAddress === null ? (
+          ) : deliveryAddress === null ? (
             <Typography>{i18n.t("Not set")}</Typography>
           ) : (
             <>
-              {shippingAddress.companyName && (
-                <Typography>{shippingAddress.companyName}</Typography>
+              {deliveryAddress.companyName && (
+                <Typography>{deliveryAddress.companyName}</Typography>
               )}
               <Typography>
-                {shippingAddress.firstName} {shippingAddress.lastName}
+                {deliveryAddress.firstName} {deliveryAddress.lastName}
               </Typography>
               <Typography>
-                {shippingAddress.streetAddress1}
+                {deliveryAddress.streetAddress1}
                 <br />
-                {shippingAddress.streetAddress2}
+                {deliveryAddress.streetAddress2}
               </Typography>
               <Typography>
-                {shippingAddress.postalCode} {shippingAddress.city}
-                {shippingAddress.cityArea
-                  ? ", " + shippingAddress.cityArea
+                {deliveryAddress.postalCode} {deliveryAddress.city}
+                {deliveryAddress.cityArea
+                  ? ", " + deliveryAddress.cityArea
                   : ""}
               </Typography>
               <Typography>
-                {shippingAddress.countryArea
-                  ? shippingAddress.countryArea +
+                {deliveryAddress.countryArea
+                  ? deliveryAddress.countryArea +
                     ", " +
-                    shippingAddress.country.country
-                  : shippingAddress.country.country}
+                    deliveryAddress.country.country
+                  : deliveryAddress.country.country}
               </Typography>
-              <Typography>{shippingAddress.phone}</Typography>
+              <Typography>{deliveryAddress.phone}</Typography>
             </>
           )}
         </CardContent>
@@ -246,8 +246,8 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
             <Skeleton />
           ) : billingAddress === null ? (
             <Typography>{i18n.t("Not set")}</Typography>
-          ) : maybe(() => shippingAddress.id) === billingAddress.id ? (
-            <Typography>{i18n.t("Same as shipping address")}</Typography>
+          ) : maybe(() => deliveryAddress.id) === billingAddress.id ? (
+            <Typography>{i18n.t("Same as delivery address")}</Typography>
           ) : (
             <>
               {billingAddress.companyName && (
@@ -280,5 +280,5 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
     );
   }
 );
-OrderCustomer.displayName = "OrderCustomer";
-export default OrderCustomer;
+TaskCustomer.displayName = "TaskCustomer";
+export default TaskCustomer;

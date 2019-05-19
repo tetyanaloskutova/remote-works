@@ -49,10 +49,10 @@ const CustomerAddresses = withStyles(styles, { name: "CustomerAddresses" })(
       {customer &&
       customer.defaultBillingAddress &&
       customer.defaultBillingAddress.id &&
-      customer.defaultShippingAddress &&
-      customer.defaultShippingAddress.id &&
+      customer.defaultDeliveryAddress &&
+      customer.defaultDeliveryAddress.id &&
       customer.defaultBillingAddress.id !==
-        customer.defaultShippingAddress.id ? (
+        customer.defaultDeliveryAddress.id ? (
         <>
           <CardContent>
             <Typography className={classes.label}>
@@ -65,10 +65,10 @@ const CustomerAddresses = withStyles(styles, { name: "CustomerAddresses" })(
           <Hr />
           <CardContent>
             <Typography className={classes.label}>
-              {i18n.t("Shipping address")}
+              {i18n.t("Delivery address")}
             </Typography>
             <AddressFormatter
-              address={maybe(() => customer.defaultShippingAddress)}
+              address={maybe(() => customer.defaultDeliveryAddress)}
             />
           </CardContent>
         </>

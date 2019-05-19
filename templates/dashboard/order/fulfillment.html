@@ -8,27 +8,27 @@
 {% load status %}
 
 {% block title %}
-  {% trans "Fulfill" context "Dashboard order fulfillment" %} {{ order }} - {% trans "Orders" context "Dashboard orders list" %} - {{ block.super }}
+  {% trans "Fulfill" context "Dashboard order fulfillment" %} {{ order }} - {% trans "Tasks" context "Dashboard tasks list" %} - {{ block.super }}
 {% endblock %}
 
-{% block body_class %}body-orders{% endblock %}
+{% block body_class %}body-tasks{% endblock %}
 
 {% block menu_orders_class %}active{% endblock %}
 
 {% block header_menu %}
-  {% url "dashboard:orders" as url %}
+  {% url "dashboard:tasks" as url %}
   {% include "dashboard/includes/_back_link.html" with url=url %}
 {% endblock %}
 
 {% block breadcrumbs %}
   <ul class="breadcrumbs breadcrumbs--history">
     <li>
-      <a href="{% url "dashboard:orders" %}">
-        {% trans "Orders" context "Dashboard orders list" %}
+      <a href="{% url "dashboard:tasks" %}">
+        {% trans "Tasks" context "Dashboard tasks list" %}
       </a>
     </li>
     <li class="back-mobile">
-      <a href="{% url "dashboard:orders" %}">
+      <a href="{% url "dashboard:tasks" %}">
         <svg data-src="{% static "dashboard/images/arrow-left.svg" %}" fill="#fff" width="20px" height="20px" />
       </a>
     </li>
@@ -82,7 +82,7 @@
                     {% endif %}
                     <br>
                     <span class="grey-text">
-                      {% blocktrans trimmed with sku=line.skill_sku context "Order table text" %}
+                      {% blocktrans trimmed with sku=line.skill_sku context "Task table text" %}
                         SKU: {{ sku }}
                       {% endblocktrans %}
                     </span>

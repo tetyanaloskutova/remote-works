@@ -25,7 +25,7 @@ import { FormSpacer } from "../../../components/FormSpacer";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import { TaskDetails_order_lines } from "../../types/TaskDetails";
 
 export interface FormData {
   lines: number[];
@@ -47,16 +47,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface OrderFulfillmentDialogProps extends WithStyles<typeof styles> {
+export interface TaskFulfillmentDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  lines: OrderDetails_order_lines[];
+  lines: TaskDetails_order_lines[];
   onClose();
   onSubmit(data: FormData);
 }
 
-const OrderFulfillmentDialog = withStyles(styles, {
-  name: "OrderFulfillmentDialog"
+const TaskFulfillmentDialog = withStyles(styles, {
+  name: "TaskFulfillmentDialog"
 })(
   ({
     classes,
@@ -65,14 +65,14 @@ const OrderFulfillmentDialog = withStyles(styles, {
     lines,
     onClose,
     onSubmit
-  }: OrderFulfillmentDialogProps) => (
+  }: TaskFulfillmentDialogProps) => (
     <Dialog open={open}>
       <Form
         initial={{
           lines: maybe(
             () =>
               lines.map(
-                product => product.quantity - product.quantityFulfilled
+                skill => product.quantity - product.quantityFulfilled
               ),
             []
           ),
@@ -168,5 +168,5 @@ const OrderFulfillmentDialog = withStyles(styles, {
     </Dialog>
   )
 );
-OrderFulfillmentDialog.displayName = "OrderFulfillmentDialog";
-export default OrderFulfillmentDialog;
+TaskFulfillmentDialog.displayName = "TaskFulfillmentDialog";
+export default TaskFulfillmentDialog;

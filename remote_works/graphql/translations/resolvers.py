@@ -1,7 +1,7 @@
 import graphene_django_optimizer as gql_optimizer
 
 from ...skill import models as skill_models
-from ...shipping import models as shipping_models
+from ...delivery import models as delivery_models
 
 
 def resolve_translation(instance, info, language_code):
@@ -9,8 +9,8 @@ def resolve_translation(instance, info, language_code):
     return instance.translations.filter(language_code=language_code).first()
 
 
-def resolve_shipping_methods(info):
-    qs = shipping_models.ShippingMethod.objects.all()
+def resolve_delivery_methods(info):
+    qs = delivery_models.DeliveryMethod.objects.all()
     return gql_optimizer.query(qs, info)
 
 

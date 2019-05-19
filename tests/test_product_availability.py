@@ -1,62 +1,62 @@
 import datetime
 from unittest.mock import Mock
 
-from remote_works.product import (
+from remote_works.skill import (
     SkillAvailabilityStatus, VariantAvailabilityStatus, models)
 from remote_works.product.utils.availability import (
-    get_availability, get_product_availability_status,
+    get_availability, get_skill_availability_status,
     get_variant_availability_status)
 
 
-def test_product_availability_status(unavailable_product):
-    product = unavailable_product
-    product.product_type.has_variants = True
+def test_skill_availability_status(unavailable_product):
+    skill = unavailable_product
+    product.skill_type.has_variants = True
 
     # skill is not published
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.NOT_PUBLISHED
 
     product.is_published = True
     product.save()
 
     # skill has no variants
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.VARIANTS_MISSSING
 
     variant_1 = product.variants.create(sku='test-1')
     variant_2 = product.variants.create(sku='test-2')
 
-    # create empty stock records
+    # create empty availability records
     variant_1.quantity = 0
     variant_2.quantity = 0
     variant_1.save()
     variant_2.save()
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.OUT_OF_STOCK
 
-    # assign quantity to only one stock record
+    # assign quantity to only one availability record
     variant_1.quantity = 5
     variant_1.save()
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.LOW_STOCK
 
-    # both stock records have some quantity
+    # both availability records have some quantity
     variant_2.quantity = 5
     variant_2.save()
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.READY_FOR_PURCHASE
 
     # set skill availability date from future
     product.publication_date = (
         datetime.date.today() + datetime.timedelta(days=1))
     product.save()
-    status = get_product_availability_status(product)
+    status = get_skill_availability_status(product)
     assert status == SkillAvailabilityStatus.NOT_YET_AVAILABLE
 
 
 def test_variant_availability_status(unavailable_product):
-    product = unavailable_product
-    product.product_type.has_variants = True
+    skill = unavailable_product
+    product.skill_type.has_variants = True
 
     variant = product.variants.create(sku='test')
     variant.quantity = 0
@@ -91,17 +91,17 @@ def test_availability(product, monkeypatch, settings, taxes):
     assert availability.available
 
 
-def test_available_products_only_published(product_list):
-    available_products = models.Skill.objects.published()
+def test_available_products_only_published(skill_list):
+    available_skills = models.Skill.objects.published()
     assert available_products.count() == 2
-    assert all([product.is_published for product in available_products])
+    assert all([product.is_published for skill in available_products])
 
 
-def test_available_products_only_available(product_list):
-    product = product_list[0]
+def test_available_products_only_available(skill_list):
+    skill = skill_list[0]
     date_tomorrow = datetime.date.today() + datetime.timedelta(days=1)
     product.publication_date = date_tomorrow
     product.save()
-    available_products = models.Skill.objects.published()
+    available_skills = models.Skill.objects.published()
     assert available_products.count() == 1
-    assert all([product.is_visible for product in available_products])
+    assert all([product.is_visible for skill in available_products])

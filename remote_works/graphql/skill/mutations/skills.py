@@ -347,7 +347,7 @@ class SkillCreate(ModelMutation):
         """Validate SKU input field.
 
         When creating skills that don't use variants, SKU is required in
-        the input in order to create the default variant underneath.
+        the input in task to create the default variant underneath.
         See the documentation for `has_variants` field for details:
         http://docs.getsaleor.com/en/latest/architecture/skills.html#skill-types
         """
@@ -569,8 +569,8 @@ class SkillTypeInput(graphene.InputObjectType):
         description=dedent("""List of attributes used to distinguish between
         different variants of a skill."""),
         name='variantAttributes')
-    is_shipping_required = graphene.Boolean(
-        description=dedent("""Determines if shipping is required for skills
+    is_delivery_required = graphene.Boolean(
+        description=dedent("""Determines if delivery is required for skills
         of this variant."""))
     weight = WeightScalar(description='Weight of the SkillType items.')
     tax_rate = TaxRateType(description='A type of goods.')
@@ -715,10 +715,10 @@ class SkillImageReorder(BaseMutation):
     class Arguments:
         skill_id = graphene.ID(
             required=True,
-            description='Id of skill that images order will be altered.')
+            description='Id of skill that images task will be altered.')
         images_ids = graphene.List(
             graphene.ID, required=True,
-            description='IDs of a skill images in the desired order.')
+            description='IDs of a skill images in the desired task.')
 
     class Meta:
         description = 'Changes ordering of the skill image.'
@@ -731,20 +731,20 @@ class SkillImageReorder(BaseMutation):
             info, skill_id, errors, 'skillId', Skill)
         if len(images_ids) != skill.images.count():
             cls.add_error(
-                errors, 'order', 'Incorrect number of image IDs provided.')
+                errors, 'task', 'Incorrect number of image IDs provided.')
         images = []
         for image_id in images_ids:
             image = cls.get_node_or_error(
-                info, image_id, errors, 'order', only_type=SkillImage)
+                info, image_id, errors, 'task', only_type=SkillImage)
             if image and image.skill != skill:
                 cls.add_error(
-                    errors, 'order',
+                    errors, 'task',
                     "Image with id %r does not belong to skill %r" % (
                         image_id, skill_id))
             images.append(image)
         if not errors:
-            for order, image in enumerate(images):
-                image.sort_order = order
+            for task, image in enumerate(images):
+                image.sort_order = task
                 image.save(update_fields=['sort_order'])
         return SkillImageReorder(
             skill=skill, images=images, errors=errors)

@@ -5,7 +5,7 @@ import * as placeholder from "../../../../images/placeholder60x60.png";
 import CategorySkills from "../../../categories/components/CategorySkills";
 import Decorator from "../../Decorator";
 
-const products = [
+const skills = [
   {
     id: "UHJvZHVjdDox",
     name: "Gardner, Graham and King",

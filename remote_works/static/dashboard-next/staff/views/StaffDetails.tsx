@@ -23,11 +23,11 @@ import {
   staffMemberRemoveUrl
 } from "../urls";
 
-interface OrderListProps {
+interface TaskListProps {
   id: string;
 }
 
-export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
+export const StaffDetails: React.StatelessComponent<TaskListProps> = ({
   id
 }) => (
   <Navigator>

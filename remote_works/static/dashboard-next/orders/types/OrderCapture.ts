@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderCapture
+// GraphQL mutation operation: TaskCapture
 // ====================================================
 
-export interface OrderCapture_orderCapture_errors {
+export interface TaskCapture_orderCapture_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderCapture_orderCapture_order_billingAddress_country {
+export interface TaskCapture_orderCapture_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderCapture_orderCapture_order_billingAddress {
+export interface TaskCapture_orderCapture_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderCapture_orderCapture_order_billingAddress_country;
+  country: TaskCapture_orderCapture_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderCapture_orderCapture_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderCapture_orderCapture_order_events_user {
+export interface TaskCapture_orderCapture_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderCapture_orderCapture_order_events {
-  __typename: "OrderEvent";
+export interface TaskCapture_orderCapture_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderCapture_orderCapture_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskCapture_orderCapture_order_events_user | null;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskCapture_orderCapture_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskCapture_orderCapture_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments_lines {
+export interface TaskCapture_orderCapture_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderCapture_orderCapture_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskCapture_orderCapture_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderCapture_orderCapture_order_fulfillments {
+export interface TaskCapture_orderCapture_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderCapture_orderCapture_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskCapture_orderCapture_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderCapture_orderCapture_order_lines_unitPrice_gross {
+export interface TaskCapture_orderCapture_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_lines_unitPrice_net {
+export interface TaskCapture_orderCapture_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_lines_unitPrice {
+export interface TaskCapture_orderCapture_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderCapture_orderCapture_order_lines_unitPrice_gross;
-  net: OrderCapture_orderCapture_order_lines_unitPrice_net;
+  gross: TaskCapture_orderCapture_order_lines_unitPrice_gross;
+  net: TaskCapture_orderCapture_order_lines_unitPrice_net;
 }
 
-export interface OrderCapture_orderCapture_order_lines {
-  __typename: "OrderLine";
+export interface TaskCapture_orderCapture_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderCapture_orderCapture_order_lines_unitPrice | null;
+  unitPrice: TaskCapture_orderCapture_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderCapture_orderCapture_order_shippingAddress_country {
+export interface TaskCapture_orderCapture_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderCapture_orderCapture_order_shippingAddress {
+export interface TaskCapture_orderCapture_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderCapture_orderCapture_order_shippingAddress_country;
+  country: TaskCapture_orderCapture_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderCapture_orderCapture_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderCapture_orderCapture_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskCapture_orderCapture_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderCapture_orderCapture_order_shippingPrice_gross {
+export interface TaskCapture_orderCapture_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_shippingPrice {
+export interface TaskCapture_orderCapture_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderCapture_orderCapture_order_shippingPrice_gross;
+  gross: TaskCapture_orderCapture_order_deliveryPrice_gross;
 }
 
-export interface OrderCapture_orderCapture_order_subtotal_gross {
+export interface TaskCapture_orderCapture_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_subtotal {
+export interface TaskCapture_orderCapture_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderCapture_orderCapture_order_subtotal_gross;
+  gross: TaskCapture_orderCapture_order_subtotal_gross;
 }
 
-export interface OrderCapture_orderCapture_order_total_gross {
+export interface TaskCapture_orderCapture_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_total_tax {
+export interface TaskCapture_orderCapture_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_total {
+export interface TaskCapture_orderCapture_order_total {
   __typename: "TaxedMoney";
-  gross: OrderCapture_orderCapture_order_total_gross;
-  tax: OrderCapture_orderCapture_order_total_tax;
+  gross: TaskCapture_orderCapture_order_total_gross;
+  tax: TaskCapture_orderCapture_order_total_tax;
 }
 
-export interface OrderCapture_orderCapture_order_totalAuthorized {
+export interface TaskCapture_orderCapture_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_totalCaptured {
+export interface TaskCapture_orderCapture_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_user {
+export interface TaskCapture_orderCapture_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderCapture_orderCapture_order_availableShippingMethods_price {
+export interface TaskCapture_orderCapture_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderCapture_orderCapture_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskCapture_orderCapture_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderCapture_orderCapture_order_availableShippingMethods_price | null;
+  price: TaskCapture_orderCapture_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderCapture_orderCapture_order {
-  __typename: "Order";
+export interface TaskCapture_orderCapture_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderCapture_orderCapture_order_billingAddress | null;
+  billingAddress: TaskCapture_orderCapture_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderCapture_orderCapture_order_events | null)[] | null;
-  fulfillments: (OrderCapture_orderCapture_order_fulfillments | null)[];
-  lines: (OrderCapture_orderCapture_order_lines | null)[];
+  events: (TaskCapture_orderCapture_order_events | null)[] | null;
+  fulfillments: (TaskCapture_orderCapture_order_fulfillments | null)[];
+  lines: (TaskCapture_orderCapture_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderCapture_orderCapture_order_shippingAddress | null;
-  shippingMethod: OrderCapture_orderCapture_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderCapture_orderCapture_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderCapture_orderCapture_order_subtotal | null;
-  total: OrderCapture_orderCapture_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderCapture_orderCapture_order_totalAuthorized | null;
-  totalCaptured: OrderCapture_orderCapture_order_totalCaptured | null;
-  user: OrderCapture_orderCapture_order_user | null;
+  deliveryAddress: TaskCapture_orderCapture_order_deliveryAddress | null;
+  deliveryMethod: TaskCapture_orderCapture_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskCapture_orderCapture_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskCapture_orderCapture_order_subtotal | null;
+  total: TaskCapture_orderCapture_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskCapture_orderCapture_order_totalAuthorized | null;
+  totalCaptured: TaskCapture_orderCapture_order_totalCaptured | null;
+  user: TaskCapture_orderCapture_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderCapture_orderCapture_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskCapture_orderCapture_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderCapture_orderCapture {
-  __typename: "OrderCapture";
-  errors: OrderCapture_orderCapture_errors[] | null;
-  order: OrderCapture_orderCapture_order | null;
+export interface TaskCapture_orderCapture {
+  __typename: "TaskCapture";
+  errors: TaskCapture_orderCapture_errors[] | null;
+  task: TaskCapture_orderCapture_order | null;
 }
 
-export interface OrderCapture {
-  orderCapture: OrderCapture_orderCapture | null;
+export interface TaskCapture {
+  orderCapture: TaskCapture_orderCapture | null;
 }
 
-export interface OrderCaptureVariables {
+export interface TaskCaptureVariables {
   id: string;
   amount: any;
 }

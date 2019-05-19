@@ -9,8 +9,8 @@ from django.db import connection
 from ...utils import create_superuser
 from ...utils.random_data import (
     add_address_to_admin, create_collections_by_schema, create_menus,
-    create_orders, create_page, create_product_sales,
-    create_products_by_schema, create_shipping_zones, create_users,
+    create_orders, create_page, create_skill_sales,
+    create_products_by_schema, create_delivery_zones, create_users,
     create_vouchers, set_homepage_collection)
 
 
@@ -78,11 +78,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.make_database_faster()
         create_images = not options['withoutimages']
-        for msg in create_shipping_zones():
+        for msg in create_delivery_zones():
             self.stdout.write(msg)
         create_products_by_schema(self.placeholders_dir, create_images)
         self.stdout.write('Created skills')
-        for msg in create_product_sales(5):
+        for msg in create_skill_sales(5):
             self.stdout.write(msg)
         for msg in create_vouchers():
             self.stdout.write(msg)

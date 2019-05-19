@@ -15,14 +15,14 @@ def limit_results(*results):
 def get_results(request, form):
     user = request.user
     results = form.search()
-    products = results['skills']
-    orders = results['orders']
+    skills = results['skills']
+    tasks = results['tasks']
     users = results['users']
-    if not user.has_perm('order.manage_orders'):
-        orders = orders.none()
+    if not user.has_perm('task.manage_orders'):
+        tasks = tasks.none()
     if not user.has_perm('account.manage_users'):
         users = users.none()
-    return limit_results(products, orders, users)
+    return limit_results(products, tasks, users)
 
 
 @staff_member_required
@@ -32,16 +32,16 @@ def search(request):
     form = DashboardSearchForm(data=request.GET or None)
     query = ''
     users = []
-    products = []
-    orders = []
+    skills = []
+    tasks = []
     if form.is_valid():
-        products, orders, users = get_results(request, form)
+        products, tasks, users = get_results(request, form)
         query = form.cleaned_data['q']
     ctx = {
         'form': form,
         'query': query,
         'skills': products,
-        'orders': orders,
+        'tasks': tasks,
         'users': users,
         'query_string': '?q=%s' % query}
     return render(request, 'dashboard/search/results.html', ctx)

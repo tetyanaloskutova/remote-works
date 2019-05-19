@@ -18,7 +18,7 @@ class PaymentQueries(graphene.ObjectType):
     def resolve_payment(self, info, id):
         return graphene.Node.get_node_from_global_id(info, id, Payment)
 
-    @permission_required('order.manage_orders')
+    @permission_required('task.manage_orders')
     def resolve_payments(self, info, query=None, **kwargs):
         return resolve_payments(info, query)
 

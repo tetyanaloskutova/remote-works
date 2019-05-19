@@ -12,7 +12,7 @@ export interface SkillTypeList_productTypes_edges_node {
   id: string;
   name: string;
   hasVariants: boolean;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
 }
 

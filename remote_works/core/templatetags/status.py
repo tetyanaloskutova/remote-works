@@ -1,6 +1,6 @@
 from django.template import Library
 
-from ...order import OrderStatus
+from ...task import TaskStatus
 from ...payment import ChargeStatus
 from ...skill import SkillAvailabilityStatus, VariantAvailabilityStatus
 from ...skill.utils.availability import (
@@ -30,7 +30,7 @@ def render_status(status, status_display=None):
 
 @register.inclusion_tag('status_label.html')
 def render_order_status(status, status_display=None):
-    if status == OrderStatus.FULFILLED:
+    if status == TaskStatus.FULFILLED:
         label_cls = LABEL_SUCCESS
     else:
         label_cls = LABEL_DEFAULT

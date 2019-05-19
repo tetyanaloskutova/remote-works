@@ -2,35 +2,35 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: OrderLineFragment
+// GraphQL fragment: TaskLineFragment
 // ====================================================
 
-export interface OrderLineFragment_unitPrice_gross {
+export interface TaskLineFragment_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineFragment_unitPrice_net {
+export interface TaskLineFragment_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineFragment_unitPrice {
+export interface TaskLineFragment_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderLineFragment_unitPrice_gross;
-  net: OrderLineFragment_unitPrice_net;
+  gross: TaskLineFragment_unitPrice_gross;
+  net: TaskLineFragment_unitPrice_net;
 }
 
-export interface OrderLineFragment {
-  __typename: "OrderLine";
+export interface TaskLineFragment {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderLineFragment_unitPrice | null;
+  unitPrice: TaskLineFragment_unitPrice | null;
   thumbnailUrl: string | null;
 }

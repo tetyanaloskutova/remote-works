@@ -25,7 +25,7 @@ from ..translations.types import (
     CollectionTranslation, SkillTranslation, SkillVariantTranslation)
 from ..utils import get_database_id, reporting_period_to_date
 from .descriptions import AttributeDescriptions, AttributeValueDescriptions
-from .enums import AttributeValueType, OrderDirection, SkillOrderField
+from .enums import AttributeValueType, TaskDirection, SkillTaskField
 
 COLOR_PATTERN = r'^(#[0-9a-fA-F]{3}|#(?:[0-9a-fA-F]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))$'  # noqa
 color_pattern = re.compile(COLOR_PATTERN)
@@ -144,12 +144,12 @@ class SelectedAttribute(graphene.ObjectType):
         description = 'Represents a custom attribute.'
 
 
-class SkillOrder(graphene.InputObjectType):
+class SkillTask(graphene.InputObjectType):
     field = graphene.Argument(
-        SkillOrderField, required=True,
+        SkillTaskField, required=True,
         description='Sort skills by the selected field.')
     direction = graphene.Argument(
-        OrderDirection, required=True,
+        TaskDirection, required=True,
         description='Specifies the direction in which to sort skills')
 
 
@@ -223,17 +223,17 @@ class SkillVariant(CountableDjangoObjectType):
     def resolve_quantity(self, info):
         return self.quantity
 
-    @permission_required(['order.manage_orders', 'skill.manage_skills'])
+    @permission_required(['task.manage_orders', 'skill.manage_skills'])
     def resolve_quantity_ordered(self, info):
         # This field is added through annotation when using the
         # `resolve_report_skill_sales` resolver.
         return getattr(self, 'quantity_ordered', None)
 
-    @permission_required(['order.manage_orders', 'skill.manage_skills'])
+    @permission_required(['task.manage_orders', 'skill.manage_skills'])
     def resolve_quantity_allocated(self, info):
         return self.quantity_allocated
 
-    @permission_required(['order.manage_orders', 'skill.manage_skills'])
+    @permission_required(['task.manage_orders', 'skill.manage_skills'])
     def resolve_revenue(self, info, period):
         start_date = reporting_period_to_date(period)
         return calculate_revenue_for_variant(self, start_date)

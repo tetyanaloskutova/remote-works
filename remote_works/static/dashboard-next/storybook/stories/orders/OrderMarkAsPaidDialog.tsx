@@ -1,18 +1,18 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderMarkAsPaidDialog, {
-  OrderMarkAsPaidDialogProps
-} from "../../../orders/components/OrderMarkAsPaidDialog";
+import TaskMarkAsPaidDialog, {
+  TaskMarkAsPaidDialogProps
+} from "../../../tasks/components/TaskMarkAsPaidDialog";
 import Decorator from "../../Decorator";
 
-const props: OrderMarkAsPaidDialogProps = {
+const props: TaskMarkAsPaidDialogProps = {
   confirmButtonState: "default",
   onClose: () => undefined,
   onConfirm: () => undefined,
   open: true
 };
 
-storiesOf("Orders / OrderMarkAsPaidDialog", module)
+storiesOf("Tasks / TaskMarkAsPaidDialog", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderMarkAsPaidDialog {...props} />);
+  .add("default", () => <TaskMarkAsPaidDialog {...props} />);

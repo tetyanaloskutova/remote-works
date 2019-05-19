@@ -30,8 +30,8 @@ interface HomeNotificationTableProps extends WithStyles<typeof styles> {
   ordersToCapture: number;
   ordersToFulfill: number;
   productsOutOfStock: number;
-  onOrdersToFulfillClick: () => void;
-  onOrdersToCaptureClick: () => void;
+  onTasksToFulfillClick: () => void;
+  onTasksToCaptureClick: () => void;
   onSkillsOutOfStockClick: () => void;
 }
 
@@ -40,8 +40,8 @@ const HomeNotificationTable = withStyles(styles, {
 })(
   ({
     classes,
-    onOrdersToCaptureClick,
-    onOrdersToFulfillClick,
+    onTasksToCaptureClick,
+    onTasksToFulfillClick,
     onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
@@ -51,19 +51,19 @@ const HomeNotificationTable = withStyles(styles, {
       <Card>
         <Table>
           <TableBody className={classes.tableRow}>
-            <TableRow hover={true} onClick={onOrdersToFulfillClick}>
+            <TableRow hover={true} onClick={onTasksToFulfillClick}>
               <TableCell>
                 {ordersToFulfill === undefined ? (
                   <Skeleton />
                 ) : ordersToFulfill === 0 ? (
                   <Typography>
-                    {i18n.t("No orders ready to fulfill")}
+                    {i18n.t("No tasks ready to fulfill")}
                   </Typography>
                 ) : (
                   <Typography
                     dangerouslySetInnerHTML={{
                       __html: i18n.t(
-                        "<b>{{ amount }} Orders</b> are ready to fulfill",
+                        "<b>{{ amount }} Tasks</b> are ready to fulfill",
                         { amount: ordersToFulfill }
                       )
                     }}
@@ -74,7 +74,7 @@ const HomeNotificationTable = withStyles(styles, {
                 <KeyboardArrowRight />
               </TableCell>
             </TableRow>
-            <TableRow hover={true} onClick={onOrdersToCaptureClick}>
+            <TableRow hover={true} onClick={onTasksToCaptureClick}>
               <TableCell>
                 {ordersToCapture === undefined ? (
                   <Skeleton />
@@ -102,12 +102,12 @@ const HomeNotificationTable = withStyles(styles, {
                 {productsOutOfStock === undefined ? (
                   <Skeleton />
                 ) : productsOutOfStock === 0 ? (
-                  <Typography>{i18n.t("No products out of stock")}</Typography>
+                  <Typography>{i18n.t("No skills out of availability")}</Typography>
                 ) : (
                   <Typography
                     dangerouslySetInnerHTML={{
                       __html: i18n.t(
-                        "<b>{{ amount }} Skills</b> out of stock",
+                        "<b>{{ amount }} Skills</b> out of availability",
                         { amount: productsOutOfStock }
                       )
                     }}

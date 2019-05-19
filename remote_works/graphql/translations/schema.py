@@ -11,8 +11,8 @@ from ..skill import types as skill_types
 from ..skill.resolvers import (
     resolve_attributes, resolve_categories, resolve_collections,
     resolve_skill_variants, resolve_skills)
-from ..shipping import types as shipping_types
-from .resolvers import resolve_attribute_values, resolve_shipping_methods
+from ..delivery import types as delivery_types
+from .resolvers import resolve_attribute_values, resolve_delivery_methods
 
 
 class TranslatableItem(graphene.Union):
@@ -25,7 +25,7 @@ class TranslatableItem(graphene.Union):
             skill_types.AttributeValue,
             skill_types.SkillVariant,
             page_types.Page,
-            shipping_types.ShippingMethod,
+            delivery_types.DeliveryMethod,
             discount_types.Voucher,
             menu_types.MenuItem)
 
@@ -40,7 +40,7 @@ class TranslatableKinds(graphene.Enum):
     COLLECTION = 'Collection'
     CATEGORY = 'Category'
     PAGE = 'Page'
-    SHIPPING_METHOD = 'Shipping Method'
+    DELIVERY_METHOD = 'Delivery Method'
     VOUCHER = 'Voucher'
     ATTRIBUTE = 'Attribute'
     ATTRIBUTE_VALUE = 'Attribute Value'
@@ -65,8 +65,8 @@ class TranslationQueries(graphene.ObjectType):
             return resolve_categories(info, query=None)
         elif kind == TranslatableKinds.PAGE:
             return resolve_pages(info, query=None)
-        elif kind == TranslatableKinds.SHIPPING_METHOD:
-            return resolve_shipping_methods(info)
+        elif kind == TranslatableKinds.DELIVERY_METHOD:
+            return resolve_delivery_methods(info)
         elif kind == TranslatableKinds.VOUCHER:
             return resolve_vouchers(info, query=None)
         elif kind == TranslatableKinds.ATTRIBUTE:

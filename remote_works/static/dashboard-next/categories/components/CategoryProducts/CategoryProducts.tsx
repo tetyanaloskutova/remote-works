@@ -72,7 +72,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
       <Table>
         <TableHead>
           <TableRow>
-            {(products === undefined || products.length > 0) && <TableCell />}
+            {(skills === undefined || products.length > 0) && <TableCell />}
             <TableCell className={classes.textLeft}>
               {i18n.t("Name", { context: "object" })}
             </TableCell>
@@ -93,11 +93,11 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
         <TableBody>
           {renderCollection(
             products,
-            product => (
-              <TableRow key={product ? product.id : "skeleton"}>
-                <TableCellAvatar thumbnail={product && product.thumbnailUrl} />
+            skill => (
+              <TableRow key={skill ? product.id : "skeleton"}>
+                <TableCellAvatar thumbnail={skill && product.thumbnailUrl} />
                 <TableCell className={classes.textLeft}>
-                  {product ? (
+                  {skill ? (
                     <span
                       onClick={onRowClick && onRowClick(product.id)}
                       className={classes.link}
@@ -109,7 +109,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
                   )}
                 </TableCell>
                 <TableCell>
-                  {product && product.productType ? (
+                  {skill && product.productType ? (
                     product.productType.name
                   ) : (
                     <Skeleton />
@@ -119,7 +119,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
             ),
             () => (
               <TableRow>
-                <TableCell colSpan={3}>{i18n.t("No products found")}</TableCell>
+                <TableCell colSpan={3}>{i18n.t("No skills found")}</TableCell>
               </TableRow>
             )
           )}

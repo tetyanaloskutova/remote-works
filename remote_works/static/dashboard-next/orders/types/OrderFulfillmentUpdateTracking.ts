@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { FulfillmentUpdateTrackingInput, OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { FulfillmentUpdateTrackingInput, TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderFulfillmentUpdateTracking
+// GraphQL mutation operation: TaskFulfillmentUpdateTracking
 // ====================================================
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_errors {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress_country {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress_country;
+  country: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   streetAddress2: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events_user {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events {
-  __typename: "OrderEvent";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events_user | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_net {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_gross;
-  net: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_net;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_gross;
+  net: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_net;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines {
-  __typename: "OrderLine";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice | null;
+  unitPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingAddress_country {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingAddress {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingAddress_country;
+  country: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   streetAddress2: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingPrice_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingPrice {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingPrice_gross;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryPrice_gross;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal_gross;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal_gross;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_tax {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total {
   __typename: "TaxedMoney";
-  gross: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_gross;
-  tax: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_tax;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_gross;
+  tax: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total_tax;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalAuthorized {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalCaptured {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_user {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableShippingMethods_price {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableShippingMethods_price | null;
+  price: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order {
-  __typename: "Order";
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress | null;
+  billingAddress: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events | null)[] | null;
-  fulfillments: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments | null)[];
-  lines: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines | null)[];
+  events: (TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events | null)[] | null;
+  fulfillments: (TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments | null)[];
+  lines: (TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingAddress | null;
-  shippingMethod: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal | null;
-  total: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalAuthorized | null;
-  totalCaptured: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalCaptured | null;
-  user: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_user | null;
+  deliveryAddress: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryAddress | null;
+  deliveryMethod: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_subtotal | null;
+  total: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalAuthorized | null;
+  totalCaptured: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_totalCaptured | null;
+  user: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking {
   __typename: "FulfillmentUpdateTracking";
-  errors: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_errors[] | null;
-  order: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order | null;
+  errors: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_errors[] | null;
+  task: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order | null;
 }
 
-export interface OrderFulfillmentUpdateTracking {
-  orderFulfillmentUpdateTracking: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking | null;
+export interface TaskFulfillmentUpdateTracking {
+  orderFulfillmentUpdateTracking: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking | null;
 }
 
-export interface OrderFulfillmentUpdateTrackingVariables {
+export interface TaskFulfillmentUpdateTrackingVariables {
   id: string;
   input: FulfillmentUpdateTrackingInput;
 }

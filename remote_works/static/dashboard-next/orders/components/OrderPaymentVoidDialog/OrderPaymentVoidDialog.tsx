@@ -11,15 +11,15 @@ import ConfirmButton, {
 } from "../../../components/ConfirmButton";
 import i18n from "../../../i18n";
 
-interface OrderPaymentVoidDialogProps {
+interface TaskPaymentVoidDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   onClose?();
   onConfirm?();
 }
 
-const OrderPaymentVoidDialog: React.StatelessComponent<
-  OrderPaymentVoidDialogProps
+const TaskPaymentVoidDialog: React.StatelessComponent<
+  TaskPaymentVoidDialogProps
 > = ({ confirmButtonState, open, onConfirm, onClose }) => (
   <Dialog open={open}>
     <DialogTitle>{i18n.t("Void payment", { context: "title" })}</DialogTitle>
@@ -41,5 +41,5 @@ const OrderPaymentVoidDialog: React.StatelessComponent<
     </DialogActions>
   </Dialog>
 );
-OrderPaymentVoidDialog.displayName = "OrderPaymentVoidDialog";
-export default OrderPaymentVoidDialog;
+TaskPaymentVoidDialog.displayName = "TaskPaymentVoidDialog";
+export default TaskPaymentVoidDialog;

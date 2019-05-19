@@ -17,8 +17,8 @@ import Skeleton from "../../../components/Skeleton";
 import StatusLabel from "../../../components/StatusLabel";
 import i18n from "../../../i18n";
 import { maybe, transformPaymentStatus } from "../../../misc";
-import { OrderAction, OrderStatus } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { TaskAction, TaskStatus } from "../../../types/globalTypes";
+import { TaskDetails_order } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -35,39 +35,39 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderPaymentProps extends WithStyles<typeof styles> {
-  order: OrderDetails_order;
+interface TaskPaymentProps extends WithStyles<typeof styles> {
+  task: TaskDetails_order;
   onCapture: () => void;
   onMarkAsPaid: () => void;
   onRefund: () => void;
   onVoid: () => void;
 }
 
-const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
+const TaskPayment = withStyles(styles, { name: "TaskPayment" })(
   ({
     classes,
-    order,
+    task,
     onCapture,
     onMarkAsPaid,
     onRefund,
     onVoid
-  }: OrderPaymentProps) => {
-    const canCapture = maybe(() => order.actions, []).includes(
-      OrderAction.CAPTURE
+  }: TaskPaymentProps) => {
+    const canCapture = maybe(() => task.actions, []).includes(
+      TaskAction.CAPTURE
     );
-    const canVoid = maybe(() => order.actions, []).includes(OrderAction.VOID);
-    const canRefund = maybe(() => order.actions, []).includes(
-      OrderAction.REFUND
+    const canVoid = maybe(() => task.actions, []).includes(TaskAction.VOID);
+    const canRefund = maybe(() => task.actions, []).includes(
+      TaskAction.REFUND
     );
-    const canMarkAsPaid = maybe(() => order.actions, []).includes(
-      OrderAction.MARK_AS_PAID
+    const canMarkAsPaid = maybe(() => task.actions, []).includes(
+      TaskAction.MARK_AS_PAID
     );
-    const payment = transformPaymentStatus(maybe(() => order.paymentStatus));
+    const payment = transformPaymentStatus(maybe(() => task.paymentStatus));
     return (
       <Card>
         <CardTitle
           title={
-            maybe(() => order.paymentStatus) === undefined ? (
+            maybe(() => task.paymentStatus) === undefined ? (
               <Skeleton />
             ) : (
               <StatusLabel label={payment.localized} status={payment.status} />
@@ -80,60 +80,60 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
               <tr>
                 <td>{i18n.t("Subtotal")}</td>
                 <td>
-                  {maybe(() => order.lines) === undefined ? (
+                  {maybe(() => task.lines) === undefined ? (
                     <Skeleton />
                   ) : (
                     i18n.t("{{ quantity }} items", {
-                      quantity: order.lines
+                      quantity: task.lines
                         .map(line => line.quantity)
                         .reduce((curr, prev) => prev + curr, 0)
                     })
                   )}
                 </td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.subtotal.gross) === undefined ? (
+                  {maybe(() => task.subtotal.gross) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.subtotal.gross} />
+                    <Money money={task.subtotal.gross} />
                   )}
                 </td>
               </tr>
               <tr>
                 <td>{i18n.t("Taxes")}</td>
                 <td>
-                  {maybe(() => order.total.tax) === undefined ? (
+                  {maybe(() => task.total.tax) === undefined ? (
                     <Skeleton />
-                  ) : order.total.tax.amount > 0 ? (
+                  ) : task.total.tax.amount > 0 ? (
                     i18n.t("VAT included")
                   ) : (
                     i18n.t("does not apply")
                   )}
                 </td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.total.tax) === undefined ? (
+                  {maybe(() => task.total.tax) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.total.tax} />
+                    <Money money={task.total.tax} />
                   )}
                 </td>
               </tr>
               <tr>
-                <td>{i18n.t("Shipping")}</td>
+                <td>{i18n.t("Delivery")}</td>
                 <td>
-                  {maybe(() => order.shippingMethodName) === undefined &&
-                  maybe(() => order.shippingPrice) === undefined ? (
+                  {maybe(() => task.deliveryMethodName) === undefined &&
+                  maybe(() => task.deliveryPrice) === undefined ? (
                     <Skeleton />
-                  ) : order.shippingMethodName === null ? (
+                  ) : task.deliveryMethodName === null ? (
                     i18n.t("does not apply")
                   ) : (
-                    order.shippingMethodName
+                    task.deliveryMethodName
                   )}
                 </td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.shippingPrice.gross) === undefined ? (
+                  {maybe(() => task.deliveryPrice.gross) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.shippingPrice.gross} />
+                    <Money money={task.deliveryPrice.gross} />
                   )}
                 </td>
               </tr>
@@ -141,10 +141,10 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
                 <td>{i18n.t("Total")}</td>
                 <td />
                 <td className={classes.textRight}>
-                  {maybe(() => order.total.gross) === undefined ? (
+                  {maybe(() => task.total.gross) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.total.gross} />
+                    <Money money={task.total.gross} />
                   )}
                 </td>
               </tr>
@@ -158,20 +158,20 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
               <tr>
                 <td>{i18n.t("Preauthorized amount")}</td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.totalAuthorized.amount) === undefined ? (
+                  {maybe(() => task.totalAuthorized.amount) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.totalAuthorized} />
+                    <Money money={task.totalAuthorized} />
                   )}
                 </td>
               </tr>
               <tr>
                 <td>{i18n.t("Captured amount")}</td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.totalCaptured.amount) === undefined ? (
+                  {maybe(() => task.totalCaptured.amount) === undefined ? (
                     <Skeleton />
                   ) : (
-                    <Money money={order.totalCaptured} />
+                    <Money money={task.totalCaptured} />
                   )}
                 </td>
               </tr>
@@ -179,14 +179,14 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
                 <td>{i18n.t("Balance")}</td>
                 <td className={classes.textRight}>
                   {maybe(
-                    () => order.total.gross.amount && order.totalCaptured.amount
+                    () => task.total.gross.amount && task.totalCaptured.amount
                   ) === undefined ? (
                     <Skeleton />
                   ) : (
                     <Money
                       money={subtractMoney(
-                        order.totalCaptured,
-                        order.total.gross
+                        task.totalCaptured,
+                        task.total.gross
                       )}
                     />
                   )}
@@ -195,7 +195,7 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
             </tbody>
           </table>
         </CardContent>
-        {maybe(() => order.status) !== OrderStatus.CANCELED &&
+        {maybe(() => task.status) !== TaskStatus.CANCELED &&
           (canCapture || canRefund || canVoid || canMarkAsPaid) && (
             <>
               <Hr />
@@ -231,5 +231,5 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
     );
   }
 );
-OrderPayment.displayName = "OrderPayment";
-export default OrderPayment;
+TaskPayment.displayName = "TaskPayment";
+export default TaskPayment;

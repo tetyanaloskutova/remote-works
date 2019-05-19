@@ -10,7 +10,7 @@ import {
   TypedSimpleSkillUpdateMutation
 } from "../mutations";
 import { SkillDelete, SkillDeleteVariables } from "../types/SkillDelete";
-import { SkillDetails_product } from "../types/SkillDetails";
+import { SkillDetails_skill } from "../types/SkillDetails";
 import {
   SkillImageCreate,
   SkillImageCreateVariables
@@ -78,7 +78,7 @@ const SkillUpdateOperations: React.StatelessComponent<
   onImageReorder,
   onUpdate
 }) => {
-  const productId = product ? product.id : "";
+  const productId = skill ? product.id : "";
   return (
     <TypedSkillUpdateMutation onCompleted={onUpdate}>
       {(...updateSkill) => (

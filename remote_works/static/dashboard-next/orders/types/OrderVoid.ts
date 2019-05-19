@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderVoid
+// GraphQL mutation operation: TaskVoid
 // ====================================================
 
-export interface OrderVoid_orderVoid_errors {
+export interface TaskVoid_orderVoid_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderVoid_orderVoid_order_billingAddress_country {
+export interface TaskVoid_orderVoid_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderVoid_orderVoid_order_billingAddress {
+export interface TaskVoid_orderVoid_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderVoid_orderVoid_order_billingAddress_country;
+  country: TaskVoid_orderVoid_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderVoid_orderVoid_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderVoid_orderVoid_order_events_user {
+export interface TaskVoid_orderVoid_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderVoid_orderVoid_order_events {
-  __typename: "OrderEvent";
+export interface TaskVoid_orderVoid_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderVoid_orderVoid_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskVoid_orderVoid_order_events_user | null;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskVoid_orderVoid_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskVoid_orderVoid_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments_lines {
+export interface TaskVoid_orderVoid_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderVoid_orderVoid_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskVoid_orderVoid_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderVoid_orderVoid_order_fulfillments {
+export interface TaskVoid_orderVoid_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderVoid_orderVoid_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskVoid_orderVoid_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderVoid_orderVoid_order_lines_unitPrice_gross {
+export interface TaskVoid_orderVoid_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_lines_unitPrice_net {
+export interface TaskVoid_orderVoid_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_lines_unitPrice {
+export interface TaskVoid_orderVoid_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderVoid_orderVoid_order_lines_unitPrice_gross;
-  net: OrderVoid_orderVoid_order_lines_unitPrice_net;
+  gross: TaskVoid_orderVoid_order_lines_unitPrice_gross;
+  net: TaskVoid_orderVoid_order_lines_unitPrice_net;
 }
 
-export interface OrderVoid_orderVoid_order_lines {
-  __typename: "OrderLine";
+export interface TaskVoid_orderVoid_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderVoid_orderVoid_order_lines_unitPrice | null;
+  unitPrice: TaskVoid_orderVoid_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderVoid_orderVoid_order_shippingAddress_country {
+export interface TaskVoid_orderVoid_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderVoid_orderVoid_order_shippingAddress {
+export interface TaskVoid_orderVoid_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderVoid_orderVoid_order_shippingAddress_country;
+  country: TaskVoid_orderVoid_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,119 +151,119 @@ export interface OrderVoid_orderVoid_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderVoid_orderVoid_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskVoid_orderVoid_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderVoid_orderVoid_order_shippingPrice_gross {
+export interface TaskVoid_orderVoid_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_shippingPrice {
+export interface TaskVoid_orderVoid_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderVoid_orderVoid_order_shippingPrice_gross;
+  gross: TaskVoid_orderVoid_order_deliveryPrice_gross;
 }
 
-export interface OrderVoid_orderVoid_order_subtotal_gross {
+export interface TaskVoid_orderVoid_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_subtotal {
+export interface TaskVoid_orderVoid_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderVoid_orderVoid_order_subtotal_gross;
+  gross: TaskVoid_orderVoid_order_subtotal_gross;
 }
 
-export interface OrderVoid_orderVoid_order_total_gross {
+export interface TaskVoid_orderVoid_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_total_tax {
+export interface TaskVoid_orderVoid_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_total {
+export interface TaskVoid_orderVoid_order_total {
   __typename: "TaxedMoney";
-  gross: OrderVoid_orderVoid_order_total_gross;
-  tax: OrderVoid_orderVoid_order_total_tax;
+  gross: TaskVoid_orderVoid_order_total_gross;
+  tax: TaskVoid_orderVoid_order_total_tax;
 }
 
-export interface OrderVoid_orderVoid_order_totalAuthorized {
+export interface TaskVoid_orderVoid_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_totalCaptured {
+export interface TaskVoid_orderVoid_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_user {
+export interface TaskVoid_orderVoid_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderVoid_orderVoid_order_availableShippingMethods_price {
+export interface TaskVoid_orderVoid_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVoid_orderVoid_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskVoid_orderVoid_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderVoid_orderVoid_order_availableShippingMethods_price | null;
+  price: TaskVoid_orderVoid_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderVoid_orderVoid_order {
-  __typename: "Order";
+export interface TaskVoid_orderVoid_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderVoid_orderVoid_order_billingAddress | null;
+  billingAddress: TaskVoid_orderVoid_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderVoid_orderVoid_order_events | null)[] | null;
-  fulfillments: (OrderVoid_orderVoid_order_fulfillments | null)[];
-  lines: (OrderVoid_orderVoid_order_lines | null)[];
+  events: (TaskVoid_orderVoid_order_events | null)[] | null;
+  fulfillments: (TaskVoid_orderVoid_order_fulfillments | null)[];
+  lines: (TaskVoid_orderVoid_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderVoid_orderVoid_order_shippingAddress | null;
-  shippingMethod: OrderVoid_orderVoid_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderVoid_orderVoid_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderVoid_orderVoid_order_subtotal | null;
-  total: OrderVoid_orderVoid_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderVoid_orderVoid_order_totalAuthorized | null;
-  totalCaptured: OrderVoid_orderVoid_order_totalCaptured | null;
-  user: OrderVoid_orderVoid_order_user | null;
+  deliveryAddress: TaskVoid_orderVoid_order_deliveryAddress | null;
+  deliveryMethod: TaskVoid_orderVoid_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskVoid_orderVoid_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskVoid_orderVoid_order_subtotal | null;
+  total: TaskVoid_orderVoid_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskVoid_orderVoid_order_totalAuthorized | null;
+  totalCaptured: TaskVoid_orderVoid_order_totalCaptured | null;
+  user: TaskVoid_orderVoid_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderVoid_orderVoid_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskVoid_orderVoid_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderVoid_orderVoid {
-  __typename: "OrderVoid";
-  errors: OrderVoid_orderVoid_errors[] | null;
-  order: OrderVoid_orderVoid_order | null;
+export interface TaskVoid_orderVoid {
+  __typename: "TaskVoid";
+  errors: TaskVoid_orderVoid_errors[] | null;
+  task: TaskVoid_orderVoid_order | null;
 }
 
-export interface OrderVoid {
-  orderVoid: OrderVoid_orderVoid | null;
+export interface TaskVoid {
+  orderVoid: TaskVoid_orderVoid | null;
 }
 
-export interface OrderVoidVariables {
+export interface TaskVoidVariables {
   id: string;
 }

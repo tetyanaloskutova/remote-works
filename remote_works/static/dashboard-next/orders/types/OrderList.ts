@@ -1,24 +1,24 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderStatusFilter, PaymentChargeStatusEnum, OrderStatus } from "./../../types/globalTypes";
+import { TaskStatusFilter, PaymentChargeStatusEnum, TaskStatus } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: OrderList
+// GraphQL query operation: TaskList
 // ====================================================
 
-export interface OrderList_orders_edges_node_billingAddress_country {
+export interface TaskList_orders_edges_node_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderList_orders_edges_node_billingAddress {
+export interface TaskList_orders_edges_node_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderList_orders_edges_node_billingAddress_country;
+  country: TaskList_orders_edges_node_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -29,35 +29,35 @@ export interface OrderList_orders_edges_node_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderList_orders_edges_node_total_gross {
+export interface TaskList_orders_edges_node_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderList_orders_edges_node_total {
+export interface TaskList_orders_edges_node_total {
   __typename: "TaxedMoney";
-  gross: OrderList_orders_edges_node_total_gross;
+  gross: TaskList_orders_edges_node_total_gross;
 }
 
-export interface OrderList_orders_edges_node {
-  __typename: "Order";
-  billingAddress: OrderList_orders_edges_node_billingAddress | null;
+export interface TaskList_orders_edges_node {
+  __typename: "Task";
+  billingAddress: TaskList_orders_edges_node_billingAddress | null;
   created: any;
   id: string;
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  status: OrderStatus;
-  total: OrderList_orders_edges_node_total | null;
+  status: TaskStatus;
+  total: TaskList_orders_edges_node_total | null;
   userEmail: string | null;
 }
 
-export interface OrderList_orders_edges {
-  __typename: "OrderCountableEdge";
-  node: OrderList_orders_edges_node;
+export interface TaskList_orders_edges {
+  __typename: "TaskCountableEdge";
+  node: TaskList_orders_edges_node;
 }
 
-export interface OrderList_orders_pageInfo {
+export interface TaskList_orders_pageInfo {
   __typename: "PageInfo";
   hasPreviousPage: boolean;
   hasNextPage: boolean;
@@ -65,20 +65,20 @@ export interface OrderList_orders_pageInfo {
   endCursor: string | null;
 }
 
-export interface OrderList_orders {
-  __typename: "OrderCountableConnection";
-  edges: OrderList_orders_edges[];
-  pageInfo: OrderList_orders_pageInfo;
+export interface TaskList_orders {
+  __typename: "TaskCountableConnection";
+  edges: TaskList_orders_edges[];
+  pageInfo: TaskList_orders_pageInfo;
 }
 
-export interface OrderList {
-  orders: OrderList_orders | null;
+export interface TaskList {
+  tasks: TaskList_orders | null;
 }
 
-export interface OrderListVariables {
+export interface TaskListVariables {
   first?: number | null;
   after?: string | null;
   last?: number | null;
   before?: string | null;
-  status?: OrderStatusFilter | null;
+  status?: TaskStatusFilter | null;
 }

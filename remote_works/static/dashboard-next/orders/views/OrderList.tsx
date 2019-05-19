@@ -6,45 +6,45 @@ import Navigator from "../../components/Navigator";
 import { createPaginationState, Paginator } from "../../components/Paginator";
 import i18n from "../../i18n";
 import { maybe } from "../../misc";
-import { OrderStatusFilter } from "../../types/globalTypes";
-import OrderListPage from "../components/OrderListPage/OrderListPage";
+import { TaskStatusFilter } from "../../types/globalTypes";
+import TaskListPage from "../components/TaskListPage/TaskListPage";
 import { getTabName } from "../misc";
-import { TypedOrderDraftCreateMutation } from "../mutations";
-import { TypedOrderListQuery } from "../queries";
-import { OrderDraftCreate } from "../types/OrderDraftCreate";
+import { TypedTaskDraftCreateMutation } from "../mutations";
+import { TypedTaskListQuery } from "../queries";
+import { TaskDraftCreate } from "../types/TaskDraftCreate";
 import { orderUrl } from "../urls";
 
-export interface OrderListFilters {
-  status: OrderStatusFilter;
+export interface TaskListFilters {
+  status: TaskStatusFilter;
 }
-export type OrderListQueryParams = Partial<
+export type TaskListQueryParams = Partial<
   {
     after: string;
     before: string;
-  } & OrderListFilters
+  } & TaskListFilters
 >;
 
-interface OrderListProps {
-  params: OrderListQueryParams;
+interface TaskListProps {
+  params: TaskListQueryParams;
 }
 
 const PAGINATE_BY = 20;
 
-export const OrderList: React.StatelessComponent<OrderListProps> = ({
+export const TaskList: React.StatelessComponent<TaskListProps> = ({
   params
 }) => (
   <Navigator>
     {navigate => (
       <Messages>
         {pushMessage => {
-          const handleCreateOrderCreateSuccess = (data: OrderDraftCreate) => {
+          const handleCreateTaskCreateSuccess = (data: TaskDraftCreate) => {
             pushMessage({
-              text: i18n.t("Order draft succesfully created")
+              text: i18n.t("Task draft succesfully created")
             });
-            navigate(orderUrl(data.draftOrderCreate.order.id));
+            navigate(orderUrl(data.draftTaskCreate.task.id));
           };
 
-          const changeFilters = (newParams: OrderListQueryParams) =>
+          const changeFilters = (newParams: TaskListQueryParams) =>
             navigate(
               "?" +
                 stringifyQs({
@@ -54,10 +54,10 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
             );
 
           return (
-            <TypedOrderDraftCreateMutation
-              onCompleted={handleCreateOrderCreateSuccess}
+            <TypedTaskDraftCreateMutation
+              onCompleted={handleCreateTaskCreateSuccess}
             >
-              {createOrder => {
+              {createTask => {
                 const paginationState = createPaginationState(
                   PAGINATE_BY,
                   params
@@ -65,7 +65,7 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
                 const currentTab = getTabName(params);
 
                 return (
-                  <TypedOrderListQuery
+                  <TypedTaskListQuery
                     displayLoader
                     variables={{
                       ...paginationState,
@@ -74,20 +74,20 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
                   >
                     {({ data, loading }) => (
                       <Paginator
-                        pageInfo={maybe(() => data.orders.pageInfo)}
+                        pageInfo={maybe(() => data.tasks.pageInfo)}
                         paginationState={paginationState}
                         queryString={params}
                       >
                         {({ loadNextPage, loadPreviousPage, pageInfo }) => (
-                          <OrderListPage
+                          <TaskListPage
                             filtersList={[]}
                             currentTab={currentTab}
                             disabled={loading}
-                            orders={maybe(() =>
-                              data.orders.edges.map(edge => edge.node)
+                            tasks={maybe(() =>
+                              data.tasks.edges.map(edge => edge.node)
                             )}
                             pageInfo={pageInfo}
-                            onAdd={createOrder}
+                            onAdd={createTask}
                             onNextPage={loadNextPage}
                             onPreviousPage={loadPreviousPage}
                             onRowClick={id => () => navigate(orderUrl(id))}
@@ -98,12 +98,12 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
                             }
                             onToFulfill={() =>
                               changeFilters({
-                                status: OrderStatusFilter.READY_TO_FULFILL
+                                status: TaskStatusFilter.READY_TO_FULFILL
                               })
                             }
                             onToCapture={() =>
                               changeFilters({
-                                status: OrderStatusFilter.READY_TO_CAPTURE
+                                status: TaskStatusFilter.READY_TO_CAPTURE
                               })
                             }
                             onCustomFilter={() => undefined}
@@ -111,10 +111,10 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
                         )}
                       </Paginator>
                     )}
-                  </TypedOrderListQuery>
+                  </TypedTaskListQuery>
                 );
               }}
-            </TypedOrderDraftCreateMutation>
+            </TypedTaskDraftCreateMutation>
           );
         }}
       </Messages>
@@ -122,4 +122,4 @@ export const OrderList: React.StatelessComponent<OrderListProps> = ({
   </Navigator>
 );
 
-export default OrderList;
+export default TaskList;

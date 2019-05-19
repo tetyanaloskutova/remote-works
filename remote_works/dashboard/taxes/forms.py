@@ -9,7 +9,7 @@ class TaxesConfigurationForm(forms.ModelForm):
         model = SiteSettings
         fields = (
             'include_taxes_in_prices', 'display_gross_prices',
-            'charge_taxes_on_shipping')
+            'charge_taxes_on_delivery')
         labels = {
             'include_taxes_in_prices': pgettext_lazy(
                 'Include taxes in prices',
@@ -17,6 +17,6 @@ class TaxesConfigurationForm(forms.ModelForm):
             'display_gross_prices': pgettext_lazy(
                 'Display gross prices',
                 'Show gross prices to customers in the storefront'),
-            'charge_taxes_on_shipping': pgettext_lazy(
-                'Charge taxes on shipping rates',
-                'Charge taxes on shipping rates')}
+            'charge_taxes_on_delivery': pgettext_lazy(
+                'Charge taxes on delivery rates',
+                'Charge taxes on delivery rates')}

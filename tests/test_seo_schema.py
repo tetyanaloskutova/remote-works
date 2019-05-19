@@ -3,7 +3,7 @@ import json
 import pytest
 
 from remote_works.seo.schema.email import (
-    get_order_confirmation_markup, get_organization, get_product_data)
+    get_order_confirmation_markup, get_organization, get_skill_data)
 
 
 def test_get_organization(site_settings):
@@ -16,22 +16,22 @@ def test_get_organization(site_settings):
     assert result['name'] == example_name
 
 
-def test_get_product_data_without_image(order_with_lines):
-    """Tested OrderLine Skill has no image assigned."""
+def test_get_skill_data_without_image(order_with_lines):
+    """Tested TaskLine Skill has no image assigned."""
     line = order_with_lines.lines.first()
     organization = get_organization()
-    result = get_product_data(line, organization)
+    result = get_skill_data(line, organization)
     assert 'image' not in result['itemOffered']
 
 
-def test_get_product_data_with_image(order_with_lines, product_with_image):
+def test_get_skill_data_with_image(order_with_lines, skill_with_image):
     line = order_with_lines.lines.first()
-    variant = product_with_image.variants.first()
+    variant = skill_with_image.variants.first()
     line.variant = variant
-    line.product_name = variant.display_product()
+    line.skill_name = variant.display_product()
     line.save()
     organization = get_organization()
-    result = get_product_data(line, organization)
+    result = get_skill_data(line, organization)
     assert 'image' in result['itemOffered']
     assert result['itemOffered']['name'] == variant.display_product()
 

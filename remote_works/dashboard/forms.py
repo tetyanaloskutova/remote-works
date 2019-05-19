@@ -23,7 +23,7 @@ class ModelChoiceOrCreationField(forms.ModelChoiceField):
             return obj
 
 
-class OrderedModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+class TaskedModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     def clean(self, value):
         qs = super().clean(value)
         keys = list(map(int, value))

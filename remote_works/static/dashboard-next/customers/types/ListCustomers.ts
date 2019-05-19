@@ -6,7 +6,7 @@
 // ====================================================
 
 export interface ListCustomers_customers_edges_node_orders {
-  __typename: "OrderCountableConnection";
+  __typename: "TaskCountableConnection";
   totalCount: number | null;
 }
 
@@ -16,7 +16,7 @@ export interface ListCustomers_customers_edges_node {
   email: string;
   firstName: string;
   lastName: string;
-  orders: ListCustomers_customers_edges_node_orders | null;
+  tasks: ListCustomers_customers_edges_node_orders | null;
 }
 
 export interface ListCustomers_customers_edges {

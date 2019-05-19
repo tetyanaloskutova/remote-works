@@ -17,13 +17,13 @@ import SaveButtonBar from "../../../components/SaveButtonBar";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { DraftOrderInput } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { DraftTaskInput } from "../../../types/globalTypes";
+import { TaskDetails_order } from "../../types/TaskDetails";
 import { UserSearch_customers_edges_node } from "../../types/UserSearch";
-import OrderCustomer from "../OrderCustomer";
-import OrderDraftDetails from "../OrderDraftDetails/OrderDraftDetails";
-import { FormData as OrderDraftDetailsSkillsFormData } from "../OrderDraftDetailsSkills";
-import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
+import TaskCustomer from "../TaskCustomer";
+import TaskDraftDetails from "../TaskDraftDetails/TaskDraftDetails";
+import { FormData as TaskDraftDetailsSkillsFormData } from "../TaskDraftDetailsSkills";
+import TaskHistory, { FormData as HistoryFormData } from "../TaskHistory";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -39,9 +39,9 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface OrderDraftPageProps extends WithStyles<typeof styles> {
+export interface TaskDraftPageProps extends WithStyles<typeof styles> {
   disabled: boolean;
-  order: OrderDetails_order;
+  task: TaskDetails_order;
   users: UserSearch_customers_edges_node[];
   usersLoading: boolean;
   countries: Array<{
@@ -52,22 +52,22 @@ export interface OrderDraftPageProps extends WithStyles<typeof styles> {
   fetchUsers: (query: string) => void;
   onBack: () => void;
   onBillingAddressEdit: () => void;
-  onCustomerEdit: (data: DraftOrderInput) => void;
+  onCustomerEdit: (data: DraftTaskInput) => void;
   onDraftFinalize: () => void;
   onDraftRemove: () => void;
   onNoteAdd: (data: HistoryFormData) => void;
-  onOrderLineAdd: () => void;
-  onOrderLineChange: (
+  onTaskLineAdd: () => void;
+  onTaskLineChange: (
     id: string,
-    data: OrderDraftDetailsSkillsFormData
+    data: TaskDraftDetailsSkillsFormData
   ) => void;
-  onOrderLineRemove: (id: string) => void;
+  onTaskLineRemove: (id: string) => void;
   onSkillClick: (id: string) => void;
-  onShippingAddressEdit: () => void;
-  onShippingMethodEdit: () => void;
+  onDeliveryAddressEdit: () => void;
+  onDeliveryMethodEdit: () => void;
 }
 
-const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
+const TaskDraftPage = withStyles(styles, { name: "TaskDraftPage" })(
   ({
     classes,
     disabled,
@@ -79,35 +79,35 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
     onDraftFinalize,
     onDraftRemove,
     onNoteAdd,
-    onOrderLineAdd,
-    onOrderLineChange,
-    onOrderLineRemove,
-    onShippingAddressEdit,
-    onShippingMethodEdit,
-    order,
+    onTaskLineAdd,
+    onTaskLineChange,
+    onTaskLineRemove,
+    onDeliveryAddressEdit,
+    onDeliveryMethodEdit,
+    task,
     users,
     usersLoading
-  }: OrderDraftPageProps) => (
+  }: TaskDraftPageProps) => (
     <Container width="md">
       <PageHeader
         className={classes.header}
-        title={maybe(() => order.number) ? "#" + order.number : undefined}
+        title={maybe(() => task.number) ? "#" + task.number : undefined}
         onBack={onBack}
       >
         <CardMenu
           className={classes.menu}
           menuItems={[
             {
-              label: i18n.t("Cancel order", { context: "button" }),
+              label: i18n.t("Cancel task", { context: "button" }),
               onSelect: onDraftRemove
             }
           ]}
         />
       </PageHeader>
       <div className={classes.date}>
-        {order && order.created ? (
+        {task && task.created ? (
           <Typography variant="caption">
-            <DateTime date={order.created} />
+            <DateTime date={task.created} />
           </Typography>
         ) : (
           <Skeleton style={{ width: "10em" }} />
@@ -115,35 +115,35 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
       </div>
       <Grid>
         <div>
-          <OrderDraftDetails
-            order={order}
-            onOrderLineAdd={onOrderLineAdd}
-            onOrderLineChange={onOrderLineChange}
-            onOrderLineRemove={onOrderLineRemove}
-            onShippingMethodEdit={onShippingMethodEdit}
+          <TaskDraftDetails
+            task={task}
+            onTaskLineAdd={onTaskLineAdd}
+            onTaskLineChange={onTaskLineChange}
+            onTaskLineRemove={onTaskLineRemove}
+            onDeliveryMethodEdit={onDeliveryMethodEdit}
           />
-          <OrderHistory
-            history={maybe(() => order.events)}
+          <TaskHistory
+            history={maybe(() => task.events)}
             onNoteAdd={onNoteAdd}
           />
         </div>
         <div>
-          <OrderCustomer
+          <TaskCustomer
             canEditAddresses={true}
             canEditCustomer={true}
-            order={order}
+            task={task}
             users={users}
             loading={usersLoading}
             fetchUsers={fetchUsers}
             onBillingAddressEdit={onBillingAddressEdit}
             onCustomerEdit={onCustomerEdit}
-            onShippingAddressEdit={onShippingAddressEdit}
+            onDeliveryAddressEdit={onDeliveryAddressEdit}
           />
         </div>
       </Grid>
       <SaveButtonBar
         state={saveButtonBarState}
-        disabled={disabled || !maybe(() => order.canFinalize)}
+        disabled={disabled || !maybe(() => task.canFinalize)}
         onCancel={onBack}
         onSave={onDraftFinalize}
         labels={{ save: i18n.t("Finalize", { context: "button" }) }}
@@ -151,5 +151,5 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
     </Container>
   )
 );
-OrderDraftPage.displayName = "OrderDraftPage";
-export default OrderDraftPage;
+TaskDraftPage.displayName = "TaskDraftPage";
+export default TaskDraftPage;

@@ -12,7 +12,7 @@ import * as React from "react";
 import CardTitle from "../../../components/CardTitle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { SkillDetails_product } from "../../types/SkillDetails";
+import { SkillDetails_skill } from "../../types/SkillDetails";
 
 const styles = (theme: Theme) =>
   createStyles({

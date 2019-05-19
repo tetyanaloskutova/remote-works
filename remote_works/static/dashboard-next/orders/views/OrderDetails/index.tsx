@@ -6,30 +6,30 @@ import Navigator from "../../../components/Navigator";
 import { WindowTitle } from "../../../components/WindowTitle";
 import { getMutationState, maybe, transformAddressToForm } from "../../../misc";
 import { productUrl } from "../../../products/urls";
-import { OrderStatus } from "../../../types/globalTypes";
-import OrderAddressEditDialog from "../../components/OrderAddressEditDialog";
-import OrderCancelDialog from "../../components/OrderCancelDialog";
-import OrderDetailsPage from "../../components/OrderDetailsPage";
-import OrderDraftCancelDialog from "../../components/OrderDraftCancelDialog/OrderDraftCancelDialog";
-import OrderDraftFinalizeDialog, {
-  OrderDraftFinalizeWarning
-} from "../../components/OrderDraftFinalizeDialog";
-import OrderDraftPage from "../../components/OrderDraftPage";
-import OrderFulfillmentCancelDialog from "../../components/OrderFulfillmentCancelDialog";
-import OrderFulfillmentDialog from "../../components/OrderFulfillmentDialog";
-import OrderFulfillmentTrackingDialog from "../../components/OrderFulfillmentTrackingDialog";
-import OrderMarkAsPaidDialog from "../../components/OrderMarkAsPaidDialog/OrderMarkAsPaidDialog";
-import OrderPaymentDialog from "../../components/OrderPaymentDialog";
-import OrderPaymentVoidDialog from "../../components/OrderPaymentVoidDialog";
-import OrderSkillAddDialog from "../../components/OrderSkillAddDialog";
-import OrderShippingMethodEditDialog from "../../components/OrderShippingMethodEditDialog";
-import OrderOperations from "../../containers/OrderOperations";
-import { OrderVariantSearchProvider } from "../../containers/OrderVariantSearch";
+import { TaskStatus } from "../../../types/globalTypes";
+import TaskAddressEditDialog from "../../components/TaskAddressEditDialog";
+import TaskCancelDialog from "../../components/TaskCancelDialog";
+import TaskDetailsPage from "../../components/TaskDetailsPage";
+import TaskDraftCancelDialog from "../../components/TaskDraftCancelDialog/TaskDraftCancelDialog";
+import TaskDraftFinalizeDialog, {
+  TaskDraftFinalizeWarning
+} from "../../components/TaskDraftFinalizeDialog";
+import TaskDraftPage from "../../components/TaskDraftPage";
+import TaskFulfillmentCancelDialog from "../../components/TaskFulfillmentCancelDialog";
+import TaskFulfillmentDialog from "../../components/TaskFulfillmentDialog";
+import TaskFulfillmentTrackingDialog from "../../components/TaskFulfillmentTrackingDialog";
+import TaskMarkAsPaidDialog from "../../components/TaskMarkAsPaidDialog/TaskMarkAsPaidDialog";
+import TaskPaymentDialog from "../../components/TaskPaymentDialog";
+import TaskPaymentVoidDialog from "../../components/TaskPaymentVoidDialog";
+import TaskSkillAddDialog from "../../components/TaskSkillAddDialog";
+import TaskDeliveryMethodEditDialog from "../../components/TaskDeliveryMethodEditDialog";
+import TaskOperations from "../../containers/TaskOperations";
+import { TaskVariantSearchProvider } from "../../containers/TaskVariantSearch";
 import { UserSearchProvider } from "../../containers/UserSearch";
-import { TypedOrderDetailsQuery } from "../../queries";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { TypedTaskDetailsQuery } from "../../queries";
+import { TaskDetails_order } from "../../types/TaskDetails";
 import { orderListUrl, orderUrl } from "../../urls";
-import { OrderDetailsMessages } from "./OrderDetailsMessages";
+import { TaskDetailsMessages } from "./TaskDetailsMessages";
 import {
   orderBillingAddressEditPath,
   orderBillingAddressEditUrl,
@@ -39,8 +39,8 @@ import {
   orderDraftFinalizeUrl,
   orderDraftLineAddPath,
   orderDraftLineAddUrl,
-  orderDraftShippingMethodPath,
-  orderDraftShippingMethodUrl,
+  orderDraftDeliveryMethodPath,
+  orderDraftDeliveryMethodUrl,
   orderFulfillmentCancelPath,
   orderFulfillmentCancelUrl,
   orderFulfillmentEditTrackingPath,
@@ -55,92 +55,92 @@ import {
   orderPaymentRefundUrl,
   orderPaymentVoidPath,
   orderPaymentVoidUrl,
-  orderShippingAddressEditPath,
-  orderShippingAddressEditUrl
+  orderDeliveryAddressEditPath,
+  orderDeliveryAddressEditUrl
 } from "./urls";
 
-const orderDraftFinalizeWarnings = (order: OrderDetails_order) => {
-  const warnings = [] as OrderDraftFinalizeWarning[];
-  if (!(order && order.shippingAddress)) {
-    warnings.push("no-shipping");
+const orderDraftFinalizeWarnings = (task: TaskDetails_order) => {
+  const warnings = [] as TaskDraftFinalizeWarning[];
+  if (!(task && task.deliveryAddress)) {
+    warnings.push("no-delivery");
   }
-  if (!(order && order.billingAddress)) {
+  if (!(task && task.billingAddress)) {
     warnings.push("no-billing");
   }
-  if (!(order && (order.user || order.userEmail))) {
+  if (!(task && (task.user || task.userEmail))) {
     warnings.push("no-user");
   }
   if (
-    order &&
-    order.lines &&
-    order.lines.filter(line => line.isShippingRequired).length > 0 &&
-    order.shippingMethod === null
+    task &&
+    task.lines &&
+    task.lines.filter(line => line.isDeliveryRequired).length > 0 &&
+    task.deliveryMethod === null
   ) {
-    warnings.push("no-shipping-method");
+    warnings.push("no-delivery-method");
   }
   if (
-    order &&
-    order.lines &&
-    order.lines.filter(line => line.isShippingRequired).length === 0 &&
-    order.shippingMethod !== null
+    task &&
+    task.lines &&
+    task.lines.filter(line => line.isDeliveryRequired).length === 0 &&
+    task.deliveryMethod !== null
   ) {
-    warnings.push("unnecessary-shipping-method");
+    warnings.push("unnecessary-delivery-method");
   }
   return warnings;
 };
 
-interface OrderDetailsProps {
+interface TaskDetailsProps {
   id: string;
 }
 
-export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
+export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
   id
 }) => (
   <Navigator>
     {navigate => (
-      <TypedOrderDetailsQuery
+      <TypedTaskDetailsQuery
         displayLoader
         variables={{ id }}
-        require={["order"]}
+        require={["task"]}
       >
         {({ data, error, loading }) => {
           if (error) {
             return <ErrorMessageCard message="Something went wrong" />;
           }
-          const order = maybe(() => data.order);
+          const task = maybe(() => data.task);
           const onModalClose = () => navigate(orderUrl(id), true);
           return (
             <UserSearchProvider>
               {users => (
-                <OrderDetailsMessages>
+                <TaskDetailsMessages>
                   {orderMessages => (
-                    <OrderOperations
-                      order={id}
-                      onOrderFulfillmentCreate={
-                        orderMessages.handleOrderFulfillmentCreate
+                    <TaskOperations
+                      task={id}
+                      onTaskFulfillmentCreate={
+                        orderMessages.handleTaskFulfillmentCreate
                       }
                       onNoteAdd={orderMessages.handleNoteAdd}
-                      onOrderCancel={orderMessages.handleOrderCancel}
-                      onOrderVoid={orderMessages.handleOrderVoid}
+                      onTaskCancel={orderMessages.handleTaskCancel}
+                      onTaskVoid={orderMessages.handleTaskVoid}
                       onPaymentCapture={orderMessages.handlePaymentCapture}
                       onPaymentRefund={orderMessages.handlePaymentRefund}
                       onUpdate={orderMessages.handleUpdate}
                       onDraftUpdate={orderMessages.handleDraftUpdate}
-                      onShippingMethodUpdate={
-                        orderMessages.handleShippingMethodUpdate
+                      onDeliveryMethodUpdate={
+                        orderMessages.handleDeliveryMethodUpdate
                       }
-                      onOrderLineDelete={orderMessages.handleOrderLineDelete}
-                      onOrderLineAdd={orderMessages.handleOrderLineAdd}
-                      onOrderLineUpdate={orderMessages.handleOrderLineUpdate}
-                      onOrderFulfillmentCancel={
-                        orderMessages.handleOrderFulfillmentCancel
+                      onTaskLineDelete={orderMessages.handleTaskLineDelete}
+                      onTaskLineAdd={orderMessages.handleTaskLineAdd}
+                      onTaskLineUpdate={orderMessages.handleTaskLineUpdate}
+                      onTaskFulfillmentCancel={
+                        orderMessages.handleTaskFulfillmentCancel
                       }
-                      onOrderFulfillmentUpdate={
-                        orderMessages.handleOrderFulfillmentUpdate
+                      onTaskFulfillmentUpdate={
+                        orderMessages.handleTaskFulfillmentUpdate
                       }
                       onDraftFinalize={orderMessages.handleDraftFinalize}
                       onDraftCancel={orderMessages.handleDraftCancel}
-                      onOrderMarkAsPaid={orderMessages.handleOrderMarkAsPaid}
+                      onTaskMarkAsPaid={orderMessages.handleTaskMarkAsPaid}
                     >
                       {({
                         orderAddNote,
@@ -153,7 +153,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                         orderPaymentCapture,
                         orderPaymentRefund,
                         orderVoid,
-                        orderShippingMethodUpdate,
+                        orderDeliveryMethodUpdate,
                         orderUpdate,
                         orderFulfillmentCancel,
                         orderFulfillmentUpdateTracking,
@@ -166,36 +166,36 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                           orderDraftFinalize.opts.loading,
                           maybe(
                             () =>
-                              orderDraftFinalize.opts.data.draftOrderComplete
+                              orderDraftFinalize.opts.data.draftTaskComplete
                                 .errors
                           )
                         );
                         return (
                           <>
-                            {maybe(() => order.status !== OrderStatus.DRAFT) ? (
+                            {maybe(() => task.status !== TaskStatus.DRAFT) ? (
                               <>
                                 <WindowTitle
                                   title={maybe(
-                                    () => "Order #" + data.order.number
+                                    () => "Task #" + data.task.number
                                   )}
                                 />
-                                <OrderDetailsPage
+                                <TaskDetailsPage
                                   onNoteAdd={variables =>
                                     orderAddNote.mutate({
                                       input: variables,
-                                      order: id
+                                      task: id
                                     })
                                   }
                                   onBack={() => navigate(orderListUrl())}
-                                  order={order}
-                                  shippingMethods={maybe(
-                                    () => data.order.availableShippingMethods,
+                                  task={task}
+                                  deliveryMethods={maybe(
+                                    () => data.task.availableDeliveryMethods,
                                     []
                                   )}
-                                  onOrderCancel={() =>
+                                  onTaskCancel={() =>
                                     navigate(orderCancelUrl(id))
                                   }
-                                  onOrderFulfill={() =>
+                                  onTaskFulfill={() =>
                                     navigate(orderFulfillUrl(id))
                                   }
                                   onFulfillmentCancel={fulfillmentId =>
@@ -228,8 +228,8 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                   onBillingAddressEdit={() =>
                                     navigate(orderBillingAddressEditUrl(id))
                                   }
-                                  onShippingAddressEdit={() =>
-                                    navigate(orderShippingAddressEditUrl(id))
+                                  onDeliveryAddressEdit={() =>
+                                    navigate(orderDeliveryAddressEditUrl(id))
                                   }
                                   onPaymentPaid={() =>
                                     navigate(orderMarkAsPaidUrl(id))
@@ -238,7 +238,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderCancelPath(":id")}
                                   render={({ match }) => (
-                                    <OrderCancelDialog
+                                    <TaskCancelDialog
                                       confirmButtonState={getMutationState(
                                         orderCancel.opts.called,
                                         orderCancel.opts.loading,
@@ -248,7 +248,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                               .errors
                                         )
                                       )}
-                                      number={maybe(() => order.number)}
+                                      number={maybe(() => task.number)}
                                       open={!!match}
                                       onClose={onModalClose}
                                       onSubmit={variables =>
@@ -263,7 +263,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderMarkAsPaidPath(":id")}
                                   render={({ match }) => (
-                                    <OrderMarkAsPaidDialog
+                                    <TaskMarkAsPaidDialog
                                       confirmButtonState={getMutationState(
                                         orderPaymentMarkAsPaid.opts.called,
                                         orderPaymentMarkAsPaid.opts.loading,
@@ -286,7 +286,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderPaymentVoidPath(":id")}
                                   render={({ match }) => (
-                                    <OrderPaymentVoidDialog
+                                    <TaskPaymentVoidDialog
                                       confirmButtonState={getMutationState(
                                         orderVoid.opts.called,
                                         orderVoid.opts.loading,
@@ -304,7 +304,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderPaymentCapturePath(":id")}
                                   render={({ match }) => (
-                                    <OrderPaymentDialog
+                                    <TaskPaymentDialog
                                       confirmButtonState={getMutationState(
                                         orderPaymentCapture.opts.called,
                                         orderPaymentCapture.opts.loading,
@@ -315,7 +315,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                         )
                                       )}
                                       initial={maybe(
-                                        () => order.total.gross.amount
+                                        () => task.total.gross.amount
                                       )}
                                       open={!!match}
                                       variant="capture"
@@ -332,7 +332,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderPaymentRefundPath(":id")}
                                   render={({ match }) => (
-                                    <OrderPaymentDialog
+                                    <TaskPaymentDialog
                                       confirmButtonState={getMutationState(
                                         orderPaymentRefund.opts.called,
                                         orderPaymentRefund.opts.loading,
@@ -343,7 +343,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                         )
                                       )}
                                       initial={maybe(
-                                        () => order.total.gross.amount
+                                        () => task.total.gross.amount
                                       )}
                                       open={!!match}
                                       variant="refund"
@@ -360,7 +360,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderFulfillPath(":id")}
                                   render={({ match }) => (
-                                    <OrderFulfillmentDialog
+                                    <TaskFulfillmentDialog
                                       confirmButtonState={getMutationState(
                                         orderCreateFulfillment.opts.called,
                                         orderCreateFulfillment.opts.loading,
@@ -372,7 +372,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                       )}
                                       open={!!match}
                                       lines={maybe(
-                                        () => order.lines,
+                                        () => task.lines,
                                         []
                                       ).filter(
                                         line =>
@@ -383,7 +383,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                         orderCreateFulfillment.mutate({
                                           input: {
                                             ...variables,
-                                            lines: maybe(() => order.lines, [])
+                                            lines: maybe(() => task.lines, [])
                                               .filter(
                                                 line =>
                                                   line.quantityFulfilled <
@@ -396,7 +396,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                               }))
                                               .filter(line => line.quantity > 0)
                                           },
-                                          order: order.id
+                                          task: task.id
                                         })
                                       }
                                     />
@@ -408,7 +408,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     ":fulfillmentId"
                                   )}
                                   render={({ match }) => (
-                                    <OrderFulfillmentCancelDialog
+                                    <TaskFulfillmentCancelDialog
                                       confirmButtonState={getMutationState(
                                         orderFulfillmentCancel.opts.called,
                                         orderFulfillmentCancel.opts.loading,
@@ -437,7 +437,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     ":fulfillmentId"
                                   )}
                                   render={({ match }) => (
-                                    <OrderFulfillmentTrackingDialog
+                                    <TaskFulfillmentTrackingDialog
                                       confirmButtonState={getMutationState(
                                         orderFulfillmentUpdateTracking.opts
                                           .called,
@@ -454,7 +454,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                       open={!!match}
                                       trackingNumber={maybe(
                                         () =>
-                                          data.order.fulfillments.find(
+                                          data.task.fulfillments.find(
                                             fulfillment =>
                                               fulfillment.id ===
                                               decodeURIComponent(
@@ -482,15 +482,15 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                               <>
                                 <WindowTitle
                                   title={maybe(
-                                    () => "Draft order #" + data.order.number
+                                    () => "Draft task #" + data.task.number
                                   )}
                                 />
-                                <OrderDraftPage
+                                <TaskDraftPage
                                   disabled={loading}
                                   onNoteAdd={variables =>
                                     orderAddNote.mutate({
                                       input: variables,
-                                      order: id
+                                      task: id
                                     })
                                   }
                                   users={maybe(
@@ -514,11 +514,11 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                   onDraftRemove={() =>
                                     navigate(orderCancelUrl(id))
                                   }
-                                  onOrderLineAdd={() =>
+                                  onTaskLineAdd={() =>
                                     navigate(orderDraftLineAddUrl(id))
                                   }
                                   onBack={() => navigate(orderListUrl())}
-                                  order={order}
+                                  task={task}
                                   countries={maybe(
                                     () => data.shop.countries,
                                     []
@@ -533,16 +533,16 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                   onBillingAddressEdit={() =>
                                     navigate(orderBillingAddressEditUrl(id))
                                   }
-                                  onShippingAddressEdit={() =>
-                                    navigate(orderShippingAddressEditUrl(id))
+                                  onDeliveryAddressEdit={() =>
+                                    navigate(orderDeliveryAddressEditUrl(id))
                                   }
-                                  onShippingMethodEdit={() =>
-                                    navigate(orderDraftShippingMethodUrl(id))
+                                  onDeliveryMethodEdit={() =>
+                                    navigate(orderDraftDeliveryMethodUrl(id))
                                   }
-                                  onOrderLineRemove={id =>
+                                  onTaskLineRemove={id =>
                                     orderLineDelete.mutate({ id })
                                   }
-                                  onOrderLineChange={(id, data) =>
+                                  onTaskLineChange={(id, data) =>
                                     orderLineUpdate.mutate({
                                       id,
                                       input: data
@@ -553,14 +553,14 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderCancelPath(":id")}
                                   render={({ match }) => (
-                                    <OrderDraftCancelDialog
+                                    <TaskDraftCancelDialog
                                       confirmButtonState={getMutationState(
                                         orderDraftCancel.opts.called,
                                         orderDraftCancel.opts.loading,
                                         maybe(
                                           () =>
                                             orderDraftCancel.opts.data
-                                              .draftOrderDelete.errors
+                                              .draftTaskDelete.errors
                                         )
                                       )}
                                       onClose={onModalClose}
@@ -568,14 +568,14 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                         orderDraftCancel.mutate({ id })
                                       }
                                       open={!!match}
-                                      orderNumber={maybe(() => order.number)}
+                                      orderNumber={maybe(() => task.number)}
                                     />
                                   )}
                                 />
                                 <Route
                                   path={orderDraftFinalizePath(":id")}
                                   render={({ match }) => (
-                                    <OrderDraftFinalizeDialog
+                                    <TaskDraftFinalizeDialog
                                       confirmButtonState={
                                         finalizeTransitionState
                                       }
@@ -584,41 +584,41 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                         orderDraftFinalize.mutate({ id })
                                       }
                                       open={!!match}
-                                      orderNumber={maybe(() => order.number)}
+                                      orderNumber={maybe(() => task.number)}
                                       warnings={orderDraftFinalizeWarnings(
-                                        order
+                                        task
                                       )}
                                     />
                                   )}
                                 />
                                 <Route
-                                  path={orderDraftShippingMethodPath(":id")}
+                                  path={orderDraftDeliveryMethodPath(":id")}
                                   render={({ match }) => (
-                                    <OrderShippingMethodEditDialog
+                                    <TaskDeliveryMethodEditDialog
                                       confirmButtonState={getMutationState(
-                                        orderShippingMethodUpdate.opts.called,
-                                        orderShippingMethodUpdate.opts.loading,
+                                        orderDeliveryMethodUpdate.opts.called,
+                                        orderDeliveryMethodUpdate.opts.loading,
                                         maybe(
                                           () =>
-                                            orderShippingMethodUpdate.opts.data
-                                              .orderUpdateShipping.errors
+                                            orderDeliveryMethodUpdate.opts.data
+                                              .orderUpdateDelivery.errors
                                         )
                                       )}
                                       open={!!match}
-                                      shippingMethod={maybe(
-                                        () => order.shippingMethod.id,
+                                      deliveryMethod={maybe(
+                                        () => task.deliveryMethod.id,
                                         ""
                                       )}
-                                      shippingMethods={maybe(
-                                        () => order.availableShippingMethods
+                                      deliveryMethods={maybe(
+                                        () => task.availableDeliveryMethods
                                       )}
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderShippingMethodUpdate.mutate({
+                                        orderDeliveryMethodUpdate.mutate({
                                           id,
                                           input: {
-                                            shippingMethod:
-                                              variables.shippingMethod
+                                            deliveryMethod:
+                                              variables.deliveryMethod
                                           }
                                         })
                                       }
@@ -628,7 +628,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                 <Route
                                   path={orderDraftLineAddPath(":id")}
                                   render={({ match }) => (
-                                    <OrderVariantSearchProvider>
+                                    <TaskVariantSearchProvider>
                                       {({
                                         variants: {
                                           search: variantSearch,
@@ -665,14 +665,14 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                             }
                                           );
                                         return (
-                                          <OrderSkillAddDialog
+                                          <TaskSkillAddDialog
                                             confirmButtonState={getMutationState(
                                               orderLineAdd.opts.called,
                                               orderLineAdd.opts.loading,
                                               maybe(
                                                 () =>
                                                   orderLineAdd.opts.data
-                                                    .draftOrderLinesCreate
+                                                    .draftTaskLinesCreate
                                                     .errors
                                               )
                                             )}
@@ -705,15 +705,15 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                           />
                                         );
                                       }}
-                                    </OrderVariantSearchProvider>
+                                    </TaskVariantSearchProvider>
                                   )}
                                 />
                               </>
                             )}
                             <Route
-                              path={orderShippingAddressEditPath(":id")}
+                              path={orderDeliveryAddressEditPath(":id")}
                               render={({ match }) => (
-                                <OrderAddressEditDialog
+                                <TaskAddressEditDialog
                                   confirmButtonState={getMutationState(
                                     orderUpdate.opts.called,
                                     orderUpdate.opts.loading,
@@ -723,7 +723,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     )
                                   )}
                                   address={transformAddressToForm(
-                                    maybe(() => order.shippingAddress)
+                                    maybe(() => task.deliveryAddress)
                                   )}
                                   countries={maybe(
                                     () => data.shop.countries,
@@ -738,13 +738,13 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     []
                                   )}
                                   open={!!match}
-                                  variant="shipping"
+                                  variant="delivery"
                                   onClose={onModalClose}
                                   onConfirm={variables =>
                                     orderUpdate.mutate({
                                       id,
                                       input: {
-                                        shippingAddress: {
+                                        deliveryAddress: {
                                           ...variables,
                                           country: variables.country.value
                                         }
@@ -757,7 +757,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                             <Route
                               path={orderBillingAddressEditPath(":id")}
                               render={({ match }) => (
-                                <OrderAddressEditDialog
+                                <TaskAddressEditDialog
                                   confirmButtonState={getMutationState(
                                     orderUpdate.opts.called,
                                     orderUpdate.opts.loading,
@@ -767,7 +767,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     )
                                   )}
                                   address={transformAddressToForm(
-                                    maybe(() => order.billingAddress)
+                                    maybe(() => task.billingAddress)
                                   )}
                                   countries={maybe(
                                     () => data.shop.countries,
@@ -801,16 +801,16 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                           </>
                         );
                       }}
-                    </OrderOperations>
+                    </TaskOperations>
                   )}
-                </OrderDetailsMessages>
+                </TaskDetailsMessages>
               )}
             </UserSearchProvider>
           );
         }}
-      </TypedOrderDetailsQuery>
+      </TypedTaskDetailsQuery>
     )}
   </Navigator>
 );
 
-export default OrderDetails;
+export default TaskDetails;

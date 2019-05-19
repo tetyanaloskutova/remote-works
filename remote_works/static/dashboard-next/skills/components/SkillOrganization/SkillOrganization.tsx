@@ -172,10 +172,10 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
         <CardContent>
           <SingleAutocompleteSelectField
             name="productType"
-            disabled={!!product || disabled}
+            disabled={!!skill || disabled}
             label={i18n.t("Skill Type")}
             choices={
-              product &&
+              skill &&
               product.productType &&
               product.productType.name !== undefined
                 ? [{ label: product.productType.name, value: "1" }]
@@ -196,7 +196,7 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
               { label: i18n.t("No"), value: "false" }
             ]}
             value={
-              product &&
+              skill &&
               product.productType &&
               product.productType.hasVariants !== undefined
                 ? product.productType.hasVariants + ""

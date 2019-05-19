@@ -32,7 +32,7 @@ export interface FormData {
 export enum SaleDetailsPageTab {
   categories = "categories",
   collections = "collections",
-  products = "products"
+  skills = "products"
 }
 export function saleDetailsPageTab(tab: string): SaleDetailsPageTab {
   return tab === SaleDetailsPageTab.products

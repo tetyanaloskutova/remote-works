@@ -16,94 +16,94 @@ import {
   TimelineNote
 } from "../../../components/Timeline";
 import i18n from "../../../i18n";
-import { OrderEvents, OrderEventsEmails } from "../../../types/globalTypes";
-import { OrderDetails_order_events } from "../../types/OrderDetails";
+import { TaskEvents, TaskEventsEmails } from "../../../types/globalTypes";
+import { TaskDetails_order_events } from "../../types/TaskDetails";
 
 export interface FormData {
   message: string;
 }
 
-const getEventMessage = (event: OrderDetails_order_events) => {
+const getEventMessage = (event: TaskDetails_order_events) => {
   switch (event.type) {
-    case OrderEvents.CANCELED:
-      return i18n.t("Order has been cancelled", {
-        context: "order history message"
+    case TaskEvents.CANCELED:
+      return i18n.t("Task has been cancelled", {
+        context: "task history message"
       });
-    case OrderEvents.EMAIL_SENT:
+    case TaskEvents.EMAIL_SENT:
       switch (event.emailType) {
-        case OrderEventsEmails.FULFILLMENT:
+        case TaskEventsEmails.FULFILLMENT:
           return i18n.t("Fulfillment confirmation has been sent to customer", {
-            context: "order history message"
+            context: "task history message"
           });
-        case OrderEventsEmails.ORDER:
-          return i18n.t("Order confirmation has been sent to customer", {
-            context: "order history message"
+        case TaskEventsEmails.ORDER:
+          return i18n.t("Task confirmation has been sent to customer", {
+            context: "task history message"
           });
-        case OrderEventsEmails.PAYMENT:
+        case TaskEventsEmails.PAYMENT:
           return i18n.t("Payment confirmation has been sent to customer", {
-            context: "order history message"
+            context: "task history message"
           });
-        case OrderEventsEmails.SHIPPING:
-          return i18n.t("Shipping details has been sent to customer", {
-            context: "order history message"
+        case TaskEventsEmails.DELIVERY:
+          return i18n.t("Delivery details has been sent to customer", {
+            context: "task history message"
           });
       }
-    case OrderEvents.FULFILLMENT_CANCELED:
+    case TaskEvents.FULFILLMENT_CANCELED:
       return i18n.t("Fulfillment has been cancelled", {
-        context: "order history message"
+        context: "task history message"
       });
-    case OrderEvents.FULFILLMENT_FULFILLED_ITEMS:
+    case TaskEvents.FULFILLMENT_FULFILLED_ITEMS:
       return i18n.t("Fulfilled {{ quantity }} items", {
-        context: "order history message",
+        context: "task history message",
         quantity: event.quantity
       });
-    case OrderEvents.FULFILLMENT_RESTOCKED_ITEMS:
+    case TaskEvents.FULFILLMENT_RESTOCKED_ITEMS:
       return i18n.t("Restocked {{ quantity }} items", {
-        context: "order history message",
+        context: "task history message",
         quantity: event.quantity
       });
-    case OrderEvents.ORDER_FULLY_PAID:
-      return i18n.t("Order has been fully paid", {
-        context: "order history message"
+    case TaskEvents.ORDER_FULLY_PAID:
+      return i18n.t("Task has been fully paid", {
+        context: "task history message"
       });
-    case OrderEvents.ORDER_MARKED_AS_PAID:
-      return i18n.t("Marked order as paid", {
-        context: "order history message"
+    case TaskEvents.ORDER_MARKED_AS_PAID:
+      return i18n.t("Marked task as paid", {
+        context: "task history message"
       });
-    case OrderEvents.OTHER:
+    case TaskEvents.OTHER:
       return event.message;
-    case OrderEvents.OVERSOLD_ITEMS:
+    case TaskEvents.OVERSOLD_ITEMS:
       return i18n.t("Oversold {{ quantity }} items", {
-        context: "order history message",
+        context: "task history message",
         quantity: event.quantity
       });
-    case OrderEvents.PAYMENT_CAPTURED:
+    case TaskEvents.PAYMENT_CAPTURED:
       return i18n.t("Payment has been captured", {
-        context: "order history message"
+        context: "task history message"
       });
-    case OrderEvents.PAYMENT_REFUNDED:
+    case TaskEvents.PAYMENT_REFUNDED:
       return i18n.t("Payment has been refunded", {
-        context: "order history message"
+        context: "task history message"
       });
-    case OrderEvents.PAYMENT_VOIDED:
+    case TaskEvents.PAYMENT_VOIDED:
       return i18n.t("Payment has been voided", {
-        context: "order history message"
+        context: "task history message"
       });
-    case OrderEvents.PLACED:
-      return i18n.t("Order has been placed", {
-        context: "order history message"
+    case TaskEvents.PLACED:
+      return i18n.t("Task has been placed", {
+        context: "task history message"
       });
-    case OrderEvents.PLACED_FROM_DRAFT:
-      return i18n.t("Order has been created from draft", {
-        context: "order history message"
+    case TaskEvents.PLACED_FROM_DRAFT:
+      return i18n.t("Task has been created from draft", {
+        context: "task history message"
       });
-    case OrderEvents.TRACKING_UPDATED:
+    case TaskEvents.TRACKING_UPDATED:
       return i18n.t("Updated fulfillment group's tracking number", {
-        context: "order history message"
+        context: "task history message"
       });
-    case OrderEvents.UPDATED:
-      return i18n.t("Order has been updated", {
-        context: "order history message"
+    case TaskEvents.UPDATED:
+      return i18n.t("Task has been updated", {
+        context: "task history message"
       });
   }
 };
@@ -116,16 +116,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderHistoryProps extends WithStyles<typeof styles> {
-  history: OrderDetails_order_events[];
+interface TaskHistoryProps extends WithStyles<typeof styles> {
+  history: TaskDetails_order_events[];
   onNoteAdd: (data: FormData) => void;
 }
 
-const OrderHistory = withStyles(styles, { name: "OrderHistory" })(
-  ({ classes, history, onNoteAdd }: OrderHistoryProps) => (
+const TaskHistory = withStyles(styles, { name: "TaskHistory" })(
+  ({ classes, history, onNoteAdd }: TaskHistoryProps) => (
     <div className={classes.root}>
       <PageHeader
-        title={i18n.t("Order timeline", {
+        title={i18n.t("Task timeline", {
           context: "section name"
         })}
       />
@@ -144,7 +144,7 @@ const OrderHistory = withStyles(styles, { name: "OrderHistory" })(
             .slice()
             .reverse()
             .map(event => {
-              if (event.type === OrderEvents.NOTE_ADDED) {
+              if (event.type === TaskEvents.NOTE_ADDED) {
                 return (
                   <TimelineNote
                     date={event.date}
@@ -169,5 +169,5 @@ const OrderHistory = withStyles(styles, { name: "OrderHistory" })(
     </div>
   )
 );
-OrderHistory.displayName = "OrderHistory";
-export default OrderHistory;
+TaskHistory.displayName = "TaskHistory";
+export default TaskHistory;

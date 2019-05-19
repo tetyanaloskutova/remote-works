@@ -59,7 +59,7 @@ Then log into your Heroku account, find the Heroku Scheduler addon in the active
 Enabling Elasticsearch
 ----------------------
 
-By default, Remote-works uses Postgres as a search backend, but if you want to switch to Elasticsearch, it can be easily achieved using the Bonsai plugin. In order to do that, run the following commands:
+By default, Remote-works uses Postgres as a search backend, but if you want to switch to Elasticsearch, it can be easily achieved using the Bonsai plugin. In task to do that, run the following commands:
 
 .. code-block:: console
 

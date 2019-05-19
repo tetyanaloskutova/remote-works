@@ -2,28 +2,28 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { transformAddressToForm } from "../../../misc";
-import OrderAddressEditDialog from "../../../orders/components/OrderAddressEditDialog";
-import { countries, order as orderFixture } from "../../../orders/fixtures";
+import TaskAddressEditDialog from "../../../tasks/components/TaskAddressEditDialog";
+import { countries, order as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 const order = orderFixture("");
 
-storiesOf("Orders / OrderAddressEditDialog", module)
+storiesOf("Tasks / TaskAddressEditDialog", module)
   .addDecorator(Decorator)
-  .add("shipping address", () => (
-    <OrderAddressEditDialog
+  .add("delivery address", () => (
+    <TaskAddressEditDialog
       confirmButtonState="default"
-      address={transformAddressToForm(order.shippingAddress)}
+      address={transformAddressToForm(order.deliveryAddress)}
       countries={countries}
       errors={[]}
       onClose={() => undefined}
       onConfirm={() => undefined}
       open={true}
-      variant="shipping"
+      variant="delivery"
     />
   ))
   .add("billing address", () => (
-    <OrderAddressEditDialog
+    <TaskAddressEditDialog
       confirmButtonState="default"
       address={transformAddressToForm(order.billingAddress)}
       countries={countries}

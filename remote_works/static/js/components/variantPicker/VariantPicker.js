@@ -159,7 +159,7 @@ export default observer(class VariantPicker extends Component {
             handleChange={this.handleQuantityChange}
             quantity={quantity}
           />
-          <div className="form-group product__info__button">
+          <div className="form-group skill__info__button">
             <button
               className={addToCartBtnClasses}
               onClick={this.handleAddToCart}

@@ -16,13 +16,13 @@ def test_get_order_payloads(order_with_lines):
     assert transaction['cu'] == order.total.currency
     assert Decimal(transaction['tr']) == order.total.gross.amount
     assert Decimal(transaction['tt']) == order.total.tax.amount
-    assert Decimal(transaction['ts']) == order.shipping_price.net.amount
+    assert Decimal(transaction['ts']) == order.delivery_price.net.amount
 
     for i, line in enumerate(order):
         item = data[i + 1]
         assert item['ti'] == order.pk
-        assert item['in'] == line.product_name
-        assert item['ic'] == line.product_sku
+        assert item['in'] == line.skill_name
+        assert item['ic'] == line.skill_sku
         assert item['iq'] == str(int(line.quantity))
         assert item['cu'] == line.unit_price.currency
         assert Decimal(item['ip']) == line.unit_price.gross.amount

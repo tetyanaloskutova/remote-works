@@ -11,7 +11,7 @@ import Money from "../../../components/Money";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { TaskDetails_order } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -25,23 +25,23 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderDraftDetailsSummaryProps extends WithStyles<typeof styles> {
-  order: OrderDetails_order;
-  onShippingMethodEdit: () => void;
+interface TaskDraftDetailsSummaryProps extends WithStyles<typeof styles> {
+  task: TaskDetails_order;
+  onDeliveryMethodEdit: () => void;
 }
 
-const OrderDraftDetailsSummary = withStyles(styles, {
-  name: "OrderDraftDetailsSummary"
+const TaskDraftDetailsSummary = withStyles(styles, {
+  name: "TaskDraftDetailsSummary"
 })(
-  ({ classes, order, onShippingMethodEdit }: OrderDraftDetailsSummaryProps) => (
+  ({ classes, task, onDeliveryMethodEdit }: TaskDraftDetailsSummaryProps) => (
     <table className={classes.root}>
       <tbody>
         <tr>
-          {maybe(() => order.subtotal) ? (
+          {maybe(() => task.subtotal) ? (
             <>
               <td>{i18n.t("Subtotal")}</td>
               <td className={classes.textRight}>
-                <Money money={order.subtotal.gross} />
+                <Money money={task.subtotal.gross} />
               </td>
             </>
           ) : (
@@ -51,30 +51,30 @@ const OrderDraftDetailsSummary = withStyles(styles, {
           )}
         </tr>
         <tr>
-          {order &&
-          order.shippingMethod !== undefined &&
-          order.shippingMethodName !== undefined ? (
-            order.shippingMethod === null ? (
-              order.availableShippingMethods &&
-              order.availableShippingMethods.length > 0 ? (
+          {task &&
+          task.deliveryMethod !== undefined &&
+          task.deliveryMethodName !== undefined ? (
+            task.deliveryMethod === null ? (
+              task.availableDeliveryMethods &&
+              task.availableDeliveryMethods.length > 0 ? (
                 <td>
-                  <Link onClick={onShippingMethodEdit}>
-                    {i18n.t("Add shipping carrier")}
+                  <Link onClick={onDeliveryMethodEdit}>
+                    {i18n.t("Add delivery carrier")}
                   </Link>
                 </td>
               ) : (
-                <td>{i18n.t("No applicable shipping carriers")}</td>
+                <td>{i18n.t("No applicable delivery carriers")}</td>
               )
             ) : (
               <>
                 <td>
-                  <Link onClick={onShippingMethodEdit}>
-                    {order.shippingMethodName}
+                  <Link onClick={onDeliveryMethodEdit}>
+                    {task.deliveryMethodName}
                   </Link>
                 </td>
                 <td className={classes.textRight}>
-                  {maybe(() => order.shippingPrice) ? (
-                    <Money money={order.shippingPrice.gross} />
+                  {maybe(() => task.deliveryPrice) ? (
+                    <Money money={task.deliveryPrice.gross} />
                   ) : (
                     "---"
                   )}
@@ -88,11 +88,11 @@ const OrderDraftDetailsSummary = withStyles(styles, {
           )}
         </tr>
         <tr>
-          {maybe(() => order.total.tax) !== undefined ? (
+          {maybe(() => task.total.tax) !== undefined ? (
             <>
               <td>{i18n.t("Taxes (VAT included)")}</td>
               <td className={classes.textRight}>
-                <Money money={order.total.tax} />
+                <Money money={task.total.tax} />
               </td>
             </>
           ) : (
@@ -102,11 +102,11 @@ const OrderDraftDetailsSummary = withStyles(styles, {
           )}
         </tr>
         <tr>
-          {maybe(() => order.total.gross) !== undefined ? (
+          {maybe(() => task.total.gross) !== undefined ? (
             <>
               <td>{i18n.t("Total")}</td>
               <td className={classes.textRight}>
-                <Money money={order.total.gross} />
+                <Money money={task.total.gross} />
               </td>
             </>
           ) : (
@@ -119,5 +119,5 @@ const OrderDraftDetailsSummary = withStyles(styles, {
     </table>
   )
 );
-OrderDraftDetailsSummary.displayName = "OrderDraftDetailsSummary";
-export default OrderDraftDetailsSummary;
+TaskDraftDetailsSummary.displayName = "TaskDraftDetailsSummary";
+export default TaskDraftDetailsSummary;

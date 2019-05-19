@@ -27,8 +27,8 @@ export const CountryList: React.StatelessComponent = () => (
                       updateTaxSettings({
                         variables: {
                           input: {
-                            chargeTaxesOnShipping:
-                              formData.chargeTaxesOnShipping,
+                            chargeTaxesOnDelivery:
+                              formData.chargeTaxesOnDelivery,
                             displayGrossPrices: formData.showGross,
                             includeTaxesInPrices: formData.includeTax
                           }

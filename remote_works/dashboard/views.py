@@ -5,7 +5,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q, Sum
 from django.template.response import TemplateResponse
 
-from ..order.models import Order
+from ..task.models import Task
 from ..payment import ChargeStatus
 from ..payment.models import Payment
 from ..skill.models import Skill
@@ -33,12 +33,12 @@ def superuser_required(
 
 def index(request):
     paginate_by = 10
-    orders_to_ship = Order.objects.ready_to_fulfill().select_related(
+    orders_to_ship = Task.objects.ready_to_fulfill().select_related(
         'user').prefetch_related('lines', 'payments')
     payments = Payment.objects.filter(
         is_active=True, charge_status=ChargeStatus.NOT_CHARGED
     ).order_by('-created')
-    payments = payments.select_related('order', 'order__user')
+    payments = payments.select_related('task', 'order__user')
     low_stock = get_low_stock_skills()
     ctx = {'preauthorized_payments': payments[:paginate_by],
            'orders_to_ship': orders_to_ship[:paginate_by],

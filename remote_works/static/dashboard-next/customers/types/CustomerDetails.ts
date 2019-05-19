@@ -7,18 +7,18 @@ import { PaymentChargeStatusEnum } from "./../../types/globalTypes";
 // GraphQL query operation: CustomerDetails
 // ====================================================
 
-export interface CustomerDetails_user_defaultShippingAddress_country {
+export interface CustomerDetails_user_defaultDeliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface CustomerDetails_user_defaultShippingAddress {
+export interface CustomerDetails_user_defaultDeliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: CustomerDetails_user_defaultShippingAddress_country;
+  country: CustomerDetails_user_defaultDeliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -63,7 +63,7 @@ export interface CustomerDetails_user_orders_edges_node_total {
 }
 
 export interface CustomerDetails_user_orders_edges_node {
-  __typename: "Order";
+  __typename: "Task";
   id: string;
   created: any;
   number: string | null;
@@ -72,29 +72,29 @@ export interface CustomerDetails_user_orders_edges_node {
 }
 
 export interface CustomerDetails_user_orders_edges {
-  __typename: "OrderCountableEdge";
+  __typename: "TaskCountableEdge";
   node: CustomerDetails_user_orders_edges_node;
 }
 
 export interface CustomerDetails_user_orders {
-  __typename: "OrderCountableConnection";
+  __typename: "TaskCountableConnection";
   edges: CustomerDetails_user_orders_edges[];
 }
 
-export interface CustomerDetails_user_lastPlacedOrder_edges_node {
-  __typename: "Order";
+export interface CustomerDetails_user_lastPlacedTask_edges_node {
+  __typename: "Task";
   id: string;
   created: any;
 }
 
-export interface CustomerDetails_user_lastPlacedOrder_edges {
-  __typename: "OrderCountableEdge";
-  node: CustomerDetails_user_lastPlacedOrder_edges_node;
+export interface CustomerDetails_user_lastPlacedTask_edges {
+  __typename: "TaskCountableEdge";
+  node: CustomerDetails_user_lastPlacedTask_edges_node;
 }
 
-export interface CustomerDetails_user_lastPlacedOrder {
-  __typename: "OrderCountableConnection";
-  edges: CustomerDetails_user_lastPlacedOrder_edges[];
+export interface CustomerDetails_user_lastPlacedTask {
+  __typename: "TaskCountableConnection";
+  edges: CustomerDetails_user_lastPlacedTask_edges[];
 }
 
 export interface CustomerDetails_user {
@@ -105,12 +105,12 @@ export interface CustomerDetails_user {
   lastName: string;
   dateJoined: any;
   lastLogin: any | null;
-  defaultShippingAddress: CustomerDetails_user_defaultShippingAddress | null;
+  defaultDeliveryAddress: CustomerDetails_user_defaultDeliveryAddress | null;
   defaultBillingAddress: CustomerDetails_user_defaultBillingAddress | null;
   note: string | null;
   isActive: boolean;
-  orders: CustomerDetails_user_orders | null;
-  lastPlacedOrder: CustomerDetails_user_lastPlacedOrder | null;
+  tasks: CustomerDetails_user_orders | null;
+  lastPlacedTask: CustomerDetails_user_lastPlacedTask | null;
 }
 
 export interface CustomerDetails {

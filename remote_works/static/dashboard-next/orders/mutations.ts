@@ -3,216 +3,216 @@ import gql from "graphql-tag";
 import { TypedMutation } from "../mutations";
 import {
   fragmentAddress,
-  fragmentOrderDetails,
-  fragmentOrderEvent
+  fragmentTaskDetails,
+  fragmentTaskEvent
 } from "./queries";
-import { OrderAddNote, OrderAddNoteVariables } from "./types/OrderAddNote";
-import { OrderCancel, OrderCancelVariables } from "./types/OrderCancel";
-import { OrderCapture, OrderCaptureVariables } from "./types/OrderCapture";
+import { TaskAddNote, TaskAddNoteVariables } from "./types/TaskAddNote";
+import { TaskCancel, TaskCancelVariables } from "./types/TaskCancel";
+import { TaskCapture, TaskCaptureVariables } from "./types/TaskCapture";
 import {
-  OrderCreateFulfillment,
-  OrderCreateFulfillmentVariables
-} from "./types/OrderCreateFulfillment";
+  TaskCreateFulfillment,
+  TaskCreateFulfillmentVariables
+} from "./types/TaskCreateFulfillment";
 import {
-  OrderDraftCancel,
-  OrderDraftCancelVariables
-} from "./types/OrderDraftCancel";
-import { OrderDraftCreate } from "./types/OrderDraftCreate";
+  TaskDraftCancel,
+  TaskDraftCancelVariables
+} from "./types/TaskDraftCancel";
+import { TaskDraftCreate } from "./types/TaskDraftCreate";
 import {
-  OrderDraftFinalize,
-  OrderDraftFinalizeVariables
-} from "./types/OrderDraftFinalize";
+  TaskDraftFinalize,
+  TaskDraftFinalizeVariables
+} from "./types/TaskDraftFinalize";
 import {
-  OrderDraftUpdate,
-  OrderDraftUpdateVariables
-} from "./types/OrderDraftUpdate";
+  TaskDraftUpdate,
+  TaskDraftUpdateVariables
+} from "./types/TaskDraftUpdate";
 import {
-  OrderFulfillmentCancel,
-  OrderFulfillmentCancelVariables
-} from "./types/OrderFulfillmentCancel";
+  TaskFulfillmentCancel,
+  TaskFulfillmentCancelVariables
+} from "./types/TaskFulfillmentCancel";
 import {
-  OrderFulfillmentUpdateTracking,
-  OrderFulfillmentUpdateTrackingVariables
-} from "./types/OrderFulfillmentUpdateTracking";
+  TaskFulfillmentUpdateTracking,
+  TaskFulfillmentUpdateTrackingVariables
+} from "./types/TaskFulfillmentUpdateTracking";
 import {
-  OrderLineDelete,
-  OrderLineDeleteVariables
-} from "./types/OrderLineDelete";
-import { OrderLinesAdd, OrderLinesAddVariables } from "./types/OrderLinesAdd";
+  TaskLineDelete,
+  TaskLineDeleteVariables
+} from "./types/TaskLineDelete";
+import { TaskLinesAdd, TaskLinesAddVariables } from "./types/TaskLinesAdd";
 import {
-  OrderLineUpdate,
-  OrderLineUpdateVariables
-} from "./types/OrderLineUpdate";
+  TaskLineUpdate,
+  TaskLineUpdateVariables
+} from "./types/TaskLineUpdate";
 import {
-  OrderMarkAsPaid,
-  OrderMarkAsPaidVariables
-} from "./types/OrderMarkAsPaid";
-import { OrderRefund, OrderRefundVariables } from "./types/OrderRefund";
+  TaskMarkAsPaid,
+  TaskMarkAsPaidVariables
+} from "./types/TaskMarkAsPaid";
+import { TaskRefund, TaskRefundVariables } from "./types/TaskRefund";
 import {
-  OrderShippingMethodUpdate,
-  OrderShippingMethodUpdateVariables
-} from "./types/OrderShippingMethodUpdate";
-import { OrderUpdate, OrderUpdateVariables } from "./types/OrderUpdate";
-import { OrderVoid, OrderVoidVariables } from "./types/OrderVoid";
+  TaskDeliveryMethodUpdate,
+  TaskDeliveryMethodUpdateVariables
+} from "./types/TaskDeliveryMethodUpdate";
+import { TaskUpdate, TaskUpdateVariables } from "./types/TaskUpdate";
+import { TaskVoid, TaskVoidVariables } from "./types/TaskVoid";
 
 const orderCancelMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderCancel($id: ID!, $restock: Boolean!) {
+  ${fragmentTaskDetails}
+  mutation TaskCancel($id: ID!, $restock: Boolean!) {
     orderCancel(id: $id, restock: $restock) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderCancelMutation = TypedMutation<
-  OrderCancel,
-  OrderCancelVariables
+export const TypedTaskCancelMutation = TypedMutation<
+  TaskCancel,
+  TaskCancelVariables
 >(orderCancelMutation);
 
 const orderDraftCancelMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderDraftCancel($id: ID!) {
-    draftOrderDelete(id: $id) {
+  ${fragmentTaskDetails}
+  mutation TaskDraftCancel($id: ID!) {
+    draftTaskDelete(id: $id) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderDraftCancelMutation = TypedMutation<
-  OrderDraftCancel,
-  OrderDraftCancelVariables
+export const TypedTaskDraftCancelMutation = TypedMutation<
+  TaskDraftCancel,
+  TaskDraftCancelVariables
 >(orderDraftCancelMutation);
 
 const orderDraftFinalizeMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderDraftFinalize($id: ID!) {
-    draftOrderComplete(id: $id) {
+  ${fragmentTaskDetails}
+  mutation TaskDraftFinalize($id: ID!) {
+    draftTaskComplete(id: $id) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderDraftFinalizeMutation = TypedMutation<
-  OrderDraftFinalize,
-  OrderDraftFinalizeVariables
+export const TypedTaskDraftFinalizeMutation = TypedMutation<
+  TaskDraftFinalize,
+  TaskDraftFinalizeVariables
 >(orderDraftFinalizeMutation);
 
 const orderRefundMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderRefund($id: ID!, $amount: Decimal!) {
+  ${fragmentTaskDetails}
+  mutation TaskRefund($id: ID!, $amount: Decimal!) {
     orderRefund(id: $id, amount: $amount) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderRefundMutation = TypedMutation<
-  OrderRefund,
-  OrderRefundVariables
+export const TypedTaskRefundMutation = TypedMutation<
+  TaskRefund,
+  TaskRefundVariables
 >(orderRefundMutation);
 
 const orderVoidMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderVoid($id: ID!) {
+  ${fragmentTaskDetails}
+  mutation TaskVoid($id: ID!) {
     orderVoid(id: $id) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderVoidMutation = TypedMutation<
-  OrderVoid,
-  OrderVoidVariables
+export const TypedTaskVoidMutation = TypedMutation<
+  TaskVoid,
+  TaskVoidVariables
 >(orderVoidMutation);
 
 const orderMarkAsPaidMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderMarkAsPaid($id: ID!) {
+  ${fragmentTaskDetails}
+  mutation TaskMarkAsPaid($id: ID!) {
     orderMarkAsPaid(id: $id) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderMarkAsPaidMutation = TypedMutation<
-  OrderMarkAsPaid,
-  OrderMarkAsPaidVariables
+export const TypedTaskMarkAsPaidMutation = TypedMutation<
+  TaskMarkAsPaid,
+  TaskMarkAsPaidVariables
 >(orderMarkAsPaidMutation);
 
 const orderCaptureMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderCapture($id: ID!, $amount: Decimal!) {
+  ${fragmentTaskDetails}
+  mutation TaskCapture($id: ID!, $amount: Decimal!) {
     orderCapture(id: $id, amount: $amount) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderCaptureMutation = TypedMutation<
-  OrderCapture,
-  OrderCaptureVariables
+export const TypedTaskCaptureMutation = TypedMutation<
+  TaskCapture,
+  TaskCaptureVariables
 >(orderCaptureMutation);
 
 const orderCreateFulfillmentMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderCreateFulfillment(
+  ${fragmentTaskDetails}
+  mutation TaskCreateFulfillment(
     $order: ID!
     $input: FulfillmentCreateInput!
   ) {
-    orderFulfillmentCreate(order: $order, input: $input) {
+    orderFulfillmentCreate(task: $order, input: $input) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderCreateFulfillmentMutation = TypedMutation<
-  OrderCreateFulfillment,
-  OrderCreateFulfillmentVariables
+export const TypedTaskCreateFulfillmentMutation = TypedMutation<
+  TaskCreateFulfillment,
+  TaskCreateFulfillmentVariables
 >(orderCreateFulfillmentMutation);
 
 const orderFulfillmentUpdateTrackingMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderFulfillmentUpdateTracking(
+  ${fragmentTaskDetails}
+  mutation TaskFulfillmentUpdateTracking(
     $id: ID!
     $input: FulfillmentUpdateTrackingInput!
   ) {
@@ -221,120 +221,120 @@ const orderFulfillmentUpdateTrackingMutation = gql`
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderFulfillmentUpdateTrackingMutation = TypedMutation<
-  OrderFulfillmentUpdateTracking,
-  OrderFulfillmentUpdateTrackingVariables
+export const TypedTaskFulfillmentUpdateTrackingMutation = TypedMutation<
+  TaskFulfillmentUpdateTracking,
+  TaskFulfillmentUpdateTrackingVariables
 >(orderFulfillmentUpdateTrackingMutation);
 
 const orderFulfillmentCancelMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderFulfillmentCancel($id: ID!, $input: FulfillmentCancelInput!) {
+  ${fragmentTaskDetails}
+  mutation TaskFulfillmentCancel($id: ID!, $input: FulfillmentCancelInput!) {
     orderFulfillmentCancel(id: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderFulfillmentCancelMutation = TypedMutation<
-  OrderFulfillmentCancel,
-  OrderFulfillmentCancelVariables
+export const TypedTaskFulfillmentCancelMutation = TypedMutation<
+  TaskFulfillmentCancel,
+  TaskFulfillmentCancelVariables
 >(orderFulfillmentCancelMutation);
 
 const orderAddNoteMutation = gql`
-  ${fragmentOrderEvent}
-  mutation OrderAddNote($order: ID!, $input: OrderAddNoteInput!) {
-    orderAddNote(order: $order, input: $input) {
+  ${fragmentTaskEvent}
+  mutation TaskAddNote($order: ID!, $input: TaskAddNoteInput!) {
+    orderAddNote(task: $order, input: $input) {
       errors {
         field
         message
       }
-      order {
+      task {
         id
         events {
-          ...OrderEventFragment
+          ...TaskEventFragment
         }
       }
     }
   }
 `;
-export const TypedOrderAddNoteMutation = TypedMutation<
-  OrderAddNote,
-  OrderAddNoteVariables
+export const TypedTaskAddNoteMutation = TypedMutation<
+  TaskAddNote,
+  TaskAddNoteVariables
 >(orderAddNoteMutation);
 
 const orderUpdateMutation = gql`
   ${fragmentAddress}
-  mutation OrderUpdate($id: ID!, $input: OrderUpdateInput!) {
+  mutation TaskUpdate($id: ID!, $input: TaskUpdateInput!) {
     orderUpdate(id: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
+      task {
         id
         userEmail
         billingAddress {
           ...AddressFragment
         }
-        shippingAddress {
+        deliveryAddress {
           ...AddressFragment
         }
       }
     }
   }
 `;
-export const TypedOrderUpdateMutation = TypedMutation<
-  OrderUpdate,
-  OrderUpdateVariables
+export const TypedTaskUpdateMutation = TypedMutation<
+  TaskUpdate,
+  TaskUpdateVariables
 >(orderUpdateMutation);
 
 const orderDraftUpdateMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderDraftUpdate($id: ID!, $input: DraftOrderInput!) {
-    draftOrderUpdate(id: $id, input: $input) {
+  ${fragmentTaskDetails}
+  mutation TaskDraftUpdate($id: ID!, $input: DraftTaskInput!) {
+    draftTaskUpdate(id: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderDraftUpdateMutation = TypedMutation<
-  OrderDraftUpdate,
-  OrderDraftUpdateVariables
+export const TypedTaskDraftUpdateMutation = TypedMutation<
+  TaskDraftUpdate,
+  TaskDraftUpdateVariables
 >(orderDraftUpdateMutation);
 
-const orderShippingMethodUpdateMutation = gql`
-  mutation OrderShippingMethodUpdate(
+const orderDeliveryMethodUpdateMutation = gql`
+  mutation TaskDeliveryMethodUpdate(
     $id: ID!
-    $input: OrderUpdateShippingInput!
+    $input: TaskUpdateDeliveryInput!
   ) {
-    orderUpdateShipping(order: $id, input: $input) {
+    orderUpdateDelivery(task: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
-        availableShippingMethods {
+      task {
+        availableDeliveryMethods {
           id
           name
         }
         id
-        shippingMethod {
+        deliveryMethod {
           id
           name
           price {
@@ -342,8 +342,8 @@ const orderShippingMethodUpdateMutation = gql`
             currency
           }
         }
-        shippingMethodName
-        shippingPrice {
+        deliveryMethodName
+        deliveryPrice {
           gross {
             amount
             currency
@@ -353,82 +353,82 @@ const orderShippingMethodUpdateMutation = gql`
     }
   }
 `;
-export const TypedOrderShippingMethodUpdateMutation = TypedMutation<
-  OrderShippingMethodUpdate,
-  OrderShippingMethodUpdateVariables
->(orderShippingMethodUpdateMutation);
+export const TypedTaskDeliveryMethodUpdateMutation = TypedMutation<
+  TaskDeliveryMethodUpdate,
+  TaskDeliveryMethodUpdateVariables
+>(orderDeliveryMethodUpdateMutation);
 
 const orderDraftCreateMutation = gql`
-  mutation OrderDraftCreate {
-    draftOrderCreate(input: {}) {
+  mutation TaskDraftCreate {
+    draftTaskCreate(input: {}) {
       errors {
         field
         message
       }
-      order {
+      task {
         id
       }
     }
   }
 `;
-export const TypedOrderDraftCreateMutation = TypedMutation<
-  OrderDraftCreate,
+export const TypedTaskDraftCreateMutation = TypedMutation<
+  TaskDraftCreate,
   {}
 >(orderDraftCreateMutation);
 
 const orderLineDeleteMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderLineDelete($id: ID!) {
-    draftOrderLineDelete(id: $id) {
+  ${fragmentTaskDetails}
+  mutation TaskLineDelete($id: ID!) {
+    draftTaskLineDelete(id: $id) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderLineDeleteMutation = TypedMutation<
-  OrderLineDelete,
-  OrderLineDeleteVariables
+export const TypedTaskLineDeleteMutation = TypedMutation<
+  TaskLineDelete,
+  TaskLineDeleteVariables
 >(orderLineDeleteMutation);
 
 const orderLinesAddMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderLinesAdd($id: ID!, $input: [OrderLineCreateInput]!) {
-    draftOrderLinesCreate(id: $id, input: $input) {
+  ${fragmentTaskDetails}
+  mutation TaskLinesAdd($id: ID!, $input: [TaskLineCreateInput]!) {
+    draftTaskLinesCreate(id: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderLinesAddMutation = TypedMutation<
-  OrderLinesAdd,
-  OrderLinesAddVariables
+export const TypedTaskLinesAddMutation = TypedMutation<
+  TaskLinesAdd,
+  TaskLinesAddVariables
 >(orderLinesAddMutation);
 
 const orderLineUpdateMutation = gql`
-  ${fragmentOrderDetails}
-  mutation OrderLineUpdate($id: ID!, $input: OrderLineInput!) {
-    draftOrderLineUpdate(id: $id, input: $input) {
+  ${fragmentTaskDetails}
+  mutation TaskLineUpdate($id: ID!, $input: TaskLineInput!) {
+    draftTaskLineUpdate(id: $id, input: $input) {
       errors {
         field
         message
       }
-      order {
-        ...OrderDetailsFragment
+      task {
+        ...TaskDetailsFragment
       }
     }
   }
 `;
-export const TypedOrderLineUpdateMutation = TypedMutation<
-  OrderLineUpdate,
-  OrderLineUpdateVariables
+export const TypedTaskLineUpdateMutation = TypedMutation<
+  TaskLineUpdate,
+  TaskLineUpdateVariables
 >(orderLineUpdateMutation);

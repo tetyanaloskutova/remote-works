@@ -2,46 +2,46 @@ import * as React from "react";
 import { QueryResult } from "react-apollo";
 
 import { LoadMore } from "../../queries";
-import { TypedOrderVariantSearch } from "../queries";
+import { TypedTaskVariantSearch } from "../queries";
 import {
-  OrderVariantSearch,
-  OrderVariantSearchVariables
-} from "../types/OrderVariantSearch";
+  TaskVariantSearch,
+  TaskVariantSearchVariables
+} from "../types/TaskVariantSearch";
 
-interface OrderVariantSearchProviderProps {
+interface TaskVariantSearchProviderProps {
   children: ((
     props: {
       variants: {
         search: (query: string) => void;
         searchOpts: QueryResult<
-          OrderVariantSearch,
-          OrderVariantSearchVariables
+          TaskVariantSearch,
+          TaskVariantSearchVariables
         > &
-          LoadMore<OrderVariantSearch, OrderVariantSearchVariables>;
+          LoadMore<TaskVariantSearch, TaskVariantSearchVariables>;
       };
     }
   ) => React.ReactElement<any>);
 }
-interface OrderVariantSearchProviderState {
+interface TaskVariantSearchProviderState {
   query: string;
 }
 
-export class OrderVariantSearchProvider extends React.Component<
-  OrderVariantSearchProviderProps,
-  OrderVariantSearchProviderState
+export class TaskVariantSearchProvider extends React.Component<
+  TaskVariantSearchProviderProps,
+  TaskVariantSearchProviderState
 > {
-  state: OrderVariantSearchProviderState = { query: "" };
+  state: TaskVariantSearchProviderState = { query: "" };
 
   search = (query: string) => this.setState({ query });
 
   render() {
     const { children } = this.props;
     return (
-      <TypedOrderVariantSearch variables={{ search: this.state.query }}>
+      <TypedTaskVariantSearch variables={{ search: this.state.query }}>
         {searchOpts =>
           children({ variants: { search: this.search, searchOpts } })
         }
-      </TypedOrderVariantSearch>
+      </TypedTaskVariantSearch>
     );
   }
 }

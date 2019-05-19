@@ -29,12 +29,12 @@ import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import {
-  OrderVariantSearch_products_edges_node,
-  OrderVariantSearch_products_edges_node_variants
-} from "../../types/OrderVariantSearch";
+  TaskVariantSearch_products_edges_node,
+  TaskVariantSearch_products_edges_node_variants
+} from "../../types/TaskVariantSearch";
 
 export interface FormData {
-  variants: OrderVariantSearch_products_edges_node_variants[];
+  variants: TaskVariantSearch_products_edges_node_variants[];
   query: string;
 }
 
@@ -76,10 +76,10 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderSkillAddDialogProps extends WithStyles<typeof styles> {
+interface TaskSkillAddDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  products: OrderVariantSearch_products_edges_node[];
+  products: TaskVariantSearch_products_edges_node[];
   loading: boolean;
   hasMore: boolean;
   onClose: () => void;
@@ -94,8 +94,8 @@ const initialForm: FormData = {
 };
 
 function hasAllVariantsSelected(
-  productVariants: OrderVariantSearch_products_edges_node_variants[],
-  selectedVariants: OrderVariantSearch_products_edges_node_variants[]
+  productVariants: TaskVariantSearch_products_edges_node_variants[],
+  selectedVariants: TaskVariantSearch_products_edges_node_variants[]
 ): boolean {
   return productVariants.reduce(
     (acc, productVariant) =>
@@ -108,16 +108,16 @@ function hasAllVariantsSelected(
 }
 
 function isVariantSelected(
-  variant: OrderVariantSearch_products_edges_node_variants,
-  selectedVariants: OrderVariantSearch_products_edges_node_variants[]
+  variant: TaskVariantSearch_products_edges_node_variants,
+  selectedVariants: TaskVariantSearch_products_edges_node_variants[]
 ): boolean {
   return !!selectedVariants.find(
     selectedVariant => selectedVariant.id === variant.id
   );
 }
 
-const OrderSkillAddDialog = withStyles(styles, {
-  name: "OrderSkillAddDialog"
+const TaskSkillAddDialog = withStyles(styles, {
+  name: "TaskSkillAddDialog"
 })(
   ({
     classes,
@@ -130,7 +130,7 @@ const OrderSkillAddDialog = withStyles(styles, {
     onFetchMore,
     onClose,
     onSubmit
-  }: OrderSkillAddDialogProps) => (
+  }: TaskSkillAddDialogProps) => (
     <Dialog
       open={open}
       classes={{ paper: classes.overflow }}
@@ -140,20 +140,20 @@ const OrderSkillAddDialog = withStyles(styles, {
       <Form initial={initialForm} onSubmit={onSubmit}>
         {({ data, change }) => {
           const selectedVariants = products
-            ? products.map(product =>
+            ? products.map(skill =>
                 product.variants.map(variant =>
                   isVariantSelected(variant, data.variants)
                 )
               )
             : [];
           const selectedSkills = products
-            ? products.map(product =>
+            ? products.map(skill =>
                 hasAllVariantsSelected(product.variants, data.variants)
               )
             : [];
 
           const onSkillAdd = (
-            product: OrderVariantSearch_products_edges_node,
+            product: TaskVariantSearch_products_edges_node,
             productIndex: number
           ) =>
             selectedSkills[productIndex]
@@ -185,7 +185,7 @@ const OrderSkillAddDialog = withStyles(styles, {
                   }
                 } as any);
           const onVariantAdd = (
-            variant: OrderVariantSearch_products_edges_node_variants,
+            variant: TaskVariantSearch_products_edges_node_variants,
             variantIndex: number,
             productIndex: number
           ) =>
@@ -216,12 +216,12 @@ const OrderSkillAddDialog = withStyles(styles, {
                       value={data.query}
                       onChange={event => change(event, () => fetch(data.query))}
                       label={i18n.t("Search Skills", {
-                        context: "product search input label"
+                        context: "skill search input label"
                       })}
                       placeholder={i18n.t(
-                        "Search by product name, attribute, product type etc...",
+                        "Search by skill name, attribute, skill type etc...",
                         {
-                          context: "product search input placeholder"
+                          context: "skill search input placeholder"
                         }
                       )}
                       fullWidth
@@ -252,7 +252,7 @@ const OrderSkillAddDialog = withStyles(styles, {
                         products,
                         (product, productIndex) => (
                           <React.Fragment
-                            key={product ? product.id : "skeleton"}
+                            key={skill ? product.id : "skeleton"}
                           >
                             <TableRow>
                               <TableCell
@@ -319,7 +319,7 @@ const OrderSkillAddDialog = withStyles(styles, {
                         () => (
                           <TableRow>
                             <TableCell colSpan={4}>
-                              {i18n.t("No products matching given query")}
+                              {i18n.t("No skills matching given query")}
                             </TableCell>
                           </TableRow>
                         )
@@ -348,5 +348,5 @@ const OrderSkillAddDialog = withStyles(styles, {
     </Dialog>
   )
 );
-OrderSkillAddDialog.displayName = "OrderSkillAddDialog";
-export default OrderSkillAddDialog;
+TaskSkillAddDialog.displayName = "TaskSkillAddDialog";
+export default TaskSkillAddDialog;

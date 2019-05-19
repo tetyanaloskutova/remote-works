@@ -343,7 +343,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               id,
                                                               input: {
                                                                 products: formData.products.map(
-                                                                  product =>
+                                                                  skill =>
                                                                     product.id
                                                                 )
                                                               }
@@ -410,7 +410,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               id,
                                                               input: {
                                                                 categories: formData.categories.map(
-                                                                  product =>
+                                                                  skill =>
                                                                     product.id
                                                                 )
                                                               }
@@ -467,7 +467,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               id,
                                                               input: {
                                                                 collections: formData.collections.map(
-                                                                  product =>
+                                                                  skill =>
                                                                     product.id
                                                                 )
                                                               }

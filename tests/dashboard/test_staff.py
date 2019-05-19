@@ -94,7 +94,7 @@ def test_delete_staff_with_orders(admin_client, staff_user, order):
     data = {'pk': staff_user.pk}
     response = admin_client.post(url, data)
 
-    # Staff placed some orders in the past, so his acc should be not deleted
+    # Staff placed some tasks in the past, so his acc should be not deleted
     assert User.objects.all().count() == user_count
     staff_user.refresh_from_db()
     # Instead, his privileges are taken away

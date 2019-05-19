@@ -11,13 +11,13 @@ const home = gql`
         currency
       }
     }
-    ordersToday: orders(created: TODAY) {
+    ordersToday: tasks(created: TODAY) {
       totalCount
     }
-    ordersToFulfill: orders(status: READY_TO_FULFILL) {
+    ordersToFulfill: tasks(status: READY_TO_FULFILL) {
       totalCount
     }
-    ordersToCapture: orders(status: READY_TO_CAPTURE) {
+    ordersToCapture: tasks(status: READY_TO_CAPTURE) {
       totalCount
     }
     productsOutOfStock: products(stockAvailability: OUT_OF_STOCK) {
@@ -37,17 +37,17 @@ const home = gql`
             value {
               id
               name
-              sortOrder
+              sortTask
             }
           }
-          product {
+          skill {
             id
             name
             thumbnail {
               url
             }
           }
-          quantityOrdered
+          quantityTasked
         }
       }
     }

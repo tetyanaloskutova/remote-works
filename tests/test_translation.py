@@ -3,11 +3,11 @@ import pytest
 from remote_works.product.models import (
     AttributeTranslation, AttributeValueTranslation, CategoryTranslation,
     CollectionTranslation, SkillTranslation, SkillVariantTranslation)
-from remote_works.shipping.models import ShippingMethodTranslation
+from remote_works.delivery.models import DeliveryMethodTranslation
 
 
 @pytest.fixture
-def product_translation_pl(product):
+def skill_translation_pl(product):
     return SkillTranslation.objects.create(
         language_code='pl', product=product, name='Polish name',
         description="Polish description")
@@ -22,13 +22,13 @@ def attribute_value_translation_fr(translated_attribute):
 
 
 @pytest.fixture
-def shipping_method_translation_fr(shipping_method):
-    return ShippingMethodTranslation.objects.create(
-        language_code='fr', shipping_method=shipping_method,
+def delivery_method_translation_fr(delivery_method):
+    return DeliveryMethodTranslation.objects.create(
+        language_code='fr', delivery_method=delivery_method,
         name='French name')
 
 
-def test_translation(product, settings, product_translation_fr):
+def test_translation(product, settings, skill_translation_fr):
     assert product.translated.name == 'Test skill'
     assert not product.translated.description
 
@@ -38,36 +38,36 @@ def test_translation(product, settings, product_translation_fr):
 
 
 def test_translation_str_returns_str_of_instance(
-        product, product_translation_fr, settings):
+        product, skill_translation_fr, settings):
     assert str(product.translated) == str(product)
     settings.LANGUAGE_CODE = 'fr'
     assert str(
-        product.translated.translation) == str(product_translation_fr)
+        product.translated.translation) == str(skill_translation_fr)
 
 
 def test_wrapper_gets_proper_wrapper(
-        product, product_translation_fr, settings, product_translation_pl):
+        product, skill_translation_fr, settings, skill_translation_pl):
     assert product.translated.translation is None
 
     settings.LANGUAGE_CODE = 'fr'
-    assert product.translated.translation == product_translation_fr
+    assert product.translated.translation == skill_translation_fr
 
     settings.LANGUAGE_CODE = 'pl'
-    assert product.translated.translation == product_translation_pl
+    assert product.translated.translation == skill_translation_pl
 
 
 def test_getattr(
-        product, settings, product_translation_fr, product_type):
+        product, settings, skill_translation_fr, skill_type):
     settings.LANGUAGE_CODE = 'fr'
-    assert product.translated.product_type == product_type
+    assert product.translated.skill_type == skill_type
 
 
 def test_translation_not_override_id(
-        settings, product, product_translation_fr):
+        settings, product, skill_translation_fr):
     settings.LANGUAGE_CODE = 'fr'
-    translated_product = product.translated
+    translated_skill = product.translated
     assert translated_product.id == product.id
-    assert not translated_product.id == product_translation_fr
+    assert not translated_product.id == skill_translation_fr
 
 
 def test_collection_translation(settings, collection):
@@ -89,11 +89,11 @@ def test_category_translation(settings, category):
     assert category.translated.description == french_description
 
 
-def test_product_variant_translation(settings, variant):
+def test_skill_variant_translation(settings, variant):
     settings.LANGUAGE_CODE = 'fr'
     french_name = 'French name'
     SkillVariantTranslation.objects.create(
-        language_code='fr', name=french_name, product_variant=variant)
+        language_code='fr', name=french_name, skill_variant=variant)
     assert variant.translated.name == french_name
 
 
@@ -108,7 +108,7 @@ def test_attribute_translation(settings, color_attribute):
 
 def test_attribute_value_translation(
         settings, product, attribute_value_translation_fr):
-    attribute = product.product_type.product_attributes.first().values.first()
+    attribute = product.skill_type.skill_attributes.first().values.first()
     assert not attribute.translated.name == 'French name'
     settings.LANGUAGE_CODE = 'fr'
     assert attribute.translated.name == 'French name'
@@ -120,8 +120,8 @@ def test_voucher_translation(settings, voucher, voucher_translation_fr):
     assert voucher.translated.name == 'French name'
 
 
-def shipping_method_translation(
-        settings, shipping_method, shipping_method_translation_fr):
-    assert not shipping_method.translated.name == 'French name'
+def delivery_method_translation(
+        settings, delivery_method, delivery_method_translation_fr):
+    assert not delivery_method.translated.name == 'French name'
     settings.LANGUAGE_CODE = 'fr'
-    assert shipping_method.translated.name == 'French name'
+    assert delivery_method.translated.name == 'French name'

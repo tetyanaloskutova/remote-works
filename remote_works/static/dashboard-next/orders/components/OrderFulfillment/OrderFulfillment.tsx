@@ -24,7 +24,7 @@ import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { FulfillmentStatus } from "../../../types/globalTypes";
-import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
+import { TaskDetails_order_fulfillments } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -49,21 +49,21 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderFulfillmentProps extends WithStyles<typeof styles> {
-  fulfillment: OrderDetails_order_fulfillments;
+interface TaskFulfillmentProps extends WithStyles<typeof styles> {
+  fulfillment: TaskDetails_order_fulfillments;
   orderNumber: string;
-  onOrderFulfillmentCancel: () => void;
+  onTaskFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;
 }
 
-const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
+const TaskFulfillment = withStyles(styles, { name: "TaskFulfillment" })(
   ({
     classes,
     fulfillment,
     orderNumber,
-    onOrderFulfillmentCancel,
+    onTaskFulfillmentCancel,
     onTrackingCodeAdd
-  }: OrderFulfillmentProps) => {
+  }: TaskFulfillmentProps) => {
     const lines = maybe(() => fulfillment.lines);
     const status = maybe(() => fulfillment.status);
     return (
@@ -87,7 +87,7 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                         })}
                     <Typography className={classes.orderNumber} variant="body1">
                       {maybe(
-                        () => `#${orderNumber}-${fulfillment.fulfillmentOrder}`
+                        () => `#${orderNumber}-${fulfillment.fulfillmentTask}`
                       )}
                     </Typography>
                   </>
@@ -108,7 +108,7 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                     label: i18n.t("Cancel shipment", {
                       context: "button"
                     }),
-                    onSelect: onOrderFulfillmentCancel
+                    onSelect: onTaskFulfillmentCancel
                   }
                 ]}
               />
@@ -194,5 +194,5 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
     );
   }
 );
-OrderFulfillment.displayName = "OrderFulfillment";
-export default OrderFulfillment;
+TaskFulfillment.displayName = "TaskFulfillment";
+export default TaskFulfillment;

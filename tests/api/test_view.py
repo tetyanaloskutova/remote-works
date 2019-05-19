@@ -7,7 +7,7 @@ from .utils import _get_graphql_content_from_response, get_graphql_content
 
 
 def test_batch_queries(category, product, api_client):
-    query_product = """
+    query_skill = """
         query GetSkill($id: ID!) {
             skill(id: $id) {
                 name

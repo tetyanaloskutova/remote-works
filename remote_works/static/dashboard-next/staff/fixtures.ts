@@ -17,7 +17,7 @@ export const permissions = [
   },
   {
     code: PermissionEnum.MANAGE_ORDERS,
-    name: "Manage orders."
+    name: "Manage tasks."
   },
   {
     code: PermissionEnum.MANAGE_PAGES,
@@ -32,8 +32,8 @@ export const permissions = [
     name: "Manage settings."
   },
   {
-    code: PermissionEnum.MANAGE_SHIPPING,
-    name: "Manage shipping."
+    code: PermissionEnum.MANAGE_DELIVERY,
+    name: "Manage delivery."
   },
   {
     code: PermissionEnum.MANAGE_STAFF,
@@ -155,7 +155,7 @@ export const staffMember: StaffMemberDetails_user = {
     },
     {
       code: PermissionEnum.MANAGE_ORDERS,
-      name: "Manage orders."
+      name: "Manage tasks."
     },
     {
       code: PermissionEnum.MANAGE_PAGES,
@@ -170,8 +170,8 @@ export const staffMember: StaffMemberDetails_user = {
       name: "Manage settings."
     },
     {
-      code: PermissionEnum.MANAGE_SHIPPING,
-      name: "Manage shipping."
+      code: PermissionEnum.MANAGE_DELIVERY,
+      name: "Manage delivery."
     },
     {
       code: PermissionEnum.MANAGE_STAFF,

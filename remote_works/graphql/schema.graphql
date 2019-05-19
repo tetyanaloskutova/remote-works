@@ -59,7 +59,7 @@ input AddressInput {
 
 enum AddressTypeEnum {
   BILLING
-  SHIPPING
+  DELIVERY
 }
 
 type AddressUpdate {
@@ -166,7 +166,7 @@ input AttributeUpdateInput {
 
 type AttributeValue implements Node {
   id: ID!
-  sortOrder: Int!
+  sortTask: Int!
   name: String
   value: String
   slug: String
@@ -330,8 +330,8 @@ type Checkout implements Node {
   token: UUID!
   quantity: Int!
   billingAddress: Address
-  shippingAddress: Address
-  shippingMethod: ShippingMethod
+  deliveryAddress: Address
+  deliveryMethod: DeliveryMethod
   note: String!
   discountAmount: Money
   discountName: String
@@ -339,10 +339,10 @@ type Checkout implements Node {
   voucherCode: String
   lines: [CheckoutLine]
   id: ID!
-  availableShippingMethods: [ShippingMethod]!
+  availableDeliveryMethods: [DeliveryMethod]!
   availablePaymentGateways: [GatewaysEnum]!
-  isShippingRequired: Boolean!
-  shippingPrice: TaxedMoney
+  isDeliveryRequired: Boolean!
+  deliveryPrice: TaxedMoney
   subtotalPrice: TaxedMoney
   totalPrice: TaxedMoney
 }
@@ -354,7 +354,7 @@ type CheckoutBillingAddressUpdate {
 
 type CheckoutComplete {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
 type CheckoutCountableConnection {
@@ -376,7 +376,7 @@ type CheckoutCreate {
 input CheckoutCreateInput {
   lines: [CheckoutLineInput]!
   email: String
-  shippingAddress: AddressInput
+  deliveryAddress: AddressInput
   billingAddress: AddressInput
 }
 
@@ -400,7 +400,7 @@ type CheckoutLine implements Node {
   variant: SkillVariant!
   quantity: Int!
   totalPrice: TaxedMoney
-  requiresShipping: Boolean
+  requiresDelivery: Boolean
 }
 
 type CheckoutLineCountableConnection {
@@ -440,12 +440,12 @@ type CheckoutPaymentCreate {
   payment: Payment
 }
 
-type CheckoutShippingAddressUpdate {
+type CheckoutDeliveryAddressUpdate {
   errors: [Error!]
   checkout: Checkout
 }
 
-type CheckoutShippingMethodUpdate {
+type CheckoutDeliveryMethodUpdate {
   errors: [Error!]
   checkout: Checkout
 }
@@ -589,7 +589,7 @@ type CustomerDelete {
 
 input CustomerInput {
   defaultBillingAddress: AddressInput
-  defaultShippingAddress: AddressInput
+  defaultDeliveryAddress: AddressInput
   firstName: String
   lastName: String
   email: String
@@ -642,63 +642,63 @@ type Domain {
   url: String!
 }
 
-type DraftOrderComplete {
+type DraftTaskComplete {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-type DraftOrderCreate {
+type DraftTaskCreate {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-input DraftOrderCreateInput {
+input DraftTaskCreateInput {
   billingAddress: AddressInput
   user: ID
   userEmail: String
   discount: Decimal
-  shippingAddress: AddressInput
-  shippingMethod: ID
+  deliveryAddress: AddressInput
+  deliveryMethod: ID
   voucher: ID
-  lines: [OrderLineCreateInput]
+  lines: [TaskLineCreateInput]
 }
 
-type DraftOrderDelete {
+type DraftTaskDelete {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-input DraftOrderInput {
+input DraftTaskInput {
   billingAddress: AddressInput
   user: ID
   userEmail: String
   discount: Decimal
-  shippingAddress: AddressInput
-  shippingMethod: ID
+  deliveryAddress: AddressInput
+  deliveryMethod: ID
   voucher: ID
 }
 
-type DraftOrderLineDelete {
+type DraftTaskLineDelete {
   errors: [Error!]
-  order: Order
-  orderLine: OrderLine
+  task: Task
+  orderLine: TaskLine
 }
 
-type DraftOrderLineUpdate {
+type DraftTaskLineUpdate {
   errors: [Error!]
-  order: Order
-  orderLine: OrderLine
+  task: Task
+  orderLine: TaskLine
 }
 
-type DraftOrderLinesCreate {
+type DraftTaskLinesCreate {
   errors: [Error!]
-  order: Order!
-  orderLines: [OrderLine!]!
+  task: Task!
+  orderLines: [TaskLine!]!
 }
 
-type DraftOrderUpdate {
+type DraftTaskUpdate {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
 type Error {
@@ -708,10 +708,10 @@ type Error {
 
 type Fulfillment implements Node {
   id: ID!
-  fulfillmentOrder: Int!
+  fulfillmentTask: Int!
   status: FulfillmentStatus!
   trackingNumber: String!
-  shippingDate: DateTime!
+  deliveryDate: DateTime!
   lines: [FulfillmentLine]
   statusDisplay: String
 }
@@ -719,7 +719,7 @@ type Fulfillment implements Node {
 type FulfillmentCancel {
   errors: [Error!]
   fulfillment: Fulfillment
-  order: Order
+  task: Task
 }
 
 input FulfillmentCancelInput {
@@ -729,7 +729,7 @@ input FulfillmentCancelInput {
 type FulfillmentCreate {
   errors: [Error!]
   fulfillment: Fulfillment
-  order: Order
+  task: Task
 }
 
 input FulfillmentCreateInput {
@@ -740,7 +740,7 @@ input FulfillmentCreateInput {
 
 type FulfillmentLine implements Node {
   id: ID!
-  orderLine: OrderLine
+  orderLine: TaskLine
   quantity: Int!
 }
 
@@ -757,7 +757,7 @@ enum FulfillmentStatus {
 type FulfillmentUpdateTracking {
   errors: [Error!]
   fulfillment: Fulfillment
-  order: Order
+  task: Task
 }
 
 input FulfillmentUpdateTrackingInput {
@@ -935,13 +935,13 @@ type Mutations {
   shopSettingsUpdate(input: ShopSettingsInput!): ShopSettingsUpdate
   shopFetchTaxRates: ShopFetchTaxRates
   shopSettingsTranslate(input: ShopSettingsTranslationInput!, languageCode: String!): ShopSettingsTranslate
-  shippingPriceCreate(input: ShippingPriceInput!): ShippingPriceCreate
-  shippingPriceDelete(id: ID!): ShippingPriceDelete
-  shippingPriceUpdate(id: ID!, input: ShippingPriceInput!): ShippingPriceUpdate
-  shippingPriceTranslate(id: ID!, input: NameTranslationInput!, languageCode: String!): ShippingPriceTranslate
-  shippingZoneCreate(input: ShippingZoneInput!): ShippingZoneCreate
-  shippingZoneDelete(id: ID!): ShippingZoneDelete
-  shippingZoneUpdate(id: ID!, input: ShippingZoneInput!): ShippingZoneUpdate
+  deliveryPriceCreate(input: DeliveryPriceInput!): DeliveryPriceCreate
+  deliveryPriceDelete(id: ID!): DeliveryPriceDelete
+  deliveryPriceUpdate(id: ID!, input: DeliveryPriceInput!): DeliveryPriceUpdate
+  deliveryPriceTranslate(id: ID!, input: NameTranslationInput!, languageCode: String!): DeliveryPriceTranslate
+  deliveryZoneCreate(input: DeliveryZoneInput!): DeliveryZoneCreate
+  deliveryZoneDelete(id: ID!): DeliveryZoneDelete
+  deliveryZoneUpdate(id: ID!, input: DeliveryZoneInput!): DeliveryZoneUpdate
   attributeCreate(id: ID!, input: AttributeCreateInput!, type: AttributeTypeEnum!): AttributeCreate
   attributeDelete(id: ID!): AttributeDelete
   attributeUpdate(id: ID!, input: AttributeUpdateInput!): AttributeUpdate
@@ -984,24 +984,24 @@ type Mutations {
   pageDelete(id: ID!): PageDelete
   pageUpdate(id: ID!, input: PageInput!): PageUpdate
   pageTranslate(id: ID!, input: PageTranslationInput!, languageCode: String!): PageTranslate
-  draftOrderComplete(id: ID!): DraftOrderComplete
-  draftOrderCreate(input: DraftOrderCreateInput!): DraftOrderCreate
-  draftOrderDelete(id: ID!): DraftOrderDelete
-  draftOrderLinesCreate(id: ID!, input: [OrderLineCreateInput]!): DraftOrderLinesCreate
-  draftOrderLineDelete(id: ID!): DraftOrderLineDelete
-  draftOrderLineUpdate(id: ID!, input: OrderLineInput!): DraftOrderLineUpdate
-  draftOrderUpdate(id: ID!, input: DraftOrderInput!): DraftOrderUpdate
-  orderAddNote(order: ID!, input: OrderAddNoteInput!): OrderAddNote
-  orderCancel(id: ID!, restock: Boolean!): OrderCancel
-  orderCapture(amount: Decimal!, id: ID!): OrderCapture
+  draftTaskComplete(id: ID!): DraftTaskComplete
+  draftTaskCreate(input: DraftTaskCreateInput!): DraftTaskCreate
+  draftTaskDelete(id: ID!): DraftTaskDelete
+  draftTaskLinesCreate(id: ID!, input: [TaskLineCreateInput]!): DraftTaskLinesCreate
+  draftTaskLineDelete(id: ID!): DraftTaskLineDelete
+  draftTaskLineUpdate(id: ID!, input: TaskLineInput!): DraftTaskLineUpdate
+  draftTaskUpdate(id: ID!, input: DraftTaskInput!): DraftTaskUpdate
+  orderAddNote(task: ID!, input: TaskAddNoteInput!): TaskAddNote
+  orderCancel(id: ID!, restock: Boolean!): TaskCancel
+  orderCapture(amount: Decimal!, id: ID!): TaskCapture
   orderFulfillmentCancel(id: ID!, input: FulfillmentCancelInput!): FulfillmentCancel
-  orderFulfillmentCreate(input: FulfillmentCreateInput!, order: ID): FulfillmentCreate
+  orderFulfillmentCreate(input: FulfillmentCreateInput!, task: ID): FulfillmentCreate
   orderFulfillmentUpdateTracking(id: ID!, input: FulfillmentUpdateTrackingInput!): FulfillmentUpdateTracking
-  orderMarkAsPaid(id: ID!): OrderMarkAsPaid
-  orderRefund(amount: Decimal!, id: ID!): OrderRefund
-  orderUpdate(id: ID!, input: OrderUpdateInput!): OrderUpdate
-  orderUpdateShipping(order: ID!, input: OrderUpdateShippingInput): OrderUpdateShipping
-  orderVoid(id: ID!): OrderVoid
+  orderMarkAsPaid(id: ID!): TaskMarkAsPaid
+  orderRefund(amount: Decimal!, id: ID!): TaskRefund
+  orderUpdate(id: ID!, input: TaskUpdateInput!): TaskUpdate
+  orderUpdateDelivery(task: ID!, input: TaskUpdateDeliveryInput): TaskUpdateDelivery
+  orderVoid(id: ID!): TaskVoid
   assignNavigation(menu: ID, navigationType: NavigationType!): AssignNavigation
   menuCreate(input: MenuCreateInput!): MenuCreate
   menuDelete(id: ID!): MenuDelete
@@ -1034,8 +1034,8 @@ type Mutations {
   checkoutLinesAdd(checkoutId: ID!, lines: [CheckoutLineInput]!): CheckoutLinesAdd
   checkoutLinesUpdate(checkoutId: ID!, lines: [CheckoutLineInput]!): CheckoutLinesUpdate
   checkoutPaymentCreate(checkoutId: ID!, input: PaymentInput!): CheckoutPaymentCreate
-  checkoutShippingAddressUpdate(checkoutId: ID, shippingAddress: AddressInput): CheckoutShippingAddressUpdate
-  checkoutShippingMethodUpdate(checkoutId: ID, shippingMethodId: ID!): CheckoutShippingMethodUpdate
+  checkoutDeliveryAddressUpdate(checkoutId: ID, deliveryAddress: AddressInput): CheckoutDeliveryAddressUpdate
+  checkoutDeliveryMethodUpdate(checkoutId: ID, deliveryMethodId: ID!): CheckoutDeliveryMethodUpdate
   checkoutUpdateVoucher(checkoutId: ID!, voucherCode: String): CheckoutUpdateVoucher
   passwordReset(email: String!): PasswordReset
   setPassword(id: ID!, input: SetPasswordInput!): SetPassword
@@ -1073,19 +1073,19 @@ interface Node {
   id: ID!
 }
 
-type Order implements Node {
+type Task implements Node {
   id: ID!
   created: DateTime!
-  status: OrderStatus!
+  status: TaskStatus!
   user: User
   languageCode: String!
   trackingClientId: String!
   billingAddress: Address
-  shippingAddress: Address
+  deliveryAddress: Address
   userEmail: String
-  shippingMethod: ShippingMethod
-  shippingPrice: TaxedMoney
-  shippingMethodName: String
+  deliveryMethod: DeliveryMethod
+  deliveryPrice: TaxedMoney
+  deliveryMethodName: String
   token: String!
   total: TaxedMoney
   voucher: Voucher
@@ -1095,12 +1095,12 @@ type Order implements Node {
   displayGrossPrices: Boolean!
   customerNote: String!
   weight: Weight
-  lines: [OrderLine]!
+  lines: [TaskLine]!
   fulfillments: [Fulfillment]!
-  events: [OrderEvent]
+  events: [TaskEvent]
   payments: [Payment]
-  actions: [OrderAction]!
-  availableShippingMethods: [ShippingMethod]
+  actions: [TaskAction]!
+  availableDeliveryMethods: [DeliveryMethod]
   number: String
   isPaid: Boolean
   paymentStatus: PaymentChargeStatusEnum
@@ -1111,60 +1111,60 @@ type Order implements Node {
   totalAuthorized: Money
   totalCaptured: Money
   totalBalance: Money!
-  isShippingRequired: Boolean!
+  isDeliveryRequired: Boolean!
 }
 
-enum OrderAction {
+enum TaskAction {
   CAPTURE
   MARK_AS_PAID
   REFUND
   VOID
 }
 
-type OrderAddNote {
+type TaskAddNote {
   errors: [Error!]
-  order: Order
-  event: OrderEvent
+  task: Task
+  event: TaskEvent
 }
 
-input OrderAddNoteInput {
+input TaskAddNoteInput {
   message: String
 }
 
-type OrderCancel {
+type TaskCancel {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-type OrderCapture {
+type TaskCapture {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-type OrderCountableConnection {
+type TaskCountableConnection {
   pageInfo: PageInfo!
-  edges: [OrderCountableEdge!]!
+  edges: [TaskCountableEdge!]!
   totalCount: Int
 }
 
-type OrderCountableEdge {
-  node: Order!
+type TaskCountableEdge {
+  node: Task!
   cursor: String!
 }
 
-enum OrderDirection {
+enum TaskDirection {
   ASC
   DESC
 }
 
-type OrderEvent implements Node {
+type TaskEvent implements Node {
   id: ID!
   date: DateTime
-  type: OrderEvents
+  type: TaskEvents
   user(id: ID): User
   message: String
   email: String
-  emailType: OrderEventsEmails
+  emailType: TaskEventsEmails
   amount: Float
   quantity: Int
   composedId: String
@@ -1172,18 +1172,18 @@ type OrderEvent implements Node {
   oversoldItems: [String]
 }
 
-type OrderEventCountableConnection {
+type TaskEventCountableConnection {
   pageInfo: PageInfo!
-  edges: [OrderEventCountableEdge!]!
+  edges: [TaskEventCountableEdge!]!
   totalCount: Int
 }
 
-type OrderEventCountableEdge {
-  node: OrderEvent!
+type TaskEventCountableEdge {
+  node: TaskEvent!
   cursor: String!
 }
 
-enum OrderEvents {
+enum TaskEvents {
   PLACED
   PLACED_FROM_DRAFT
   OVERSOLD_ITEMS
@@ -1203,19 +1203,19 @@ enum OrderEvents {
   OTHER
 }
 
-enum OrderEventsEmails {
+enum TaskEventsEmails {
   PAYMENT
-  SHIPPING
+  DELIVERY
   ORDER
   FULFILLMENT
 }
 
-type OrderLine implements Node {
+type TaskLine implements Node {
   id: ID!
   skillName: String!
   translatedSkillName: String!
   skillSku: String!
-  isShippingRequired: Boolean!
+  isDeliveryRequired: Boolean!
   quantity: Int!
   quantityFulfilled: Int!
   unitPrice: TaxedMoney
@@ -1224,26 +1224,26 @@ type OrderLine implements Node {
   thumbnail(size: Int): Image
 }
 
-input OrderLineCreateInput {
+input TaskLineCreateInput {
   quantity: Int!
   variantId: ID!
 }
 
-input OrderLineInput {
+input TaskLineInput {
   quantity: Int!
 }
 
-type OrderMarkAsPaid {
+type TaskMarkAsPaid {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-type OrderRefund {
+type TaskRefund {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-enum OrderStatus {
+enum TaskStatus {
   DRAFT
   UNFULFILLED
   PARTIALLY_FULFILLED
@@ -1251,34 +1251,34 @@ enum OrderStatus {
   CANCELED
 }
 
-enum OrderStatusFilter {
+enum TaskStatusFilter {
   READY_TO_FULFILL
   READY_TO_CAPTURE
 }
 
-type OrderUpdate {
+type TaskUpdate {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-input OrderUpdateInput {
+input TaskUpdateInput {
   billingAddress: AddressInput
   userEmail: String
-  shippingAddress: AddressInput
+  deliveryAddress: AddressInput
 }
 
-type OrderUpdateShipping {
+type TaskUpdateDelivery {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
-input OrderUpdateShippingInput {
-  shippingMethod: ID
+input TaskUpdateDeliveryInput {
+  deliveryMethod: ID
 }
 
-type OrderVoid {
+type TaskVoid {
   errors: [Error!]
-  order: Order
+  task: Task
 }
 
 type Page implements Node {
@@ -1378,7 +1378,7 @@ type Payment implements Node {
   total: Money
   capturedAmount: Money
   checkout: Checkout
-  order: Order
+  task: Task
   billingEmail: String!
   ccFirstDigits: String!
   ccLastDigits: String!
@@ -1388,7 +1388,7 @@ type Payment implements Node {
   customerIpAddress: String
   extraData: String!
   transactions: [Transaction]
-  actions: [OrderAction]!
+  actions: [TaskAction]!
   billingAddress: Address
   availableCaptureAmount: Money
   availableRefundAmount: Money
@@ -1450,7 +1450,7 @@ enum PermissionEnum {
   MANAGE_ORDERS
   MANAGE_PAGES
   MANAGE_SKILLS
-  MANAGE_SHIPPING
+  MANAGE_DELIVERY
   MANAGE_SETTINGS
   MANAGE_TRANSLATIONS
 }
@@ -1538,7 +1538,7 @@ type SkillDelete {
 }
 
 type SkillImage implements Node {
-  sortOrder: Int!
+  sortTask: Int!
   id: ID!
   alt: String!
   url(size: Int): String!
@@ -1597,12 +1597,12 @@ input SkillInput {
   trackInventory: Boolean
 }
 
-input SkillOrder {
-  field: SkillOrderField!
-  direction: OrderDirection!
+input SkillTask {
+  field: SkillTaskField!
+  direction: TaskDirection!
 }
 
-enum SkillOrderField {
+enum SkillTaskField {
   NAME
   PRICE
   DATE
@@ -1627,7 +1627,7 @@ type SkillType implements Node {
   id: ID!
   name: String!
   hasVariants: Boolean!
-  isShippingRequired: Boolean!
+  isDeliveryRequired: Boolean!
   taxRate: TaxRateType
   weight: Weight
   skills(before: String, after: String, first: Int, last: Int): SkillCountableConnection
@@ -1661,7 +1661,7 @@ input SkillTypeInput {
   hasVariants: Boolean
   skillAttributes: [ID]
   variantAttributes: [ID]
-  isShippingRequired: Boolean
+  isDeliveryRequired: Boolean
   weight: WeightScalar
   taxRate: TaxRateType
 }
@@ -1692,7 +1692,7 @@ type SkillVariant implements Node {
   stockQuantity: Int!
   price: Money
   margin: Int
-  quantityOrdered: Int
+  quantityTasked: Int
   revenue(period: ReportingPeriod): TaxedMoney
   translation(languageCode: String!): SkillVariantTranslation
 }
@@ -1758,15 +1758,15 @@ type SkillVariantUpdate {
 type Query {
   translations(kind: TranslatableKinds!, before: String, after: String, first: Int, last: Int): TranslatableItemConnection
   shop: Shop
-  shippingZone(id: ID!): ShippingZone
-  shippingZones(before: String, after: String, first: Int, last: Int): ShippingZoneCountableConnection
+  deliveryZone(id: ID!): DeliveryZone
+  deliveryZones(before: String, after: String, first: Int, last: Int): DeliveryZoneCountableConnection
   attributes(query: String, inCategory: ID, inCollection: ID, before: String, after: String, first: Int, last: Int): AttributeCountableConnection
   categories(query: String, level: Int, before: String, after: String, first: Int, last: Int): CategoryCountableConnection
   category(id: ID!): Category
   collection(id: ID!): Collection
   collections(query: String, before: String, after: String, first: Int, last: Int): CollectionCountableConnection
   skill(id: ID!): Skill
-  skills(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: SkillOrder, stockAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): SkillCountableConnection
+  skills(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: SkillTask, stockAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): SkillCountableConnection
   skillType(id: ID!): SkillType
   skillTypes(before: String, after: String, first: Int, last: Int): SkillTypeCountableConnection
   skillVariant(id: ID!): SkillVariant
@@ -1777,11 +1777,11 @@ type Query {
   paymentClientToken(gateway: GatewaysEnum): String
   page(id: ID, slug: String): Page
   pages(query: String, before: String, after: String, first: Int, last: Int): PageCountableConnection
-  homepageEvents(before: String, after: String, first: Int, last: Int): OrderEventCountableConnection
-  order(id: ID!): Order
-  orders(query: String, created: ReportingPeriod, status: OrderStatusFilter, before: String, after: String, first: Int, last: Int): OrderCountableConnection
+  homepageEvents(before: String, after: String, first: Int, last: Int): TaskEventCountableConnection
+  task(id: ID!): Task
+  tasks(query: String, created: ReportingPeriod, status: TaskStatusFilter, before: String, after: String, first: Int, last: Int): TaskCountableConnection
   ordersTotal(period: ReportingPeriod): TaxedMoney
-  orderByToken(token: String!): Order
+  orderByToken(token: String!): Task
   menu(id: ID, name: String): Menu
   menus(query: String, before: String, after: String, first: Int, last: Int): MenuCountableConnection
   menuItem(id: ID!): MenuItem
@@ -1901,99 +1901,99 @@ input SetPasswordInput {
   password: String!
 }
 
-type ShippingMethod implements Node {
+type DeliveryMethod implements Node {
   id: ID!
   name: String!
-  type: ShippingMethodTypeEnum
+  type: DeliveryMethodTypeEnum
   price: Money
-  minimumOrderPrice: Money
-  maximumOrderPrice: Money
-  minimumOrderWeight: Weight
-  maximumOrderWeight: Weight
-  translation(languageCode: String!): ShippingMethodTranslation
+  minimumTaskPrice: Money
+  maximumTaskPrice: Money
+  minimumTaskWeight: Weight
+  maximumTaskWeight: Weight
+  translation(languageCode: String!): DeliveryMethodTranslation
 }
 
-type ShippingMethodTranslation implements Node {
+type DeliveryMethodTranslation implements Node {
   id: ID!
   name: String
   language: LanguageDisplay!
 }
 
-enum ShippingMethodTypeEnum {
+enum DeliveryMethodTypeEnum {
   PRICE
   WEIGHT
 }
 
-type ShippingPriceCreate {
+type DeliveryPriceCreate {
   errors: [Error!]
-  shippingMethod: ShippingMethod
+  deliveryMethod: DeliveryMethod
 }
 
-type ShippingPriceDelete {
+type DeliveryPriceDelete {
   errors: [Error!]
-  shippingMethod: ShippingMethod
+  deliveryMethod: DeliveryMethod
 }
 
-input ShippingPriceInput {
+input DeliveryPriceInput {
   name: String
   price: Decimal
-  minimumOrderPrice: Decimal
-  maximumOrderPrice: Decimal
-  minimumOrderWeight: WeightScalar
-  maximumOrderWeight: WeightScalar
-  type: ShippingMethodTypeEnum
-  shippingZone: ID
+  minimumTaskPrice: Decimal
+  maximumTaskPrice: Decimal
+  minimumTaskWeight: WeightScalar
+  maximumTaskWeight: WeightScalar
+  type: DeliveryMethodTypeEnum
+  deliveryZone: ID
 }
 
-type ShippingPriceTranslate {
+type DeliveryPriceTranslate {
   errors: [Error!]
-  shippingMethod: ShippingMethod
+  deliveryMethod: DeliveryMethod
 }
 
-type ShippingPriceUpdate {
+type DeliveryPriceUpdate {
   errors: [Error!]
-  shippingMethod: ShippingMethod
+  deliveryMethod: DeliveryMethod
 }
 
-type ShippingZone implements Node {
+type DeliveryZone implements Node {
   id: ID!
   name: String!
   countries: [CountryDisplay]
   default: Boolean!
-  shippingMethods: [ShippingMethod]
+  deliveryMethods: [DeliveryMethod]
   priceRange: MoneyRange
 }
 
-type ShippingZoneCountableConnection {
+type DeliveryZoneCountableConnection {
   pageInfo: PageInfo!
-  edges: [ShippingZoneCountableEdge!]!
+  edges: [DeliveryZoneCountableEdge!]!
   totalCount: Int
 }
 
-type ShippingZoneCountableEdge {
-  node: ShippingZone!
+type DeliveryZoneCountableEdge {
+  node: DeliveryZone!
   cursor: String!
 }
 
-type ShippingZoneCreate {
+type DeliveryZoneCreate {
   errors: [Error!]
-  shippingZone: ShippingZone
+  deliveryZone: DeliveryZone
 }
 
-type ShippingZoneDelete {
+type DeliveryZoneDelete {
   errors: [Error!]
-  shippingZone: ShippingZone
+  deliveryZone: DeliveryZone
 }
 
-input ShippingZoneInput {
+input DeliveryZoneInput {
   name: String
   countries: [String]
   default: Boolean
 }
 
-type ShippingZoneUpdate {
+type DeliveryZoneUpdate {
   errors: [Error!]
-  shippingZone: ShippingZone
+  deliveryZone: DeliveryZone
 }
 
 type Shop {
@@ -2014,7 +2014,7 @@ type Shop {
   headerText: String
   includeTaxesInPrices: Boolean!
   displayGrossPrices: Boolean!
-  chargeTaxesOnShipping: Boolean!
+  chargeTaxesOnDelivery: Boolean!
   trackInventoryByDefault: Boolean
   defaultWeightUnit: WeightUnitsEnum
   translation(languageCode: String!): ShopTranslation
@@ -2035,7 +2035,7 @@ input ShopSettingsInput {
   description: String
   includeTaxesInPrices: Boolean
   displayGrossPrices: Boolean
-  chargeTaxesOnShipping: Boolean
+  chargeTaxesOnDelivery: Boolean
   trackInventoryByDefault: Boolean
   defaultWeightUnit: WeightUnitsEnum
 }
@@ -2179,7 +2179,7 @@ enum TransactionKind {
   VOID
 }
 
-union TranslatableItem = Skill | Category | Collection | Attribute | AttributeValue | SkillVariant | Page | ShippingMethod | Voucher | MenuItem
+union TranslatableItem = Skill | Category | Collection | Attribute | AttributeValue | SkillVariant | Page | DeliveryMethod | Voucher | MenuItem
 
 type TranslatableItemConnection {
   pageInfo: PageInfo!
@@ -2197,7 +2197,7 @@ enum TranslatableKinds {
   COLLECTION
   CATEGORY
   PAGE
-  SHIPPING_METHOD
+  DELIVERY_METHOD
   VOUCHER
   ATTRIBUTE
   ATTRIBUTE_VALUE
@@ -2229,16 +2229,16 @@ type User implements Node {
   isActive: Boolean!
   note: String
   dateJoined: DateTime!
-  defaultShippingAddress: Address
+  defaultDeliveryAddress: Address
   defaultBillingAddress: Address
-  orders(before: String, after: String, first: Int, last: Int): OrderCountableConnection
+  tasks(before: String, after: String, first: Int, last: Int): TaskCountableConnection
   checkout: Checkout
   permissions: [PermissionDisplay]
 }
 
 input UserAddressInput {
   defaultBillingAddress: AddressInput
-  defaultShippingAddress: AddressInput
+  defaultDeliveryAddress: AddressInput
 }
 
 type UserCountableConnection {
@@ -2254,7 +2254,7 @@ type UserCountableEdge {
 
 input UserCreateInput {
   defaultBillingAddress: AddressInput
-  defaultShippingAddress: AddressInput
+  defaultDeliveryAddress: AddressInput
   firstName: String
   lastName: String
   email: String
@@ -2295,7 +2295,7 @@ type Voucher implements Node {
   used: Int!
   startDate: Date!
   endDate: Date
-  applyOncePerOrder: Boolean!
+  applyOncePerTask: Boolean!
   discountValueType: VoucherDiscountValueType!
   discountValue: Float!
   countries: [CountryDisplay]
@@ -2373,14 +2373,14 @@ enum VoucherType {
   SKILL
   COLLECTION
   CATEGORY
-  SHIPPING
+  DELIVERY
 }
 
 enum VoucherTypeEnum {
   SKILL
   COLLECTION
   CATEGORY
-  SHIPPING
+  DELIVERY
   VALUE
 }
 

@@ -1,21 +1,21 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderShippingMethodEditDialog from "../../../orders/components/OrderShippingMethodEditDialog";
-import { order as orderFixture } from "../../../orders/fixtures";
+import TaskDeliveryMethodEditDialog from "../../../tasks/components/TaskDeliveryMethodEditDialog";
+import { order as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 const order = orderFixture("");
 
-storiesOf("Orders / OrderShippingMethodEditDialog", module)
+storiesOf("Tasks / TaskDeliveryMethodEditDialog", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderShippingMethodEditDialog
+    <TaskDeliveryMethodEditDialog
       confirmButtonState="default"
       onClose={undefined}
       onSubmit={undefined}
       open={true}
-      shippingMethod={null}
-      shippingMethods={order.availableShippingMethods}
+      deliveryMethod={null}
+      deliveryMethods={order.availableDeliveryMethods}
     />
   ));

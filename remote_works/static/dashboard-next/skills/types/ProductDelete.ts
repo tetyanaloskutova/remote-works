@@ -11,7 +11,7 @@ export interface SkillDelete_productDelete_errors {
   message: string | null;
 }
 
-export interface SkillDelete_productDelete_product {
+export interface SkillDelete_productDelete_skill {
   __typename: "Skill";
   id: string;
 }
@@ -19,7 +19,7 @@ export interface SkillDelete_productDelete_product {
 export interface SkillDelete_productDelete {
   __typename: "SkillDelete";
   errors: SkillDelete_productDelete_errors[] | null;
-  product: SkillDelete_productDelete_product | null;
+  product: SkillDelete_productDelete_skill | null;
 }
 
 export interface SkillDelete {

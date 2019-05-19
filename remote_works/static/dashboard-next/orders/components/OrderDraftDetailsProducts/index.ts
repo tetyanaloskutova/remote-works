@@ -1,2 +1,2 @@
-export { default } from "./OrderDraftDetailsSkills";
-export * from "./OrderDraftDetailsSkills";
+export { default } from "./TaskDraftDetailsSkills";
+export * from "./TaskDraftDetailsSkills";

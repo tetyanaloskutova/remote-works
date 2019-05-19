@@ -17,7 +17,7 @@ MinAmountSpent = MoneyField(
     min_value=ZERO_MONEY, required=False,
     currency=settings.DEFAULT_CURRENCY,
     label=pgettext_lazy(
-        'Lowest value for order to be able to use the voucher',
+        'Lowest value for task to be able to use the voucher',
         'Apply only if the purchase value is greater than or equal to'))
 
 
@@ -120,7 +120,7 @@ class VoucherForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
 
-class ShippingVoucherForm(forms.ModelForm):
+class DeliveryVoucherForm(forms.ModelForm):
     min_amount_spent = MinAmountSpent
     countries = forms.MultipleChoiceField(
         choices=countries,
@@ -154,12 +154,12 @@ class CommonVoucherForm(forms.ModelForm):
     apply_once_per_order = forms.BooleanField(
         required=False,
         label=pgettext_lazy(
-            'Field label, apply discount value only once per order',
-            'Only apply once per order'),
+            'Field label, apply discount value only once per task',
+            'Only apply once per task'),
         help_text=pgettext_lazy(
-            'Help text of checkbox for applying discount only once per order',
+            'Help text of checkbox for applying discount only once per task',
             'If unchecked, discount value will be taken '
-            'off each suitable item in an order.'))
+            'off each suitable item in an task.'))
 
 
 class SkillVoucherForm(CommonVoucherForm):

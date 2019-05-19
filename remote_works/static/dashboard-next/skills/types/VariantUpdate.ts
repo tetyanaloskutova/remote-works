@@ -59,40 +59,40 @@ export interface VariantUpdate_productVariantUpdate_productVariant_priceOverride
   currency: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_product_images {
+export interface VariantUpdate_productVariantUpdate_productVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
-  sortOrder: number;
+  sortTask: number;
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_product_thumbnail {
+export interface VariantUpdate_productVariantUpdate_productVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_product_variants_images {
+export interface VariantUpdate_productVariantUpdate_productVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_product_variants {
+export interface VariantUpdate_productVariantUpdate_productVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (VariantUpdate_productVariantUpdate_productVariant_product_variants_images | null)[] | null;
+  images: (VariantUpdate_productVariantUpdate_productVariant_skill_variants_images | null)[] | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_product {
+export interface VariantUpdate_productVariantUpdate_productVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (VariantUpdate_productVariantUpdate_productVariant_product_images | null)[] | null;
+  images: (VariantUpdate_productVariantUpdate_productVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: VariantUpdate_productVariantUpdate_productVariant_product_thumbnail | null;
-  variants: (VariantUpdate_productVariantUpdate_productVariant_product_variants | null)[] | null;
+  thumbnail: VariantUpdate_productVariantUpdate_productVariant_skill_thumbnail | null;
+  variants: (VariantUpdate_productVariantUpdate_productVariant_skill_variants | null)[] | null;
 }
 
 export interface VariantUpdate_productVariantUpdate_productVariant {

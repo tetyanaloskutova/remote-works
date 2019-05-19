@@ -1,2 +1,2 @@
-export { default } from "./OrderMarkAsPaidDialog";
-export * from "./OrderMarkAsPaidDialog";
+export { default } from "./TaskMarkAsPaidDialog";
+export * from "./TaskMarkAsPaidDialog";

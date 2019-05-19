@@ -1,26 +1,26 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL fragment: OrderEventFragment
+// GraphQL fragment: TaskEventFragment
 // ====================================================
 
-export interface OrderEventFragment_user {
+export interface TaskEventFragment_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderEventFragment {
-  __typename: "OrderEvent";
+export interface TaskEventFragment {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderEventFragment_user | null;
+  type: TaskEvents | null;
+  user: TaskEventFragment_user | null;
 }

@@ -44,7 +44,7 @@ export interface CollectionAssignSkill_collectionAddSkills_collection_products_p
   startCursor: string | null;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills {
   __typename: "SkillCountableConnection";
   edges: CollectionAssignSkill_collectionAddSkills_collection_products_edges[];
   pageInfo: CollectionAssignSkill_collectionAddSkills_collection_products_pageInfo;
@@ -53,7 +53,7 @@ export interface CollectionAssignSkill_collectionAddSkills_collection_products {
 export interface CollectionAssignSkill_collectionAddSkills_collection {
   __typename: "Collection";
   id: string;
-  products: CollectionAssignSkill_collectionAddSkills_collection_products | null;
+  products: CollectionAssignSkill_collectionAddSkills_collection_skills | null;
 }
 
 export interface CollectionAssignSkill_collectionAddSkills {

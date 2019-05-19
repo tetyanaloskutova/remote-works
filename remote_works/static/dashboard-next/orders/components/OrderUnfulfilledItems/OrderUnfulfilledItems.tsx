@@ -16,7 +16,7 @@ import StatusLabel from "../../../components/StatusLabel";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import { TaskDetails_order_lines } from "../../types/TaskDetails";
 
 const styles = createStyles({
   clickableRow: {
@@ -33,15 +33,15 @@ const styles = createStyles({
   }
 });
 
-interface OrderUnfulfilledItemsProps extends WithStyles<typeof styles> {
+interface TaskUnfulfilledItemsProps extends WithStyles<typeof styles> {
   canFulfill: boolean;
-  lines: OrderDetails_order_lines[];
+  lines: TaskDetails_order_lines[];
   onFulfill: () => void;
 }
 
-const OrderUnfulfilledItems = withStyles(styles, {
-  name: "OrderUnfulfilledItems"
-})(({ canFulfill, classes, lines, onFulfill }: OrderUnfulfilledItemsProps) => (
+const TaskUnfulfilledItems = withStyles(styles, {
+  name: "TaskUnfulfilledItems"
+})(({ canFulfill, classes, lines, onFulfill }: TaskUnfulfilledItemsProps) => (
   <Card>
     <CardTitle
       title={
@@ -124,5 +124,5 @@ const OrderUnfulfilledItems = withStyles(styles, {
     )}
   </Card>
 ));
-OrderUnfulfilledItems.displayName = "OrderUnfulfilledItems";
-export default OrderUnfulfilledItems;
+TaskUnfulfilledItems.displayName = "TaskUnfulfilledItems";
+export default TaskUnfulfilledItems;

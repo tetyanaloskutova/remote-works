@@ -3,233 +3,233 @@ import * as React from "react";
 import { getMutationProviderData } from "../../misc";
 import { PartialMutationProviderOutput } from "../../types";
 import {
-  TypedOrderAddNoteMutation,
-  TypedOrderCancelMutation,
-  TypedOrderCaptureMutation,
-  TypedOrderCreateFulfillmentMutation,
-  TypedOrderDraftCancelMutation,
-  TypedOrderDraftFinalizeMutation,
-  TypedOrderDraftUpdateMutation,
-  TypedOrderFulfillmentCancelMutation,
-  TypedOrderFulfillmentUpdateTrackingMutation,
-  TypedOrderLineDeleteMutation,
-  TypedOrderLinesAddMutation,
-  TypedOrderLineUpdateMutation,
-  TypedOrderMarkAsPaidMutation,
-  TypedOrderRefundMutation,
-  TypedOrderShippingMethodUpdateMutation,
-  TypedOrderUpdateMutation,
-  TypedOrderVoidMutation
+  TypedTaskAddNoteMutation,
+  TypedTaskCancelMutation,
+  TypedTaskCaptureMutation,
+  TypedTaskCreateFulfillmentMutation,
+  TypedTaskDraftCancelMutation,
+  TypedTaskDraftFinalizeMutation,
+  TypedTaskDraftUpdateMutation,
+  TypedTaskFulfillmentCancelMutation,
+  TypedTaskFulfillmentUpdateTrackingMutation,
+  TypedTaskLineDeleteMutation,
+  TypedTaskLinesAddMutation,
+  TypedTaskLineUpdateMutation,
+  TypedTaskMarkAsPaidMutation,
+  TypedTaskRefundMutation,
+  TypedTaskDeliveryMethodUpdateMutation,
+  TypedTaskUpdateMutation,
+  TypedTaskVoidMutation
 } from "../mutations";
-import { OrderAddNote, OrderAddNoteVariables } from "../types/OrderAddNote";
-import { OrderCancel, OrderCancelVariables } from "../types/OrderCancel";
-import { OrderCapture, OrderCaptureVariables } from "../types/OrderCapture";
+import { TaskAddNote, TaskAddNoteVariables } from "../types/TaskAddNote";
+import { TaskCancel, TaskCancelVariables } from "../types/TaskCancel";
+import { TaskCapture, TaskCaptureVariables } from "../types/TaskCapture";
 import {
-  OrderCreateFulfillment,
-  OrderCreateFulfillmentVariables
-} from "../types/OrderCreateFulfillment";
+  TaskCreateFulfillment,
+  TaskCreateFulfillmentVariables
+} from "../types/TaskCreateFulfillment";
 import {
-  OrderDraftCancel,
-  OrderDraftCancelVariables
-} from "../types/OrderDraftCancel";
+  TaskDraftCancel,
+  TaskDraftCancelVariables
+} from "../types/TaskDraftCancel";
 import {
-  OrderDraftFinalize,
-  OrderDraftFinalizeVariables
-} from "../types/OrderDraftFinalize";
+  TaskDraftFinalize,
+  TaskDraftFinalizeVariables
+} from "../types/TaskDraftFinalize";
 import {
-  OrderDraftUpdate,
-  OrderDraftUpdateVariables
-} from "../types/OrderDraftUpdate";
+  TaskDraftUpdate,
+  TaskDraftUpdateVariables
+} from "../types/TaskDraftUpdate";
 import {
-  OrderFulfillmentCancel,
-  OrderFulfillmentCancelVariables
-} from "../types/OrderFulfillmentCancel";
+  TaskFulfillmentCancel,
+  TaskFulfillmentCancelVariables
+} from "../types/TaskFulfillmentCancel";
 import {
-  OrderFulfillmentUpdateTracking,
-  OrderFulfillmentUpdateTrackingVariables
-} from "../types/OrderFulfillmentUpdateTracking";
-import { OrderLineAdd, OrderLineAddVariables } from "../types/OrderLineAdd";
+  TaskFulfillmentUpdateTracking,
+  TaskFulfillmentUpdateTrackingVariables
+} from "../types/TaskFulfillmentUpdateTracking";
+import { TaskLineAdd, TaskLineAddVariables } from "../types/TaskLineAdd";
 import {
-  OrderLineDelete,
-  OrderLineDeleteVariables
-} from "../types/OrderLineDelete";
+  TaskLineDelete,
+  TaskLineDeleteVariables
+} from "../types/TaskLineDelete";
 import {
-  OrderLineUpdate,
-  OrderLineUpdateVariables
-} from "../types/OrderLineUpdate";
+  TaskLineUpdate,
+  TaskLineUpdateVariables
+} from "../types/TaskLineUpdate";
 import {
-  OrderMarkAsPaid,
-  OrderMarkAsPaidVariables
-} from "../types/OrderMarkAsPaid";
-import { OrderRefund, OrderRefundVariables } from "../types/OrderRefund";
+  TaskMarkAsPaid,
+  TaskMarkAsPaidVariables
+} from "../types/TaskMarkAsPaid";
+import { TaskRefund, TaskRefundVariables } from "../types/TaskRefund";
 import {
-  OrderShippingMethodUpdate,
-  OrderShippingMethodUpdateVariables
-} from "../types/OrderShippingMethodUpdate";
-import { OrderUpdate, OrderUpdateVariables } from "../types/OrderUpdate";
-import { OrderVoid, OrderVoidVariables } from "../types/OrderVoid";
+  TaskDeliveryMethodUpdate,
+  TaskDeliveryMethodUpdateVariables
+} from "../types/TaskDeliveryMethodUpdate";
+import { TaskUpdate, TaskUpdateVariables } from "../types/TaskUpdate";
+import { TaskVoid, TaskVoidVariables } from "../types/TaskVoid";
 
-interface OrderOperationsProps {
-  order: string;
+interface TaskOperationsProps {
+  task: string;
   children: (
     props: {
       orderAddNote: PartialMutationProviderOutput<
-        OrderAddNote,
-        OrderAddNoteVariables
+        TaskAddNote,
+        TaskAddNoteVariables
       >;
       orderCancel: PartialMutationProviderOutput<
-        OrderCancel,
-        OrderCancelVariables
+        TaskCancel,
+        TaskCancelVariables
       >;
       orderCreateFulfillment: PartialMutationProviderOutput<
-        OrderCreateFulfillment,
-        OrderCreateFulfillmentVariables
+        TaskCreateFulfillment,
+        TaskCreateFulfillmentVariables
       >;
       orderFulfillmentCancel: PartialMutationProviderOutput<
-        OrderFulfillmentCancel,
-        OrderFulfillmentCancelVariables
+        TaskFulfillmentCancel,
+        TaskFulfillmentCancelVariables
       >;
       orderFulfillmentUpdateTracking: PartialMutationProviderOutput<
-        OrderFulfillmentUpdateTracking,
-        OrderFulfillmentUpdateTrackingVariables
+        TaskFulfillmentUpdateTracking,
+        TaskFulfillmentUpdateTrackingVariables
       >;
       orderPaymentCapture: PartialMutationProviderOutput<
-        OrderCapture,
-        OrderCaptureVariables
+        TaskCapture,
+        TaskCaptureVariables
       >;
       orderPaymentRefund: PartialMutationProviderOutput<
-        OrderRefund,
-        OrderRefundVariables
+        TaskRefund,
+        TaskRefundVariables
       >;
       orderPaymentMarkAsPaid: PartialMutationProviderOutput<
-        OrderMarkAsPaid,
-        OrderMarkAsPaidVariables
+        TaskMarkAsPaid,
+        TaskMarkAsPaidVariables
       >;
-      orderVoid: PartialMutationProviderOutput<OrderVoid, OrderVoidVariables>;
+      orderVoid: PartialMutationProviderOutput<TaskVoid, TaskVoidVariables>;
       orderUpdate: PartialMutationProviderOutput<
-        OrderUpdate,
-        OrderUpdateVariables
+        TaskUpdate,
+        TaskUpdateVariables
       >;
       orderDraftCancel: PartialMutationProviderOutput<
-        OrderDraftCancel,
-        OrderDraftCancelVariables
+        TaskDraftCancel,
+        TaskDraftCancelVariables
       >;
       orderDraftFinalize: PartialMutationProviderOutput<
-        OrderDraftFinalize,
-        OrderDraftFinalizeVariables
+        TaskDraftFinalize,
+        TaskDraftFinalizeVariables
       >;
       orderDraftUpdate: PartialMutationProviderOutput<
-        OrderDraftUpdate,
-        OrderDraftUpdateVariables
+        TaskDraftUpdate,
+        TaskDraftUpdateVariables
       >;
-      orderShippingMethodUpdate: PartialMutationProviderOutput<
-        OrderShippingMethodUpdate,
-        OrderShippingMethodUpdateVariables
+      orderDeliveryMethodUpdate: PartialMutationProviderOutput<
+        TaskDeliveryMethodUpdate,
+        TaskDeliveryMethodUpdateVariables
       >;
       orderLineDelete: PartialMutationProviderOutput<
-        OrderLineDelete,
-        OrderLineDeleteVariables
+        TaskLineDelete,
+        TaskLineDeleteVariables
       >;
       orderLineAdd: PartialMutationProviderOutput<
-        OrderLineAdd,
-        OrderLineAddVariables
+        TaskLineAdd,
+        TaskLineAddVariables
       >;
       orderLineUpdate: PartialMutationProviderOutput<
-        OrderLineUpdate,
-        OrderLineUpdateVariables
+        TaskLineUpdate,
+        TaskLineUpdateVariables
       >;
     }
   ) => React.ReactNode;
-  onOrderFulfillmentCancel: (data: OrderFulfillmentCancel) => void;
-  onOrderFulfillmentCreate: (data: OrderCreateFulfillment) => void;
-  onOrderFulfillmentUpdate: (data: OrderFulfillmentUpdateTracking) => void;
-  onOrderCancel: (data: OrderCancel) => void;
-  onOrderVoid: (data: OrderVoid) => void;
-  onOrderMarkAsPaid: (data: OrderMarkAsPaid) => void;
-  onNoteAdd: (data: OrderAddNote) => void;
-  onPaymentCapture: (data: OrderCapture) => void;
-  onPaymentRefund: (data: OrderRefund) => void;
-  onUpdate: (data: OrderUpdate) => void;
-  onDraftCancel: (data: OrderDraftCancel) => void;
-  onDraftFinalize: (data: OrderDraftFinalize) => void;
-  onDraftUpdate: (data: OrderDraftUpdate) => void;
-  onShippingMethodUpdate: (data: OrderShippingMethodUpdate) => void;
-  onOrderLineDelete: (data: OrderLineDelete) => void;
-  onOrderLineAdd: (data: OrderLineAdd) => void;
-  onOrderLineUpdate: (data: OrderLineUpdate) => void;
+  onTaskFulfillmentCancel: (data: TaskFulfillmentCancel) => void;
+  onTaskFulfillmentCreate: (data: TaskCreateFulfillment) => void;
+  onTaskFulfillmentUpdate: (data: TaskFulfillmentUpdateTracking) => void;
+  onTaskCancel: (data: TaskCancel) => void;
+  onTaskVoid: (data: TaskVoid) => void;
+  onTaskMarkAsPaid: (data: TaskMarkAsPaid) => void;
+  onNoteAdd: (data: TaskAddNote) => void;
+  onPaymentCapture: (data: TaskCapture) => void;
+  onPaymentRefund: (data: TaskRefund) => void;
+  onUpdate: (data: TaskUpdate) => void;
+  onDraftCancel: (data: TaskDraftCancel) => void;
+  onDraftFinalize: (data: TaskDraftFinalize) => void;
+  onDraftUpdate: (data: TaskDraftUpdate) => void;
+  onDeliveryMethodUpdate: (data: TaskDeliveryMethodUpdate) => void;
+  onTaskLineDelete: (data: TaskLineDelete) => void;
+  onTaskLineAdd: (data: TaskLineAdd) => void;
+  onTaskLineUpdate: (data: TaskLineUpdate) => void;
 }
 
-const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
+const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
   children,
   onDraftUpdate,
-  onOrderFulfillmentCreate,
+  onTaskFulfillmentCreate,
   onNoteAdd,
-  onOrderCancel,
-  onOrderLineAdd,
-  onOrderLineDelete,
-  onOrderLineUpdate,
-  onOrderVoid,
+  onTaskCancel,
+  onTaskLineAdd,
+  onTaskLineDelete,
+  onTaskLineUpdate,
+  onTaskVoid,
   onPaymentCapture,
   onPaymentRefund,
-  onShippingMethodUpdate,
+  onDeliveryMethodUpdate,
   onUpdate,
   onDraftCancel,
   onDraftFinalize,
-  onOrderFulfillmentCancel,
-  onOrderFulfillmentUpdate,
-  onOrderMarkAsPaid
+  onTaskFulfillmentCancel,
+  onTaskFulfillmentUpdate,
+  onTaskMarkAsPaid
 }) => (
-  <TypedOrderVoidMutation onCompleted={onOrderVoid}>
+  <TypedTaskVoidMutation onCompleted={onTaskVoid}>
     {(...orderVoid) => (
-      <TypedOrderCancelMutation onCompleted={onOrderCancel}>
+      <TypedTaskCancelMutation onCompleted={onTaskCancel}>
         {(...orderCancel) => (
-          <TypedOrderCaptureMutation onCompleted={onPaymentCapture}>
+          <TypedTaskCaptureMutation onCompleted={onPaymentCapture}>
             {(...paymentCapture) => (
-              <TypedOrderRefundMutation onCompleted={onPaymentRefund}>
+              <TypedTaskRefundMutation onCompleted={onPaymentRefund}>
                 {(...paymentRefund) => (
-                  <TypedOrderCreateFulfillmentMutation
-                    onCompleted={onOrderFulfillmentCreate}
+                  <TypedTaskCreateFulfillmentMutation
+                    onCompleted={onTaskFulfillmentCreate}
                   >
                     {(...createFulfillment) => (
-                      <TypedOrderAddNoteMutation onCompleted={onNoteAdd}>
+                      <TypedTaskAddNoteMutation onCompleted={onNoteAdd}>
                         {(...addNote) => (
-                          <TypedOrderUpdateMutation onCompleted={onUpdate}>
+                          <TypedTaskUpdateMutation onCompleted={onUpdate}>
                             {(...update) => (
-                              <TypedOrderDraftUpdateMutation
+                              <TypedTaskDraftUpdateMutation
                                 onCompleted={onDraftUpdate}
                               >
                                 {(...updateDraft) => (
-                                  <TypedOrderShippingMethodUpdateMutation
-                                    onCompleted={onShippingMethodUpdate}
+                                  <TypedTaskDeliveryMethodUpdateMutation
+                                    onCompleted={onDeliveryMethodUpdate}
                                   >
-                                    {(...updateShippingMethod) => (
-                                      <TypedOrderLineDeleteMutation
-                                        onCompleted={onOrderLineDelete}
+                                    {(...updateDeliveryMethod) => (
+                                      <TypedTaskLineDeleteMutation
+                                        onCompleted={onTaskLineDelete}
                                       >
-                                        {(...deleteOrderLine) => (
-                                          <TypedOrderLinesAddMutation
-                                            onCompleted={onOrderLineAdd}
+                                        {(...deleteTaskLine) => (
+                                          <TypedTaskLinesAddMutation
+                                            onCompleted={onTaskLineAdd}
                                           >
-                                            {(...addOrderLine) => (
-                                              <TypedOrderLineUpdateMutation
-                                                onCompleted={onOrderLineUpdate}
+                                            {(...addTaskLine) => (
+                                              <TypedTaskLineUpdateMutation
+                                                onCompleted={onTaskLineUpdate}
                                               >
-                                                {(...updateOrderLine) => (
-                                                  <TypedOrderFulfillmentCancelMutation
+                                                {(...updateTaskLine) => (
+                                                  <TypedTaskFulfillmentCancelMutation
                                                     onCompleted={
-                                                      onOrderFulfillmentCancel
+                                                      onTaskFulfillmentCancel
                                                     }
                                                   >
                                                     {(...cancelFulfillment) => (
-                                                      <TypedOrderFulfillmentUpdateTrackingMutation
+                                                      <TypedTaskFulfillmentUpdateTrackingMutation
                                                         onCompleted={
-                                                          onOrderFulfillmentUpdate
+                                                          onTaskFulfillmentUpdate
                                                         }
                                                       >
                                                         {(
                                                           ...updateTrackingNumber
                                                         ) => (
-                                                          <TypedOrderDraftFinalizeMutation
+                                                          <TypedTaskDraftFinalizeMutation
                                                             onCompleted={
                                                               onDraftFinalize
                                                             }
@@ -237,7 +237,7 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                             {(
                                                               ...finalizeDraft
                                                             ) => (
-                                                              <TypedOrderDraftCancelMutation
+                                                              <TypedTaskDraftCancelMutation
                                                                 onCompleted={
                                                                   onDraftCancel
                                                                 }
@@ -245,9 +245,9 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                                 {(
                                                                   ...cancelDraft
                                                                 ) => (
-                                                                  <TypedOrderMarkAsPaidMutation
+                                                                  <TypedTaskMarkAsPaidMutation
                                                                     onCompleted={
-                                                                      onOrderMarkAsPaid
+                                                                      onTaskMarkAsPaid
                                                                     }
                                                                   >
                                                                     {(
@@ -279,13 +279,13 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                                           ...updateTrackingNumber
                                                                         ),
                                                                         orderLineAdd: getMutationProviderData(
-                                                                          ...addOrderLine
+                                                                          ...addTaskLine
                                                                         ),
                                                                         orderLineDelete: getMutationProviderData(
-                                                                          ...deleteOrderLine
+                                                                          ...deleteTaskLine
                                                                         ),
                                                                         orderLineUpdate: getMutationProviderData(
-                                                                          ...updateOrderLine
+                                                                          ...updateTaskLine
                                                                         ),
                                                                         orderPaymentCapture: getMutationProviderData(
                                                                           ...paymentCapture
@@ -296,8 +296,8 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                                         orderPaymentRefund: getMutationProviderData(
                                                                           ...paymentRefund
                                                                         ),
-                                                                        orderShippingMethodUpdate: getMutationProviderData(
-                                                                          ...updateShippingMethod
+                                                                        orderDeliveryMethodUpdate: getMutationProviderData(
+                                                                          ...updateDeliveryMethod
                                                                         ),
                                                                         orderUpdate: getMutationProviderData(
                                                                           ...update
@@ -307,38 +307,38 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                                         )
                                                                       })
                                                                     }
-                                                                  </TypedOrderMarkAsPaidMutation>
+                                                                  </TypedTaskMarkAsPaidMutation>
                                                                 )}
-                                                              </TypedOrderDraftCancelMutation>
+                                                              </TypedTaskDraftCancelMutation>
                                                             )}
-                                                          </TypedOrderDraftFinalizeMutation>
+                                                          </TypedTaskDraftFinalizeMutation>
                                                         )}
-                                                      </TypedOrderFulfillmentUpdateTrackingMutation>
+                                                      </TypedTaskFulfillmentUpdateTrackingMutation>
                                                     )}
-                                                  </TypedOrderFulfillmentCancelMutation>
+                                                  </TypedTaskFulfillmentCancelMutation>
                                                 )}
-                                              </TypedOrderLineUpdateMutation>
+                                              </TypedTaskLineUpdateMutation>
                                             )}
-                                          </TypedOrderLinesAddMutation>
+                                          </TypedTaskLinesAddMutation>
                                         )}
-                                      </TypedOrderLineDeleteMutation>
+                                      </TypedTaskLineDeleteMutation>
                                     )}
-                                  </TypedOrderShippingMethodUpdateMutation>
+                                  </TypedTaskDeliveryMethodUpdateMutation>
                                 )}
-                              </TypedOrderDraftUpdateMutation>
+                              </TypedTaskDraftUpdateMutation>
                             )}
-                          </TypedOrderUpdateMutation>
+                          </TypedTaskUpdateMutation>
                         )}
-                      </TypedOrderAddNoteMutation>
+                      </TypedTaskAddNoteMutation>
                     )}
-                  </TypedOrderCreateFulfillmentMutation>
+                  </TypedTaskCreateFulfillmentMutation>
                 )}
-              </TypedOrderRefundMutation>
+              </TypedTaskRefundMutation>
             )}
-          </TypedOrderCaptureMutation>
+          </TypedTaskCaptureMutation>
         )}
-      </TypedOrderCancelMutation>
+      </TypedTaskCancelMutation>
     )}
-  </TypedOrderVoidMutation>
+  </TypedTaskVoidMutation>
 );
-export default OrderOperations;
+export default TaskOperations;

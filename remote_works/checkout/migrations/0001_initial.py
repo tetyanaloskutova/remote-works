@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('shipping', '0001_initial'),
+        ('delivery', '0001_initial'),
         ('skill', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('account', '0001_initial'),
@@ -36,8 +36,8 @@ class Migration(migrations.Migration):
                 ('translated_discount_name', models.CharField(blank=True, max_length=255, null=True)),
                 ('voucher_code', models.CharField(blank=True, max_length=12, null=True)),
                 ('billing_address', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='account.Address')),
-                ('shipping_address', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='account.Address')),
-                ('shipping_method', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='carts', to='shipping.ShippingMethod')),
+                ('delivery_address', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='account.Address')),
+                ('delivery_method', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='carts', to='delivery.DeliveryMethod')),
                 ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='carts', to=settings.AUTH_USER_MODEL)),
             ],
             options={

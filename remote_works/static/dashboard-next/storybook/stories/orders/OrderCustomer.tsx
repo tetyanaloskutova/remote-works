@@ -2,38 +2,38 @@ import { Omit } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderCustomer, {
-  OrderCustomerProps
-} from "../../../orders/components/OrderCustomer";
-import { clients, order as orderFixture } from "../../../orders/fixtures";
+import TaskCustomer, {
+  TaskCustomerProps
+} from "../../../tasks/components/TaskCustomer";
+import { clients, order as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 const order = orderFixture("");
 
-const props: Omit<OrderCustomerProps, "classes"> = {
+const props: Omit<TaskCustomerProps, "classes"> = {
   canEditAddresses: false,
   canEditCustomer: true,
   fetchUsers: () => undefined,
   onBillingAddressEdit: undefined,
   onCustomerEdit: undefined,
-  onShippingAddressEdit: undefined,
+  onDeliveryAddressEdit: undefined,
   order,
   users: clients
 };
 
-storiesOf("Orders / OrderCustomer", module)
+storiesOf("Tasks / TaskCustomer", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderCustomer {...props} />)
-  .add("loading", () => <OrderCustomer {...props} order={undefined} />)
+  .add("default", () => <TaskCustomer {...props} />)
+  .add("loading", () => <TaskCustomer {...props} order={undefined} />)
   .add("with different addresses", () => (
-    <OrderCustomer
+    <TaskCustomer
       {...props}
       order={{
         ...order,
-        shippingAddress: { ...order.shippingAddress, id: "a2" }
+        deliveryAddress: { ...order.deliveryAddress, id: "a2" }
       }}
     />
   ))
   .add("editable", () => (
-    <OrderCustomer {...props} canEditAddresses={true} canEditCustomer={true} />
+    <TaskCustomer {...props} canEditAddresses={true} canEditCustomer={true} />
   ));

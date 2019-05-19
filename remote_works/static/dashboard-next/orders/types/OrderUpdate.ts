@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderUpdateInput } from "./../../types/globalTypes";
+import { TaskUpdateInput } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderUpdate
+// GraphQL mutation operation: TaskUpdate
 // ====================================================
 
-export interface OrderUpdate_orderUpdate_errors {
+export interface TaskUpdate_orderUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderUpdate_orderUpdate_order_billingAddress_country {
+export interface TaskUpdate_orderUpdate_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderUpdate_orderUpdate_order_billingAddress {
+export interface TaskUpdate_orderUpdate_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderUpdate_orderUpdate_order_billingAddress_country;
+  country: TaskUpdate_orderUpdate_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,18 +35,18 @@ export interface OrderUpdate_orderUpdate_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderUpdate_orderUpdate_order_shippingAddress_country {
+export interface TaskUpdate_orderUpdate_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderUpdate_orderUpdate_order_shippingAddress {
+export interface TaskUpdate_orderUpdate_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderUpdate_orderUpdate_order_shippingAddress_country;
+  country: TaskUpdate_orderUpdate_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -57,25 +57,25 @@ export interface OrderUpdate_orderUpdate_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderUpdate_orderUpdate_order {
-  __typename: "Order";
+export interface TaskUpdate_orderUpdate_order {
+  __typename: "Task";
   id: string;
   userEmail: string | null;
-  billingAddress: OrderUpdate_orderUpdate_order_billingAddress | null;
-  shippingAddress: OrderUpdate_orderUpdate_order_shippingAddress | null;
+  billingAddress: TaskUpdate_orderUpdate_order_billingAddress | null;
+  deliveryAddress: TaskUpdate_orderUpdate_order_deliveryAddress | null;
 }
 
-export interface OrderUpdate_orderUpdate {
-  __typename: "OrderUpdate";
-  errors: OrderUpdate_orderUpdate_errors[] | null;
-  order: OrderUpdate_orderUpdate_order | null;
+export interface TaskUpdate_orderUpdate {
+  __typename: "TaskUpdate";
+  errors: TaskUpdate_orderUpdate_errors[] | null;
+  task: TaskUpdate_orderUpdate_order | null;
 }
 
-export interface OrderUpdate {
-  orderUpdate: OrderUpdate_orderUpdate | null;
+export interface TaskUpdate {
+  orderUpdate: TaskUpdate_orderUpdate | null;
 }
 
-export interface OrderUpdateVariables {
+export interface TaskUpdateVariables {
   id: string;
-  input: OrderUpdateInput;
+  input: TaskUpdateInput;
 }

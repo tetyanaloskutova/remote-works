@@ -90,12 +90,12 @@ const AssignSkillDialog = withStyles(styles, {
                     value={data.query}
                     onChange={event => change(event, () => fetch(data.query))}
                     label={i18n.t("Search Skills", {
-                      context: "product search input label"
+                      context: "skill search input label"
                     })}
                     placeholder={i18n.t(
-                      "Search by product name, attribute, product type etc...",
+                      "Search by skill name, attribute, skill type etc...",
                       {
-                        context: "product search input placeholder"
+                        context: "skill search input placeholder"
                       }
                     )}
                     fullWidth
@@ -109,8 +109,8 @@ const AssignSkillDialog = withStyles(styles, {
               <FormSpacer />
               <Table>
                 <TableBody>
-                  {products &&
-                    products.map(product => {
+                  {skills &&
+                    products.map(skill => {
                       const isChecked = !!data.products.find(
                         selectedSkill => selectedSkill.id === product.id
                       );

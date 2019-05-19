@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderLineCreateInput, OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { TaskLineCreateInput, TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderLineAdd
+// GraphQL mutation operation: TaskLineAdd
 // ====================================================
 
-export interface OrderLineAdd_draftOrderLinesCreate_errors {
+export interface TaskLineAdd_draftTaskLinesCreate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_billingAddress_country {
+export interface TaskLineAdd_draftTaskLinesCreate_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_billingAddress {
+export interface TaskLineAdd_draftTaskLinesCreate_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderLineAdd_draftOrderLinesCreate_order_billingAddress_country;
+  country: TaskLineAdd_draftTaskLinesCreate_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderLineAdd_draftOrderLinesCreate_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_events_user {
+export interface TaskLineAdd_draftTaskLinesCreate_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_events {
-  __typename: "OrderEvent";
+export interface TaskLineAdd_draftTaskLinesCreate_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderLineAdd_draftOrderLinesCreate_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskLineAdd_draftTaskLinesCreate_order_events_user | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines {
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_fulfillments {
+export interface TaskLineAdd_draftTaskLinesCreate_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderLineAdd_draftOrderLinesCreate_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskLineAdd_draftTaskLinesCreate_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice_net {
+export interface TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice {
+export interface TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice_gross;
-  net: OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice_net;
+  gross: TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice_gross;
+  net: TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice_net;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_lines {
-  __typename: "OrderLine";
+export interface TaskLineAdd_draftTaskLinesCreate_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderLineAdd_draftOrderLinesCreate_order_lines_unitPrice | null;
+  unitPrice: TaskLineAdd_draftTaskLinesCreate_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_shippingAddress_country {
+export interface TaskLineAdd_draftTaskLinesCreate_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_shippingAddress {
+export interface TaskLineAdd_draftTaskLinesCreate_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderLineAdd_draftOrderLinesCreate_order_shippingAddress_country;
+  country: TaskLineAdd_draftTaskLinesCreate_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderLineAdd_draftOrderLinesCreate_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskLineAdd_draftTaskLinesCreate_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_shippingPrice_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_shippingPrice {
+export interface TaskLineAdd_draftTaskLinesCreate_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderLineAdd_draftOrderLinesCreate_order_shippingPrice_gross;
+  gross: TaskLineAdd_draftTaskLinesCreate_order_deliveryPrice_gross;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_subtotal_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_subtotal {
+export interface TaskLineAdd_draftTaskLinesCreate_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderLineAdd_draftOrderLinesCreate_order_subtotal_gross;
+  gross: TaskLineAdd_draftTaskLinesCreate_order_subtotal_gross;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_total_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_total_tax {
+export interface TaskLineAdd_draftTaskLinesCreate_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_total {
+export interface TaskLineAdd_draftTaskLinesCreate_order_total {
   __typename: "TaxedMoney";
-  gross: OrderLineAdd_draftOrderLinesCreate_order_total_gross;
-  tax: OrderLineAdd_draftOrderLinesCreate_order_total_tax;
+  gross: TaskLineAdd_draftTaskLinesCreate_order_total_gross;
+  tax: TaskLineAdd_draftTaskLinesCreate_order_total_tax;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_totalAuthorized {
+export interface TaskLineAdd_draftTaskLinesCreate_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_totalCaptured {
+export interface TaskLineAdd_draftTaskLinesCreate_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_user {
+export interface TaskLineAdd_draftTaskLinesCreate_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_availableShippingMethods_price {
+export interface TaskLineAdd_draftTaskLinesCreate_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskLineAdd_draftTaskLinesCreate_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderLineAdd_draftOrderLinesCreate_order_availableShippingMethods_price | null;
+  price: TaskLineAdd_draftTaskLinesCreate_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate_order {
-  __typename: "Order";
+export interface TaskLineAdd_draftTaskLinesCreate_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderLineAdd_draftOrderLinesCreate_order_billingAddress | null;
+  billingAddress: TaskLineAdd_draftTaskLinesCreate_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderLineAdd_draftOrderLinesCreate_order_events | null)[] | null;
-  fulfillments: (OrderLineAdd_draftOrderLinesCreate_order_fulfillments | null)[];
-  lines: (OrderLineAdd_draftOrderLinesCreate_order_lines | null)[];
+  events: (TaskLineAdd_draftTaskLinesCreate_order_events | null)[] | null;
+  fulfillments: (TaskLineAdd_draftTaskLinesCreate_order_fulfillments | null)[];
+  lines: (TaskLineAdd_draftTaskLinesCreate_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderLineAdd_draftOrderLinesCreate_order_shippingAddress | null;
-  shippingMethod: OrderLineAdd_draftOrderLinesCreate_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderLineAdd_draftOrderLinesCreate_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderLineAdd_draftOrderLinesCreate_order_subtotal | null;
-  total: OrderLineAdd_draftOrderLinesCreate_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderLineAdd_draftOrderLinesCreate_order_totalAuthorized | null;
-  totalCaptured: OrderLineAdd_draftOrderLinesCreate_order_totalCaptured | null;
-  user: OrderLineAdd_draftOrderLinesCreate_order_user | null;
+  deliveryAddress: TaskLineAdd_draftTaskLinesCreate_order_deliveryAddress | null;
+  deliveryMethod: TaskLineAdd_draftTaskLinesCreate_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskLineAdd_draftTaskLinesCreate_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskLineAdd_draftTaskLinesCreate_order_subtotal | null;
+  total: TaskLineAdd_draftTaskLinesCreate_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskLineAdd_draftTaskLinesCreate_order_totalAuthorized | null;
+  totalCaptured: TaskLineAdd_draftTaskLinesCreate_order_totalCaptured | null;
+  user: TaskLineAdd_draftTaskLinesCreate_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderLineAdd_draftOrderLinesCreate_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskLineAdd_draftTaskLinesCreate_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderLineAdd_draftOrderLinesCreate {
-  __typename: "DraftOrderLinesCreate";
-  errors: OrderLineAdd_draftOrderLinesCreate_errors[] | null;
-  order: OrderLineAdd_draftOrderLinesCreate_order;
+export interface TaskLineAdd_draftTaskLinesCreate {
+  __typename: "DraftTaskLinesCreate";
+  errors: TaskLineAdd_draftTaskLinesCreate_errors[] | null;
+  task: TaskLineAdd_draftTaskLinesCreate_order;
 }
 
-export interface OrderLineAdd {
-  draftOrderLinesCreate: OrderLineAdd_draftOrderLinesCreate | null;
+export interface TaskLineAdd {
+  draftTaskLinesCreate: TaskLineAdd_draftTaskLinesCreate | null;
 }
 
-export interface OrderLineAddVariables {
+export interface TaskLineAddVariables {
   id: string;
-  input: (OrderLineCreateInput | null)[];
+  input: (TaskLineCreateInput | null)[];
 }

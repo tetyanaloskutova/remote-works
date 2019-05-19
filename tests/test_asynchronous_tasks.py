@@ -1,6 +1,6 @@
 import pytest
 
-from remote_works.order.emails import (
+from remote_works.task.emails import (
     send_order_confirmation, send_payment_confirmation)
 
 

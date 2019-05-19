@@ -2,30 +2,30 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: OrderShippingMethods
+// GraphQL query operation: TaskDeliveryMethods
 // ====================================================
 
-export interface OrderShippingMethods_shippingZones_edges_node_shippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskDeliveryMethods_deliveryZones_edges_node_deliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
 }
 
-export interface OrderShippingMethods_shippingZones_edges_node {
-  __typename: "ShippingZone";
-  shippingMethods: (OrderShippingMethods_shippingZones_edges_node_shippingMethods | null)[] | null;
+export interface TaskDeliveryMethods_deliveryZones_edges_node {
+  __typename: "DeliveryZone";
+  deliveryMethods: (TaskDeliveryMethods_deliveryZones_edges_node_deliveryMethods | null)[] | null;
 }
 
-export interface OrderShippingMethods_shippingZones_edges {
-  __typename: "ShippingZoneCountableEdge";
-  node: OrderShippingMethods_shippingZones_edges_node;
+export interface TaskDeliveryMethods_deliveryZones_edges {
+  __typename: "DeliveryZoneCountableEdge";
+  node: TaskDeliveryMethods_deliveryZones_edges_node;
 }
 
-export interface OrderShippingMethods_shippingZones {
-  __typename: "ShippingZoneCountableConnection";
-  edges: OrderShippingMethods_shippingZones_edges[];
+export interface TaskDeliveryMethods_deliveryZones {
+  __typename: "DeliveryZoneCountableConnection";
+  edges: TaskDeliveryMethods_deliveryZones_edges[];
 }
 
-export interface OrderShippingMethods {
-  shippingZones: OrderShippingMethods_shippingZones | null;
+export interface TaskDeliveryMethods {
+  deliveryZones: TaskDeliveryMethods_deliveryZones | null;
 }

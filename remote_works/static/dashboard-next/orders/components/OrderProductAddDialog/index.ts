@@ -1,2 +1,2 @@
-export { default } from "./OrderSkillAddDialog";
-export * from "./OrderSkillAddDialog";
+export { default } from "./TaskSkillAddDialog";
+export * from "./TaskSkillAddDialog";

@@ -13,7 +13,7 @@
       <div class="card">
         <div class="data-table-header{% if not orders_to_ship %} data-table-header--no-data{% endif %}">
           <span class="data-table-title" title="{% blocktrans trimmed with counter=orders_to_ship|length context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
-            {% trans "Orders ready for shipment" context "Dashboard homepage table title" %}
+            {% trans "Tasks ready for shipment" context "Dashboard homepage table title" %}
           </span>
         </div>
         {% if orders_to_ship %}
@@ -25,19 +25,19 @@
                     #
                   </th>
                   <th>
-                    {% trans "Placed on" context "Orders table header" %}
+                    {% trans "Placed on" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Customer" context "Orders table header" %}
+                    {% trans "Customer" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Payment status" context "Orders table header" %}
+                    {% trans "Payment status" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Order status" context "Orders table header" %}
+                    {% trans "Task status" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Total" context "Orders table header" %}
+                    {% trans "Total" context "Tasks table header" %}
                   </th>
                 </tr>
               </thead>
@@ -71,7 +71,7 @@
         {% else %}
           <div class="card-content card-content--no-data not-found ">
             <p class="grey-text">
-              {% trans "No orders are ready for shipment." context "Empty order table message" %}
+              {% trans "No tasks are ready for shipment." context "Empty order table message" %}
             </p>
           </div>
         {% endif %}
@@ -89,7 +89,7 @@
               <thead>
                 <tr>
                   <th>
-                    {% trans "Order" context "Preauthorized payments table header" %}
+                    {% trans "Task" context "Preauthorized payments table header" %}
                   </th>
                   <th>
                     {% trans "Date" context "Preauthorized payments table header" %}
@@ -136,7 +136,7 @@
       <div class="card">
         <div class="data-table-header{% if not low_stock %} data-table-header--no-data{% endif %}">
           <span class="data-table-title" title="{% blocktrans trimmed with counter=low_stock.count context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
-            {% trans "Skills with low stock" context "Dashboard homepage table title" %}
+            {% trans "Skills with low availability" context "Dashboard homepage table title" %}
           </span>
         </div>
         {% if low_stock %}
@@ -145,10 +145,10 @@
               <thead>
                 <tr>
                   <th>
-                    {% trans "Skill name" context "Low stock skill list" %}
+                    {% trans "Skill name" context "Low availability skill list" %}
                   </th>
                   <th class="right-align">
-                    {% trans "Stock left" context "Low stock skill list" %}
+                    {% trans "Stock left" context "Low availability skill list" %}
                   </th>
                 </tr>
               </thead>
@@ -169,7 +169,7 @@
         {% else %}
           <div class="card-content card-content--no-data not-found">
             <p class="grey-text">
-              {% trans "No skills are low in stock." context "Empty low stock table message" %}
+              {% trans "No skills are low in availability." context "Empty low availability table message" %}
             </p>
           </div>
         {% endif %}

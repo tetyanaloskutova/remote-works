@@ -5,7 +5,7 @@ from unittest.mock import Mock, patch
 from django.utils.encoding import smart_text
 
 from remote_works.data_feeds.google_merchant import (
-    get_feed_items, item_attributes, item_google_product_category, write_feed)
+    get_feed_items, item_attributes, item_google_skill_category, write_feed)
 from remote_works.product.models import AttributeValue, Category
 
 
@@ -24,7 +24,7 @@ def test_saleor_feed_items(product, site_settings):
                                  current_site, discounts, attributes_dict,
                                  attribute_values_dict)
     assert attributes.get('mpn') == valid_variant.sku
-    assert attributes.get('availability') == 'in stock'
+    assert attributes.get('availability') == 'in availability'
 
 
 def test_category_formatter(db):
@@ -34,8 +34,8 @@ def test_category_formatter(db):
     sub_category = Category(name='Sub', slug='sub', parent=main_category)
     sub_category.save()
     sub_category_item = Mock(product=Mock(category=sub_category))
-    assert item_google_product_category(main_category_item, {}) == 'Main'
-    assert item_google_product_category(sub_category_item, {}) == 'Main > Sub'
+    assert item_google_skill_category(main_category_item, {}) == 'Main'
+    assert item_google_skill_category(sub_category_item, {}) == 'Main > Sub'
 
 
 def test_write_feed(product, monkeypatch):

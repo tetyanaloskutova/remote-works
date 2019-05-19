@@ -14,7 +14,7 @@ const props: CountryListPageProps = {
   onTaxFetch: () => undefined,
   shop: {
     __typename: "Shop",
-    chargeTaxesOnShipping: false,
+    chargeTaxesOnDelivery: false,
     countries,
     displayGrossPrices: true,
     includeTaxesInPrices: false

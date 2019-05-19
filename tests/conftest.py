@@ -25,17 +25,17 @@ from remote_works.dashboard.order.utils import fulfill_order_line
 from remote_works.discount import VoucherType
 from remote_works.discount.models import Sale, Voucher, VoucherTranslation
 from remote_works.menu.models import Menu, MenuItem
-from remote_works.order import OrderEvents, OrderStatus
-from remote_works.order.models import FulfillmentStatus, Order, OrderEvent
-from remote_works.order.utils import recalculate_order
+from remote_works.task import TaskEvents, TaskStatus
+from remote_works.task.models import FulfillmentStatus, Task, TaskEvent
+from remote_works.task.utils import recalculate_order
 from remote_works.page.models import Page
 from remote_works.payment import ChargeStatus, TransactionKind
 from remote_works.payment.models import Payment
 from remote_works.skill.models import (
     Attribute, AttributeTranslation, AttributeValue, Category, Collection,
     Skill, SkillImage, SkillTranslation, SkillType, SkillVariant)
-from remote_works.shipping.models import (
-    ShippingMethod, ShippingMethodType, ShippingZone)
+from remote_works.delivery.models import (
+    DeliveryMethod, DeliveryMethodType, DeliveryZone)
 from remote_works.site import AuthenticationBackends
 from remote_works.site.models import AuthorizationKey, SiteSettings
 
@@ -134,7 +134,7 @@ def customer_user(address):  # pylint: disable=W0613
         'test@example.com',
         'password',
         default_billing_address=default_address,
-        default_shipping_address=default_address)
+        default_delivery_address=default_address)
     user.addresses.add(default_address)
     return user
 
@@ -158,7 +158,7 @@ def request_cart_with_item(skill, request_cart):
 @pytest.fixture
 def order(customer_user):
     address = customer_user.default_billing_address.get_copy()
-    return Order.objects.create(
+    return Task.objects.create(
         billing_address=address,
         user_email=customer_user.email,
         user=customer_user)
@@ -200,32 +200,32 @@ def authorized_client(client, customer_user):
 
 
 @pytest.fixture
-def shipping_zone(db):  # pylint: disable=W0613
-    shipping_zone = ShippingZone.objects.create(
+def delivery_zone(db):  # pylint: disable=W0613
+    delivery_zone = DeliveryZone.objects.create(
         name='Europe', countries=[code for code, name in countries])
-    shipping_zone.shipping_methods.create(
+    delivery_zone.delivery_methods.create(
         name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED, price=Money(10, 'USD'),
-        shipping_zone=shipping_zone)
-    return shipping_zone
+        type=DeliveryMethodType.PRICE_BASED, price=Money(10, 'USD'),
+        delivery_zone=delivery_zone)
+    return delivery_zone
 
 
 @pytest.fixture
-def shipping_zone_without_countries(db):  # pylint: disable=W0613
-    shipping_zone = ShippingZone.objects.create(
+def delivery_zone_without_countries(db):  # pylint: disable=W0613
+    delivery_zone = DeliveryZone.objects.create(
         name='Europe', countries=[])
-    shipping_zone.shipping_methods.create(
+    delivery_zone.delivery_methods.create(
         name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED, price=Money(10, 'USD'),
-        shipping_zone=shipping_zone)
-    return shipping_zone
+        type=DeliveryMethodType.PRICE_BASED, price=Money(10, 'USD'),
+        delivery_zone=delivery_zone)
+    return delivery_zone
 
 @pytest.fixture
-def shipping_method(shipping_zone):
-    return ShippingMethod.objects.create(
+def delivery_method(delivery_zone):
+    return DeliveryMethod.objects.create(
         name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED,
-        price=Money(10, 'USD'), shipping_zone=shipping_zone)
+        type=DeliveryMethodType.PRICE_BASED,
+        price=Money(10, 'USD'), delivery_zone=delivery_zone)
 
 
 @pytest.fixture
@@ -314,7 +314,7 @@ def permission_manage_orders():
 @pytest.fixture
 def skill_type(color_attribute, size_attribute):
     skill_type = SkillType.objects.create(
-        name='Default Type', has_variants=True, is_shipping_required=True)
+        name='Default Type', has_variants=True, is_delivery_required=True)
     skill_type.skill_attributes.add(color_attribute)
     skill_type.variant_attributes.add(size_attribute)
     return skill_type
@@ -323,7 +323,7 @@ def skill_type(color_attribute, size_attribute):
 @pytest.fixture
 def skill_type_without_variant():
     skill_type = SkillType.objects.create(
-        name='Type', has_variants=False, is_shipping_required=True)
+        name='Type', has_variants=False, is_delivery_required=True)
     return skill_type
 
 
@@ -368,10 +368,10 @@ def variant(skill):
 
 
 @pytest.fixture
-def skill_without_shipping(category):
+def skill_without_delivery(category):
     skill_type = SkillType.objects.create(
-        name='Type with no shipping', has_variants=False,
-        is_shipping_required=False)
+        name='Type with no delivery', has_variants=False,
+        is_delivery_required=False)
     skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
         skill_type=skill_type, category=category)
@@ -409,9 +409,9 @@ def order_list(customer_user):
     data = {
         'billing_address': address, 'user': customer_user,
         'user_email': customer_user.email}
-    order = Order.objects.create(**data)
-    order1 = Order.objects.create(**data)
-    order2 = Order.objects.create(**data)
+    order = Task.objects.create(**data)
+    order1 = Task.objects.create(**data)
+    order2 = Task.objects.create(**data)
 
     return [order, order1, order2]
 
@@ -476,17 +476,17 @@ def voucher_with_high_min_amount_spent():
 
 
 @pytest.fixture
-def voucher_shipping_type():
+def voucher_delivery_type():
     return Voucher.objects.create(
         code='mirumee',
         discount_value=10,
-        type=VoucherType.SHIPPING,
+        type=VoucherType.DELIVERY,
         countries='IS')
 
 
 @pytest.fixture()
 def order_with_lines(
-        order, skill_type, category, shipping_zone, vatlayer):
+        order, skill_type, category, delivery_zone, vatlayer):
     taxes = vatlayer
     skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
@@ -497,7 +497,7 @@ def order_with_lines(
     order.lines.create(
         skill_name=variant.display_skill(),
         skill_sku=variant.sku,
-        is_shipping_required=variant.is_shipping_required(),
+        is_delivery_required=variant.is_delivery_required(),
         quantity=3,
         variant=variant,
         unit_price=variant.get_price(taxes=taxes),
@@ -512,17 +512,17 @@ def order_with_lines(
     order.lines.create(
         skill_name=variant.display_skill(),
         skill_sku=variant.sku,
-        is_shipping_required=variant.is_shipping_required(),
+        is_delivery_required=variant.is_delivery_required(),
         quantity=2,
         variant=variant,
         unit_price=variant.get_price(taxes=taxes),
         tax_rate=taxes['standard']['value'])
 
-    order.shipping_address = order.billing_address.get_copy()
-    method = shipping_zone.shipping_methods.get()
-    order.shipping_method_name = method.name
-    order.shipping_method = method
-    order.shipping_price = method.get_total(taxes)
+    order.delivery_address = order.billing_address.get_copy()
+    method = delivery_zone.delivery_methods.get()
+    order.delivery_method_name = method.name
+    order.delivery_method = method
+    order.delivery_price = method.get_total(taxes)
     order.save()
 
     recalculate_order(order)
@@ -533,8 +533,8 @@ def order_with_lines(
 
 @pytest.fixture()
 def order_events(order):
-    for event_type in OrderEvents:
-        OrderEvent.objects.create(type=event_type.value, order=order)
+    for event_type in TaskEvents:
+        TaskEvent.objects.create(type=event_type.value, order=order)
 
 
 @pytest.fixture()
@@ -547,7 +547,7 @@ def fulfilled_order(order_with_lines):
     fulfill_order_line(line_1, line_1.quantity)
     fulfillment.lines.create(order_line=line_2, quantity=line_2.quantity)
     fulfill_order_line(line_2, line_2.quantity)
-    order.status = OrderStatus.FULFILLED
+    order.status = TaskStatus.FULFILLED
     order.save(update_fields=['status'])
     return order
 
@@ -571,7 +571,7 @@ def fulfillment(fulfilled_order):
 
 @pytest.fixture
 def draft_order(order_with_lines):
-    order_with_lines.status = OrderStatus.DRAFT
+    order_with_lines.status = TaskStatus.DRAFT
     order_with_lines.save(update_fields=['status'])
     return order_with_lines
 
@@ -670,8 +670,8 @@ def permission_manage_skills():
 
 
 @pytest.fixture
-def permission_manage_shipping():
-    return Permission.objects.get(codename='manage_shipping')
+def permission_manage_delivery():
+    return Permission.objects.get(codename='manage_delivery')
 
 
 @pytest.fixture

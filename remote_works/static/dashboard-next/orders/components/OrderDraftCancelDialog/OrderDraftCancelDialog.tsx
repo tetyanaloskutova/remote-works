@@ -5,7 +5,7 @@ import ActionDialog from "../../../components/ActionDialog";
 import { ConfirmButtonTransitionState } from "../../../components/ConfirmButton/ConfirmButton";
 import i18n from "../../../i18n";
 
-export interface OrderDraftCancelDialogProps {
+export interface TaskDraftCancelDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   onClose: () => void;
@@ -13,15 +13,15 @@ export interface OrderDraftCancelDialogProps {
   orderNumber: string;
 }
 
-const OrderDraftCancelDialog: React.StatelessComponent<
-  OrderDraftCancelDialogProps
+const TaskDraftCancelDialog: React.StatelessComponent<
+  TaskDraftCancelDialogProps
 > = ({ confirmButtonState, onClose, onConfirm, open, orderNumber }) => (
   <ActionDialog
     confirmButtonState={confirmButtonState}
     onClose={onClose}
     onConfirm={onConfirm}
     open={open}
-    title={i18n.t("Remove draft order", {
+    title={i18n.t("Remove draft task", {
       context: "modal title"
     })}
     variant="delete"
@@ -39,5 +39,5 @@ const OrderDraftCancelDialog: React.StatelessComponent<
     />
   </ActionDialog>
 );
-OrderDraftCancelDialog.displayName = "OrderDraftCancelDialog";
-export default OrderDraftCancelDialog;
+TaskDraftCancelDialog.displayName = "TaskDraftCancelDialog";
+export default TaskDraftCancelDialog;

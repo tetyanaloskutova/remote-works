@@ -140,7 +140,7 @@
       <div class="card">
         <div class="data-table-header{% if not customer_orders %} data-table-header--no-data{% endif %}">
           <h5 class="data-table-title {% if not customer_orders %} data-table-title--no-data{% endif %}">
-            {% trans "Orders" context "Skills table title" %}
+            {% trans "Tasks" context "Skills table title" %}
           </h5>
         </div>
         {% if customer_orders %}
@@ -149,16 +149,16 @@
               <thead>
                 <tr>
                   <th>
-                    {% trans "Number" context "Customer orders table header" %}
+                    {% trans "Number" context "Customer tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Placed on" context "Customer orders table header" %}
+                    {% trans "Placed on" context "Customer tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Order status" context "Customer orders table header" %}
+                    {% trans "Task status" context "Customer tasks table header" %}
                   </th>
                   <th class="right-align">
-                    {% trans "Total" context "Customer orders table header" %}
+                    {% trans "Total" context "Customer tasks table header" %}
                   </th>
                 </tr>
               </thead>
@@ -185,7 +185,7 @@
         {% else %}
           <div class="card-content card-content--no-data">
             <p>
-              {% trans "No orders found." context "Empty customer orders table message" %}
+              {% trans "No tasks found." context "Empty customer tasks table message" %}
             </p>
           </div>
         {% endif %}
@@ -226,14 +226,14 @@
           <div class="card equal-height-on-med">
             <div class="card-content">
               <span class="card-title black-text">
-                {% trans "Default shipping address" context "Customer default shipping address card title" %}
+                {% trans "Default delivery address" context "Customer default delivery address card title" %}
               </span>
-              {% if customer.default_shipping_address %}
-                {% with customer.default_shipping_address as address %}
+              {% if customer.default_delivery_address %}
+                {% with customer.default_delivery_address as address %}
                   {% include 'dashboard/includes/_address.html' with address=address only %}
                 {% endwith %}
               {% else %}
-                <div>{% trans "No default shipping address." context "Customer without default shipping address message" %}</div>
+                <div>{% trans "No default delivery address." context "Customer without default delivery address message" %}</div>
               {% endif %}
               <svg data-src="{% static "dashboard/images/email.svg" %}" width="14" height="14" />
               <a href="mailto:{{ customer.email }}">

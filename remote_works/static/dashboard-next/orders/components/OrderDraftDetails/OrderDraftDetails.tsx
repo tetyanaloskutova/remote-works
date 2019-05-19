@@ -6,57 +6,57 @@ import * as React from "react";
 import CardTitle from "../../../components/CardTitle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import OrderDraftDetailsSkills, {
-  FormData as OrderDraftDetailsSkillsFormData
-} from "../OrderDraftDetailsSkills";
-import OrderDraftDetailsSummary from "../OrderDraftDetailsSummary/OrderDraftDetailsSummary";
+import { TaskDetails_order } from "../../types/TaskDetails";
+import TaskDraftDetailsSkills, {
+  FormData as TaskDraftDetailsSkillsFormData
+} from "../TaskDraftDetailsSkills";
+import TaskDraftDetailsSummary from "../TaskDraftDetailsSummary/TaskDraftDetailsSummary";
 
-interface OrderDraftDetailsProps {
-  order: OrderDetails_order;
-  onOrderLineAdd: () => void;
-  onOrderLineChange: (
+interface TaskDraftDetailsProps {
+  task: TaskDetails_order;
+  onTaskLineAdd: () => void;
+  onTaskLineChange: (
     id: string,
-    data: OrderDraftDetailsSkillsFormData
+    data: TaskDraftDetailsSkillsFormData
   ) => void;
-  onOrderLineRemove: (id: string) => void;
-  onShippingMethodEdit: () => void;
+  onTaskLineRemove: (id: string) => void;
+  onDeliveryMethodEdit: () => void;
 }
 
-const OrderDraftDetails: React.StatelessComponent<OrderDraftDetailsProps> = ({
-  order,
-  onOrderLineAdd,
-  onOrderLineChange,
-  onOrderLineRemove,
-  onShippingMethodEdit
+const TaskDraftDetails: React.StatelessComponent<TaskDraftDetailsProps> = ({
+  task,
+  onTaskLineAdd,
+  onTaskLineChange,
+  onTaskLineRemove,
+  onDeliveryMethodEdit
 }) => (
   <Card>
     <CardTitle
-      title={i18n.t("Order details", {
+      title={i18n.t("Task details", {
         context: "card title"
       })}
       toolbar={
-        <Button color="secondary" variant="text" onClick={onOrderLineAdd}>
+        <Button color="secondary" variant="text" onClick={onTaskLineAdd}>
           {i18n.t("Add products", {
             context: "button"
           })}
         </Button>
       }
     />
-    <OrderDraftDetailsSkills
-      lines={maybe(() => order.lines)}
-      onOrderLineChange={onOrderLineChange}
-      onOrderLineRemove={onOrderLineRemove}
+    <TaskDraftDetailsSkills
+      lines={maybe(() => task.lines)}
+      onTaskLineChange={onTaskLineChange}
+      onTaskLineRemove={onTaskLineRemove}
     />
-    {maybe(() => order.lines.length) !== 0 && (
+    {maybe(() => task.lines.length) !== 0 && (
       <CardContent>
-        <OrderDraftDetailsSummary
-          order={order}
-          onShippingMethodEdit={onShippingMethodEdit}
+        <TaskDraftDetailsSummary
+          task={task}
+          onDeliveryMethodEdit={onDeliveryMethodEdit}
         />
       </CardContent>
     )}
   </Card>
 );
-OrderDraftDetails.displayName = "OrderDraftDetails";
-export default OrderDraftDetails;
+TaskDraftDetails.displayName = "TaskDraftDetails";
+export default TaskDraftDetails;

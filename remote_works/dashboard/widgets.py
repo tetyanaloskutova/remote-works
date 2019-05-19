@@ -23,7 +23,7 @@ class MoneyRangeWidget(widgets.RangeWidget):
 
 
 class PhonePrefixWidget(StorefrontPhonePrefixWidget):
-    template_name = 'dashboard/order/widget/phone_prefix_widget.html'
+    template_name = 'dashboard/task/widget/phone_prefix_widget.html'
 
 
 class RichTextEditorWidget(Textarea):

@@ -22,7 +22,7 @@ from ..core.types import Error
 
 
 BILLING_ADDRESS_FIELD = 'default_billing_address'
-SHIPPING_ADDRESS_FIELD = 'default_shipping_address'
+DELIVERY_ADDRESS_FIELD = 'default_delivery_address'
 
 
 def send_user_password_reset_email(user, site):
@@ -84,8 +84,8 @@ class UserInput(graphene.InputObjectType):
 class UserAddressInput(graphene.InputObjectType):
     default_billing_address = AddressInput(
         description='Billing address of the customer.')
-    default_shipping_address = AddressInput(
-        description='Shipping address of the customer.')
+    default_delivery_address = AddressInput(
+        description='Delivery address of the customer.')
 
 
 class CustomerInput(UserInput, UserAddressInput):
@@ -124,15 +124,15 @@ class CustomerCreate(ModelMutation, I18nMixin):
 
     @classmethod
     def clean_input(cls, info, instance, input, errors):
-        shipping_address_data = input.pop(SHIPPING_ADDRESS_FIELD, None)
+        delivery_address_data = input.pop(DELIVERY_ADDRESS_FIELD, None)
         billing_address_data = input.pop(BILLING_ADDRESS_FIELD, None)
         cleaned_input = super().clean_input(info, instance, input, errors)
 
-        if shipping_address_data:
-            shipping_address, errors = cls.validate_address(
-                shipping_address_data, errors, SHIPPING_ADDRESS_FIELD,
-                instance=getattr(instance, SHIPPING_ADDRESS_FIELD))
-            cleaned_input[SHIPPING_ADDRESS_FIELD] = shipping_address
+        if delivery_address_data:
+            delivery_address, errors = cls.validate_address(
+                delivery_address_data, errors, DELIVERY_ADDRESS_FIELD,
+                instance=getattr(instance, DELIVERY_ADDRESS_FIELD))
+            cleaned_input[DELIVERY_ADDRESS_FIELD] = delivery_address
 
         if billing_address_data:
             billing_address, errors = cls.validate_address(
@@ -143,10 +143,10 @@ class CustomerCreate(ModelMutation, I18nMixin):
 
     @classmethod
     def save(cls, info, instance, cleaned_input):
-        default_shipping_address = cleaned_input.get(SHIPPING_ADDRESS_FIELD)
-        if default_shipping_address:
-            default_shipping_address.save()
-            instance.default_shipping_address = default_shipping_address
+        default_delivery_address = cleaned_input.get(DELIVERY_ADDRESS_FIELD)
+        if default_delivery_address:
+            default_delivery_address.save()
+            instance.default_delivery_address = default_delivery_address
         default_billing_address = cleaned_input.get(BILLING_ADDRESS_FIELD)
         if default_billing_address:
             default_billing_address.save()
@@ -553,8 +553,8 @@ class CustomerSetDefaultAddress(BaseMutation):
 
         if type == AddressTypeEnum.BILLING.value:
             address_type = AddressType.BILLING
-        elif type == AddressTypeEnum.SHIPPING.value:
-            address_type = AddressType.SHIPPING
+        elif type == AddressTypeEnum.DELIVERY.value:
+            address_type = AddressType.DELIVERY
         else:
             raise ValueError('Unknown value of AddressTypeEnum: %s' % type)
 

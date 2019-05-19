@@ -16,11 +16,11 @@ import i18n from "../../../i18n";
 import {
   maybe,
   renderCollection,
-  transformOrderStatus,
+  transformTaskStatus,
   transformPaymentStatus
 } from "../../../misc";
 import { ListProps } from "../../../types";
-import { OrderList_orders_edges_node } from "../../types/OrderList";
+import { TaskList_orders_edges_node } from "../../types/TaskList";
 
 const styles = createStyles({
   link: {
@@ -31,25 +31,25 @@ const styles = createStyles({
   }
 });
 
-interface OrderListProps extends ListProps, WithStyles<typeof styles> {
-  orders: OrderList_orders_edges_node[];
+interface TaskListProps extends ListProps, WithStyles<typeof styles> {
+  tasks: TaskList_orders_edges_node[];
 }
 
-export const OrderList = withStyles(styles, { name: "OrderList" })(
+export const TaskList = withStyles(styles, { name: "TaskList" })(
   ({
     classes,
     disabled,
-    orders,
+    tasks,
     pageInfo,
     onPreviousPage,
     onNextPage,
     onRowClick
-  }: OrderListProps) => {
-    const orderList = orders
-      ? orders.map(order => ({
-          ...order,
-          paymentStatus: transformPaymentStatus(order.paymentStatus),
-          status: transformOrderStatus(order.status)
+  }: TaskListProps) => {
+    const orderList = tasks
+      ? tasks.map(task => ({
+          ...task,
+          paymentStatus: transformPaymentStatus(task.paymentStatus),
+          status: transformTaskStatus(task.status)
         }))
       : undefined;
     return (
@@ -57,7 +57,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
         <TableHead>
           <TableRow>
             <TableCell padding="dense">
-              {i18n.t("No. of Order", { context: "table header" })}
+              {i18n.t("No. of Task", { context: "table header" })}
             </TableCell>
             <TableCell padding="dense">
               {i18n.t("Date", { context: "table header" })}
@@ -92,46 +92,46 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
         <TableBody>
           {renderCollection(
             orderList,
-            order => (
+            task => (
               <TableRow
-                hover={!!order}
-                className={!!order ? classes.link : undefined}
-                onClick={order ? onRowClick(order.id) : undefined}
-                key={order ? order.id : "skeleton"}
+                hover={!!task}
+                className={!!task ? classes.link : undefined}
+                onClick={task ? onRowClick(task.id) : undefined}
+                key={task ? task.id : "skeleton"}
               >
                 <TableCell padding="dense">
-                  {maybe(() => order.number) ? (
-                    "#" + order.number
+                  {maybe(() => task.number) ? (
+                    "#" + task.number
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell padding="dense">
-                  {maybe(() => order.created) ? (
-                    <DateTime date={order.created} />
+                  {maybe(() => task.created) ? (
+                    <DateTime date={task.created} />
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell padding="dense">
-                  {maybe(() => order.billingAddress) ? (
+                  {maybe(() => task.billingAddress) ? (
                     <>
-                      {order.billingAddress.firstName}
+                      {task.billingAddress.firstName}
                       &nbsp;
-                      {order.billingAddress.lastName}
+                      {task.billingAddress.lastName}
                     </>
-                  ) : maybe(() => order.userEmail) !== undefined ? (
-                    order.userEmail
+                  ) : maybe(() => task.userEmail) !== undefined ? (
+                    task.userEmail
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell padding="dense">
-                  {maybe(() => order.paymentStatus.status) !== undefined ? (
-                    order.paymentStatus.status === null ? null : (
+                  {maybe(() => task.paymentStatus.status) !== undefined ? (
+                    task.paymentStatus.status === null ? null : (
                       <StatusLabel
-                        status={order.paymentStatus.status}
-                        label={order.paymentStatus.localized}
+                        status={task.paymentStatus.status}
+                        label={task.paymentStatus.localized}
                       />
                     )
                   ) : (
@@ -139,18 +139,18 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                   )}
                 </TableCell>
                 <TableCell padding="dense">
-                  {maybe(() => order.status) ? (
+                  {maybe(() => task.status) ? (
                     <StatusLabel
-                      status={order.status.status}
-                      label={order.status.localized}
+                      status={task.status.status}
+                      label={task.status.localized}
                     />
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell className={classes.textRight} padding="dense">
-                  {maybe(() => order.total.gross) ? (
-                    <Money money={order.total.gross} />
+                  {maybe(() => task.total.gross) ? (
+                    <Money money={task.total.gross} />
                   ) : (
                     <Skeleton />
                   )}
@@ -159,7 +159,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
             ),
             () => (
               <TableRow>
-                <TableCell colSpan={6}>{i18n.t("No orders found")}</TableCell>
+                <TableCell colSpan={6}>{i18n.t("No tasks found")}</TableCell>
               </TableRow>
             )
           )}
@@ -168,5 +168,5 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
     );
   }
 );
-OrderList.displayName = "OrderList";
-export default OrderList;
+TaskList.displayName = "TaskList";
+export default TaskList;

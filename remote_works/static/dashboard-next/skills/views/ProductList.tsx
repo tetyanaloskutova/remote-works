@@ -64,8 +64,8 @@ export const SkillList: React.StatelessComponent<SkillListProps> = ({
                     disabled={loading}
                     products={
                       data &&
-                      data.products !== undefined &&
-                      data.products !== null
+                      data.skills !== undefined &&
+                      data.skills !== null
                         ? data.products.edges.map(p => p.node)
                         : undefined
                     }

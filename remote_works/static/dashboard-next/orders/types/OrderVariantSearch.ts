@@ -2,42 +2,42 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: OrderVariantSearch
+// GraphQL query operation: TaskVariantSearch
 // ====================================================
 
-export interface OrderVariantSearch_products_edges_node_thumbnail {
+export interface TaskVariantSearch_products_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface OrderVariantSearch_products_edges_node_variants_price {
+export interface TaskVariantSearch_products_edges_node_variants_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderVariantSearch_products_edges_node_variants {
+export interface TaskVariantSearch_products_edges_node_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  price: OrderVariantSearch_products_edges_node_variants_price | null;
+  price: TaskVariantSearch_products_edges_node_variants_price | null;
 }
 
-export interface OrderVariantSearch_products_edges_node {
+export interface TaskVariantSearch_products_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
-  thumbnail: OrderVariantSearch_products_edges_node_thumbnail | null;
-  variants: (OrderVariantSearch_products_edges_node_variants | null)[] | null;
+  thumbnail: TaskVariantSearch_products_edges_node_thumbnail | null;
+  variants: (TaskVariantSearch_products_edges_node_variants | null)[] | null;
 }
 
-export interface OrderVariantSearch_products_edges {
+export interface TaskVariantSearch_products_edges {
   __typename: "SkillCountableEdge";
-  node: OrderVariantSearch_products_edges_node;
+  node: TaskVariantSearch_products_edges_node;
 }
 
-export interface OrderVariantSearch_products_pageInfo {
+export interface TaskVariantSearch_products_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -45,17 +45,17 @@ export interface OrderVariantSearch_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface OrderVariantSearch_products {
+export interface TaskVariantSearch_skills {
   __typename: "SkillCountableConnection";
-  edges: OrderVariantSearch_products_edges[];
-  pageInfo: OrderVariantSearch_products_pageInfo;
+  edges: TaskVariantSearch_products_edges[];
+  pageInfo: TaskVariantSearch_products_pageInfo;
 }
 
-export interface OrderVariantSearch {
-  products: OrderVariantSearch_products | null;
+export interface TaskVariantSearch {
+  products: TaskVariantSearch_skills | null;
 }
 
-export interface OrderVariantSearchVariables {
+export interface TaskVariantSearchVariables {
   search: string;
   after?: string | null;
 }

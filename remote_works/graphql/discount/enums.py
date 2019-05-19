@@ -12,5 +12,5 @@ class VoucherTypeEnum(graphene.Enum):
     SKILL = VoucherType.SKILL
     COLLECTION = VoucherType.COLLECTION
     CATEGORY = VoucherType.CATEGORY
-    SHIPPING = VoucherType.SHIPPING
+    DELIVERY = VoucherType.DELIVERY
     VALUE = VoucherType.VALUE

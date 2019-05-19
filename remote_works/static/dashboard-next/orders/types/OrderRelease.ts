@@ -1,24 +1,24 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderRelease
+// GraphQL mutation operation: TaskRelease
 // ====================================================
 
-export interface OrderRelease_orderRelease_order_billingAddress_country {
+export interface TaskRelease_orderRelease_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderRelease_orderRelease_order_billingAddress {
+export interface TaskRelease_orderRelease_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderRelease_orderRelease_order_billingAddress_country;
+  country: TaskRelease_orderRelease_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -29,120 +29,120 @@ export interface OrderRelease_orderRelease_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderRelease_orderRelease_order_events_user {
+export interface TaskRelease_orderRelease_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderRelease_orderRelease_order_events {
-  __typename: "OrderEvent";
+export interface TaskRelease_orderRelease_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderRelease_orderRelease_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskRelease_orderRelease_order_events_user | null;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_gross {
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_net {
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice {
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_gross;
-  net: OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_net;
+  gross: TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_gross;
+  net: TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice_net;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine {
-  __typename: "OrderLine";
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine {
+  __typename: "TaskLine";
   id: string;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice | null;
+  unitPrice: TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges_node {
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges_node {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine | null;
+  orderLine: TaskRelease_orderRelease_order_fulfillments_lines_edges_node_orderLine | null;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines_edges {
+export interface TaskRelease_orderRelease_order_fulfillments_lines_edges {
   __typename: "FulfillmentLineCountableEdge";
-  node: OrderRelease_orderRelease_order_fulfillments_lines_edges_node;
+  node: TaskRelease_orderRelease_order_fulfillments_lines_edges_node;
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments_lines {
+export interface TaskRelease_orderRelease_order_fulfillments_lines {
   __typename: "FulfillmentLineCountableConnection";
-  edges: OrderRelease_orderRelease_order_fulfillments_lines_edges[];
+  edges: TaskRelease_orderRelease_order_fulfillments_lines_edges[];
 }
 
-export interface OrderRelease_orderRelease_order_fulfillments {
+export interface TaskRelease_orderRelease_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: OrderRelease_orderRelease_order_fulfillments_lines | null;
-  fulfillmentOrder: number;
+  lines: TaskRelease_orderRelease_order_fulfillments_lines | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderRelease_orderRelease_order_lines_unitPrice_gross {
+export interface TaskRelease_orderRelease_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_lines_unitPrice_net {
+export interface TaskRelease_orderRelease_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_lines_unitPrice {
+export interface TaskRelease_orderRelease_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderRelease_orderRelease_order_lines_unitPrice_gross;
-  net: OrderRelease_orderRelease_order_lines_unitPrice_net;
+  gross: TaskRelease_orderRelease_order_lines_unitPrice_gross;
+  net: TaskRelease_orderRelease_order_lines_unitPrice_net;
 }
 
-export interface OrderRelease_orderRelease_order_lines {
-  __typename: "OrderLine";
+export interface TaskRelease_orderRelease_order_lines {
+  __typename: "TaskLine";
   id: string;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderRelease_orderRelease_order_lines_unitPrice | null;
+  unitPrice: TaskRelease_orderRelease_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderRelease_orderRelease_order_shippingAddress_country {
+export interface TaskRelease_orderRelease_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderRelease_orderRelease_order_shippingAddress {
+export interface TaskRelease_orderRelease_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderRelease_orderRelease_order_shippingAddress_country;
+  country: TaskRelease_orderRelease_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -153,115 +153,115 @@ export interface OrderRelease_orderRelease_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderRelease_orderRelease_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskRelease_orderRelease_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderRelease_orderRelease_order_shippingPrice_gross {
+export interface TaskRelease_orderRelease_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_shippingPrice {
+export interface TaskRelease_orderRelease_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderRelease_orderRelease_order_shippingPrice_gross;
+  gross: TaskRelease_orderRelease_order_deliveryPrice_gross;
 }
 
-export interface OrderRelease_orderRelease_order_subtotal_gross {
+export interface TaskRelease_orderRelease_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_subtotal {
+export interface TaskRelease_orderRelease_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderRelease_orderRelease_order_subtotal_gross;
+  gross: TaskRelease_orderRelease_order_subtotal_gross;
 }
 
-export interface OrderRelease_orderRelease_order_total_gross {
+export interface TaskRelease_orderRelease_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_total_tax {
+export interface TaskRelease_orderRelease_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_total {
+export interface TaskRelease_orderRelease_order_total {
   __typename: "TaxedMoney";
-  gross: OrderRelease_orderRelease_order_total_gross;
-  tax: OrderRelease_orderRelease_order_total_tax;
+  gross: TaskRelease_orderRelease_order_total_gross;
+  tax: TaskRelease_orderRelease_order_total_tax;
 }
 
-export interface OrderRelease_orderRelease_order_totalAuthorized {
+export interface TaskRelease_orderRelease_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_totalCaptured {
+export interface TaskRelease_orderRelease_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_user {
+export interface TaskRelease_orderRelease_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderRelease_orderRelease_order_availableShippingMethods_price {
+export interface TaskRelease_orderRelease_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRelease_orderRelease_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskRelease_orderRelease_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderRelease_orderRelease_order_availableShippingMethods_price | null;
+  price: TaskRelease_orderRelease_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderRelease_orderRelease_order {
-  __typename: "Order";
+export interface TaskRelease_orderRelease_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderRelease_orderRelease_order_billingAddress | null;
+  billingAddress: TaskRelease_orderRelease_order_billingAddress | null;
   created: any;
-  events: (OrderRelease_orderRelease_order_events | null)[] | null;
-  fulfillments: (OrderRelease_orderRelease_order_fulfillments | null)[];
-  lines: (OrderRelease_orderRelease_order_lines | null)[];
+  events: (TaskRelease_orderRelease_order_events | null)[] | null;
+  fulfillments: (TaskRelease_orderRelease_order_fulfillments | null)[];
+  lines: (TaskRelease_orderRelease_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderRelease_orderRelease_order_shippingAddress | null;
-  shippingMethod: OrderRelease_orderRelease_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderRelease_orderRelease_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderRelease_orderRelease_order_subtotal | null;
-  total: OrderRelease_orderRelease_order_total | null;
-  totalAuthorized: OrderRelease_orderRelease_order_totalAuthorized | null;
-  totalCaptured: OrderRelease_orderRelease_order_totalCaptured | null;
-  user: OrderRelease_orderRelease_order_user | null;
+  deliveryAddress: TaskRelease_orderRelease_order_deliveryAddress | null;
+  deliveryMethod: TaskRelease_orderRelease_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskRelease_orderRelease_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskRelease_orderRelease_order_subtotal | null;
+  total: TaskRelease_orderRelease_order_total | null;
+  totalAuthorized: TaskRelease_orderRelease_order_totalAuthorized | null;
+  totalCaptured: TaskRelease_orderRelease_order_totalCaptured | null;
+  user: TaskRelease_orderRelease_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderRelease_orderRelease_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskRelease_orderRelease_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderRelease_orderRelease {
-  __typename: "OrderRelease";
-  order: OrderRelease_orderRelease_order | null;
+export interface TaskRelease_orderRelease {
+  __typename: "TaskRelease";
+  task: TaskRelease_orderRelease_order | null;
 }
 
-export interface OrderRelease {
-  orderRelease: OrderRelease_orderRelease | null;
+export interface TaskRelease {
+  orderRelease: TaskRelease_orderRelease | null;
 }
 
-export interface OrderReleaseVariables {
+export interface TaskReleaseVariables {
   id: string;
 }

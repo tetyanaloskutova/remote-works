@@ -51,17 +51,17 @@ class User(CountableDjangoObjectType):
         Checkout,
         description='Returns the last open checkout of this user.')
     note = graphene.String(description='A note about the customer')
-    orders = gql_optimizer.field(
+    tasks = gql_optimizer.field(
         PrefetchingConnectionField(
-            'remote_works.graphql.order.types.Order',
-            description='List of user\'s orders.'),
-        model_field='orders')
+            'remote_works.graphql.task.types.Task',
+            description='List of user\'s tasks.'),
+        model_field='tasks')
     permissions = graphene.List(
         PermissionDisplay, description='List of user\'s permissions.')
 
     class Meta:
         exclude_fields = [
-            'carts', 'password', 'is_superuser', 'OrderEvent_set']
+            'carts', 'password', 'is_superuser', 'TaskEvent_set']
         description = 'Represents user data.'
         interfaces = [relay.Node]
         model = get_user_model()
@@ -86,9 +86,9 @@ class User(CountableDjangoObjectType):
 
     def resolve_orders(self, info, **kwargs):
         viewer = info.context.user
-        if viewer.has_perm('order.manage_orders'):
-            return self.orders.all()
-        return self.orders.confirmed()
+        if viewer.has_perm('task.manage_orders'):
+            return self.tasks.all()
+        return self.tasks.confirmed()
 
 
 class AddressValidationInput(graphene.InputObjectType):

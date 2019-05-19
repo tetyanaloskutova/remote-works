@@ -3,9 +3,9 @@ import * as React from "react";
 import { UserContext } from "../../auth";
 import Navigator from "../../components/Navigator";
 import { maybe } from "../../misc";
-import { orderListUrl } from "../../orders/urls";
+import { orderListUrl } from "../../tasks/urls";
 import { productListUrl, productVariantEditUrl } from "../../products/urls";
-import { OrderStatusFilter, StockAvailability } from "../../types/globalTypes";
+import { TaskStatusFilter, StockAvailability } from "../../types/globalTypes";
 import HomePage from "../components/HomePage";
 import { HomePageQuery } from "../queries";
 
@@ -20,7 +20,7 @@ const HomeSection = () => (
                 activities={maybe(() =>
                   data.activities.edges.map(edge => edge.node).reverse()
                 )}
-                orders={maybe(() => data.ordersToday.totalCount)}
+                tasks={maybe(() => data.ordersToday.totalCount)}
                 sales={maybe(() => data.salesToday.gross)}
                 topSkills={maybe(() =>
                   data.productTopToday.edges.map(edge => edge.node)
@@ -28,17 +28,17 @@ const HomeSection = () => (
                 onSkillClick={(productId, variantId) =>
                   navigate(productVariantEditUrl(productId, variantId))
                 }
-                onOrdersToCaptureClick={() =>
+                onTasksToCaptureClick={() =>
                   navigate(
                     orderListUrl({
-                      status: OrderStatusFilter.READY_TO_CAPTURE
+                      status: TaskStatusFilter.READY_TO_CAPTURE
                     })
                   )
                 }
-                onOrdersToFulfillClick={() =>
+                onTasksToFulfillClick={() =>
                   navigate(
                     orderListUrl({
-                      status: OrderStatusFilter.READY_TO_FULFILL
+                      status: TaskStatusFilter.READY_TO_FULFILL
                     })
                   )
                 }

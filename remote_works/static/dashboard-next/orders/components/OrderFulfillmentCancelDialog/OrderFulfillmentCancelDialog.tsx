@@ -34,15 +34,15 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderFulfillmentCancelDialogProps extends WithStyles<typeof styles> {
+interface TaskFulfillmentCancelDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   onClose();
   onConfirm(data: FormData);
 }
 
-const OrderFulfillmentCancelDialog = withStyles(styles, {
-  name: "OrderFulfillmentCancelDialog"
+const TaskFulfillmentCancelDialog = withStyles(styles, {
+  name: "TaskFulfillmentCancelDialog"
 })(
   ({
     confirmButtonState,
@@ -50,7 +50,7 @@ const OrderFulfillmentCancelDialog = withStyles(styles, {
     open,
     onConfirm,
     onClose
-  }: OrderFulfillmentCancelDialogProps) => (
+  }: TaskFulfillmentCancelDialogProps) => (
     <Dialog open={open}>
       <Form initial={{ restock: true }} onSubmit={onConfirm}>
         {({ change, data, submit }) => (
@@ -88,5 +88,5 @@ const OrderFulfillmentCancelDialog = withStyles(styles, {
     </Dialog>
   )
 );
-OrderFulfillmentCancelDialog.displayName = "OrderFulfillmentCancelDialog";
-export default OrderFulfillmentCancelDialog;
+TaskFulfillmentCancelDialog.displayName = "TaskFulfillmentCancelDialog";
+export default TaskFulfillmentCancelDialog;

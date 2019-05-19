@@ -58,7 +58,7 @@ const SkillVariantStock = withStyles(styles, { name: "SkillVariantStock" })(
                   ? errors.quantity
                   : !!stockAllocated
                   ? i18n.t("Allocated: {{ quantity }}", {
-                      context: "variant allocated stock",
+                      context: "variant allocated availability",
                       quantity: stockAllocated
                     })
                   : undefined

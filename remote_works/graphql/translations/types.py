@@ -5,7 +5,7 @@ from ...discount import models as discount_models
 from ...menu import models as menu_models
 from ...page import models as page_models
 from ...skill import models as skill_models
-from ...shipping import models as shipping_models
+from ...delivery import models as delivery_models
 from ...site import models as site_models
 from ..core.connection import CountableDjangoObjectType
 from ..core.types import LanguageDisplay
@@ -98,8 +98,8 @@ class MenuItemTranslation(BaseTranslationType):
         exclude_fields = ['menu_item', 'language_code']
 
 
-class ShippingMethodTranslation(BaseTranslationType):
+class DeliveryMethodTranslation(BaseTranslationType):
     class Meta:
-        model = shipping_models.ShippingMethodTranslation
+        model = delivery_models.DeliveryMethodTranslation
         interfaces = [graphene.relay.Node]
-        exclude_fields = ['shipping_method', 'language_code']
+        exclude_fields = ['delivery_method', 'language_code']

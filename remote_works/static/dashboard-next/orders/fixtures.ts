@@ -1,13 +1,13 @@
-import { transformOrderStatus, transformPaymentStatus } from "../misc";
+import { transformTaskStatus, transformPaymentStatus } from "../misc";
 import {
   FulfillmentStatus,
-  OrderAction,
-  OrderEvents,
-  OrderStatus,
+  TaskAction,
+  TaskEvents,
+  TaskStatus,
   PaymentChargeStatusEnum
 } from "../types/globalTypes";
-import { OrderDetails_order } from "./types/OrderDetails";
-import { OrderList_orders_edges_node } from "./types/OrderList";
+import { TaskDetails_order } from "./types/TaskDetails";
+import { TaskList_orders_edges_node } from "./types/TaskList";
 import { UserSearch_customers_edges_node } from "./types/UserSearch";
 
 export const clients: UserSearch_customers_edges_node[] = [
@@ -32,9 +32,9 @@ export const clients: UserSearch_customers_edges_node[] = [
     id: "c4"
   }
 ];
-export const orders: OrderList_orders_edges_node[] = [
+export const tasks: TaskList_orders_edges_node[] = [
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "East Aaronville",
@@ -58,7 +58,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MjA=",
     number: "20",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -70,7 +70,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "laura.stone@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Port Danielshire",
@@ -94,7 +94,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTk=",
     number: "19",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -106,13 +106,13 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "elizabeth.vaughn@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: null,
     created: "2018-09-11T09:37:30.019749+00:00",
     id: "T3JkZXI6MTg=",
     number: "18",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.DRAFT,
+    status: TaskStatus.DRAFT,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -124,7 +124,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "david.lawson@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "South Rodneymouth",
@@ -148,7 +148,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTc=",
     number: "17",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -160,7 +160,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "aaron.randall@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Jorgeview",
@@ -184,7 +184,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTY=",
     number: "16",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -196,7 +196,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "laura.jensen@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "East Lauriestad",
@@ -220,7 +220,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTU=",
     number: "15",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -232,7 +232,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "jenna.villa@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Kaneton",
@@ -256,7 +256,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTQ=",
     number: "14",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -268,7 +268,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "wesley.davis@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "New Morganshire",
@@ -292,7 +292,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTM=",
     number: "13",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -304,7 +304,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "anthony.gonzalez@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Adamsport",
@@ -328,7 +328,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTI=",
     number: "12",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -340,7 +340,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "denise.freeman@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Thomasburgh",
@@ -364,7 +364,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTE=",
     number: "11",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.UNFULFILLED,
+    status: TaskStatus.UNFULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -376,7 +376,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "james.ball@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Lake Walter",
@@ -400,7 +400,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MTA=",
     number: "10",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.CANCELED,
+    status: TaskStatus.CANCELED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -412,7 +412,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "michael.martinez@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "West Patriciastad",
@@ -436,7 +436,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6OQ==",
     number: "9",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -448,7 +448,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "melissa.simon@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Lake Kevinchester",
@@ -472,7 +472,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6OA==",
     number: "8",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -484,7 +484,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "justin.mccoy@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "New Morganshire",
@@ -508,7 +508,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6Nw==",
     number: "7",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -520,7 +520,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "anthony.gonzalez@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Gabrielchester",
@@ -544,7 +544,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6Ng==",
     number: "6",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.FULFILLED,
+    status: TaskStatus.FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -556,7 +556,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "bradley.ford@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "East Steven",
@@ -580,7 +580,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6NQ==",
     number: "5",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -592,7 +592,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "david.lawson@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "East Daniel",
@@ -616,7 +616,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6NA==",
     number: "4",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -628,7 +628,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "lauren.watson@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Lake Margaret",
@@ -652,7 +652,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6Mw==",
     number: "3",
     paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -664,7 +664,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "mark.lee@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Dorothyberg",
@@ -688,7 +688,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6Mg==",
     number: "2",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -700,7 +700,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "kara.murphy@example.com"
   },
   {
-    __typename: "Order",
+    __typename: "Task",
     billingAddress: {
       __typename: "Address",
       city: "Gregorymouth",
@@ -724,7 +724,7 @@ export const orders: OrderList_orders_edges_node[] = [
     id: "T3JkZXI6MQ==",
     number: "1",
     paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED,
-    status: OrderStatus.PARTIALLY_FULFILLED,
+    status: TaskStatus.PARTIALLY_FULFILLED,
     total: {
       __typename: "TaxedMoney",
       gross: {
@@ -736,17 +736,17 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "curtis.bailey@example.com"
   }
 ];
-export const order = (placeholder: string): OrderDetails_order => ({
-  __typename: "Order",
+export const task = (placeholder: string): TaskDetails_order => ({
+  __typename: "Task",
   actions: [
-    OrderAction.CAPTURE,
-    OrderAction.MARK_AS_PAID,
-    OrderAction.REFUND,
-    OrderAction.VOID
+    TaskAction.CAPTURE,
+    TaskAction.MARK_AS_PAID,
+    TaskAction.REFUND,
+    TaskAction.VOID
   ],
-  availableShippingMethods: [
+  availableDeliveryMethods: [
     {
-      __typename: "ShippingMethod",
+      __typename: "DeliveryMethod",
       id: "U2hpcHBpbmdNZXRob2Q6NQ==",
       name: "FBA",
       price: {
@@ -756,7 +756,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       }
     },
     {
-      __typename: "ShippingMethod",
+      __typename: "DeliveryMethod",
       id: "U2hpcHBpbmdNZXRob2Q6Nw==",
       name: "Oceania Air Mail",
       price: {
@@ -766,7 +766,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       }
     },
     {
-      __typename: "ShippingMethod",
+      __typename: "DeliveryMethod",
       id: "U2hpcHBpbmdNZXRob2Q6Ng==",
       name: "FedEx Express",
       price: {
@@ -800,7 +800,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
   customerNote: "Lorem ipsum dolor sit amet",
   events: [
     {
-      __typename: "OrderEvent",
+      __typename: "TaskEvent",
       amount: null,
       date: "2018-09-17T13:22:24.376193+00:00",
       email: null,
@@ -808,7 +808,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       id: "T3JkZXJFdmVudDoyMQ==",
       message: null,
       quantity: 1,
-      type: OrderEvents.FULFILLMENT_FULFILLED_ITEMS,
+      type: TaskEvents.FULFILLMENT_FULFILLED_ITEMS,
       user: {
         __typename: "User",
         email: "admin@example.com"
@@ -818,16 +818,16 @@ export const order = (placeholder: string): OrderDetails_order => ({
   fulfillments: [
     {
       __typename: "Fulfillment",
-      fulfillmentOrder: 2,
+      fulfillmentTask: 2,
       id: "RnVsZmlsbG1lbnQ6MjQ=",
       lines: [
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjM5",
           orderLine: {
-            __typename: "OrderLine",
+            __typename: "TaskLine",
             id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
+            isDeliveryRequired: false,
             productName: "Williams, Garcia and Walker (XS)",
             productSku: "5-1337",
             quantity: 2,
@@ -855,16 +855,16 @@ export const order = (placeholder: string): OrderDetails_order => ({
     },
     {
       __typename: "Fulfillment",
-      fulfillmentOrder: 1,
+      fulfillmentTask: 1,
       id: "RnVsZmlsbG1lbnQ6OQ==",
       lines: [
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjE1",
           orderLine: {
-            __typename: "OrderLine",
+            __typename: "TaskLine",
             id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
+            isDeliveryRequired: false,
             productName: "Williams, Garcia and Walker (XS)",
             productSku: "5-1337",
             quantity: 2,
@@ -894,9 +894,9 @@ export const order = (placeholder: string): OrderDetails_order => ({
   id: "T3JkZXI6OQ==",
   lines: [
     {
-      __typename: "OrderLine",
+      __typename: "TaskLine",
       id: "T3JkZXJMaW5lOjIy",
-      isShippingRequired: true,
+      isDeliveryRequired: true,
       productName: "Watkins-Gonzalez (Soft)",
       productSku: "59-1337",
       quantity: 3,
@@ -917,9 +917,9 @@ export const order = (placeholder: string): OrderDetails_order => ({
       }
     },
     {
-      __typename: "OrderLine",
+      __typename: "TaskLine",
       id: "T3JkZXJMaW5lOjIz",
-      isShippingRequired: true,
+      isDeliveryRequired: true,
       productName: "Williams, Garcia and Walker (XS)",
       productSku: "5-1337",
       quantity: 2,
@@ -942,7 +942,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
   ],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
-  shippingAddress: {
+  deliveryAddress: {
     __typename: "Address",
     city: "West Patriciastad",
     cityArea: "",
@@ -961,9 +961,9 @@ export const order = (placeholder: string): OrderDetails_order => ({
     streetAddress1: "487 Roberto Shores",
     streetAddress2: ""
   },
-  shippingMethod: null,
-  shippingMethodName: "Registred priority",
-  shippingPrice: {
+  deliveryMethod: null,
+  deliveryMethodName: "Registred priority",
+  deliveryPrice: {
     __typename: "TaxedMoney",
     gross: {
       __typename: "Money",
@@ -971,7 +971,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       currency: "USD"
     }
   },
-  status: OrderStatus.PARTIALLY_FULFILLED,
+  status: TaskStatus.PARTIALLY_FULFILLED,
   subtotal: {
     __typename: "TaxedMoney",
     gross: {
@@ -1006,10 +1006,10 @@ export const order = (placeholder: string): OrderDetails_order => ({
   user: null,
   userEmail: "melissa.simon@example.com"
 });
-export const draftOrder = (placeholder: string): OrderDetails_order => ({
-  __typename: "Order" as "Order",
-  actions: [OrderAction.CAPTURE],
-  availableShippingMethods: null,
+export const draftTask = (placeholder: string): TaskDetails_order => ({
+  __typename: "Task" as "Task",
+  actions: [TaskAction.CAPTURE],
+  availableDeliveryMethods: null,
   billingAddress: null,
   canFinalize: true,
   created: "2018-09-20T23:23:39.811428+00:00",
@@ -1019,9 +1019,9 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
   id: "T3JkZXI6MjQ=",
   lines: [
     {
-      __typename: "OrderLine" as "OrderLine",
+      __typename: "TaskLine" as "TaskLine",
       id: "T3JkZXJMaW5lOjQ1",
-      isShippingRequired: false,
+      isDeliveryRequired: false,
       productName: "Davis Group (Hard)",
       productSku: "58-1338",
       quantity: 2,
@@ -1042,9 +1042,9 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
       }
     },
     {
-      __typename: "OrderLine" as "OrderLine",
+      __typename: "TaskLine" as "TaskLine",
       id: "T3JkZXJMaW5lOjQ2",
-      isShippingRequired: false,
+      isDeliveryRequired: false,
       productName: "Anderson PLC (15-1337)",
       productSku: "15-1337",
       quantity: 2,
@@ -1067,10 +1067,10 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
   ],
   number: "24",
   paymentStatus: null,
-  shippingAddress: null,
-  shippingMethod: null,
-  shippingMethodName: null,
-  shippingPrice: {
+  deliveryAddress: null,
+  deliveryMethod: null,
+  deliveryMethodName: null,
+  deliveryPrice: {
     __typename: "TaxedMoney" as "TaxedMoney",
     gross: {
       __typename: "Money" as "Money",
@@ -1078,7 +1078,7 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
       currency: "USD"
     }
   },
-  status: "DRAFT" as OrderStatus.DRAFT,
+  status: "DRAFT" as TaskStatus.DRAFT,
   subtotal: {
     __typename: "TaxedMoney" as "TaxedMoney",
     gross: {
@@ -1105,10 +1105,10 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
   user: null,
   userEmail: null
 });
-export const flatOrders = orders.map(order => ({
-  ...order,
-  orderStatus: transformOrderStatus(order.status),
-  paymentStatus: transformPaymentStatus(order.paymentStatus)
+export const flatTasks = tasks.map(task => ({
+  ...task,
+  orderStatus: transformTaskStatus(task.status),
+  paymentStatus: transformPaymentStatus(task.paymentStatus)
 }));
 export const variants = [
   { id: "p1", name: "Skill 1: variant 1", sku: "12345", stockQuantity: 3 },
@@ -1127,7 +1127,7 @@ export const countries = [
   { code: "DZ", label: "Algeria" },
   { code: "AS", label: "American Samoa" }
 ];
-export const shippingMethods = [
+export const deliveryMethods = [
   { id: "s1", name: "DHL", country: "whole world", price: {} },
   { id: "s2", name: "UPS", country: "Afghanistan" }
 ];

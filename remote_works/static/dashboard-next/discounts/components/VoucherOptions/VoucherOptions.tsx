@@ -118,16 +118,16 @@ const VoucherOptions = withStyles(styles, {
             name={"minAmountSpent" as keyof FormData}
             value={data.minAmountSpent}
             onChange={onChange}
-            label={i18n.t("Minimum order value")}
+            label={i18n.t("Minimum task value")}
             fullWidth
           />
         </div>
         <FormSpacer />
         <ControlledSwitch
-          checked={data.applyOncePerOrder}
+          checked={data.applyOncePerTask}
           label={
             <>
-              {i18n.t("Only once per order", {
+              {i18n.t("Only once per task", {
                 context: "voucher application"
               })}
               <Typography variant="caption">
@@ -138,7 +138,7 @@ const VoucherOptions = withStyles(styles, {
             </>
           }
           onChange={onChange}
-          name={"applyOncePerOrder" as keyof FormData}
+          name={"applyOncePerTask" as keyof FormData}
           disabled={disabled}
         />
       </CardContent>

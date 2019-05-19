@@ -191,7 +191,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=128)),
                 ('has_variants', models.BooleanField(default=True)),
-                ('is_shipping_required', models.BooleanField(default=True)),
+                ('is_delivery_required', models.BooleanField(default=True)),
                 ('tax_rate', models.CharField(choices=[('accommodation', 'accommodation'), ('admission to cultural events', 'admission to cultural events'), ('admission to entertainment events', 'admission to entertainment events'), ('admission to sporting events', 'admission to sporting events'), ('advertising', 'advertising'), ('agricultural supplies', 'agricultural supplies'), ('baby foodstuffs', 'baby foodstuffs'), ('bikes', 'bikes'), ('books', 'books'), ('childrens clothing', 'childrens clothing'), ('domestic fuel', 'domestic fuel'), ('domestic services', 'domestic services'), ('e-books', 'e-books'), ('foodstuffs', 'foodstuffs'), ('hotels', 'hotels'), ('medical', 'medical'), ('newspapers', 'newspapers'), ('passenger transport', 'passenger transport'), ('pharmaceuticals', 'pharmaceuticals'), ('property renovations', 'property renovations'), ('restaurants', 'restaurants'), ('social housing', 'social housing'), ('standard', 'standard'), ('water', 'water'), ('wine', 'wine')], default='standard', max_length=128)),
                 ('weight', django_measurement.models.MeasurementField(default=remote_works.core.weight.zero_weight, measurement_class='Mass')),
             ],

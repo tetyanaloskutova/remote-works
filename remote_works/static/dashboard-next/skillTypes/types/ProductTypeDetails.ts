@@ -48,7 +48,7 @@ export interface SkillTypeDetails_productType {
   id: string;
   name: string;
   hasVariants: boolean;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
   productAttributes: (SkillTypeDetails_productType_productAttributes | null)[] | null;
   variantAttributes: (SkillTypeDetails_productType_variantAttributes | null)[] | null;

@@ -41,12 +41,12 @@ import { fragmentSkill, fragmentVariant } from "./queries";
 export const productImageCreateMutation = gql`
   ${fragmentSkill}
   mutation SkillImageCreate($product: ID!, $image: Upload!, $alt: String) {
-    productImageCreate(input: { alt: $alt, image: $image, product: $product }) {
+    productImageCreate(input: { alt: $alt, image: $image, product: $skill }) {
       errors {
         field
         message
       }
-      product {
+      skill {
         ...Skill
       }
     }
@@ -64,7 +64,7 @@ export const productDeleteMutation = gql`
         field
         message
       }
-      product {
+      skill {
         id
       }
     }
@@ -82,12 +82,12 @@ export const productImagesReorder = gql`
         field
         message
       }
-      product {
+      skill {
         id
         images {
           id
           alt
-          sortOrder
+          sortTask
           url
         }
       }
@@ -131,7 +131,7 @@ export const productUpdateMutation = gql`
         field
         message
       }
-      product {
+      skill {
         ...Skill
       }
     }
@@ -177,7 +177,7 @@ export const simpleSkillUpdateMutation = gql`
         field
         message
       }
-      product {
+      skill {
         ...Skill
       }
     }
@@ -229,7 +229,7 @@ export const productCreateMutation = gql`
         field
         message
       }
-      product {
+      skill {
         ...Skill
       }
     }
@@ -335,7 +335,7 @@ export const TypedVariantCreateMutation = TypedMutation<
 export const productImageDeleteMutation = gql`
   mutation SkillImageDelete($id: ID!) {
     productImageDelete(id: $id) {
-      product {
+      skill {
         id
         images {
           id
@@ -357,7 +357,7 @@ export const productImageUpdateMutation = gql`
         field
         message
       }
-      product {
+      skill {
         ...Skill
       }
     }

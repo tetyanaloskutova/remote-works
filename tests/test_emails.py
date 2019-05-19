@@ -4,7 +4,7 @@ import pytest
 from django.templatetags.static import static
 from templated_email import get_connection
 
-import remote_works.order.emails as emails
+import remote_works.task.emails as emails
 from remote_works.core.emails import get_email_base_context
 from remote_works.core.utils import build_absolute_uri
 
@@ -22,13 +22,13 @@ def test_get_email_base_context(site_settings):
 
 
 def test_collect_data_for_order_confirmation_email(order):
-    """Order confirmation email requires extra data, which should be present
+    """Task confirmation email requires extra data, which should be present
     in email's context.
     """
     template = emails.CONFIRM_ORDER_TEMPLATE
     email_data = emails.collect_data_for_email(order.pk, template)
     email_context = email_data['context']
-    assert email_context['order'] == order
+    assert email_context['task'] == order
     assert 'schema_markup' in email_context
 
 
@@ -49,15 +49,15 @@ def test_collect_data_for_email(order):
     template = emails.CONFIRM_PAYMENT_TEMPLATE
     email_data = emails.collect_data_for_email(order.pk, template)
     email_context = email_data['context']
-    # Those properties should be present only for order confirmation email
-    assert 'order' not in email_context
+    # Those properties should be present only for task confirmation email
+    assert 'task' not in email_context
     assert 'schema_markup' not in email_context
 
 
 @pytest.mark.parametrize('send_email,template', [
     (emails.send_payment_confirmation, emails.CONFIRM_PAYMENT_TEMPLATE),
     (emails.send_order_confirmation, emails.CONFIRM_ORDER_TEMPLATE)])
-@mock.patch('remote_works.order.emails.send_templated_mail')
+@mock.patch('remote_works.task.emails.send_templated_mail')
 def test_send_emails(mocked_templated_email, order, template, send_email, settings):
     send_email(order.pk)
     email_data = emails.collect_data_for_email(order.pk, template)
@@ -80,7 +80,7 @@ def test_send_emails(mocked_templated_email, order, template, send_email, settin
 @pytest.mark.parametrize('send_email,template', [
     (emails.send_fulfillment_confirmation, emails.CONFIRM_FULFILLMENT_TEMPLATE),  # noqa
     (emails.send_fulfillment_update, emails.UPDATE_FULFILLMENT_TEMPLATE)])
-@mock.patch('remote_works.order.emails.send_templated_mail')
+@mock.patch('remote_works.task.emails.send_templated_mail')
 def test_send_fulfillment_emails(
         mocked_templated_email, template, send_email, fulfilled_order,
         settings):

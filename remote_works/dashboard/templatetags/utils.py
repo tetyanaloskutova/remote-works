@@ -60,8 +60,8 @@ def paginate(context, page_obj, num_of_pages=5):
 
 
 @register.simple_tag
-def margin_for_variant(stock):
-    return get_margin_for_variant(stock)
+def margin_for_variant(availability):
+    return get_margin_for_variant(availability)
 
 
 @register.simple_tag

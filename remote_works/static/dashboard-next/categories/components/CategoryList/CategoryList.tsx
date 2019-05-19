@@ -119,7 +119,7 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
                 </TableCell>
                 <TableCell className={classes.centerText}>
                   {category &&
-                  category.products &&
+                  category.skills &&
                   category.products.totalCount !== undefined ? (
                     category.products.totalCount
                   ) : (

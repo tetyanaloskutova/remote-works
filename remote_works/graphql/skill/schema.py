@@ -27,7 +27,7 @@ from .resolvers import (
     resolve_report_skill_sales)
 from .scalars import AttributeScalar
 from .types import (
-    Attribute, Category, Collection, Skill, SkillOrder, SkillType,
+    Attribute, Category, Collection, Skill, SkillTask, SkillType,
     SkillVariant)
 
 
@@ -78,10 +78,10 @@ class SkillQueries(graphene.ObjectType):
                 '''
                 Filter by price greater than or equal to the given value.''')),
         sort_by=graphene.Argument(
-            SkillOrder, description='Sort skills.'),
+            SkillTask, description='Sort skills.'),
         stock_availability=graphene.Argument(
             StockAvailability,
-            description='Filter skills by the stock availability'),
+            description='Filter skills by the availability availability'),
         query=graphene.String(description=DESCRIPTIONS['skill']),
         description='List of the shop\'s skills.')
     skill_type = graphene.Field(
@@ -136,7 +136,7 @@ class SkillQueries(graphene.ObjectType):
     def resolve_skill_variants(self, info, ids=None, **kwargs):
         return resolve_skill_variants(info, ids)
 
-    @permission_required(['order.manage_orders', 'skill.manage_skills'])
+    @permission_required(['task.manage_orders', 'skill.manage_skills'])
     def resolve_report_skill_sales(self, info, period, **kwargs):
         return resolve_report_skill_sales(info, period)
 

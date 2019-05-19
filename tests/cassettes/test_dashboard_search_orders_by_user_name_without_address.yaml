@@ -36,9 +36,9 @@ interactions:
       connection: [keep-alive]
       content-type: [application/json]
     method: GET
-    uri: http://search:9200/orders/doc/_search
+    uri: http://search:9200/tasks/doc/_search
   response:
-    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":1,"max_score":1.6739764,"hits":[{"_index":"orders","_type":"doc","_id":"15","_score":1.6739764,"_source":{}}]}}'}
+    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":1,"max_score":1.6739764,"hits":[{"_index":"tasks","_type":"doc","_id":"15","_score":1.6739764,"_source":{}}]}}'}
     headers:
       content-length: ['214']
       content-type: [application/json; charset=UTF-8]

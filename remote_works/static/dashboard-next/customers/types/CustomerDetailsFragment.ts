@@ -5,18 +5,18 @@
 // GraphQL fragment: CustomerDetailsFragment
 // ====================================================
 
-export interface CustomerDetailsFragment_defaultShippingAddress_country {
+export interface CustomerDetailsFragment_defaultDeliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface CustomerDetailsFragment_defaultShippingAddress {
+export interface CustomerDetailsFragment_defaultDeliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: CustomerDetailsFragment_defaultShippingAddress_country;
+  country: CustomerDetailsFragment_defaultDeliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -57,7 +57,7 @@ export interface CustomerDetailsFragment {
   lastName: string;
   dateJoined: any;
   lastLogin: any | null;
-  defaultShippingAddress: CustomerDetailsFragment_defaultShippingAddress | null;
+  defaultDeliveryAddress: CustomerDetailsFragment_defaultDeliveryAddress | null;
   defaultBillingAddress: CustomerDetailsFragment_defaultBillingAddress | null;
   note: string | null;
   isActive: boolean;

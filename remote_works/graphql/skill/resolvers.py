@@ -2,7 +2,7 @@ import graphene
 import graphene_django_optimizer as gql_optimizer
 from django.db.models import Q, Sum
 
-from ...order import OrderStatus
+from ...task import TaskStatus
 from ...skill import models
 from ...search.backends import picker
 from ..utils import (
@@ -134,8 +134,8 @@ def resolve_report_skill_sales(info, period):
     qs = models.SkillVariant.objects.prefetch_related(
         'skill', 'skill__images', 'order_lines__order').all()
 
-    # exclude draft and canceled orders
-    exclude_status = [OrderStatus.DRAFT, OrderStatus.CANCELED]
+    # exclude draft and canceled tasks
+    exclude_status = [TaskStatus.DRAFT, TaskStatus.CANCELED]
     qs = qs.exclude(order_lines__order__status__in=exclude_status)
 
     # filter by period

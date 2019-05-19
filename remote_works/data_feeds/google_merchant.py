@@ -125,8 +125,8 @@ def item_image_link(item, current_site):
 
 def item_availability(item):
     if item.quantity_available:
-        return 'in stock'
-    return 'out of stock'
+        return 'in availability'
+    return 'out of availability'
 
 
 def item_google_skill_category(item, category_paths):

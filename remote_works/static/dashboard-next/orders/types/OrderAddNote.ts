@@ -1,53 +1,53 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderAddNoteInput, OrderEventsEmails, OrderEvents } from "./../../types/globalTypes";
+import { TaskAddNoteInput, TaskEventsEmails, TaskEvents } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderAddNote
+// GraphQL mutation operation: TaskAddNote
 // ====================================================
 
-export interface OrderAddNote_orderAddNote_errors {
+export interface TaskAddNote_orderAddNote_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderAddNote_orderAddNote_order_events_user {
+export interface TaskAddNote_orderAddNote_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderAddNote_orderAddNote_order_events {
-  __typename: "OrderEvent";
+export interface TaskAddNote_orderAddNote_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderAddNote_orderAddNote_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskAddNote_orderAddNote_order_events_user | null;
 }
 
-export interface OrderAddNote_orderAddNote_order {
-  __typename: "Order";
+export interface TaskAddNote_orderAddNote_order {
+  __typename: "Task";
   id: string;
-  events: (OrderAddNote_orderAddNote_order_events | null)[] | null;
+  events: (TaskAddNote_orderAddNote_order_events | null)[] | null;
 }
 
-export interface OrderAddNote_orderAddNote {
-  __typename: "OrderAddNote";
-  errors: OrderAddNote_orderAddNote_errors[] | null;
-  order: OrderAddNote_orderAddNote_order | null;
+export interface TaskAddNote_orderAddNote {
+  __typename: "TaskAddNote";
+  errors: TaskAddNote_orderAddNote_errors[] | null;
+  task: TaskAddNote_orderAddNote_order | null;
 }
 
-export interface OrderAddNote {
-  orderAddNote: OrderAddNote_orderAddNote | null;
+export interface TaskAddNote {
+  orderAddNote: TaskAddNote_orderAddNote | null;
 }
 
-export interface OrderAddNoteVariables {
-  order: string;
-  input: OrderAddNoteInput;
+export interface TaskAddNoteVariables {
+  task: string;
+  input: TaskAddNoteInput;
 }

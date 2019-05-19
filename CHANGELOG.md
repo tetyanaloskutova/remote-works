@@ -18,29 +18,29 @@ All notable, unreleased changes to this project will be documented in this file.
 - Disable style-loader in dev mode - #3720 by @jxltom
 - Use authenticated user's email as default email in creating checkout - #3726 by @jxltom
 - Fix access to unpublished objects via API - #3724 by @Kwaidan00
-- Add thumbnail to OrderLine, deprecate thumbnailUrl - #3737 by @michaljelonek
+- Add thumbnail to TaskLine, deprecate thumbnailUrl - #3737 by @michaljelonek
 - Refactor translations in emails - #3701 by @Kwaidan00
 - Add orderByToken query - #3740 by @michaljelonek
-- Enable existing search with backend picker in products query - #3736 by @michaljelonek
+- Enable existing search with backend picker in skills query - #3736 by @michaljelonek
 - Fix bug where payment is not filtered from active ones when creating payment - #3731 by @jxltom
-- Sort order's payment and history descendingly - #3747 by @jxltom
+- Sort task's payment and history descendingly - #3747 by @jxltom
 - Use exact image versions in docker-compose - #3742 by @ashishnitinpatil
 - Add mutation to connect voucher with checkout - #3739 by @Kwaidan00
 - Update S3 deployment documentation to include CORS configuration note - #3743 by @NyanKiyoshi
-- Fix missing migrations for is_published field of product and page model - #3757 by @jxltom
+- Fix missing migrations for is_published field of skill and page model - #3757 by @jxltom
 - Add header and footer for checkout success pages #3752 by @jxltom
-- Filter order by payment status from order's last payment - #3749 @jxltom
+- Filter task by payment status from task's last payment - #3749 @jxltom
 - Reuse cart creation logic in API - #3761 by @maarcingebala
 - Add json fields to models for content/description - #3756 by @michaljelonek
-- Fix bug where errors are not returned when creating fulfillment with non-existed order line - #3777 by @jxltom
-- Support fulfill order with 0 quantity only if total quantity is larger than 0 - #3754 by @jxltom
+- Fix bug where errors are not returned when creating fulfillment with non-existed task line - #3777 by @jxltom
+- Support fulfill task with 0 quantity only if total quantity is larger than 0 - #3754 by @jxltom
 - Fix storefront styles after bootstrap is updated to 4.3.1 - #3753 by @jxltom
 - Fix logo size in different browser and devices with different sizes - #3722 by @jxltom
 - Add missing type definition for dashboard 2.0 - #3776 by @jxltom
 - Add mutations to manage addresses for authenticated customers - #3772 by @Kwaidan00, @maarcingebala
 - Only include cancelled fulfillments for staff in fulfillment API - #3778 by @jxltom
 - Fix incorrect cart badge location - #3786 by @jxltom
-- Add function to recalculate order's total weight - #3755 by @Kwaidan00, @maarcingebala
+- Add function to recalculate task's total weight - #3755 by @Kwaidan00, @maarcingebala
 - Unify behavior after creating checkout in API and Storefront 1.0; code formatting improvements - #3790 by @maarcingebala
 - Add pages section in Dashboard 2.0; introduce Draftail WYSIWYG editor - #3751 by @dominik-zeglen
 - Support partially charged and partially refunded payment status - #3735 by @jxltom
@@ -56,13 +56,13 @@ All notable, unreleased changes to this project will be documented in this file.
 ### API
 - Return user's last checkout in the `User` type - #3578 by @fowczarek
 - Automatically assign checkout to the logged in user - #3587 by @fowczarek
-- Expose `chargeTaxesOnShipping` field in the `Shop` type - #3603 by @fowczarek
+- Expose `chargeTaxesOnDelivery` field in the `Shop` type - #3603 by @fowczarek
 - Expose list of enabled payment gateways - #3639 by @fowczarek
 - Validate uploaded files in a unified way - #3633 by @fowczarek
 - Add mutation to trigger fetching tax rates - #3622 by @fowczarek
 - Use USERNAME_FIELD instead of hard-code email field when resolving user - #3577 by @jxltom
 - Require variant and quantity fields in `CheckoutLineInput` type - #3592 by @jxltom
-- Preserve order of nodes in `get_nodes_or_error` function - #3632 by @jxltom
+- Preserve task of nodes in `get_nodes_or_error` function - #3632 by @jxltom
 - Add list mutations for `Voucher` and `Sale` models - #3669 by @michaljelonek
 - Use proper type for countries in `Voucher` type - #3664 by @michaljelonek
 - Require email in when creating checkout in API - #3667 by @michaljelonek
@@ -77,7 +77,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Improve Docker and `docker-compose` configuration - #3657 by @michaljelonek
 - Allow setting payment status manually for dummy gateway in Storefront 1.0 - #3648 by @jxltom
 - Infer default transaction kind from operation type  - #3646 by @jxltom
-- Get correct payment status for order without any payments - #3605 by @jxltom
+- Get correct payment status for task without any payments - #3605 by @jxltom
 - Add default ordering by `id` for `CartLine` model - #3593 by @jxltom
 - Fix "set password" email sent to customer created in the dashboard - #3688 by @Kwaidan00
 
@@ -88,7 +88,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add component generator - #3670 by @dominik-zeglen
 - Throw Typescript errors while snapshotting - #3611 by @dominik-zeglen
 - Simplify mutation's error checking - #3589 by @dominik-zeglen
-- Fix order cancelling - #3624 by @dominik-zeglen
+- Fix task cancelling - #3624 by @dominik-zeglen
 - Fix logo placement - #3602 by @dominik-zeglen
 
 ### Other notable changes
@@ -96,16 +96,16 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix handling different attributes with the same slug - #3626 by @jxltom
 - Add missing migrations for tax rate choices - #3629 by @jxltom
 - Fix `TypeError` on calling `get_client_token` - #3660 by @michaljelonek
-- Make shipping required as default when creating product types - #3655 by @jxltom
+- Make delivery required as default when creating skill types - #3655 by @jxltom
 - Display payment status on customer's account page in Storefront 1.0 - #3637 by @jxltom
-- Make order fields sequence in Dashboard 1.0 same as in Dashboard 2.0 - #3606 by @jxltom
-- Fix returning products for homepage for the currently viewing user - #3598 by @jxltom
+- Make task fields sequence in Dashboard 1.0 same as in Dashboard 2.0 - #3606 by @jxltom
+- Fix returning skills for homepage for the currently viewing user - #3598 by @jxltom
 - Allow filtering payments by status in Dashboard 1.0 - #3608 by @jxltom
-- Fix typo in the definition of order status - #3649 by @jxltom
-- Add margin for order notes section - #3650 by @jxltom
+- Fix typo in the definition of task status - #3649 by @jxltom
+- Add margin for task notes section - #3650 by @jxltom
 - Fix logo position - #3609, #3616 by @jxltom
 - Storefront visual improvements - #3696 by @piotrgrundas
-- Fix product list price filter - #3697 by @Kwaidan00
+- Fix skill list price filter - #3697 by @Kwaidan00
 - Redirect to success page after successful payment - #3693 by @Kwaidan00
 
 
@@ -113,15 +113,15 @@ All notable, unreleased changes to this project will be documented in this file.
 ### API
 - Use `PermissionEnum` as input parameter type for `permissions` field - #3434 by @maarcingebala
 - Add "authorize" and "charge" mutations for payments - #3426 by @jxltom
-- Add alt text to product thumbnails and background images of collections and categories - #3429 by @fowczarek
+- Add alt text to skill thumbnails and background images of collections and categories - #3429 by @fowczarek
 - Fix passing decimal arguments = #3457 by @fowczarek
-- Allow sorting products by the update date - #3470 by @jxltom
-- Validate and clear the shipping method in draft order mutations - #3472 by @fowczarek
+- Allow sorting skills by the update date - #3470 by @jxltom
+- Validate and clear the delivery method in draft task mutations - #3472 by @fowczarek
 - Change tax rate field to choice field - #3478 by @fowczarek
 - Allow filtering attributes by collections - #3508 by @maarcingebala
 - Resolve to `None` when empty object ID was passed as mutation argument - #3497 by @maarcingebala
 - Change `errors` field type from [Error] to [Error!] - #3489 by @fowczarek
-- Support creating default variant for product types that don't use multiple variants - #3505 by @fowczarek
+- Support creating default variant for skill types that don't use multiple variants - #3505 by @fowczarek
 - Validate SKU when creating a default variant - #3555 by @fowczarek
 - Extract enums to separate files - #3523 by @maarcingebala
 
@@ -131,12 +131,12 @@ All notable, unreleased changes to this project will be documented in this file.
 - Improve several payment validations - #3418 by @jxltom
 - Optimize payments related database queries - #3455 by @jxltom
 - Add publication date to collections - #3369 by @k-brk
-- Fix hard-coded site name in order PDFs - #3526 by @NyanKiyoshi
+- Fix hard-coded site name in task PDFs - #3526 by @NyanKiyoshi
 - Update favicons to the new style - #3483 by @dominik-zeglen
 - Fix migrations for default currency - #3235 by @bykof
 - Remove Elasticsearch from `docker-compose.yml` - #3482 by @maarcingebala
 - Resort imports in tests - #3471 by @jxltom
-- Fix the no shipping orders payment crash on Stripe - #3550 by @NyanKiyoshi
+- Fix the no delivery tasks payment crash on Stripe - #3550 by @NyanKiyoshi
 - Bump backend dependencies - #3557 by @maarcingebala. This PR removes security issue CVE-2019-3498 which was present in Django 2.1.4. Saleor however wasn't vulnerable to this issue as it doesn't use the affected `django.views.defaults.page_not_found()` view.
 - Generate random data using the default currency - #3512 by @stephenmoloney
 - New translations:
@@ -144,9 +144,9 @@ All notable, unreleased changes to this project will be documented in this file.
   - Serbian
 
 ### Dashboard 2.0
-- Restyle product selection dialogs - #3499 by @dominik-zeglen, @maarcingebala
+- Restyle skill selection dialogs - #3499 by @dominik-zeglen, @maarcingebala
 - Fix minor visual bugs in Dashboard 2.0 - #3433 by @dominik-zeglen
-- Display warning if order draft has missing data - #3431 by @dominik-zeglen
+- Display warning if task draft has missing data - #3431 by @dominik-zeglen
 - Add description field to collections - #3435 by @dominik-zeglen
 - Add query batching - #3443 by @dominik-zeglen
 - Use autocomplete fields in country selection - #3443 by @dominik-zeglen
@@ -156,12 +156,12 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix simple product's inventory data saving bug - #3474 by @dominik-zeglen
 - Replace `thumbnailUrl` with `thumbnail { url }` - #3484 by @dominik-zeglen
 - Change "Feature on Homepage" switch behavior - #3481 by @dominik-zeglen
-- Expand payment section in order view - #3502 by @dominik-zeglen
+- Expand payment section in task view - #3502 by @dominik-zeglen
 - Change TypeScript loader to speed up the build process - #3545 by @patrys
 
 ### Bugfixes
-- Do not show `Pay For Order` if order is partly paid since partial payment is not supported - #3398 by @jxltom
-- Fix attribute filters in the products category view - #3535 by @fowczarek
+- Do not show `Pay For Task` if task is partly paid since partial payment is not supported - #3398 by @jxltom
+- Fix attribute filters in the skills category view - #3535 by @fowczarek
 - Fix storybook dependencies conflict - #3544 by @dominik-zeglen
 
 
@@ -172,10 +172,10 @@ All notable, unreleased changes to this project will be documented in this file.
 - Replace Graphene view with a custom one - #3263 by @patrys
 - Change `sortBy` parameter to use enum type  - #3345 by @fowczarek
 - Add `me` query to fetch data of a logged-in user - #3202, #3316 by @fowczarek
-- Add `canFinalize` field to the Order type - #3356 by @fowczarek
+- Add `canFinalize` field to the Task type - #3356 by @fowczarek
 - Extract resolvers and mutations to separate files - #3248 by @fowczarek
 - Add VAT tax rates field to country - #3392 by @michaljelonek
-- Allow creating orders without users - #3396 by @fowczarek
+- Allow creating tasks without users - #3396 by @fowczarek
 
 ### Core
 - Add Razorpay payment gatway - #3205 by @NyanKiyoshi
@@ -183,7 +183,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add description field to the Collection model - #3275 by @fowczarek
 - Enforce the POST method on VAT rates fetching - #3337 by @NyanKiyoshi
 - Generate thumbnails for category/collection background images - #3270 by @NyanKiyoshi
-- Add warm-up support in product image creation mutation - #3276 by @NyanKiyoshi
+- Add warm-up support in skill image creation mutation - #3276 by @NyanKiyoshi
 - Fix error in the `populatedb` script when running it not from the project root - #3272 by @NyanKiyoshi
 - Make Webpack rebuilds fast - #3290 by @patrys
 - Skip installing Chromium to make deployment faster - #3227 by @jxltom
@@ -191,7 +191,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add Transifex client to Pipfile - #3321 by @jxltom
 - Remove additional pytest arguments in tox - #3338 by @jxltom
 - Remove test warnings - #3339 by @jxltom
-- Remove runtime warning when product has discount - #3310 by @jxltom
+- Remove runtime warning when skill has discount - #3310 by @jxltom
 - Remove `django-graphene-jwt` warnings - #3228 by @jxltom
 - Disable deprecated warnings - #3229 by @jxltom
 - Add `AWS_S3_ENDPOINT_URL` setting to support DigitalOcean spaces. - #3281 by @hairychris
@@ -207,12 +207,12 @@ All notable, unreleased changes to this project will be documented in this file.
 - Derive state from props in forms - #3360 by @dominik-zeglen
 - Apply debounce to autocomplete fields - #3351 by @dominik-zeglen
 - Use Apollo signatures - #3353 by @dominik-zeglen
-- Add order note field in the order details view - #3346 by @dominik-zeglen
+- Add task note field in the task details view - #3346 by @dominik-zeglen
 - Add app-wide progress bar - #3312 by @dominik-zeglen
 - Ensure that all queries are built on top of TypedQuery - #3309 by @dominik-zeglen
 - Close modal windows automatically - #3296 by @dominik-zeglen
 - Move URLs to separate files - #3295 by @dominik-zeglen
-- Add basic filters for products and orders list - #3237 by @Bonifacy1
+- Add basic filters for skills and tasks list - #3237 by @Bonifacy1
 - Fetch default currency from API - #3280 by @dominik-zeglen
 - Add `displayName` property to components - #3238 by @Bonifacy1
 - Add window titles - #3279 by @dominik-zeglen
@@ -229,7 +229,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Return error if checkout was not found - #3289 by @maarcingebala
 - Solve an auto-resize conflict between Materialize and medium-editor - #3367 by @adonig
 - Fix calls to `ngettext_lazy` - #3380 by @patrys
-- Filter preauthorized order from succeeded transactions - #3399 by @jxltom
+- Filter preauthorized task from succeeded transactions - #3399 by @jxltom
 - Fix incorrect country code in fixtures - #3349 by @bingimar
 - Fix updating background image of a collection - #3362 by @fowczarek & @dominik-zeglen
 
@@ -251,10 +251,10 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add `backgroundImage` field to `CategoryInput` - #3153 by @oldPadavan
 - Add `dateJoined` and `lastLogin` fields in `User` type - #3169 by @maarcingebala
 - Separate `parent` input field from `CategoryInput` - #3150 by @akjanik
-- Remove duplicated field in Order type - #3180 by @maarcingebala
+- Remove duplicated field in Task type - #3180 by @maarcingebala
 - Handle empty `backgroundImage` field in API - #3159 by @maarcingebala
 - Generate name-based slug in collection mutations - #3145 by @akjanik
-- Remove products field from `collectionUpdate` mutation - #3141 by @oldPadavan
+- Remove skills field from `collectionUpdate` mutation - #3141 by @oldPadavan
 - Change `items` field in `Menu` type from connection to list - #3032 by @oldPadavan
 - Make `Meta.description` required in `BaseMutation` - #3034 by @oldPadavan
 - Apply `textwrap.dedent` to GraphQL descriptions - #3167 by @fowczarek
@@ -263,7 +263,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add collection management - #3135 by @dominik-zeglen
 - Add customer management - #3176 by @dominik-zeglen
 - Add homepage view - #3155, #3178 by @Bonifacy1 and @dominik-zeglen
-- Add product type management - #3052 by @dominik-zeglen
+- Add skill type management - #3052 by @dominik-zeglen
 - Add site settings management - #3071 by @dominik-zeglen
 - Escape node IDs in URLs - #3115 by @dominik-zeglen
 - Restyle categories section - #3072 by @Bonifacy1
@@ -282,7 +282,7 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ### Bugfixes
 - Fix typo in `clean_input` method - #3100 by @the-bionic
-- Fix typo in `ShippingMethod` model - #3099 by @the-bionic
+- Fix typo in `DeliveryMethod` model - #3099 by @the-bionic
 - Remove duplicated variable declaration - #3094 by @the-bionic
 
 ### Docs

@@ -36,19 +36,19 @@ def _report(client_id, payloads, extra_headers=None, **extra_data):
             **extra_data)
 
 
-def get_order_payloads(order):
+def get_order_payloads(task):
     items = [
         ga.item(
-            ol.product_name, ol.unit_price.gross, quantity=ol.quantity,
-            item_id=ol.product_sku)
-        for ol in order]
+            ol.skill_name, ol.unit_price.gross, quantity=ol.quantity,
+            item_id=ol.skill_sku)
+        for ol in task]
     return ga.transaction(
-        order.id, items, revenue=order.total.gross, tax=order.total.tax,
-        shipping=order.shipping_price.net)
+        task.id, items, revenue=task.total.gross, tax=task.total.tax,
+        delivery=task.delivery_price.net)
 
 
-def report_order(client_id, order):
-    payloads = get_order_payloads(order)
+def report_order(client_id, task):
+    payloads = get_order_payloads(task)
     _report(client_id, payloads)
 
 

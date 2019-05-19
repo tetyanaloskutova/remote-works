@@ -18,7 +18,7 @@ from ..core.utils.translations import TranslationProxy
 class NotApplicable(ValueError):
     """Exception raised when a discount is not applicable to a checkout.
 
-    The error is raised if the order value is below the minimum required
+    The error is raised if the task value is below the minimum required
     price.
     Minimum price will be available as the `min_amount_spent` attribute.
     """
@@ -45,7 +45,7 @@ class Voucher(models.Model):
     used = models.PositiveIntegerField(default=0, editable=False)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(null=True, blank=True)
-    # this field indicates if discount should be applied per order or
+    # this field indicates if discount should be applied per task or
     # individually to every item
     apply_once_per_order = models.BooleanField(default=False)
     discount_value_type = models.CharField(
@@ -72,12 +72,12 @@ class Voucher(models.Model):
             return self.name
         discount = '%s %s' % (
             self.discount_value, self.get_discount_value_type_display())
-        if self.type == VoucherType.SHIPPING:
+        if self.type == VoucherType.DELIVERY:
             if self.is_free:
-                return pgettext('Voucher type', 'Free shipping')
+                return pgettext('Voucher type', 'Free delivery')
             return pgettext(
                 'Voucher type',
-                '%(discount)s off shipping') % {'discount': discount}
+                '%(discount)s off delivery') % {'discount': discount}
         if self.type == VoucherType.PRODUCT:
             skills = len(self.skills.all())
             if skills:
@@ -133,7 +133,7 @@ class Voucher(models.Model):
         if min_amount_spent and value.gross < min_amount_spent:
             msg = pgettext(
                 'Voucher not applicable',
-                'This offer is only valid for orders over %(amount)s.')
+                'This offer is only valid for tasks over %(amount)s.')
             raise NotApplicable(
                 msg % {'amount': amount(min_amount_spent)},
                 min_amount_spent=min_amount_spent)

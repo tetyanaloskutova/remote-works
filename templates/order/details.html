@@ -5,8 +5,8 @@
 {% load bootstrap_form from bootstrap4 %}
 
 {% block title %}
-  {% blocktrans trimmed context "Order details page title" %}
-    Order {{ order }}
+  {% blocktrans trimmed context "Task details page title" %}
+    Task {{ order }}
   {% endblocktrans %} — {{ block.super }}
 {% endblock %}
 
@@ -25,8 +25,8 @@
       </li>
       <li>
         <a href="{{ order.get_absolute_url }}">
-          {% blocktrans trimmed context "Order details breadcrumb" %}
-            Order {{ order }}
+          {% blocktrans trimmed context "Task details breadcrumb" %}
+            Task {{ order }}
           {% endblocktrans %}
         </a>
       </li>
@@ -40,24 +40,24 @@
 
 {% block content %}
   {# This view is available by just knowing url,          #}
-  {# so we don't show all details (like shipping address) #}
+  {# so we don't show all details (like delivery address) #}
   {# unless current user is owner of the order.           #}
 
   <div class="row order-details">
     <div class="col-lg-10 m-auto">
       <h2 class="order-details__header">
-        {% blocktrans trimmed with payment_status=order.get_payment_status_display order_status=order.get_status_display context "Order detail text" %}
-          Order {{ order }}: {{ payment_status }} & {{ order_status }}
+        {% blocktrans trimmed with payment_status=order.get_payment_status_display order_status=order.get_status_display context "Task detail text" %}
+          Task {{ order }}: {{ payment_status }} & {{ order_status }}
         {% endblocktrans %}
       </h2>
       {% if not order.is_partly_paid %}
         {% if order.is_pre_authorized %}
           <a href="{% url "order:payment" token=order.token %}" class="btn btn-link">
-            {% trans "Payment details" context "Order details link text" %}
+            {% trans "Payment details" context "Task details link text" %}
           </a>
         {% else %}
           <a href="{% url "order:payment" token=order.token %}" class="btn btn-primary">
-            {% trans "Pay for order" context "Order details primary action" %}
+            {% trans "Pay for order" context "Task details primary action" %}
           </a>
         {% endif %}
       {% endif %}
@@ -70,7 +70,7 @@
       {% if order.is_open and not order.customer_note %}
         <form method="post" class="form-group">
           {% csrf_token %}
-          <h2>{% trans "Add a note to your order" context "Order note title" %}</h2>
+          <h2>{% trans "Add a note to your order" context "Task note title" %}</h2>
           {% bootstrap_form note_form display_labels=False %}
           <input type="submit" value="{% trans 'Submit note' context 'Customer panel - order details: add note submit button' %}" class="btn btn-primary" />
         </form>

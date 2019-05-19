@@ -1,2 +1,2 @@
-export { default } from "./OrderDraftFinalizeDialog";
-export * from "./OrderDraftFinalizeDialog";
+export { default } from "./TaskDraftFinalizeDialog";
+export * from "./TaskDraftFinalizeDialog";

@@ -1,16 +1,16 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../queries";
-import { OrderDetails, OrderDetailsVariables } from "./types/OrderDetails";
-import { OrderList, OrderListVariables } from "./types/OrderList";
+import { TaskDetails, TaskDetailsVariables } from "./types/TaskDetails";
+import { TaskList, TaskListVariables } from "./types/TaskList";
 import {
-  OrderVariantSearch,
-  OrderVariantSearchVariables
-} from "./types/OrderVariantSearch";
+  TaskVariantSearch,
+  TaskVariantSearchVariables
+} from "./types/TaskVariantSearch";
 import { UserSearch, UserSearchVariables } from "./types/UserSearch";
 
-export const fragmentOrderEvent = gql`
-  fragment OrderEventFragment on OrderEvent {
+export const fragmentTaskEvent = gql`
+  fragment TaskEventFragment on TaskEvent {
     id
     amount
     date
@@ -44,10 +44,10 @@ export const fragmentAddress = gql`
     streetAddress2
   }
 `;
-export const fragmentOrderLine = gql`
-  fragment OrderLineFragment on OrderLine {
+export const fragmentTaskLine = gql`
+  fragment TaskLineFragment on TaskLine {
     id
-    isShippingRequired
+    isDeliveryRequired
     productName
     productSku
     quantity
@@ -66,11 +66,11 @@ export const fragmentOrderLine = gql`
   }
 `;
 
-export const fragmentOrderDetails = gql`
+export const fragmentTaskDetails = gql`
   ${fragmentAddress}
-  ${fragmentOrderEvent}
-  ${fragmentOrderLine}
-  fragment OrderDetailsFragment on Order {
+  ${fragmentTaskEvent}
+  ${fragmentTaskLine}
+  fragment TaskDetailsFragment on Task {
     id
     billingAddress {
       ...AddressFragment
@@ -79,7 +79,7 @@ export const fragmentOrderDetails = gql`
     created
     customerNote
     events {
-      ...OrderEventFragment
+      ...TaskEventFragment
     }
     fulfillments {
       id
@@ -87,26 +87,26 @@ export const fragmentOrderDetails = gql`
         id
         quantity
         orderLine {
-          ...OrderLineFragment
+          ...TaskLineFragment
         }
       }
-      fulfillmentOrder
+      fulfillmentTask
       status
       trackingNumber
     }
     lines {
-      ...OrderLineFragment
+      ...TaskLineFragment
     }
     number
     paymentStatus
-    shippingAddress {
+    deliveryAddress {
       ...AddressFragment
     }
-    shippingMethod {
+    deliveryMethod {
       id
     }
-    shippingMethodName
-    shippingPrice {
+    deliveryMethodName
+    deliveryPrice {
       gross {
         amount
         currency
@@ -143,7 +143,7 @@ export const fragmentOrderDetails = gql`
       email
     }
     userEmail
-    availableShippingMethods {
+    availableDeliveryMethods {
       id
       name
       price {
@@ -156,14 +156,14 @@ export const fragmentOrderDetails = gql`
 
 export const orderListQuery = gql`
   ${fragmentAddress}
-  query OrderList(
+  query TaskList(
     $first: Int
     $after: String
     $last: Int
     $before: String
-    $status: OrderStatusFilter
+    $status: TaskStatusFilter
   ) {
-    orders(
+    tasks(
       before: $before
       after: $after
       first: $first
@@ -201,15 +201,15 @@ export const orderListQuery = gql`
     }
   }
 `;
-export const TypedOrderListQuery = TypedQuery<OrderList, OrderListVariables>(
+export const TypedTaskListQuery = TypedQuery<TaskList, TaskListVariables>(
   orderListQuery
 );
 
 export const orderDetailsQuery = gql`
-  ${fragmentOrderDetails}
-  query OrderDetails($id: ID!) {
-    order(id: $id) {
-      ...OrderDetailsFragment
+  ${fragmentTaskDetails}
+  query TaskDetails($id: ID!) {
+    task(id: $id) {
+      ...TaskDetailsFragment
     }
     shop {
       countries {
@@ -220,13 +220,13 @@ export const orderDetailsQuery = gql`
     }
   }
 `;
-export const TypedOrderDetailsQuery = TypedQuery<
-  OrderDetails,
-  OrderDetailsVariables
+export const TypedTaskDetailsQuery = TypedQuery<
+  TaskDetails,
+  TaskDetailsVariables
 >(orderDetailsQuery);
 
 export const orderVariantSearchQuery = gql`
-  query OrderVariantSearch($search: String!, $after: String) {
+  query TaskVariantSearch($search: String!, $after: String) {
     products(query: $search, first: 5, after: $after) {
       edges {
         node {
@@ -255,9 +255,9 @@ export const orderVariantSearchQuery = gql`
     }
   }
 `;
-export const TypedOrderVariantSearch = TypedQuery<
-  OrderVariantSearch,
-  OrderVariantSearchVariables
+export const TypedTaskVariantSearch = TypedQuery<
+  TaskVariantSearch,
+  TaskVariantSearchVariables
 >(orderVariantSearchQuery);
 
 export const userSearchQuery = gql`

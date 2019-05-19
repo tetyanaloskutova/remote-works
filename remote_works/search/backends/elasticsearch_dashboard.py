@@ -1,6 +1,6 @@
 from elasticsearch_dsl.query import MultiMatch
 
-from ..documents import OrderDocument, SkillDocument, UserDocument
+from ..documents import TaskDocument, SkillDocument, UserDocument
 
 
 def _search_products(phrase):
@@ -25,7 +25,7 @@ def _search_orders(phrase):
     order_query = MultiMatch(
         fields=['user', 'first_name', 'last_name', 'discount_name'],
         query=phrase)
-    return OrderDocument.search().query(order_query).source(False)
+    return TaskDocument.search().query(order_query).source(False)
 
 
 def get_search_queries(phrase):
@@ -37,7 +37,7 @@ def get_search_queries(phrase):
     return {
         'skills': _search_products(phrase),
         'users': _search_users(phrase),
-        'orders': _search_orders(phrase)}
+        'tasks': _search_orders(phrase)}
 
 
 def search(phrase):

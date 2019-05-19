@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import PhoneField from "../../../components/PhoneField";
-import { prefixes } from "../../../orders/fixtures";
+import { prefixes } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 storiesOf("Generics / PhoneField", module)

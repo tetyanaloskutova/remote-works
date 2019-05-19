@@ -8,7 +8,7 @@ import Navigator from "../../components/Navigator";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
 import { getMutationState, maybe } from "../../misc";
-import { orderUrl } from "../../orders/urls";
+import { orderUrl } from "../../tasks/urls";
 import CustomerDetailsPage from "../components/CustomerDetailsPage/CustomerDetailsPage";
 import {
   TypedRemoveCustomerMutation,
@@ -122,7 +122,7 @@ export const CustomerDetailsView: React.StatelessComponent<
                                 })
                               }
                               onDelete={() => navigate(customerRemoveUrl(id))}
-                              onViewAllOrdersClick={() => undefined} // TODO: add filters to order #3172
+                              onViewAllTasksClick={() => undefined} // TODO: add filters to task #3172
                             />
                             <Route exact path={customerRemovePath(":id")}>
                               {({ match }) => (

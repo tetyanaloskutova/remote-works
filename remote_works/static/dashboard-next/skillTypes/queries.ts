@@ -32,7 +32,7 @@ export const productTypeFragment = gql`
     id
     name
     hasVariants
-    isShippingRequired
+    isDeliveryRequired
     taxRate
   }
 `;

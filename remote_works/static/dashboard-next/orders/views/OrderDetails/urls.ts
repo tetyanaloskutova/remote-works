@@ -62,20 +62,20 @@ export const orderBillingAddressEditPath = (id: string) =>
 export const orderBillingAddressEditUrl = (id: string) =>
   orderBillingAddressEditPath(encodeURIComponent(id));
 
-export const orderShippingAddressEditPath = (id: string) =>
-  urlJoin(orderPath(id), "editAddress", "shipping");
-export const orderShippingAddressEditUrl = (id: string) =>
-  orderShippingAddressEditPath(encodeURIComponent(id));
+export const orderDeliveryAddressEditPath = (id: string) =>
+  urlJoin(orderPath(id), "editAddress", "delivery");
+export const orderDeliveryAddressEditUrl = (id: string) =>
+  orderDeliveryAddressEditPath(encodeURIComponent(id));
 
 export const orderDraftFinalizePath = (id: string) =>
   urlJoin(orderPath(id), "finalize");
 export const orderDraftFinalizeUrl = (id: string) =>
   orderDraftFinalizePath(encodeURIComponent(id));
 
-export const orderDraftShippingMethodPath = (id: string) =>
-  urlJoin(orderPath(id), "shipping");
-export const orderDraftShippingMethodUrl = (id: string) =>
-  orderDraftShippingMethodPath(encodeURIComponent(id));
+export const orderDraftDeliveryMethodPath = (id: string) =>
+  urlJoin(orderPath(id), "delivery");
+export const orderDraftDeliveryMethodUrl = (id: string) =>
+  orderDraftDeliveryMethodPath(encodeURIComponent(id));
 
 export const orderDraftLineAddPath = (id: string) =>
   urlJoin(orderPath(id), "addLine");

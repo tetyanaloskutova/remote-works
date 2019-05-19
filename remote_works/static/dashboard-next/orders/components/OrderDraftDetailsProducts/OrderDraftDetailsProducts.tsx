@@ -22,7 +22,7 @@ import Skeleton from "../../../components/Skeleton";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import { TaskDetails_order_lines } from "../../types/TaskDetails";
 
 export interface FormData {
   quantity: number;
@@ -47,21 +47,21 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface OrderDraftDetailsSkillsProps extends WithStyles<typeof styles> {
-  lines: OrderDetails_order_lines[];
-  onOrderLineChange: (id: string, data: FormData) => void;
-  onOrderLineRemove: (id: string) => void;
+interface TaskDraftDetailsSkillsProps extends WithStyles<typeof styles> {
+  lines: TaskDetails_order_lines[];
+  onTaskLineChange: (id: string, data: FormData) => void;
+  onTaskLineRemove: (id: string) => void;
 }
 
-const OrderDraftDetailsSkills = withStyles(styles, {
-  name: "OrderDraftDetailsSkills"
+const TaskDraftDetailsSkills = withStyles(styles, {
+  name: "TaskDraftDetailsSkills"
 })(
   ({
     classes,
     lines,
-    onOrderLineChange,
-    onOrderLineRemove
-  }: OrderDraftDetailsSkillsProps) => (
+    onTaskLineChange,
+    onTaskLineRemove
+  }: TaskDraftDetailsSkillsProps) => (
     <Table>
       {maybe(() => !!lines.length) && (
         <TableHead>
@@ -86,7 +86,7 @@ const OrderDraftDetailsSkills = withStyles(styles, {
         {maybe(() => lines.length) === 0 ? (
           <TableRow>
             <TableCell colSpan={5}>
-              {i18n.t("No Skills added to Order")}
+              {i18n.t("No Skills added to Task")}
             </TableCell>
           </TableRow>
         ) : (
@@ -107,7 +107,7 @@ const OrderDraftDetailsSkills = withStyles(styles, {
                 {maybe(() => line.quantity) ? (
                   <Form
                     initial={{ quantity: line.quantity }}
-                    onSubmit={data => onOrderLineChange(line.id, data)}
+                    onSubmit={data => onTaskLineChange(line.id, data)}
                   >
                     {({ change, data, hasChanged, submit }) => (
                       <DebounceForm
@@ -152,7 +152,7 @@ const OrderDraftDetailsSkills = withStyles(styles, {
                 )}
               </TableCell>
               <TableCell className={classes.iconCell}>
-                <IconButton onClick={() => onOrderLineRemove(line.id)}>
+                <IconButton onClick={() => onTaskLineRemove(line.id)}>
                   <DeleteIcon color="secondary" />
                 </IconButton>
               </TableCell>
@@ -163,5 +163,5 @@ const OrderDraftDetailsSkills = withStyles(styles, {
     </Table>
   )
 );
-OrderDraftDetailsSkills.displayName = "OrderDraftDetailsSkills";
-export default OrderDraftDetailsSkills;
+TaskDraftDetailsSkills.displayName = "TaskDraftDetailsSkills";
+export default TaskDraftDetailsSkills;

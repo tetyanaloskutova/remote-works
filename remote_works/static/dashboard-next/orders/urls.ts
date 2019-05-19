@@ -1,12 +1,12 @@
 import { stringify as stringifyQs } from "qs";
 import * as urlJoin from "url-join";
 
-import { OrderListQueryParams } from "./views/OrderList";
+import { TaskListQueryParams } from "./views/TaskList";
 
-const orderSectionUrl = "/orders/";
+const orderSectionUrl = "/tasks/";
 
 export const orderListPath = orderSectionUrl;
-export const orderListUrl = (params?: OrderListQueryParams): string => {
+export const orderListUrl = (params?: TaskListQueryParams): string => {
   const orderList = orderSectionUrl;
   if (params === undefined) {
     return orderList;

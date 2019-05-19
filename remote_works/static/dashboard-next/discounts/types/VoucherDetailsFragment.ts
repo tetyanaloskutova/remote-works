@@ -52,14 +52,14 @@ export interface VoucherDetailsFragment_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface VoucherDetailsFragment_products {
+export interface VoucherDetailsFragment_skills {
   __typename: "SkillCountableConnection";
   edges: VoucherDetailsFragment_products_edges[];
   totalCount: number | null;
   pageInfo: VoucherDetailsFragment_products_pageInfo;
 }
 
-export interface VoucherDetailsFragment_collections_edges_node_products {
+export interface VoucherDetailsFragment_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -68,7 +68,7 @@ export interface VoucherDetailsFragment_collections_edges_node {
   __typename: "Collection";
   id: string;
   name: string;
-  products: VoucherDetailsFragment_collections_edges_node_products | null;
+  products: VoucherDetailsFragment_collections_edges_node_skills | null;
 }
 
 export interface VoucherDetailsFragment_collections_edges {
@@ -91,7 +91,7 @@ export interface VoucherDetailsFragment_collections {
   pageInfo: VoucherDetailsFragment_collections_pageInfo;
 }
 
-export interface VoucherDetailsFragment_categories_edges_node_products {
+export interface VoucherDetailsFragment_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -100,7 +100,7 @@ export interface VoucherDetailsFragment_categories_edges_node {
   __typename: "Category";
   id: string;
   name: string;
-  products: VoucherDetailsFragment_categories_edges_node_products | null;
+  products: VoucherDetailsFragment_categories_edges_node_skills | null;
 }
 
 export interface VoucherDetailsFragment_categories_edges {
@@ -137,8 +137,8 @@ export interface VoucherDetailsFragment {
   type: VoucherType;
   code: string;
   used: number;
-  applyOncePerOrder: boolean;
-  products: VoucherDetailsFragment_products | null;
+  applyOncePerTask: boolean;
+  products: VoucherDetailsFragment_skills | null;
   collections: VoucherDetailsFragment_collections | null;
   categories: VoucherDetailsFragment_categories | null;
 }

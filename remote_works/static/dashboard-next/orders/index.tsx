@@ -5,33 +5,33 @@ import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
 import { orderListPath, orderPath } from "./urls";
-import OrderDetailsComponent from "./views/OrderDetails";
-import OrderListComponent, { OrderListQueryParams } from "./views/OrderList";
+import TaskDetailsComponent from "./views/TaskDetails";
+import TaskListComponent, { TaskListQueryParams } from "./views/TaskList";
 
-const OrderList: React.StatelessComponent<RouteComponentProps<any>> = ({
+const TaskList: React.StatelessComponent<RouteComponentProps<any>> = ({
   location
 }) => {
   const qs = parseQs(location.search.substr(1));
-  const params: OrderListQueryParams = {
+  const params: TaskListQueryParams = {
     after: qs.after,
     before: qs.before,
     status: qs.status
   };
-  return <OrderListComponent params={params} />;
+  return <TaskListComponent params={params} />;
 };
 
-const OrderDetails: React.StatelessComponent<RouteComponentProps<any>> = ({
+const TaskDetails: React.StatelessComponent<RouteComponentProps<any>> = ({
   match
 }) => {
-  return <OrderDetailsComponent id={decodeURIComponent(match.params.id)} />;
+  return <TaskDetailsComponent id={decodeURIComponent(match.params.id)} />;
 };
 
 const Component = () => (
   <>
-    <WindowTitle title={i18n.t("Orders")} />
+    <WindowTitle title={i18n.t("Tasks")} />
     <Switch>
-      <Route exact path={orderListPath} component={OrderList} />
-      <Route path={orderPath(":id")} component={OrderDetails} />
+      <Route exact path={orderListPath} component={TaskList} />
+      <Route path={orderPath(":id")} component={TaskDetails} />
     </Switch>
   </>
 );

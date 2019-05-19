@@ -12,7 +12,7 @@ from django_prices.models import MoneyField
 
 from ..account.models import Address
 from ..core.utils.taxes import ZERO_TAXED_MONEY, zero_money
-from ..shipping.models import ShippingMethod
+from ..delivery.models import DeliveryMethod
 from ..core.weight import zero_weight
 
 CENTS = Decimal('0.01')
@@ -29,9 +29,9 @@ class CartQueryset(models.QuerySet):
         """
         return self.prefetch_related(
             'lines__variant__translations',
-            'lines__variant__product__translations',
-            'lines__variant__product__images',
-            'lines__variant__product__product_type__product_attributes__values')  # noqa
+            'lines__variant__skill__translations',
+            'lines__variant__skill__images',
+            'lines__variant__skill__skill_type__skill_attributes__values')  # noqa
 
 
 class Cart(models.Model):
@@ -48,11 +48,11 @@ class Cart(models.Model):
     billing_address = models.ForeignKey(
         Address, related_name='+', editable=False, null=True,
         on_delete=models.SET_NULL)
-    shipping_address = models.ForeignKey(
+    delivery_address = models.ForeignKey(
         Address, related_name='+', editable=False, null=True,
         on_delete=models.SET_NULL)
-    shipping_method = models.ForeignKey(
-        ShippingMethod, blank=True, null=True, related_name='carts',
+    delivery_method = models.ForeignKey(
+        DeliveryMethod, blank=True, null=True, related_name='carts',
         on_delete=models.SET_NULL)
     note = models.TextField(blank=True, default='')
     discount_amount = MoneyField(
@@ -79,18 +79,18 @@ class Cart(models.Model):
     def __len__(self):
         return self.lines.count()
 
-    def is_shipping_required(self):
-        """Return `True` if any of the lines requires shipping."""
-        return any(line.is_shipping_required() for line in self)
+    def is_delivery_required(self):
+        """Return `True` if any of the lines requires delivery."""
+        return any(line.is_delivery_required() for line in self)
 
-    def get_shipping_price(self, taxes):
+    def get_delivery_price(self, taxes):
         return (
-            self.shipping_method.get_total(taxes)
-            if self.shipping_method and self.is_shipping_required()
+            self.delivery_method.get_total(taxes)
+            if self.delivery_method and self.is_delivery_required()
             else ZERO_TAXED_MONEY)
 
     def get_subtotal(self, discounts=None, taxes=None):
-        """Return the total cost of the cart prior to shipping."""
+        """Return the total cost of the cart prior to delivery."""
         subtotals = (line.get_total(discounts, taxes) for line in self)
         return sum(subtotals, ZERO_TAXED_MONEY)
 
@@ -98,7 +98,7 @@ class Cart(models.Model):
         """Return the total cost of the cart."""
         return (
             self.get_subtotal(discounts, taxes)
-            + self.get_shipping_price(taxes) - self.discount_amount)
+            + self.get_delivery_price(taxes) - self.discount_amount)
 
     def get_total_weight(self):
         # Cannot use `sum` as it parses an empty Weight to an int
@@ -164,6 +164,6 @@ class CartLine(models.Model):
         amount = self.quantity * self.variant.get_price(discounts, taxes)
         return amount.quantize(CENTS)
 
-    def is_shipping_required(self):
-        """Return `True` if the related skill variant requires shipping."""
-        return self.variant.is_shipping_required()
+    def is_delivery_required(self):
+        """Return `True` if the related skill variant requires delivery."""
+        return self.variant.is_delivery_required()

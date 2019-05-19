@@ -7,8 +7,8 @@ from remote_works.checkout.utils import get_voucher_discount_for_cart
 from remote_works.discount import DiscountValueType, VoucherType
 from remote_works.discount.models import NotApplicable, Sale, Voucher
 from remote_works.discount.utils import (
-    decrease_voucher_usage, get_product_discount_on_sale,
-    get_products_voucher_discount, get_shipping_voucher_discount,
+    decrease_voucher_usage, get_skill_discount_on_sale,
+    get_products_voucher_discount, get_delivery_voucher_discount,
     get_value_voucher_discount, increase_voucher_usage)
 from remote_works.product.models import Skill, SkillVariant
 
@@ -24,7 +24,7 @@ def get_min_amount_spent(min_amount_spent):
     (Money(10, 'USD'), Money(10, 'USD'))])
 def test_valid_voucher_min_amount_spent(settings, min_amount_spent, value):
     voucher = Voucher(
-        code='unique', type=VoucherType.SHIPPING,
+        code='unique', type=VoucherType.DELIVERY,
         discount_value_type=DiscountValueType.FIXED,
         discount_value=Money(10, 'USD'), min_amount_spent=min_amount_spent)
     voucher.validate_min_amount_spent(TaxedMoney(net=value, gross=value))
@@ -107,25 +107,25 @@ def test_products_voucher_checkout_discount_not(
     assert discount == Money(expected_value, 'USD')
 
 
-def test_sale_applies_to_correct_products(product_type, category):
-    product = Skill.objects.create(
+def test_sale_applies_to_correct_products(skill_type, category):
+    skill = Skill.objects.create(
         name='Test Skill', price=Money(10, 'USD'), description='',
-        pk=111, product_type=product_type, category=category)
+        pk=111, skill_type=skill_type, category=category)
     variant = SkillVariant.objects.create(product=product, sku='firstvar')
     product2 = Skill.objects.create(
         name='Second skill', price=Money(15, 'USD'), description='',
-        product_type=product_type, category=category)
+        skill_type=skill_type, category=category)
     sec_variant = SkillVariant.objects.create(
         product=product2, sku='secvar', pk=111)
     sale = Sale.objects.create(
         name='Test sale', value=3, type=DiscountValueType.FIXED)
     sale.products.add(product)
     assert product2 not in sale.products.all()
-    product_discount = get_product_discount_on_sale(sale, variant.product)
-    discounted_price = product_discount(product.price)
+    skill_discount = get_skill_discount_on_sale(sale, variant.product)
+    discounted_price = skill_discount(product.price)
     assert discounted_price == Money(7, 'USD')
     with pytest.raises(NotApplicable):
-        get_product_discount_on_sale(sale, sec_variant.product)
+        get_skill_discount_on_sale(sale, sec_variant.product)
 
 
 def test_increase_voucher_usage():
@@ -170,14 +170,14 @@ def test_get_value_voucher_discount(
 
 
 @pytest.mark.parametrize(
-    'total, min_amount_spent, shipping_price, discount_value, '
+    'total, min_amount_spent, delivery_price, discount_value, '
     'discount_value_type, expected_value', [
         (20, 15, 10, 50, DiscountValueType.PERCENTAGE, 5),
         (20, None, 10, 50, DiscountValueType.PERCENTAGE, 5),
         (20, 15, 10, 5, DiscountValueType.FIXED, 5),
         (20, None, 10, 5, DiscountValueType.FIXED, 5)])
-def test_get_shipping_voucher_discount(
-        total, min_amount_spent, shipping_price, discount_value,
+def test_get_delivery_voucher_discount(
+        total, min_amount_spent, delivery_price, discount_value,
         discount_value_type, expected_value):
     voucher = Voucher(
         code='unique', type=VoucherType.VALUE,
@@ -187,9 +187,9 @@ def test_get_shipping_voucher_discount(
     voucher.save()
     total = TaxedMoney(
         net=Money(total, 'USD'), gross=Money(total, 'USD'))
-    shipping_price = TaxedMoney(
-        net=Money(shipping_price, 'USD'), gross=Money(shipping_price, 'USD'))
-    discount = get_shipping_voucher_discount(voucher, total, shipping_price)
+    delivery_price = TaxedMoney(
+        net=Money(delivery_price, 'USD'), gross=Money(delivery_price, 'USD'))
+    discount = get_delivery_voucher_discount(voucher, total, delivery_price)
     assert discount == Money(expected_value, 'USD')
 
 

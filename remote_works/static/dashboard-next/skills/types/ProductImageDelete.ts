@@ -5,20 +5,20 @@
 // GraphQL mutation operation: SkillImageDelete
 // ====================================================
 
-export interface SkillImageDelete_productImageDelete_product_images {
+export interface SkillImageDelete_productImageDelete_skill_images {
   __typename: "SkillImage";
   id: string;
 }
 
-export interface SkillImageDelete_productImageDelete_product {
+export interface SkillImageDelete_productImageDelete_skill {
   __typename: "Skill";
   id: string;
-  images: (SkillImageDelete_productImageDelete_product_images | null)[] | null;
+  images: (SkillImageDelete_productImageDelete_skill_images | null)[] | null;
 }
 
 export interface SkillImageDelete_productImageDelete {
   __typename: "SkillImageDelete";
-  product: SkillImageDelete_productImageDelete_product | null;
+  product: SkillImageDelete_productImageDelete_skill | null;
 }
 
 export interface SkillImageDelete {

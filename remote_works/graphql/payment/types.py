@@ -7,7 +7,7 @@ from ...payment import models
 from ..account.types import Address
 from ..core.connection import CountableDjangoObjectType
 from ..core.types import Money
-from .enums import OrderAction, PaymentChargeStatusEnum
+from .enums import TaskAction, PaymentChargeStatusEnum
 
 
 class Transaction(CountableDjangoObjectType):
@@ -46,7 +46,7 @@ class Payment(CountableDjangoObjectType):
     charge_status = PaymentChargeStatusEnum(
         description='Internal payment status.', required=True)
     actions = graphene.List(
-        OrderAction, description='''List of actions that can be performed in
+        TaskAction, description='''List of actions that can be performed in
         the current state of a payment.''', required=True)
     total = graphene.Field(
         Money, description='Total amount of the payment.')
@@ -80,11 +80,11 @@ class Payment(CountableDjangoObjectType):
     def resolve_actions(self, info):
         actions = []
         if self.can_capture():
-            actions.append(OrderAction.CAPTURE)
+            actions.append(TaskAction.CAPTURE)
         if self.can_refund():
-            actions.append(OrderAction.REFUND)
+            actions.append(TaskAction.REFUND)
         if self.can_void():
-            actions.append(OrderAction.VOID)
+            actions.append(TaskAction.VOID)
         return actions
 
     def resolve_total(self, info):

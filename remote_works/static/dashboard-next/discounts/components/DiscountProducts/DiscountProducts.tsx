@@ -108,11 +108,11 @@ const DiscountSkills = withStyles(styles, {
         <TableBody>
           {renderCollection(
             maybe(() => sale.products.edges.map(edge => edge.node)),
-            product => (
+            skill => (
               <TableRow
                 hover={!!product}
-                key={product ? product.id : "skeleton"}
-                onClick={product && onRowClick(product.id)}
+                key={skill ? product.id : "skeleton"}
+                onClick={skill && onRowClick(product.id)}
                 className={classes.tableRow}
               >
                 <TableCellAvatar
@@ -128,13 +128,13 @@ const DiscountSkills = withStyles(styles, {
                   )}
                 </TableCell>
                 <TableCell className={classes.textRight}>
-                  {product && product.isPublished !== undefined ? (
+                  {skill && product.isPublished !== undefined ? (
                     <StatusLabel
                       label={
                         product.isPublished
-                          ? i18n.t("Published", { context: "product status" })
+                          ? i18n.t("Published", { context: "skill status" })
                           : i18n.t("Not published", {
-                              context: "product status"
+                              context: "skill status"
                             })
                       }
                       status={product.isPublished ? "success" : "error"}
@@ -145,7 +145,7 @@ const DiscountSkills = withStyles(styles, {
                 </TableCell>
                 <TableCell className={classes.iconCell}>
                   <IconButton
-                    disabled={!product || disabled}
+                    disabled={!skill || disabled}
                     onClick={event => {
                       event.stopPropagation();
                       onSkillUnassign(product.id);
@@ -158,7 +158,7 @@ const DiscountSkills = withStyles(styles, {
             ),
             () => (
               <TableRow>
-                <TableCell colSpan={5}>{i18n.t("No products found")}</TableCell>
+                <TableCell colSpan={5}>{i18n.t("No skills found")}</TableCell>
               </TableRow>
             )
           )}

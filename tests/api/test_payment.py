@@ -4,7 +4,7 @@ import graphene
 
 from remote_works.core.utils import get_country_name_by_code
 from remote_works.graphql.payment.enums import (
-    OrderAction, PaymentChargeStatusEnum, PaymentGatewayEnum)
+    TaskAction, PaymentChargeStatusEnum, PaymentGatewayEnum)
 from remote_works.payment.models import ChargeStatus, Payment, TransactionKind
 from tests.api.utils import get_graphql_content
 
@@ -357,7 +357,7 @@ def test_payments_query(
             'country': get_country_name_by_code(pay.billing_country_code)
         }
     }
-    assert data['actions'] == [OrderAction.REFUND.name]
+    assert data['actions'] == [TaskAction.REFUND.name]
     txn = pay.transactions.get()
     assert data['transactions'] == [{
         'amount': {

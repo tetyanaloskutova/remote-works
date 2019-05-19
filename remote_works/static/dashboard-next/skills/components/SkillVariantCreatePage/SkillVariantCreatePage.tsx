@@ -9,7 +9,7 @@ import SaveButtonBar from "../../../components/SaveButtonBar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
 import { UserError } from "../../../types";
-import { SkillVariantCreateData_product } from "../../types/SkillVariantCreateData";
+import { SkillVariantCreateData_skill } from "../../types/SkillVariantCreateData";
 import SkillVariantAttributes from "../SkillVariantAttributes";
 import SkillVariantNavigation from "../SkillVariantNavigation";
 import SkillVariantPrice from "../SkillVariantPrice";
@@ -70,7 +70,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
       initial={initialForm}
       errors={formErrors}
       onSubmit={onSubmit}
-      key={product ? JSON.stringify(product) : "noproduct"}
+      key={skill ? JSON.stringify(product) : "noproduct"}
     >
       {({ change, data, errors, hasChanged, submit }) => (
         <Container width="md">
@@ -80,7 +80,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
               <SkillVariantNavigation
                 variants={maybe(() => product.variants)}
                 onRowClick={(variantId: string) => {
-                  if (product && product.variants) {
+                  if (skill && product.variants) {
                     return onVariantClick(variantId);
                   }
                 }}

@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(blank=True, max_length=500)),
                 ('include_taxes_in_prices', models.BooleanField(default=True)),
                 ('display_gross_prices', models.BooleanField(default=True)),
-                ('charge_taxes_on_shipping', models.BooleanField(default=True)),
+                ('charge_taxes_on_delivery', models.BooleanField(default=True)),
                 ('track_inventory_by_default', models.BooleanField(default=True)),
                 ('default_weight_unit', models.CharField(choices=[('kg', 'kg'), ('lb', 'lb'), ('oz', 'oz'), ('g', 'g')], default='kg', max_length=10)),
                 ('bottom_menu', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='menu.Menu')),

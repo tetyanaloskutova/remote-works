@@ -16,10 +16,10 @@
         </tr>
         <tr>
           <td colspan="3" style="text-align: right;">
-            {% trans "Shipping" context "E-mail order lines summary table" %}
+            {% trans "Delivery" context "E-mail order lines summary table" %}
           </td>
           <td style="text-align: right;">
-            {% price order.shipping_price display_gross=order.display_gross_prices html=False %}
+            {% price order.delivery_price display_gross=order.display_gross_prices html=False %}
           </td>
         </tr>
         <tr>
@@ -55,16 +55,16 @@
       </tfoot>
       <thead class="table-header-row">
         <tr>
-          <th>{% trans "Item" context "Ordered item name" %}</th>
+          <th>{% trans "Item" context "Tasked item name" %}</th>
           <th>{% trans "Quantity" context "Quantity ordered of a product" %}</th>
           <th>{% trans "Per unit" context "Unit price of a product" %}</th>
-          <th>{% trans "Subtotal" context "Ordered item subtotal (unit price * quantity)" %}</th>
+          <th>{% trans "Subtotal" context "Tasked item subtotal (unit price * quantity)" %}</th>
         </tr>
       </thead>
       <tbody>
         {% for line in order %}
           <tr class="table-item-row">
-            <td>{{ line.translated_product_name|default:line.product_name }}</td>
+            <td>{{ line.translated_skill_name|default:line.skill_name }}</td>
             <td style="text-align: right;">{{ line.quantity }}</td>
             <td style="text-align: right;">
               {% price line.unit_price display_gross=order.display_gross_prices html=False %}

@@ -1,2 +1,2 @@
-export { default } from "./OrderCustomerEditDialog";
-export * from "./OrderCustomerEditDialog";
+export { default } from "./TaskCustomerEditDialog";
+export * from "./TaskCustomerEditDialog";

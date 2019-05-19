@@ -7,12 +7,12 @@ import CardTitle from "../../../components/CardTitle";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 
-interface OrderCustomerNoteProps {
+interface TaskCustomerNoteProps {
   note: string;
 }
 
-export const OrderCustomerNote: React.StatelessComponent<
-  OrderCustomerNoteProps
+export const TaskCustomerNote: React.StatelessComponent<
+  TaskCustomerNoteProps
 > = ({ note }) => (
   <Card>
     <CardTitle
@@ -33,4 +33,4 @@ export const OrderCustomerNote: React.StatelessComponent<
     </CardContent>
   </Card>
 );
-export default OrderCustomerNote;
+export default TaskCustomerNote;

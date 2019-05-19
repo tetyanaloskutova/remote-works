@@ -16,7 +16,7 @@ class VoucherType:
     SKILL = 'skill'
     COLLECTION = 'collection'
     CATEGORY = 'category'
-    SHIPPING = 'shipping'
+    DELIVERY = 'delivery'
     VALUE = 'value'
 
     CHOICES = [
@@ -26,4 +26,4 @@ class VoucherType:
             'Voucher: discount for', 'Specific collections of skills')),
         (CATEGORY, pgettext_lazy(
             'Voucher: discount for', 'Specific categories of skills')),
-        (SHIPPING, pgettext_lazy('Voucher: discount for', 'Shipping'))]
+        (DELIVERY, pgettext_lazy('Voucher: discount for', 'Delivery'))]

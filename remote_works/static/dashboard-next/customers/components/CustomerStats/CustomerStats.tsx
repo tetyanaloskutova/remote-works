@@ -56,16 +56,16 @@ const CustomerStats = withStyles(styles, { name: "CustomerStats" })(
       <Hr />
       <CardContent>
         <Typography className={classes.label} variant="body2">
-          {i18n.t("Last order")}
+          {i18n.t("Last task")}
         </Typography>
         {maybe(
           () => (
             <Typography variant="title" className={classes.value}>
-              {customer.lastPlacedOrder.edges.length === 0 ? (
+              {customer.lastPlacedTask.edges.length === 0 ? (
                 i18n.t("-")
               ) : (
                 <DateTime
-                  date={customer.lastPlacedOrder.edges[0].node.created}
+                  date={customer.lastPlacedTask.edges[0].node.created}
                 />
               )}
             </Typography>

@@ -28,7 +28,7 @@ import VoucherSummary from "../VoucherSummary";
 export enum VoucherDetailsPageTab {
   categories = "categories",
   collections = "collections",
-  products = "products"
+  skills = "products"
 }
 export function voucherDetailsPageTab(tab: string): VoucherDetailsPageTab {
   return tab === VoucherDetailsPageTab.products
@@ -39,7 +39,7 @@ export function voucherDetailsPageTab(tab: string): VoucherDetailsPageTab {
 }
 
 export interface FormData {
-  applyOncePerOrder: boolean;
+  applyOncePerTask: boolean;
   code: string;
   discountType: VoucherDiscountValueType;
   endDate: string;
@@ -106,7 +106,7 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
   onSubmit
 }) => {
   const initialForm: FormData = {
-    applyOncePerOrder: maybe(() => voucher.applyOncePerOrder, false),
+    applyOncePerTask: maybe(() => voucher.applyOncePerTask, false),
     code: maybe(() => voucher.code, ""),
     discountType: maybe(
       () => voucher.discountValueType,
@@ -219,7 +219,7 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
                     />
                   )}
                 </>
-              ) : data.type === VoucherType.SHIPPING ? (
+              ) : data.type === VoucherType.DELIVERY ? (
                 <VoucherCountries
                   disabled={disabled}
                   onCountryAssign={onCountryAssign}

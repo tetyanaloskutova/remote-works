@@ -1,12 +1,12 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderDraftFinalize, {
-  OrderDraftFinalizeDialogProps
-} from "../../../orders/components/OrderDraftFinalizeDialog";
+import TaskDraftFinalize, {
+  TaskDraftFinalizeDialogProps
+} from "../../../tasks/components/TaskDraftFinalizeDialog";
 import Decorator from "../../Decorator";
 
-const props: OrderDraftFinalizeDialogProps = {
+const props: TaskDraftFinalizeDialogProps = {
   confirmButtonState: "default",
   onClose: () => undefined,
   onConfirm: () => undefined,
@@ -15,12 +15,12 @@ const props: OrderDraftFinalizeDialogProps = {
   warnings: []
 };
 
-storiesOf("Orders / OrderDraftFinalizeDialog", module)
+storiesOf("Tasks / TaskDraftFinalizeDialog", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderDraftFinalize {...props} />)
+  .add("default", () => <TaskDraftFinalize {...props} />)
   .add("with warnings", () => (
-    <OrderDraftFinalize
+    <TaskDraftFinalize
       {...props}
-      warnings={["no-shipping-method", "no-shipping", "no-billing", "no-user"]}
+      warnings={["no-delivery-method", "no-delivery", "no-billing", "no-user"]}
     />
   ));

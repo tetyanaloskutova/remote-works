@@ -39,7 +39,7 @@ export const fragmentSkillImage = gql`
   fragment SkillImageFragment on SkillImage {
     id
     alt
-    sortOrder
+    sortTask
     url
   }
 `;
@@ -167,7 +167,7 @@ export const fragmentVariant = gql`
     priceOverride {
       ...Money
     }
-    product {
+    skill {
       id
       images {
         ...SkillImageFragment
@@ -281,7 +281,7 @@ const productCreateQuery = gql`
             name
             values {
               id
-              sortOrder
+              sortTask
               name
               slug
             }
@@ -301,7 +301,7 @@ const productVariantCreateQuery = gql`
       id
       images {
         id
-        sortOrder
+        sortTask
         url
       }
       productType {
@@ -312,7 +312,7 @@ const productVariantCreateQuery = gql`
           name
           values {
             id
-            sortOrder
+            sortTask
             name
             slug
           }

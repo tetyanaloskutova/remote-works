@@ -50,7 +50,7 @@ export const saleDetailsFragment = gql`
         node {
           id
           name
-          products {
+          skills {
             totalCount
           }
         }
@@ -65,7 +65,7 @@ export const saleDetailsFragment = gql`
         node {
           id
           name
-          products {
+          skills {
             totalCount
           }
         }
@@ -107,7 +107,7 @@ export const voucherDetailsFragment = gql`
     code
     usageLimit
     used
-    applyOncePerOrder
+    applyOncePerTask
     products(after: $after, before: $before, first: $first, last: $last) {
       edges {
         node {
@@ -133,7 +133,7 @@ export const voucherDetailsFragment = gql`
         node {
           id
           name
-          products {
+          skills {
             totalCount
           }
         }
@@ -148,7 +148,7 @@ export const voucherDetailsFragment = gql`
         node {
           id
           name
-          products {
+          skills {
             totalCount
           }
         }

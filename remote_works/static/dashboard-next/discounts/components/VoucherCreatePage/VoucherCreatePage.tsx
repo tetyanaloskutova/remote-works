@@ -17,7 +17,7 @@ import VoucherInfo from "../VoucherInfo";
 import VoucherOptions from "../VoucherOptions";
 
 export interface FormData {
-  applyOncePerOrder: boolean;
+  applyOncePerTask: boolean;
   code: string;
   discountType: VoucherDiscountValueType;
   endDate: string;
@@ -47,7 +47,7 @@ const VoucherCreatePage: React.StatelessComponent<VoucherCreatePageProps> = ({
   onSubmit
 }) => {
   const initialForm: FormData = {
-    applyOncePerOrder: false,
+    applyOncePerTask: false,
     code: "",
     discountType: VoucherDiscountValueType.FIXED,
     endDate: "",

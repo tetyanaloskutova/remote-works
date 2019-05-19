@@ -6,8 +6,8 @@ from django.conf import settings as dj_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import get_template
 
-from remote_works.order import OrderEvents, OrderEventsEmails
-from remote_works.order.views import PAYMENT_TEMPLATE
+from remote_works.task import TaskEvents, TaskEventsEmails
+from remote_works.task.views import PAYMENT_TEMPLATE
 from remote_works.payment import (
     ChargeStatus, GatewayError, OperationType, PaymentError, TransactionKind,
     get_payment_gateway)
@@ -94,7 +94,7 @@ def test_get_payment_gateway(settings):
     assert gateway_params == gateway['connection_params']
 
 
-@patch('remote_works.order.emails.send_payment_confirmation.delay')
+@patch('remote_works.task.emails.send_payment_confirmation.delay')
 def test_handle_fully_paid_order_no_email(
         mock_send_payment_confirmation, order):
     order.user = None
@@ -102,20 +102,20 @@ def test_handle_fully_paid_order_no_email(
 
     handle_fully_paid_order(order)
     event = order.events.get()
-    assert event.type == OrderEvents.ORDER_FULLY_PAID.value
+    assert event.type == TaskEvents.ORDER_FULLY_PAID.value
     assert not mock_send_payment_confirmation.called
 
 
-@patch('remote_works.order.emails.send_payment_confirmation.delay')
+@patch('remote_works.task.emails.send_payment_confirmation.delay')
 def test_handle_fully_paid_order(mock_send_payment_confirmation, order):
     handle_fully_paid_order(order)
     event_order_paid, event_email_sent = order.events.all()
-    assert event_order_paid.type == OrderEvents.ORDER_FULLY_PAID.value
+    assert event_order_paid.type == TaskEvents.ORDER_FULLY_PAID.value
 
-    assert event_email_sent.type == OrderEvents.EMAIL_SENT.value
+    assert event_email_sent.type == TaskEvents.EMAIL_SENT.value
     assert event_email_sent.parameters == {
         'email': order.get_user_current_email(),
-        'email_type': OrderEventsEmails.PAYMENT.value}
+        'email_type': TaskEventsEmails.PAYMENT.value}
 
     mock_send_payment_confirmation.assert_called_once_with(order.pk)
 
@@ -155,7 +155,7 @@ def test_mark_as_paid(admin_user, draft_order):
     assert payment.charge_status == ChargeStatus.FULLY_CHARGED
     assert payment.captured_amount == draft_order.total.gross.amount
     assert draft_order.events.last().type == (
-        OrderEvents.ORDER_MARKED_AS_PAID.value)
+        TaskEvents.ORDER_MARKED_AS_PAID.value)
 
 
 def test_clean_mark_order_as_paid(payment_txn_preauth):

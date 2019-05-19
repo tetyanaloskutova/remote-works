@@ -8,10 +8,10 @@ import {
 } from "../../../components/TableFilter";
 import i18n from "../../../i18n";
 
-export type OrderListFilterTabs = "all" | "toFulfill" | "toCapture" | "custom";
+export type TaskListFilterTabs = "all" | "toFulfill" | "toCapture" | "custom";
 
-interface OrderListFilterProps {
-  currentTab: OrderListFilterTabs;
+interface TaskListFilterProps {
+  currentTab: TaskListFilterTabs;
   filtersList: Filter[];
   onAllSkills: () => void;
   onToFulfill: () => void;
@@ -19,7 +19,7 @@ interface OrderListFilterProps {
   onCustomFilter: () => void;
 }
 
-const OrderListFilter: React.StatelessComponent<OrderListFilterProps> = ({
+const TaskListFilter: React.StatelessComponent<TaskListFilterProps> = ({
   filtersList,
   currentTab,
   onAllSkills,
@@ -33,7 +33,7 @@ const OrderListFilter: React.StatelessComponent<OrderListFilterProps> = ({
         currentTab
       )}
     >
-      <FilterTab label={i18n.t("All Orders")} onClick={onAllSkills} />
+      <FilterTab label={i18n.t("All Tasks")} onClick={onAllSkills} />
       <FilterTab label={i18n.t("Ready to fulfill")} onClick={onToFulfill} />
       <FilterTab label={i18n.t("Ready to capture")} onClick={onToCapture} />
       {currentTab === "custom" && filtersList && filtersList.length > 0 && (
@@ -49,5 +49,5 @@ const OrderListFilter: React.StatelessComponent<OrderListFilterProps> = ({
     )}
   </>
 );
-OrderListFilter.displayName = "OrderListFilter";
-export default OrderListFilter;
+TaskListFilter.displayName = "TaskListFilter";
+export default TaskListFilter;

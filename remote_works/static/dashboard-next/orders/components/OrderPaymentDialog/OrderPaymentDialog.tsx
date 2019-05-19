@@ -16,7 +16,7 @@ export interface FormData {
   amount: number;
 }
 
-interface OrderPaymentDialogProps {
+interface TaskPaymentDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   initial: number;
@@ -25,7 +25,7 @@ interface OrderPaymentDialogProps {
   onSubmit: (data: FormData) => void;
 }
 
-const OrderPaymentDialog: React.StatelessComponent<OrderPaymentDialogProps> = ({
+const TaskPaymentDialog: React.StatelessComponent<TaskPaymentDialogProps> = ({
   confirmButtonState,
   open,
   initial,
@@ -85,5 +85,5 @@ const OrderPaymentDialog: React.StatelessComponent<OrderPaymentDialogProps> = ({
     </Form>
   </Dialog>
 );
-OrderPaymentDialog.displayName = "OrderPaymentDialog";
-export default OrderPaymentDialog;
+TaskPaymentDialog.displayName = "TaskPaymentDialog";
+export default TaskPaymentDialog;

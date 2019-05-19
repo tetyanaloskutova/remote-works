@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderRefund
+// GraphQL mutation operation: TaskRefund
 // ====================================================
 
-export interface OrderRefund_orderRefund_errors {
+export interface TaskRefund_orderRefund_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderRefund_orderRefund_order_billingAddress_country {
+export interface TaskRefund_orderRefund_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderRefund_orderRefund_order_billingAddress {
+export interface TaskRefund_orderRefund_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderRefund_orderRefund_order_billingAddress_country;
+  country: TaskRefund_orderRefund_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderRefund_orderRefund_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderRefund_orderRefund_order_events_user {
+export interface TaskRefund_orderRefund_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderRefund_orderRefund_order_events {
-  __typename: "OrderEvent";
+export interface TaskRefund_orderRefund_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderRefund_orderRefund_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskRefund_orderRefund_order_events_user | null;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskRefund_orderRefund_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskRefund_orderRefund_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments_lines {
+export interface TaskRefund_orderRefund_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderRefund_orderRefund_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskRefund_orderRefund_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderRefund_orderRefund_order_fulfillments {
+export interface TaskRefund_orderRefund_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderRefund_orderRefund_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskRefund_orderRefund_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderRefund_orderRefund_order_lines_unitPrice_gross {
+export interface TaskRefund_orderRefund_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_lines_unitPrice_net {
+export interface TaskRefund_orderRefund_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_lines_unitPrice {
+export interface TaskRefund_orderRefund_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderRefund_orderRefund_order_lines_unitPrice_gross;
-  net: OrderRefund_orderRefund_order_lines_unitPrice_net;
+  gross: TaskRefund_orderRefund_order_lines_unitPrice_gross;
+  net: TaskRefund_orderRefund_order_lines_unitPrice_net;
 }
 
-export interface OrderRefund_orderRefund_order_lines {
-  __typename: "OrderLine";
+export interface TaskRefund_orderRefund_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderRefund_orderRefund_order_lines_unitPrice | null;
+  unitPrice: TaskRefund_orderRefund_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderRefund_orderRefund_order_shippingAddress_country {
+export interface TaskRefund_orderRefund_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderRefund_orderRefund_order_shippingAddress {
+export interface TaskRefund_orderRefund_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderRefund_orderRefund_order_shippingAddress_country;
+  country: TaskRefund_orderRefund_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderRefund_orderRefund_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderRefund_orderRefund_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskRefund_orderRefund_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderRefund_orderRefund_order_shippingPrice_gross {
+export interface TaskRefund_orderRefund_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_shippingPrice {
+export interface TaskRefund_orderRefund_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderRefund_orderRefund_order_shippingPrice_gross;
+  gross: TaskRefund_orderRefund_order_deliveryPrice_gross;
 }
 
-export interface OrderRefund_orderRefund_order_subtotal_gross {
+export interface TaskRefund_orderRefund_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_subtotal {
+export interface TaskRefund_orderRefund_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderRefund_orderRefund_order_subtotal_gross;
+  gross: TaskRefund_orderRefund_order_subtotal_gross;
 }
 
-export interface OrderRefund_orderRefund_order_total_gross {
+export interface TaskRefund_orderRefund_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_total_tax {
+export interface TaskRefund_orderRefund_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_total {
+export interface TaskRefund_orderRefund_order_total {
   __typename: "TaxedMoney";
-  gross: OrderRefund_orderRefund_order_total_gross;
-  tax: OrderRefund_orderRefund_order_total_tax;
+  gross: TaskRefund_orderRefund_order_total_gross;
+  tax: TaskRefund_orderRefund_order_total_tax;
 }
 
-export interface OrderRefund_orderRefund_order_totalAuthorized {
+export interface TaskRefund_orderRefund_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_totalCaptured {
+export interface TaskRefund_orderRefund_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_user {
+export interface TaskRefund_orderRefund_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderRefund_orderRefund_order_availableShippingMethods_price {
+export interface TaskRefund_orderRefund_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderRefund_orderRefund_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskRefund_orderRefund_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderRefund_orderRefund_order_availableShippingMethods_price | null;
+  price: TaskRefund_orderRefund_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderRefund_orderRefund_order {
-  __typename: "Order";
+export interface TaskRefund_orderRefund_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderRefund_orderRefund_order_billingAddress | null;
+  billingAddress: TaskRefund_orderRefund_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderRefund_orderRefund_order_events | null)[] | null;
-  fulfillments: (OrderRefund_orderRefund_order_fulfillments | null)[];
-  lines: (OrderRefund_orderRefund_order_lines | null)[];
+  events: (TaskRefund_orderRefund_order_events | null)[] | null;
+  fulfillments: (TaskRefund_orderRefund_order_fulfillments | null)[];
+  lines: (TaskRefund_orderRefund_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderRefund_orderRefund_order_shippingAddress | null;
-  shippingMethod: OrderRefund_orderRefund_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderRefund_orderRefund_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderRefund_orderRefund_order_subtotal | null;
-  total: OrderRefund_orderRefund_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderRefund_orderRefund_order_totalAuthorized | null;
-  totalCaptured: OrderRefund_orderRefund_order_totalCaptured | null;
-  user: OrderRefund_orderRefund_order_user | null;
+  deliveryAddress: TaskRefund_orderRefund_order_deliveryAddress | null;
+  deliveryMethod: TaskRefund_orderRefund_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskRefund_orderRefund_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskRefund_orderRefund_order_subtotal | null;
+  total: TaskRefund_orderRefund_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskRefund_orderRefund_order_totalAuthorized | null;
+  totalCaptured: TaskRefund_orderRefund_order_totalCaptured | null;
+  user: TaskRefund_orderRefund_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderRefund_orderRefund_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskRefund_orderRefund_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderRefund_orderRefund {
-  __typename: "OrderRefund";
-  errors: OrderRefund_orderRefund_errors[] | null;
-  order: OrderRefund_orderRefund_order | null;
+export interface TaskRefund_orderRefund {
+  __typename: "TaskRefund";
+  errors: TaskRefund_orderRefund_errors[] | null;
+  task: TaskRefund_orderRefund_order | null;
 }
 
-export interface OrderRefund {
-  orderRefund: OrderRefund_orderRefund | null;
+export interface TaskRefund {
+  orderRefund: TaskRefund_orderRefund | null;
 }
 
-export interface OrderRefundVariables {
+export interface TaskRefundVariables {
   id: string;
   amount: any;
 }

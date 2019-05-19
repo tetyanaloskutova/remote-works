@@ -113,12 +113,12 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
         <TableBody>
           {renderCollection(
             maybe(() => collection.products.edges.map(edge => edge.node)),
-            product => (
+            skill => (
               <TableRow
                 className={classes.tableRow}
                 hover={!!product}
-                onClick={!!product ? onRowClick(product.id) : undefined}
-                key={product ? product.id : "skeleton"}
+                onClick={!!skill ? onRowClick(product.id) : undefined}
+                key={skill ? product.id : "skeleton"}
               >
                 <TableCellAvatar
                   thumbnail={maybe(() => product.thumbnail.url)}
@@ -160,7 +160,7 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
             () => (
               <TableRow>
                 <TableCell />
-                <TableCell colSpan={5}>{i18n.t("No products found")}</TableCell>
+                <TableCell colSpan={5}>{i18n.t("No skills found")}</TableCell>
               </TableRow>
             )
           )}

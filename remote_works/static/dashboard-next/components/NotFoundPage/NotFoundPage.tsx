@@ -34,7 +34,7 @@ const styles = (theme: Theme) =>
     },
     innerContainer: {
       [theme.breakpoints.down("sm")]: {
-        order: 1,
+        task: 1,
         textAlign: "center"
       },
       display: "flex",

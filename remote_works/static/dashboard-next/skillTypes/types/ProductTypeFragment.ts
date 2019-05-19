@@ -12,6 +12,6 @@ export interface SkillTypeFragment {
   id: string;
   name: string;
   hasVariants: boolean;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
 }

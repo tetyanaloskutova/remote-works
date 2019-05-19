@@ -255,13 +255,13 @@ def test_voucher_add_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'skills': [product_id],
+            'skills': [skill_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -271,7 +271,7 @@ def test_voucher_add_catalogues(
     data = content['data']['voucherCataloguesAdd']
 
     assert not data['errors']
-    assert product in voucher.products.all()
+    assert skill in voucher.products.all()
     assert category in voucher.categories.all()
     assert collection in voucher.collections.all()
 
@@ -293,13 +293,13 @@ def test_voucher_remove_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
         'id': graphene.Node.to_global_id('Voucher', voucher.id),
         'input': {
-            'skills': [product_id],
+            'skills': [skill_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -309,7 +309,7 @@ def test_voucher_remove_catalogues(
     data = content['data']['voucherCataloguesRemove']
 
     assert not data['errors']
-    assert product not in voucher.products.all()
+    assert skill not in voucher.products.all()
     assert category not in voucher.categories.all()
     assert collection not in voucher.collections.all()
 
@@ -488,13 +488,13 @@ def test_sale_add_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'skills': [product_id],
+            'skills': [skill_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -504,7 +504,7 @@ def test_sale_add_catalogues(
     data = content['data']['saleCataloguesAdd']
 
     assert not data['errors']
-    assert product in sale.products.all()
+    assert skill in sale.products.all()
     assert category in sale.categories.all()
     assert collection in sale.collections.all()
 
@@ -526,13 +526,13 @@ def test_sale_remove_catalogues(
             }
         }
     """
-    product_id = graphene.Node.to_global_id('Skill', product.id)
+    skill_id = graphene.Node.to_global_id('Skill', product.id)
     collection_id = graphene.Node.to_global_id('Collection', collection.id)
     category_id = graphene.Node.to_global_id('Category', category.id)
     variables = {
         'id': graphene.Node.to_global_id('Sale', sale.id),
         'input': {
-            'skills': [product_id],
+            'skills': [skill_id],
             'collections': [collection_id],
             'categories': [category_id]}}
 
@@ -542,7 +542,7 @@ def test_sale_remove_catalogues(
     data = content['data']['saleCataloguesRemove']
 
     assert not data['errors']
-    assert product not in sale.products.all()
+    assert skill not in sale.products.all()
     assert category not in sale.categories.all()
     assert collection not in sale.collections.all()
 

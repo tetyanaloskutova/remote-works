@@ -21,12 +21,12 @@ const styles = createStyles({
   }
 });
 
-interface OrderAddressEditDialogProps extends WithStyles<typeof styles> {
+interface TaskAddressEditDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   address: AddressTypeInput;
   open: boolean;
   errors: UserError[];
-  variant: "billing" | "shipping" | string;
+  variant: "billing" | "delivery" | string;
   countries?: Array<{
     code: string;
     label: string;
@@ -35,8 +35,8 @@ interface OrderAddressEditDialogProps extends WithStyles<typeof styles> {
   onConfirm(data: AddressTypeInput);
 }
 
-const OrderAddressEditDialog = withStyles(styles, {
-  name: "OrderAddressEditDialog"
+const TaskAddressEditDialog = withStyles(styles, {
+  name: "TaskAddressEditDialog"
 })(
   ({
     address,
@@ -48,7 +48,7 @@ const OrderAddressEditDialog = withStyles(styles, {
     countries,
     onClose,
     onConfirm
-  }: OrderAddressEditDialogProps) => (
+  }: TaskAddressEditDialogProps) => (
     <Dialog open={open} classes={{ paper: classes.overflow }}>
       <Form initial={address} errors={errors} onSubmit={onConfirm}>
         {({ change, data, errors, submit }) => (
@@ -56,7 +56,7 @@ const OrderAddressEditDialog = withStyles(styles, {
             <DialogTitle>
               {variant === "billing"
                 ? i18n.t("Edit billing address", { context: "title" })
-                : i18n.t("Edit shipping address", { context: "title" })}
+                : i18n.t("Edit delivery address", { context: "title" })}
             </DialogTitle>
             <DialogContent className={classes.overflow}>
               <AddressEdit
@@ -86,5 +86,5 @@ const OrderAddressEditDialog = withStyles(styles, {
     </Dialog>
   )
 );
-OrderAddressEditDialog.displayName = "OrderAddressEditDialog";
-export default OrderAddressEditDialog;
+TaskAddressEditDialog.displayName = "TaskAddressEditDialog";
+export default TaskAddressEditDialog;

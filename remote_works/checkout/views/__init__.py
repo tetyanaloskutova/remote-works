@@ -5,24 +5,24 @@ from django.template.response import TemplateResponse
 
 from ...account.forms import LoginForm
 from ...core.utils import (
-    format_money, get_user_shipping_country, to_local_currency)
+    format_money, get_user_delivery_country, to_local_currency)
 from ...skill.models import SkillVariant
-from ...shipping.utils import get_shipping_price_estimate
-from ..forms import CartShippingMethodForm, CountryForm, ReplaceCartLineForm
+from ...delivery.utils import get_delivery_price_estimate
+from ..forms import CartDeliveryMethodForm, CountryForm, ReplaceCartLineForm
 from ..models import Cart
 from ..utils import (
     check_skill_availability_and_warn, get_cart_data,
     get_cart_data_for_checkout, get_or_empty_db_cart, get_taxes_for_cart,
-    is_valid_shipping_method, update_cart_quantity)
+    is_valid_delivery_method, update_cart_quantity)
 from .discount import add_voucher_form, validate_voucher
-from .shipping import (
-    anonymous_user_shipping_address_view, user_shipping_address_view)
+from .delivery import (
+    anonymous_user_delivery_address_view, user_delivery_address_view)
 from .summary import (
-    anonymous_summary_without_shipping, summary_with_shipping_view,
-    summary_without_shipping)
+    anonymous_summary_without_delivery, summary_with_delivery_view,
+    summary_without_delivery)
 from .validators import (
-    validate_cart, validate_is_shipping_required, validate_shipping_address,
-    validate_shipping_method)
+    validate_cart, validate_is_delivery_required, validate_delivery_address,
+    validate_delivery_method)
 
 
 @get_or_empty_db_cart(Cart.objects.for_display())
@@ -37,46 +37,46 @@ def checkout_login(request, cart):
 
 @get_or_empty_db_cart(Cart.objects.for_display())
 @validate_cart
-@validate_is_shipping_required
+@validate_is_delivery_required
 def checkout_index(request, cart):
     """Redirect to the initial step of checkout."""
-    return redirect('checkout:shipping-address')
+    return redirect('checkout:delivery-address')
 
 
 @get_or_empty_db_cart(Cart.objects.for_display())
 @validate_voucher
 @validate_cart
-@validate_is_shipping_required
+@validate_is_delivery_required
 @add_voucher_form
-def checkout_shipping_address(request, cart):
-    """Display the correct shipping address step."""
+def checkout_delivery_address(request, cart):
+    """Display the correct delivery address step."""
     if request.user.is_authenticated:
-        return user_shipping_address_view(request, cart)
-    return anonymous_user_shipping_address_view(request, cart)
+        return user_delivery_address_view(request, cart)
+    return anonymous_user_delivery_address_view(request, cart)
 
 
 @get_or_empty_db_cart(Cart.objects.for_display())
 @validate_voucher
 @validate_cart
-@validate_is_shipping_required
-@validate_shipping_address
+@validate_is_delivery_required
+@validate_delivery_address
 @add_voucher_form
-def checkout_shipping_method(request, cart):
-    """Display the shipping method selection step."""
+def checkout_delivery_method(request, cart):
+    """Display the delivery method selection step."""
     discounts = request.discounts
     taxes = get_taxes_for_cart(cart, request.taxes)
-    is_valid_shipping_method(cart, request.taxes, discounts)
+    is_valid_delivery_method(cart, request.taxes, discounts)
 
-    form = CartShippingMethodForm(
+    form = CartDeliveryMethodForm(
         request.POST or None, discounts=discounts, taxes=taxes, instance=cart,
-        initial={'shipping_method': cart.shipping_method})
+        initial={'delivery_method': cart.delivery_method})
     if form.is_valid():
         form.save()
         return redirect('checkout:summary')
 
     ctx = get_cart_data_for_checkout(cart, discounts, taxes)
-    ctx.update({'shipping_method_form': form})
-    return TemplateResponse(request, 'checkout/shipping_method.html', ctx)
+    ctx.update({'delivery_method_form': form})
+    return TemplateResponse(request, 'checkout/delivery_method.html', ctx)
 
 
 @get_or_empty_db_cart(Cart.objects.for_display())
@@ -84,14 +84,14 @@ def checkout_shipping_method(request, cart):
 @validate_cart
 @add_voucher_form
 def checkout_summary(request, cart):
-    """Display the correct order summary."""
-    if cart.is_shipping_required():
-        view = validate_shipping_method(summary_with_shipping_view)
-        view = validate_shipping_address(view)
+    """Display the correct task summary."""
+    if cart.is_delivery_required():
+        view = validate_delivery_method(summary_with_delivery_view)
+        view = validate_delivery_address(view)
         return view(request, cart)
     if request.user.is_authenticated:
-        return summary_without_shipping(request, cart)
-    return anonymous_summary_without_shipping(request, cart)
+        return summary_without_delivery(request, cart)
+    return anonymous_summary_without_delivery(request, cart)
 
 
 @get_or_empty_db_cart(cart_queryset=Cart.objects.for_display())
@@ -127,39 +127,39 @@ def cart_index(request, cart):
             'get_total': line.get_total(discounts, taxes),
             'form': form})
 
-    default_country = get_user_shipping_country(request)
+    default_country = get_user_delivery_country(request)
     country_form = CountryForm(initial={'country': default_country})
-    shipping_price_range = get_shipping_price_estimate(
+    delivery_price_range = get_delivery_price_estimate(
         price=cart.get_subtotal(discounts, taxes).gross,
         weight=cart.get_total_weight(), country_code=default_country,
         taxes=taxes)
 
     cart_data = get_cart_data(
-        cart, shipping_price_range, request.currency, discounts, taxes)
+        cart, delivery_price_range, request.currency, discounts, taxes)
     ctx = {
         'cart_lines': cart_lines,
         'country_form': country_form,
-        'shipping_price_range': shipping_price_range}
+        'delivery_price_range': delivery_price_range}
     ctx.update(cart_data)
 
     return TemplateResponse(request, 'checkout/index.html', ctx)
 
 
 @get_or_empty_db_cart(cart_queryset=Cart.objects.for_display())
-def cart_shipping_options(request, cart):
-    """Display shipping options to get a price estimate."""
+def cart_delivery_options(request, cart):
+    """Display delivery options to get a price estimate."""
     country_form = CountryForm(request.POST or None, taxes=request.taxes)
     if country_form.is_valid():
-        shipping_price_range = country_form.get_shipping_price_estimate(
+        delivery_price_range = country_form.get_delivery_price_estimate(
             price=cart.get_subtotal(request.discounts, request.taxes).gross,
             weight=cart.get_total_weight())
     else:
-        shipping_price_range = None
+        delivery_price_range = None
     ctx = {
-        'shipping_price_range': shipping_price_range,
+        'delivery_price_range': delivery_price_range,
         'country_form': country_form}
     cart_data = get_cart_data(
-        cart, shipping_price_range, request.currency, request.discounts,
+        cart, delivery_price_range, request.currency, request.discounts,
         request.taxes)
     ctx.update(cart_data)
     return TemplateResponse(request, 'checkout/_subtotal_table.html', ctx)

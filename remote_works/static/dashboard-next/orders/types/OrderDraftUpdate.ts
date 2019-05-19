@@ -1,30 +1,30 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { DraftOrderInput, OrderEventsEmails, OrderEvents, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction } from "./../../types/globalTypes";
+import { DraftTaskInput, TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnum, TaskStatus, TaskAction } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: OrderDraftUpdate
+// GraphQL mutation operation: TaskDraftUpdate
 // ====================================================
 
-export interface OrderDraftUpdate_draftOrderUpdate_errors {
+export interface TaskDraftUpdate_draftTaskUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_billingAddress_country {
+export interface TaskDraftUpdate_draftTaskUpdate_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_billingAddress {
+export interface TaskDraftUpdate_draftTaskUpdate_order_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderDraftUpdate_draftOrderUpdate_order_billingAddress_country;
+  country: TaskDraftUpdate_draftTaskUpdate_order_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,112 +35,112 @@ export interface OrderDraftUpdate_draftOrderUpdate_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_events_user {
+export interface TaskDraftUpdate_draftTaskUpdate_order_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_events {
-  __typename: "OrderEvent";
+export interface TaskDraftUpdate_draftTaskUpdate_order_events {
+  __typename: "TaskEvent";
   id: string;
   amount: number | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   message: string | null;
   quantity: number | null;
-  type: OrderEvents | null;
-  user: OrderDraftUpdate_draftOrderUpdate_order_events_user | null;
+  type: TaskEvents | null;
+  user: TaskDraftUpdate_draftTaskUpdate_order_events_user | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine {
-  __typename: "OrderLine";
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines {
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines_orderLine | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_fulfillments {
+export interface TaskDraftUpdate_draftTaskUpdate_order_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (OrderDraftUpdate_draftOrderUpdate_order_fulfillments_lines | null)[] | null;
-  fulfillmentOrder: number;
+  lines: (TaskDraftUpdate_draftTaskUpdate_order_fulfillments_lines | null)[] | null;
+  fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice_gross {
+export interface TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice_net {
+export interface TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice {
+export interface TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice_gross;
-  net: OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice_net;
+  gross: TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice_gross;
+  net: TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice_net;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_lines {
-  __typename: "OrderLine";
+export interface TaskDraftUpdate_draftTaskUpdate_order_lines {
+  __typename: "TaskLine";
   id: string;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   productName: string;
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: OrderDraftUpdate_draftOrderUpdate_order_lines_unitPrice | null;
+  unitPrice: TaskDraftUpdate_draftTaskUpdate_order_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_shippingAddress_country {
+export interface TaskDraftUpdate_draftTaskUpdate_order_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_shippingAddress {
+export interface TaskDraftUpdate_draftTaskUpdate_order_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: OrderDraftUpdate_draftOrderUpdate_order_shippingAddress_country;
+  country: TaskDraftUpdate_draftTaskUpdate_order_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,120 +151,120 @@ export interface OrderDraftUpdate_draftOrderUpdate_order_shippingAddress {
   streetAddress2: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_shippingMethod {
-  __typename: "ShippingMethod";
+export interface TaskDraftUpdate_draftTaskUpdate_order_deliveryMethod {
+  __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_shippingPrice_gross {
+export interface TaskDraftUpdate_draftTaskUpdate_order_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_shippingPrice {
+export interface TaskDraftUpdate_draftTaskUpdate_order_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: OrderDraftUpdate_draftOrderUpdate_order_shippingPrice_gross;
+  gross: TaskDraftUpdate_draftTaskUpdate_order_deliveryPrice_gross;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_subtotal_gross {
+export interface TaskDraftUpdate_draftTaskUpdate_order_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_subtotal {
+export interface TaskDraftUpdate_draftTaskUpdate_order_subtotal {
   __typename: "TaxedMoney";
-  gross: OrderDraftUpdate_draftOrderUpdate_order_subtotal_gross;
+  gross: TaskDraftUpdate_draftTaskUpdate_order_subtotal_gross;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_total_gross {
+export interface TaskDraftUpdate_draftTaskUpdate_order_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_total_tax {
+export interface TaskDraftUpdate_draftTaskUpdate_order_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_total {
+export interface TaskDraftUpdate_draftTaskUpdate_order_total {
   __typename: "TaxedMoney";
-  gross: OrderDraftUpdate_draftOrderUpdate_order_total_gross;
-  tax: OrderDraftUpdate_draftOrderUpdate_order_total_tax;
+  gross: TaskDraftUpdate_draftTaskUpdate_order_total_gross;
+  tax: TaskDraftUpdate_draftTaskUpdate_order_total_tax;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_totalAuthorized {
+export interface TaskDraftUpdate_draftTaskUpdate_order_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_totalCaptured {
+export interface TaskDraftUpdate_draftTaskUpdate_order_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_user {
+export interface TaskDraftUpdate_draftTaskUpdate_order_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_availableShippingMethods_price {
+export interface TaskDraftUpdate_draftTaskUpdate_order_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order_availableShippingMethods {
-  __typename: "ShippingMethod";
+export interface TaskDraftUpdate_draftTaskUpdate_order_availableDeliveryMethods {
+  __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: OrderDraftUpdate_draftOrderUpdate_order_availableShippingMethods_price | null;
+  price: TaskDraftUpdate_draftTaskUpdate_order_availableDeliveryMethods_price | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate_order {
-  __typename: "Order";
+export interface TaskDraftUpdate_draftTaskUpdate_order {
+  __typename: "Task";
   id: string;
-  billingAddress: OrderDraftUpdate_draftOrderUpdate_order_billingAddress | null;
+  billingAddress: TaskDraftUpdate_draftTaskUpdate_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (OrderDraftUpdate_draftOrderUpdate_order_events | null)[] | null;
-  fulfillments: (OrderDraftUpdate_draftOrderUpdate_order_fulfillments | null)[];
-  lines: (OrderDraftUpdate_draftOrderUpdate_order_lines | null)[];
+  events: (TaskDraftUpdate_draftTaskUpdate_order_events | null)[] | null;
+  fulfillments: (TaskDraftUpdate_draftTaskUpdate_order_fulfillments | null)[];
+  lines: (TaskDraftUpdate_draftTaskUpdate_order_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  shippingAddress: OrderDraftUpdate_draftOrderUpdate_order_shippingAddress | null;
-  shippingMethod: OrderDraftUpdate_draftOrderUpdate_order_shippingMethod | null;
-  shippingMethodName: string | null;
-  shippingPrice: OrderDraftUpdate_draftOrderUpdate_order_shippingPrice | null;
-  status: OrderStatus;
-  subtotal: OrderDraftUpdate_draftOrderUpdate_order_subtotal | null;
-  total: OrderDraftUpdate_draftOrderUpdate_order_total | null;
-  actions: (OrderAction | null)[];
-  totalAuthorized: OrderDraftUpdate_draftOrderUpdate_order_totalAuthorized | null;
-  totalCaptured: OrderDraftUpdate_draftOrderUpdate_order_totalCaptured | null;
-  user: OrderDraftUpdate_draftOrderUpdate_order_user | null;
+  deliveryAddress: TaskDraftUpdate_draftTaskUpdate_order_deliveryAddress | null;
+  deliveryMethod: TaskDraftUpdate_draftTaskUpdate_order_deliveryMethod | null;
+  deliveryMethodName: string | null;
+  deliveryPrice: TaskDraftUpdate_draftTaskUpdate_order_deliveryPrice | null;
+  status: TaskStatus;
+  subtotal: TaskDraftUpdate_draftTaskUpdate_order_subtotal | null;
+  total: TaskDraftUpdate_draftTaskUpdate_order_total | null;
+  actions: (TaskAction | null)[];
+  totalAuthorized: TaskDraftUpdate_draftTaskUpdate_order_totalAuthorized | null;
+  totalCaptured: TaskDraftUpdate_draftTaskUpdate_order_totalCaptured | null;
+  user: TaskDraftUpdate_draftTaskUpdate_order_user | null;
   userEmail: string | null;
-  availableShippingMethods: (OrderDraftUpdate_draftOrderUpdate_order_availableShippingMethods | null)[] | null;
+  availableDeliveryMethods: (TaskDraftUpdate_draftTaskUpdate_order_availableDeliveryMethods | null)[] | null;
 }
 
-export interface OrderDraftUpdate_draftOrderUpdate {
-  __typename: "DraftOrderUpdate";
-  errors: OrderDraftUpdate_draftOrderUpdate_errors[] | null;
-  order: OrderDraftUpdate_draftOrderUpdate_order | null;
+export interface TaskDraftUpdate_draftTaskUpdate {
+  __typename: "DraftTaskUpdate";
+  errors: TaskDraftUpdate_draftTaskUpdate_errors[] | null;
+  task: TaskDraftUpdate_draftTaskUpdate_order | null;
 }
 
-export interface OrderDraftUpdate {
-  draftOrderUpdate: OrderDraftUpdate_draftOrderUpdate | null;
+export interface TaskDraftUpdate {
+  draftTaskUpdate: TaskDraftUpdate_draftTaskUpdate | null;
 }
 
-export interface OrderDraftUpdateVariables {
+export interface TaskDraftUpdateVariables {
   id: string;
-  input: DraftOrderInput;
+  input: DraftTaskInput;
 }

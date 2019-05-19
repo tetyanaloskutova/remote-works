@@ -7,24 +7,24 @@ from ...account.models import Address
 from ...core import analytics
 from ...core.exceptions import InsufficientStock
 from ...discount.models import NotApplicable
-from ...order import OrderEvents, OrderEventsEmails
-from ...order.emails import send_order_confirmation
+from ...task import TaskEvents, TaskEventsEmails
+from ...task.emails import send_order_confirmation
 from ..forms import CartNoteForm
 from ..utils import (
     create_order, get_cart_data_for_checkout, get_taxes_for_cart,
     update_billing_address_in_anonymous_cart, update_billing_address_in_cart,
-    update_billing_address_in_cart_with_shipping)
+    update_billing_address_in_cart_with_delivery)
 
 
 def handle_order_placement(request, cart):
-    """Try to create an order and redirect the user as necessary.
+    """Try to create an task and redirect the user as necessary.
 
-    This function creates an order from cart and performs post-create actions
-    such as removing the checkout instance, sending order notification email
-    and creating order history events.
+    This function creates an task from cart and performs post-create actions
+    such as removing the checkout instance, sending task notification email
+    and creating task history events.
     """
     try:
-        order = create_order(
+        task = create_order(
             cart=cart,
             tracking_code=analytics.get_client_id(request),
             discounts=request.discounts,
@@ -39,20 +39,20 @@ def handle_order_placement(request, cart):
 
     # remove cart after checkout is created
     cart.delete()
-    order.events.create(type=OrderEvents.PLACED.value)
-    send_order_confirmation.delay(order.pk)
-    order.events.create(
-        type=OrderEvents.EMAIL_SENT.value,
+    task.events.create(type=TaskEvents.PLACED.value)
+    send_order_confirmation.delay(task.pk)
+    task.events.create(
+        type=TaskEvents.EMAIL_SENT.value,
         parameters={
-            'email': order.get_user_current_email(),
-            'email_type': OrderEventsEmails.ORDER.value})
-    return redirect('order:payment', token=order.token)
+            'email': task.get_user_current_email(),
+            'email_type': TaskEventsEmails.ORDER.value})
+    return redirect('task:payment', token=task.token)
 
 
-def summary_with_shipping_view(request, cart):
-    """Display order summary with billing forms for a logged in user.
+def summary_with_delivery_view(request, cart):
+    """Display task summary with billing forms for a logged in user.
 
-    Will create an order if all data is valid.
+    Will create an task if all data is valid.
     """
     note_form = CartNoteForm(request.POST or None, instance=cart)
     if note_form.is_valid():
@@ -62,7 +62,7 @@ def summary_with_shipping_view(request, cart):
         cart.user.addresses.all() if cart.user else Address.objects.none())
 
     addresses_form, address_form, updated = (
-        update_billing_address_in_cart_with_shipping(
+        update_billing_address_in_cart_with_delivery(
             cart, user_addresses, request.POST or None, request.country))
 
     if updated:
@@ -78,10 +78,10 @@ def summary_with_shipping_view(request, cart):
     return TemplateResponse(request, 'checkout/summary.html', ctx)
 
 
-def anonymous_summary_without_shipping(request, cart):
-    """Display order summary with billing forms for an unauthorized user.
+def anonymous_summary_without_delivery(request, cart):
+    """Display task summary with billing forms for an unauthorized user.
 
-    Will create an order if all data is valid.
+    Will create an task if all data is valid.
     """
     note_form = CartNoteForm(request.POST or None, instance=cart)
     if note_form.is_valid():
@@ -101,13 +101,13 @@ def anonymous_summary_without_shipping(request, cart):
         'note_form': note_form,
         'user_form': user_form})
     return TemplateResponse(
-        request, 'checkout/summary_without_shipping.html', ctx)
+        request, 'checkout/summary_without_delivery.html', ctx)
 
 
-def summary_without_shipping(request, cart):
-    """Display order summary for cases where shipping is not required.
+def summary_without_delivery(request, cart):
+    """Display task summary for cases where delivery is not required.
 
-    Will create an order if all data is valid.
+    Will create an task if all data is valid.
     """
     note_form = CartNoteForm(request.POST or None, instance=cart)
     if note_form.is_valid():
@@ -129,4 +129,4 @@ def summary_without_shipping(request, cart):
         'addresses_form': addresses_form,
         'note_form': note_form})
     return TemplateResponse(
-        request, 'checkout/summary_without_shipping.html', ctx)
+        request, 'checkout/summary_without_delivery.html', ctx)

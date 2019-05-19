@@ -1,4 +1,4 @@
-from collections import OrderedDict
+from collections import TaskedDict
 
 from django.db.models import Q
 from django.forms import CheckboxSelectMultiple
@@ -8,7 +8,7 @@ from django_filters import MultipleChoiceFilter, OrderingFilter, RangeFilter
 from ..core.filters import SortedFilterSet
 from .models import Attribute, Skill
 
-SORT_BY_FIELDS = OrderedDict([
+SORT_BY_FIELDS = TaskedDict([
     ('name', pgettext_lazy('Skill list sorting option', 'name')),
     ('price', pgettext_lazy('Skill list sorting option', 'price')),
     ('updated_at', pgettext_lazy(
@@ -33,7 +33,7 @@ class SkillFilter(SortedFilterSet):
             self._get_attributes())
         self.filters.update(self._get_skill_attributes_filters())
         self.filters.update(self._get_skill_variants_attributes_filters())
-        self.filters = OrderedDict(sorted(self.filters.items()))
+        self.filters = TaskedDict(sorted(self.filters.items()))
 
     def _get_attributes(self):
         q_skill_attributes = self._get_skill_attributes_lookup()

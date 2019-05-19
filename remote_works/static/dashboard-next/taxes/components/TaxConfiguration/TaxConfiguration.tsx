@@ -41,7 +41,7 @@ export const TaxConfiguration = withStyles(styles, {
         <ControlledSwitch
           disabled={disabled}
           name={"includeTax" as keyof FormData}
-          label={i18n.t("All products prices are entered with tax included")}
+          label={i18n.t("All skills prices are entered with tax included")}
           onChange={onChange}
           checked={data.includeTax}
         />
@@ -54,10 +54,10 @@ export const TaxConfiguration = withStyles(styles, {
         />
         <ControlledSwitch
           disabled={disabled}
-          name={"chargeTaxesOnShipping" as keyof FormData}
-          label={i18n.t("Charge taxes on shipping rates")}
+          name={"chargeTaxesOnDelivery" as keyof FormData}
+          label={i18n.t("Charge taxes on delivery rates")}
           onChange={onChange}
-          checked={data.chargeTaxesOnShipping}
+          checked={data.chargeTaxesOnDelivery}
         />
         <FormSpacer />
       </CardContent>

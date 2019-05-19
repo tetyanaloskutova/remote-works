@@ -16,14 +16,14 @@ import PageHeader from "../../../components/PageHeader";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
-import { OrderStatus } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import OrderCustomer from "../OrderCustomer";
-import OrderCustomerNote from "../OrderCustomerNote";
-import OrderFulfillment from "../OrderFulfillment";
-import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
-import OrderPayment from "../OrderPayment/OrderPayment";
-import OrderUnfulfilledItems from "../OrderUnfulfilledItems/OrderUnfulfilledItems";
+import { TaskStatus } from "../../../types/globalTypes";
+import { TaskDetails_order } from "../../types/TaskDetails";
+import TaskCustomer from "../TaskCustomer";
+import TaskCustomerNote from "../TaskCustomerNote";
+import TaskFulfillment from "../TaskFulfillment";
+import TaskHistory, { FormData as HistoryFormData } from "../TaskHistory";
+import TaskPayment from "../TaskPayment/TaskPayment";
+import TaskUnfulfilledItems from "../TaskUnfulfilledItems/TaskUnfulfilledItems";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -39,9 +39,9 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface OrderDetailsPageProps extends WithStyles<typeof styles> {
-  order: OrderDetails_order;
-  shippingMethods?: Array<{
+export interface TaskDetailsPageProps extends WithStyles<typeof styles> {
+  task: TaskDetails_order;
+  deliveryMethods?: Array<{
     id: string;
     name: string;
   }>;
@@ -53,38 +53,38 @@ export interface OrderDetailsPageProps extends WithStyles<typeof styles> {
   onBillingAddressEdit();
   onFulfillmentCancel(id: string);
   onFulfillmentTrackingNumberUpdate(id: string);
-  onOrderFulfill();
+  onTaskFulfill();
   onSkillClick?(id: string);
   onPaymentCapture();
   onPaymentPaid();
   onPaymentRefund();
   onPaymentVoid();
-  onShippingAddressEdit();
-  onOrderCancel();
+  onDeliveryAddressEdit();
+  onTaskCancel();
   onNoteAdd(data: HistoryFormData);
 }
 
-const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
+const TaskDetailsPage = withStyles(styles, { name: "TaskDetailsPage" })(
   ({
     classes,
-    order,
-    onOrderCancel,
+    task,
+    onTaskCancel,
     onBack,
     onBillingAddressEdit,
     onFulfillmentCancel,
     onFulfillmentTrackingNumberUpdate,
     onNoteAdd,
-    onOrderFulfill,
+    onTaskFulfill,
     onPaymentCapture,
     onPaymentPaid,
     onPaymentRefund,
     onPaymentVoid,
-    onShippingAddressEdit
-  }: OrderDetailsPageProps) => {
-    const canCancel = maybe(() => order.status) !== OrderStatus.CANCELED;
-    const canEditAddresses = maybe(() => order.status) !== OrderStatus.CANCELED;
-    const canFulfill = maybe(() => order.status) !== OrderStatus.CANCELED;
-    const unfulfilled = maybe(() => order.lines, []).filter(
+    onDeliveryAddressEdit
+  }: TaskDetailsPageProps) => {
+    const canCancel = maybe(() => task.status) !== TaskStatus.CANCELED;
+    const canEditAddresses = maybe(() => task.status) !== TaskStatus.CANCELED;
+    const canFulfill = maybe(() => task.status) !== TaskStatus.CANCELED;
+    const unfulfilled = maybe(() => task.lines, []).filter(
       line => line.quantityFulfilled < line.quantity
     );
 
@@ -92,7 +92,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
       <Container width="md">
         <PageHeader
           className={classes.header}
-          title={maybe(() => order.number) ? "#" + order.number : undefined}
+          title={maybe(() => task.number) ? "#" + task.number : undefined}
           onBack={onBack}
         >
           {canCancel && (
@@ -100,17 +100,17 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
               className={classes.menu}
               menuItems={[
                 {
-                  label: i18n.t("Cancel order", { context: "button" }),
-                  onSelect: onOrderCancel
+                  label: i18n.t("Cancel task", { context: "button" }),
+                  onSelect: onTaskCancel
                 }
               ]}
             />
           )}
         </PageHeader>
         <div className={classes.date}>
-          {order && order.created ? (
+          {task && task.created ? (
             <Typography variant="caption">
-              <DateTime date={order.created} />
+              <DateTime date={task.created} />
             </Typography>
           ) : (
             <Skeleton style={{ width: "10em" }} />
@@ -119,23 +119,23 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
         <Grid>
           <div>
             {unfulfilled.length > 0 && (
-              <OrderUnfulfilledItems
+              <TaskUnfulfilledItems
                 canFulfill={canFulfill}
                 lines={unfulfilled}
-                onFulfill={onOrderFulfill}
+                onFulfill={onTaskFulfill}
               />
             )}
             {renderCollection(
-              maybe(() => order.fulfillments),
+              maybe(() => task.fulfillments),
               (fulfillment, fulfillmentIndex) => (
                 <React.Fragment key={maybe(() => fulfillment.id, "loading")}>
                   {!(unfulfilled.length === 0 && fulfillmentIndex === 0) && (
                     <CardSpacer />
                   )}
-                  <OrderFulfillment
+                  <TaskFulfillment
                     fulfillment={fulfillment}
-                    orderNumber={maybe(() => order.number)}
-                    onOrderFulfillmentCancel={() =>
+                    orderNumber={maybe(() => task.number)}
+                    onTaskFulfillmentCancel={() =>
                       onFulfillmentCancel(fulfillment.id)
                     }
                     onTrackingCodeAdd={() =>
@@ -146,33 +146,33 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
               )
             )}
             <CardSpacer />
-            <OrderPayment
-              order={order}
+            <TaskPayment
+              task={task}
               onCapture={onPaymentCapture}
               onMarkAsPaid={onPaymentPaid}
               onRefund={onPaymentRefund}
               onVoid={onPaymentVoid}
             />
-            <OrderHistory
-              history={maybe(() => order.events)}
+            <TaskHistory
+              history={maybe(() => task.events)}
               onNoteAdd={onNoteAdd}
             />
           </div>
           <div>
-            <OrderCustomer
+            <TaskCustomer
               canEditAddresses={canEditAddresses}
               canEditCustomer={false}
-              order={order}
+              task={task}
               onBillingAddressEdit={onBillingAddressEdit}
-              onShippingAddressEdit={onShippingAddressEdit}
+              onDeliveryAddressEdit={onDeliveryAddressEdit}
             />
             <CardSpacer />
-            <OrderCustomerNote note={maybe(() => order.customerNote)} />
+            <TaskCustomerNote note={maybe(() => task.customerNote)} />
           </div>
         </Grid>
       </Container>
     );
   }
 );
-OrderDetailsPage.displayName = "OrderDetailsPage";
-export default OrderDetailsPage;
+TaskDetailsPage.displayName = "TaskDetailsPage";
+export default TaskDetailsPage;

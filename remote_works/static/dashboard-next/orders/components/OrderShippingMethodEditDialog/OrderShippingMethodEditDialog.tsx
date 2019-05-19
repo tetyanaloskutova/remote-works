@@ -18,10 +18,10 @@ import Form from "../../../components/Form";
 import Money from "../../../components/Money";
 import { SingleSelectField } from "../../../components/SingleSelectField";
 import i18n from "../../../i18n";
-import { OrderDetails_order_availableShippingMethods } from "../../types/OrderDetails";
+import { TaskDetails_order_availableDeliveryMethods } from "../../types/TaskDetails";
 
 export interface FormData {
-  shippingMethod: string;
+  deliveryMethod: string;
 }
 
 const styles = (theme: Theme) =>
@@ -37,39 +37,39 @@ const styles = (theme: Theme) =>
       overflowY: "visible",
       width: theme.breakpoints.values.sm
     },
-    shippingMethodName: {
+    deliveryMethodName: {
       flex: 1,
       overflowX: "hidden",
       textOverflow: "ellipsis"
     }
   });
 
-interface OrderShippingMethodEditDialogProps extends WithStyles<typeof styles> {
+interface TaskDeliveryMethodEditDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  shippingMethod: string;
-  shippingMethods?: OrderDetails_order_availableShippingMethods[];
+  deliveryMethod: string;
+  deliveryMethods?: TaskDetails_order_availableDeliveryMethods[];
   onClose();
   onSubmit?(data: FormData);
 }
 
-const OrderShippingMethodEditDialog = withStyles(styles, {
-  name: "OrderShippingMethodEditDialog"
+const TaskDeliveryMethodEditDialog = withStyles(styles, {
+  name: "TaskDeliveryMethodEditDialog"
 })(
   ({
     classes,
     confirmButtonState,
     open,
-    shippingMethod,
-    shippingMethods,
+    deliveryMethod,
+    deliveryMethods,
     onClose,
     onSubmit
-  }: OrderShippingMethodEditDialogProps) => {
-    const choices = shippingMethods
-      ? shippingMethods.map(s => ({
+  }: TaskDeliveryMethodEditDialogProps) => {
+    const choices = deliveryMethods
+      ? deliveryMethods.map(s => ({
           label: (
             <div className={classes.menuItem}>
-              <span className={classes.shippingMethodName}>{s.name}</span>
+              <span className={classes.deliveryMethodName}>{s.name}</span>
               &nbsp;
               <span>
                 <Money money={s.price} />
@@ -80,12 +80,12 @@ const OrderShippingMethodEditDialog = withStyles(styles, {
         }))
       : [];
     const initialForm: FormData = {
-      shippingMethod
+      deliveryMethod
     };
     return (
       <Dialog open={open} classes={{ paper: classes.dialog }}>
         <DialogTitle>
-          {i18n.t("Edit shipping method", { context: "title" })}
+          {i18n.t("Edit delivery method", { context: "title" })}
         </DialogTitle>
         <Form initial={initialForm} onSubmit={onSubmit}>
           {({ change, data }) => (
@@ -93,8 +93,8 @@ const OrderShippingMethodEditDialog = withStyles(styles, {
               <DialogContent className={classes.root}>
                 <SingleSelectField
                   choices={choices}
-                  name="shippingMethod"
-                  value={data.shippingMethod}
+                  name="deliveryMethod"
+                  value={data.deliveryMethod}
                   onChange={change}
                 />
               </DialogContent>
@@ -118,5 +118,5 @@ const OrderShippingMethodEditDialog = withStyles(styles, {
     );
   }
 );
-OrderShippingMethodEditDialog.displayName = "OrderShippingMethodEditDialog";
-export default OrderShippingMethodEditDialog;
+TaskDeliveryMethodEditDialog.displayName = "TaskDeliveryMethodEditDialog";
+export default TaskDeliveryMethodEditDialog;

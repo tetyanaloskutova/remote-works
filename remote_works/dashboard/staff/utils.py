@@ -1,9 +1,9 @@
 def remove_staff_member(staff):
-    """Remove staff member account only if it has no orders placed.
+    """Remove staff member account only if it has no tasks placed.
 
     Otherwise, switches is_staff status to False.
     """
-    if staff.orders.exists():
+    if staff.tasks.exists():
         staff.is_staff = False
         staff.user_permissions.clear()
         staff.save()

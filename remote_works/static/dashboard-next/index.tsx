@@ -35,7 +35,7 @@ import DiscountSection from "./discounts";
 import HomePage from "./home";
 import i18n from "./i18n";
 import { NotFound } from "./NotFound";
-import OrdersSection from "./orders";
+import TasksSection from "./tasks";
 import PageSection from "./pages";
 import SkillSection from "./products";
 import SkillTypesSection from "./productTypes";
@@ -157,8 +157,8 @@ render(
                             />
                             <SectionRoute
                               permissions={[PermissionEnum.MANAGE_ORDERS]}
-                              path="/orders"
-                              component={OrdersSection}
+                              path="/tasks"
+                              component={TasksSection}
                             />
                             <SectionRoute
                               permissions={[PermissionEnum.MANAGE_PRODUCTS]}

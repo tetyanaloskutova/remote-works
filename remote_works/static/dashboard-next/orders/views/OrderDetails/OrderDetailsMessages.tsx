@@ -4,59 +4,59 @@ import Messages from "../../../components/messages";
 import Navigator from "../../../components/Navigator";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { OrderAddNote } from "../../types/OrderAddNote";
-import { OrderCancel } from "../../types/OrderCancel";
-import { OrderCapture } from "../../types/OrderCapture";
-import { OrderCreateFulfillment } from "../../types/OrderCreateFulfillment";
-import { OrderDraftCancel } from "../../types/OrderDraftCancel";
-import { OrderDraftFinalize } from "../../types/OrderDraftFinalize";
-import { OrderDraftUpdate } from "../../types/OrderDraftUpdate";
-import { OrderFulfillmentCancel } from "../../types/OrderFulfillmentCancel";
-import { OrderFulfillmentUpdateTracking } from "../../types/OrderFulfillmentUpdateTracking";
-import { OrderLineAdd } from "../../types/OrderLineAdd";
-import { OrderLineDelete } from "../../types/OrderLineDelete";
-import { OrderLineUpdate } from "../../types/OrderLineUpdate";
-import { OrderMarkAsPaid } from "../../types/OrderMarkAsPaid";
-import { OrderRefund } from "../../types/OrderRefund";
-import { OrderShippingMethodUpdate } from "../../types/OrderShippingMethodUpdate";
-import { OrderUpdate } from "../../types/OrderUpdate";
-import { OrderVoid } from "../../types/OrderVoid";
+import { TaskAddNote } from "../../types/TaskAddNote";
+import { TaskCancel } from "../../types/TaskCancel";
+import { TaskCapture } from "../../types/TaskCapture";
+import { TaskCreateFulfillment } from "../../types/TaskCreateFulfillment";
+import { TaskDraftCancel } from "../../types/TaskDraftCancel";
+import { TaskDraftFinalize } from "../../types/TaskDraftFinalize";
+import { TaskDraftUpdate } from "../../types/TaskDraftUpdate";
+import { TaskFulfillmentCancel } from "../../types/TaskFulfillmentCancel";
+import { TaskFulfillmentUpdateTracking } from "../../types/TaskFulfillmentUpdateTracking";
+import { TaskLineAdd } from "../../types/TaskLineAdd";
+import { TaskLineDelete } from "../../types/TaskLineDelete";
+import { TaskLineUpdate } from "../../types/TaskLineUpdate";
+import { TaskMarkAsPaid } from "../../types/TaskMarkAsPaid";
+import { TaskRefund } from "../../types/TaskRefund";
+import { TaskDeliveryMethodUpdate } from "../../types/TaskDeliveryMethodUpdate";
+import { TaskUpdate } from "../../types/TaskUpdate";
+import { TaskVoid } from "../../types/TaskVoid";
 import { orderListUrl, orderUrl } from "../../urls";
 
-interface OrderDetailsMessages {
+interface TaskDetailsMessages {
   children: (
     props: {
-      handleDraftCancel: (data: OrderDraftCancel) => void;
-      handleDraftFinalize: (data: OrderDraftFinalize) => void;
-      handleDraftUpdate: (data: OrderDraftUpdate) => void;
-      handleNoteAdd: (data: OrderAddNote) => void;
-      handleOrderCancel: (data: OrderCancel) => void;
-      handleOrderFulfillmentCancel: (data: OrderFulfillmentCancel) => void;
-      handleOrderFulfillmentCreate: (data: OrderCreateFulfillment) => void;
-      handleOrderFulfillmentUpdate: (
-        data: OrderFulfillmentUpdateTracking
+      handleDraftCancel: (data: TaskDraftCancel) => void;
+      handleDraftFinalize: (data: TaskDraftFinalize) => void;
+      handleDraftUpdate: (data: TaskDraftUpdate) => void;
+      handleNoteAdd: (data: TaskAddNote) => void;
+      handleTaskCancel: (data: TaskCancel) => void;
+      handleTaskFulfillmentCancel: (data: TaskFulfillmentCancel) => void;
+      handleTaskFulfillmentCreate: (data: TaskCreateFulfillment) => void;
+      handleTaskFulfillmentUpdate: (
+        data: TaskFulfillmentUpdateTracking
       ) => void;
-      handleOrderLineAdd: (data: OrderLineAdd) => void;
-      handleOrderLineDelete: (data: OrderLineDelete) => void;
-      handleOrderLineUpdate: (data: OrderLineUpdate) => void;
-      handleOrderMarkAsPaid: (data: OrderMarkAsPaid) => void;
-      handleOrderVoid: (data: OrderVoid) => void;
-      handlePaymentCapture: (data: OrderCapture) => void;
-      handlePaymentRefund: (data: OrderRefund) => void;
-      handleShippingMethodUpdate: (data: OrderShippingMethodUpdate) => void;
-      handleUpdate: (data: OrderUpdate) => void;
+      handleTaskLineAdd: (data: TaskLineAdd) => void;
+      handleTaskLineDelete: (data: TaskLineDelete) => void;
+      handleTaskLineUpdate: (data: TaskLineUpdate) => void;
+      handleTaskMarkAsPaid: (data: TaskMarkAsPaid) => void;
+      handleTaskVoid: (data: TaskVoid) => void;
+      handlePaymentCapture: (data: TaskCapture) => void;
+      handlePaymentRefund: (data: TaskRefund) => void;
+      handleDeliveryMethodUpdate: (data: TaskDeliveryMethodUpdate) => void;
+      handleUpdate: (data: TaskUpdate) => void;
     }
   ) => React.ReactNode;
 }
 
-export const OrderDetailsMessages: React.StatelessComponent<
-  OrderDetailsMessages
+export const TaskDetailsMessages: React.StatelessComponent<
+  TaskDetailsMessages
 > = ({ children }) => (
   <Navigator>
     {navigate => (
       <Messages>
         {pushMessage => {
-          const handlePaymentCapture = (data: OrderCapture) => {
+          const handlePaymentCapture = (data: TaskCapture) => {
             if (!maybe(() => data.orderCapture.errors.length)) {
               pushMessage({
                 text: i18n.t("Payment successfully captured", {
@@ -74,7 +74,7 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handlePaymentRefund = (data: OrderRefund) => {
+          const handlePaymentRefund = (data: TaskRefund) => {
             if (!maybe(() => data.orderRefund.errors.length)) {
               pushMessage({
                 text: i18n.t("Payment successfully refunded", {
@@ -92,8 +92,8 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handleOrderFulfillmentCreate = (
-            data: OrderCreateFulfillment
+          const handleTaskFulfillmentCreate = (
+            data: TaskCreateFulfillment
           ) => {
             if (!maybe(() => data.orderFulfillmentCreate.errors.length)) {
               pushMessage({
@@ -101,7 +101,7 @@ export const OrderDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderFulfillmentCreate.order.id), true);
+              navigate(orderUrl(data.orderFulfillmentCreate.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not fulfill items", {
@@ -110,46 +110,46 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handleOrderMarkAsPaid = (data: OrderMarkAsPaid) => {
+          const handleTaskMarkAsPaid = (data: TaskMarkAsPaid) => {
             if (!maybe(() => data.orderMarkAsPaid.errors.length)) {
               pushMessage({
-                text: i18n.t("Order marked as paid", {
+                text: i18n.t("Task marked as paid", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderMarkAsPaid.order.id), true);
+              navigate(orderUrl(data.orderMarkAsPaid.task.id), true);
             } else {
               pushMessage({
-                text: i18n.t("Could not mark order as paid", {
+                text: i18n.t("Could not mark task as paid", {
                   context: "notification"
                 })
               });
             }
           };
-          const handleOrderCancel = (data: OrderCancel) => {
+          const handleTaskCancel = (data: TaskCancel) => {
             pushMessage({
-              text: i18n.t("Order successfully cancelled", {
+              text: i18n.t("Task successfully cancelled", {
                 context: "notification"
               })
             });
-            navigate(orderUrl(data.orderCancel.order.id), true);
+            navigate(orderUrl(data.orderCancel.task.id), true);
           };
           const handleDraftCancel = () => {
             pushMessage({
-              text: i18n.t("Order successfully cancelled", {
+              text: i18n.t("Task successfully cancelled", {
                 context: "notification"
               })
             });
             navigate(orderListUrl(), true);
           };
-          const handleOrderVoid = () => {
+          const handleTaskVoid = () => {
             pushMessage({
-              text: i18n.t("Order payment successfully voided", {
+              text: i18n.t("Task payment successfully voided", {
                 context: "notification"
               })
             });
           };
-          const handleNoteAdd = (data: OrderAddNote) => {
+          const handleNoteAdd = (data: TaskAddNote) => {
             if (!maybe(() => data.orderAddNote.errors.length)) {
               pushMessage({
                 text: i18n.t("Note successfully added", {
@@ -164,92 +164,92 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handleUpdate = (data: OrderUpdate) => {
+          const handleUpdate = (data: TaskUpdate) => {
             if (!maybe(() => data.orderUpdate.errors.length)) {
               pushMessage({
-                text: i18n.t("Order successfully updated", {
+                text: i18n.t("Task successfully updated", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderUpdate.order.id), true);
+              navigate(orderUrl(data.orderUpdate.task.id), true);
             }
           };
-          const handleDraftUpdate = (data: OrderDraftUpdate) => {
-            if (!maybe(() => data.draftOrderUpdate.errors.length)) {
+          const handleDraftUpdate = (data: TaskDraftUpdate) => {
+            if (!maybe(() => data.draftTaskUpdate.errors.length)) {
               pushMessage({
-                text: i18n.t("Order successfully updated", {
+                text: i18n.t("Task successfully updated", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftOrderUpdate.order.id), true);
+              navigate(orderUrl(data.draftTaskUpdate.task.id), true);
             }
           };
-          const handleShippingMethodUpdate = (
-            data: OrderShippingMethodUpdate
+          const handleDeliveryMethodUpdate = (
+            data: TaskDeliveryMethodUpdate
           ) => {
-            if (!maybe(() => data.orderUpdateShipping.errors.length)) {
+            if (!maybe(() => data.orderUpdateDelivery.errors.length)) {
               pushMessage({
-                text: i18n.t("Shipping method successfully updated", {
+                text: i18n.t("Delivery method successfully updated", {
                   context: "notification"
                 })
               });
             } else {
               pushMessage({
-                text: i18n.t("Could not update shipping method", {
+                text: i18n.t("Could not update delivery method", {
                   context: "notification"
                 })
               });
             }
-            navigate(orderUrl(data.orderUpdateShipping.order.id), true);
+            navigate(orderUrl(data.orderUpdateDelivery.task.id), true);
           };
-          const handleOrderLineDelete = (data: OrderLineDelete) => {
-            if (!maybe(() => data.draftOrderLineDelete.errors.length)) {
+          const handleTaskLineDelete = (data: TaskLineDelete) => {
+            if (!maybe(() => data.draftTaskLineDelete.errors.length)) {
               pushMessage({
-                text: i18n.t("Order line deleted", {
+                text: i18n.t("Task line deleted", {
                   context: "notification"
                 })
               });
             } else {
               pushMessage({
-                text: i18n.t("Could not delete order line", {
+                text: i18n.t("Could not delete task line", {
                   context: "notification"
                 })
               });
             }
           };
-          const handleOrderLineAdd = (data: OrderLineAdd) => {
-            if (!maybe(() => data.draftOrderLinesCreate.errors.length)) {
+          const handleTaskLineAdd = (data: TaskLineAdd) => {
+            if (!maybe(() => data.draftTaskLinesCreate.errors.length)) {
               pushMessage({
-                text: i18n.t("Order line added", {
+                text: i18n.t("Task line added", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftOrderLinesCreate.order.id), true);
+              navigate(orderUrl(data.draftTaskLinesCreate.task.id), true);
             } else {
               pushMessage({
-                text: i18n.t("Could not create order line", {
+                text: i18n.t("Could not create task line", {
                   context: "notification"
                 })
               });
             }
           };
-          const handleOrderLineUpdate = (data: OrderLineUpdate) => {
-            if (!maybe(() => data.draftOrderLineUpdate.errors.length)) {
+          const handleTaskLineUpdate = (data: TaskLineUpdate) => {
+            if (!maybe(() => data.draftTaskLineUpdate.errors.length)) {
               pushMessage({
-                text: i18n.t("Order line updated", {
+                text: i18n.t("Task line updated", {
                   context: "notification"
                 })
               });
             } else {
               pushMessage({
-                text: i18n.t("Could not update order line", {
+                text: i18n.t("Could not update task line", {
                   context: "notification"
                 })
               });
             }
           };
-          const handleOrderFulfillmentCancel = (
-            data: OrderFulfillmentCancel
+          const handleTaskFulfillmentCancel = (
+            data: TaskFulfillmentCancel
           ) => {
             if (!maybe(() => data.orderFulfillmentCancel.errors.length)) {
               pushMessage({
@@ -257,7 +257,7 @@ export const OrderDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderFulfillmentCancel.order.id), true);
+              navigate(orderUrl(data.orderFulfillmentCancel.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not cancel fulfillment", {
@@ -266,8 +266,8 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handleOrderFulfillmentUpdate = (
-            data: OrderFulfillmentUpdateTracking
+          const handleTaskFulfillmentUpdate = (
+            data: TaskFulfillmentUpdateTracking
           ) => {
             if (
               !maybe(() => data.orderFulfillmentUpdateTracking.errors.length)
@@ -278,7 +278,7 @@ export const OrderDetailsMessages: React.StatelessComponent<
                 })
               });
               navigate(
-                orderUrl(data.orderFulfillmentUpdateTracking.order.id),
+                orderUrl(data.orderFulfillmentUpdateTracking.task.id),
                 true
               );
             } else {
@@ -289,14 +289,14 @@ export const OrderDetailsMessages: React.StatelessComponent<
               });
             }
           };
-          const handleDraftFinalize = (data: OrderDraftFinalize) => {
-            if (!maybe(() => data.draftOrderComplete.errors.length)) {
+          const handleDraftFinalize = (data: TaskDraftFinalize) => {
+            if (!maybe(() => data.draftTaskComplete.errors.length)) {
               pushMessage({
-                text: i18n.t("Draft order successfully finalized", {
+                text: i18n.t("Draft task successfully finalized", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftOrderComplete.order.id), true);
+              navigate(orderUrl(data.draftTaskComplete.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not finalize draft", {
@@ -311,18 +311,18 @@ export const OrderDetailsMessages: React.StatelessComponent<
             handleDraftFinalize,
             handleDraftUpdate,
             handleNoteAdd,
-            handleOrderCancel,
-            handleOrderFulfillmentCancel,
-            handleOrderFulfillmentCreate,
-            handleOrderFulfillmentUpdate,
-            handleOrderLineAdd,
-            handleOrderLineDelete,
-            handleOrderLineUpdate,
-            handleOrderMarkAsPaid,
-            handleOrderVoid,
+            handleTaskCancel,
+            handleTaskFulfillmentCancel,
+            handleTaskFulfillmentCreate,
+            handleTaskFulfillmentUpdate,
+            handleTaskLineAdd,
+            handleTaskLineDelete,
+            handleTaskLineUpdate,
+            handleTaskMarkAsPaid,
+            handleTaskVoid,
             handlePaymentCapture,
             handlePaymentRefund,
-            handleShippingMethodUpdate,
+            handleDeliveryMethodUpdate,
             handleUpdate
           });
         }}

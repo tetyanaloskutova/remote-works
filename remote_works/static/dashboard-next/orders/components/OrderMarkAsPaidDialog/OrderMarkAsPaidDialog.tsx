@@ -5,29 +5,29 @@ import ActionDialog from "../../../components/ActionDialog";
 import { ConfirmButtonTransitionState } from "../../../components/ConfirmButton/ConfirmButton";
 import i18n from "../../../i18n";
 
-export interface OrderMarkAsPaidDialogProps {
+export interface TaskMarkAsPaidDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
-const OrderMarkAsPaidDialog: React.StatelessComponent<
-  OrderMarkAsPaidDialogProps
+const TaskMarkAsPaidDialog: React.StatelessComponent<
+  TaskMarkAsPaidDialogProps
 > = ({ confirmButtonState, onClose, onConfirm, open }) => (
   <ActionDialog
     confirmButtonState={confirmButtonState}
     open={open}
-    title={i18n.t("Mark order as paid")}
+    title={i18n.t("Mark task as paid")}
     onClose={onClose}
     onConfirm={onConfirm}
   >
     <DialogContentText>
-      {i18n.t("Are you sure you want to mark this order as paid?", {
+      {i18n.t("Are you sure you want to mark this task as paid?", {
         context: "modal content"
       })}
     </DialogContentText>
   </ActionDialog>
 );
-OrderMarkAsPaidDialog.displayName = "OrderMarkAsPaidDialog";
-export default OrderMarkAsPaidDialog;
+TaskMarkAsPaidDialog.displayName = "TaskMarkAsPaidDialog";
+export default TaskMarkAsPaidDialog;

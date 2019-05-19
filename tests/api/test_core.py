@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from remote_works.graphql.core.enums import ReportingPeriod
 from remote_works.graphql.core.utils import clean_seo_fields, snake_to_camel_case
-from remote_works.graphql.product import types as product_types
+from remote_works.graphql.skill import types as skill_types
 from remote_works.graphql.utils import get_database_id, reporting_period_to_date
 from remote_works.product.models import Skill
 from tests.api.utils import (
@@ -51,9 +51,9 @@ def test_get_database_id(product):
     info = Mock(
         schema=Mock(
             get_type=Mock(
-                return_value=Mock(graphene_type=product_types.Skill))))
+                return_value=Mock(graphene_type=skill_types.Skill))))
     node_id = graphene.Node.to_global_id('Skill', product.pk)
-    pk = get_database_id(info, node_id, product_types.Skill)
+    pk = get_database_id(info, node_id, skill_types.Skill)
     assert int(pk) == product.pk
 
 

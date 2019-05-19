@@ -81,8 +81,8 @@
                 {% empty %}
                   {% trans "No attributes found." %}
                 {% endfor %}
-                {% if variant.skill.skill_type.is_shipping_required %}
-                  <p class="card-title">{% trans "Shipping" %}</p>
+                {% if variant.skill.skill_type.is_delivery_required %}
+                  <p class="card-title">{% trans "Delivery" %}</p>
                   {{ form.weight|materializecss }}
                 {% endif %}
               </div>

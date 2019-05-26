@@ -172,7 +172,7 @@
                       {{ order.created }}
                     </td>
                     <td>
-                      {% render_order_status order.status order.get_status_display %}
+                      {% render_task_status order.status order.get_status_display %}
                     </td>
                     <td class="right-align">
                       {% price order.total.gross %}

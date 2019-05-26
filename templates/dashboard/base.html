@@ -139,14 +139,14 @@
               </ul>
             </li>
             {% endif %}
-            {% if perms.order.manage_orders or perms.account.manage_users %}
+            {% if perms.task.manage_tasks or perms.account.manage_users %}
             <li class="side-nav-section">
               <p>
                 {% trans "Sales" context "Dashboard sales. `Sales' is noun of to sell" %}
               </p>
               <ul>
-                {% if perms.order.manage_orders %}
-                  <li class="{% block menu_orders_class %}{% endblock %}">
+                {% if perms.task.manage_tasks %}
+                  <li class="{% block menu_tasks_class %}{% endblock %}">
                     <a href="{% url 'dashboard:tasks' %}">
                       {% trans "Tasks" context "Dashboard tasks list" %}
                     </a>

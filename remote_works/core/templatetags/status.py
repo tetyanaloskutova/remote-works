@@ -29,7 +29,7 @@ def render_status(status, status_display=None):
 
 
 @register.inclusion_tag('status_label.html')
-def render_order_status(status, status_display=None):
+def render_task_status(status, status_display=None):
     if status == TaskStatus.FULFILLED:
         label_cls = LABEL_SUCCESS
     else:

@@ -8,7 +8,7 @@ from ..core.fields import PrefetchingConnectionField
 from ..core.types import TaxedMoney
 from ..descriptions import DESCRIPTIONS
 from .enums import TaskStatusFilter
-from .mutations.draft_orders import (
+from .mutations.draft_tasks import (
     DraftTaskComplete, DraftTaskCreate, DraftTaskDelete,
     DraftTaskLineDelete, DraftTaskLinesCreate, DraftTaskLineUpdate,
     DraftTaskUpdate)

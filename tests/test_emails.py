@@ -21,14 +21,14 @@ def test_get_email_base_context(site_settings):
     assert proper_context == received_context
 
 
-def test_collect_data_for_order_confirmation_email(order):
+def test_collect_data_for_task_confirmation_email(task):
     """Task confirmation email requires extra data, which should be present
     in email's context.
     """
     template = emails.CONFIRM_ORDER_TEMPLATE
-    email_data = emails.collect_data_for_email(order.pk, template)
+    email_data = emails.collect_data_for_email(task.pk, template)
     email_context = email_data['context']
-    assert email_context['task'] == order
+    assert email_context['task'] == task
     assert 'schema_markup' in email_context
 
 
@@ -45,9 +45,9 @@ def test_collect_data_for_fullfillment_email(fulfilled_order):
         for key, item in email_data['context'].items()])
 
 
-def test_collect_data_for_email(order):
+def test_collect_data_for_email(task):
     template = emails.CONFIRM_PAYMENT_TEMPLATE
-    email_data = emails.collect_data_for_email(order.pk, template)
+    email_data = emails.collect_data_for_email(task.pk, template)
     email_context = email_data['context']
     # Those properties should be present only for task confirmation email
     assert 'task' not in email_context
@@ -56,13 +56,13 @@ def test_collect_data_for_email(order):
 
 @pytest.mark.parametrize('send_email,template', [
     (emails.send_payment_confirmation, emails.CONFIRM_PAYMENT_TEMPLATE),
-    (emails.send_order_confirmation, emails.CONFIRM_ORDER_TEMPLATE)])
+    (emails.send_task_confirmation, emails.CONFIRM_ORDER_TEMPLATE)])
 @mock.patch('remote_works.task.emails.send_templated_mail')
-def test_send_emails(mocked_templated_email, order, template, send_email, settings):
-    send_email(order.pk)
-    email_data = emails.collect_data_for_email(order.pk, template)
+def test_send_emails(mocked_templated_email, task, template, send_email, settings):
+    send_email(task.pk)
+    email_data = emails.collect_data_for_email(task.pk, template)
 
-    recipients = [order.get_user_current_email()]
+    recipients = [task.get_user_current_email()]
 
     expected_call_kwargs = {
         'context': email_data['context'],
@@ -85,7 +85,7 @@ def test_send_fulfillment_emails(
         mocked_templated_email, template, send_email, fulfilled_order,
         settings):
     fulfillment = fulfilled_order.fulfillments.first()
-    send_email(order_pk=fulfilled_order.pk, fulfillment_pk=fulfillment.pk)
+    send_email(task_pk=fulfilled_order.pk, fulfillment_pk=fulfillment.pk)
     email_data = emails.collect_data_for_fullfillment_email(
         fulfilled_order.pk, template, fulfillment.pk)
 

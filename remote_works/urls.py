@@ -16,7 +16,7 @@ from .dashboard.urls import urlpatterns as dashboard_urls
 from .data_feeds.urls import urlpatterns as feed_urls
 from .graphql.api import schema
 from .graphql.views import GraphQLView
-from .task.urls import urlpatterns as order_urls
+from .task.urls import urlpatterns as task_urls
 from .page.urls import urlpatterns as page_urls
 from .skill.urls import urlpatterns as skill_urls
 from .search.urls import urlpatterns as search_urls
@@ -39,7 +39,7 @@ translatable_urlpatterns = [
     url(r'^checkout/',
         include((checkout_urls, 'checkout'), namespace='checkout')),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    url(r'^task/', include((order_urls, 'task'), namespace='task')),
+    url(r'^task/', include((task_urls, 'task'), namespace='task')),
     url(r'^page/', include((page_urls, 'page'), namespace='page')),
     url(r'^skills/',
         include((skill_urls, 'skill'), namespace='skill')),

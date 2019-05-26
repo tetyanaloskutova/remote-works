@@ -4,10 +4,10 @@ import graphene
 from django.utils.translation import npgettext_lazy, pgettext_lazy
 from graphql_jwt.decorators import permission_required
 
-from ....dashboard.task.utils import fulfill_order_line
+from ....dashboard.task.utils import fulfill_task_line
 from ....task import TaskEvents, TaskEventsEmails, models
 from ....task.emails import send_fulfillment_confirmation
-from ....task.utils import cancel_fulfillment, update_order_status
+from ....task.utils import cancel_fulfillment, update_task_status
 from ...core.mutations import BaseMutation
 from ...task.types import Fulfillment, Task
 from ..types import TaskLine
@@ -23,7 +23,7 @@ def send_fulfillment_confirmation_to_customer(task, fulfillment, user):
 
 
 class FulfillmentLineInput(graphene.InputObjectType):
-    order_line_id = graphene.ID(
+    task_line_id = graphene.ID(
         description='The ID of the task line.', name='orderLineId')
     quantity = graphene.Int(
         description='The number of line item(s) to be fulfiled.')
@@ -67,31 +67,31 @@ class FulfillmentCreate(BaseMutation):
         description = 'Creates a new fulfillment for an task.'
 
     @classmethod
-    def clean_lines(cls, order_lines, quantities, errors):
+    def clean_lines(cls, task_lines, quantities, errors):
         if errors:
             return errors
 
-        for order_line, quantity in zip(order_lines, quantities):
-            if quantity > order_line.quantity_unfulfilled:
+        for task_line, quantity in zip(task_lines, quantities):
+            if quantity > task_line.quantity_unfulfilled:
                 msg = npgettext_lazy(
                     'Fulfill task line mutation error',
                     'Only %(quantity)d item remaining to fulfill.',
                     'Only %(quantity)d items remaining to fulfill.',
                     number='quantity') % {
-                        'quantity': order_line.quantity_unfulfilled,
-                        'order_line': order_line}
-                cls.add_error(errors, order_line, msg)
+                        'quantity': task_line.quantity_unfulfilled,
+                        'task_line': task_line}
+                cls.add_error(errors, task_line, msg)
         return errors
 
     @classmethod
     def clean_input(cls, input, errors):
         lines = input['lines']
         quantities = [line['quantity'] for line in lines]
-        lines_ids = [line['order_line_id'] for line in lines]
-        order_lines = cls.get_nodes_or_error(
+        lines_ids = [line['task_line_id'] for line in lines]
+        task_lines = cls.get_nodes_or_error(
             lines_ids, errors, 'lines', TaskLine)
 
-        cls.clean_lines(order_lines, quantities, errors)
+        cls.clean_lines(task_lines, quantities, errors)
 
         if sum(quantities) <= 0:
             cls.add_error(
@@ -99,25 +99,25 @@ class FulfillmentCreate(BaseMutation):
 
         if errors:
             return cls(errors=errors)
-        input['order_lines'] = order_lines
+        input['task_lines'] = task_lines
         input['quantities'] = quantities
         return input
 
     @classmethod
     def save(cls, user, fulfillment, task, cleaned_input):
         fulfillment.save()
-        order_lines = cleaned_input.get('order_lines')
+        task_lines = cleaned_input.get('task_lines')
         quantities = cleaned_input.get('quantities')
         fulfillment_lines = []
-        for order_line, quantity in zip(order_lines, quantities):
-            fulfill_order_line(order_line, quantity)
+        for task_line, quantity in zip(task_lines, quantities):
+            fulfill_task_line(task_line, quantity)
             fulfillment_lines.append(
                 models.FulfillmentLine(
-                    order_line=order_line, fulfillment=fulfillment,
+                    task_line=task_line, fulfillment=fulfillment,
                     quantity=quantity))
 
         fulfillment.lines.bulk_create(fulfillment_lines)
-        update_order_status(task)
+        update_task_status(task)
         task.events.create(
             parameters={'quantity': sum(quantities)},
             type=TaskEvents.FULFILLMENT_FULFILLED_ITEMS.value,

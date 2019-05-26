@@ -648,18 +648,18 @@ def _get_delivery_voucher_discount_for_cart(voucher, cart):
         voucher, cart.get_subtotal(), delivery_method.get_total())
 
 
-def _get_skills_voucher_discount(order_or_cart, voucher):
+def _get_skills_voucher_discount(task_or_cart, voucher):
     """Calculate skills discount value for a voucher, depending on its type.
     """
     if voucher.type == VoucherType.SKILL:
         prices = get_prices_of_discounted_skills(
-            order_or_cart.lines.all(), voucher.skills.all())
+            task_or_cart.lines.all(), voucher.skills.all())
     elif voucher.type == VoucherType.COLLECTION:
         prices = get_prices_of_skills_in_discounted_collections(
-            order_or_cart.lines.all(), voucher.collections.all())
+            task_or_cart.lines.all(), voucher.collections.all())
     elif voucher.type == VoucherType.CATEGORY:
         prices = get_prices_of_skills_in_discounted_categories(
-            order_or_cart.lines.all(), voucher.categories.all())
+            task_or_cart.lines.all(), voucher.categories.all())
     if not prices:
         msg = pgettext(
             'Voucher not applicable',
@@ -859,16 +859,16 @@ def create_order(cart: Cart, tracking_code: str, discounts, taxes):
     if task is not None:
         return task
 
-    order_data = {}
-    order_data.update(_process_voucher_data_for_order(cart))
-    order_data.update(_process_delivery_data_for_order(cart, taxes))
-    order_data.update(_process_user_data_for_order(cart))
-    order_data.update({
+    task_data = {}
+    task_data.update(_process_voucher_data_for_order(cart))
+    task_data.update(_process_delivery_data_for_order(cart, taxes))
+    task_data.update(_process_user_data_for_order(cart))
+    task_data.update({
         'language_code': get_language(),
         'tracking_client_id': tracking_code,
         'total': cart.get_total(discounts, taxes)})
 
-    task = Task.objects.create(**order_data, checkout_token=cart.token)
+    task = Task.objects.create(**task_data, checkout_token=cart.token)
 
     # create task lines from cart lines
     for line in cart:

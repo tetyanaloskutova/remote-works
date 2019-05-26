@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^%s/checkout-success/$' % (TOKEN_PATTERN,),
         views.checkout_success, name='checkout-success'),
     url(r'^%s/attach/$' % (TOKEN_PATTERN,),
-        views.connect_order_with_user, name='connect-task-with-user'),
+        views.connect_task_with_user, name='connect-task-with-user'),
 ]

@@ -1,4 +1,4 @@
-{% extends "order/payment/details.html" %}
+{% extends "task/payment/details.html" %}
 {% load i18n %}
 
 {% block forms %}
@@ -7,7 +7,7 @@
     {{ form.media }}
     {{ form }}
     {% if form.errors %}
-      <a class="btn" href="{% url "order:details" token=payment.order.token %}">
+      <a class="btn" href="{% url "task:details" token=payment.task.token %}">
         {% trans "Change payment" context "Payment form (Razorpay) secondary action" %}
       </a>
     {% endif %}

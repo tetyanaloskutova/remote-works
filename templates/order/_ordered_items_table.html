@@ -5,10 +5,10 @@
 {% load price from taxed_prices %}
 {% load get_skill_image_thumbnail from skill_images %}
 
-{% if order.user == user %}
-  <div class="order-details__addresses">
+{% if task.user == user %}
+  <div class="task-details__addresses">
     <div class="row">
-      {% if order.is_delivery_required %}
+      {% if task.is_delivery_required %}
         <div class="col-6">
           <h3>
             <b>
@@ -16,7 +16,7 @@
             </b>
           </h3>
           <hr class="margin-default" />
-          {% format_address order.delivery_address %}
+          {% format_address task.delivery_address %}
         </div>
       {% endif %}
       <div class="col-6">
@@ -26,12 +26,12 @@
           </b>
         </h3>
         <hr class="margin-default" />
-        {% format_address order.billing_address %}
+        {% format_address task.billing_address %}
       </div>
     </div>
   </div>
 {% endif %}
-<div class="table__header order-details__table-header d-none d-sm-block">
+<div class="table__header task-details__table-header d-none d-sm-block">
   <div class="row">
     <div class="col-md-8">
       <small>
@@ -51,10 +51,10 @@
   </div>
 </div>
 
-{% for line in order %}
-  <div class="table__row order-details__skill{% if forloop.last %} order-details__last-row{% endif %}">
+{% for line in task %}
+  <div class="table__row task-details__skill{% if forloop.last %} task-details__last-row{% endif %}">
     <div class="row">
-      <div class="col-md-8 order-details__skill__description">
+      <div class="col-md-8 task-details__skill__description">
         {% if line.variant %}
           <a class="link--clean" href="{{ line.variant.get_absolute_url }}">
             <img data-src="{% get_skill_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %}"
@@ -68,7 +68,7 @@
           <span>{{ line.translated_skill_name|default:line.skill_name }}</span>
         {% endif %}
       </div>
-      <div class="col-md-4 order-details__skill__description">
+      <div class="col-md-4 task-details__skill__description">
         <div class="row">
           <div class="col-md-6 col-12">
             <p class="text-right">
@@ -79,7 +79,7 @@
           </div>
           <div class="col-md-6 col-12">
             <p class="text-right">
-              {% price line.get_total display_gross=order.display_gross_prices %}
+              {% price line.get_total display_gross=task.display_gross_prices %}
             </p>
           </div>
         </div>
@@ -90,46 +90,46 @@
 
 <div class="table__row">
   <div class="row">
-    <div class="col-8 order-details__table-footer">
+    <div class="col-8 task-details__table-footer">
       <p>
         {% trans "Subtotal" context "Task details subtotal row text" %}
       </p>
     </div>
     <div class="col-4">
       <p class="float-right">
-        {% price order.get_subtotal display_gross=order.display_gross_prices %}
+        {% price task.get_subtotal display_gross=task.display_gross_prices %}
       </p>
       <br>
     </div>
   </div>
 </div>
 
-{% if order.is_delivery_required %}
+{% if task.is_delivery_required %}
   <div class="table__row">
     <div class="row">
-      <div class="col-8 order-details__table-footer">
+      <div class="col-8 task-details__table-footer">
         <p>
-          {% trans "Delivery" context "Task details shipment row text" %} ({{ order.delivery_method_name|default:"-" }})
+          {% trans "Delivery" context "Task details shipment row text" %} ({{ task.delivery_method_name|default:"-" }})
         </p>
       </div>
       <div class="col-4">
         <p class="float-right">
-          {% price order.delivery_price display_gross=order.display_gross_prices %}
+          {% price task.delivery_price display_gross=task.display_gross_prices %}
         </p>
       </div>
     </div>
   </div>
 {% endif %}
 
-{% if order.discount_amount %}
+{% if task.discount_amount %}
 <div class="table__row">
   <div class="row">
-    <div class="col-8 order-details__table-footer">
-      <p>{{ order.translated_discount_name|default:order.discount_name }}</p>
+    <div class="col-8 task-details__table-footer">
+      <p>{{ task.translated_discount_name|default:task.discount_name }}</p>
     </div>
     <div class="col-4">
       <p class="float-right">
-        {% discount_as_negative order.discount_amount html=True %}
+        {% discount_as_negative task.discount_amount html=True %}
       </p>
     </div>
   </div>
@@ -138,9 +138,9 @@
 
 <div class="table__row">
   <div class="row">
-    <div class="col-8 order-details__table-footer">
+    <div class="col-8 task-details__table-footer">
       <p>
-        {% if order.display_gross_prices %}
+        {% if task.display_gross_prices %}
           {% trans "Taxes (included)" context "Task details taxes text" %}
         {% else %}
           {% trans "Taxes" context "Task details taxes text" %}
@@ -148,21 +148,21 @@
       </p>
     </div>
     <div class="col-4">
-      <p class="float-right">{% price order.total.tax %}</p>
+      <p class="float-right">{% price task.total.tax %}</p>
     </div>
   </div>
 </div>
 
-<div class="order-details__total">
+<div class="task-details__total">
   <div class="row">
-    <div class="col-8 order-details__table-footer">
+    <div class="col-8 task-details__table-footer">
       <div class="total">
         <h3>{% trans "Total" context "Task details total text" %}</h3>
       </div>
     </div>
     <div class="col-4">
       <p class="float-right">
-        {% price order.total.gross %}
+        {% price task.total.gross %}
       </p>
     </div>
   </div>
@@ -170,13 +170,13 @@
 
 
 {% for fulfillment in fulfillments %}
-  <h2 class="order-details__header">
+  <h2 class="task-details__header">
     {% blocktrans trimmed with fulfillment=fulfillment.composed_id context "Task details fulfillment title" %}
       Fulfillment #{{ fulfillment }}
     {% endblocktrans %}
   </h2>
 
-  <div class="table__header order-details__table-header d-none d-sm-block">
+  <div class="table__header task-details__table-header d-none d-sm-block">
     <div class="row">
       <div class="col-md-9">
         <small>
@@ -191,16 +191,16 @@
     </div>
   </div>
   {% for fulfillment_line in fulfillment %}
-    <div class="table__row fulfillment__row order-details__skill{% if forloop.last %} order-details__last-row{% endif %}">
+    <div class="table__row fulfillment__row task-details__skill{% if forloop.last %} task-details__last-row{% endif %}">
       <div class="row">
-        <div class="col-md-6 col-9 order-details__skill__description">
-          {% with variant=fulfillment_line.order_line.variant %}
+        <div class="col-md-6 col-9 task-details__skill__description">
+          {% with variant=fulfillment_line.task_line.variant %}
             {% if variant %}
               <a class="link--clean" href="{{ variant.get_absolute_url }}">
-                <span>{{ fulfillment_line.order_line.translated_skill_name|default:fulfillment_line.order_line.skill_name }}</span>
+                <span>{{ fulfillment_line.task_line.translated_skill_name|default:fulfillment_line.task_line.skill_name }}</span>
               </a>
             {% else %}
-              <span>{{ fulfillment_line.order_line.translated_skill_name|default:fulfillment_line.order_line.skill_name }}</span>
+              <span>{{ fulfillment_line.task_line.translated_skill_name|default:fulfillment_line.task_line.skill_name }}</span>
             {% endif %}
           {% endwith %}
         </div>
@@ -211,9 +211,9 @@
     </div>
   {% endfor %}
   {% if fulfillment.tracking_number %}
-    <div class="order-details__total">
+    <div class="task-details__total">
       <div class="row">
-        <div class="col-4 order-details__table-footer">
+        <div class="col-4 task-details__table-footer">
           <p>{% trans "Tracking number" context "Fulfillment tracking number details" %}</p>
         </div>
         <div class="col-8">

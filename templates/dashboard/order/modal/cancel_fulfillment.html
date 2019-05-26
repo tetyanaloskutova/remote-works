@@ -4,7 +4,7 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:fulfillment-cancel' order_pk=order.pk fulfillment_pk=fulfillment.pk %}
+{% url 'dashboard:fulfillment-cancel' task_pk=task.pk fulfillment_pk=fulfillment.pk %}
 {% endblock %}
 
 {% block title %}

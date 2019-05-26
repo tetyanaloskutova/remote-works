@@ -200,7 +200,7 @@ def menu_item_details(request, menu_pk, item_pk):
 
 @staff_member_required
 @permission_required('menu.manage_menus')
-def ajax_reorder_menu_items(request, menu_pk, root_pk=None):
+def ajax_retask_menu_items(request, menu_pk, root_pk=None):
     menu = get_object_or_404(Menu, pk=menu_pk)
     if root_pk:
         root = get_object_or_404(MenuItem, pk=root_pk)

@@ -90,8 +90,8 @@
       </div>
 
       <div class="card">
-        <div class="data-table-header{% if not customer_orders %} data-table-header--no-data{% endif %}">
-          <h5 class="data-table-title {% if not customer_orders %} data-table-title--no-data{% endif %}">
+        <div class="data-table-header{% if not customer_tasks %} data-table-header--no-data{% endif %}">
+          <h5 class="data-table-title {% if not customer_tasks %} data-table-title--no-data{% endif %}">
             {% trans "Skills" context "Skills table title" %}
           </h5>
         </div>
@@ -138,12 +138,12 @@
       </div>
 
       <div class="card">
-        <div class="data-table-header{% if not customer_orders %} data-table-header--no-data{% endif %}">
-          <h5 class="data-table-title {% if not customer_orders %} data-table-title--no-data{% endif %}">
+        <div class="data-table-header{% if not customer_tasks %} data-table-header--no-data{% endif %}">
+          <h5 class="data-table-title {% if not customer_tasks %} data-table-title--no-data{% endif %}">
             {% trans "Tasks" context "Skills table title" %}
           </h5>
         </div>
-        {% if customer_orders %}
+        {% if customer_tasks %}
           <div class="data-table-container">
             <table class="bordered highlight responsive data-table">
               <thead>
@@ -163,19 +163,19 @@
                 </tr>
               </thead>
               <tbody>
-                {% for order in customer_orders %}
-                  <tr data-action-go="{% if perms.order.manage_orders %}{% url 'dashboard:order-details' order_pk=order.pk %}{% endif %}">
+                {% for task in customer_tasks %}
+                  <tr data-action-go="{% if perms.task.manage_tasks %}{% url 'dashboard:task-details' task_pk=task.pk %}{% endif %}">
                     <td>
-                      {{ order }}
+                      {{ task }}
                     </td>
                     <td>
-                      {{ order.created }}
+                      {{ task.created }}
                     </td>
                     <td>
-                      {% render_task_status order.status order.get_status_display %}
+                      {% render_task_status task.status task.get_status_display %}
                     </td>
                     <td class="right-align">
-                      {% price order.total.gross %}
+                      {% price task.total.gross %}
                     </td>
                   </tr>
                 {% endfor %}

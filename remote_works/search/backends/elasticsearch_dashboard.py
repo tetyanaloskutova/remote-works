@@ -22,10 +22,10 @@ def _search_users(phrase):
 
 
 def _search_orders(phrase):
-    order_query = MultiMatch(
+    task_query = MultiMatch(
         fields=['user', 'first_name', 'last_name', 'discount_name'],
         query=phrase)
-    return TaskDocument.search().query(order_query).source(False)
+    return TaskDocument.search().query(task_query).source(False)
 
 
 def get_search_queries(phrase):

@@ -2,7 +2,7 @@ import graphene
 import graphene_django_optimizer as gql_optimizer
 
 from ...task import TaskEvents, TaskStatus, models
-from ...task.utils import sum_order_totals
+from ...task.utils import sum_task_totals
 from ..utils import filter_by_period, filter_by_query_param
 from .enums import TaskStatusFilter
 from .types import Task
@@ -37,7 +37,7 @@ def resolve_orders(info, created, status, query):
 def resolve_orders_total(info, period):
     qs = models.Task.objects.confirmed().exclude(status=TaskStatus.CANCELED)
     qs = filter_by_period(qs, period, 'created')
-    return sum_order_totals(qs)
+    return sum_task_totals(qs)
 
 
 def resolve_order(info, id):

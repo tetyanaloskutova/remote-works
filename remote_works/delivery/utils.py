@@ -25,9 +25,9 @@ def applicable_weight_based_methods(weight, qs):
     with given total weight.
     """
     qs = qs.weight_based()
-    min_weight_matched = Q(minimum_order_weight__lte=weight)
-    no_weight_limit = Q(maximum_order_weight__isnull=True)
-    max_weight_matched = Q(maximum_order_weight__gte=weight)
+    min_weight_matched = Q(minimum_task_weight__lte=weight)
+    no_weight_limit = Q(maximum_task_weight__isnull=True)
+    max_weight_matched = Q(maximum_task_weight__gte=weight)
     return qs.filter(
         min_weight_matched & (no_weight_limit | max_weight_matched))
 
@@ -37,9 +37,9 @@ def applicable_price_based_methods(price, qs):
     with given price total.
     """
     qs = qs.price_based()
-    min_price_matched = Q(minimum_order_price__lte=price)
-    no_price_limit = Q(maximum_order_price__isnull=True)
-    max_price_matched = Q(maximum_order_price__gte=price)
+    min_price_matched = Q(minimum_task_price__lte=price)
+    no_price_limit = Q(maximum_task_price__isnull=True)
+    max_price_matched = Q(maximum_task_price__gte=price)
     return qs.filter(
         min_price_matched & (no_price_limit | max_price_matched))
 

@@ -8,48 +8,48 @@
       <tfoot>
         <tr>
           <td colspan="3" style="text-align: right;">
-            {% trans "Subtotal" context "E-mail order lines summary table" %}
+            {% trans "Subtotal" context "E-mail task lines summary table" %}
           </td>
           <td style="text-align: right;">
-            {% price order.get_subtotal display_gross=order.display_gross_prices html=False %}
+            {% price task.get_subtotal display_gross=task.display_gross_prices html=False %}
           </td>
         </tr>
         <tr>
           <td colspan="3" style="text-align: right;">
-            {% trans "Delivery" context "E-mail order lines summary table" %}
+            {% trans "Delivery" context "E-mail task lines summary table" %}
           </td>
           <td style="text-align: right;">
-            {% price order.delivery_price display_gross=order.display_gross_prices html=False %}
+            {% price task.delivery_price display_gross=task.display_gross_prices html=False %}
           </td>
         </tr>
         <tr>
           <td colspan="3" style="text-align: right;">
-            {% if order.display_gross_prices %}
-              {% trans "Taxes (included)" context "E-mail order lines summary table" %}
+            {% if task.display_gross_prices %}
+              {% trans "Taxes (included)" context "E-mail task lines summary table" %}
             {% else %}
-              {% trans "Taxes" context "E-mail order lines summary table" %}
+              {% trans "Taxes" context "E-mail task lines summary table" %}
             {% endif %}
           </td>
           <td style="text-align: right;">
-            {% price order.total.tax html=False %}
+            {% price task.total.tax html=False %}
           </td>
         </tr>
-        {% if order.discount_amount %}
+        {% if task.discount_amount %}
           <tr>
             <td colspan="3" style="text-align: right;">
-              {% trans "Discount" context "E-mail order lines summary table" %}
+              {% trans "Discount" context "E-mail task lines summary table" %}
             </td>
             <td style="text-align: right;">
-              {% discount_as_negative order.discount_amount html=True %}
+              {% discount_as_negative task.discount_amount html=True %}
             </td>
           </tr>
         {% endif %}
         <tr>
           <td colspan="3" style="text-align: right;">
-            <strong>{% trans "Total" context "E-mail order lines summary table" %}</strong>
+            <strong>{% trans "Total" context "E-mail task lines summary table" %}</strong>
           </td>
           <td style="text-align: right;">
-            <strong>{% price order.total display_gross=order.display_gross_prices html=False %}</strong>
+            <strong>{% price task.total display_gross=task.display_gross_prices html=False %}</strong>
           </td>
         </tr>
       </tfoot>
@@ -62,14 +62,14 @@
         </tr>
       </thead>
       <tbody>
-        {% for line in order %}
+        {% for line in task %}
           <tr class="table-item-row">
             <td>{{ line.translated_skill_name|default:line.skill_name }}</td>
             <td style="text-align: right;">{{ line.quantity }}</td>
             <td style="text-align: right;">
-              {% price line.unit_price display_gross=order.display_gross_prices html=False %}
+              {% price line.unit_price display_gross=task.display_gross_prices html=False %}
             </td>
-            <td style="text-align: right;">{% price line.get_total display_gross=order.display_gross_prices html=False %}</td>
+            <td style="text-align: right;">{% price line.get_total display_gross=task.display_gross_prices html=False %}</td>
           </tr>
         {% endfor %}
       </tbody>

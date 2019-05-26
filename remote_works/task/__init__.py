@@ -52,7 +52,7 @@ class TaskEvents(Enum):
     OVERSOLD_ITEMS = 'oversold_items'
     ORDER_MARKED_AS_PAID = 'marked_as_paid'
     CANCELED = 'canceled'
-    ORDER_FULLY_PAID = 'order_paid'
+    ORDER_FULLY_PAID = 'task_paid'
     UPDATED = 'updated'
 
     EMAIL_SENT = 'email_sent'
@@ -74,7 +74,7 @@ class TaskEvents(Enum):
 class TaskEventsEmails(Enum):
     PAYMENT = 'payment_confirmation'
     DELIVERY = 'delivery_confirmation'
-    ORDER = 'order_confirmation'
+    ORDER = 'task_confirmation'
     FULFILLMENT = 'fulfillment_confirmation'
 
 
@@ -102,23 +102,23 @@ def get_money_from_params(amount):
     return Money(amount, settings.DEFAULT_CURRENCY)
 
 
-def display_order_event(order_event):
+def display_task_event(task_event):
     """This function is used to keep the  backwards compatibility
     with the old dashboard and new type of task events
     (storing enums instead of messages)
     """
-    event_type = order_event.type
-    params = order_event.parameters
+    event_type = task_event.type
+    params = task_event.parameters
     if event_type == TaskEvents.PLACED_FROM_DRAFT.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task created from draft task by %(user_name)s' % {
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.PAYMENT_VOIDED.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Payment was voided by %(user_name)s' % {
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.PAYMENT_REFUNDED.value:
         amount = get_money_from_params(params['amount'])
         return pgettext_lazy(
@@ -135,12 +135,12 @@ def display_order_event(order_event):
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task manually marked as paid by %(user_name)s' % {
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.CANCELED.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task was canceled by %(user_name)s' % {
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value:
         return npgettext_lazy(
             'Dashboard message related to an task',
@@ -152,13 +152,13 @@ def display_order_event(order_event):
             'Dashboard message related to an task',
             '%(user_name)s added note: %(note)s' % {
                 'note': params['message'],
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.FULFILLMENT_CANCELED.value:
         return pgettext_lazy(
             'Dashboard message',
             'Fulfillment #%(fulfillment)s canceled by %(user_name)s') % {
                 'fulfillment': params['composed_id'],
-                'user_name': order_event.user}
+                'user_name': task_event.user}
     if event_type == TaskEvents.FULFILLMENT_FULFILLED_ITEMS.value:
         return npgettext_lazy(
             'Dashboard message related to an task',
@@ -185,7 +185,7 @@ def display_order_event(order_event):
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task details were updated by %(user_name)s' % {
-                'user_name': order_event.user})
+                'user_name': task_event.user})
     if event_type == TaskEvents.TRACKING_UPDATED.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
@@ -193,7 +193,7 @@ def display_order_event(order_event):
             ' %(tracking_number)s by %(user_name)s') % {
                 'fulfillment': params['composed_id'],
                 'tracking_number': params['tracking_number'],
-                'user_name': order_event.user}
+                'user_name': task_event.user}
     if event_type == TaskEvents.OVERSOLD_ITEMS.value:
         return npgettext_lazy(
             'Dashboard message related to an task',
@@ -203,5 +203,5 @@ def display_order_event(order_event):
                 'quantity': len(params['oversold_items'])}
 
     if event_type == TaskEvents.OTHER.value:
-        return order_event.parameters['message']
+        return task_event.parameters['message']
     raise ValueError('Not supported event type: %s' % (event_type))

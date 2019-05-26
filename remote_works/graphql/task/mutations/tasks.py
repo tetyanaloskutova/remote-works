@@ -7,8 +7,8 @@ from ....task import TaskEvents, models
 from ....task.utils import cancel_order
 from ....payment import CustomPaymentChoices, PaymentError
 from ....payment.utils import (
-    clean_mark_order_as_paid, gateway_capture, gateway_refund, gateway_void,
-    mark_order_as_paid)
+    clean_mark_task_as_paid, gateway_capture, gateway_refund, gateway_void,
+    mark_task_as_paid)
 from ....delivery.models import DeliveryMethod as DeliveryMethodModel
 from ...account.types import AddressInput
 from ...core.mutations import BaseMutation
@@ -19,7 +19,7 @@ from ...task.types import Task, TaskEvent
 from ...delivery.types import DeliveryMethod
 
 
-def clean_order_update_delivery(task, method, errors):
+def clean_task_update_delivery(task, method, errors):
     if not method:
         return errors
     if not task.delivery_address:
@@ -44,7 +44,7 @@ def clean_order_update_delivery(task, method, errors):
     return errors
 
 
-def clean_order_cancel(task, errors):
+def clean_task_cancel(task, errors):
     if task and not task.can_cancel():
         errors.append(
             Error(
@@ -53,7 +53,7 @@ def clean_order_cancel(task, errors):
     return errors
 
 
-def clean_order_capture(payment, amount, errors):
+def clean_task_capture(payment, amount, errors):
     if not payment:
         errors.append(
             Error(
@@ -163,7 +163,7 @@ class TaskUpdateDelivery(BaseMutation):
         method = cls.get_node_or_error(
             info, input['delivery_method'], errors,
             'delivery_method', DeliveryMethod)
-        clean_order_update_delivery(task, method, errors)
+        clean_task_update_delivery(task, method, errors)
         if errors:
             return TaskUpdateDelivery(errors=errors)
 
@@ -230,7 +230,7 @@ class TaskCancel(BaseMutation):
     def mutate(cls, root, info, id, restock):
         errors = []
         task = cls.get_node_or_error(info, id, errors, 'id', Task)
-        clean_order_cancel(task, errors)
+        clean_task_cancel(task, errors)
         if errors:
             return TaskCancel(errors=errors)
 
@@ -264,12 +264,12 @@ class TaskMarkAsPaid(BaseMutation):
         task = cls.get_node_or_error(info, id, errors, 'id', Task)
         if task is not None:
             try:
-                clean_mark_order_as_paid(task)
+                clean_mark_task_as_paid(task)
             except PaymentError as e:
                 errors.append(Error(field='payment', message=str(e)))
         if errors:
             return TaskMarkAsPaid(errors=errors)
-        mark_order_as_paid(task, info.context.user)
+        mark_task_as_paid(task, info.context.user)
         return TaskMarkAsPaid(task=task)
 
 
@@ -295,7 +295,7 @@ class TaskCapture(BaseMutation):
 
         task = cls.get_node_or_error(info, id, errors, 'id', Task)
         payment = task.get_last_payment()
-        clean_order_capture(payment, amount, errors)
+        clean_task_capture(payment, amount, errors)
 
         try:
             gateway_capture(payment, amount)

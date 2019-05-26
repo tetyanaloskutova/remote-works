@@ -4,17 +4,17 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:create-order-from-draft' order_pk=order.pk %}
+{% url 'dashboard:create-task-from-draft' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
-{% trans "Create order" context "Modal create order title" %}
+{% trans "Create task" context "Modal create task title" %}
 {% endblock %}
 
 {% block content %}
   <div class="col s12">
-    {% blocktrans trimmed with order=order context "Modal create order text" %}
-      Are you sure you want create order {{ order }}? Once the order has been created, you will not be able to make changes.
+    {% blocktrans trimmed with task=task context "Modal create task text" %}
+      Are you sure you want create task {{ task }}? Once the task has been created, you will not be able to make changes.
     {% endblocktrans %}
     {% if form.notify_customer %}
       {{ form.notify_customer|materializecss }}
@@ -23,5 +23,5 @@
 {% endblock %}
 
 {% block primary_action %}
-{% trans "Create" context "Modal create order primary action" %}
+{% trans "Create" context "Modal create task primary action" %}
 {% endblock %}

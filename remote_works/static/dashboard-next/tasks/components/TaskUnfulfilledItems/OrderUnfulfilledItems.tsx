@@ -16,7 +16,7 @@ import StatusLabel from "../../../components/StatusLabel";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { TaskDetails_order_lines } from "../../types/TaskDetails";
+import { TaskDetails_task_lines } from "../../types/TaskDetails";
 
 const styles = createStyles({
   clickableRow: {
@@ -35,7 +35,7 @@ const styles = createStyles({
 
 interface TaskUnfulfilledItemsProps extends WithStyles<typeof styles> {
   canFulfill: boolean;
-  lines: TaskDetails_order_lines[];
+  lines: TaskDetails_task_lines[];
   onFulfill: () => void;
 }
 

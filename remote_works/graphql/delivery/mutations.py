@@ -14,16 +14,16 @@ class DeliveryPriceInput(graphene.InputObjectType):
     name = graphene.String(
         description='Name of the delivery method. Visible to customers')
     price = Decimal(description='Delivery price of the delivery method.')
-    minimum_order_price = Decimal(
+    minimum_task_price = Decimal(
         description='Minimum task price to use this delivery method',
         required=False)
-    maximum_order_price = Decimal(
+    maximum_task_price = Decimal(
         description='Maximum task price to use this delivery method',
         required=False)
-    minimum_order_weight = WeightScalar(
+    minimum_task_weight = WeightScalar(
         description='Minimum task weight to use this delivery method',
         required=False)
-    maximum_order_weight = WeightScalar(
+    maximum_task_weight = WeightScalar(
         description='Maximum task weight to use this delivery method',
         required=False)
     type = DeliveryMethodTypeEnum(
@@ -124,28 +124,28 @@ class DeliveryPriceMixin:
             return cleaned_input
 
         if type == DeliveryMethodTypeEnum.PRICE.value:
-            min_price = cleaned_input.get('minimum_order_price')
-            max_price = cleaned_input.get('maximum_order_price')
+            min_price = cleaned_input.get('minimum_task_price')
+            max_price = cleaned_input.get('maximum_task_price')
             if min_price is None:
                 cls.add_error(
-                    errors, 'minimum_order_price',
+                    errors, 'minimum_task_price',
                     'Minimum task price is required'
                     ' for Price Based delivery.')
             elif max_price is not None and max_price <= min_price:
                 cls.add_error(
-                    errors, 'maximum_order_price',
+                    errors, 'maximum_task_price',
                     'Maximum task price should be larger than the minimum.')
         else:
-            min_weight = cleaned_input.get('minimum_order_weight')
-            max_weight = cleaned_input.get('maximum_order_weight')
+            min_weight = cleaned_input.get('minimum_task_weight')
+            max_weight = cleaned_input.get('maximum_task_weight')
             if min_weight is None:
                 cls.add_error(
-                    errors, 'minimum_order_weight',
+                    errors, 'minimum_task_weight',
                     'Minimum task weight is required for'
                     ' Weight Based delivery.')
             elif max_weight is not None and max_weight <= min_weight:
                 cls.add_error(
-                    errors, 'maximum_order_weight',
+                    errors, 'maximum_task_weight',
                     'Maximum task weight should be larger than the minimum.')
         return cleaned_input
 

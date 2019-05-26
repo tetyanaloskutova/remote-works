@@ -811,7 +811,7 @@ def test_checkout_complete(
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount
     payment.currency = total.gross.currency
     payment.checkout = checkout
@@ -827,20 +827,20 @@ def test_checkout_complete(
     data = content['data']['checkoutComplete']
     assert not data['errors']
 
-    order_token = data['task']['token']
+    task_token = data['task']['token']
     assert Task.objects.count() == orders_count + 1
-    order = Task.objects.first()
-    assert order.token == order_token
-    assert order.total.gross == total.gross
+    task = Task.objects.first()
+    assert task.token == task_token
+    assert task.total.gross == total.gross
 
-    order_line = order.lines.first()
-    assert checkout_line_quantity == order_line.quantity
-    assert checkout_line_variant == order_line.variant
-    assert order.delivery_address == address
-    assert order.delivery_method == checkout.delivery_method
-    assert order.payments.exists()
-    order_payment = order.payments.first()
-    assert order_payment == payment
+    task_line = task.lines.first()
+    assert checkout_line_quantity == task_line.quantity
+    assert checkout_line_variant == task_line.variant
+    assert task.delivery_address == address
+    assert task.delivery_method == checkout.delivery_method
+    assert task.payments.exists()
+    task_payment = task.payments.first()
+    assert task_payment == payment
     assert payment.transactions.count() == 2
 
     # assert that the cart has been delated after checkout
@@ -893,7 +893,7 @@ def test_checkout_complete_insufficient_stock(
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount
     payment.currency = total.gross.currency
     payment.checkout = checkout
@@ -1096,7 +1096,7 @@ def test_ready_to_place_order(
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount
     payment.currency = total.gross.currency
     payment.checkout = checkout
@@ -1106,7 +1106,7 @@ def test_ready_to_place_order(
     assert not error
 
 
-def test_ready_to_place_order_no_delivery_method(cart_with_item, address):
+def test_ready_to_place_task_no_delivery_method(cart_with_item, address):
     checkout = cart_with_item
     checkout.delivery_address = address
     checkout.save()
@@ -1115,7 +1115,7 @@ def test_ready_to_place_order_no_delivery_method(cart_with_item, address):
     assert error == 'Delivery method is not set'
 
 
-def test_ready_to_place_order_no_delivery_address(
+def test_ready_to_place_task_no_delivery_address(
         cart_with_item, delivery_method):
     checkout = cart_with_item
     checkout.delivery_method = delivery_method
@@ -1125,7 +1125,7 @@ def test_ready_to_place_order_no_delivery_address(
     assert error == 'Delivery address is not set'
 
 
-def test_ready_to_place_order_invalid_delivery_method(
+def test_ready_to_place_task_invalid_delivery_method(
         cart_with_item, address, delivery_zone_without_countries):
     checkout = cart_with_item
     checkout.delivery_address = address
@@ -1137,7 +1137,7 @@ def test_ready_to_place_order_invalid_delivery_method(
     assert error == 'Delivery method is not valid for your delivery address'
 
 
-def test_ready_to_place_order_no_payment(
+def test_ready_to_place_task_no_payment(
         cart_with_item, delivery_method, address):
     checkout = cart_with_item
     checkout.delivery_address = address
@@ -1153,7 +1153,7 @@ def test_is_fully_paid(cart_with_item, payment_dummy):
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount
     payment.currency = total.gross.currency
     payment.checkout = checkout
@@ -1167,7 +1167,7 @@ def test_is_fully_paid_many_payments(cart_with_item, payment_dummy):
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount - 1
     payment.currency = total.gross.currency
     payment.checkout = checkout
@@ -1175,7 +1175,7 @@ def test_is_fully_paid_many_payments(cart_with_item, payment_dummy):
     payment2 = payment_dummy
     payment2.pk = None
     payment2.is_active = True
-    payment2.order = None
+    payment2.task = None
     payment2.total = 1
     payment2.currency = total.gross.currency
     payment2.checkout = checkout
@@ -1189,7 +1189,7 @@ def test_is_fully_paid_partially_paid(cart_with_item, payment_dummy):
     total = checkout.get_total()
     payment = payment_dummy
     payment.is_active = True
-    payment.order = None
+    payment.task = None
     payment.total = total.gross.amount - 1
     payment.currency = total.gross.currency
     payment.checkout = checkout

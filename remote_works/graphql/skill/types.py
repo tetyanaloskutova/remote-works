@@ -193,7 +193,7 @@ class SkillVariant(CountableDjangoObjectType):
     class Meta:
         description = dedent("""Represents a version of a skill such as
         different size or color.""")
-        exclude_fields = ['order_lines', 'variant_images', 'translations']
+        exclude_fields = ['task_lines', 'variant_images', 'translations']
         interfaces = [relay.Node]
         model = models.SkillVariant
 

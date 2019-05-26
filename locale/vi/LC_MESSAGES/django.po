@@ -4065,13 +4065,13 @@ msgstr ""
 #: templates/dashboard/task/pdf/base_pdf.html:34
 #, python-format
 msgctxt "Task PDF header"
-msgid "Task #%(order_id)s"
+msgid "Task #%(task_id)s"
 msgstr ""
 
 #: templates/dashboard/task/pdf/invoice.html:9
 #, python-format
 msgctxt "Invoice title"
-msgid "Invoice for Task #%(order_id)s"
+msgid "Invoice for Task #%(task_id)s"
 msgstr ""
 
 #: templates/dashboard/task/pdf/invoice.html:15
@@ -5002,7 +5002,7 @@ msgstr ""
 #: templates/dashboard/search/results.html:54
 #, python-format
 msgctxt "Dashboard task"
-msgid "Task #%(order_number)s"
+msgid "Task #%(task_number)s"
 msgstr ""
 
 #: templates/dashboard/search/results.html:60
@@ -5755,7 +5755,7 @@ msgstr ""
 #: templates/task/checkout_success_anonymous.html:16
 #, python-format
 msgctxt "Checkout title"
-msgid "Thank you for your <a href=\"%(order_url)s\">task</a>!"
+msgid "Thank you for your <a href=\"%(task_url)s\">task</a>!"
 msgstr ""
 
 #: templates/task/checkout_success.html:20
@@ -5811,7 +5811,7 @@ msgstr "Đặt hàng %(task)s"
 #: templates/task/details.html:49
 #, python-format
 msgctxt "Task detail text"
-msgid "Task %(task)s: %(payment_status)s & %(order_status)s"
+msgid "Task %(task)s: %(payment_status)s & %(task_status)s"
 msgstr ""
 
 #: templates/task/details.html:56
@@ -6175,7 +6175,7 @@ msgctxt "Task confirmation e-mail text"
 msgid ""
 "\n"
 "Thank you for your task. Below is the list of ordered products. To see your payment details please visit:\n"
-"%(order_details_url)s"
+"%(task_details_url)s"
 msgstr ""
 
 #: templates/templated_email/task/confirm_order.email:17
@@ -6242,7 +6242,7 @@ msgctxt "Payment confirmation email text"
 msgid ""
 "\n"
 "Thank you for your payment. To see your payment details please visit:\n"
-"%(order_details_url)s\n"
+"%(task_details_url)s\n"
 msgstr ""
 
 #: templates/templated_email/task/update_fulfillment.email:4
@@ -6313,7 +6313,7 @@ msgctxt "Task confirmation e-mail text"
 msgid ""
 "Thank you for your task. Below is the list of ordered products. To see your"
 " payment details please visit: <a "
-"href=\"%(order_details_url)s\">%(order_details_url)s</a>"
+"href=\"%(task_details_url)s\">%(task_details_url)s</a>"
 msgstr ""
 
 #: templates/templated_email/source/confirm_payment.mjml:16
@@ -6321,55 +6321,55 @@ msgstr ""
 msgctxt "Payment confirmation e-mail text"
 msgid ""
 "Thank you for your payment. To see your payment details please visit: <a "
-"href=\"%(order_details_url)s\">%(order_details_url)s</a>"
+"href=\"%(task_details_url)s\">%(task_details_url)s</a>"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:11
+#: templates/templated_email/source/partials/_task_lines.mjml:11
 msgctxt "E-mail task lines summary table"
 msgid "Subtotal"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:19
+#: templates/templated_email/source/partials/_task_lines.mjml:19
 msgctxt "E-mail task lines summary table"
 msgid "Delivery"
 msgstr "Vận chuyển"
 
-#: templates/templated_email/source/partials/_order_lines.mjml:28
+#: templates/templated_email/source/partials/_task_lines.mjml:28
 msgctxt "E-mail task lines summary table"
 msgid "Taxes (included)"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:30
+#: templates/templated_email/source/partials/_task_lines.mjml:30
 msgctxt "E-mail task lines summary table"
 msgid "Taxes"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:40
+#: templates/templated_email/source/partials/_task_lines.mjml:40
 msgctxt "E-mail task lines summary table"
 msgid "Discount"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:49
+#: templates/templated_email/source/partials/_task_lines.mjml:49
 msgctxt "E-mail task lines summary table"
 msgid "Total"
 msgstr "Tổng"
 
-#: templates/templated_email/source/partials/_order_lines.mjml:58
+#: templates/templated_email/source/partials/_task_lines.mjml:58
 msgctxt "Tasked item name"
 msgid "Item"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:59
+#: templates/templated_email/source/partials/_task_lines.mjml:59
 msgctxt "Quantity ordered of a product"
 msgid "Quantity"
 msgstr "Số lượng"
 
-#: templates/templated_email/source/partials/_order_lines.mjml:60
+#: templates/templated_email/source/partials/_task_lines.mjml:60
 msgctxt "Unit price of a product"
 msgid "Per unit"
 msgstr ""
 
-#: templates/templated_email/source/partials/_order_lines.mjml:61
+#: templates/templated_email/source/partials/_task_lines.mjml:61
 msgctxt "Tasked item subtotal (unit price * quantity)"
 msgid "Subtotal"
 msgstr ""

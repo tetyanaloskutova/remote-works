@@ -13,12 +13,12 @@ export interface TaskAddNote_orderAddNote_errors {
   message: string | null;
 }
 
-export interface TaskAddNote_orderAddNote_order_events_user {
+export interface TaskAddNote_orderAddNote_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskAddNote_orderAddNote_order_events {
+export interface TaskAddNote_orderAddNote_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -28,13 +28,13 @@ export interface TaskAddNote_orderAddNote_order_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskAddNote_orderAddNote_order_events_user | null;
+  user: TaskAddNote_orderAddNote_task_events_user | null;
 }
 
 export interface TaskAddNote_orderAddNote_order {
   __typename: "Task";
   id: string;
-  events: (TaskAddNote_orderAddNote_order_events | null)[] | null;
+  events: (TaskAddNote_orderAddNote_task_events | null)[] | null;
 }
 
 export interface TaskAddNote_orderAddNote {

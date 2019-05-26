@@ -281,7 +281,7 @@ def test_staff_can_view_voucher_delete(
     assert response.status_code == 200
 
 
-def test_staff_can_view_order_list(
+def test_staff_can_view_task_list(
         staff_client, staff_user, permission_manage_orders):
     assert not staff_user.has_perm('task.manage_orders')
     response = staff_client.get(reverse('dashboard:tasks'))
@@ -293,59 +293,59 @@ def test_staff_can_view_order_list(
     assert response.status_code == 200
 
 
-def test_staff_can_view_order_details(
-        staff_client, staff_user, permission_manage_orders, order_with_lines):
+def test_staff_can_view_task_details(
+        staff_client, staff_user, permission_manage_orders, task_with_lines):
     assert not staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-details', args=[order_with_lines.pk]))
+        reverse('dashboard:task-details', args=[task_with_lines.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_orders)
     staff_user = User.objects.get(pk=staff_user.pk)
     assert staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-details', args=[order_with_lines.pk]))
+        reverse('dashboard:task-details', args=[task_with_lines.pk]))
     assert response.status_code == 200
 
 
-def test_staff_can_view_order_add_note(
-        staff_client, staff_user, permission_manage_orders, order):
+def test_staff_can_view_task_add_note(
+        staff_client, staff_user, permission_manage_orders, task):
     assert not staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-add-note', args=[order.pk]))
+        reverse('dashboard:task-add-note', args=[task.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_orders)
     staff_user = User.objects.get(pk=staff_user.pk)
     assert staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-add-note', args=[order.pk]))
+        reverse('dashboard:task-add-note', args=[task.pk]))
     assert response.status_code == 200
 
 
 def test_staff_can_view_cancel_order(
-        staff_client, staff_user, permission_manage_orders, order):
+        staff_client, staff_user, permission_manage_orders, task):
     assert not staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-cancel', args=[order.pk]))
+        reverse('dashboard:task-cancel', args=[task.pk]))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_orders)
     staff_user = User.objects.get(pk=staff_user.pk)
     assert staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:task-cancel', args=[order.pk]))
+        reverse('dashboard:task-cancel', args=[task.pk]))
     assert response.status_code == 200
 
 
 def test_staff_can_view_billing_address_edit(
-        staff_client, staff_user, permission_manage_orders, order):
+        staff_client, staff_user, permission_manage_orders, task):
     assert not staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:address-edit', args=[order.pk, 'billing']))
+        reverse('dashboard:address-edit', args=[task.pk, 'billing']))
     assert response.status_code == 302
     staff_user.user_permissions.add(permission_manage_orders)
     staff_user = User.objects.get(pk=staff_user.pk)
     assert staff_user.has_perm('task.manage_orders')
     response = staff_client.get(
-        reverse('dashboard:address-edit', args=[order.pk, 'billing']))
+        reverse('dashboard:address-edit', args=[task.pk, 'billing']))
     assert response.status_code == 200
 
 
@@ -363,7 +363,7 @@ def test_staff_can_view_customers_list(
 
 def test_staff_can_view_customer_details(
         staff_client, staff_user, permission_manage_users, customer_user,
-        order_with_lines):
+        task_with_lines):
     assert not staff_user.has_perm('account.manage_users')
     response = staff_client.get(
         reverse('dashboard:customer-details', args=[customer_user.pk]))
@@ -375,7 +375,7 @@ def test_staff_can_view_customer_details(
         reverse('dashboard:customer-details', args=[customer_user.pk]))
     assert response.status_code == 200
     response = staff_client.get(
-        reverse('dashboard:task-details', args=[order_with_lines.pk]))
+        reverse('dashboard:task-details', args=[task_with_lines.pk]))
     assert response.status_code == 302
 
 

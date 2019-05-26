@@ -62,7 +62,7 @@ def create_payment_information(
         'delivery': (
             payment.task.delivery_address.as_data()
             if payment.task.delivery_address else None),
-        'order_id': payment.task.id,
+        'task_id': payment.task.id,
         'customer_ip_address': payment.customer_ip_address,
         'customer_email': payment.billing_email}
 
@@ -147,7 +147,7 @@ def create_payment(
 
 
 @transaction.atomic
-def mark_order_as_paid(task: Task, request_user: User):
+def mark_task_as_paid(task: Task, request_user: User):
     """Mark task as paid.
 
     Allows to create a payment for an task without actually performing any
@@ -227,7 +227,7 @@ def clean_authorize(payment: Payment):
         raise PaymentError('Charged transactions cannot be authorized again.')
 
 
-def clean_mark_order_as_paid(task: Task):
+def clean_mark_task_as_paid(task: Task):
     """Check if an task can be marked as paid."""
     if task.payments.exists():
         raise PaymentError(

@@ -40,10 +40,10 @@ def get_skill_data(line, organization):
     return skill_data
 
 
-def get_order_confirmation_markup(task):
+def get_task_confirmation_markup(task):
     """Generates schema.org markup for task confirmation e-mail message."""
     organization = get_organization()
-    order_url = build_absolute_uri(task.get_absolute_url())
+    task_url = build_absolute_uri(task.get_absolute_url())
     data = {
         '@context': 'http://schema.org',
         '@type': 'Task',
@@ -52,10 +52,10 @@ def get_order_confirmation_markup(task):
         'priceCurrency': task.total.gross.currency,
         'price': task.total.gross.amount,
         'acceptedOffer': [],
-        'url': order_url,
+        'url': task_url,
         'potentialAction': {
             '@type': 'ViewAction',
-            'url': order_url
+            'url': task_url
         },
         'orderStatus': 'http://schema.org/TaskProcessing',
         'orderDate': task.created}

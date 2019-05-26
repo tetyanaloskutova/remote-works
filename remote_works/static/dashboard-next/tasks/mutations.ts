@@ -191,10 +191,10 @@ export const TypedTaskCaptureMutation = TypedMutation<
 const orderCreateFulfillmentMutation = gql`
   ${fragmentTaskDetails}
   mutation TaskCreateFulfillment(
-    $order: ID!
+    $task: ID!
     $input: FulfillmentCreateInput!
   ) {
-    orderFulfillmentCreate(task: $order, input: $input) {
+    orderFulfillmentCreate(task: $task, input: $input) {
       errors {
         field
         message
@@ -253,8 +253,8 @@ export const TypedTaskFulfillmentCancelMutation = TypedMutation<
 
 const orderAddNoteMutation = gql`
   ${fragmentTaskEvent}
-  mutation TaskAddNote($order: ID!, $input: TaskAddNoteInput!) {
-    orderAddNote(task: $order, input: $input) {
+  mutation TaskAddNote($task: ID!, $input: TaskAddNoteInput!) {
+    orderAddNote(task: $task, input: $input) {
       errors {
         field
         message

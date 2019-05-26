@@ -5,10 +5,10 @@ import * as React from "react";
 import TaskCustomer, {
   TaskCustomerProps
 } from "../../../tasks/components/TaskCustomer";
-import { clients, order as orderFixture } from "../../../tasks/fixtures";
+import { clients, task as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const task = orderFixture("");
 
 const props: Omit<TaskCustomerProps, "classes"> = {
   canEditAddresses: false,
@@ -17,20 +17,20 @@ const props: Omit<TaskCustomerProps, "classes"> = {
   onBillingAddressEdit: undefined,
   onCustomerEdit: undefined,
   onDeliveryAddressEdit: undefined,
-  order,
+  task,
   users: clients
 };
 
 storiesOf("Tasks / TaskCustomer", module)
   .addDecorator(Decorator)
   .add("default", () => <TaskCustomer {...props} />)
-  .add("loading", () => <TaskCustomer {...props} order={undefined} />)
+  .add("loading", () => <TaskCustomer {...props} task={undefined} />)
   .add("with different addresses", () => (
     <TaskCustomer
       {...props}
-      order={{
-        ...order,
-        deliveryAddress: { ...order.deliveryAddress, id: "a2" }
+      task={{
+        ...task,
+        deliveryAddress: { ...task.deliveryAddress, id: "a2" }
       }}
     />
   ))

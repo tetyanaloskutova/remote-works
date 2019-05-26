@@ -34,18 +34,18 @@ CREATE_FULFILLMENT_QUERY = """
 
 
 def test_create_fulfillment(
-        staff_api_client, order_with_lines, staff_user,
+        staff_api_client, task_with_lines, staff_user,
         permission_manage_orders):
-    order = order_with_lines
+    task = task_with_lines
     query = CREATE_FULFILLMENT_QUERY
-    order_id = graphene.Node.to_global_id('Task', order.id)
-    order_line = order.lines.first()
-    order_line_id = graphene.Node.to_global_id('TaskLine', order_line.id)
+    task_id = graphene.Node.to_global_id('Task', task.id)
+    task_line = task.lines.first()
+    task_line_id = graphene.Node.to_global_id('TaskLine', task_line.id)
     tracking = 'Flames tracking'
-    assert not order.events.all()
+    assert not task.events.all()
     variables = {
-        'task': order_id,
-        'lines': [{'orderLineId': order_line_id, 'quantity': 1}],
+        'task': task_id,
+        'lines': [{'orderLineId': task_line_id, 'quantity': 1}],
         'tracking': tracking, 'notify': True}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
@@ -56,7 +56,7 @@ def test_create_fulfillment(
     assert data['trackingNumber'] == tracking
     assert len(data['lines']) == 1
 
-    event_fulfillment, event_email_sent = order.events.all()
+    event_fulfillment, event_email_sent = task.events.all()
     assert event_fulfillment.type == (
         TaskEvents.FULFILLMENT_FULFILLED_ITEMS.value)
     assert event_fulfillment.parameters == {'quantity': 1}
@@ -65,27 +65,27 @@ def test_create_fulfillment(
     assert event_email_sent.type == TaskEvents.EMAIL_SENT.value
     assert event_email_sent.user == staff_user
     assert event_email_sent.parameters == {
-        'email': order.user_email,
+        'email': task.user_email,
         'email_type': TaskEventsEmails.FULFILLMENT.value}
 
 
 def test_create_fulfillment_with_emtpy_quantity(
-        staff_api_client, order_with_lines, staff_user,
+        staff_api_client, task_with_lines, staff_user,
         permission_manage_orders):
-    order = order_with_lines
+    task = task_with_lines
     query = CREATE_FULFILLMENT_QUERY
-    order_id = graphene.Node.to_global_id('Task', order.id)
-    order_lines = order.lines.all()
-    order_line_ids = [
+    task_id = graphene.Node.to_global_id('Task', task.id)
+    task_lines = task.lines.all()
+    task_line_ids = [
         graphene.Node.to_global_id(
-            'TaskLine', order_line.id) for order_line in order_lines]
+            'TaskLine', task_line.id) for task_line in task_lines]
     tracking = 'Flames tracking'
-    assert not order.events.all()
+    assert not task.events.all()
     variables = {
-        'task': order_id,
+        'task': task_id,
         'lines': [{
-            'orderLineId': order_line_id,
-            'quantity': 1} for order_line_id in order_line_ids],
+            'orderLineId': task_line_id,
+            'quantity': 1} for task_line_id in task_line_ids],
         'tracking': tracking, 'notify': True}
     variables['lines'][0]['quantity'] = 0
     response = staff_api_client.post_graphql(
@@ -102,28 +102,28 @@ def test_create_fulfillment_with_emtpy_quantity(
         (0, 'Total quantity must be larger than 0.'),
         (100, 'Only 3 items remaining to fulfill.')))
 def test_create_fulfillment_not_sufficient_quantity(
-        staff_api_client, order_with_lines, staff_user, quantity,
+        staff_api_client, task_with_lines, staff_user, quantity,
         error_message, permission_manage_orders):
     query = CREATE_FULFILLMENT_QUERY
-    order_line = order_with_lines.lines.first()
-    order_line_id = graphene.Node.to_global_id('TaskLine', order_line.id)
+    task_line = task_with_lines.lines.first()
+    task_line_id = graphene.Node.to_global_id('TaskLine', task_line.id)
     variables = {
-        'task': graphene.Node.to_global_id('Task', order_with_lines.id),
-        'lines': [{'orderLineId': order_line_id, 'quantity': quantity}]}
+        'task': graphene.Node.to_global_id('Task', task_with_lines.id),
+        'lines': [{'orderLineId': task_line_id, 'quantity': quantity}]}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
     data = content['data']['orderFulfillmentCreate']
     assert data['errors']
-    assert data['errors'][0]['field'] in (str(order_line), 'lines')
+    assert data['errors'][0]['field'] in (str(task_line), 'lines')
     assert data['errors'][0]['message'] == error_message
 
 
 def test_create_fulfillment_with_invalid_input(
-        staff_api_client, order_with_lines, permission_manage_orders):
+        staff_api_client, task_with_lines, permission_manage_orders):
     query = CREATE_FULFILLMENT_QUERY
     variables = {
-        'task': graphene.Node.to_global_id('Task', order_with_lines.id),
+        'task': graphene.Node.to_global_id('Task', task_with_lines.id),
         'lines': [{'orderLineId': 'fake-orderline-id', 'quantity': 1}]}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
@@ -176,7 +176,7 @@ def test_cancel_fulfillment_restock_items(
     content = get_graphql_content(response)
     data = content['data']['orderFulfillmentCancel']['fulfillment']
     assert data['status'] == FulfillmentStatus.CANCELED.upper()
-    event_restocked_items = fulfillment.order.events.get()
+    event_restocked_items = fulfillment.task.events.get()
     assert event_restocked_items.type == (
         TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value)
     assert event_restocked_items.parameters == {
@@ -202,7 +202,7 @@ def test_cancel_fulfillment(
     content = get_graphql_content(response)
     data = content['data']['orderFulfillmentCancel']['fulfillment']
     assert data['status'] == FulfillmentStatus.CANCELED.upper()
-    event_cancel_fulfillment = fulfillment.order.events.get()
+    event_cancel_fulfillment = fulfillment.task.events.get()
     assert event_cancel_fulfillment.type == (
         TaskEvents.FULFILLMENT_CANCELED.value)
     assert event_cancel_fulfillment.parameters == {

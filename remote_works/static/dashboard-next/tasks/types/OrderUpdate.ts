@@ -13,18 +13,18 @@ export interface TaskUpdate_orderUpdate_errors {
   message: string | null;
 }
 
-export interface TaskUpdate_orderUpdate_order_billingAddress_country {
+export interface TaskUpdate_orderUpdate_task_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskUpdate_orderUpdate_order_billingAddress {
+export interface TaskUpdate_orderUpdate_task_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskUpdate_orderUpdate_order_billingAddress_country;
+  country: TaskUpdate_orderUpdate_task_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,18 +35,18 @@ export interface TaskUpdate_orderUpdate_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface TaskUpdate_orderUpdate_order_deliveryAddress_country {
+export interface TaskUpdate_orderUpdate_task_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskUpdate_orderUpdate_order_deliveryAddress {
+export interface TaskUpdate_orderUpdate_task_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskUpdate_orderUpdate_order_deliveryAddress_country;
+  country: TaskUpdate_orderUpdate_task_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -61,8 +61,8 @@ export interface TaskUpdate_orderUpdate_order {
   __typename: "Task";
   id: string;
   userEmail: string | null;
-  billingAddress: TaskUpdate_orderUpdate_order_billingAddress | null;
-  deliveryAddress: TaskUpdate_orderUpdate_order_deliveryAddress | null;
+  billingAddress: TaskUpdate_orderUpdate_task_billingAddress | null;
+  deliveryAddress: TaskUpdate_orderUpdate_task_deliveryAddress | null;
 }
 
 export interface TaskUpdate_orderUpdate {

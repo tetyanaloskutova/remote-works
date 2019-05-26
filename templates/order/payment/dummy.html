@@ -1,4 +1,4 @@
-{% extends "order/payment/details.html" %}
+{% extends "task/payment/details.html" %}
 {% load bootstrap_form from bootstrap4 %}
 {% load i18n %}
 
@@ -28,7 +28,7 @@
       </div>
     {% endfor %}
     {% if form.errors %}
-      <a class="btn" href="{% url "order:details" token=payment.order.token %}">
+      <a class="btn" href="{% url "task:details" token=payment.task.token %}">
         {% trans "Change payment" context "Payment form (Stripe) secondary action" %}
       </a>
     {% endif %}

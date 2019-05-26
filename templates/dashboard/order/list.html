@@ -10,13 +10,13 @@
 
 {% block body_class %}body-tasks{% endblock %}
 
-{% block menu_orders_class %}active{% endblock %}
+{% block menu_tasks_class %}active{% endblock %}
 
 {% block header_extra %}
   <div class="btn-fab-fixed">
-    <form method="POST" action="{% url "dashboard:order-create" %}">
+    <form method="POST" action="{% url "dashboard:task-create" %}">
     {% csrf_token %}
-      <label class="btn-fab-default waves-effect waves-light svg-submit-btn" title="{% trans "Add order" context "Task list add button text" %}">
+      <label class="btn-fab-default waves-effect waves-light svg-submit-btn" title="{% trans "Add task" context "Task list add button text" %}">
         <input type="submit" />
         <svg data-src="{% static "dashboard/images/add.svg" %}" />
       </label>
@@ -51,33 +51,33 @@
                   {% sorting_header 'payment_status' label %}
 
                   {% trans "Task status" context "Tasks table header" as label %}
-                  {% sorting_header 'order_status' label %}
+                  {% sorting_header 'task_status' label %}
 
                   {% trans "Total" context "Tasks table header" as label %}
                   {% sorting_header 'total' label %}
                 </tr>
               </thead>
               <tbody>
-                {% for order in tasks %}
-                  <tr data-action-go="{% url 'dashboard:order-details' order_pk=order.pk %}">
+                {% for task in tasks %}
+                  <tr data-action-go="{% url 'dashboard:task-details' task_pk=task.pk %}">
                     <td>
-                      #{{ order.id }}
+                      #{{ task.id }}
                     </td>
                     <td>
-                      {{ order.created }}
+                      {{ task.created }}
                     </td>
                     {% trans "Guest" context "Anonymous user account value" as guest %}
                     <td>
-                      {{ order.user|default:guest }}
+                      {{ task.user|default:guest }}
                     </td>
                     <td>
-                      {% render_status order.get_payment_status order.get_payment_status_display %}
+                      {% render_status task.get_payment_status task.get_payment_status_display %}
                     </td>
                     <td>
-                      {% render_task_status order.status order.get_status_display %}
+                      {% render_task_status task.status task.get_status_display %}
                     </td>
                     <td class="right-align">
-                      {% price order.total.gross %}
+                      {% price task.total.gross %}
                     </td>
                   </tr>
                 {% endfor %}
@@ -90,12 +90,12 @@
         </div>
       {% else %}
         {% if is_empty %}
-          {% include 'dashboard/order/zero_page.html' %}
+          {% include 'dashboard/task/zero_page.html' %}
         {% else %}
           <div class="col s12">
             <div class="not-found">
               <p class="grey-text">
-                {% trans "No tasks found." context "Empty order list message" %}
+                {% trans "No tasks found." context "Empty task list message" %}
               </p>
             </div>
           </div>

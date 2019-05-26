@@ -4,7 +4,7 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:orderline-change-quantity' order_pk=order.pk line_pk=object.pk %}
+{% url 'dashboard:orderline-change-quantity' task_pk=task.pk line_pk=object.pk %}
 {% endblock %}
 
 {% block title %}

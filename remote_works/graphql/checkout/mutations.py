@@ -14,7 +14,7 @@ from ...core.exceptions import InsufficientStock
 from ...core.utils.taxes import get_taxes_for_address
 from ...discount import models as voucher_model
 from ...task import TaskEvents, TaskEventsEmails
-from ...task.emails import send_order_confirmation
+from ...task.emails import send_task_confirmation
 from ...payment import PaymentError
 from ...payment.utils import gateway_process_payment
 from ...delivery.models import DeliveryMethod as DeliveryMethodModel
@@ -537,7 +537,7 @@ class CheckoutComplete(BaseMutation):
         # remove cart after checkout is created
         checkout.delete()
         task.events.create(type=TaskEvents.PLACED.value)
-        send_order_confirmation.delay(task.pk)
+        send_task_confirmation.delay(task.pk)
         task.events.create(
             type=TaskEvents.EMAIL_SENT.value,
             parameters={

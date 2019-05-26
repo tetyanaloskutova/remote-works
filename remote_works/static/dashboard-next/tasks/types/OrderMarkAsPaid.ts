@@ -13,18 +13,18 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_errors {
   message: string | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_billingAddress_country {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_billingAddress {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskMarkAsPaid_orderMarkAsPaid_order_billingAddress_country;
+  country: TaskMarkAsPaid_orderMarkAsPaid_task_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,12 +35,12 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_order_billingAddress {
   streetAddress2: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_events_user {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_events {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -50,28 +50,28 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_order_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskMarkAsPaid_orderMarkAsPaid_order_events_user | null;
+  user: TaskMarkAsPaid_orderMarkAsPaid_task_events_user | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_gross;
+  net: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_net;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -79,45 +79,45 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLi
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine | null;
+  orderLine: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines | null)[] | null;
+  lines: (TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines | null)[] | null;
   fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_net {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_gross;
-  net: TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_net;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice_gross;
+  net: TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice_net;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_lines {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -125,22 +125,22 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_order_lines {
   productSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice | null;
+  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryAddress_country {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryAddress {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskMarkAsPaid_orderMarkAsPaid_order_deliveryAddress_country;
+  country: TaskMarkAsPaid_orderMarkAsPaid_task_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,107 +151,107 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryAddress {
   streetAddress2: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryMethod {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_deliveryMethod {
   __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryPrice_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_deliveryPrice {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_order_deliveryPrice_gross;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_deliveryPrice_gross;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_subtotal_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_subtotal {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_subtotal {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_order_subtotal_gross;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_subtotal_gross;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_total_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_total_tax {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_total {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_total {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_order_total_gross;
-  tax: TaskMarkAsPaid_orderMarkAsPaid_order_total_tax;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_total_gross;
+  tax: TaskMarkAsPaid_orderMarkAsPaid_task_total_tax;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_totalAuthorized {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_totalCaptured {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_user {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_availableDeliveryMethods_price {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_order_availableDeliveryMethods {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_availableDeliveryMethods {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: TaskMarkAsPaid_orderMarkAsPaid_order_availableDeliveryMethods_price | null;
+  price: TaskMarkAsPaid_orderMarkAsPaid_task_availableDeliveryMethods_price | null;
 }
 
 export interface TaskMarkAsPaid_orderMarkAsPaid_order {
   __typename: "Task";
   id: string;
-  billingAddress: TaskMarkAsPaid_orderMarkAsPaid_order_billingAddress | null;
+  billingAddress: TaskMarkAsPaid_orderMarkAsPaid_task_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (TaskMarkAsPaid_orderMarkAsPaid_order_events | null)[] | null;
-  fulfillments: (TaskMarkAsPaid_orderMarkAsPaid_order_fulfillments | null)[];
-  lines: (TaskMarkAsPaid_orderMarkAsPaid_order_lines | null)[];
+  events: (TaskMarkAsPaid_orderMarkAsPaid_task_events | null)[] | null;
+  fulfillments: (TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments | null)[];
+  lines: (TaskMarkAsPaid_orderMarkAsPaid_task_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  deliveryAddress: TaskMarkAsPaid_orderMarkAsPaid_order_deliveryAddress | null;
-  deliveryMethod: TaskMarkAsPaid_orderMarkAsPaid_order_deliveryMethod | null;
+  deliveryAddress: TaskMarkAsPaid_orderMarkAsPaid_task_deliveryAddress | null;
+  deliveryMethod: TaskMarkAsPaid_orderMarkAsPaid_task_deliveryMethod | null;
   deliveryMethodName: string | null;
-  deliveryPrice: TaskMarkAsPaid_orderMarkAsPaid_order_deliveryPrice | null;
+  deliveryPrice: TaskMarkAsPaid_orderMarkAsPaid_task_deliveryPrice | null;
   status: TaskStatus;
-  subtotal: TaskMarkAsPaid_orderMarkAsPaid_order_subtotal | null;
-  total: TaskMarkAsPaid_orderMarkAsPaid_order_total | null;
+  subtotal: TaskMarkAsPaid_orderMarkAsPaid_task_subtotal | null;
+  total: TaskMarkAsPaid_orderMarkAsPaid_task_total | null;
   actions: (TaskAction | null)[];
-  totalAuthorized: TaskMarkAsPaid_orderMarkAsPaid_order_totalAuthorized | null;
-  totalCaptured: TaskMarkAsPaid_orderMarkAsPaid_order_totalCaptured | null;
-  user: TaskMarkAsPaid_orderMarkAsPaid_order_user | null;
+  totalAuthorized: TaskMarkAsPaid_orderMarkAsPaid_task_totalAuthorized | null;
+  totalCaptured: TaskMarkAsPaid_orderMarkAsPaid_task_totalCaptured | null;
+  user: TaskMarkAsPaid_orderMarkAsPaid_task_user | null;
   userEmail: string | null;
-  availableDeliveryMethods: (TaskMarkAsPaid_orderMarkAsPaid_order_availableDeliveryMethods | null)[] | null;
+  availableDeliveryMethods: (TaskMarkAsPaid_orderMarkAsPaid_task_availableDeliveryMethods | null)[] | null;
 }
 
 export interface TaskMarkAsPaid_orderMarkAsPaid {

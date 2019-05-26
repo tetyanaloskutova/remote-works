@@ -36,7 +36,7 @@ def _report(client_id, payloads, extra_headers=None, **extra_data):
             **extra_data)
 
 
-def get_order_payloads(task):
+def get_task_payloads(task):
     items = [
         ga.item(
             ol.skill_name, ol.unit_price.gross, quantity=ol.quantity,
@@ -48,7 +48,7 @@ def get_order_payloads(task):
 
 
 def report_order(client_id, task):
-    payloads = get_order_payloads(task)
+    payloads = get_task_payloads(task)
     _report(client_id, payloads)
 
 

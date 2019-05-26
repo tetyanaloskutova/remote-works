@@ -9,7 +9,7 @@ import TaskDraftPage, {
 import { clients, countries, draftTask } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const order = draftTask(placeholderImage);
+const task = draftTask(placeholderImage);
 
 const props: Omit<TaskDraftPageProps, "classes"> = {
   countries,
@@ -27,7 +27,7 @@ const props: Omit<TaskDraftPageProps, "classes"> = {
   onSkillClick: undefined,
   onDeliveryAddressEdit: undefined,
   onDeliveryMethodEdit: undefined,
-  order,
+  task,
   saveButtonBarState: "default",
   users: clients,
   usersLoading: false
@@ -37,8 +37,8 @@ storiesOf("Views / Tasks / Task draft", module)
   .addDecorator(Decorator)
   .add("default", () => <TaskDraftPage {...props} />)
   .add("loading", () => (
-    <TaskDraftPage {...props} disabled={true} order={undefined} />
+    <TaskDraftPage {...props} disabled={true} task={undefined} />
   ))
   .add("without lines", () => (
-    <TaskDraftPage {...props} order={{ ...order, lines: [] }} />
+    <TaskDraftPage {...props} task={{ ...task, lines: [] }} />
   ));

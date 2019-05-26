@@ -38,7 +38,7 @@ def index(request):
     payments = Payment.objects.filter(
         is_active=True, charge_status=ChargeStatus.NOT_CHARGED
     ).order_by('-created')
-    payments = payments.select_related('task', 'order__user')
+    payments = payments.select_related('task', 'task__user')
     low_stock = get_low_stock_skills()
     ctx = {'preauthorized_payments': payments[:paginate_by],
            'orders_to_ship': orders_to_ship[:paginate_by],

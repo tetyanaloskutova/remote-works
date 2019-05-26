@@ -18,11 +18,11 @@ def get_results(request, form):
     skills = results['skills']
     tasks = results['tasks']
     users = results['users']
-    if not user.has_perm('task.manage_orders'):
+    if not user.has_perm('task.manage_tasks'):
         tasks = tasks.none()
     if not user.has_perm('account.manage_users'):
         users = users.none()
-    return limit_results(products, tasks, users)
+    return limit_results(skills, tasks, users)
 
 
 @staff_member_required
@@ -35,12 +35,12 @@ def search(request):
     skills = []
     tasks = []
     if form.is_valid():
-        products, tasks, users = get_results(request, form)
+        skills, tasks, users = get_results(request, form)
         query = form.cleaned_data['q']
     ctx = {
         'form': form,
         'query': query,
-        'skills': products,
+        'skills': skills,
         'tasks': tasks,
         'users': users,
         'query_string': '?q=%s' % query}

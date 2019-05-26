@@ -8,7 +8,7 @@ from ...core import analytics
 from ...core.exceptions import InsufficientStock
 from ...discount.models import NotApplicable
 from ...task import TaskEvents, TaskEventsEmails
-from ...task.emails import send_order_confirmation
+from ...task.emails import send_task_confirmation
 from ..forms import CartNoteForm
 from ..utils import (
     create_order, get_cart_data_for_checkout, get_taxes_for_cart,
@@ -16,7 +16,7 @@ from ..utils import (
     update_billing_address_in_cart_with_delivery)
 
 
-def handle_order_placement(request, cart):
+def handle_task_placement(request, cart):
     """Try to create an task and redirect the user as necessary.
 
     This function creates an task from cart and performs post-create actions
@@ -40,7 +40,7 @@ def handle_order_placement(request, cart):
     # remove cart after checkout is created
     cart.delete()
     task.events.create(type=TaskEvents.PLACED.value)
-    send_order_confirmation.delay(task.pk)
+    send_task_confirmation.delay(task.pk)
     task.events.create(
         type=TaskEvents.EMAIL_SENT.value,
         parameters={
@@ -66,7 +66,7 @@ def summary_with_delivery_view(request, cart):
             cart, user_addresses, request.POST or None, request.country))
 
     if updated:
-        return handle_order_placement(request, cart)
+        return handle_task_placement(request, cart)
 
     taxes = get_taxes_for_cart(cart, request.taxes)
     ctx = get_cart_data_for_checkout(cart, request.discounts, taxes)
@@ -92,7 +92,7 @@ def anonymous_summary_without_delivery(request, cart):
             cart, request.POST or None, request.country))
 
     if updated:
-        return handle_order_placement(request, cart)
+        return handle_task_placement(request, cart)
 
     taxes = get_taxes_for_cart(cart, request.taxes)
     ctx = get_cart_data_for_checkout(cart, request.discounts, taxes)
@@ -119,7 +119,7 @@ def summary_without_delivery(request, cart):
         cart, user_addresses, request.POST or None, request.country)
 
     if updated:
-        return handle_order_placement(request, cart)
+        return handle_task_placement(request, cart)
 
     taxes = get_taxes_for_cart(cart, request.taxes)
     ctx = get_cart_data_for_checkout(cart, request.discounts, taxes)

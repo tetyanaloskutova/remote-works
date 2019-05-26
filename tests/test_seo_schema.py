@@ -3,7 +3,7 @@ import json
 import pytest
 
 from remote_works.seo.schema.email import (
-    get_order_confirmation_markup, get_organization, get_skill_data)
+    get_task_confirmation_markup, get_organization, get_skill_data)
 
 
 def test_get_organization(site_settings):
@@ -16,16 +16,16 @@ def test_get_organization(site_settings):
     assert result['name'] == example_name
 
 
-def test_get_skill_data_without_image(order_with_lines):
+def test_get_skill_data_without_image(task_with_lines):
     """Tested TaskLine Skill has no image assigned."""
-    line = order_with_lines.lines.first()
+    line = task_with_lines.lines.first()
     organization = get_organization()
     result = get_skill_data(line, organization)
     assert 'image' not in result['itemOffered']
 
 
-def test_get_skill_data_with_image(order_with_lines, skill_with_image):
-    line = order_with_lines.lines.first()
+def test_get_skill_data_with_image(task_with_lines, skill_with_image):
+    line = task_with_lines.lines.first()
     variant = skill_with_image.variants.first()
     line.variant = variant
     line.skill_name = variant.display_product()
@@ -36,9 +36,9 @@ def test_get_skill_data_with_image(order_with_lines, skill_with_image):
     assert result['itemOffered']['name'] == variant.display_product()
 
 
-def test_get_order_confirmation_markup(order_with_lines):
+def test_get_task_confirmation_markup(task_with_lines):
     try:
-        result = get_order_confirmation_markup(order_with_lines)
+        result = get_task_confirmation_markup(task_with_lines)
     except TypeError:
         pytest.fail('Function output is not JSON serializable')
 

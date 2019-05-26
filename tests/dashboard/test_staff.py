@@ -14,9 +14,9 @@ from remote_works.settings import DEFAULT_FROM_EMAIL
 
 
 def test_remove_staff_member_with_orders(
-        staff_user, permission_manage_products, order):
-    order.user = staff_user
-    order.save()
+        staff_user, permission_manage_products, task):
+    task.user = staff_user
+    task.save()
     staff_user.user_permissions.add(permission_manage_products)
 
     remove_staff_member(staff_user)
@@ -86,9 +86,9 @@ def test_delete_staff_no_post(admin_client, staff_user):
     assert User.objects.all().count() == user_count
 
 
-def test_delete_staff_with_orders(admin_client, staff_user, order):
-    order.user = staff_user
-    order.save()
+def test_delete_staff_with_orders(admin_client, staff_user, task):
+    task.user = staff_user
+    task.save()
     user_count = User.objects.all().count()
     url = reverse('dashboard:staff-delete', kwargs={'pk': staff_user.pk})
     data = {'pk': staff_user.pk}

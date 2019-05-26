@@ -17,13 +17,13 @@ import {
 } from "../../../components/Timeline";
 import i18n from "../../../i18n";
 import { TaskEvents, TaskEventsEmails } from "../../../types/globalTypes";
-import { TaskDetails_order_events } from "../../types/TaskDetails";
+import { TaskDetails_task_events } from "../../types/TaskDetails";
 
 export interface FormData {
   message: string;
 }
 
-const getEventMessage = (event: TaskDetails_order_events) => {
+const getEventMessage = (event: TaskDetails_task_events) => {
   switch (event.type) {
     case TaskEvents.CANCELED:
       return i18n.t("Task has been cancelled", {
@@ -117,7 +117,7 @@ const styles = (theme: Theme) =>
   });
 
 interface TaskHistoryProps extends WithStyles<typeof styles> {
-  history: TaskDetails_order_events[];
+  history: TaskDetails_task_events[];
   onNoteAdd: (data: FormData) => void;
 }
 

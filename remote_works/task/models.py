@@ -15,7 +15,7 @@ from django_prices.models import MoneyField, TaxedMoneyField
 from measurement.measures import Weight
 from prices import Money
 
-from . import FulfillmentStatus, TaskEvents, TaskStatus, display_order_event
+from . import FulfillmentStatus, TaskEvents, TaskStatus, display_task_event
 from ..account.models import Address
 from ..core.utils.json_serializer import CustomJsonEncoder
 from ..core.utils.taxes import ZERO_TAXED_MONEY, zero_money
@@ -231,18 +231,18 @@ class Task(models.Model):
             payment = self.get_last_payment()
         if not payment:
             return False
-        order_status_ok = self.status not in {
+        task_status_ok = self.status not in {
             TaskStatus.DRAFT, TaskStatus.CANCELED}
-        return payment.can_capture() and order_status_ok
+        return payment.can_capture() and task_status_ok
 
     def can_charge(self, payment=None):
         if not payment:
             payment = self.get_last_payment()
         if not payment:
             return False
-        order_status_ok = self.status not in {
+        task_status_ok = self.status not in {
             TaskStatus.DRAFT, TaskStatus.CANCELED}
-        return payment.can_charge() and order_status_ok
+        return payment.can_charge() and task_status_ok
 
     def can_void(self, payment=None):
         if not payment:
@@ -290,7 +290,7 @@ class TaskLine(models.Model):
     task = models.ForeignKey(
         Task, related_name='lines', editable=False, on_delete=models.CASCADE)
     variant = models.ForeignKey(
-        'skill.SkillVariant', related_name='order_lines',
+        'skill.SkillVariant', related_name='task_lines',
         on_delete=models.SET_NULL, blank=True, null=True)
     # max_length is as produced by SkillVariant's display_skill method
     skill_name = models.CharField(max_length=386)
@@ -351,7 +351,7 @@ class Fulfillment(models.Model):
         if not self.pk:
             groups = self.task.fulfillments.all()
             existing_max = groups.aggregate(Max('fulfillment_order'))
-            existing_max = existing_max.get('fulfillment_order__max')
+            existing_max = existing_max.get('fulfillment_task__max')
             self.fulfillment_order = (
                 existing_max + 1 if existing_max is not None else 1)
         return super().save(*args, **kwargs)
@@ -368,7 +368,7 @@ class Fulfillment(models.Model):
 
 
 class FulfillmentLine(models.Model):
-    order_line = models.ForeignKey(
+    task_line = models.ForeignKey(
         TaskLine, related_name='+', on_delete=models.CASCADE)
     fulfillment = models.ForeignKey(
         Fulfillment, related_name='lines', on_delete=models.CASCADE)
@@ -401,4 +401,4 @@ class TaskEvent(models.Model):
         return 'TaskEvent(type=%r, user=%r)' % (self.type, self.user)
 
     def get_event_display(self):
-        return display_order_event(self)
+        return display_task_event(self)

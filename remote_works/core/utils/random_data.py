@@ -28,7 +28,7 @@ from ...discount import DiscountValueType, VoucherType
 from ...discount.models import Sale, Voucher
 from ...menu.models import Menu
 from ...task.models import Fulfillment, Task
-from ...task.utils import update_order_status
+from ...task.utils import update_task_status
 from ...page.models import Page
 from ...payment.utils import (
     create_payment, gateway_authorize, gateway_capture, gateway_refund,
@@ -340,7 +340,7 @@ def create_fake_payment(mock_email_confirmation, task):
     return payment
 
 
-def create_order_line(task, discounts, taxes):
+def create_task_line(task, discounts, taxes):
     skill = Skill.objects.filter(variants__isnull=False).order_by('?')[0]
     variant = skill.variants.all()[0]
     quantity = random.randrange(1, 5)
@@ -357,9 +357,9 @@ def create_order_line(task, discounts, taxes):
         tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
 
-def create_order_lines(task, discounts, taxes, how_many=10):
+def create_task_lines(task, discounts, taxes, how_many=10):
     for dummy in range(how_many):
-        yield create_order_line(task, discounts, taxes)
+        yield create_task_line(task, discounts, taxes)
 
 
 def create_fulfillments(task):
@@ -367,24 +367,24 @@ def create_fulfillments(task):
         if random.choice([False, True]):
             fulfillment, _ = Fulfillment.objects.get_or_create(task=task)
             quantity = random.randrange(0, line.quantity) + 1
-            fulfillment.lines.create(order_line=line, quantity=quantity)
+            fulfillment.lines.create(task_line=line, quantity=quantity)
             line.quantity_fulfilled = quantity
             line.save(update_fields=['quantity_fulfilled'])
 
-    update_order_status(task)
+    update_task_status(task)
 
 
 def create_fake_order(discounts, taxes):
     user = random.choice([None, User.objects.filter(
         is_superuser=False).order_by('?').first()])
     if user:
-        order_data = {
+        task_data = {
             'user': user,
             'billing_address': user.default_billing_address,
             'delivery_address': user.default_delivery_address}
     else:
         address = create_address()
-        order_data = {
+        task_data = {
             'billing_address': address,
             'delivery_address': address,
             'user_email': get_email(
@@ -393,13 +393,13 @@ def create_fake_order(discounts, taxes):
     delivery_method = DeliveryMethod.objects.order_by('?').first()
     delivery_price = delivery_method.price
     delivery_price = get_taxed_delivery_price(delivery_price, taxes)
-    order_data.update({
+    task_data.update({
         'delivery_method_name': delivery_method.name,
         'delivery_price': delivery_price})
 
-    task = Task.objects.create(**order_data)
+    task = Task.objects.create(**task_data)
 
-    lines = create_order_lines(task, discounts, taxes, random.randrange(1, 5))
+    lines = create_task_lines(task, discounts, taxes, random.randrange(1, 5))
 
     task.total = sum(
         [line.get_total() for line in lines], task.delivery_price)
@@ -455,8 +455,8 @@ def create_delivery_zone(
             type=(
                 DeliveryMethodType.PRICE_BASED if random.randint(0, 1)
                 else DeliveryMethodType.WEIGHT_BASED),
-            minimum_order_price=0, maximum_order_price=None,
-            minimum_order_weight=0, maximum_order_weight=None)
+            minimum_task_price=0, maximum_task_price=None,
+            minimum_task_weight=0, maximum_task_weight=None)
         for name in delivery_methods_names])
     return 'Delivery Zone: %s' % delivery_zone
 

@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('type', models.CharField(choices=[('PLACED', 'placed'), ('PLACED_FROM_DRAFT', 'draft_placed'), ('OVERSOLD_ITEMS', 'oversold_items'), ('ORDER_MARKED_AS_PAID', 'marked_as_paid'), ('CANCELED', 'canceled'), ('ORDER_FULLY_PAID', 'order_paid'), ('UPDATED', 'updated'), ('EMAIL_SENT', 'email_sent'), ('PAYMENT_CAPTURED', 'captured'), ('PAYMENT_REFUNDED', 'refunded'), ('PAYMENT_VOIDED', 'voided'), ('FULFILLMENT_CANCELED', 'fulfillment_canceled'), ('FULFILLMENT_RESTOCKED_ITEMS', 'restocked_items'), ('FULFILLMENT_FULFILLED_ITEMS', 'fulfilled_items'), ('TRACKING_UPDATED', 'tracking_updated'), ('NOTE_ADDED', 'note_added'), ('OTHER', 'other')], max_length=255)),
+                ('type', models.CharField(choices=[('PLACED', 'placed'), ('PLACED_FROM_DRAFT', 'draft_placed'), ('OVERSOLD_ITEMS', 'oversold_items'), ('ORDER_MARKED_AS_PAID', 'marked_as_paid'), ('CANCELED', 'canceled'), ('ORDER_FULLY_PAID', 'task_paid'), ('UPDATED', 'updated'), ('EMAIL_SENT', 'email_sent'), ('PAYMENT_CAPTURED', 'captured'), ('PAYMENT_REFUNDED', 'refunded'), ('PAYMENT_VOIDED', 'voided'), ('FULFILLMENT_CANCELED', 'fulfillment_canceled'), ('FULFILLMENT_RESTOCKED_ITEMS', 'restocked_items'), ('FULFILLMENT_FULFILLED_ITEMS', 'fulfilled_items'), ('TRACKING_UPDATED', 'tracking_updated'), ('NOTE_ADDED', 'note_added'), ('OTHER', 'other')], max_length=255)),
                 ('parameters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, default=dict, encoder=remote_works.core.utils.json_serializer.CustomJsonEncoder)),
                 ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='events', to='task.Task')),
                 ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
@@ -106,7 +106,7 @@ class Migration(migrations.Migration):
                 ('unit_price_gross', django_prices.models.MoneyField(currency='USD', decimal_places=2, max_digits=12)),
                 ('tax_rate', models.DecimalField(decimal_places=2, default=Decimal('0.0'), max_digits=5)),
                 ('task', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE, related_name='lines', to='task.Task')),
-                ('variant', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='order_lines', to='skill.SkillVariant')),
+                ('variant', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='task_lines', to='skill.SkillVariant')),
             ],
             options={
                 'ordering': ('pk',),
@@ -114,7 +114,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='fulfillmentline',
-            name='order_line',
+            name='task_line',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='task.TaskLine'),
         ),
         migrations.AddField(

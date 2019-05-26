@@ -125,8 +125,8 @@ def orders_with_addresses():
     for pk, name, lastname, email in ORDERS:
         addr = gen_address_for_user(name, lastname)
         user = User.objects.create(default_delivery_address=addr, email=email)
-        order = Task.objects.create(user=user, billing_address=addr, pk=pk)
-        tasks.append(order)
+        task = Task.objects.create(user=user, billing_address=addr, pk=pk)
+        tasks.append(task)
     return tasks
 
 
@@ -136,8 +136,8 @@ def orders_with_user_names():
     for pk, first_name, last_name, email in ORDERS:
         user = User.objects.create(
             email=email, first_name=first_name, last_name=last_name)
-        order = Task.objects.create(user=user, pk=pk)
-        tasks.append(order)
+        task = Task.objects.create(user=user, pk=pk)
+        tasks.append(task)
     return tasks
 
 
@@ -160,35 +160,35 @@ def test_find_order_by_id(admin_client, orders_with_addresses):
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('euzeb.potato@cebula.pl', 1),
+@pytest.mark.parametrize('phrase,task_num', [('euzeb.potato@cebula.pl', 1),
                                               ('  johndoe@example.com ', 2)])
-def test_find_order_with_email(admin_client, orders_with_addresses, phrase,
-                               order_num):
+def test_find_task_with_email(admin_client, orders_with_addresses, phrase,
+                               task_num):
     _, tasks, _ = search_dashboard(admin_client, phrase)
     assert 1 == len(tasks)
-    assert orders_with_addresses[order_num] in tasks
+    assert orders_with_addresses[task_num] in tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('knop', 0), ('ZIEMniak', 1),
+@pytest.mark.parametrize('phrase,task_num', [('knop', 0), ('ZIEMniak', 1),
                                               ('  john  ', 2), ('ANDREAS', 0)])
-def test_find_order_with_user_name(admin_client, orders_with_addresses, phrase,
-                                   order_num):
+def test_find_task_with_user_name(admin_client, orders_with_addresses, phrase,
+                                   task_num):
     _, tasks, _ = search_dashboard(admin_client, phrase)
     assert 1 == len(tasks)
-    assert orders_with_addresses[order_num] in tasks
+    assert orders_with_addresses[task_num] in tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('knop', 0), ('ZIEMniak', 1),
+@pytest.mark.parametrize('phrase,task_num', [('knop', 0), ('ZIEMniak', 1),
                                               ('  john  ', 2), ('ANDREAS', 0)])
-def test_find_order_with_user_name_without_addres(
-        admin_client, orders_with_user_names, phrase, order_num):
+def test_find_task_with_user_name_without_addres(
+        admin_client, orders_with_user_names, phrase, task_num):
     _, tasks, _ = search_dashboard(admin_client, phrase)
     assert 1 == len(tasks)
-    assert orders_with_user_names[order_num] in tasks
+    assert orders_with_user_names[task_num] in tasks
 
 
 ORDER_PHRASE_WITH_RESULT = 'Andreas'

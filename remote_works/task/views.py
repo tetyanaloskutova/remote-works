@@ -20,7 +20,7 @@ from ..payment.utils import (
 from .forms import (
     CustomerNoteForm, PasswordForm, PaymentDeleteForm, PaymentsForm)
 from .models import Task
-from .utils import attach_order_to_user, check_order_status
+from .utils import attach_task_to_user, check_task_status
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ def details(request, token):
     note_form = None
     tasks = Task.objects.confirmed().prefetch_related(
         'lines__variant__images', 'lines__variant__skill__images',
-        'fulfillments__lines__order_line')
+        'fulfillments__lines__task_line')
     tasks = tasks.select_related(
         'billing_address', 'delivery_address', 'user')
     task = get_object_or_404(tasks, token=token)
@@ -85,7 +85,7 @@ def payment(request, token):
     return TemplateResponse(request, 'task/payment.html', ctx)
 
 
-@check_order_status
+@check_task_status
 def start_payment(request, task, gateway):
     payment_gateway, connection_params = get_payment_gateway(gateway)
     extra_data = {'customer_user_agent': request.META.get('HTTP_USER_AGENT')}
@@ -130,7 +130,7 @@ def start_payment(request, task, gateway):
     return TemplateResponse(request, payment_gateway.TEMPLATE_PATH, ctx)
 
 
-@check_order_status
+@check_task_status
 def cancel_payment(request, task):
     form = PaymentDeleteForm(request.POST or None, task=task)
     if form.is_valid():
@@ -173,7 +173,7 @@ def checkout_success(request, token):
         user = auth.authenticate(
             request=request, email=email, password=password)
         auth.login(request, user)
-        attach_order_to_user(task, user)
+        attach_task_to_user(task, user)
         return redirect('task:details', token=token)
     user_exists = User.objects.filter(email=email).exists()
     login_form = LoginForm(
@@ -184,7 +184,7 @@ def checkout_success(request, token):
 
 
 @login_required
-def connect_order_with_user(request, token):
+def connect_task_with_user(request, token):
     """Connect newly created task to an authenticated user."""
     try:
         task = Task.objects.get(user_email=request.user.email, token=token)
@@ -197,7 +197,7 @@ def connect_order_with_user(request, token):
             " addresses don't match")
         messages.warning(request, msg)
         return redirect('account:details')
-    attach_order_to_user(task, request.user)
+    attach_task_to_user(task, request.user)
     msg = pgettext_lazy(
         'storefront message',
         'The task is now assigned to your account')

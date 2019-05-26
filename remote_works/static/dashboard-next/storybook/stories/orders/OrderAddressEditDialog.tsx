@@ -3,17 +3,17 @@ import * as React from "react";
 
 import { transformAddressToForm } from "../../../misc";
 import TaskAddressEditDialog from "../../../tasks/components/TaskAddressEditDialog";
-import { countries, order as orderFixture } from "../../../tasks/fixtures";
+import { countries, task as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const task = orderFixture("");
 
 storiesOf("Tasks / TaskAddressEditDialog", module)
   .addDecorator(Decorator)
   .add("delivery address", () => (
     <TaskAddressEditDialog
       confirmButtonState="default"
-      address={transformAddressToForm(order.deliveryAddress)}
+      address={transformAddressToForm(task.deliveryAddress)}
       countries={countries}
       errors={[]}
       onClose={() => undefined}
@@ -25,7 +25,7 @@ storiesOf("Tasks / TaskAddressEditDialog", module)
   .add("billing address", () => (
     <TaskAddressEditDialog
       confirmButtonState="default"
-      address={transformAddressToForm(order.billingAddress)}
+      address={transformAddressToForm(task.billingAddress)}
       countries={countries}
       errors={[]}
       onClose={() => undefined}

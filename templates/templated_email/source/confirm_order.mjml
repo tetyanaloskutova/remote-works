@@ -15,12 +15,12 @@
         </mj-text>
         <mj-text>
           {% blocktrans trimmed context "Task confirmation e-mail text" %}
-            Thank you for your order. Below is the list of ordered products. To see your payment details please visit: <a href="{{ order_details_url }}">{{ order_details_url }}</a>
+            Thank you for your task. Below is the list of ordered products. To see your payment details please visit: <a href="{{ task_details_url }}">{{ task_details_url }}</a>
           {% endblocktrans %}
         </mj-text>
       </mj-column>
     </mj-section>
-    <mj-include path="./partials/_order_lines.mjml" />
+    <mj-include path="./partials/_task_lines.mjml" />
     <mj-section>
       <mj-column>
         <mj-table>
@@ -33,11 +33,11 @@
           <tbody>
             <tr>
               <td class="address">
-                {% format_address order.billing_address %}
+                {% format_address task.billing_address %}
               </td>
               <td css-class="address">
-                {% if order.delivery_address %}
-                  {% format_address order.delivery_address %}
+                {% if task.delivery_address %}
+                  {% format_address task.delivery_address %}
                 {% else %}
                   {% trans "No delivery required" context "Task confirmation e-mail text" %}
                 {% endif %}

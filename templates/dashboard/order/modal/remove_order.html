@@ -6,25 +6,25 @@
 {% block form_class %}{% endblock %}
 
 {% block action_url %}
-{% url 'dashboard:draft-order-delete' order_pk=order.pk %}
+{% url 'dashboard:draft-task-delete' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
-{% trans "Remove draft order" context "Modal remove order title" %}
+{% trans "Remove draft task" context "Modal remove task title" %}
 {% endblock %}
 
 {% block content %}
   <div class="col s12">
-    {% blocktrans trimmed with order=order context "Modal remove order text" %}
-      Are you sure you want remove draft order {{ order }}?
+    {% blocktrans trimmed with task=task context "Modal remove task text" %}
+      Are you sure you want remove draft task {{ task }}?
     {% endblocktrans %}
   </div>
 {% endblock %}
 
 {% block cancel_action %}
-{% trans "Abort" context "Modal remove order cancel action" %}
+{% trans "Abort" context "Modal remove task cancel action" %}
 {% endblock %}
 
 {% block primary_action %}
-{% trans "Remove draft order" context "Modal remove order primary action" %}
+{% trans "Remove draft task" context "Modal remove task primary action" %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "dashboard/order/pdf/base_pdf.html" %}
+{% extends "dashboard/task/pdf/base_pdf.html" %}
 
 {% load i18n static %}
 {% load render_bundle from webpack_loader %}
@@ -15,21 +15,21 @@
   <table width="100%" border="1" cellspacing="0">
     <thead>
       <tr>
-        {% if order.delivery_address %}
+        {% if task.delivery_address %}
           <th align="left" width="50%">
             {% trans "Delivery Details" context "Packing slip delivery details" %}
           </th>
         {% endif %}
-        <th align="left"{% if order.delivery_address %} width="50%"{% endif %}>
+        <th align="left"{% if task.delivery_address %} width="50%"{% endif %}>
           {% trans "Billing Details" context "Packing slip delivery details" %}
         </th>
       </tr>
       </thead>
     <tbody>
     <tr>
-      {% if order.delivery_address %}
+      {% if task.delivery_address %}
         <td valign="top">
-          {% with order.delivery_address as address %}
+          {% with task.delivery_address as address %}
             <h2>
               {% trans "Delivery address" context "Packing slip delivery address" %}
             </h2>
@@ -38,7 +38,7 @@
         </td>
       {% endif %}
       <td valign="top">
-        {% with order.billing_address as address %}
+        {% with task.billing_address as address %}
           <h2>
             {% trans "Billing address" context "Packing slip billing address" %}
           </h2>
@@ -50,7 +50,7 @@
   </table>
 
   <h2>{% trans "Items Tasked" context "Task invoice" %}</h2>
-  {% if order %}
+  {% if task %}
     <table class="bordered data-table">
       <thead>
         <tr>
@@ -69,10 +69,10 @@
         {% for line in fulfillment %}
           <tr>
             <td>
-              {{ line.order_line.skill_name }}<br>
+              {{ line.task_line.skill_name }}<br>
             </td>
             <td>
-              {{ line.order_line.skill_sku }}
+              {{ line.task_line.skill_sku }}
             </td>
             <td class="right-align">
               {{ line.quantity }}

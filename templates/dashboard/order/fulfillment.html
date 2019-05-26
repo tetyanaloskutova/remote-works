@@ -8,7 +8,7 @@
 {% load status %}
 
 {% block title %}
-  {% trans "Fulfill" context "Dashboard order fulfillment" %} {{ order }} - {% trans "Tasks" context "Dashboard tasks list" %} - {{ block.super }}
+  {% trans "Fulfill" context "Dashboard task fulfillment" %} {{ task }} - {% trans "Tasks" context "Dashboard tasks list" %} - {{ block.super }}
 {% endblock %}
 
 {% block body_class %}body-tasks{% endblock %}
@@ -33,13 +33,13 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'dashboard:order-details' order_pk=order.pk %}" class="breadcrumbs--ellipsed-item">
-        {{ order }}
+      <a href="{% url 'dashboard:task-details' task_pk=task.pk %}" class="breadcrumbs--ellipsed-item">
+        {{ task }}
       </a>
     </li>
     <li>
       <span>
-        {% trans "Fulfill" context "Dashboard order fulfillment" %}
+        {% trans "Fulfill" context "Dashboard task fulfillment" %}
       </span>
     </li>
   </ul>
@@ -55,7 +55,7 @@
         <div class="data-table-header">
           <div class="data-table-title">
             <h5>
-              {% trans "Fulfill order" context "Fulfill order title" %}
+              {% trans "Fulfill task" context "Fulfill task title" %}
             </h5>
           </div>
         </div>
@@ -64,10 +64,10 @@
             <thead>
               <tr>
                 <th class="wide">
-                  {% trans "Item" context "Modal remove order line table header" %}
+                  {% trans "Item" context "Modal remove task line table header" %}
                 </th>
                 <th class="right-align">
-                  {% trans "Quantity" context "Modal remove order line table header" %}
+                  {% trans "Quantity" context "Modal remove task line table header" %}
                 </th>
               </tr>
             </thead>
@@ -90,11 +90,11 @@
                   <td class="right-align fulfillment-quantity">
                     {% get_formset_form formset forloop.counter0 as line_form %}
                     <div class="fulfillment-quantity-input">
-                      <input id="{{ line_form.order_line.auto_id }}"
+                      <input id="{{ line_form.task_line.auto_id }}"
                              type="hidden"
-                             name="{{ line_form.order_line.html_name }}"
-                             required="{{ line_form.order_line.field.required }}"
-                             value="{{ line_form.order_line.value }}">
+                             name="{{ line_form.task_line.html_name }}"
+                             required="{{ line_form.task_line.field.required }}"
+                             value="{{ line_form.task_line.value }}">
                       <input id="{{ line_form.quantity.auto_id }}"
                              max="{{ line.quantity_unfulfilled }}"
                              min="0"
@@ -102,7 +102,7 @@
                              required="{{ line_form.quantity.field.required }}"
                              type="number"
                              value="{{ line_form.quantity.value }}">
-                      {% blocktrans trimmed with quantity_unfulfilled=line.quantity_unfulfilled context "Fulfill order table quantity unfulfilled" %}
+                      {% blocktrans trimmed with quantity_unfulfilled=line.quantity_unfulfilled context "Fulfill task table quantity unfulfilled" %}
                         of {{ quantity_unfulfilled }}
                       {% endblocktrans %}
                     </div>
@@ -132,7 +132,7 @@
           {% endif %}
         </div>
         <div class="data-table-action right-align">
-          <a href="{% url 'dashboard:order-details' order.pk %}" class="btn-flat waves-effect">
+          <a href="{% url 'dashboard:task-details' task.pk %}" class="btn-flat waves-effect">
             {% trans "Cancel" context "Dashboard cancel action" %}
           </a>
           <button type="submit" class="btn waves-effect">

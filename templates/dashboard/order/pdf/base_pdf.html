@@ -30,9 +30,9 @@
       </div>
 
       <div style="float: right">
-        {{ order.created }}<br />
-        {% blocktrans trimmed context "Task PDF header" with order_id=order.id %}
-          Task #{{ order_id }}
+        {{ task.created }}<br />
+        {% blocktrans trimmed context "Task PDF header" with task_id=task.id %}
+          Task #{{ task_id }}
         {% endblocktrans %}
       </div>
     </header>

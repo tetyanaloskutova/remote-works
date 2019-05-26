@@ -77,26 +77,26 @@
                 <div class="col-md-1 col-2"></div>
               </div>
             </div>
-            {% for order in tasks %}
+            {% for task in tasks %}
               <div class="table__row">
                 <div class="row">
                   <div class="col-md-2 col-4">
-                    {{ order }}
+                    {{ task }}
                   </div>
                   <div class="col-md-3 d-none d-md-block">
-                    {{ order.created }}
+                    {{ task.created }}
                   </div>
                   <div class="col-md-2 col-6">
-                    {% price order.total.gross %}
+                    {% price task.total.gross %}
                   </div>
                   <div class="col-md-2 d-none d-md-block">
-                    {% render_status order.get_payment_status order.get_payment_status_display %}
+                    {% render_status task.get_payment_status task.get_payment_status_display %}
                   </div>
                   <div class="col-md-2 d-none d-md-block">
-                    {% render_task_status order.status order.get_status_display %}
+                    {% render_task_status task.status task.get_status_display %}
                   </div>
                   <div class="col-md-1 col-2">
-                    <a href="{{ order.get_absolute_url }}" class="float-right link--styled">
+                    <a href="{{ task.get_absolute_url }}" class="float-right link--styled">
                       {% trans "Details" context "Recent tasks link text" %}
                     </a>
                   </div>
@@ -111,7 +111,7 @@
               </div>
             </div>
           {% else %}
-            <h3 class="text-sm-center account__orders-empty">
+            <h3 class="text-sm-center account__tasks-empty">
               {% trans "There are not any completed tasks yet." context "No recent tasks text" %}
             </h3>
           {% endif %}
@@ -160,7 +160,7 @@
             {% endfor %}
 
           {% else %}
-            <h3 class="text-sm-center account__orders-empty">
+            <h3 class="text-sm-center account__tasks-empty">
               {% trans "There is no schedule completed yet." context "No schedule text" %}
               <a href="{% url "account:schedule-add"%}" class="float-right link--styled">
                 {% trans "Add" context "Schedules link text" %}

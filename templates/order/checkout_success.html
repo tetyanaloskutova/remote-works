@@ -11,13 +11,13 @@
 {% block content %}
   <div class="row checkout__thankyoupage">
     <div class="col-xl-10 m-auto">
-      <img class="checkout__thankyoupage__parrot lazyload lazypreload" data-src="{% static 'images/confirm-order-bg.png' %}"
-           srcset="{% static 'images/confirm-order-bg.png' %} 1x, {% static 'images/confirm-order-bg2x.png' %} 2x">
-      <h1>{% blocktrans trimmed with order_url=order.get_absolute_url context "Checkout title" %}
-          Thank you for your <a href="{{ order_url }}">order</a>!
+      <img class="checkout__thankyoupage__parrot lazyload lazypreload" data-src="{% static 'images/confirm-task-bg.png' %}"
+           srcset="{% static 'images/confirm-task-bg.png' %} 1x, {% static 'images/confirm-task-bg2x.png' %} 2x">
+      <h1>{% blocktrans trimmed with task_url=task.get_absolute_url context "Checkout title" %}
+          Thank you for your <a href="{{ task_url }}">task</a>!
       {% endblocktrans %}</h1>
 
-        <p>{% blocktrans trimmed with order_url=order.get_absolute_url context "Checkout text" %}
+        <p>{% blocktrans trimmed with task_url=task.get_absolute_url context "Checkout text" %}
           We've sent a confirmation email with details to <span>{{ email }}</span>.<br>
           In case of any problems or questions please contact us.
         {% endblocktrans %}</p>

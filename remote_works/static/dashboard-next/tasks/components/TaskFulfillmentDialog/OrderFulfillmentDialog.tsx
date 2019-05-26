@@ -25,7 +25,7 @@ import { FormSpacer } from "../../../components/FormSpacer";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { TaskDetails_order_lines } from "../../types/TaskDetails";
+import { TaskDetails_task_lines } from "../../types/TaskDetails";
 
 export interface FormData {
   lines: number[];
@@ -50,7 +50,7 @@ const styles = (theme: Theme) =>
 export interface TaskFulfillmentDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  lines: TaskDetails_order_lines[];
+  lines: TaskDetails_task_lines[];
   onClose();
   onSubmit(data: FormData);
 }

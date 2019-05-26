@@ -121,7 +121,7 @@ def test_validate_possible_number(input, exception):
         validate_possible_number(input)
 
 
-def test_order_with_lines_pagination(authorized_client, order_list, settings):
+def test_task_with_lines_pagination(authorized_client, task_list, settings):
     settings.PAGINATE_BY = 1
     data = {'page': '1'}
     url = reverse('account:details')

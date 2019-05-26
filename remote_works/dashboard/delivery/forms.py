@@ -130,33 +130,33 @@ class DeliveryMethodForm(forms.ModelForm):
 class PriceDeliveryMethodForm(forms.ModelForm):
     class Meta(DeliveryMethodForm.Meta):
         labels = {
-            'minimum_order_price': pgettext_lazy(
+            'minimum_task_price': pgettext_lazy(
                 'Minimum task price to use this delivery method',
                 'Minimum task price'),
-            'maximum_order_price': pgettext_lazy(
+            'maximum_task_price': pgettext_lazy(
                 'Maximum task price to use this task',
                 'Maximum task price')}
         labels.update(DeliveryMethodForm.Meta.labels)
         fields = [
-            'name', 'price', 'minimum_order_price', 'maximum_order_price']
+            'name', 'price', 'minimum_task_price', 'maximum_task_price']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['maximum_order_price'].widget.attrs['placeholder'] = (
+        self.fields['maximum_task_price'].widget.attrs['placeholder'] = (
             pgettext_lazy(
                 'Placeholder for maximum task price set to unlimited',
                 'No limit'))
-        self.fields['minimum_order_price'].widget.attrs['placeholder'] = '0'
+        self.fields['minimum_task_price'].widget.attrs['placeholder'] = '0'
 
-    def clean_minimum_order_price(self):
-        return self.cleaned_data['minimum_order_price'] or 0
+    def clean_minimum_task_price(self):
+        return self.cleaned_data['minimum_task_price'] or 0
 
     def clean(self):
         data = super().clean()
-        min_price = data.get('minimum_order_price')
-        max_price = data.get('maximum_order_price')
+        min_price = data.get('minimum_task_price')
+        max_price = data.get('maximum_task_price')
         if min_price and max_price is not None and max_price <= min_price:
-            self.add_error('maximum_order_price', pgettext_lazy(
+            self.add_error('maximum_task_price', pgettext_lazy(
                 'Price delivery method form error',
                 'Maximum task price should be larger'
                 ' than the minimum task price.'))
@@ -164,36 +164,36 @@ class PriceDeliveryMethodForm(forms.ModelForm):
 
 
 class WeightDeliveryMethodForm(forms.ModelForm):
-    minimum_order_weight = WeightField(
+    minimum_task_weight = WeightField(
         required=False, label=pgettext_lazy(
             'Minimum task weight to use this delivery method',
             'Minimum task weight'))
-    maximum_order_weight = WeightField(
+    maximum_task_weight = WeightField(
         required=False, label=pgettext_lazy(
             'Maximum task weight to use this delivery method',
             'Maximum task weight'))
 
     class Meta(DeliveryMethodForm.Meta):
         fields = [
-            'name', 'price', 'minimum_order_weight', 'maximum_order_weight']
+            'name', 'price', 'minimum_task_weight', 'maximum_task_weight']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['maximum_order_weight'].widget.attrs['placeholder'] = (
+        self.fields['maximum_task_weight'].widget.attrs['placeholder'] = (
             pgettext_lazy(
                 'Placeholder for maximum task weight set to unlimited',
                 'No limit'))
-        self.fields['minimum_order_weight'].widget.attrs['placeholder'] = '0'
+        self.fields['minimum_task_weight'].widget.attrs['placeholder'] = '0'
 
-    def clean_minimum_order_weight(self):
-        return self.cleaned_data['minimum_order_weight'] or 0
+    def clean_minimum_task_weight(self):
+        return self.cleaned_data['minimum_task_weight'] or 0
 
     def clean(self):
         data = super().clean()
-        min_weight = data.get('minimum_order_weight')
-        max_weight = data.get('maximum_order_weight')
+        min_weight = data.get('minimum_task_weight')
+        max_weight = data.get('maximum_task_weight')
         if min_weight and max_weight is not None and max_weight <= min_weight:
-            self.add_error('maximum_order_weight', pgettext_lazy(
+            self.add_error('maximum_task_weight', pgettext_lazy(
                 'Price delivery method form error',
                 'Maximum task price should be larger'
                 ' than the minimum task price.'))

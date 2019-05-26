@@ -4,26 +4,26 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:order-cancel' order_pk=order.pk %}
+{% url 'dashboard:task-cancel' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
-{% trans "Cancel order" context "Modal cancel order title" %}
+{% trans "Cancel task" context "Modal cancel task title" %}
 {% endblock %}
 
 {% block content %}
   <div class="col s12">
-    {% blocktrans trimmed with order=order context "Modal cancel order text" %}
-      Are you sure you want cancel order {{ order }}?
+    {% blocktrans trimmed with task=task context "Modal cancel task text" %}
+      Are you sure you want cancel task {{ task }}?
     {% endblocktrans %}
     {{ form.restock|materializecss }}
   </div>
 {% endblock %}
 
 {% block cancel_action %}
-{% trans "Abort" context "Modal cancel order cancel action" %}
+{% trans "Abort" context "Modal cancel task cancel action" %}
 {% endblock %}
 
 {% block primary_action %}
-{% trans "Cancel Task" context "Modal cancel order primary action" %}
+{% trans "Cancel Task" context "Modal cancel task primary action" %}
 {% endblock %}

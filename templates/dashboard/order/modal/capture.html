@@ -6,7 +6,7 @@
 {% load price from taxed_prices %}
 
 {% block action_url %}
-{% url 'dashboard:capture-payment' order_pk=order.pk payment_pk=payment.pk %}
+{% url 'dashboard:capture-payment' task_pk=task.pk payment_pk=payment.pk %}
 {% endblock %}
 
 {% block title %}
@@ -19,10 +19,10 @@
     {% trans "Before this action:" context "Modal capture payment title" %}
     <ul class="list">
       <li class="list-item">{% trans "Task total:" context "Modal capture payment list title" %}
-        {% price payment.order.total.gross %}
+        {% price payment.task.total.gross %}
       </li>
       <li class="list-item">{% trans "Taxes (included):" context "Modal capture payment list title" %}
-        {% price payment.order.total.tax %}
+        {% price payment.task.total.tax %}
       </li>
       <li class="list-item">{% trans "Captured amount:" context "Modal capture payment list title" %}
         {% price captured %}

@@ -236,7 +236,7 @@ def test_view_checkout_delivery_method_without_address(
     assert get_redirect_location(response) == redirect_url
 
 
-@patch('remote_works.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_task_confirmation')
 def test_view_checkout_summary(
         mock_send_confirmation, client, delivery_zone, address,
         request_cart_with_item):
@@ -254,17 +254,17 @@ def test_view_checkout_summary(
 
     response = client.post(url, data, follow=True)
 
-    order = response.context['task']
-    assert order.user_email == 'test@example.com'
-    redirect_url = reverse('task:payment', kwargs={'token': order.token})
+    task = response.context['task']
+    assert task.user_email == 'test@example.com'
+    redirect_url = reverse('task:payment', kwargs={'token': task.token})
     assert response.request['PATH_INFO'] == redirect_url
-    mock_send_confirmation.delay.assert_called_once_with(order.pk)
+    mock_send_confirmation.delay.assert_called_once_with(task.pk)
 
     # cart should be deleted after task is created
     assert request_cart_with_item.pk is None
 
 
-@patch('remote_works.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_task_confirmation')
 def test_view_checkout_summary_authorized_user(
         mock_send_confirmation, authorized_client, customer_user,
         delivery_zone, address, request_cart_with_item):
@@ -283,14 +283,14 @@ def test_view_checkout_summary_authorized_user(
 
     response = authorized_client.post(url, data, follow=True)
 
-    order = response.context['task']
-    assert order.user_email == customer_user.email
-    redirect_url = reverse('task:payment', kwargs={'token': order.token})
+    task = response.context['task']
+    assert task.user_email == customer_user.email
+    redirect_url = reverse('task:payment', kwargs={'token': task.token})
     assert response.request['PATH_INFO'] == redirect_url
-    mock_send_confirmation.delay.assert_called_once_with(order.pk)
+    mock_send_confirmation.delay.assert_called_once_with(task.pk)
 
 
-@patch('remote_works.checkout.views.summary.send_order_confirmation')
+@patch('remote_works.checkout.views.summary.send_task_confirmation')
 def test_view_checkout_summary_save_language(
         mock_send_confirmation, authorized_client, customer_user,
         delivery_zone, address, request_cart_with_item, settings):
@@ -318,12 +318,12 @@ def test_view_checkout_summary_save_language(
     response = authorized_client.post(
         url, data, follow=True, HTTP_ACCEPT_LANGUAGE=user_language)
 
-    order = response.context['task']
-    assert order.user_email == customer_user.email
-    assert order.language_code == user_language
-    redirect_url = reverse('task:payment', kwargs={'token': order.token})
+    task = response.context['task']
+    assert task.user_email == customer_user.email
+    assert task.language_code == user_language
+    redirect_url = reverse('task:payment', kwargs={'token': task.token})
     assert response.request['PATH_INFO'] == redirect_url
-    mock_send_confirmation.delay.assert_called_once_with(order.pk)
+    mock_send_confirmation.delay.assert_called_once_with(task.pk)
 
 
 def test_view_checkout_summary_without_address(request_cart_with_item, client):
@@ -380,10 +380,10 @@ def test_view_checkout_summary_with_invalid_voucher(
     assert not cart.discount_name
 
     response = client.post(url, data, follow=True)
-    order = response.context['task']
-    assert not order.voucher
-    assert not order.discount_amount
-    assert not order.discount_name
+    task = response.context['task']
+    assert not task.voucher
+    assert not task.discount_amount
+    assert not task.discount_name
 
 
 def test_view_checkout_summary_with_invalid_voucher_code(
@@ -404,7 +404,7 @@ def test_view_checkout_summary_with_invalid_voucher_code(
     assert response.context['cart'].voucher_code is None
 
 
-def test_view_checkout_place_order_with_expired_voucher_code(
+def test_view_checkout_place_task_with_expired_voucher_code(
         client, request_cart_with_item, delivery_zone, address, voucher):
 
     cart = request_cart_with_item
@@ -440,7 +440,7 @@ def test_view_checkout_place_order_with_expired_voucher_code(
     assert not cart.voucher_code
 
 
-def test_view_checkout_place_order_with_item_out_of_stock(
+def test_view_checkout_place_task_with_item_out_of_stock(
         client, request_cart_with_item,
         delivery_zone, address, voucher, product):
 
@@ -469,7 +469,7 @@ def test_view_checkout_place_order_with_item_out_of_stock(
     assert response.request['PATH_INFO'] == redirect_url
 
 
-def test_view_checkout_place_order_without_delivery_address(
+def test_view_checkout_place_task_without_delivery_address(
         client, request_cart_with_item, delivery_zone):
 
     cart = request_cart_with_item
@@ -518,7 +518,7 @@ def test_view_checkout_summary_remove_voucher(
     assert not response.context['cart'].voucher_code
 
 
-def test_create_order_insufficient_stock(
+def test_create_task_insufficient_stock(
         request_cart, customer_user, skill_without_delivery):
     variant = skill_without_delivery.variants.get()
     add_variant_to_cart(request_cart, variant, 10, check_quantity=False)
@@ -532,7 +532,7 @@ def test_create_order_insufficient_stock(
             request_cart, 'tracking_code', discounts=None, taxes=None)
 
 
-def test_create_order_doesnt_duplicate_order(
+def test_create_task_doesnt_duplicate_order(
         cart_with_item, customer_user, delivery_method):
     cart = cart_with_item
     cart.user = customer_user
@@ -541,19 +541,19 @@ def test_create_order_doesnt_duplicate_order(
     cart.delivery_method = delivery_method
     cart.save()
 
-    order_1 = create_order(cart, tracking_code='', discounts=None, taxes=None)
-    assert order_1.checkout_token == cart_with_item.token
-    order_2 = create_order(cart, tracking_code='', discounts=None, taxes=None)
-    assert order_1.pk == order_2.pk
+    task_1 = create_order(cart, tracking_code='', discounts=None, taxes=None)
+    assert task_1.checkout_token == cart_with_item.token
+    task_2 = create_order(cart, tracking_code='', discounts=None, taxes=None)
+    assert task_1.pk == task_2.pk
 
 
 def test_note_in_created_order(request_cart_with_item, address):
     request_cart_with_item.delivery_address = address
     request_cart_with_item.note = 'test_note'
     request_cart_with_item.save()
-    order = create_order(
+    task = create_order(
         request_cart_with_item, 'tracking_code', discounts=None, taxes=None)
-    assert order.customer_note == request_cart_with_item.note
+    assert task.customer_note == request_cart_with_item.note
 
 
 @pytest.mark.parametrize(

@@ -46,23 +46,23 @@
       {% if tasks %}
         <h6>{% trans 'Tasks' context 'Search results list tasks' %}</h6>
         <ul class="collection list card">
-          {% for order in tasks %}
+          {% for task in tasks %}
             <li class="collection-item avatar list-item">
-              <a href="{% url 'dashboard:order-details' order_pk=order.pk %}">
+              <a href="{% url 'dashboard:task-details' task_pk=task.pk %}">
                 <i class="small material-icons circle">payment</i>
                 <span class="list-item-name">
-                  {% blocktrans trimmed with order_number=order.pk context "Dashboard order" %}
-                    Task #{{ order_number }}
+                  {% blocktrans trimmed with task_number=task.pk context "Dashboard task" %}
+                    Task #{{ task_number }}
                   {% endblocktrans %}
                 </span>
                 <p class="list-item-price">
                   <small>
-                    {% blocktrans trimmed context "Dashboard customer" with email=order.user_email %}
+                    {% blocktrans trimmed context "Dashboard customer" with email=task.user_email %}
                       Customer: {{ email }}
                     {% endblocktrans %}
                   </small>
                   <small>
-                    {% blocktrans trimmed with placed=order.created context "Dashboard order info" %}
+                    {% blocktrans trimmed with placed=task.created context "Dashboard task info" %}
                       Placed on: {{ placed }}
                     {% endblocktrans %}
                   </small>

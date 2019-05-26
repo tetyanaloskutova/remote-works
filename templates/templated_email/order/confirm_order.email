@@ -9,23 +9,23 @@
 {% block plain %}
 {% include 'templated_email/shared/_header.email' %}
 {% blocktrans context "Task confirmation e-mail text" %}
-Thank you for your order. Below is the list of ordered products. To see your payment details please visit:
-{{ order_details_url }}{% endblocktrans %}
-{% for line in order %}
-{{ line.quantity }} x {{ line.skill_name }}, {% price line.get_total display_gross=order.display_gross_prices html=False %}
+Thank you for your task. Below is the list of ordered products. To see your payment details please visit:
+{{ task_details_url }}{% endblocktrans %}
+{% for line in task %}
+{{ line.quantity }} x {{ line.skill_name }}, {% price line.get_total display_gross=task.display_gross_prices html=False %}
 {% endfor %}
 {% trans "Task summary" context "Task confirmation e-mail table header" %}:
-{% trans "Subtotal" context "Task confirmation e-mail table header" %}:           {% price order.get_subtotal display_gross=order.display_gross_prices html=False %}
-{% trans "Delivery" context "Task confirmation e-mail table header" %}:           {% price order.delivery_price display_gross=order.display_gross_prices html=False %}
-{% if order.display_gross_prices %}{% trans "Taxes (included)" context "Task confirmation e-mail table header" %}{% else %}{% trans "Taxes" context "Task confirmation e-mail table header" %}{% endif %}:              {% price order.total.tax html=False %}
-{% if order.discount_amount %}{% trans "Discount:" context "Task confirmation e-mail table header" %}           {% discount_as_negative order.discount_amount %}{% endif %}
-{% trans "Total" context "Task confirmation e-mail table header" %}:              {% price order.total.gross html=False %}
+{% trans "Subtotal" context "Task confirmation e-mail table header" %}:           {% price task.get_subtotal display_gross=task.display_gross_prices html=False %}
+{% trans "Delivery" context "Task confirmation e-mail table header" %}:           {% price task.delivery_price display_gross=task.display_gross_prices html=False %}
+{% if task.display_gross_prices %}{% trans "Taxes (included)" context "Task confirmation e-mail table header" %}{% else %}{% trans "Taxes" context "Task confirmation e-mail table header" %}{% endif %}:              {% price task.total.tax html=False %}
+{% if task.discount_amount %}{% trans "Discount:" context "Task confirmation e-mail table header" %}           {% discount_as_negative task.discount_amount %}{% endif %}
+{% trans "Total" context "Task confirmation e-mail table header" %}:              {% price task.total.gross html=False %}
 
 {% trans "Billing address" context "Task confirmation e-mail billing address" %}
-{{ order.billing_address }}
+{{ task.billing_address }}
 
 {% trans "Delivery address" context "Task confirmation e-mail delivery address" %}
-{% if order.delivery_address %}{{ order.delivery_address }}{% else %}{% trans "No delivery required" context "Task confirmation e-mail text" %}{% endif %}
+{% if task.delivery_address %}{{ task.delivery_address }}{% else %}{% trans "No delivery required" context "Task confirmation e-mail text" %}{% endif %}
 
 {% include 'templated_email/shared/_footer.email' %}
 {% endblock %}

@@ -297,7 +297,7 @@ def test_get_stripe_charge_payload_with_delivery(stripe_payment):
 
 
 def test_get_stripe_charge_payload_without_delivery(stripe_payment):
-    stripe_payment.order.delivery_address = None
+    stripe_payment.task.delivery_address = None
     payment_info = create_payment_information(stripe_payment, FAKE_TOKEN)
     billing_name = get_payment_billing_fullname(payment_info)
     expected_payload = {

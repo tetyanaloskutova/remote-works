@@ -31,7 +31,7 @@ class TaskEvent(CountableDjangoObjectType):
     quantity = graphene.Int(description='Number of items.')
     composed_id = graphene.String(
         description='Composed id of the Fulfillment.')
-    order_number = graphene.String(
+    task_number = graphene.String(
         description='User-friendly number of an task.')
     oversold_items = graphene.List(
         graphene.String, description='List of oversold lines names.')
@@ -65,12 +65,12 @@ class TaskEvent(CountableDjangoObjectType):
     def resolve_oversold_items(self, info):
         return self.parameters.get('oversold_items', None)
 
-    def resolve_order_number(self, info):
-        return self.order_id
+    def resolve_task_number(self, info):
+        return self.task_id
 
 
 class FulfillmentLine(CountableDjangoObjectType):
-    order_line = graphene.Field(lambda: TaskLine)
+    task_line = graphene.Field(lambda: TaskLine)
 
     class Meta:
         description = 'Represents line of the fulfillment.'
@@ -78,9 +78,9 @@ class FulfillmentLine(CountableDjangoObjectType):
         model = models.FulfillmentLine
         exclude_fields = ['fulfillment']
 
-    @gql_optimizer.resolver_hints(prefetch_related='order_line')
-    def resolve_order_line(self, info):
-        return self.order_line
+    @gql_optimizer.resolver_hints(prefetch_related='task_line')
+    def resolve_task_line(self, info):
+        return self.task_line
 
 
 class Fulfillment(CountableDjangoObjectType):

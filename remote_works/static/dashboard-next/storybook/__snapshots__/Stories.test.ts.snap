@@ -5063,7 +5063,7 @@ exports[`Storyshots Generics / Timeline with expansion panels 1`] = `
 </div>
 `;
 
-exports[`Storyshots Generics / Timeline with order notes 1`] = `
+exports[`Storyshots Generics / Timeline with task notes 1`] = `
 <div>
   <div
     class="Timeline-root-id"
@@ -20866,7 +20866,7 @@ exports[`Storyshots Views / Customers / Customer details default 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <h2
                 class="MuiTypography-root-id MuiTypography-title-id CustomerStats-value-id"
@@ -21454,7 +21454,7 @@ exports[`Storyshots Views / Customers / Customer details different addresses 1`]
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <h2
                 class="MuiTypography-root-id MuiTypography-title-id CustomerStats-value-id"
@@ -22020,7 +22020,7 @@ exports[`Storyshots Views / Customers / Customer details form errors 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <h2
                 class="MuiTypography-root-id MuiTypography-title-id CustomerStats-value-id"
@@ -22552,7 +22552,7 @@ exports[`Storyshots Views / Customers / Customer details loading 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <span
                 class="Skeleton-skeleton-id"
@@ -23091,7 +23091,7 @@ exports[`Storyshots Views / Customers / Customer details never logged 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <h2
                 class="MuiTypography-root-id MuiTypography-title-id CustomerStats-value-id"
@@ -23192,7 +23192,7 @@ exports[`Storyshots Views / Customers / Customer details never logged 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views / Customers / Customer details never placed order 1`] = `
+exports[`Storyshots Views / Customers / Customer details never placed task 1`] = `
 <div>
   <form>
     <div
@@ -23642,7 +23642,7 @@ exports[`Storyshots Views / Customers / Customer details never placed order 1`] 
               <p
                 class="MuiTypography-root-id MuiTypography-body2-id CustomerStats-label-id"
               >
-                Last order
+                Last task
               </p>
               <h2
                 class="MuiTypography-root-id MuiTypography-title-id CustomerStats-value-id"
@@ -29807,7 +29807,7 @@ exports[`Storyshots Views / Discounts / Voucher create default 1`] = `
                     class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Minimum order value
+                    Minimum task value
                   </label>
                   <div
                     class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -29862,7 +29862,7 @@ exports[`Storyshots Views / Discounts / Voucher create default 1`] = `
                   <div
                     class="ControlledSwitch-label-id"
                   >
-                    Only once per order
+                    Only once per task
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
@@ -30317,7 +30317,7 @@ exports[`Storyshots Views / Discounts / Voucher create form errors 1`] = `
                     class="MuiFormLabel-root-id MuiFormLabel-error-id MuiInputLabel-error-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Minimum order value
+                    Minimum task value
                   </label>
                   <div
                     class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-error-id MuiInput-error-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -30372,7 +30372,7 @@ exports[`Storyshots Views / Discounts / Voucher create form errors 1`] = `
                   <div
                     class="ControlledSwitch-label-id"
                   >
-                    Only once per order
+                    Only once per task
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
@@ -30569,7 +30569,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
         <h2
           class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
         >
-          Big order discount
+          Big task discount
         </h2>
         <div
           class="ExtendedPageHeader-action-id"
@@ -30620,7 +30620,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
                     class="MuiInputBase-input-id MuiInput-input-id"
                     name="name"
                     type="text"
-                    value="Big order discount"
+                    value="Big task discount"
                   />
                 </div>
               </div>
@@ -30821,7 +30821,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
                     class="MuiFormLabel-root-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Minimum order value
+                    Minimum task value
                   </label>
                   <div
                     class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -30876,7 +30876,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
                   <div
                     class="ControlledSwitch-label-id"
                   >
-                    Only once per order
+                    Only once per task
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
@@ -30984,7 +30984,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body1-id"
               >
-                Big order discount
+                Big task discount
               </p>
               <div
                 class="FormSpacer-spacer-id"
@@ -31197,7 +31197,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
         <h2
           class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
         >
-          Big order discount
+          Big task discount
         </h2>
         <div
           class="ExtendedPageHeader-action-id"
@@ -31248,7 +31248,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
                     class="MuiInputBase-input-id MuiInput-input-id"
                     name="name"
                     type="text"
-                    value="Big order discount"
+                    value="Big task discount"
                   />
                 </div>
                 <p
@@ -31469,7 +31469,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
                     class="MuiFormLabel-root-id MuiFormLabel-error-id MuiInputLabel-error-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Minimum order value
+                    Minimum task value
                   </label>
                   <div
                     class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-error-id MuiInput-error-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -31524,7 +31524,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
                   <div
                     class="ControlledSwitch-label-id"
                   >
-                    Only once per order
+                    Only once per task
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
@@ -31642,7 +31642,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
               <p
                 class="MuiTypography-root-id MuiTypography-body1-id"
               >
-                Big order discount
+                Big task discount
               </p>
               <div
                 class="FormSpacer-spacer-id"
@@ -32116,7 +32116,7 @@ exports[`Storyshots Views / Discounts / Voucher details loading 1`] = `
                     class="MuiFormLabel-root-id MuiFormLabel-disabled-id MuiInputLabel-disabled-id MuiFormLabel-filled-id MuiInputLabel-root-id MuiInputLabel-formControl-id MuiInputLabel-animated-id MuiInputLabel-shrink-id"
                     data-shrink="true"
                   >
-                    Minimum order value
+                    Minimum task value
                   </label>
                   <div
                     class="MuiInputBase-root-id MuiInput-root-id MuiInput-underline-id MuiInputBase-disabled-id MuiInput-disabled-id MuiInputBase-fullWidth-id MuiInput-fullWidth-id MuiInputBase-formControl-id MuiInput-formControl-id"
@@ -32174,7 +32174,7 @@ exports[`Storyshots Views / Discounts / Voucher details loading 1`] = `
                   <div
                     class="ControlledSwitch-label-id"
                   >
-                    Only once per order
+                    Only once per task
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
@@ -32699,7 +32699,7 @@ exports[`Storyshots Views / Discounts / Voucher list default 1`] = `
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id VoucherList-textRight-id"
             >
-              Big order discount
+              Big task discount
             </td>
             <td
               class="MuiTableCell-root-id MuiTableCell-body-id VoucherList-textRight-id"
@@ -49977,7 +49977,7 @@ exports[`Storyshots Views / Tasks / Task list default 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Create order 
+            Create task
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root-id"
@@ -51187,7 +51187,7 @@ exports[`Storyshots Views / Tasks / Task list loading 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Create order 
+            Create task
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root-id"
@@ -51495,7 +51495,7 @@ exports[`Storyshots Views / Tasks / Task list when no data 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Create order 
+            Create task
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root-id"
@@ -51755,7 +51755,7 @@ exports[`Storyshots Views / Tasks / Task list with custom filters 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Create order 
+            Create task
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root-id"

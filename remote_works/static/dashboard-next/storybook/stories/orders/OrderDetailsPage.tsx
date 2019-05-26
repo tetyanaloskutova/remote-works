@@ -6,7 +6,7 @@ import * as placeholderImage from "../../../../images/placeholder60x60.png";
 import TaskDetailsPage, {
   TaskDetailsPageProps
 } from "../../../tasks/components/TaskDetailsPage";
-import { countries, order as orderFixture } from "../../../tasks/fixtures";
+import { countries, task as orderFixture } from "../../../tasks/fixtures";
 import {
   FulfillmentStatus,
   TaskStatus,
@@ -14,7 +14,7 @@ import {
 } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
-const order = orderFixture(placeholderImage);
+const task = orderFixture(placeholderImage);
 
 const props: Omit<TaskDetailsPageProps, "classes"> = {
   countries,
@@ -31,18 +31,18 @@ const props: Omit<TaskDetailsPageProps, "classes"> = {
   onPaymentVoid: undefined,
   onSkillClick: undefined,
   onDeliveryAddressEdit: undefined,
-  order
+  task
 };
 
 storiesOf("Views / Tasks / Task details", module)
   .addDecorator(Decorator)
   .add("default", () => <TaskDetailsPage {...props} />)
-  .add("loading", () => <TaskDetailsPage {...props} order={undefined} />)
+  .add("loading", () => <TaskDetailsPage {...props} task={undefined} />)
   .add("pending payment", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED
       }}
     />
@@ -50,8 +50,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("payment error", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED
       }}
     />
@@ -59,8 +59,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("payment confirmed", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: PaymentChargeStatusEnum.FULLY_CHARGED
       }}
     />
@@ -68,8 +68,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("no payment", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: null
       }}
     />
@@ -77,8 +77,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("refunded payment", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: PaymentChargeStatusEnum.FULLY_REFUNDED
       }}
     />
@@ -86,8 +86,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("rejected payment", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED
       }}
     />
@@ -95,9 +95,9 @@ storiesOf("Views / Tasks / Task details", module)
   .add("cancelled", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
-        fulfillments: props.order.fulfillments.map(fulfillment => ({
+      task={{
+        ...props.task,
+        fulfillments: props.task.fulfillments.map(fulfillment => ({
           ...fulfillment,
           status: FulfillmentStatus.CANCELED
         })),
@@ -108,8 +108,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("fulfilled", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         status: TaskStatus.FULFILLED
       }}
     />
@@ -117,8 +117,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("partially fulfilled", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         status: TaskStatus.PARTIALLY_FULFILLED
       }}
     />
@@ -126,8 +126,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("unfulfilled", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         status: TaskStatus.UNFULFILLED
       }}
     />
@@ -135,8 +135,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("no delivery address", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         deliveryAddress: null
       }}
     />
@@ -144,8 +144,8 @@ storiesOf("Views / Tasks / Task details", module)
   .add("no customer note", () => (
     <TaskDetailsPage
       {...props}
-      order={{
-        ...props.order,
+      task={{
+        ...props.task,
         customerNote: ""
       }}
     />

@@ -90,19 +90,19 @@ class DeliveryMethod(models.Model):
     delivery_zone = models.ForeignKey(
         DeliveryZone, related_name='delivery_methods',
         on_delete=models.CASCADE)
-    minimum_order_price = MoneyField(
+    minimum_task_price = MoneyField(
         currency=settings.DEFAULT_CURRENCY,
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES, default=0, blank=True,
         null=True)
-    maximum_order_price = MoneyField(
+    maximum_task_price = MoneyField(
         currency=settings.DEFAULT_CURRENCY,
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES, blank=True, null=True)
-    minimum_order_weight = MeasurementField(
+    minimum_task_weight = MeasurementField(
         measurement=Weight, unit_choices=WeightUnits.CHOICES,
         default=zero_weight, blank=True, null=True)
-    maximum_order_weight = MeasurementField(
+    maximum_task_weight = MeasurementField(
         measurement=Weight, unit_choices=WeightUnits.CHOICES,
         blank=True, null=True)
 
@@ -115,9 +115,9 @@ class DeliveryMethod(models.Model):
     def __repr__(self):
         if self.type == DeliveryMethodType.PRICE_BASED:
             minimum = '%s%s' % (
-                self.minimum_order_price.amount,
-                self.minimum_order_price.currency)
-            max_price = self.maximum_order_price
+                self.minimum_task_price.amount,
+                self.minimum_task_price.currency)
+            max_price = self.maximum_task_price
             maximum = (
                 '%s%s' % (max_price.amount, max_price.currency)
                 if max_price else 'no limit')
@@ -125,7 +125,7 @@ class DeliveryMethod(models.Model):
                 self.type, minimum, maximum)
         return 'DeliveryMethod(type=%s weight_range=(%s)' % (
             self.type, get_weight_type_display(
-                self.minimum_order_weight, self.maximum_order_weight))
+                self.minimum_task_weight, self.maximum_task_weight))
 
     def get_total(self, taxes=None):
         return get_taxed_delivery_price(self.price, taxes)
@@ -138,9 +138,9 @@ class DeliveryMethod(models.Model):
     def get_type_display(self):
         if self.type == DeliveryMethodType.PRICE_BASED:
             return get_price_type_display(
-                self.minimum_order_price, self.maximum_order_price)
+                self.minimum_task_price, self.maximum_task_price)
         return get_weight_type_display(
-            self.minimum_order_weight, self.maximum_order_weight)
+            self.minimum_task_weight, self.maximum_task_weight)
 
 
 class DeliveryMethodTranslation(models.Model):

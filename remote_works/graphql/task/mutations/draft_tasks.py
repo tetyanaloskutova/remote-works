@@ -9,8 +9,8 @@ from ....core.exceptions import InsufficientStock
 from ....core.utils.taxes import ZERO_TAXED_MONEY
 from ....task import TaskEvents, TaskStatus, models
 from ....task.utils import (
-    add_variant_to_order, allocate_stock, change_order_line_quantity,
-    delete_order_line, recalculate_order)
+    add_variant_to_order, allocate_stock, change_task_line_quantity,
+    delete_task_line, recalculate_order)
 from ...account.i18n import I18nMixin
 from ...account.types import AddressInput
 from ...core.mutations import BaseMutation, ModelDeleteMutation, ModelMutation
@@ -216,7 +216,7 @@ class DraftTaskComplete(BaseMutation):
 class DraftTaskLinesCreate(BaseMutation):
     task = graphene.Field(
         graphene.NonNull(Task), description='A related draft task.')
-    order_lines = graphene.List(
+    task_lines = graphene.List(
         graphene.NonNull(TaskLine),
         description='List of newly added task lines.', required=True)
 
@@ -240,7 +240,7 @@ class DraftTaskLinesCreate(BaseMutation):
             return DraftTaskLinesCreate(errors=errors)
         if task.status != TaskStatus.DRAFT:
             cls.add_error(
-                errors, 'order_id', 'Only draft tasks can be edited.')
+                errors, 'task_id', 'Only draft tasks can be edited.')
 
         lines = []
         for input_line in input:
@@ -260,12 +260,12 @@ class DraftTaskLinesCreate(BaseMutation):
 
         recalculate_order(task)
         return DraftTaskLinesCreate(
-            task=task, order_lines=lines, errors=errors)
+            task=task, task_lines=lines, errors=errors)
 
 
 class DraftTaskLineDelete(BaseMutation):
     task = graphene.Field(Task, description='A related draft task.')
-    order_line = graphene.Field(
+    task_line = graphene.Field(
         TaskLine, description='An task line that was deleted.')
 
     class Arguments:
@@ -289,11 +289,11 @@ class DraftTaskLineDelete(BaseMutation):
                 errors, 'id', 'Only draft tasks can be edited.')
         if not errors:
             db_id = line.id
-            delete_order_line(line)
+            delete_task_line(line)
             line.id = db_id
             recalculate_order(task)
         return DraftTaskLineDelete(
-            errors=errors, task=task, order_line=line)
+            errors=errors, task=task, task_line=line)
 
 
 class DraftTaskLineUpdate(ModelMutation):
@@ -331,7 +331,7 @@ class DraftTaskLineUpdate(ModelMutation):
 
     @classmethod
     def save(cls, info, instance, cleaned_input):
-        change_order_line_quantity(instance, instance.quantity)
+        change_task_line_quantity(instance, instance.quantity)
         recalculate_order(instance.task)
 
     @classmethod

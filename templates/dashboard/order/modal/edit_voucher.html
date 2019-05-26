@@ -4,7 +4,7 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:order-voucher-edit' order_pk=order.pk %}
+{% url 'dashboard:task-voucher-edit' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
@@ -18,9 +18,9 @@
 {% endblock %}
 
 {% block actions_left %}
-  {% if order.voucher or order.discount_name %}
-    <button type="submit" class="modal-action btn-flat waves-effect" formaction="{% url 'dashboard:order-voucher-remove' order_pk=order.pk %}">
-      {% trans "Remove voucher from order" context "Dashboard edit draft order remove action" %}
+  {% if task.voucher or task.discount_name %}
+    <button type="submit" class="modal-action btn-flat waves-effect" formaction="{% url 'dashboard:task-voucher-remove' task_pk=task.pk %}">
+      {% trans "Remove voucher from task" context "Dashboard edit draft task remove action" %}
     </button>
   {% endif %}
 {% endblock %}

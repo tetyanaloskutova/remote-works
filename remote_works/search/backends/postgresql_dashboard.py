@@ -22,8 +22,8 @@ def search_orders(phrase):
     just task with matching id is looked up.
     """
     try:
-        order_id = int(phrase.strip())
-        return Task.objects.filter(id=order_id)
+        task_id = int(phrase.strip())
+        return Task.objects.filter(id=task_id)
     except ValueError:
         pass
 

@@ -64,7 +64,7 @@ storiesOf("Views / Customers / Customer details", module)
       }}
     />
   ))
-  .add("never placed order", () => (
+  .add("never placed task", () => (
     <CustomerDetailsPage
       {...props}
       customer={{

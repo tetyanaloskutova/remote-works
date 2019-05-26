@@ -4,8 +4,8 @@
 {% block title %}{% trans "Payment" context "Payment form page title" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
-  {% with order=payment.order %}
-    {% if order.user == user %}
+  {% with task=payment.task %}
+    {% if task.user == user %}
       <ul class="breadcrumbs list-unstyled">
         <li>
           <a href="{% url 'home'%}">
@@ -18,9 +18,9 @@
           </a>
         </li>
         <li>
-          <a href="{{ order.get_absolute_url }}">
+          <a href="{{ task.get_absolute_url }}">
             {% blocktrans trimmed context "Task details breadcrumb" %}
-              Task {{ order }}
+              Task {{ task }}
             {% endblocktrans %}
           </a>
         </li>
@@ -40,8 +40,8 @@
       {% block forms %}{% endblock %}
     </div>
   </div>
-  <h2 class="order-details__header">
-    {% trans "Task details" context "Header of the order summary table" %}
+  <h2 class="task-details__header">
+    {% trans "Task details" context "Header of the task summary table" %}
   </h2>
-  {% include "order/_ordered_items_table.html" %}
+  {% include "task/_ordered_items_table.html" %}
 {% endblock content %}

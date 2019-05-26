@@ -482,7 +482,7 @@ def skill_image_delete(request, skill_pk, img_pk):
 
 
 @require_POST
-def ajax_reorder_skill_images(request, skill_type_pk):
+def ajax_retask_skill_images(request, skill_type_pk):
     skill = get_object_or_404(Skill, pk=skill_type_pk)
     form = forms.ReorderSkillImagesForm(request.POST, instance=skill)
     status = 200
@@ -645,7 +645,7 @@ def attribute_value_delete(request, attribute_pk, value_pk):
 
 
 @permission_required('skill.manage_skills')
-def ajax_reorder_attribute_values(request, attribute_pk):
+def ajax_retask_attribute_values(request, attribute_pk):
     attribute = get_object_or_404(Attribute, pk=attribute_pk)
     form = forms.ReorderAttributeValuesForm(
         request.POST, instance=attribute)

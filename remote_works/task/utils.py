@@ -19,7 +19,7 @@ from ..payment.utils import gateway_refund, gateway_void
 from ..skill.utils import allocate_stock, deallocate_stock, increase_stock
 
 
-def check_order_status(func):
+def check_task_status(func):
     """Check if task meets preconditions of payment process.
 
     Task can not have draft status or be fully paid. Billing address
@@ -78,10 +78,10 @@ def recalculate_order(task, **kwargs):
         total -= task.discount_amount
     task.total = total
     task.save()
-    recalculate_order_weight(task)
+    recalculate_task_weight(task)
 
 
-def recalculate_order_weight(task):
+def recalculate_task_weight(task):
     """Recalculate task weights."""
     weight = zero_weight()
     for line in task:
@@ -91,7 +91,7 @@ def recalculate_order_weight(task):
     task.save(update_fields=['weight'])
 
 
-def update_order_prices(task, discounts):
+def update_task_prices(task, discounts):
     """Update prices in task with given discounts and proper taxes."""
     taxes = get_taxes_for_address(task.delivery_address)
 
@@ -115,7 +115,7 @@ def cancel_order(task, restock):
     Return skills to corresponding stocks if restock is set to True.
     """
     if restock:
-        restock_order_lines(task)
+        restock_task_lines(task)
     for fulfillment in task.fulfillments.all():
         fulfillment.status = FulfillmentStatus.CANCELED
         fulfillment.save(update_fields=['status'])
@@ -132,7 +132,7 @@ def cancel_order(task, restock):
             gateway_void(payment)
 
 
-def update_order_status(task):
+def update_task_status(task):
     """Update task status depending on fulfillments."""
     quantity_fulfilled = task.quantity_fulfilled
     total_quantity = task.get_total_quantity()
@@ -157,15 +157,15 @@ def cancel_fulfillment(fulfillment, restock):
     if restock:
         restock_fulfillment_lines(fulfillment)
     for line in fulfillment:
-        order_line = line.order_line
-        order_line.quantity_fulfilled -= line.quantity
-        order_line.save(update_fields=['quantity_fulfilled'])
+        task_line = line.task_line
+        task_line.quantity_fulfilled -= line.quantity
+        task_line.save(update_fields=['quantity_fulfilled'])
     fulfillment.status = FulfillmentStatus.CANCELED
     fulfillment.save(update_fields=['status'])
-    update_order_status(fulfillment.task)
+    update_task_status(fulfillment.task)
 
 
-def attach_order_to_user(task, user):
+def attach_task_to_user(task, user):
     """Associate existing task with user account."""
     task.user = user
     store_user_address(user, task.billing_address, AddressType.BILLING)
@@ -217,21 +217,21 @@ def add_variant_to_order(
     return line
 
 
-def change_order_line_quantity(line, new_quantity):
+def change_task_line_quantity(line, new_quantity):
     """Change the quantity of ordered items in a task line."""
     if new_quantity:
         line.quantity = new_quantity
         line.save(update_fields=['quantity'])
     else:
-        delete_order_line(line)
+        delete_task_line(line)
 
 
-def delete_order_line(line):
+def delete_task_line(line):
     """Delete an task line from an task."""
     line.delete()
 
 
-def restock_order_lines(task):
+def restock_task_lines(task):
     """Return ordered skills to corresponding stocks."""
     for line in task:
         if line.variant and line.variant.track_inventory:
@@ -248,12 +248,12 @@ def restock_order_lines(task):
 def restock_fulfillment_lines(fulfillment):
     """Return fulfilled skills to corresponding stocks."""
     for line in fulfillment:
-        if line.order_line.variant and line.order_line.variant.track_inventory:
+        if line.task_line.variant and line.task_line.variant.track_inventory:
             increase_stock(
-                line.order_line.variant, line.quantity, allocate=True)
+                line.task_line.variant, line.quantity, allocate=True)
 
 
-def sum_order_totals(qs):
+def sum_task_totals(qs):
     zero = Money(0, currency=settings.DEFAULT_CURRENCY)
     taxed_zero = TaxedMoney(zero, zero)
     return sum([task.total for task in qs], taxed_zero)

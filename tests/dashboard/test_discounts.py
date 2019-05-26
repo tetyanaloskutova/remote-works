@@ -7,7 +7,7 @@ import pytest
 from django.urls import reverse
 from prices import Money, TaxedMoney
 
-from remote_works.dashboard.order.utils import get_voucher_discount_for_order
+from remote_works.dashboard.task.utils import get_voucher_discount_for_order
 from remote_works.discount import DiscountValueType, VoucherType
 from remote_works.discount.models import NotApplicable, Sale, Voucher
 from remote_works.product.models import Collection
@@ -97,7 +97,7 @@ def test_view_sale_add_requires_skill_category_or_collection(
     'total, discount_value, discount_type, min_amount_spent, expected_value', [
         ('100', 10, DiscountValueType.FIXED, None, 10),
         ('100.05', 10, DiscountValueType.PERCENTAGE, 100, 10)])
-def test_value_voucher_order_discount(
+def test_value_voucher_task_discount(
         settings, total, discount_value, discount_type, min_amount_spent, expected_value):
     voucher = Voucher(
         code='unique', type=VoucherType.VALUE,
@@ -105,8 +105,8 @@ def test_value_voucher_order_discount(
         discount_value=discount_value,
         min_amount_spent=Money(min_amount_spent, 'USD') if min_amount_spent is not None else None)
     subtotal = TaxedMoney(net=Money(total, 'USD'), gross=Money(total, 'USD'))
-    order = Mock(get_subtotal=Mock(return_value=subtotal), voucher=voucher)
-    discount = get_voucher_discount_for_order(order)
+    task = Mock(get_subtotal=Mock(return_value=subtotal), voucher=voucher)
+    discount = get_voucher_discount_for_order(task)
     assert discount == Money(expected_value, 'USD')
 
 
@@ -114,7 +114,7 @@ def test_value_voucher_order_discount(
     'delivery_cost, discount_value, discount_type, expected_value', [
         (10, 50, DiscountValueType.PERCENTAGE, 5),
         (10, 20, DiscountValueType.FIXED, 10)])
-def test_delivery_voucher_order_discount(
+def test_delivery_voucher_task_discount(
         delivery_cost, discount_value, discount_type, expected_value):
     voucher = Voucher(
         code='unique', type=VoucherType.DELIVERY,
@@ -124,11 +124,11 @@ def test_delivery_voucher_order_discount(
     subtotal = TaxedMoney(net=Money(100, 'USD'), gross=Money(100, 'USD'))
     delivery_total = TaxedMoney(
         net=Money(delivery_cost, 'USD'), gross=Money(delivery_cost, 'USD'))
-    order = Mock(
+    task = Mock(
         get_subtotal=Mock(return_value=subtotal),
         delivery_price=delivery_total,
         voucher=voucher)
-    discount = get_voucher_discount_for_order(order)
+    discount = get_voucher_discount_for_order(task)
     assert discount == Money(expected_value, 'USD')
 
 
@@ -139,16 +139,16 @@ def test_delivery_voucher_checkout_discount_not_applicable_returns_zero():
         discount_value=10,
         min_amount_spent=Money(20, 'USD'))
     price = TaxedMoney(net=Money(10, 'USD'), gross=Money(10, 'USD'))
-    order = Mock(
+    task = Mock(
         get_subtotal=Mock(return_value=price),
         delivery_price=price,
         voucher=voucher)
     with pytest.raises(NotApplicable):
-        get_voucher_discount_for_order(order)
+        get_voucher_discount_for_order(task)
 
 
 def test_skill_voucher_checkout_discount_raises_not_applicable(
-        order_with_lines, skill_with_images):
+        task_with_lines, skill_with_images):
     discounted_skill = skill_with_images
     voucher = Voucher(
         code='unique', type=VoucherType.PRODUCT,
@@ -156,15 +156,15 @@ def test_skill_voucher_checkout_discount_raises_not_applicable(
         discount_value=10)
     voucher.save()
     voucher.products.add(discounted_product)
-    order_with_lines.voucher = voucher
-    order_with_lines.save()
+    task_with_lines.voucher = voucher
+    task_with_lines.save()
     # Offer is valid only for skills listed in voucher
     with pytest.raises(NotApplicable):
-        get_voucher_discount_for_order(order_with_lines)
+        get_voucher_discount_for_order(task_with_lines)
 
 
 def test_category_voucher_checkout_discount_raises_not_applicable(
-        order_with_lines):
+        task_with_lines):
     discounted_collection = Collection.objects.create(
         name='Discounted', slug='discou')
     voucher = Voucher(
@@ -173,11 +173,11 @@ def test_category_voucher_checkout_discount_raises_not_applicable(
         discount_value=10)
     voucher.save()
     voucher.collections.add(discounted_collection)
-    order_with_lines.voucher = voucher
-    order_with_lines.save()
+    task_with_lines.voucher = voucher
+    task_with_lines.save()
     # Discount should be valid only for items in the discounted collections
     with pytest.raises(NotApplicable):
-        get_voucher_discount_for_order(order_with_lines)
+        get_voucher_discount_for_order(task_with_lines)
 
 
 def test_ajax_voucher_list(admin_client, voucher):

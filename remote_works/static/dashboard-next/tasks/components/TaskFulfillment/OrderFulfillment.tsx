@@ -24,7 +24,7 @@ import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { FulfillmentStatus } from "../../../types/globalTypes";
-import { TaskDetails_order_fulfillments } from "../../types/TaskDetails";
+import { TaskDetails_task_fulfillments } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -50,7 +50,7 @@ const styles = (theme: Theme) =>
   });
 
 interface TaskFulfillmentProps extends WithStyles<typeof styles> {
-  fulfillment: TaskDetails_order_fulfillments;
+  fulfillment: TaskDetails_task_fulfillments;
   orderNumber: string;
   onTaskFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;

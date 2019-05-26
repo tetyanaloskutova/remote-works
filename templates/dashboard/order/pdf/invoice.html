@@ -1,4 +1,4 @@
-{% extends "dashboard/order/pdf/base_pdf.html" %}
+{% extends "dashboard/task/pdf/base_pdf.html" %}
 
 {% load i18n static %}
 {% load price from taxed_prices %}
@@ -6,8 +6,8 @@
 {% load render_bundle from webpack_loader %}
 
 {% block title %}
-  {% blocktrans trimmed context "Invoice title" with order_id=order.id %}
-    Invoice for Task #{{ order_id }}
+  {% blocktrans trimmed context "Invoice title" with task_id=task.id %}
+    Invoice for Task #{{ task_id }}
   {% endblocktrans %}
 {% endblock %}
 
@@ -16,13 +16,13 @@
   <table width="100%" border="1" cellspacing="0">
     <thead>
     <tr>
-      {% if order.delivery_address %}
+      {% if task.delivery_address %}
         <th align="left" width="50%">
           {% trans "Delivery address" context "Invoice delivery address" %}
         </th>
       {% endif %}
-      {% if order.billing_address %}
-        <th align="left" {% if order.delivery_address %} width="50%"{% endif %}>
+      {% if task.billing_address %}
+        <th align="left" {% if task.delivery_address %} width="50%"{% endif %}>
           {% trans "Billing address" context "Invoice billing address" %}
         </th>
       {% endif %}
@@ -30,14 +30,14 @@
     </thead>
     <tbody>
     <tr>
-      {% if order.delivery_address %}
+      {% if task.delivery_address %}
         <td>
-          {% include "dashboard/includes/_address.html" with address=order.delivery_address only %}
+          {% include "dashboard/includes/_address.html" with address=task.delivery_address only %}
         </td>
       {% endif %}
-      {% if order.billing_address %}
+      {% if task.billing_address %}
         <td>
-          {% include "dashboard/includes/_address.html" with address=order.billing_address only %}
+          {% include "dashboard/includes/_address.html" with address=task.billing_address only %}
         </td>
       {% endif %}
     </tr>
@@ -45,34 +45,34 @@
   </table>
 
   <h2>{% trans "Items Tasked" context "Invoice ordered items header" %}</h2>
-  {% if order %}
-    <table class="data-table order-table bordered">
+  {% if task %}
+    <table class="data-table task-table bordered">
       <thead>
       <tr>
         <th>
           <div class="wide">
-            {% trans "Item" context "Shipment order table header" %}
+            {% trans "Item" context "Shipment task table header" %}
           </div>
         </th>
         <th>
-          {% trans "SKU" context "Shipment order table header" %}
+          {% trans "SKU" context "Shipment task table header" %}
         </th>
         <th class="right-align">
-          {% trans "Tax rate" context "Shipment order table header" %}
+          {% trans "Tax rate" context "Shipment task table header" %}
         </th>
         <th class="right-align">
-          {% trans "Gross price" context "Shipment order table header" %}
+          {% trans "Gross price" context "Shipment task table header" %}
         </th>
         <th class="right-align">
-          {% trans "Quantity" context "Shipment order table header" %}
+          {% trans "Quantity" context "Shipment task table header" %}
         </th>
         <th class="right-align">
-          {% trans "Total" context "Shipment order table header" %}
+          {% trans "Total" context "Shipment task table header" %}
         </th>
       </tr>
       </thead>
       <tbody>
-        {% for line in order %}
+        {% for line in task %}
           <tr>
             <td>
               {{ line.skill_name|truncatechars:30 }}<br>
@@ -107,15 +107,15 @@
           {% trans "Subtotal" context "Task subtotal net price" %}
         </td>
         <td class="right-align">
-          {% price order.get_subtotal.gross %}
+          {% price task.get_subtotal.gross %}
         </td>
       </tr>
       <tr>
         <td>
-          {% trans "Delivery" context "Task total delivery price header" %} {% if order.delivery_method_name %}({{ order.delivery_method_name }}){% endif %}
+          {% trans "Delivery" context "Task total delivery price header" %} {% if task.delivery_method_name %}({{ task.delivery_method_name }}){% endif %}
         </td>
         <td class="right-align">
-          {% price order.delivery_price.gross %}
+          {% price task.delivery_price.gross %}
         </td>
       </tr>
       <tr>
@@ -123,16 +123,16 @@
           {% trans "Total taxes (included)" context "Task total taxes header" %}
         </td>
         <td class="right-align">
-          {% price order.total.tax %}
+          {% price task.total.tax %}
         </td>
       </tr>
-      {% if order.discount_amount %}
+      {% if task.discount_amount %}
         <tr>
           <td>
-            {% trans "Discount" context "Task voucher header" %} {% if order.discount_name %}({{ order.translated_discount_name|default:order.discount_name }}){% endif %}
+            {% trans "Discount" context "Task voucher header" %} {% if task.discount_name %}({{ task.translated_discount_name|default:task.discount_name }}){% endif %}
           </td>
           <td class="right-align">
-            {% discount_as_negative order.discount_amount html=True %}
+            {% discount_as_negative task.discount_amount html=True %}
           </td>
         </tr>
       {% endif %}
@@ -143,7 +143,7 @@
           {% trans "Grand total" context "Task total price header" %}
         </td>
         <td class="right-align">
-          {% price order.total.gross %}
+          {% price task.total.gross %}
         </td>
       </tr>
     </tfoot>

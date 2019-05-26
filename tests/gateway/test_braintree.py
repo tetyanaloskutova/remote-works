@@ -93,7 +93,7 @@ def test_get_customer_data(payment_dummy):
     payment_info = create_payment_information(payment)
     result = get_customer_data(payment_info)
     expected_result = {
-        'order_id': payment.order_id,
+        'task_id': payment.task_id,
         'billing': {
             'first_name': payment.billing_first_name,
             'last_name': payment.billing_last_name,

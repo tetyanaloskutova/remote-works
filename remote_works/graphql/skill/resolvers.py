@@ -132,15 +132,15 @@ def resolve_skill_variants(info, ids=None):
 
 def resolve_report_skill_sales(info, period):
     qs = models.SkillVariant.objects.prefetch_related(
-        'skill', 'skill__images', 'order_lines__order').all()
+        'skill', 'skill__images', 'task_lines__order').all()
 
     # exclude draft and canceled tasks
     exclude_status = [TaskStatus.DRAFT, TaskStatus.CANCELED]
-    qs = qs.exclude(order_lines__order__status__in=exclude_status)
+    qs = qs.exclude(task_lines__task__status__in=exclude_status)
 
     # filter by period
-    qs = filter_by_period(qs, period, 'order_lines__order__created')
+    qs = filter_by_period(qs, period, 'task_lines__task__created')
 
-    qs = qs.annotate(quantity_ordered=Sum('order_lines__quantity'))
+    qs = qs.annotate(quantity_ordered=Sum('task_lines__quantity'))
     qs = qs.filter(quantity_ordered__isnull=False)
     return qs.order_by('-quantity_ordered')

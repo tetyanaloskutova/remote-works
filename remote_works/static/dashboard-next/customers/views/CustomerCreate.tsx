@@ -67,7 +67,7 @@ export const CustomerCreate: React.StatelessComponent<{}> = () => (
                                   ...address,
                                   country: address.country.value
                                 },
-                                defaultShippingAddress: {
+                                defaultDeliveryAddress: {
                                   ...address,
                                   country: address.country.value
                                 },

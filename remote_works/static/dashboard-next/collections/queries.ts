@@ -64,7 +64,7 @@ export const collectionList = gql`
       edges {
         node {
           ...CollectionFragment
-          products {
+          skills {
             totalCount
           }
         }

@@ -45,7 +45,7 @@ import Home from "./icons/Home";
 import Shop from "./icons/Shop";
 import Truck from "./icons/Truck";
 import { removeDoubleSlashes } from "./misc";
-import { orderListUrl } from "./orders/urls";
+import { orderListUrl } from "./tasks/urls";
 import { productListUrl } from "./products/urls";
 import { PermissionEnum } from "./types/globalTypes";
 
@@ -86,9 +86,9 @@ const menuStructure: IMenuItem[] = [
     permission: PermissionEnum.MANAGE_PRODUCTS
   },
   {
-    ariaLabel: "orders",
+    ariaLabel: "tasks",
     icon: <Truck />,
-    label: i18n.t("Orders", { context: "Menu label" }),
+    label: i18n.t("Tasks", { context: "Menu label" }),
     permission: PermissionEnum.MANAGE_ORDERS,
     url: orderListUrl()
   },

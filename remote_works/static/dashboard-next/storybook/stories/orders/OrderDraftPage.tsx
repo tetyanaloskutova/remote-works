@@ -3,15 +3,15 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
-import OrderDraftPage, {
-  OrderDraftPageProps
-} from "../../../orders/components/OrderDraftPage";
-import { clients, countries, draftOrder } from "../../../orders/fixtures";
+import TaskDraftPage, {
+  TaskDraftPageProps
+} from "../../../tasks/components/TaskDraftPage";
+import { clients, countries, draftTask } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const order = draftOrder(placeholderImage);
+const task = draftTask(placeholderImage);
 
-const props: Omit<OrderDraftPageProps, "classes"> = {
+const props: Omit<TaskDraftPageProps, "classes"> = {
   countries,
   disabled: false,
   fetchUsers: () => undefined,
@@ -21,24 +21,24 @@ const props: Omit<OrderDraftPageProps, "classes"> = {
   onDraftFinalize: () => undefined,
   onDraftRemove: () => undefined,
   onNoteAdd: undefined,
-  onOrderLineAdd: () => undefined,
-  onOrderLineChange: () => undefined,
-  onOrderLineRemove: () => () => undefined,
+  onTaskLineAdd: () => undefined,
+  onTaskLineChange: () => undefined,
+  onTaskLineRemove: () => () => undefined,
   onSkillClick: undefined,
-  onShippingAddressEdit: undefined,
-  onShippingMethodEdit: undefined,
-  order,
+  onDeliveryAddressEdit: undefined,
+  onDeliveryMethodEdit: undefined,
+  task,
   saveButtonBarState: "default",
   users: clients,
   usersLoading: false
 };
 
-storiesOf("Views / Orders / Order draft", module)
+storiesOf("Views / Tasks / Task draft", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderDraftPage {...props} />)
+  .add("default", () => <TaskDraftPage {...props} />)
   .add("loading", () => (
-    <OrderDraftPage {...props} disabled={true} order={undefined} />
+    <TaskDraftPage {...props} disabled={true} task={undefined} />
   ))
   .add("without lines", () => (
-    <OrderDraftPage {...props} order={{ ...order, lines: [] }} />
+    <TaskDraftPage {...props} task={{ ...task, lines: [] }} />
   ));

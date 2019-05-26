@@ -21,7 +21,7 @@ export interface CategoryDetails_category_children_edges_node_children {
   totalCount: number | null;
 }
 
-export interface CategoryDetails_category_children_edges_node_products {
+export interface CategoryDetails_category_children_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -31,7 +31,7 @@ export interface CategoryDetails_category_children_edges_node {
   id: string;
   name: string;
   children: CategoryDetails_category_children_edges_node_children | null;
-  products: CategoryDetails_category_children_edges_node_products | null;
+  products: CategoryDetails_category_children_edges_node_skills | null;
 }
 
 export interface CategoryDetails_category_children_edges {
@@ -90,7 +90,7 @@ export interface CategoryDetails_category_products_edges {
   node: CategoryDetails_category_products_edges_node;
 }
 
-export interface CategoryDetails_category_products {
+export interface CategoryDetails_category_skills {
   __typename: "SkillCountableConnection";
   pageInfo: CategoryDetails_category_products_pageInfo;
   edges: CategoryDetails_category_products_edges[];
@@ -106,7 +106,7 @@ export interface CategoryDetails_category {
   seoTitle: string | null;
   parent: CategoryDetails_category_parent | null;
   children: CategoryDetails_category_children | null;
-  products: CategoryDetails_category_products | null;
+  products: CategoryDetails_category_skills | null;
 }
 
 export interface CategoryDetails {

@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-import { fragmentAddress } from "../orders/queries";
+import { fragmentAddress } from "../tasks/queries";
 import { TypedQuery } from "../queries";
 import { CustomerCreateData } from "./types/CustomerCreateData";
 import {
@@ -25,7 +25,7 @@ export const customerDetailsFragment = gql`
     ...CustomerFragment
     dateJoined
     lastLogin
-    defaultShippingAddress {
+    defaultDeliveryAddress {
       ...AddressFragment
     }
     defaultBillingAddress {
@@ -48,7 +48,7 @@ const customerList = gql`
       edges {
         node {
           ...CustomerFragment
-          orders {
+          tasks {
             totalCount
           }
         }
@@ -72,7 +72,7 @@ const customerDetails = gql`
   query CustomerDetails($id: ID!) {
     user(id: $id) {
       ...CustomerDetailsFragment
-      orders(last: 5) {
+      tasks(last: 5) {
         edges {
           node {
             id
@@ -88,7 +88,7 @@ const customerDetails = gql`
           }
         }
       }
-      lastPlacedOrder: orders(last: 1) {
+      lastPlacedTask: tasks(last: 1) {
         edges {
           node {
             id

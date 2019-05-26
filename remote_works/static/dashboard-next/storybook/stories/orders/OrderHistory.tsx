@@ -1,14 +1,14 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderHistory from "../../../orders/components/OrderHistory";
-import { order as orderFixture } from "../../../orders/fixtures";
+import TaskHistory from "../../../tasks/components/TaskHistory";
+import { task as orderFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const task = orderFixture("");
 
-storiesOf("Orders / OrderHistory", module)
+storiesOf("Tasks / TaskHistory", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderHistory onNoteAdd={undefined} history={order.events} />
+    <TaskHistory onNoteAdd={undefined} history={task.events} />
   ));

@@ -5,7 +5,7 @@ import i18n from "./i18n";
 import { PartialMutationProviderOutput, UserError } from "./types";
 import {
   AuthorizationKeyType,
-  OrderStatus,
+  TaskStatus,
   PaymentChargeStatusEnum,
   TaxRateType
 } from "./types/globalTypes";
@@ -68,17 +68,17 @@ export const transformPaymentStatus = (status: string) => {
   }
 };
 
-export const transformOrderStatus = (status: string) => {
+export const transformTaskStatus = (status: string) => {
   switch (status) {
-    case OrderStatus.FULFILLED:
+    case TaskStatus.FULFILLED:
       return { localized: i18n.t("Fulfilled"), status: "success" };
-    case OrderStatus.PARTIALLY_FULFILLED:
+    case TaskStatus.PARTIALLY_FULFILLED:
       return { localized: i18n.t("Partially fulfilled"), status: "neutral" };
-    case OrderStatus.UNFULFILLED:
+    case TaskStatus.UNFULFILLED:
       return { localized: i18n.t("Unfulfilled"), status: "error" };
-    case OrderStatus.CANCELED:
+    case TaskStatus.CANCELED:
       return { localized: i18n.t("Cancelled"), status: "error" };
-    case OrderStatus.DRAFT:
+    case TaskStatus.DRAFT:
       return { localized: i18n.t("Draft"), status: "error" };
   }
   return {

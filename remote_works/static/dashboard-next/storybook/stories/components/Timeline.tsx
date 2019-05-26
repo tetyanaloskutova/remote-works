@@ -41,7 +41,7 @@ storiesOf("Generics / Timeline", module)
       </TimelineEvent>
     </Timeline>
   ))
-  .add("with order notes", () => (
+  .add("with task notes", () => (
     <Timeline>
       <TimelineEvent date="2018-05-07T16:58:02+00:00" title="Expansion panel 1">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

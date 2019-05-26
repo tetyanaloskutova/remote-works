@@ -25,14 +25,14 @@ export enum FulfillmentStatus {
   FULFILLED = "FULFILLED",
 }
 
-export enum OrderAction {
+export enum TaskAction {
   CAPTURE = "CAPTURE",
   MARK_AS_PAID = "MARK_AS_PAID",
   REFUND = "REFUND",
   VOID = "VOID",
 }
 
-export enum OrderEvents {
+export enum TaskEvents {
   CANCELED = "CANCELED",
   EMAIL_SENT = "EMAIL_SENT",
   FULFILLMENT_CANCELED = "FULFILLMENT_CANCELED",
@@ -52,14 +52,14 @@ export enum OrderEvents {
   UPDATED = "UPDATED",
 }
 
-export enum OrderEventsEmails {
+export enum TaskEventsEmails {
   FULFILLMENT = "FULFILLMENT",
   ORDER = "ORDER",
   PAYMENT = "PAYMENT",
-  SHIPPING = "SHIPPING",
+  DELIVERY = "DELIVERY",
 }
 
-export enum OrderStatus {
+export enum TaskStatus {
   CANCELED = "CANCELED",
   DRAFT = "DRAFT",
   FULFILLED = "FULFILLED",
@@ -67,7 +67,7 @@ export enum OrderStatus {
   UNFULFILLED = "UNFULFILLED",
 }
 
-export enum OrderStatusFilter {
+export enum TaskStatusFilter {
   READY_TO_CAPTURE = "READY_TO_CAPTURE",
   READY_TO_FULFILL = "READY_TO_FULFILL",
 }
@@ -88,7 +88,7 @@ export enum PermissionEnum {
   MANAGE_PAGES = "MANAGE_PAGES",
   MANAGE_PRODUCTS = "MANAGE_PRODUCTS",
   MANAGE_SETTINGS = "MANAGE_SETTINGS",
-  MANAGE_SHIPPING = "MANAGE_SHIPPING",
+  MANAGE_DELIVERY = "MANAGE_DELIVERY",
   MANAGE_STAFF = "MANAGE_STAFF",
   MANAGE_USERS = "MANAGE_USERS",
 }
@@ -140,7 +140,7 @@ export enum VoucherType {
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
   PRODUCT = "PRODUCT",
-  SHIPPING = "SHIPPING",
+  DELIVERY = "DELIVERY",
   VALUE = "VALUE",
 }
 
@@ -148,7 +148,7 @@ export enum VoucherTypeEnum {
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
   PRODUCT = "PRODUCT",
-  SHIPPING = "SHIPPING",
+  DELIVERY = "DELIVERY",
   VALUE = "VALUE",
 }
 
@@ -242,7 +242,7 @@ export interface CollectionInput {
 
 export interface CustomerInput {
   defaultBillingAddress?: AddressInput | null;
-  defaultShippingAddress?: AddressInput | null;
+  defaultDeliveryAddress?: AddressInput | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
@@ -250,13 +250,13 @@ export interface CustomerInput {
   note?: string | null;
 }
 
-export interface DraftOrderInput {
+export interface DraftTaskInput {
   billingAddress?: AddressInput | null;
   user?: string | null;
   userEmail?: string | null;
   discount?: any | null;
-  shippingAddress?: AddressInput | null;
-  shippingMethod?: string | null;
+  deliveryAddress?: AddressInput | null;
+  deliveryMethod?: string | null;
   voucher?: string | null;
 }
 
@@ -280,27 +280,27 @@ export interface FulfillmentUpdateTrackingInput {
   notifyCustomer?: boolean | null;
 }
 
-export interface OrderAddNoteInput {
+export interface TaskAddNoteInput {
   message?: string | null;
 }
 
-export interface OrderLineCreateInput {
+export interface TaskLineCreateInput {
   quantity: number;
   variantId: string;
 }
 
-export interface OrderLineInput {
+export interface TaskLineInput {
   quantity: number;
 }
 
-export interface OrderUpdateInput {
+export interface TaskUpdateInput {
   billingAddress?: AddressInput | null;
   userEmail?: string | null;
-  shippingAddress?: AddressInput | null;
+  deliveryAddress?: AddressInput | null;
 }
 
-export interface OrderUpdateShippingInput {
-  shippingMethod?: string | null;
+export interface TaskUpdateDeliveryInput {
+  deliveryMethod?: string | null;
 }
 
 export interface PageInput {
@@ -318,7 +318,7 @@ export interface SkillTypeInput {
   hasVariants?: boolean | null;
   productAttributes?: (string | null)[] | null;
   variantAttributes?: (string | null)[] | null;
-  isShippingRequired?: boolean | null;
+  isDeliveryRequired?: boolean | null;
   weight?: any | null;
   taxRate?: TaxRateType | null;
 }
@@ -354,7 +354,7 @@ export interface ShopSettingsInput {
   description?: string | null;
   includeTaxesInPrices?: boolean | null;
   displayGrossPrices?: boolean | null;
-  chargeTaxesOnShipping?: boolean | null;
+  chargeTaxesOnDelivery?: boolean | null;
   trackInventoryByDefault?: boolean | null;
   defaultWeightUnit?: WeightUnitsEnum | null;
 }
@@ -385,7 +385,7 @@ export interface StaffInput {
 
 export interface UserCreateInput {
   defaultBillingAddress?: AddressInput | null;
-  defaultShippingAddress?: AddressInput | null;
+  defaultDeliveryAddress?: AddressInput | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;

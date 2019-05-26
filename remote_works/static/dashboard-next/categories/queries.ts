@@ -45,7 +45,7 @@ export const rootCategories = gql`
           children {
             totalCount
           }
-          products {
+          skills {
             totalCount
           }
         }
@@ -82,7 +82,7 @@ export const categoryDetails = gql`
             children {
               totalCount
             }
-            products {
+            skills {
               totalCount
             }
           }

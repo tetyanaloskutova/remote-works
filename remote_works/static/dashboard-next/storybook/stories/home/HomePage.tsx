@@ -11,11 +11,11 @@ const shop = shopFixture(placeholderImage);
 
 const HomePageProps: Omit<HomePageProps, "classes"> = {
   activities: shop.activities.edges.map(edge => edge.node),
-  onOrdersToCaptureClick: () => undefined,
-  onOrdersToFulfillClick: () => undefined,
+  onTasksToCaptureClick: () => undefined,
+  onTasksToFulfillClick: () => undefined,
   onSkillClick: () => undefined,
   onSkillsOutOfStockClick: () => undefined,
-  orders: shop.ordersToday.totalCount,
+  tasks: shop.ordersToday.totalCount,
   ordersToCapture: shop.ordersToCapture.totalCount,
   ordersToFulfill: shop.ordersToFulfill.totalCount,
   productsOutOfStock: shop.productsOutOfStock.totalCount,
@@ -31,7 +31,7 @@ storiesOf("Views / HomePage", module)
     <HomePage
       {...HomePageProps}
       activities={undefined}
-      orders={undefined}
+      tasks={undefined}
       ordersToCapture={undefined}
       ordersToFulfill={undefined}
       productsOutOfStock={undefined}

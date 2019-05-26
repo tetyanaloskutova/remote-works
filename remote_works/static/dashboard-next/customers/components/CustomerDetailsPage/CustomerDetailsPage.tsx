@@ -12,7 +12,7 @@ import { UserError } from "../../../types";
 import { CustomerDetails_user } from "../../types/CustomerDetails";
 import CustomerAddresses from "../CustomerAddresses/CustomerAddresses";
 import CustomerDetails from "../CustomerDetails/CustomerDetails";
-import CustomerOrders from "../CustomerOrders/CustomerOrders";
+import CustomerTasks from "../CustomerTasks/CustomerTasks";
 import CustomerStats from "../CustomerStats/CustomerStats";
 
 export interface CustomerDetailsPageFormData {
@@ -30,7 +30,7 @@ export interface CustomerDetailsPageProps {
   saveButtonBar: ConfirmButtonTransitionState;
   onBack: () => void;
   onSubmit: (data: CustomerDetailsPageFormData) => void;
-  onViewAllOrdersClick: () => void;
+  onViewAllTasksClick: () => void;
   onRowClick: (id: string) => void;
   onAddressManageClick: () => void;
   onDelete: () => void;
@@ -45,7 +45,7 @@ const CustomerDetailsPage: React.StatelessComponent<
   saveButtonBar,
   onBack,
   onSubmit,
-  onViewAllOrdersClick,
+  onViewAllTasksClick,
   onRowClick,
   onAddressManageClick,
   onDelete
@@ -75,9 +75,9 @@ const CustomerDetailsPage: React.StatelessComponent<
               onChange={change}
             />
             <CardSpacer />
-            <CustomerOrders
-              orders={maybe(() => customer.orders.edges.map(edge => edge.node))}
-              onViewAllOrdersClick={onViewAllOrdersClick}
+            <CustomerTasks
+              tasks={maybe(() => customer.tasks.edges.map(edge => edge.node))}
+              onViewAllTasksClick={onViewAllTasksClick}
               onRowClick={onRowClick}
             />
           </div>

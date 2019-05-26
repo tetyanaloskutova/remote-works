@@ -57,40 +57,40 @@ export interface VariantImageAssign_variantImageAssign_productVariant_priceOverr
   currency: string;
 }
 
-export interface VariantImageAssign_variantImageAssign_productVariant_product_images {
+export interface VariantImageAssign_variantImageAssign_productVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
-  sortOrder: number;
+  sortTask: number;
   url: string;
 }
 
-export interface VariantImageAssign_variantImageAssign_productVariant_product_thumbnail {
+export interface VariantImageAssign_variantImageAssign_productVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VariantImageAssign_variantImageAssign_productVariant_product_variants_images {
+export interface VariantImageAssign_variantImageAssign_productVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantImageAssign_variantImageAssign_productVariant_product_variants {
+export interface VariantImageAssign_variantImageAssign_productVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (VariantImageAssign_variantImageAssign_productVariant_product_variants_images | null)[] | null;
+  images: (VariantImageAssign_variantImageAssign_productVariant_skill_variants_images | null)[] | null;
 }
 
-export interface VariantImageAssign_variantImageAssign_productVariant_product {
+export interface VariantImageAssign_variantImageAssign_productVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (VariantImageAssign_variantImageAssign_productVariant_product_images | null)[] | null;
+  images: (VariantImageAssign_variantImageAssign_productVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: VariantImageAssign_variantImageAssign_productVariant_product_thumbnail | null;
-  variants: (VariantImageAssign_variantImageAssign_productVariant_product_variants | null)[] | null;
+  thumbnail: VariantImageAssign_variantImageAssign_productVariant_skill_thumbnail | null;
+  variants: (VariantImageAssign_variantImageAssign_productVariant_skill_variants | null)[] | null;
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant {

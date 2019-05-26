@@ -1,12 +1,12 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderDraftCancelDialog, {
-  OrderDraftCancelDialogProps
-} from "../../../orders/components/OrderDraftCancelDialog";
+import TaskDraftCancelDialog, {
+  TaskDraftCancelDialogProps
+} from "../../../tasks/components/TaskDraftCancelDialog";
 import Decorator from "../../Decorator";
 
-const props: OrderDraftCancelDialogProps = {
+const props: TaskDraftCancelDialogProps = {
   confirmButtonState: "default",
   onClose: () => undefined,
   onConfirm: () => undefined,
@@ -14,6 +14,6 @@ const props: OrderDraftCancelDialogProps = {
   orderNumber: "4"
 };
 
-storiesOf("Orders / OrderDraftCancelDialog", module)
+storiesOf("Tasks / TaskDraftCancelDialog", module)
   .addDecorator(Decorator)
-  .add("default", () => <OrderDraftCancelDialog {...props} />);
+  .add("default", () => <TaskDraftCancelDialog {...props} />);

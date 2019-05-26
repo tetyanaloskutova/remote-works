@@ -14,7 +14,7 @@
         </mj-text>
         <mj-text>
           {% blocktrans trimmed context "Fulfillment confirmation email text" %}
-            Thank you for your order. Below is the list of shipped products.
+            Thank you for your task. Below is the list of shipped products.
           {% endblocktrans %}
           {% if fulfillment.tracking_number %}
             {% blocktrans trimmed with tracking_number=fulfillment.tracking_number context "Fulfillment confirmation email text" %}

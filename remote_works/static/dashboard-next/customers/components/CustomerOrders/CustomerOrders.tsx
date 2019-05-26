@@ -26,36 +26,36 @@ const styles = createStyles({
   }
 });
 
-export interface CustomerOrdersProps extends WithStyles<typeof styles> {
-  orders: CustomerDetails_user_orders_edges_node[];
-  onViewAllOrdersClick: () => void;
+export interface CustomerTasksProps extends WithStyles<typeof styles> {
+  tasks: CustomerDetails_user_orders_edges_node[];
+  onViewAllTasksClick: () => void;
   onRowClick: (id: string) => void;
 }
 
-const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
+const CustomerTasks = withStyles(styles, { name: "CustomerTasks" })(
   ({
     classes,
-    orders,
+    tasks,
     onRowClick,
-    onViewAllOrdersClick
-  }: CustomerOrdersProps) => {
-    const orderList = orders
-      ? orders.map(order => ({
-          ...order,
-          paymentStatus: transformPaymentStatus(order.paymentStatus)
+    onViewAllTasksClick
+  }: CustomerTasksProps) => {
+    const orderList = tasks
+      ? tasks.map(task => ({
+          ...task,
+          paymentStatus: transformPaymentStatus(task.paymentStatus)
         }))
       : undefined;
     return (
       <Card>
         <CardTitle
-          title={i18n.t("Recent orders")}
+          title={i18n.t("Recent tasks")}
           toolbar={
             <Button
               variant="text"
               color="secondary"
-              onClick={onViewAllOrdersClick}
+              onClick={onViewAllTasksClick}
             >
-              {i18n.t("View all orders")}
+              {i18n.t("View all tasks")}
             </Button>
           }
         />
@@ -63,7 +63,7 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
           <TableHead>
             <TableRow>
               <TableCell padding="dense">
-                {i18n.t("No. of Order", { context: "table header" })}
+                {i18n.t("No. of Task", { context: "table header" })}
               </TableCell>
               <TableCell padding="dense">
                 {i18n.t("Date", { context: "table header" })}
@@ -79,33 +79,33 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
           <TableBody>
             {renderCollection(
               orderList,
-              order => (
+              task => (
                 <TableRow
-                  hover={!!order}
-                  className={!!order ? classes.link : undefined}
-                  onClick={order ? () => onRowClick(order.id) : undefined}
-                  key={order ? order.id : "skeleton"}
+                  hover={!!task}
+                  className={!!task ? classes.link : undefined}
+                  onClick={task ? () => onRowClick(task.id) : undefined}
+                  key={task ? task.id : "skeleton"}
                 >
                   <TableCell padding="dense">
-                    {maybe(() => order.number) ? (
-                      "#" + order.number
+                    {maybe(() => task.number) ? (
+                      "#" + task.number
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
                   <TableCell padding="dense">
-                    {maybe(() => order.created) ? (
-                      <DateTime date={order.created} />
+                    {maybe(() => task.created) ? (
+                      <DateTime date={task.created} />
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
                   <TableCell padding="dense">
-                    {maybe(() => order.paymentStatus.status) !== undefined ? (
-                      order.paymentStatus.status === null ? null : (
+                    {maybe(() => task.paymentStatus.status) !== undefined ? (
+                      task.paymentStatus.status === null ? null : (
                         <StatusLabel
-                          status={order.paymentStatus.status}
-                          label={order.paymentStatus.localized}
+                          status={task.paymentStatus.status}
+                          label={task.paymentStatus.localized}
                         />
                       )
                     ) : (
@@ -113,8 +113,8 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
                     )}
                   </TableCell>
                   <TableCell className={classes.textRight} padding="dense">
-                    {maybe(() => order.total.gross) ? (
-                      <Money money={order.total.gross} />
+                    {maybe(() => task.total.gross) ? (
+                      <Money money={task.total.gross} />
                     ) : (
                       <Skeleton />
                     )}
@@ -123,7 +123,7 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
               ),
               () => (
                 <TableRow>
-                  <TableCell colSpan={6}>{i18n.t("No orders found")}</TableCell>
+                  <TableCell colSpan={6}>{i18n.t("No tasks found")}</TableCell>
                 </TableRow>
               )
             )}
@@ -133,5 +133,5 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
     );
   }
 );
-CustomerOrders.displayName = "CustomerOrders";
-export default CustomerOrders;
+CustomerTasks.displayName = "CustomerTasks";
+export default CustomerTasks;

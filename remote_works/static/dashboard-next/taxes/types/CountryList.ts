@@ -28,7 +28,7 @@ export interface CountryList_shop_countries {
 
 export interface CountryList_shop {
   __typename: "Shop";
-  chargeTaxesOnShipping: boolean;
+  chargeTaxesOnDelivery: boolean;
   includeTaxesInPrices: boolean;
   displayGrossPrices: boolean;
   countries: (CountryList_shop_countries | null)[];

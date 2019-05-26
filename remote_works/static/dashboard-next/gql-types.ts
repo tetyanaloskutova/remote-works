@@ -2,8 +2,8 @@
 //  This file was automatically generated and should not be edited.
 
 export interface FulfillmentCreateInput {
-  // ID of the order to be fulfilled.
-  order?: string | null;
+  // ID of the task to be fulfilled.
+  task?: string | null;
   // Fulfillment tracking number
   trackingNumber?: string | null;
   // If true, send an email notification to the customer.
@@ -13,14 +13,14 @@ export interface FulfillmentCreateInput {
 }
 
 export interface FulfillmentLineInput {
-  // The ID of the order line.
+  // The ID of the task line.
   orderLineId?: string | null;
   // The number of line item(s) to be fulfiled.
   quantity?: number | null;
 }
 
 // An enumeration.
-export enum OrderStatus {
+export enum TaskStatus {
   CANCELED = "CANCELED", // Canceled
   DRAFT = "DRAFT", // Draft
   FULFILLED = "FULFILLED", // Fulfilled
@@ -283,7 +283,7 @@ export enum AddressCountry {
 }
 
 // An enumeration.
-export enum OrderEvents {
+export enum TaskEvents {
   CANCELED = "CANCELED",
   EMAIL_SENT = "EMAIL_SENT",
   FULFILLMENT_CANCELED = "FULFILLMENT_CANCELED",
@@ -481,7 +481,7 @@ export interface RootCategoryChildrenQuery {
           // A total count of items in the collection
           totalCount: number | null;
         } | null;
-        // List of products in the category.
+        // List of skills in the category.
         products: {
           // A total count of items in the collection
           totalCount: number | null;
@@ -523,7 +523,7 @@ export interface CategoryPropertiesQuery {
             // A total count of items in the collection
             totalCount: number | null;
           } | null;
-          // List of products in the category.
+          // List of skills in the category.
           products: {
             // A total count of items in the collection
             totalCount: number | null;
@@ -531,7 +531,7 @@ export interface CategoryPropertiesQuery {
         };
       }>;
     } | null;
-    // List of products in the category.
+    // List of skills in the category.
     products: {
       // A total count of items in the collection
       totalCount: number | null;
@@ -566,14 +566,14 @@ export interface CategoryPropertiesQuery {
   } | null;
 }
 
-export interface OrderCancelMutationVariables {
+export interface TaskCancelMutationVariables {
   id: string;
 }
 
-export interface OrderCancelMutation {
+export interface TaskCancelMutation {
   orderCancel: {
-    // Canceled order.
-    order: {
+    // Canceled task.
+    task: {
       // The ID of the object.
       id: string;
       billingAddress: {
@@ -592,7 +592,7 @@ export interface OrderCancelMutation {
         streetAddress2: string;
       } | null;
       created: string;
-      // List of events associated with the order.
+      // List of events associated with the task.
       events: Array<{
         // The ID of the object.
         id: string;
@@ -604,18 +604,18 @@ export interface OrderCancelMutation {
         email: string | null;
         // Type of an email sent to the customer
         emailType: string | null;
-        // Content of a note added to the order.
+        // Content of a note added to the task.
         message: string | null;
         // Number of items.
         quantity: number | null;
-        // Order event type
-        type: OrderEvents | null;
+        // Task event type
+        type: TaskEvents | null;
         // User who performed the action.
         user: {
           email: string;
         } | null;
       } | null> | null;
-      // List of shipments for the order.
+      // List of shipments for the task.
       fulfillments: Array<{
         // The ID of the object.
         id: string;
@@ -666,11 +666,11 @@ export interface OrderCancelMutation {
           };
         }>;
       } | null;
-      // User-friendly number of an order.
+      // User-friendly number of an task.
       number: string | null;
       // Internal payment status.
       paymentStatus: string | null;
-      shippingAddress: {
+      deliveryAddress: {
         // The ID of the object.
         id: string;
         city: string;
@@ -685,12 +685,12 @@ export interface OrderCancelMutation {
         streetAddress1: string;
         streetAddress2: string;
       } | null;
-      shippingMethod: {
+      deliveryMethod: {
         // The ID of the object.
         id: string;
       } | null;
-      shippingMethodName: string | null;
-      shippingPrice: {
+      deliveryMethodName: string | null;
+      deliveryPrice: {
         // Amount of money including taxes.
         gross: {
           // Amount of money.
@@ -699,8 +699,8 @@ export interface OrderCancelMutation {
           currency: string;
         };
       } | null;
-      status: OrderStatus;
-      // The sum of line prices not including shipping.
+      status: TaskStatus;
+      // The sum of line prices not including delivery.
       subtotal: {
         // Amount of money including taxes.
         gross: {
@@ -726,7 +726,7 @@ export interface OrderCancelMutation {
           currency: string;
         };
       } | null;
-      // Amount authorized for the order.
+      // Amount authorized for the task.
       totalAuthorized: {
         // Amount of money.
         amount: number;
@@ -749,12 +749,12 @@ export interface OrderCancelMutation {
   } | null;
 }
 
-export interface OrderRefundMutationVariables {
+export interface TaskRefundMutationVariables {
   id: string;
   amount: string;
 }
 
-export interface OrderRefundMutation {
+export interface TaskRefundMutation {
   orderRefund: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -765,8 +765,8 @@ export interface OrderRefundMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    // A refunded order.
-    order: {
+    // A refunded task.
+    task: {
       // The ID of the object.
       id: string;
       billingAddress: {
@@ -785,7 +785,7 @@ export interface OrderRefundMutation {
         streetAddress2: string;
       } | null;
       created: string;
-      // List of events associated with the order.
+      // List of events associated with the task.
       events: Array<{
         // The ID of the object.
         id: string;
@@ -797,18 +797,18 @@ export interface OrderRefundMutation {
         email: string | null;
         // Type of an email sent to the customer
         emailType: string | null;
-        // Content of a note added to the order.
+        // Content of a note added to the task.
         message: string | null;
         // Number of items.
         quantity: number | null;
-        // Order event type
-        type: OrderEvents | null;
+        // Task event type
+        type: TaskEvents | null;
         // User who performed the action.
         user: {
           email: string;
         } | null;
       } | null> | null;
-      // List of shipments for the order.
+      // List of shipments for the task.
       fulfillments: Array<{
         // The ID of the object.
         id: string;
@@ -859,11 +859,11 @@ export interface OrderRefundMutation {
           };
         }>;
       } | null;
-      // User-friendly number of an order.
+      // User-friendly number of an task.
       number: string | null;
       // Internal payment status.
       paymentStatus: string | null;
-      shippingAddress: {
+      deliveryAddress: {
         // The ID of the object.
         id: string;
         city: string;
@@ -878,12 +878,12 @@ export interface OrderRefundMutation {
         streetAddress1: string;
         streetAddress2: string;
       } | null;
-      shippingMethod: {
+      deliveryMethod: {
         // The ID of the object.
         id: string;
       } | null;
-      shippingMethodName: string | null;
-      shippingPrice: {
+      deliveryMethodName: string | null;
+      deliveryPrice: {
         // Amount of money including taxes.
         gross: {
           // Amount of money.
@@ -892,8 +892,8 @@ export interface OrderRefundMutation {
           currency: string;
         };
       } | null;
-      status: OrderStatus;
-      // The sum of line prices not including shipping.
+      status: TaskStatus;
+      // The sum of line prices not including delivery.
       subtotal: {
         // Amount of money including taxes.
         gross: {
@@ -919,7 +919,7 @@ export interface OrderRefundMutation {
           currency: string;
         };
       } | null;
-      // Amount authorized for the order.
+      // Amount authorized for the task.
       totalAuthorized: {
         // Amount of money.
         amount: number;
@@ -942,14 +942,14 @@ export interface OrderRefundMutation {
   } | null;
 }
 
-export interface OrderVoidMutationVariables {
+export interface TaskVoidMutationVariables {
   id: string;
 }
 
-export interface OrderVoidMutation {
+export interface TaskVoidMutation {
   orderVoid: {
-    // A voided order.
-    order: {
+    // A voided task.
+    task: {
       // The ID of the object.
       id: string;
       billingAddress: {
@@ -968,7 +968,7 @@ export interface OrderVoidMutation {
         streetAddress2: string;
       } | null;
       created: string;
-      // List of events associated with the order.
+      // List of events associated with the task.
       events: Array<{
         // The ID of the object.
         id: string;
@@ -980,18 +980,18 @@ export interface OrderVoidMutation {
         email: string | null;
         // Type of an email sent to the customer
         emailType: string | null;
-        // Content of a note added to the order.
+        // Content of a note added to the task.
         message: string | null;
         // Number of items.
         quantity: number | null;
-        // Order event type
-        type: OrderEvents | null;
+        // Task event type
+        type: TaskEvents | null;
         // User who performed the action.
         user: {
           email: string;
         } | null;
       } | null> | null;
-      // List of shipments for the order.
+      // List of shipments for the task.
       fulfillments: Array<{
         // The ID of the object.
         id: string;
@@ -1042,11 +1042,11 @@ export interface OrderVoidMutation {
           };
         }>;
       } | null;
-      // User-friendly number of an order.
+      // User-friendly number of an task.
       number: string | null;
       // Internal payment status.
       paymentStatus: string | null;
-      shippingAddress: {
+      deliveryAddress: {
         // The ID of the object.
         id: string;
         city: string;
@@ -1061,12 +1061,12 @@ export interface OrderVoidMutation {
         streetAddress1: string;
         streetAddress2: string;
       } | null;
-      shippingMethod: {
+      deliveryMethod: {
         // The ID of the object.
         id: string;
       } | null;
-      shippingMethodName: string | null;
-      shippingPrice: {
+      deliveryMethodName: string | null;
+      deliveryPrice: {
         // Amount of money including taxes.
         gross: {
           // Amount of money.
@@ -1075,8 +1075,8 @@ export interface OrderVoidMutation {
           currency: string;
         };
       } | null;
-      status: OrderStatus;
-      // The sum of line prices not including shipping.
+      status: TaskStatus;
+      // The sum of line prices not including delivery.
       subtotal: {
         // Amount of money including taxes.
         gross: {
@@ -1102,7 +1102,7 @@ export interface OrderVoidMutation {
           currency: string;
         };
       } | null;
-      // Amount authorized for the order.
+      // Amount authorized for the task.
       totalAuthorized: {
         // Amount of money.
         amount: number;
@@ -1125,12 +1125,12 @@ export interface OrderVoidMutation {
   } | null;
 }
 
-export interface OrderCaptureMutationVariables {
+export interface TaskCaptureMutationVariables {
   id: string;
   amount: string;
 }
 
-export interface OrderCaptureMutation {
+export interface TaskCaptureMutation {
   orderCapture: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -1141,8 +1141,8 @@ export interface OrderCaptureMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    // Captured order.
-    order: {
+    // Captured task.
+    task: {
       // The ID of the object.
       id: string;
       billingAddress: {
@@ -1161,7 +1161,7 @@ export interface OrderCaptureMutation {
         streetAddress2: string;
       } | null;
       created: string;
-      // List of events associated with the order.
+      // List of events associated with the task.
       events: Array<{
         // The ID of the object.
         id: string;
@@ -1173,18 +1173,18 @@ export interface OrderCaptureMutation {
         email: string | null;
         // Type of an email sent to the customer
         emailType: string | null;
-        // Content of a note added to the order.
+        // Content of a note added to the task.
         message: string | null;
         // Number of items.
         quantity: number | null;
-        // Order event type
-        type: OrderEvents | null;
+        // Task event type
+        type: TaskEvents | null;
         // User who performed the action.
         user: {
           email: string;
         } | null;
       } | null> | null;
-      // List of shipments for the order.
+      // List of shipments for the task.
       fulfillments: Array<{
         // The ID of the object.
         id: string;
@@ -1235,11 +1235,11 @@ export interface OrderCaptureMutation {
           };
         }>;
       } | null;
-      // User-friendly number of an order.
+      // User-friendly number of an task.
       number: string | null;
       // Internal payment status.
       paymentStatus: string | null;
-      shippingAddress: {
+      deliveryAddress: {
         // The ID of the object.
         id: string;
         city: string;
@@ -1254,12 +1254,12 @@ export interface OrderCaptureMutation {
         streetAddress1: string;
         streetAddress2: string;
       } | null;
-      shippingMethod: {
+      deliveryMethod: {
         // The ID of the object.
         id: string;
       } | null;
-      shippingMethodName: string | null;
-      shippingPrice: {
+      deliveryMethodName: string | null;
+      deliveryPrice: {
         // Amount of money including taxes.
         gross: {
           // Amount of money.
@@ -1268,8 +1268,8 @@ export interface OrderCaptureMutation {
           currency: string;
         };
       } | null;
-      status: OrderStatus;
-      // The sum of line prices not including shipping.
+      status: TaskStatus;
+      // The sum of line prices not including delivery.
       subtotal: {
         // Amount of money including taxes.
         gross: {
@@ -1295,7 +1295,7 @@ export interface OrderCaptureMutation {
           currency: string;
         };
       } | null;
-      // Amount authorized for the order.
+      // Amount authorized for the task.
       totalAuthorized: {
         // Amount of money.
         amount: number;
@@ -1318,11 +1318,11 @@ export interface OrderCaptureMutation {
   } | null;
 }
 
-export interface OrderCreateFulfillmentMutationVariables {
+export interface TaskCreateFulfillmentMutationVariables {
   input: FulfillmentCreateInput;
 }
 
-export interface OrderCreateFulfillmentMutation {
+export interface TaskCreateFulfillmentMutation {
   fulfillmentCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
@@ -1336,16 +1336,16 @@ export interface OrderCreateFulfillmentMutation {
   } | null;
 }
 
-export interface OrderListQueryVariables {
+export interface TaskListQueryVariables {
   first?: number | null;
   after?: string | null;
   last?: number | null;
   before?: string | null;
 }
 
-export interface OrderListQuery {
-  // List of the shop's orders.
-  orders: {
+export interface TaskListQuery {
+  // List of the shop's tasks.
+  tasks: {
     edges: Array<{
       // A cursor for use in pagination
       cursor: string;
@@ -1353,12 +1353,12 @@ export interface OrderListQuery {
       node: {
         // The ID of the object.
         id: string;
-        // User-friendly number of an order.
+        // User-friendly number of an task.
         number: string | null;
         created: string;
         // Internal payment status.
         paymentStatus: string | null;
-        status: OrderStatus;
+        status: TaskStatus;
         total: {
           // Amount of money including taxes.
           gross: {
@@ -1384,13 +1384,13 @@ export interface OrderListQuery {
   } | null;
 }
 
-export interface OrderDetailsQueryVariables {
+export interface TaskDetailsQueryVariables {
   id: string;
 }
 
-export interface OrderDetailsQuery {
-  // Lookup an order by ID.
-  order: {
+export interface TaskDetailsQuery {
+  // Lookup an task by ID.
+  task: {
     // The ID of the object.
     id: string;
     billingAddress: {
@@ -1409,7 +1409,7 @@ export interface OrderDetailsQuery {
       streetAddress2: string;
     } | null;
     created: string;
-    // List of events associated with the order.
+    // List of events associated with the task.
     events: Array<{
       // The ID of the object.
       id: string;
@@ -1421,18 +1421,18 @@ export interface OrderDetailsQuery {
       email: string | null;
       // Type of an email sent to the customer
       emailType: string | null;
-      // Content of a note added to the order.
+      // Content of a note added to the task.
       message: string | null;
       // Number of items.
       quantity: number | null;
-      // Order event type
-      type: OrderEvents | null;
+      // Task event type
+      type: TaskEvents | null;
       // User who performed the action.
       user: {
         email: string;
       } | null;
     } | null> | null;
-    // List of shipments for the order.
+    // List of shipments for the task.
     fulfillments: Array<{
       // The ID of the object.
       id: string;
@@ -1483,11 +1483,11 @@ export interface OrderDetailsQuery {
         };
       }>;
     } | null;
-    // User-friendly number of an order.
+    // User-friendly number of an task.
     number: string | null;
     // Internal payment status.
     paymentStatus: string | null;
-    shippingAddress: {
+    deliveryAddress: {
       // The ID of the object.
       id: string;
       city: string;
@@ -1502,12 +1502,12 @@ export interface OrderDetailsQuery {
       streetAddress1: string;
       streetAddress2: string;
     } | null;
-    shippingMethod: {
+    deliveryMethod: {
       // The ID of the object.
       id: string;
     } | null;
-    shippingMethodName: string | null;
-    shippingPrice: {
+    deliveryMethodName: string | null;
+    deliveryPrice: {
       // Amount of money including taxes.
       gross: {
         // Amount of money.
@@ -1516,8 +1516,8 @@ export interface OrderDetailsQuery {
         currency: string;
       };
     } | null;
-    status: OrderStatus;
-    // The sum of line prices not including shipping.
+    status: TaskStatus;
+    // The sum of line prices not including delivery.
     subtotal: {
       // Amount of money including taxes.
       gross: {
@@ -1543,7 +1543,7 @@ export interface OrderDetailsQuery {
         currency: string;
       };
     } | null;
-    // Amount authorized for the order.
+    // Amount authorized for the task.
     totalAuthorized: {
       // Amount of money.
       amount: number;
@@ -1565,13 +1565,13 @@ export interface OrderDetailsQuery {
   } | null;
 }
 
-export interface OrderShippingMethodsQuery {
-  // List of the shop's shipping zones.
-  shippingZones: {
+export interface TaskDeliveryMethodsQuery {
+  // List of the shop's delivery zones.
+  deliveryZones: {
     edges: Array<{
       // The item at the end of the edge
       node: {
-        shippingMethods: {
+        deliveryMethods: {
           edges: Array<{
             // The item at the end of the edge
             node: {
@@ -1791,7 +1791,7 @@ export interface SkillImageCreateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of product attributes assigned to this product.
+      // List of skill attributes assigned to this product.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -1853,7 +1853,7 @@ export interface SkillImageCreateMutation {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -1867,15 +1867,15 @@ export interface SkillImageCreateMutation {
             id: string;
             sku: string;
             name: string;
-            // Override the base price of a product if necessary.
-            // A value of `null` indicates that the default product price is used.
+            // Override the base price of a skill if necessary.
+            // A value of `null` indicates that the default skill price is used.
             priceOverride: {
               // Amount of money.
               amount: number;
               // Currency code.
               currency: string;
             } | null;
-            // Quantity of a product available for sale.
+            // Quantity of a skill available for sale.
             stockQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
@@ -1942,7 +1942,7 @@ export interface SkillImageReorderMutation {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -2029,7 +2029,7 @@ export interface SkillUpdateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of product attributes assigned to this product.
+      // List of skill attributes assigned to this product.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2091,7 +2091,7 @@ export interface SkillUpdateMutation {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -2105,15 +2105,15 @@ export interface SkillUpdateMutation {
             id: string;
             sku: string;
             name: string;
-            // Override the base price of a product if necessary.
-            // A value of `null` indicates that the default product price is used.
+            // Override the base price of a skill if necessary.
+            // A value of `null` indicates that the default skill price is used.
             priceOverride: {
               // Amount of money.
               amount: number;
               // Currency code.
               currency: string;
             } | null;
-            // Quantity of a product available for sale.
+            // Quantity of a skill available for sale.
             stockQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
@@ -2209,7 +2209,7 @@ export interface SkillCreateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of product attributes assigned to this product.
+      // List of skill attributes assigned to this product.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2271,7 +2271,7 @@ export interface SkillCreateMutation {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -2285,15 +2285,15 @@ export interface SkillCreateMutation {
             id: string;
             sku: string;
             name: string;
-            // Override the base price of a product if necessary.
-            // A value of `null` indicates that the default product price is used.
+            // Override the base price of a skill if necessary.
+            // A value of `null` indicates that the default skill price is used.
             priceOverride: {
               // Amount of money.
               amount: number;
               // Currency code.
               currency: string;
             } | null;
-            // Quantity of a product available for sale.
+            // Quantity of a skill available for sale.
             stockQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
@@ -2405,8 +2405,8 @@ export interface VariantUpdateMutation {
         }>;
       } | null;
       name: string;
-      // Override the base price of a product if necessary.
-      // A value of `null` indicates that the default product price is used.
+      // Override the base price of a skill if necessary.
+      // A value of `null` indicates that the default skill price is used.
       priceOverride: {
         // Amount of money.
         amount: number;
@@ -2423,7 +2423,7 @@ export interface VariantUpdateMutation {
               // The ID of the object.
               id: string;
               alt: string;
-              sortOrder: number;
+              sortTask: number;
               // The URL of the image.
               url: string;
             };
@@ -2535,8 +2535,8 @@ export interface VariantCreateMutation {
         }>;
       } | null;
       name: string;
-      // Override the base price of a product if necessary.
-      // A value of `null` indicates that the default product price is used.
+      // Override the base price of a skill if necessary.
+      // A value of `null` indicates that the default skill price is used.
       priceOverride: {
         // Amount of money.
         amount: number;
@@ -2553,7 +2553,7 @@ export interface VariantCreateMutation {
               // The ID of the object.
               id: string;
               alt: string;
-              sortOrder: number;
+              sortTask: number;
               // The URL of the image.
               url: string;
             };
@@ -2685,7 +2685,7 @@ export interface SkillImageUpdateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of product attributes assigned to this product.
+      // List of skill attributes assigned to this product.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2747,7 +2747,7 @@ export interface SkillImageUpdateMutation {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -2761,15 +2761,15 @@ export interface SkillImageUpdateMutation {
             id: string;
             sku: string;
             name: string;
-            // Override the base price of a product if necessary.
-            // A value of `null` indicates that the default product price is used.
+            // Override the base price of a skill if necessary.
+            // A value of `null` indicates that the default skill price is used.
             priceOverride: {
               // Amount of money.
               amount: number;
               // Currency code.
               currency: string;
             } | null;
-            // Quantity of a product available for sale.
+            // Quantity of a skill available for sale.
             stockQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
@@ -2854,8 +2854,8 @@ export interface VariantImageAssignMutation {
         }>;
       } | null;
       name: string;
-      // Override the base price of a product if necessary.
-      // A value of `null` indicates that the default product price is used.
+      // Override the base price of a skill if necessary.
+      // A value of `null` indicates that the default skill price is used.
       priceOverride: {
         // Amount of money.
         amount: number;
@@ -2872,7 +2872,7 @@ export interface VariantImageAssignMutation {
               // The ID of the object.
               id: string;
               alt: string;
-              sortOrder: number;
+              sortTask: number;
               // The URL of the image.
               url: string;
             };
@@ -2979,8 +2979,8 @@ export interface VariantImageUnassignMutation {
         }>;
       } | null;
       name: string;
-      // Override the base price of a product if necessary.
-      // A value of `null` indicates that the default product price is used.
+      // Override the base price of a skill if necessary.
+      // A value of `null` indicates that the default skill price is used.
       priceOverride: {
         // Amount of money.
         amount: number;
@@ -2997,7 +2997,7 @@ export interface VariantImageUnassignMutation {
               // The ID of the object.
               id: string;
               alt: string;
-              sortOrder: number;
+              sortTask: number;
               // The URL of the image.
               url: string;
             };
@@ -3094,7 +3094,7 @@ export interface SkillDetailsQueryVariables {
 }
 
 export interface SkillDetailsQuery {
-  // Lookup a product by ID.
+  // Lookup a skill by ID.
   product: {
     // The ID of the object.
     id: string;
@@ -3148,7 +3148,7 @@ export interface SkillDetailsQuery {
     isPublished: boolean;
     chargeTaxes: boolean;
     publicationDate: string | null;
-    // List of product attributes assigned to this product.
+    // List of skill attributes assigned to this product.
     attributes: Array<{
       // Name of an attribute
       attribute: {
@@ -3210,7 +3210,7 @@ export interface SkillDetailsQuery {
           // The ID of the object.
           id: string;
           alt: string;
-          sortOrder: number;
+          sortTask: number;
           // The URL of the image.
           url: string;
         };
@@ -3224,15 +3224,15 @@ export interface SkillDetailsQuery {
           id: string;
           sku: string;
           name: string;
-          // Override the base price of a product if necessary.
-          // A value of `null` indicates that the default product price is used.
+          // Override the base price of a skill if necessary.
+          // A value of `null` indicates that the default skill price is used.
           priceOverride: {
             // Amount of money.
             amount: number;
             // Currency code.
             currency: string;
           } | null;
-          // Quantity of a product available for sale.
+          // Quantity of a skill available for sale.
           stockQuantity: number;
           // Gross margin percentage value.
           margin: number | null;
@@ -3328,8 +3328,8 @@ export interface SkillVariantDetailsQuery {
       }>;
     } | null;
     name: string;
-    // Override the base price of a product if necessary.
-    // A value of `null` indicates that the default product price is used.
+    // Override the base price of a skill if necessary.
+    // A value of `null` indicates that the default skill price is used.
     priceOverride: {
       // Amount of money.
       amount: number;
@@ -3346,7 +3346,7 @@ export interface SkillVariantDetailsQuery {
             // The ID of the object.
             id: string;
             alt: string;
-            sortOrder: number;
+            sortTask: number;
             // The URL of the image.
             url: string;
           };
@@ -3387,7 +3387,7 @@ export interface SkillVariantDetailsQuery {
 }
 
 export interface SkillCreateDataQuery {
-  // List of the shop's product types.
+  // List of the shop's skill types.
   productTypes: {
     edges: Array<{
       // The item at the end of the edge
@@ -3410,7 +3410,7 @@ export interface SkillCreateDataQuery {
               values: Array<{
                 // The ID of the object.
                 id: string;
-                sortOrder: number;
+                sortTask: number;
                 // Visible name for display purposes.
                 name: string | null;
                 // Internal representation of an attribute name.
@@ -3451,7 +3451,7 @@ export interface SkillVariantCreateDataQueryVariables {
 }
 
 export interface SkillVariantCreateDataQuery {
-  // Lookup a product by ID.
+  // Lookup a skill by ID.
   product: {
     // The ID of the object.
     id: string;
@@ -3461,7 +3461,7 @@ export interface SkillVariantCreateDataQuery {
         node: {
           // The ID of the object.
           id: string;
-          sortOrder: number;
+          sortTask: number;
           // The URL of the image.
           url: string;
         };
@@ -3484,7 +3484,7 @@ export interface SkillVariantCreateDataQuery {
             values: Array<{
               // The ID of the object.
               id: string;
-              sortOrder: number;
+              sortTask: number;
               // Visible name for display purposes.
               name: string | null;
               // Internal representation of an attribute name.
@@ -3525,11 +3525,11 @@ export interface SkillImageQueryVariables {
 }
 
 export interface SkillImageQuery {
-  // Lookup a product by ID.
+  // Lookup a skill by ID.
   product: {
     // The ID of the object.
     id: string;
-    // Get a single product image by ID
+    // Get a single skill image by ID
     mainImage: {
       // The ID of the object.
       id: string;
@@ -3575,7 +3575,7 @@ export interface UserFragment {
   } | null> | null;
 }
 
-export interface OrderDetailsFragment {
+export interface TaskDetailsFragment {
   // The ID of the object.
   id: string;
   billingAddress: {
@@ -3594,7 +3594,7 @@ export interface OrderDetailsFragment {
     streetAddress2: string;
   } | null;
   created: string;
-  // List of events associated with the order.
+  // List of events associated with the task.
   events: Array<{
     // The ID of the object.
     id: string;
@@ -3606,18 +3606,18 @@ export interface OrderDetailsFragment {
     email: string | null;
     // Type of an email sent to the customer
     emailType: string | null;
-    // Content of a note added to the order.
+    // Content of a note added to the task.
     message: string | null;
     // Number of items.
     quantity: number | null;
-    // Order event type
-    type: OrderEvents | null;
+    // Task event type
+    type: TaskEvents | null;
     // User who performed the action.
     user: {
       email: string;
     } | null;
   } | null> | null;
-  // List of shipments for the order.
+  // List of shipments for the task.
   fulfillments: Array<{
     // The ID of the object.
     id: string;
@@ -3668,11 +3668,11 @@ export interface OrderDetailsFragment {
       };
     }>;
   } | null;
-  // User-friendly number of an order.
+  // User-friendly number of an task.
   number: string | null;
   // Internal payment status.
   paymentStatus: string | null;
-  shippingAddress: {
+  deliveryAddress: {
     // The ID of the object.
     id: string;
     city: string;
@@ -3687,12 +3687,12 @@ export interface OrderDetailsFragment {
     streetAddress1: string;
     streetAddress2: string;
   } | null;
-  shippingMethod: {
+  deliveryMethod: {
     // The ID of the object.
     id: string;
   } | null;
-  shippingMethodName: string | null;
-  shippingPrice: {
+  deliveryMethodName: string | null;
+  deliveryPrice: {
     // Amount of money including taxes.
     gross: {
       // Amount of money.
@@ -3701,8 +3701,8 @@ export interface OrderDetailsFragment {
       currency: string;
     };
   } | null;
-  status: OrderStatus;
-  // The sum of line prices not including shipping.
+  status: TaskStatus;
+  // The sum of line prices not including delivery.
   subtotal: {
     // Amount of money including taxes.
     gross: {
@@ -3728,7 +3728,7 @@ export interface OrderDetailsFragment {
       currency: string;
     };
   } | null;
-  // Amount authorized for the order.
+  // Amount authorized for the task.
   totalAuthorized: {
     // Amount of money.
     amount: number;
@@ -3760,7 +3760,7 @@ export interface SkillImageFragment {
   // The ID of the object.
   id: string;
   alt: string;
-  sortOrder: number;
+  sortTask: number;
   // The URL of the image.
   url: string;
 }
@@ -3818,7 +3818,7 @@ export interface SkillFragment {
   isPublished: boolean;
   chargeTaxes: boolean;
   publicationDate: string | null;
-  // List of product attributes assigned to this product.
+  // List of skill attributes assigned to this product.
   attributes: Array<{
     // Name of an attribute
     attribute: {
@@ -3880,7 +3880,7 @@ export interface SkillFragment {
         // The ID of the object.
         id: string;
         alt: string;
-        sortOrder: number;
+        sortTask: number;
         // The URL of the image.
         url: string;
       };
@@ -3894,15 +3894,15 @@ export interface SkillFragment {
         id: string;
         sku: string;
         name: string;
-        // Override the base price of a product if necessary.
-        // A value of `null` indicates that the default product price is used.
+        // Override the base price of a skill if necessary.
+        // A value of `null` indicates that the default skill price is used.
         priceOverride: {
           // Amount of money.
           amount: number;
           // Currency code.
           currency: string;
         } | null;
-        // Quantity of a product available for sale.
+        // Quantity of a skill available for sale.
         stockQuantity: number;
         // Gross margin percentage value.
         margin: number | null;
@@ -3969,8 +3969,8 @@ export interface SkillVariantFragment {
     }>;
   } | null;
   name: string;
-  // Override the base price of a product if necessary.
-  // A value of `null` indicates that the default product price is used.
+  // Override the base price of a skill if necessary.
+  // A value of `null` indicates that the default skill price is used.
   priceOverride: {
     // Amount of money.
     amount: number;
@@ -3987,7 +3987,7 @@ export interface SkillVariantFragment {
           // The ID of the object.
           id: string;
           alt: string;
-          sortOrder: number;
+          sortTask: number;
           // The URL of the image.
           url: string;
         };

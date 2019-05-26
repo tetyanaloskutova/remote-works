@@ -17,7 +17,7 @@ import Skeleton from "../../../components/Skeleton";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
-import { SkillVariantCreateData_product_variants } from "../../types/SkillVariantCreateData";
+import { SkillVariantCreateData_skill_variants } from "../../types/SkillVariantCreateData";
 import { SkillVariantDetails_productVariant } from "../../types/SkillVariantDetails";
 
 const styles = (theme: Theme) =>
@@ -46,7 +46,7 @@ interface SkillVariantNavigationProps extends WithStyles<typeof styles> {
   current?: string;
   variants:
     | SkillVariantDetails_productVariant[]
-    | SkillVariantCreateData_product_variants[];
+    | SkillVariantCreateData_skill_variants[];
   onRowClick: (variantId: string) => void;
 }
 
@@ -85,7 +85,7 @@ const SkillVariantNavigation = withStyles(styles, {
             ),
             () => (
               <TableRow>
-                <TableCell>{i18n.t("This product has no variants")}</TableCell>
+                <TableCell>{i18n.t("This skill has no variants")}</TableCell>
               </TableRow>
             )
           )}

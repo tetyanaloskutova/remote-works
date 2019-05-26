@@ -21,12 +21,12 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface HomeOrdersCardProps extends WithStyles<typeof styles> {
+interface HomeTasksCardProps extends WithStyles<typeof styles> {
   userName: string;
 }
 
-const HomeOrdersCard = withStyles(styles, { name: "HomeOrdersCard" })(
-  ({ classes, userName }: HomeOrdersCardProps) => {
+const HomeTasksCard = withStyles(styles, { name: "HomeTasksCard" })(
+  ({ classes, userName }: HomeTasksCardProps) => {
     return (
       <div className={classes.headerContainer}>
         <Typography className={classes.pageHeader} variant="headline">
@@ -47,5 +47,5 @@ const HomeOrdersCard = withStyles(styles, { name: "HomeOrdersCard" })(
     );
   }
 );
-HomeOrdersCard.displayName = "HomeOrdersCard";
-export default HomeOrdersCard;
+HomeTasksCard.displayName = "HomeTasksCard";
+export default HomeTasksCard;

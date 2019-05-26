@@ -69,7 +69,7 @@ export const SkillAvailabilityForm = withStyles(styles, {
             <TextField
               error={!!errors.publicationDate}
               disabled={loading}
-              label={i18n.t("Publish product on")}
+              label={i18n.t("Publish skill on")}
               name="publicationDate"
               type="date"
               fullWidth={true}

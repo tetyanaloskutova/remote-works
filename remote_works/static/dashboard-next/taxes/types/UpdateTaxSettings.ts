@@ -15,7 +15,7 @@ export interface UpdateTaxSettings_shopSettingsUpdate_errors {
 
 export interface UpdateTaxSettings_shopSettingsUpdate_shop {
   __typename: "Shop";
-  chargeTaxesOnShipping: boolean;
+  chargeTaxesOnDelivery: boolean;
   includeTaxesInPrices: boolean;
   displayGrossPrices: boolean;
 }

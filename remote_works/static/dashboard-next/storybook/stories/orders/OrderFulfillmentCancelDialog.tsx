@@ -1,13 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import OrderFulfillmentCancelDialog from "../../../orders/components/OrderFulfillmentCancelDialog";
+import TaskFulfillmentCancelDialog from "../../../tasks/components/TaskFulfillmentCancelDialog";
 import Decorator from "../../Decorator";
 
-storiesOf("Orders / OrderFulfillmentCancelDialog", module)
+storiesOf("Tasks / TaskFulfillmentCancelDialog", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderFulfillmentCancelDialog
+    <TaskFulfillmentCancelDialog
       confirmButtonState="default"
       open={true}
       onConfirm={undefined}

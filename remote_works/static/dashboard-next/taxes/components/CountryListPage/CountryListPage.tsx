@@ -13,7 +13,7 @@ import TaxConfiguration from "../TaxConfiguration";
 export interface FormData {
   includeTax: boolean;
   showGross: boolean;
-  chargeTaxesOnShipping: boolean;
+  chargeTaxesOnDelivery: boolean;
 }
 export interface CountryListPageProps {
   disabled: boolean;
@@ -31,7 +31,7 @@ const CountryListPage: React.StatelessComponent<CountryListPageProps> = ({
   onTaxFetch
 }) => {
   const initialForm: FormData = {
-    chargeTaxesOnShipping: maybe(() => shop.chargeTaxesOnShipping, false),
+    chargeTaxesOnDelivery: maybe(() => shop.chargeTaxesOnDelivery, false),
     includeTax: maybe(() => shop.includeTaxesInPrices, false),
     showGross: maybe(() => shop.displayGrossPrices, false)
   };

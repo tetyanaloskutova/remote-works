@@ -40,14 +40,14 @@ export interface SaleDetailsFragment_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface SaleDetailsFragment_products {
+export interface SaleDetailsFragment_skills {
   __typename: "SkillCountableConnection";
   edges: SaleDetailsFragment_products_edges[];
   pageInfo: SaleDetailsFragment_products_pageInfo;
   totalCount: number | null;
 }
 
-export interface SaleDetailsFragment_categories_edges_node_products {
+export interface SaleDetailsFragment_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -56,7 +56,7 @@ export interface SaleDetailsFragment_categories_edges_node {
   __typename: "Category";
   id: string;
   name: string;
-  products: SaleDetailsFragment_categories_edges_node_products | null;
+  products: SaleDetailsFragment_categories_edges_node_skills | null;
 }
 
 export interface SaleDetailsFragment_categories_edges {
@@ -79,7 +79,7 @@ export interface SaleDetailsFragment_categories {
   totalCount: number | null;
 }
 
-export interface SaleDetailsFragment_collections_edges_node_products {
+export interface SaleDetailsFragment_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -88,7 +88,7 @@ export interface SaleDetailsFragment_collections_edges_node {
   __typename: "Collection";
   id: string;
   name: string;
-  products: SaleDetailsFragment_collections_edges_node_products | null;
+  products: SaleDetailsFragment_collections_edges_node_skills | null;
 }
 
 export interface SaleDetailsFragment_collections_edges {
@@ -119,7 +119,7 @@ export interface SaleDetailsFragment {
   startDate: any;
   endDate: any | null;
   value: number;
-  products: SaleDetailsFragment_products | null;
+  products: SaleDetailsFragment_skills | null;
   categories: SaleDetailsFragment_categories | null;
   collections: SaleDetailsFragment_collections | null;
 }

@@ -54,7 +54,7 @@ export interface AttributeCreate_attributeCreate_productType {
   id: string;
   name: string;
   hasVariants: boolean;
-  isShippingRequired: boolean;
+  isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
   productAttributes: (AttributeCreate_attributeCreate_productType_productAttributes | null)[] | null;
   variantAttributes: (AttributeCreate_attributeCreate_productType_variantAttributes | null)[] | null;

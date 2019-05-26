@@ -5,7 +5,7 @@
 // GraphQL query operation: CollectionList
 // ====================================================
 
-export interface CollectionList_collections_edges_node_products {
+export interface CollectionList_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -15,7 +15,7 @@ export interface CollectionList_collections_edges_node {
   id: string;
   isPublished: boolean;
   name: string;
-  products: CollectionList_collections_edges_node_products | null;
+  products: CollectionList_collections_edges_node_skills | null;
 }
 
 export interface CollectionList_collections_edges {

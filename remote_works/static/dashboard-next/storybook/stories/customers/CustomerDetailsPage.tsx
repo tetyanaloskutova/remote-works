@@ -18,7 +18,7 @@ const props: Omit<CustomerDetailsPageProps, "classes"> = {
   onDelete: () => undefined,
   onRowClick: () => undefined,
   onSubmit: () => undefined,
-  onViewAllOrdersClick: () => undefined,
+  onViewAllTasksClick: () => undefined,
   saveButtonBar: "default"
 };
 
@@ -64,13 +64,13 @@ storiesOf("Views / Customers / Customer details", module)
       }}
     />
   ))
-  .add("never placed order", () => (
+  .add("never placed task", () => (
     <CustomerDetailsPage
       {...props}
       customer={{
         ...customer,
-        lastPlacedOrder: {
-          ...customer.lastPlacedOrder,
+        lastPlacedTask: {
+          ...customer.lastPlacedTask,
           edges: []
         }
       }}

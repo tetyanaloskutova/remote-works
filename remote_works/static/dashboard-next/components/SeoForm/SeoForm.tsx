@@ -171,7 +171,7 @@ const SeoForm = withStyles(styles, { name: "SeoForm" })(
 SeoForm.displayName = "SeoForm";
 SeoForm.defaultProps = {
   helperText: i18n.t(
-    "Add search engine title and description to make this product easier to find"
+    "Add search engine title and description to make this skill easier to find"
   )
 };
 export default SeoForm;

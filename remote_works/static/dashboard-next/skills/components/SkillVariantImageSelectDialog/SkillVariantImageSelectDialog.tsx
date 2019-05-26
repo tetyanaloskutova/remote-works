@@ -77,7 +77,7 @@ const SkillVariantImageSelectDialog = withStyles(styles, {
       <DialogContent>
         <div className={classes.root}>
           {images
-            .sort((prev, next) => (prev.sortOrder > next.sortOrder ? 1 : -1))
+            .sort((prev, next) => (prev.sortTask > next.sortTask ? 1 : -1))
             .map(tile => (
               <div
                 className={classNames([

@@ -96,7 +96,7 @@ const VoucherSummary: React.StatelessComponent<VoucherSummaryProps> = ({
       <Hr />
 
       <CardContent>
-        <Typography variant="body2">{i18n.t("Min. Order Value")}</Typography>
+        <Typography variant="body2">{i18n.t("Min. Task Value")}</Typography>
         <Typography>
           {maybe<React.ReactNode>(
             () =>

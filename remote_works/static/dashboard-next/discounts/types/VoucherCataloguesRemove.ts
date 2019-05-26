@@ -58,14 +58,14 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_product
   startCursor: string | null;
 }
 
-export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products {
+export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_skills {
   __typename: "SkillCountableConnection";
   edges: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_edges[];
   totalCount: number | null;
   pageInfo: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products_pageInfo;
 }
 
-export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges_node_products {
+export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -74,7 +74,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collect
   __typename: "Collection";
   id: string;
   name: string;
-  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges_node_products | null;
+  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges_node_skills | null;
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_edges {
@@ -97,7 +97,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collect
   pageInfo: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections_pageInfo;
 }
 
-export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges_node_products {
+export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -106,7 +106,7 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categor
   __typename: "Category";
   id: string;
   name: string;
-  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges_node_products | null;
+  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges_node_skills | null;
 }
 
 export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories_edges {
@@ -143,8 +143,8 @@ export interface VoucherCataloguesRemove_voucherCataloguesRemove_voucher {
   type: VoucherType;
   code: string;
   used: number;
-  applyOncePerOrder: boolean;
-  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_products | null;
+  applyOncePerTask: boolean;
+  products: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_skills | null;
   collections: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_collections | null;
   categories: VoucherCataloguesRemove_voucherCataloguesRemove_voucher_categories | null;
 }

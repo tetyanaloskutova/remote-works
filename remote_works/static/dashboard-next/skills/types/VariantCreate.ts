@@ -59,40 +59,40 @@ export interface VariantCreate_productVariantCreate_productVariant_priceOverride
   currency: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_product_images {
+export interface VariantCreate_productVariantCreate_productVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
-  sortOrder: number;
+  sortTask: number;
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_product_thumbnail {
+export interface VariantCreate_productVariantCreate_productVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_product_variants_images {
+export interface VariantCreate_productVariantCreate_productVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_product_variants {
+export interface VariantCreate_productVariantCreate_productVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (VariantCreate_productVariantCreate_productVariant_product_variants_images | null)[] | null;
+  images: (VariantCreate_productVariantCreate_productVariant_skill_variants_images | null)[] | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_product {
+export interface VariantCreate_productVariantCreate_productVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (VariantCreate_productVariantCreate_productVariant_product_images | null)[] | null;
+  images: (VariantCreate_productVariantCreate_productVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: VariantCreate_productVariantCreate_productVariant_product_thumbnail | null;
-  variants: (VariantCreate_productVariantCreate_productVariant_product_variants | null)[] | null;
+  thumbnail: VariantCreate_productVariantCreate_productVariant_skill_thumbnail | null;
+  variants: (VariantCreate_productVariantCreate_productVariant_skill_variants | null)[] | null;
 }
 
 export interface VariantCreate_productVariantCreate_productVariant {

@@ -13,18 +13,18 @@ export interface UpdateCustomer_customerUpdate_errors {
   message: string | null;
 }
 
-export interface UpdateCustomer_customerUpdate_user_defaultShippingAddress_country {
+export interface UpdateCustomer_customerUpdate_user_defaultDeliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface UpdateCustomer_customerUpdate_user_defaultShippingAddress {
+export interface UpdateCustomer_customerUpdate_user_defaultDeliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: UpdateCustomer_customerUpdate_user_defaultShippingAddress_country;
+  country: UpdateCustomer_customerUpdate_user_defaultDeliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -65,7 +65,7 @@ export interface UpdateCustomer_customerUpdate_user {
   lastName: string;
   dateJoined: any;
   lastLogin: any | null;
-  defaultShippingAddress: UpdateCustomer_customerUpdate_user_defaultShippingAddress | null;
+  defaultDeliveryAddress: UpdateCustomer_customerUpdate_user_defaultDeliveryAddress | null;
   defaultBillingAddress: UpdateCustomer_customerUpdate_user_defaultBillingAddress | null;
   note: string | null;
   isActive: boolean;

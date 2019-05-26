@@ -22,7 +22,7 @@ export const customers = [
       streetAddress1: "83772 Savanah Summit",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "West Bret",
       cityArea: "North Dakota",
       companyName: null,
@@ -64,7 +64,7 @@ export const customers = [
       streetAddress1: "5656 Crooks Park",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "East Brandttown",
       cityArea: "Missouri",
       companyName: null,
@@ -106,7 +106,7 @@ export const customers = [
       streetAddress1: "5060 Aufderhar Common",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "East Raymond",
       cityArea: "Delaware",
       companyName: null,
@@ -148,7 +148,7 @@ export const customers = [
       streetAddress1: "106 Swift Squares",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Torphyton",
       cityArea: "Iowa",
       companyName: null,
@@ -190,7 +190,7 @@ export const customers = [
       streetAddress1: "32181 Lindgren Turnpike",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "East Fletcher",
       cityArea: "New Hampshire",
       companyName: null,
@@ -232,7 +232,7 @@ export const customers = [
       streetAddress1: "08030 Corrine Row",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "North Tanyafurt",
       cityArea: "Wyoming",
       companyName: null,
@@ -274,7 +274,7 @@ export const customers = [
       streetAddress1: "333 Bernie Fords",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Kaylistad",
       cityArea: "Louisiana",
       companyName: null,
@@ -316,7 +316,7 @@ export const customers = [
       streetAddress1: "9280 Asa Center",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Lydiahaven",
       cityArea: "Arkansas",
       companyName: null,
@@ -358,7 +358,7 @@ export const customers = [
       streetAddress1: "8546 Marks Highway",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "South Hendersonbury",
       cityArea: "Nevada",
       companyName: "Raynor Inc",
@@ -400,7 +400,7 @@ export const customers = [
       streetAddress1: "93719 Hackett Mountain",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Windlerton",
       cityArea: "Texas",
       companyName: "Heller, Bauch and Friesen",
@@ -442,7 +442,7 @@ export const customers = [
       streetAddress1: "557 Jacobi Gateway",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "West Jolieland",
       cityArea: "Connecticut",
       companyName: null,
@@ -484,7 +484,7 @@ export const customers = [
       streetAddress1: "146 Dee Station",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "North Sister",
       cityArea: "Ohio",
       companyName: null,
@@ -526,7 +526,7 @@ export const customers = [
       streetAddress1: "01419 Bernhard Plain",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Kenstad",
       cityArea: "Alabama",
       companyName: null,
@@ -568,7 +568,7 @@ export const customers = [
       streetAddress1: "287 Rowe Mews",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Jamilstad",
       cityArea: "Idaho",
       companyName: "Kilback - Crooks",
@@ -610,7 +610,7 @@ export const customers = [
       streetAddress1: "496 Sporer Mountain",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Keltonland",
       cityArea: "West Virginia",
       companyName: "Bailey, Barrows and Prosacco",
@@ -652,7 +652,7 @@ export const customers = [
       streetAddress1: "0238 Cremin Freeway",
       streetAddress2: null
     },
-    defaultShippingAddress: {
+    defaultDeliveryAddress: {
       city: "Larkinstad",
       cityArea: "California",
       companyName: null,
@@ -684,8 +684,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "curtis",
     id: "VXNlcjox",
     lastName: "Bailey",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -695,8 +695,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Curtis",
     id: "VXNlcjox",
     lastName: "Bailey",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -706,8 +706,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Elizabeth",
     id: "VXNlcjoy",
     lastName: "Vaughn",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -717,8 +717,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Michael",
     id: "VXNlcjoz",
     lastName: "Martinez",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -728,8 +728,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Kayla",
     id: "VXNlcjo0",
     lastName: "Griffin",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -739,8 +739,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Donna",
     id: "VXNlcjo1",
     lastName: "Robinson",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -750,8 +750,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "James",
     id: "VXNlcjo2",
     lastName: "Bqall",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -761,8 +761,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Anthony",
     id: "VXNlcjo3",
     lastName: "Gonzalez",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -772,8 +772,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Anthony",
     id: "VXNlcjo3",
     lastName: "Gonzalez",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -783,8 +783,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Wesley",
     id: "VXNlcjo4",
     lastName: "Davis",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -794,8 +794,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Laura",
     id: "VXNlcjo5",
     lastName: "Stone",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -805,8 +805,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "William",
     id: "VXNlcjoxMA==",
     lastName: "Miller",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -816,8 +816,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Donald",
     id: "VXNlcjoxMQ==",
     lastName: "Solomon",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -827,8 +827,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Anthony",
     id: "VXNlcjoxMg==",
     lastName: "Young",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -838,8 +838,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Hanson",
     id: "VXNlcjoxMw==",
     lastName: "Sharon",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -849,8 +849,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Laura",
     id: "VXNlcjoxNA==",
     lastName: "Jensen",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -860,8 +860,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Mark",
     id: "VXNlcjoxNQ==",
     lastName: "Lee",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 1
     }
   },
@@ -871,8 +871,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "David",
     id: "VXNlcjoxNg==",
     lastName: "Lawson",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -882,8 +882,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "David",
     id: "VXNlcjoxNg==",
     lastName: "Lawson",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 2
     }
   },
@@ -893,8 +893,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Faith",
     id: "VXNlcjoxNw==",
     lastName: "Smith",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -904,8 +904,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "John",
     id: "VXNlcjoxOA==",
     lastName: "Jones",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -915,8 +915,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Ronald",
     id: "VXNlcjoxOQ==",
     lastName: "Fisher",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -926,8 +926,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Jason",
     id: "VXNlcjoyMA==",
     lastName: "Gray",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 0
     }
   },
@@ -937,8 +937,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     firstName: "Tom",
     id: "VXNlcjoyMQ==",
     lastName: "Cooper",
-    orders: {
-      __typename: "OrderCountableConnection",
+    tasks: {
+      __typename: "TaskCountableConnection",
       totalCount: 6
     }
   }
@@ -967,7 +967,7 @@ export const customer: CustomerDetails_user = {
     streetAddress1: "419 Ruiz Orchard Apt. 199",
     streetAddress2: ""
   },
-  defaultShippingAddress: {
+  defaultDeliveryAddress: {
     __typename: "Address",
     city: "Port Danielshire",
     cityArea: "",
@@ -991,13 +991,13 @@ export const customer: CustomerDetails_user = {
   isActive: true,
   lastLogin: "2018-05-07T09:37:30.124154+00:00",
   lastName: "Cooper",
-  lastPlacedOrder: {
-    __typename: "OrderCountableConnection",
+  lastPlacedTask: {
+    __typename: "TaskCountableConnection",
     edges: [
       {
-        __typename: "OrderCountableEdge",
+        __typename: "TaskCountableEdge",
         node: {
-          __typename: "Order",
+          __typename: "Task",
           created: "2018-05-07T09:37:30.124154+00:00",
           id: "T3JkZXI6MTk="
         }
@@ -1005,13 +1005,13 @@ export const customer: CustomerDetails_user = {
     ]
   },
   note: null,
-  orders: {
-    __typename: "OrderCountableConnection",
+  tasks: {
+    __typename: "TaskCountableConnection",
     edges: [
       {
-        __typename: "OrderCountableEdge",
+        __typename: "TaskCountableEdge",
         node: {
-          __typename: "Order",
+          __typename: "Task",
           created: "2018-05-07T09:37:30.124154+00:00",
           id: "T3JkZXI6MTk=",
           number: "8234",

@@ -17,7 +17,7 @@ export const countryFragment = gql`
 `;
 export const shopTaxesFragment = gql`
   fragment ShopTaxesFragment on Shop {
-    chargeTaxesOnShipping
+    chargeTaxesOnDelivery
     includeTaxesInPrices
     displayGrossPrices
   }

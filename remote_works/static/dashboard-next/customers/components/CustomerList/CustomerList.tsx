@@ -54,7 +54,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
               {i18n.t("Customer e-mail", { context: "table header" })}
             </TableCell>
             <TableCell className={classes.textCenter}>
-              {i18n.t("Orders", { context: "table header" })}
+              {i18n.t("Tasks", { context: "table header" })}
             </TableCell>
           </TableRow>
         </TableHead>
@@ -90,7 +90,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
                 </TableCell>
                 <TableCell className={classes.textCenter}>
                   {maybe<React.ReactNode>(
-                    () => customer.orders.totalCount,
+                    () => customer.tasks.totalCount,
                     <Skeleton />
                   )}
                 </TableCell>

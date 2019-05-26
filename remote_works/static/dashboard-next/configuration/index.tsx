@@ -6,7 +6,7 @@ import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
 import AccountCircle from "../icons/AccountCircle";
 import Folder from "../icons/Folder";
-import LocalShipping from "../icons/LocalShipping";
+import LocalDelivery from "../icons/LocalDelivery";
 import Monetization from "../icons/Monetization";
 import Navigation from "../icons/Navigation";
 import Pages from "../icons/Pages";
@@ -21,7 +21,7 @@ import ConfigurationPage, { MenuItem } from "./ConfigurationPage";
 
 export const configurationMenu: MenuItem[] = [
   {
-    description: i18n.t("Define types of products you sell"),
+    description: i18n.t("Define types of skills you sell"),
     icon: <Folder fontSize="inherit" />,
     permission: PermissionEnum.MANAGE_PRODUCTS,
     title: i18n.t("Skill Types"),
@@ -35,10 +35,10 @@ export const configurationMenu: MenuItem[] = [
     url: staffListUrl
   },
   {
-    description: i18n.t("Manage how you ship out orders."),
-    icon: <LocalShipping fontSize="inherit" />,
-    permission: PermissionEnum.MANAGE_SHIPPING,
-    title: i18n.t("Shipping Methods")
+    description: i18n.t("Manage how you ship out tasks."),
+    icon: <LocalDelivery fontSize="inherit" />,
+    permission: PermissionEnum.MANAGE_DELIVERY,
+    title: i18n.t("Delivery Methods")
   },
   {
     description: i18n.t("Manage how your store charges tax"),

@@ -1,16 +1,16 @@
-import { OrderEvents } from "../types/globalTypes";
+import { TaskEvents } from "../types/globalTypes";
 import { Home } from "./types/Home";
 
 export const shop: (placeholderImage: string) => Home = (
   placeholderImage: string
 ) => ({
   activities: {
-    __typename: "OrderEventCountableConnection",
+    __typename: "TaskEventCountableConnection",
     edges: [
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-09-14T16:10:27.137126+00:00",
@@ -21,7 +21,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -30,9 +30,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-03T13:28:46.325279+00:00",
@@ -43,14 +43,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED,
+          type: TaskEvents.PLACED,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-03T13:29:01.837496+00:00",
@@ -61,14 +61,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.ORDER_FULLY_PAID,
+          type: TaskEvents.ORDER_FULLY_PAID,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-04T01:01:51.243723+00:00",
@@ -79,7 +79,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -88,9 +88,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-04T19:36:18.831561+00:00",
@@ -101,7 +101,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -110,9 +110,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-04T19:38:01.420365+00:00",
@@ -123,7 +123,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -132,9 +132,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-05T12:30:57.268592+00:00",
@@ -145,7 +145,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -154,9 +154,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-08T09:50:42.622253+00:00",
@@ -167,14 +167,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED,
+          type: TaskEvents.PLACED,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-12T15:51:11.665838+00:00",
@@ -185,7 +185,7 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED_FROM_DRAFT,
+          type: TaskEvents.PLACED_FROM_DRAFT,
           user: {
             __typename: "User",
             email: "admin@example.com",
@@ -194,9 +194,9 @@ export const shop: (placeholderImage: string) => Home = (
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-25T11:25:58.843860+00:00",
@@ -207,14 +207,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED,
+          type: TaskEvents.PLACED,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-26T09:34:57.580167+00:00",
@@ -225,14 +225,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.PLACED,
+          type: TaskEvents.PLACED,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-26T09:38:02.440061+00:00",
@@ -243,14 +243,14 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.ORDER_FULLY_PAID,
+          type: TaskEvents.ORDER_FULLY_PAID,
           user: null
         }
       },
       {
-        __typename: "OrderEventCountableEdge",
+        __typename: "TaskEventCountableEdge",
         node: {
-          __typename: "OrderEvent",
+          __typename: "TaskEvent",
           amount: null,
           composedId: null,
           date: "2018-10-26T09:38:02.467443+00:00",
@@ -261,22 +261,22 @@ export const shop: (placeholderImage: string) => Home = (
           orderNumber: "15",
           oversoldItems: null,
           quantity: null,
-          type: OrderEvents.ORDER_FULLY_PAID,
+          type: TaskEvents.ORDER_FULLY_PAID,
           user: null
         }
       }
     ]
   },
   ordersToCapture: {
-    __typename: "OrderCountableConnection",
+    __typename: "TaskCountableConnection",
     totalCount: 0
   },
   ordersToFulfill: {
-    __typename: "OrderCountableConnection",
+    __typename: "TaskCountableConnection",
     totalCount: 1
   },
   ordersToday: {
-    __typename: "OrderCountableConnection",
+    __typename: "TaskCountableConnection",
     totalCount: 1
   },
   productTopToday: {
@@ -293,7 +293,7 @@ export const shop: (placeholderImage: string) => Home = (
                 __typename: "AttributeValue",
                 id: "QXR0cmlidXRlVmFsdWU6OTI=",
                 name: "XS",
-                sortOrder: 0
+                sortTask: 0
               }
             }
           ],
@@ -312,7 +312,7 @@ export const shop: (placeholderImage: string) => Home = (
               url: placeholderImage
             }
           },
-          quantityOrdered: 1,
+          quantityTasked: 1,
           revenue: {
             __typename: "TaxedMoney",
             gross: {

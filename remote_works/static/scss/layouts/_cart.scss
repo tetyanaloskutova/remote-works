@@ -12,7 +12,7 @@
         text-align: right;
       }
     }
-    &__product {
+    &__skill {
       a {
         transition: 0.3s;
         &:hover {
@@ -71,7 +71,7 @@
       @include media-breakpoint-up(sm) {
         padding-left: calc(60px + #{$global-padding} * 2);
       }
-      &--shipping {
+      &--delivery {
         color: $body-color;
       }
     }

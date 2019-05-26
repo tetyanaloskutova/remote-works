@@ -44,7 +44,7 @@ export interface CollectionDetails_collection_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface CollectionDetails_collection_products {
+export interface CollectionDetails_collection_skills {
   __typename: "SkillCountableConnection";
   edges: CollectionDetails_collection_products_edges[];
   pageInfo: CollectionDetails_collection_products_pageInfo;
@@ -59,7 +59,7 @@ export interface CollectionDetails_collection {
   descriptionJson: any;
   seoDescription: string | null;
   seoTitle: string | null;
-  products: CollectionDetails_collection_products | null;
+  products: CollectionDetails_collection_skills | null;
 }
 
 export interface CollectionDetails_shop_homepageCollection {

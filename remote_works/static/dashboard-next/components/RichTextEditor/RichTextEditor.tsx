@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import BoldIcon from "@material-ui/icons/FormatBold";
 import ItalicIcon from "@material-ui/icons/FormatItalic";
 import UnorderedListIcon from "@material-ui/icons/FormatListBulleted";
-import OrderedListIcon from "@material-ui/icons/FormatListNumbered";
+import TaskedListIcon from "@material-ui/icons/FormatListNumbered";
 import QuotationIcon from "@material-ui/icons/FormatQuote";
 import LinkIcon from "@material-ui/icons/Link";
 import * as classNames from "classnames";
@@ -233,7 +233,7 @@ const RichTextEditor = withStyles(styles, { name: "RichTextEditor" })(
           { icon: <HeaderThree />, type: BLOCK_TYPE.HEADER_THREE },
           { icon: <QuotationIcon />, type: BLOCK_TYPE.BLOCKQUOTE },
           { icon: <UnorderedListIcon />, type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
-          { icon: <OrderedListIcon />, type: BLOCK_TYPE.ORDERED_LIST_ITEM }
+          { icon: <TaskedListIcon />, type: BLOCK_TYPE.ORDERED_LIST_ITEM }
         ]}
         inlineStyles={[
           { icon: <BoldIcon />, type: INLINE_STYLE.BOLD },

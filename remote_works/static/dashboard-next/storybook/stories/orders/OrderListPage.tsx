@@ -3,8 +3,8 @@ import * as React from "react";
 
 import { Filter } from "../../../components/TableFilter/";
 import { pageListProps } from "../../../fixtures";
-import OrderListPage from "../../../orders/components/OrderListPage";
-import { orders } from "../../../orders/fixtures";
+import TaskListPage from "../../../tasks/components/TaskListPage";
+import { tasks } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 const filtersList: Filter[] = [
@@ -22,11 +22,11 @@ const filtersList: Filter[] = [
   }
 ];
 
-storiesOf("Views / Orders / Order list", module)
+storiesOf("Views / Tasks / Task list", module)
   .addDecorator(Decorator)
   .add("default", () => (
-    <OrderListPage
-      orders={orders}
+    <TaskListPage
+      tasks={tasks}
       {...pageListProps.default}
       filtersList={[]}
       onAllSkills={() => undefined}
@@ -37,8 +37,8 @@ storiesOf("Views / Orders / Order list", module)
     />
   ))
   .add("with custom filters", () => (
-    <OrderListPage
-      orders={orders}
+    <TaskListPage
+      tasks={tasks}
       {...pageListProps.loading}
       filtersList={filtersList}
       currentTab="custom"
@@ -49,8 +49,8 @@ storiesOf("Views / Orders / Order list", module)
     />
   ))
   .add("loading", () => (
-    <OrderListPage
-      orders={undefined}
+    <TaskListPage
+      tasks={undefined}
       {...pageListProps.loading}
       filtersList={undefined}
       currentTab={undefined}
@@ -61,8 +61,8 @@ storiesOf("Views / Orders / Order list", module)
     />
   ))
   .add("when no data", () => (
-    <OrderListPage
-      orders={[]}
+    <TaskListPage
+      tasks={[]}
       {...pageListProps.default}
       filtersList={[]}
       currentTab="all"

@@ -169,7 +169,7 @@
       }
     }
   }
-  &__shipping {
+  &__delivery {
     .btn {
       grid-column-start: 2;
       width: 100%;
@@ -178,7 +178,7 @@
       }
     }
   }
-  &__shipping-methods {
+  &__delivery-methods {
     p {
       margin: $global-margin * 2 0;
     }

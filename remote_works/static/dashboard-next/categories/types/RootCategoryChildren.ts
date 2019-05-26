@@ -10,7 +10,7 @@ export interface RootCategoryChildren_categories_edges_node_children {
   totalCount: number | null;
 }
 
-export interface RootCategoryChildren_categories_edges_node_products {
+export interface RootCategoryChildren_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -20,7 +20,7 @@ export interface RootCategoryChildren_categories_edges_node {
   id: string;
   name: string;
   children: RootCategoryChildren_categories_edges_node_children | null;
-  products: RootCategoryChildren_categories_edges_node_products | null;
+  products: RootCategoryChildren_categories_edges_node_skills | null;
 }
 
 export interface RootCategoryChildren_categories_edges {

@@ -24,7 +24,7 @@ storiesOf("Views / Discounts / Voucher create", module)
     <VoucherCreatePage
       {...props}
       errors={([
-        "applyOncePerOrder",
+        "applyOncePerTask",
         "code",
         "discountType",
         "endDate",

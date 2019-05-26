@@ -46,14 +46,14 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface SaleCataloguesAdd_saleCataloguesAdd_sale_products {
+export interface SaleCataloguesAdd_saleCataloguesAdd_sale_skills {
   __typename: "SkillCountableConnection";
   edges: SaleCataloguesAdd_saleCataloguesAdd_sale_products_edges[];
   pageInfo: SaleCataloguesAdd_saleCataloguesAdd_sale_products_pageInfo;
   totalCount: number | null;
 }
 
-export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node_products {
+export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -62,7 +62,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node 
   __typename: "Category";
   id: string;
   name: string;
-  products: SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node_products | null;
+  products: SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges_node_skills | null;
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories_edges {
@@ -85,7 +85,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_categories {
   totalCount: number | null;
 }
 
-export interface SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node_products {
+export interface SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -94,7 +94,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node
   __typename: "Collection";
   id: string;
   name: string;
-  products: SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node_products | null;
+  products: SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges_node_skills | null;
 }
 
 export interface SaleCataloguesAdd_saleCataloguesAdd_sale_collections_edges {
@@ -125,7 +125,7 @@ export interface SaleCataloguesAdd_saleCataloguesAdd_sale {
   startDate: any;
   endDate: any | null;
   value: number;
-  products: SaleCataloguesAdd_saleCataloguesAdd_sale_products | null;
+  products: SaleCataloguesAdd_saleCataloguesAdd_sale_skills | null;
   categories: SaleCataloguesAdd_saleCataloguesAdd_sale_categories | null;
   collections: SaleCataloguesAdd_saleCataloguesAdd_sale_collections | null;
 }

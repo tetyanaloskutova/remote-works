@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmails, OrderEvents } from "./../../types/globalTypes";
+import { TaskEventsEmails, TaskEvents } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Home
@@ -19,17 +19,17 @@ export interface Home_salesToday {
 }
 
 export interface Home_ordersToday {
-  __typename: "OrderCountableConnection";
+  __typename: "TaskCountableConnection";
   totalCount: number | null;
 }
 
 export interface Home_ordersToFulfill {
-  __typename: "OrderCountableConnection";
+  __typename: "TaskCountableConnection";
   totalCount: number | null;
 }
 
 export interface Home_ordersToCapture {
-  __typename: "OrderCountableConnection";
+  __typename: "TaskCountableConnection";
   totalCount: number | null;
 }
 
@@ -53,7 +53,7 @@ export interface Home_productTopToday_edges_node_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
-  sortOrder: number;
+  sortTask: number;
 }
 
 export interface Home_productTopToday_edges_node_attributes {
@@ -61,16 +61,16 @@ export interface Home_productTopToday_edges_node_attributes {
   value: Home_productTopToday_edges_node_attributes_value;
 }
 
-export interface Home_productTopToday_edges_node_product_thumbnail {
+export interface Home_productTopToday_edges_node_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface Home_productTopToday_edges_node_product {
+export interface Home_productTopToday_edges_node_skill {
   __typename: "Skill";
   id: string;
   name: string;
-  thumbnail: Home_productTopToday_edges_node_product_thumbnail | null;
+  thumbnail: Home_productTopToday_edges_node_skill_thumbnail | null;
 }
 
 export interface Home_productTopToday_edges_node {
@@ -79,7 +79,7 @@ export interface Home_productTopToday_edges_node {
   revenue: Home_productTopToday_edges_node_revenue | null;
   attributes: Home_productTopToday_edges_node_attributes[];
   product: Home_productTopToday_edges_node_product;
-  quantityOrdered: number | null;
+  quantityTasked: number | null;
 }
 
 export interface Home_productTopToday_edges {
@@ -99,28 +99,28 @@ export interface Home_activities_edges_node_user {
 }
 
 export interface Home_activities_edges_node {
-  __typename: "OrderEvent";
+  __typename: "TaskEvent";
   amount: number | null;
   composedId: string | null;
   date: any | null;
   email: string | null;
-  emailType: OrderEventsEmails | null;
+  emailType: TaskEventsEmails | null;
   id: string;
   message: string | null;
   orderNumber: string | null;
   oversoldItems: (string | null)[] | null;
   quantity: number | null;
-  type: OrderEvents | null;
+  type: TaskEvents | null;
   user: Home_activities_edges_node_user | null;
 }
 
 export interface Home_activities_edges {
-  __typename: "OrderEventCountableEdge";
+  __typename: "TaskEventCountableEdge";
   node: Home_activities_edges_node;
 }
 
 export interface Home_activities {
-  __typename: "OrderEventCountableConnection";
+  __typename: "TaskEventCountableConnection";
   edges: Home_activities_edges[];
 }
 

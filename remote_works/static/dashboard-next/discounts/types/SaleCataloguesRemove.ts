@@ -46,14 +46,14 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_pageInf
   startCursor: string | null;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills {
   __typename: "SkillCountableConnection";
   edges: SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges[];
   pageInfo: SaleCataloguesRemove_saleCataloguesRemove_sale_products_pageInfo;
   totalCount: number | null;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_products {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -62,7 +62,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges
   __typename: "Category";
   id: string;
   name: string;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_products | null;
+  products: SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_skills | null;
 }
 
 export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges {
@@ -85,7 +85,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories {
   totalCount: number | null;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_products {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_skills {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
@@ -94,7 +94,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edge
   __typename: "Collection";
   id: string;
   name: string;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_products | null;
+  products: SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_skills | null;
 }
 
 export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges {
@@ -125,7 +125,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale {
   startDate: any;
   endDate: any | null;
   value: number;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_products | null;
+  products: SaleCataloguesRemove_saleCataloguesRemove_sale_skills | null;
   categories: SaleCataloguesRemove_saleCataloguesRemove_sale_categories | null;
   collections: SaleCataloguesRemove_saleCataloguesRemove_sale_collections | null;
 }

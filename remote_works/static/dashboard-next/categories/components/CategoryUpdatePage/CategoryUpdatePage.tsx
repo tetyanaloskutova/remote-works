@@ -33,7 +33,7 @@ export interface FormData {
 
 export enum CategoryPageTab {
   categories = "categories",
-  products = "products"
+  skills = "products"
 }
 
 export interface CategoryUpdatePageProps {
@@ -173,7 +173,7 @@ export const CategoryUpdatePage: React.StatelessComponent<
               pageInfo={pageInfo}
             />
           )}
-          {currentTab === CategoryPageTab.products && (
+          {currentTab === CategoryPageTab.skills && (
             <CategorySkillsCard
               categoryName={maybe(() => category.name)}
               products={products}

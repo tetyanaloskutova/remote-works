@@ -23,7 +23,7 @@ import Skeleton from "../../../components/Skeleton";
 import StatusLabel from "../../../components/StatusLabel";
 import i18n from "../../../i18n";
 import { renderCollection } from "../../../misc";
-import { SkillDetails_product_variants } from "../../types/SkillDetails";
+import { SkillDetails_skill_variants } from "../../types/SkillDetails";
 import { SkillVariant_costPrice } from "../../types/SkillVariant";
 
 const styles = (theme: Theme) =>
@@ -46,7 +46,7 @@ const styles = (theme: Theme) =>
 
 interface SkillVariantsProps extends WithStyles<typeof styles> {
   disabled?: boolean;
-  variants: SkillDetails_product_variants[];
+  variants: SkillDetails_skill_variants[];
   fallbackPrice?: SkillVariant_costPrice;
   onAttributesEdit: () => void;
   onRowClick: (id: string) => () => void;
@@ -79,7 +79,7 @@ export const SkillVariants = withStyles(styles, { name: "SkillVariants" })(
       <CardContent>
         <Typography>
           {i18n.t(
-            "Use variants for products that come in a variety of version for example different sizes or colors"
+            "Use variants for skills that come in a variety of version for example different sizes or colors"
           )}
         </Typography>
       </CardContent>
@@ -145,7 +145,7 @@ export const SkillVariants = withStyles(styles, { name: "SkillVariants" })(
             () => (
               <TableRow>
                 <TableCell colSpan={2}>
-                  {i18n.t("This product has no variants")}
+                  {i18n.t("This skill has no variants")}
                 </TableCell>
               </TableRow>
             )

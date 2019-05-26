@@ -1,12 +1,12 @@
 import { content } from "../storybook/stories/components/RichTextEditor";
-import { SkillDetails_product } from "./types/SkillDetails";
+import { SkillDetails_skill } from "./types/SkillDetails";
 import { SkillVariant } from "./types/SkillVariant";
-import { SkillVariantCreateData_product } from "./types/SkillVariantCreateData";
+import { SkillVariantCreateData_skill } from "./types/SkillVariantCreateData";
 
 export const product: (
   placeholderImage: string
-) => SkillDetails_product &
-  SkillVariantCreateData_product = placeholderImage => ({
+) => SkillDetails_skill &
+  SkillVariantCreateData_skill = placeholderImage => ({
   __typename: "Skill",
   attributes: [
     {
@@ -139,35 +139,35 @@ export const product: (
       __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYWdlOjE=",
-      sortOrder: 0,
+      sortTask: 0,
       url: placeholderImage
     },
     {
       __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYWdlOaE=",
-      sortOrder: 2,
+      sortTask: 2,
       url: placeholderImage
     },
     {
       __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UPJvZHVjdEltYWdlOjV=",
-      sortOrder: 1,
+      sortTask: 1,
       url: placeholderImage
     },
     {
       __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdEltYHdlOjX=",
-      sortOrder: 3,
+      sortTask: 3,
       url: placeholderImage
     },
     {
       __typename: "SkillImage",
       alt: "Id sit dolores adipisci",
       id: "UHJvZHVjdIlnYWdlOjX=",
-      sortOrder: 4,
+      sortTask: 4,
       url: placeholderImage
     }
   ],
@@ -194,21 +194,21 @@ export const product: (
         id: "pta18161",
         name: "Color",
         slug: "color",
-        sortOrder: 0,
+        sortTask: 0,
         values: [
           {
             __typename: "AttributeValue",
             id: "ptvav47282",
             name: "Black",
             slug: "black",
-            sortOrder: 0
+            sortTask: 0
           },
           {
             __typename: "AttributeValue",
             id: "ptvav17253",
             name: "White",
             slug: "white",
-            sortOrder: 1
+            sortTask: 1
           }
         ]
       }
@@ -288,7 +288,7 @@ export const product: (
     }
   ]
 });
-export const products = (placeholderImage: string) => [
+export const skills = (placeholderImage: string) => [
   {
     attributes: [
       {
@@ -296,21 +296,21 @@ export const products = (placeholderImage: string) => [
           id: "pta37372",
           name: "expedite",
           slug: "expedite",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav84718", name: "violet", slug: "violet", sortOrder: 0 },
-            { id: "ptav4189", name: "virtual", slug: "virtual", sortOrder: 1 },
+            { id: "ptav84718", name: "violet", slug: "violet", sortTask: 0 },
+            { id: "ptav4189", name: "virtual", slug: "virtual", sortTask: 1 },
             {
               id: "ptav39406",
               name: "supply-chains",
               slug: "supply-chains",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav57910",
               name: "Implementation",
               slug: "Implementation",
-              sortOrder: 3
+              sortTask: 3
             }
           ]
         },
@@ -318,7 +318,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav4189",
           name: "virtual",
           slug: "virtual",
-          sortOrder: 1
+          sortTask: 1
         }
       },
       {
@@ -326,25 +326,25 @@ export const products = (placeholderImage: string) => [
           id: "pta3183",
           name: "system",
           slug: "system",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
             {
               id: "ptav83133",
               name: "turn-key",
               slug: "turn-key",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav60236", name: "red", slug: "red", sortOrder: 1 },
-            { id: "ptav99015", name: "Fort", slug: "Fort", sortOrder: 2 },
-            { id: "ptav98580", name: "Borders", slug: "Borders", sortOrder: 3 },
-            { id: "ptav34875", name: "Guam", slug: "Guam", sortOrder: 4 }
+            { id: "ptav60236", name: "red", slug: "red", sortTask: 1 },
+            { id: "ptav99015", name: "Fort", slug: "Fort", sortTask: 2 },
+            { id: "ptav98580", name: "Borders", slug: "Borders", sortTask: 3 },
+            { id: "ptav34875", name: "Guam", slug: "Guam", sortTask: 4 }
           ]
         },
         value: {
           id: "ptav98580",
           name: "Borders",
           slug: "Borders",
-          sortOrder: 3
+          sortTask: 3
         }
       },
       {
@@ -352,13 +352,13 @@ export const products = (placeholderImage: string) => [
           id: "pta47147",
           name: "interactive",
           slug: "interactive",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
             {
               id: "ptav67400",
               name: "fault-tolerant",
               slug: "fault-tolerant",
-              sortOrder: 0
+              sortTask: 0
             }
           ]
         },
@@ -366,7 +366,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav67400",
           name: "fault-tolerant",
           slug: "fault-tolerant",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -374,27 +374,27 @@ export const products = (placeholderImage: string) => [
           id: "pta34499",
           name: "deposit",
           slug: "deposit",
-          sortOrder: 3,
+          sortTask: 3,
           values: [
-            { id: "ptav11679", name: "silver", slug: "silver", sortOrder: 0 },
+            { id: "ptav11679", name: "silver", slug: "silver", sortTask: 0 },
             {
               id: "ptav12539",
               name: "Iranian Rial",
               slug: "Iranian-Rial",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav93140",
               name: "Gorgeous Cotton Tuna",
               slug: "Gorgeous-Cotton-Tuna",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav7930", name: "hybrid", slug: "hybrid", sortOrder: 3 },
+            { id: "ptav7930", name: "hybrid", slug: "hybrid", sortTask: 3 },
             {
               id: "ptav75590",
               name: "navigating",
               slug: "navigating",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
@@ -402,7 +402,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav75590",
           name: "navigating",
           slug: "navigating",
-          sortOrder: 4
+          sortTask: 4
         }
       }
     ],
@@ -420,7 +420,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -478,20 +478,20 @@ export const products = (placeholderImage: string) => [
           id: "pta1529",
           name: "Granite",
           slug: "Granite",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
             {
               id: "ptav30634",
               name: "multi-byte",
               slug: "multi-byte",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav77390", name: "Soft", slug: "Soft", sortOrder: 1 },
+            { id: "ptav77390", name: "Soft", slug: "Soft", sortTask: 1 },
             {
               id: "ptav42995",
               name: "navigating",
               slug: "navigating",
-              sortOrder: 2
+              sortTask: 2
             }
           ]
         },
@@ -499,7 +499,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav30634",
           name: "multi-byte",
           slug: "multi-byte",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -507,35 +507,35 @@ export const products = (placeholderImage: string) => [
           id: "pta44120",
           name: "wireless",
           slug: "wireless",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
             {
               id: "ptav89151",
               name: "Tasty Wooden Shirt",
               slug: "Tasty-Wooden-Shirt",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav69476", name: "monitor", slug: "monitor", sortOrder: 1 },
+            { id: "ptav69476", name: "monitor", slug: "monitor", sortTask: 1 },
             {
               id: "ptav71380",
               name: "Operative",
               slug: "Operative",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav73557",
               name: "vertical",
               slug: "vertical",
-              sortOrder: 3
+              sortTask: 3
             },
-            { id: "ptav61047", name: "Managed", slug: "Managed", sortOrder: 4 }
+            { id: "ptav61047", name: "Managed", slug: "Managed", sortTask: 4 }
           ]
         },
         value: {
           id: "ptav73557",
           name: "vertical",
           slug: "vertical",
-          sortOrder: 3
+          sortTask: 3
         }
       },
       {
@@ -543,19 +543,19 @@ export const products = (placeholderImage: string) => [
           id: "pta83114",
           name: "6th generation",
           slug: "6th-generation",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
             {
               id: "ptav42344",
               name: "Division",
               slug: "Division",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav76960",
               name: "sky blue",
               slug: "sky-blue",
-              sortOrder: 1
+              sortTask: 1
             }
           ]
         },
@@ -563,7 +563,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav76960",
           name: "sky blue",
           slug: "sky-blue",
-          sortOrder: 1
+          sortTask: 1
         }
       }
     ],
@@ -581,7 +581,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -664,37 +664,37 @@ export const products = (placeholderImage: string) => [
           id: "pta40940",
           name: "monitor",
           slug: "monitor",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
             {
               id: "ptav64256",
               name: "alliance",
               slug: "alliance",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav9644",
               name: "content-based",
               slug: "content-based",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav27621",
               name: "East Caribbean Dollar",
               slug: "East-Caribbean-Dollar",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav21347",
               name: "Licensed",
               slug: "Licensed",
-              sortOrder: 3
+              sortTask: 3
             },
             {
               id: "ptav94604",
               name: "client-server",
               slug: "client-server",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
@@ -702,7 +702,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav21347",
           name: "Licensed",
           slug: "Licensed",
-          sortOrder: 3
+          sortTask: 3
         }
       },
       {
@@ -710,27 +710,27 @@ export const products = (placeholderImage: string) => [
           id: "pta33894",
           name: "Assurance",
           slug: "Assurance",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
-            { id: "ptav28890", name: "exploit", slug: "exploit", sortOrder: 0 },
+            { id: "ptav28890", name: "exploit", slug: "exploit", sortTask: 0 },
             {
               id: "ptav4427",
               name: "Team-oriented",
               slug: "Team-oriented",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav16612",
               name: "Money Market Account",
               slug: "Money-Market-Account",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav61387", name: "monitor", slug: "monitor", sortOrder: 3 },
+            { id: "ptav61387", name: "monitor", slug: "monitor", sortTask: 3 },
             {
               id: "ptav51902",
               name: "synthesize",
               slug: "synthesize",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
@@ -738,7 +738,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav16612",
           name: "Money Market Account",
           slug: "Money-Market-Account",
-          sortOrder: 2
+          sortTask: 2
         }
       },
       {
@@ -746,13 +746,13 @@ export const products = (placeholderImage: string) => [
           id: "pta35528",
           name: "Function-based",
           slug: "Function-based",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
             {
               id: "ptav77876",
               name: "generating",
               slug: "generating",
-              sortOrder: 0
+              sortTask: 0
             }
           ]
         },
@@ -760,7 +760,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav77876",
           name: "generating",
           slug: "generating",
-          sortOrder: 0
+          sortTask: 0
         }
       }
     ],
@@ -778,7 +778,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -851,25 +851,25 @@ export const products = (placeholderImage: string) => [
           id: "pta58079",
           name: "Cotton",
           slug: "Cotton",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav12741", name: "Table", slug: "Table", sortOrder: 0 },
-            { id: "ptav24310", name: "Salad", slug: "Salad", sortOrder: 1 },
-            { id: "ptav98446", name: "Hawaii", slug: "Hawaii", sortOrder: 2 },
+            { id: "ptav12741", name: "Table", slug: "Table", sortTask: 0 },
+            { id: "ptav24310", name: "Salad", slug: "Salad", sortTask: 1 },
+            { id: "ptav98446", name: "Hawaii", slug: "Hawaii", sortTask: 2 },
             {
               id: "ptav18267",
               name: "Assurance",
               slug: "Assurance",
-              sortOrder: 3
+              sortTask: 3
             },
-            { id: "ptav57428", name: "Liberia", slug: "Liberia", sortOrder: 4 }
+            { id: "ptav57428", name: "Liberia", slug: "Liberia", sortTask: 4 }
           ]
         },
         value: {
           id: "ptav57428",
           name: "Liberia",
           slug: "Liberia",
-          sortOrder: 4
+          sortTask: 4
         }
       },
       {
@@ -877,38 +877,38 @@ export const products = (placeholderImage: string) => [
           id: "pta51731",
           name: "Assistant",
           slug: "Assistant",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
-            { id: "ptav85577", name: "black", slug: "black", sortOrder: 0 }
+            { id: "ptav85577", name: "black", slug: "black", sortTask: 0 }
           ]
         },
-        value: { id: "ptav85577", name: "black", slug: "black", sortOrder: 0 }
+        value: { id: "ptav85577", name: "black", slug: "black", sortTask: 0 }
       },
       {
         attribute: {
           id: "pta53013",
           name: "target",
           slug: "target",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
-            { id: "ptav1569", name: "Tuna", slug: "Tuna", sortOrder: 0 },
+            { id: "ptav1569", name: "Tuna", slug: "Tuna", sortTask: 0 },
             {
               id: "ptav99901",
               name: "quantify",
               slug: "quantify",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav77006",
               name: "Saudi Riyal",
               slug: "Saudi-Riyal",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav74813",
               name: "New Hampshire",
               slug: "New-Hampshire",
-              sortOrder: 3
+              sortTask: 3
             }
           ]
         },
@@ -916,7 +916,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav99901",
           name: "quantify",
           slug: "quantify",
-          sortOrder: 1
+          sortTask: 1
         }
       },
       {
@@ -924,13 +924,13 @@ export const products = (placeholderImage: string) => [
           id: "pta98307",
           name: "Brand",
           slug: "Brand",
-          sortOrder: 3,
+          sortTask: 3,
           values: [
             {
               id: "ptav93905",
               name: "Clothing",
               slug: "Clothing",
-              sortOrder: 0
+              sortTask: 0
             }
           ]
         },
@@ -938,7 +938,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav93905",
           name: "Clothing",
           slug: "Clothing",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -946,30 +946,30 @@ export const products = (placeholderImage: string) => [
           id: "pta52191",
           name: "invoice",
           slug: "invoice",
-          sortOrder: 4,
+          sortTask: 4,
           values: [
             {
               id: "ptav74932",
               name: "Implementation",
               slug: "Implementation",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav68802",
               name: "Berkshire",
               slug: "Berkshire",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav89987",
               name: "Generic Rubber Gloves",
               slug: "Generic-Rubber-Gloves",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav60428", name: "HDD", slug: "HDD", sortOrder: 3 }
+            { id: "ptav60428", name: "HDD", slug: "HDD", sortTask: 3 }
           ]
         },
-        value: { id: "ptav60428", name: "HDD", slug: "HDD", sortOrder: 3 }
+        value: { id: "ptav60428", name: "HDD", slug: "HDD", sortTask: 3 }
       }
     ],
     availability: { available: false },
@@ -986,7 +986,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -1090,51 +1090,51 @@ export const products = (placeholderImage: string) => [
           id: "pta96115",
           name: "Officer",
           slug: "Officer",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav14754", name: "Rubber", slug: "Rubber", sortOrder: 0 }
+            { id: "ptav14754", name: "Rubber", slug: "Rubber", sortTask: 0 }
           ]
         },
-        value: { id: "ptav14754", name: "Rubber", slug: "Rubber", sortOrder: 0 }
+        value: { id: "ptav14754", name: "Rubber", slug: "Rubber", sortTask: 0 }
       },
       {
         attribute: {
           id: "pta74440",
           name: "driver",
           slug: "driver",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
-            { id: "ptav84649", name: "FTP", slug: "FTP", sortOrder: 0 },
-            { id: "ptav82177", name: "parse", slug: "parse", sortOrder: 1 },
+            { id: "ptav84649", name: "FTP", slug: "FTP", sortTask: 0 },
+            { id: "ptav82177", name: "parse", slug: "parse", sortTask: 1 },
             {
               id: "ptav4221",
               name: "Executive",
               slug: "Executive",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav44337", name: "Gateway", slug: "Gateway", sortOrder: 3 }
+            { id: "ptav44337", name: "Gateway", slug: "Gateway", sortTask: 3 }
           ]
         },
-        value: { id: "ptav84649", name: "FTP", slug: "FTP", sortOrder: 0 }
+        value: { id: "ptav84649", name: "FTP", slug: "FTP", sortTask: 0 }
       },
       {
         attribute: {
           id: "pta95292",
           name: "SDD",
           slug: "SDD",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
             {
               id: "ptav61506",
               name: "forecast",
               slug: "forecast",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav33698",
               name: "Virginia",
               slug: "Virginia",
-              sortOrder: 1
+              sortTask: 1
             }
           ]
         },
@@ -1142,7 +1142,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav33698",
           name: "Virginia",
           slug: "Virginia",
-          sortOrder: 1
+          sortTask: 1
         }
       },
       {
@@ -1150,43 +1150,43 @@ export const products = (placeholderImage: string) => [
           id: "pta28064",
           name: "firewall",
           slug: "firewall",
-          sortOrder: 3,
+          sortTask: 3,
           values: [
             {
               id: "ptav56676",
               name: "initiative",
               slug: "initiative",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav77667", name: "Web", slug: "Web", sortOrder: 1 }
+            { id: "ptav77667", name: "Web", slug: "Web", sortTask: 1 }
           ]
         },
-        value: { id: "ptav77667", name: "Web", slug: "Web", sortOrder: 1 }
+        value: { id: "ptav77667", name: "Web", slug: "Web", sortTask: 1 }
       },
       {
         attribute: {
           id: "pta90527",
           name: "Jamaica",
           slug: "Jamaica",
-          sortOrder: 4,
+          sortTask: 4,
           values: [
-            { id: "ptav52878", name: "Burgs", slug: "Burgs", sortOrder: 0 },
+            { id: "ptav52878", name: "Burgs", slug: "Burgs", sortTask: 0 },
             {
               id: "ptav772",
               name: "workforce",
               slug: "workforce",
-              sortOrder: 1
+              sortTask: 1
             },
-            { id: "ptav82565", name: "Human", slug: "Human", sortOrder: 2 },
+            { id: "ptav82565", name: "Human", slug: "Human", sortTask: 2 },
             {
               id: "ptav46804",
               name: "cross-platform",
               slug: "cross-platform",
-              sortOrder: 3
+              sortTask: 3
             }
           ]
         },
-        value: { id: "ptav52878", name: "Burgs", slug: "Burgs", sortOrder: 0 }
+        value: { id: "ptav52878", name: "Burgs", slug: "Burgs", sortTask: 0 }
       }
     ],
     availability: { available: true },
@@ -1203,7 +1203,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -1317,34 +1317,34 @@ export const products = (placeholderImage: string) => [
           id: "pta77866",
           name: "well-modulated",
           slug: "well-modulated",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav48728", name: "Group", slug: "Group", sortOrder: 0 },
-            { id: "ptav45439", name: "Rubber", slug: "Rubber", sortOrder: 1 },
+            { id: "ptav48728", name: "Group", slug: "Group", sortTask: 0 },
+            { id: "ptav45439", name: "Rubber", slug: "Rubber", sortTask: 1 },
             {
               id: "ptav80318",
               name: "Handmade Steel Chips",
               slug: "Handmade-Steel-Chips",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav55820", name: "yellow", slug: "yellow", sortOrder: 3 },
-            { id: "ptav46550", name: "bypass", slug: "bypass", sortOrder: 4 }
+            { id: "ptav55820", name: "yellow", slug: "yellow", sortTask: 3 },
+            { id: "ptav46550", name: "bypass", slug: "bypass", sortTask: 4 }
           ]
         },
-        value: { id: "ptav45439", name: "Rubber", slug: "Rubber", sortOrder: 1 }
+        value: { id: "ptav45439", name: "Rubber", slug: "Rubber", sortTask: 1 }
       },
       {
         attribute: {
           id: "pta46984",
           name: "magenta",
           slug: "magenta",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
             {
               id: "ptav95090",
               name: "Credit Card Account",
               slug: "Credit-Card-Account",
-              sortOrder: 0
+              sortTask: 0
             }
           ]
         },
@@ -1352,7 +1352,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav95090",
           name: "Credit Card Account",
           slug: "Credit-Card-Account",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -1360,22 +1360,22 @@ export const products = (placeholderImage: string) => [
           id: "pta58329",
           name: "District",
           slug: "District",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
             {
               id: "ptav38516",
               name: "Home Loan Account",
               slug: "Home-Loan-Account",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav42626", name: "panel", slug: "panel", sortOrder: 1 }
+            { id: "ptav42626", name: "panel", slug: "panel", sortTask: 1 }
           ]
         },
         value: {
           id: "ptav38516",
           name: "Home Loan Account",
           slug: "Home-Loan-Account",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -1383,26 +1383,26 @@ export const products = (placeholderImage: string) => [
           id: "pta24725",
           name: "payment",
           slug: "payment",
-          sortOrder: 3,
+          sortTask: 3,
           values: [
             {
               id: "ptav37397",
               name: "firmware",
               slug: "firmware",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav29524", name: "Music", slug: "Music", sortOrder: 1 },
+            { id: "ptav29524", name: "Music", slug: "Music", sortTask: 1 },
             {
               id: "ptav66933",
               name: "Team-oriented",
               slug: "Team-oriented",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav94930",
               name: "Singapore Dollar",
               slug: "Singapore-Dollar",
-              sortOrder: 3
+              sortTask: 3
             }
           ]
         },
@@ -1410,7 +1410,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav94930",
           name: "Singapore Dollar",
           slug: "Singapore-Dollar",
-          sortOrder: 3
+          sortTask: 3
         }
       },
       {
@@ -1418,22 +1418,22 @@ export const products = (placeholderImage: string) => [
           id: "pta20828",
           name: "functionalities",
           slug: "functionalities",
-          sortOrder: 4,
+          sortTask: 4,
           values: [
             {
               id: "ptav75959",
               name: "Buckinghamshire",
               slug: "Buckinghamshire",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav76195", name: "Idaho", slug: "Idaho", sortOrder: 1 },
-            { id: "ptav91880", name: "systems", slug: "systems", sortOrder: 2 },
-            { id: "ptav2568", name: "SMS", slug: "SMS", sortOrder: 3 },
+            { id: "ptav76195", name: "Idaho", slug: "Idaho", sortTask: 1 },
+            { id: "ptav91880", name: "systems", slug: "systems", sortTask: 2 },
+            { id: "ptav2568", name: "SMS", slug: "SMS", sortTask: 3 },
             {
               id: "ptav29590",
               name: "convergence",
               slug: "convergence",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
@@ -1441,7 +1441,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav29590",
           name: "convergence",
           slug: "convergence",
-          sortOrder: 4
+          sortTask: 4
         }
       }
     ],
@@ -1459,7 +1459,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -1573,31 +1573,31 @@ export const products = (placeholderImage: string) => [
           id: "pta66889",
           name: "Compatible",
           slug: "Compatible",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
             {
               id: "ptav34671",
               name: "Minnesota",
               slug: "Minnesota",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav83835",
               name: "networks",
               slug: "networks",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav25230",
               name: "Generic Frozen Bike",
               slug: "Generic-Frozen-Bike",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav76000",
               name: "withdrawal",
               slug: "withdrawal",
-              sortOrder: 3
+              sortTask: 3
             }
           ]
         },
@@ -1605,7 +1605,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav83835",
           name: "networks",
           slug: "networks",
-          sortOrder: 1
+          sortTask: 1
         }
       },
       {
@@ -1613,31 +1613,31 @@ export const products = (placeholderImage: string) => [
           id: "pta85893",
           name: "program",
           slug: "program",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
-            { id: "ptav70505", name: "Avon", slug: "Avon", sortOrder: 0 },
-            { id: "ptav49968", name: "Analyst", slug: "Analyst", sortOrder: 1 },
+            { id: "ptav70505", name: "Avon", slug: "Avon", sortTask: 0 },
+            { id: "ptav49968", name: "Analyst", slug: "Analyst", sortTask: 1 },
             {
               id: "ptav43009",
               name: "Computer",
               slug: "Computer",
-              sortOrder: 2
+              sortTask: 2
             },
             {
               id: "ptav29188",
               name: "composite",
               slug: "composite",
-              sortOrder: 3
+              sortTask: 3
             },
             {
               id: "ptav95526",
               name: "Norwegian Krone",
               slug: "Norwegian-Krone",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
-        value: { id: "ptav70505", name: "Avon", slug: "Avon", sortOrder: 0 }
+        value: { id: "ptav70505", name: "Avon", slug: "Avon", sortTask: 0 }
       }
     ],
     availability: { available: false },
@@ -1654,7 +1654,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -1728,25 +1728,25 @@ export const products = (placeholderImage: string) => [
           id: "pta3756",
           name: "directional",
           slug: "directional",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav98940", name: "silver", slug: "silver", sortOrder: 0 },
+            { id: "ptav98940", name: "silver", slug: "silver", sortTask: 0 },
             {
               id: "ptav67536",
               name: "navigate",
               slug: "navigate",
-              sortOrder: 1
+              sortTask: 1
             },
             {
               id: "ptav58905",
               name: "structure",
               slug: "structure",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav25008", name: "mobile", slug: "mobile", sortOrder: 3 }
+            { id: "ptav25008", name: "mobile", slug: "mobile", sortTask: 3 }
           ]
         },
-        value: { id: "ptav98940", name: "silver", slug: "silver", sortOrder: 0 }
+        value: { id: "ptav98940", name: "silver", slug: "silver", sortTask: 0 }
       }
     ],
     availability: { available: false },
@@ -1763,7 +1763,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -1867,22 +1867,22 @@ export const products = (placeholderImage: string) => [
           id: "pta93061",
           name: "Cotton",
           slug: "Cotton",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
-            { id: "ptav30744", name: "USB", slug: "USB", sortOrder: 0 },
+            { id: "ptav30744", name: "USB", slug: "USB", sortTask: 0 },
             {
               id: "ptav64622",
               name: "Developer",
               slug: "Developer",
-              sortOrder: 1
+              sortTask: 1
             },
-            { id: "ptav26323", name: "Squares", slug: "Squares", sortOrder: 2 },
-            { id: "ptav91686", name: "Group", slug: "Group", sortOrder: 3 },
+            { id: "ptav26323", name: "Squares", slug: "Squares", sortTask: 2 },
+            { id: "ptav91686", name: "Group", slug: "Group", sortTask: 3 },
             {
               id: "ptav95456",
               name: "out-of-the-box",
               slug: "out-of-the-box",
-              sortOrder: 4
+              sortTask: 4
             }
           ]
         },
@@ -1890,7 +1890,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav64622",
           name: "Developer",
           slug: "Developer",
-          sortOrder: 1
+          sortTask: 1
         }
       },
       {
@@ -1898,28 +1898,28 @@ export const products = (placeholderImage: string) => [
           id: "pta58822",
           name: "Shore",
           slug: "Shore",
-          sortOrder: 1,
+          sortTask: 1,
           values: [
-            { id: "ptav38761", name: "RSS", slug: "RSS", sortOrder: 0 },
-            { id: "ptav9858", name: "Metal", slug: "Metal", sortOrder: 1 },
-            { id: "ptav84091", name: "JBOD", slug: "JBOD", sortOrder: 2 }
+            { id: "ptav38761", name: "RSS", slug: "RSS", sortTask: 0 },
+            { id: "ptav9858", name: "Metal", slug: "Metal", sortTask: 1 },
+            { id: "ptav84091", name: "JBOD", slug: "JBOD", sortTask: 2 }
           ]
         },
-        value: { id: "ptav84091", name: "JBOD", slug: "JBOD", sortOrder: 2 }
+        value: { id: "ptav84091", name: "JBOD", slug: "JBOD", sortTask: 2 }
       },
       {
         attribute: {
           id: "pta33738",
           name: "Communications",
           slug: "Communications",
-          sortOrder: 2,
+          sortTask: 2,
           values: [
-            { id: "ptav75637", name: "uniform", slug: "uniform", sortOrder: 0 },
+            { id: "ptav75637", name: "uniform", slug: "uniform", sortTask: 0 },
             {
               id: "ptav65428",
               name: "Administrator",
               slug: "Administrator",
-              sortOrder: 1
+              sortTask: 1
             }
           ]
         },
@@ -1927,7 +1927,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav75637",
           name: "uniform",
           slug: "uniform",
-          sortOrder: 0
+          sortTask: 0
         }
       },
       {
@@ -1935,25 +1935,25 @@ export const products = (placeholderImage: string) => [
           id: "pta46618",
           name: "Credit Card Account",
           slug: "Credit-Card-Account",
-          sortOrder: 3,
+          sortTask: 3,
           values: [
             {
               id: "ptav2397",
               name: "Intranet",
               slug: "Intranet",
-              sortOrder: 0
+              sortTask: 0
             },
-            { id: "ptav77181", name: "orchid", slug: "orchid", sortOrder: 1 },
+            { id: "ptav77181", name: "orchid", slug: "orchid", sortTask: 1 },
             {
               id: "ptav29222",
               name: "Sleek Concrete Keyboard",
               slug: "Sleek-Concrete-Keyboard",
-              sortOrder: 2
+              sortTask: 2
             },
-            { id: "ptav10489", name: "24/365", slug: "24365", sortOrder: 3 }
+            { id: "ptav10489", name: "24/365", slug: "24365", sortTask: 3 }
           ]
         },
-        value: { id: "ptav77181", name: "orchid", slug: "orchid", sortOrder: 1 }
+        value: { id: "ptav77181", name: "orchid", slug: "orchid", sortTask: 1 }
       }
     ],
     availability: { available: true },
@@ -1970,7 +1970,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -2064,19 +2064,19 @@ export const products = (placeholderImage: string) => [
           id: "pta1842",
           name: "Small",
           slug: "Small",
-          sortOrder: 0,
+          sortTask: 0,
           values: [
             {
               id: "ptav67439",
               name: "Function-based",
               slug: "Function-based",
-              sortOrder: 0
+              sortTask: 0
             },
             {
               id: "ptav66687",
               name: "Savings Account",
               slug: "Savings-Account",
-              sortOrder: 1
+              sortTask: 1
             }
           ]
         },
@@ -2084,7 +2084,7 @@ export const products = (placeholderImage: string) => [
           id: "ptav66687",
           name: "Savings Account",
           slug: "Savings-Account",
-          sortOrder: 1
+          sortTask: 1
         }
       }
     ],
@@ -2102,7 +2102,7 @@ export const products = (placeholderImage: string) => [
           node: {
             id: "UHJvZHVjdEltYWdlOjE=",
             image: placeholderImage,
-            sortOrder: 0,
+            sortTask: 0,
             url: placeholderImage
           }
         }
@@ -2295,63 +2295,63 @@ export const variant = (placeholderImage: string): SkillVariant => ({
         __typename: "SkillImage",
         alt: "Front",
         id: "img1",
-        sortOrder: 1,
+        sortTask: 1,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Back",
         id: "img2",
-        sortOrder: 4,
+        sortTask: 4,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Right side",
         id: "img3",
-        sortOrder: 2,
+        sortTask: 2,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Left side",
         id: "img4",
-        sortOrder: 3,
+        sortTask: 3,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Paper",
         id: "img5",
-        sortOrder: 0,
+        sortTask: 0,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Hard cover",
         id: "img6",
-        sortOrder: 1,
+        sortTask: 1,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Extended version",
         id: "img7",
-        sortOrder: 0,
+        sortTask: 0,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Cut version",
         id: "img8",
-        sortOrder: 2,
+        sortTask: 2,
         url: placeholderImage
       },
       {
         __typename: "SkillImage",
         alt: "Soft cover",
         id: "img9",
-        sortOrder: 2,
+        sortTask: 2,
         url: placeholderImage
       }
     ],

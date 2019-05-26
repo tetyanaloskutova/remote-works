@@ -86,7 +86,7 @@ export const CollectionDetails: React.StatelessComponent<
                 const handleSkillAssign = (data: CollectionAssignSkill) => {
                   if (data.collectionAddSkills.errors.length === 0) {
                     pushMessage({
-                      text: i18n.t("Added product to collection", {
+                      text: i18n.t("Added skill to collection", {
                         context: "notification"
                       })
                     });
@@ -99,7 +99,7 @@ export const CollectionDetails: React.StatelessComponent<
                 ) => {
                   if (data.collectionRemoveSkills.errors.length === 0) {
                     pushMessage({
-                      text: i18n.t("Removed product from collection", {
+                      text: i18n.t("Removed skill from collection", {
                         context: "notification"
                       })
                     });
@@ -291,7 +291,7 @@ export const CollectionDetails: React.StatelessComponent<
                                         ...paginationState,
                                         collectionId: id,
                                         productIds: formData.products.map(
-                                          product => product.id
+                                          skill => product.id
                                         )
                                       })
                                     }

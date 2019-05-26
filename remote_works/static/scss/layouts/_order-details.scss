@@ -1,11 +1,11 @@
-.order-details {
+.task-details {
   &__header {
     margin: $global-margin 0 $global-margin * 2;
   }
   &__addresses {
     margin-top: $global-margin * 2;
   }
-  &__product {
+  &__skill {
     .col-3 {
       margin-top: $global-margin / 2;
     }
@@ -42,7 +42,7 @@
   }
 }
 
-.order-notes {
+.task-notes {
   margin-top: 2 * $global-margin;
   > p {
     white-space: pre-wrap;

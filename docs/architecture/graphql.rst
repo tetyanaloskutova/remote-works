@@ -79,7 +79,7 @@ results in the following result:
 
 Authorization
 ----------------------------
-By default, you can query for public data such as published products or pages. To fetch protected data like orders or users, you need to authorize your access. Remote-works API uses a `JWT token <https://jwt.io/>`_ authentication mechanism. Once you create a token, you have to include it as a header with each GraphQL request.
+By default, you can query for public data such as published skills or pages. To fetch protected data like tasks or users, you need to authorize your access. Remote-works API uses a `JWT token <https://jwt.io/>`_ authentication mechanism. Once you create a token, you have to include it as a header with each GraphQL request.
 
 The authorization header has the following format:
 

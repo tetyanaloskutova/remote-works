@@ -5,7 +5,7 @@ from ...discount import models as discount_models
 from ...menu import models as menu_models
 from ...page import models as page_models
 from ...skill import models as skill_models
-from ...shipping import models as shipping_models
+from ...delivery import models as delivery_models
 from ..core.mutations import BaseMutation, ModelMutation, registry
 # discount types need to be imported to get Voucher in the graphene registry
 from ..discount import types  # noqa # pylint: disable=unused-import
@@ -131,16 +131,16 @@ class VoucherTranslate(BaseTranslateMutation):
         model = discount_models.Voucher
 
 
-class ShippingPriceTranslate(BaseTranslateMutation):
+class DeliveryPriceTranslate(BaseTranslateMutation):
     class Arguments:
-        id = graphene.ID(required=True, description='Shipping Method ID')
+        id = graphene.ID(required=True, description='Delivery Method ID')
         language_code = graphene.String(
             required=True, description='Translation language code')
         input = NameTranslationInput(required=True)
 
     class Meta:
-        description = 'Creates/Updates translations for Shipping Method.'
-        model = shipping_models.ShippingMethod
+        description = 'Creates/Updates translations for Delivery Method.'
+        model = delivery_models.DeliveryMethod
 
 
 class MenuItemTranslate(BaseTranslateMutation):

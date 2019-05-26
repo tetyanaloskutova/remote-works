@@ -11,10 +11,10 @@ from django_countries.fields import LazyTypedChoiceField
 
 from ..core.exceptions import InsufficientStock
 from ..core.utils import format_money
-from ..core.utils.taxes import display_gross_prices, get_taxed_shipping_price
+from ..core.utils.taxes import display_gross_prices, get_taxed_delivery_price
 from ..discount.models import NotApplicable, Voucher
-from ..shipping.models import ShippingMethod, ShippingZone
-from ..shipping.utils import get_shipping_price_estimate
+from ..delivery.models import DeliveryMethod, DeliveryZone
+from ..delivery.utils import get_delivery_price_estimate
 from .models import Cart
 
 
@@ -41,14 +41,14 @@ class AddToCartForm(forms.Form):
         'not-available': pgettext_lazy(
             'Add to cart form error',
             'Sorry. This skill is currently not available.'),
-        'empty-stock': pgettext_lazy(
+        'empty-availability': pgettext_lazy(
             'Add to cart form error',
-            'Sorry. This skill is currently out of stock.'),
+            'Sorry. This skill is currently out of availability.'),
         'variant-does-not-exists': pgettext_lazy(
             'Add to cart form error', 'Oops. We could not find that skill.'),
-        'insufficient-stock': npgettext_lazy(
+        'insufficient-availability': npgettext_lazy(
             'Add to cart form error',
-            'Only %d remaining in stock.', 'Only %d remaining in stock.')}
+            'Only %d remaining in availability.', 'Only %d remaining in availability.')}
 
     def __init__(self, *args, **kwargs):
         self.cart = kwargs.pop('cart')
@@ -81,10 +81,10 @@ class AddToCartForm(forms.Form):
             except InsufficientStock as e:
                 remaining = e.item.quantity_available - used_quantity
                 if remaining:
-                    msg = self.error_messages['insufficient-stock']
+                    msg = self.error_messages['insufficient-availability']
                     self.add_error('quantity', msg % remaining)
                 else:
-                    msg = self.error_messages['empty-stock']
+                    msg = self.error_messages['empty-availability']
                     self.add_error('quantity', msg)
         return cleaned_data
 
@@ -129,7 +129,7 @@ class ReplaceCartLineForm(AddToCartForm):
         try:
             self.variant.check_quantity(quantity)
         except InsufficientStock as e:
-            msg = self.error_messages['insufficient-stock']
+            msg = self.error_messages['insufficient-availability']
             raise forms.ValidationError(
                 msg % e.item.quantity_available)
         return quantity
@@ -167,24 +167,24 @@ class CountryForm(forms.Form):
         super().__init__(*args, **kwargs)
         available_countries = {
             (country.code, country.name)
-            for shipping_zone in ShippingZone.objects.all()
-            for country in shipping_zone.countries}
+            for delivery_zone in DeliveryZone.objects.all()
+            for country in delivery_zone.countries}
         self.fields['country'].choices = sorted(
             available_countries, key=lambda choice: choice[1])
 
-    def get_shipping_price_estimate(self, price, weight):
-        """Return a shipping price range for given order for the selected
+    def get_delivery_price_estimate(self, price, weight):
+        """Return a delivery price range for given task for the selected
         country.
         """
         code = self.cleaned_data['country']
-        return get_shipping_price_estimate(price, weight, code, self.taxes)
+        return get_delivery_price_estimate(price, weight, code, self.taxes)
 
 
-class AnonymousUserShippingForm(forms.ModelForm):
-    """Additional shipping information form for users who are not logged in."""
+class AnonymousUserDeliveryForm(forms.ModelForm):
+    """Additional delivery information form for users who are not logged in."""
 
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'autocomplete': 'shipping email'}),
+        widget=forms.EmailInput(attrs={'autocomplete': 'delivery email'}),
         label=pgettext_lazy('Address form field label', 'Email'))
 
     class Meta:
@@ -210,10 +210,10 @@ class AddressChoiceForm(forms.Form):
     NEW_ADDRESS = 'new_address'
     CHOICES = [
         (NEW_ADDRESS, pgettext_lazy(
-            'Shipping addresses form choice', 'Enter a new address'))]
+            'Delivery addresses form choice', 'Enter a new address'))]
 
     address = forms.ChoiceField(
-        label=pgettext_lazy('Shipping addresses form field label', 'Address'),
+        label=pgettext_lazy('Delivery addresses form field label', 'Address'),
         choices=CHOICES, initial=NEW_ADDRESS, widget=forms.RadioSelect)
 
     def __init__(self, *args, **kwargs):
@@ -224,25 +224,25 @@ class AddressChoiceForm(forms.Form):
 
 
 class BillingAddressChoiceForm(AddressChoiceForm):
-    """Choose one of user's addresses, a shipping one or to create new."""
+    """Choose one of user's addresses, a delivery one or to create new."""
 
     NEW_ADDRESS = 'new_address'
-    SHIPPING_ADDRESS = 'shipping_address'
+    DELIVERY_ADDRESS = 'delivery_address'
     CHOICES = [
         (NEW_ADDRESS, pgettext_lazy(
             'Billing addresses form choice', 'Enter a new address')),
-        (SHIPPING_ADDRESS, pgettext_lazy(
-            'Billing addresses form choice', 'Same as shipping'))]
+        (DELIVERY_ADDRESS, pgettext_lazy(
+            'Billing addresses form choice', 'Same as delivery'))]
 
     address = forms.ChoiceField(
         label=pgettext_lazy('Billing addresses form field label', 'Address'),
-        choices=CHOICES, initial=SHIPPING_ADDRESS, widget=forms.RadioSelect)
+        choices=CHOICES, initial=DELIVERY_ADDRESS, widget=forms.RadioSelect)
 
 
-class ShippingMethodChoiceField(forms.ModelChoiceField):
-    """Shipping method choice field.
+class DeliveryMethodChoiceField(forms.ModelChoiceField):
+    """Delivery method choice field.
 
-    Uses a radio group instead of a dropdown and includes estimated shipping
+    Uses a radio group instead of a dropdown and includes estimated delivery
     prices.
     """
 
@@ -250,8 +250,8 @@ class ShippingMethodChoiceField(forms.ModelChoiceField):
     widget = forms.RadioSelect()
 
     def label_from_instance(self, obj):
-        """Return a friendly label for the shipping method."""
-        price = get_taxed_shipping_price(obj.price, self.taxes)
+        """Return a friendly label for the delivery method."""
+        price = get_taxed_delivery_price(obj.price, self.taxes)
         if display_gross_prices():
             price = price.gross
         else:
@@ -261,33 +261,33 @@ class ShippingMethodChoiceField(forms.ModelChoiceField):
         return label
 
 
-class CartShippingMethodForm(forms.ModelForm):
-    shipping_method = ShippingMethodChoiceField(
-        queryset=ShippingMethod.objects.all(),
+class CartDeliveryMethodForm(forms.ModelForm):
+    delivery_method = DeliveryMethodChoiceField(
+        queryset=DeliveryMethod.objects.all(),
         label=pgettext_lazy(
-            'Shipping method form field label', 'Shipping method'),
+            'Delivery method form field label', 'Delivery method'),
         empty_label=None)
 
     class Meta:
         model = Cart
-        fields = ['shipping_method']
+        fields = ['delivery_method']
 
     def __init__(self, *args, **kwargs):
         discounts = kwargs.pop('discounts')
         taxes = kwargs.pop('taxes')
         super().__init__(*args, **kwargs)
-        country_code = self.instance.shipping_address.country.code
-        qs = ShippingMethod.objects.applicable_shipping_methods(
+        country_code = self.instance.delivery_address.country.code
+        qs = DeliveryMethod.objects.applicable_delivery_methods(
             price=self.instance.get_subtotal(discounts, taxes).gross,
             weight=self.instance.get_total_weight(),
             country_code=country_code)
-        self.fields['shipping_method'].queryset = qs
-        self.fields['shipping_method'].taxes = taxes
+        self.fields['delivery_method'].queryset = qs
+        self.fields['delivery_method'].taxes = taxes
 
-        if self.initial.get('shipping_method') is None:
-            shipping_methods = qs.all()
-            if shipping_methods:
-                self.initial['shipping_method'] = shipping_methods[0]
+        if self.initial.get('delivery_method') is None:
+            delivery_methods = qs.all()
+            if delivery_methods:
+                self.initial['delivery_method'] = delivery_methods[0]
 
 
 class CartNoteForm(forms.ModelForm):

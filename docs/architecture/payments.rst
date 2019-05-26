@@ -14,18 +14,18 @@ Firstly the funds are locked on the payer's account but are not transferred to y
 
 Then depending on the gateway and the card type, you have between a few days and a month to charge the card for an amount not exceeding the authorized amount.
 
-This is very useful when an exact price cannot be determined until after the order is prepared,
-or we want to capture the money as soon as we ship the order.
-It is also useful if your business prefers to manually screen orders for fraud attempts.
+This is very useful when an exact price cannot be determined until after the task is prepared,
+or we want to capture the money as soon as we ship the task.
+It is also useful if your business prefers to manually screen tasks for fraud attempts.
 
-When viewing orders with pre-authorized payments Remote-works will offer options to either capture or void the funds.
+When viewing tasks with pre-authorized payments Remote-works will offer options to either capture or void the funds.
 
 
 Refunds
 -------
 
 You can issue partial or full refunds for all captured payments.
-When editing an order and removing items, Remote-works will also offer to automatically issue a partial refund.
+When editing an task and removing items, Remote-works will also offer to automatically issue a partial refund.
 
 Remote-works uses the concept of Payments and Transactions to fulfill the payment process.
 
@@ -39,7 +39,7 @@ All payment process related pieces of information are stored at the gateway leve
 we are operating on the reusable token which is a unique identifier
 of the customer for given gateway.
 
-Several payment methods can be used within a single order.
+Several payment methods can be used within a single task.
 
 Payment has 5 possible charge statuses:
 

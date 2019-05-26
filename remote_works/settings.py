@@ -217,10 +217,10 @@ INSTALLED_APPS = [
     'remote_works.core',
     'remote_works.graphql',
     'remote_works.menu',
-    'remote_works.order',
+    'remote_works.task',
     'remote_works.dashboard',
     'remote_works.seo',
-    'remote_works.shipping',
+    'remote_works.delivery',
     'remote_works.search',
     'remote_works.site',
     'remote_works.data_feeds',
@@ -351,7 +351,7 @@ def get_host():
 
 PAYMENT_HOST = get_host
 
-PAYMENT_MODEL = 'order.Payment'
+PAYMENT_MODEL = 'task.Payment'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
@@ -602,8 +602,8 @@ PAYMENT_GATEWAYS = {
             'locale': os.environ.get('STRIPE_LOCALE', 'auto'),
             'enable_billing_address': os.environ.get(
                 'STRIPE_ENABLE_BILLING_ADDRESS', False),
-            'enable_shipping_address': os.environ.get(
-                'STRIPE_ENABLE_SHIPPING_ADDRESS', False)
+            'enable_delivery_address': os.environ.get(
+                'STRIPE_ENABLE_DELIVERY_ADDRESS', False)
         }
     }
 }

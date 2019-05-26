@@ -18,7 +18,7 @@ from remote_works.payment.gateways.stripe.errors import (
 from remote_works.payment.gateways.stripe.forms import (
     StripeCheckoutWidget, StripePaymentModalForm)
 from remote_works.payment.gateways.stripe.utils import (
-    get_payment_billing_fullname, shipping_to_stripe_dict)
+    get_payment_billing_fullname, delivery_to_stripe_dict)
 from remote_works.payment.utils import create_payment_information
 
 TRANSACTION_AMOUNT = Decimal(42.42)
@@ -40,7 +40,7 @@ def gateway_params():
         'remember_me': True,
         'locale': 'auto',
         'enable_billing_address': False,
-        'enable_shipping_address': False}
+        'enable_delivery_address': False}
 
 
 @pytest.fixture()
@@ -161,7 +161,7 @@ def test_get_payment_billing_fullname(payment_dummy):
     assert get_payment_billing_fullname(payment_info) == expected_fullname
 
 
-def test_shipping_address_to_stripe_dict(address):
+def test_delivery_address_to_stripe_dict(address):
     expected_address_dict = {
         'line1': address.street_address_1,
         'line2': address.street_address_2,
@@ -169,7 +169,7 @@ def test_shipping_address_to_stripe_dict(address):
         'state': address.country_area,
         'postal_code': address.postal_code,
         'country': dict(countries).get(address.country, '')}
-    assert shipping_to_stripe_dict(address.as_data()) == expected_address_dict
+    assert delivery_to_stripe_dict(address.as_data()) == expected_address_dict
 
 
 def test_widget_with_default_options(stripe_payment, gateway_params):
@@ -180,7 +180,7 @@ def test_widget_with_default_options(stripe_payment, gateway_params):
         'data-amount="4242" data-billing-address="false" data-currency="USD" '
         'data-description="Total payment" data-email="test@example.com" '
         'data-image="image.gif" data-key="public" data-locale="auto" '
-        'data-name="Saleor" data-shipping-address="false" '
+        'data-name="Saleor" data-delivery-address="false" '
         'data-zip-code="false" src="https://checkout.stripe.com/checkout.js">'
         '</script>')
 
@@ -231,16 +231,16 @@ def test_widget_with_enable_billing_address_option(stripe_payment, gateway_param
     assert 'data-zip-code="false"' in widget.render()
 
 
-def test_widget_with_enable_shipping_address_option(stripe_payment, gateway_params):
+def test_widget_with_enable_delivery_address_option(stripe_payment, gateway_params):
     payment_info = create_payment_information(stripe_payment, FAKE_TOKEN)
 
-    gateway_params['enable_shipping_address'] = True
+    gateway_params['enable_delivery_address'] = True
     widget = StripeCheckoutWidget(payment_info, gateway_params)
-    assert 'data-shipping-address="true"' in widget.render()
+    assert 'data-delivery-address="true"' in widget.render()
 
-    gateway_params['enable_shipping_address'] = False
+    gateway_params['enable_delivery_address'] = False
     widget = StripeCheckoutWidget(payment_info, gateway_params)
-    assert 'data-shipping-address="false"' in widget.render()
+    assert 'data-delivery-address="false"' in widget.render()
 
 
 def test_stripe_payment_form(stripe_payment, gateway_params):
@@ -277,7 +277,7 @@ def test_get_error_response_from_exc():
     assert _get_error_response_from_exc(invalid_request_error) == {}
 
 
-def test_get_stripe_charge_payload_with_shipping(stripe_payment):
+def test_get_stripe_charge_payload_with_delivery(stripe_payment):
     payment_info = create_payment_information(stripe_payment, FAKE_TOKEN)
     billing_name = get_payment_billing_fullname(payment_info)
     expected_payload = {
@@ -287,17 +287,17 @@ def test_get_stripe_charge_payload_with_shipping(stripe_payment):
         'currency': get_currency_for_stripe(TRANSACTION_CURRENCY),
         'source': FAKE_TOKEN,
         'description': billing_name,
-        'shipping': {
+        'delivery': {
             'name': billing_name,
-            'address': shipping_to_stripe_dict(payment_info['shipping'])}}
+            'address': delivery_to_stripe_dict(payment_info['delivery'])}}
 
     charge_payload = _get_stripe_charge_payload(payment_info, True)
 
     assert charge_payload == expected_payload
 
 
-def test_get_stripe_charge_payload_without_shipping(stripe_payment):
-    stripe_payment.order.shipping_address = None
+def test_get_stripe_charge_payload_without_delivery(stripe_payment):
+    stripe_payment.task.delivery_address = None
     payment_info = create_payment_information(stripe_payment, FAKE_TOKEN)
     billing_name = get_payment_billing_fullname(payment_info)
     expected_payload = {

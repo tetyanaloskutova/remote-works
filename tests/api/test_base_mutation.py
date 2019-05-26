@@ -5,23 +5,23 @@ import pytest
 from django.core.exceptions import ImproperlyConfigured
 
 from remote_works.graphql.core.mutations import BaseMutation
-from remote_works.graphql.product import types as product_types
+from remote_works.graphql.skill import types as skill_types
 
 
 class Mutation(BaseMutation):
     name = graphene.Field(graphene.String)
 
     class Arguments:
-        product_id = graphene.ID(required=True)
+        skill_id = graphene.ID(required=True)
 
     class Meta:
         description = 'Base mutation'
 
     @classmethod
-    def mutate(cls, root, info, product_id):
+    def mutate(cls, root, info, skill_id):
         errors = []
-        product = cls.get_node_or_error(
-            info, product_id, errors, 'product_id', product_types.Skill)
+        skill = cls.get_node_or_error(
+            info, skill_id, errors, 'skill_id', skill_types.Skill)
         if errors:
             return Mutation(errors=errors)
         return Mutation(name=product.name)
@@ -33,7 +33,7 @@ class Mutations(graphene.ObjectType):
 
 schema = graphene.Schema(
     mutation=Mutations,
-    types=[product_types.Skill, product_types.SkillVariant])
+    types=[skill_types.Skill, skill_types.SkillVariant])
 
 
 def test_mutation_without_description_raises_error():
@@ -42,11 +42,11 @@ def test_mutation_without_description_raises_error():
             name = graphene.Field(graphene.String)
 
             class Arguments:
-                product_id = graphene.ID(required=True)
+                skill_id = graphene.ID(required=True)
 
 
 def test_resolve_id(product, schema_context):
-    product_id = graphene.Node.to_global_id('Skill', product.pk)
+    skill_id = graphene.Node.to_global_id('Skill', product.pk)
     query = """
         mutation testMutation($productId: ID!) {
             test(productId: $productId) {
@@ -58,7 +58,7 @@ def test_resolve_id(product, schema_context):
             }
         }
     """
-    variables = {'productId': product_id}
+    variables = {'productId': skill_id}
     result = schema.execute(
         query, variables=variables, context_value=schema_context)
     assert not result.errors

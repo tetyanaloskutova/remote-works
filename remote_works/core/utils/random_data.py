@@ -27,8 +27,8 @@ from ...dashboard.menu.utils import update_menu
 from ...discount import DiscountValueType, VoucherType
 from ...discount.models import Sale, Voucher
 from ...menu.models import Menu
-from ...order.models import Fulfillment, Order
-from ...order.utils import update_order_status
+from ...task.models import Fulfillment, Task
+from ...task.utils import update_task_status
 from ...page.models import Page
 from ...payment.utils import (
     create_payment, gateway_authorize, gateway_capture, gateway_refund,
@@ -39,8 +39,8 @@ from ...skill.models import (
 from ...skill.thumbnails import (
     create_category_background_image_thumbnails,
     create_collection_background_image_thumbnails, create_skill_thumbnails)
-from ...shipping.models import ShippingMethod, ShippingMethodType, ShippingZone
-from ...shipping.utils import get_taxed_shipping_price
+from ...delivery.models import DeliveryMethod, DeliveryMethodType, DeliveryZone
+from ...delivery.utils import get_taxed_delivery_price
 
 fake = Factory.create()
 
@@ -303,7 +303,7 @@ def create_fake_user():
 
     user.addresses.add(address)
     user.default_billing_address = address
-    user.default_shipping_address = address
+    user.default_delivery_address = address
     user.is_active = True
     user.save()
     return user
@@ -311,17 +311,17 @@ def create_fake_user():
 
 # We don't want to spam the console with payment confirmations sent to
 # fake customers.
-@patch('remote_works.order.emails.send_payment_confirmation.delay')
-def create_fake_payment(mock_email_confirmation, order):
+@patch('remote_works.task.emails.send_payment_confirmation.delay')
+def create_fake_payment(mock_email_confirmation, task):
     payment = create_payment(
         gateway=settings.DUMMY,
         customer_ip_address=fake.ipv4(),
-        email=order.user_email,
-        order=order,
+        email=task.user_email,
+        task=task,
         payment_token=str(uuid.uuid4()),
-        total=order.total.gross.amount,
-        currency=order.total.gross.currency,
-        billing_address=order.billing_address)
+        total=task.total.gross.amount,
+        currency=task.total.gross.currency,
+        billing_address=task.billing_address)
 
     # Create authorization transaction
     gateway_authorize(payment, payment.token)
@@ -340,78 +340,78 @@ def create_fake_payment(mock_email_confirmation, order):
     return payment
 
 
-def create_order_line(order, discounts, taxes):
+def create_task_line(task, discounts, taxes):
     skill = Skill.objects.filter(variants__isnull=False).order_by('?')[0]
     variant = skill.variants.all()[0]
     quantity = random.randrange(1, 5)
     variant.quantity += quantity
     variant.quantity_allocated += quantity
     variant.save()
-    return order.lines.create(
+    return task.lines.create(
         skill_name=variant.display_skill(),
         skill_sku=variant.sku,
-        is_shipping_required=variant.is_shipping_required(),
+        is_delivery_required=variant.is_delivery_required(),
         quantity=quantity,
         variant=variant,
         unit_price=variant.get_price(discounts=discounts, taxes=taxes),
         tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
 
-def create_order_lines(order, discounts, taxes, how_many=10):
+def create_task_lines(task, discounts, taxes, how_many=10):
     for dummy in range(how_many):
-        yield create_order_line(order, discounts, taxes)
+        yield create_task_line(task, discounts, taxes)
 
 
-def create_fulfillments(order):
-    for line in order:
+def create_fulfillments(task):
+    for line in task:
         if random.choice([False, True]):
-            fulfillment, _ = Fulfillment.objects.get_or_create(order=order)
+            fulfillment, _ = Fulfillment.objects.get_or_create(task=task)
             quantity = random.randrange(0, line.quantity) + 1
-            fulfillment.lines.create(order_line=line, quantity=quantity)
+            fulfillment.lines.create(task_line=line, quantity=quantity)
             line.quantity_fulfilled = quantity
             line.save(update_fields=['quantity_fulfilled'])
 
-    update_order_status(order)
+    update_task_status(task)
 
 
 def create_fake_order(discounts, taxes):
     user = random.choice([None, User.objects.filter(
         is_superuser=False).order_by('?').first()])
     if user:
-        order_data = {
+        task_data = {
             'user': user,
             'billing_address': user.default_billing_address,
-            'shipping_address': user.default_shipping_address}
+            'delivery_address': user.default_delivery_address}
     else:
         address = create_address()
-        order_data = {
+        task_data = {
             'billing_address': address,
-            'shipping_address': address,
+            'delivery_address': address,
             'user_email': get_email(
                 address.first_name, address.last_name)}
 
-    shipping_method = ShippingMethod.objects.order_by('?').first()
-    shipping_price = shipping_method.price
-    shipping_price = get_taxed_shipping_price(shipping_price, taxes)
-    order_data.update({
-        'shipping_method_name': shipping_method.name,
-        'shipping_price': shipping_price})
+    delivery_method = DeliveryMethod.objects.order_by('?').first()
+    delivery_price = delivery_method.price
+    delivery_price = get_taxed_delivery_price(delivery_price, taxes)
+    task_data.update({
+        'delivery_method_name': delivery_method.name,
+        'delivery_price': delivery_price})
 
-    order = Order.objects.create(**order_data)
+    task = Task.objects.create(**task_data)
 
-    lines = create_order_lines(order, discounts, taxes, random.randrange(1, 5))
+    lines = create_task_lines(task, discounts, taxes, random.randrange(1, 5))
 
-    order.total = sum(
-        [line.get_total() for line in lines], order.shipping_price)
+    task.total = sum(
+        [line.get_total() for line in lines], task.delivery_price)
     weight = Weight(kg=0)
-    for line in order:
+    for line in task:
         weight += line.variant.get_weight()
-    order.weight = weight
-    order.save()
+    task.weight = weight
+    task.save()
 
-    create_fake_payment(order=order)
-    create_fulfillments(order)
-    return order
+    create_fake_payment(task=task)
+    create_fulfillments(task)
+    return task
 
 
 def create_fake_sale():
@@ -435,8 +435,8 @@ def create_orders(how_many=10):
     discounts = Sale.objects.active(date.today()).prefetch_related(
         'skills', 'categories', 'collections')
     for dummy in range(how_many):
-        order = create_fake_order(discounts, taxes)
-        yield 'Order: %s' % (order,)
+        task = create_fake_order(discounts, taxes)
+        yield 'Task: %s' % (task,)
 
 
 def create_skill_sales(how_many=5):
@@ -445,86 +445,86 @@ def create_skill_sales(how_many=5):
         yield 'Sale: %s' % (sale,)
 
 
-def create_shipping_zone(
-        shipping_methods_names, countries, shipping_zone_name):
-    shipping_zone = ShippingZone.objects.get_or_create(
-        name=shipping_zone_name, defaults={'countries': countries})[0]
-    ShippingMethod.objects.bulk_create([
-        ShippingMethod(
-            name=name, price=fake.money(), shipping_zone=shipping_zone,
+def create_delivery_zone(
+        delivery_methods_names, countries, delivery_zone_name):
+    delivery_zone = DeliveryZone.objects.get_or_create(
+        name=delivery_zone_name, defaults={'countries': countries})[0]
+    DeliveryMethod.objects.bulk_create([
+        DeliveryMethod(
+            name=name, price=fake.money(), delivery_zone=delivery_zone,
             type=(
-                ShippingMethodType.PRICE_BASED if random.randint(0, 1)
-                else ShippingMethodType.WEIGHT_BASED),
-            minimum_order_price=0, maximum_order_price=None,
-            minimum_order_weight=0, maximum_order_weight=None)
-        for name in shipping_methods_names])
-    return 'Shipping Zone: %s' % shipping_zone
+                DeliveryMethodType.PRICE_BASED if random.randint(0, 1)
+                else DeliveryMethodType.WEIGHT_BASED),
+            minimum_task_price=0, maximum_task_price=None,
+            minimum_task_weight=0, maximum_task_weight=None)
+        for name in delivery_methods_names])
+    return 'Delivery Zone: %s' % delivery_zone
 
 
-def create_shipping_zones():
+def create_delivery_zones():
     european_countries = [
         'AX', 'AL', 'AD', 'AT', 'BY', 'BE', 'BA', 'BG', 'HR', 'CZ', 'DK', 'EE',
         'FO', 'FI', 'FR', 'DE', 'GI', 'GR', 'GG', 'VA', 'HU', 'IS', 'IE', 'IM',
         'IT', 'JE', 'LV', 'LI', 'LT', 'LU', 'MK', 'MT', 'MD', 'MC', 'ME', 'NL',
         'NO', 'PL', 'PT', 'RO', 'RU', 'SM', 'RS', 'SK', 'SI', 'ES', 'SJ', 'SE',
         'CH', 'UA', 'GB']
-    yield create_shipping_zone(
-        shipping_zone_name='Europe', countries=european_countries,
-        shipping_methods_names=[
+    yield create_delivery_zone(
+        delivery_zone_name='Europe', countries=european_countries,
+        delivery_methods_names=[
             'DHL', 'UPS', 'Registred priority', 'DB Schenker'])
     oceanian_countries = [
         'AS', 'AU', 'CX', 'CC', 'CK', 'FJ', 'PF', 'GU', 'HM', 'KI', 'MH', 'FM',
         'NR', 'NC', 'NZ', 'NU', 'NF', 'MP', 'PW', 'PG', 'PN', 'WS', 'SB', 'TK',
         'TO', 'TV', 'UM', 'VU', 'WF']
-    yield create_shipping_zone(
-        shipping_zone_name='Oceania', countries=oceanian_countries,
-        shipping_methods_names=['FBA', 'FedEx Express', 'Oceania Air Mail'])
+    yield create_delivery_zone(
+        delivery_zone_name='Oceania', countries=oceanian_countries,
+        delivery_methods_names=['FBA', 'FedEx Express', 'Oceania Air Mail'])
     asian_countries = [
         'AF', 'AM', 'AZ', 'BH', 'BD', 'BT', 'BN', 'KH', 'CN', 'CY', 'GE', 'HK',
         'IN', 'ID', 'IR', 'IQ', 'IL', 'JP', 'JO', 'KZ', 'KP', 'KR', 'KW', 'KG',
         'LA', 'LB', 'MO', 'MY', 'MV', 'MN', 'MM', 'NP', 'OM', 'PK', 'PS', 'PH',
         'QA', 'SA', 'SG', 'LK', 'SY', 'TW', 'TJ', 'TH', 'TL', 'TR', 'TM', 'AE',
         'UZ', 'VN', 'YE']
-    yield create_shipping_zone(
-        shipping_zone_name='Asia', countries=asian_countries,
-        shipping_methods_names=['China Post', 'TNT', 'Aramex', 'EMS'])
+    yield create_delivery_zone(
+        delivery_zone_name='Asia', countries=asian_countries,
+        delivery_methods_names=['China Post', 'TNT', 'Aramex', 'EMS'])
     american_countries = [
         'AI', 'AG', 'AR', 'AW', 'BS', 'BB', 'BZ', 'BM', 'BO', 'BQ', 'BV', 'BR',
         'CA', 'KY', 'CL', 'CO', 'CR', 'CU', 'CW', 'DM', 'DO', 'EC', 'SV', 'FK',
         'GF', 'GL', 'GD', 'GP', 'GT', 'GY', 'HT', 'HN', 'JM', 'MQ', 'MX', 'MS',
         'NI', 'PA', 'PY', 'PE', 'PR', 'BL', 'KN', 'LC', 'MF', 'PM', 'VC', 'SX',
         'GS', 'SR', 'TT', 'TC', 'US', 'UY', 'VE', 'VG', 'VI']
-    yield create_shipping_zone(
-        shipping_zone_name='Americas', countries=american_countries,
-        shipping_methods_names=['DHL', 'UPS', 'FedEx', 'EMS'])
+    yield create_delivery_zone(
+        delivery_zone_name='Americas', countries=american_countries,
+        delivery_methods_names=['DHL', 'UPS', 'FedEx', 'EMS'])
     african_countries = [
         'DZ', 'AO', 'BJ', 'BW', 'IO', 'BF', 'BI', 'CV', 'CM', 'CF', 'TD', 'KM',
         'CG', 'CD', 'CI', 'DJ', 'EG', 'GQ', 'ER', 'SZ', 'ET', 'TF', 'GA', 'GM',
         'GH', 'GN', 'GW', 'KE', 'LS', 'LR', 'LY', 'MG', 'MW', 'ML', 'MR', 'MU',
         'YT', 'MA', 'MZ', 'NA', 'NE', 'NG', 'RE', 'RW', 'SH', 'ST', 'SN', 'SC',
         'SL', 'SO', 'ZA', 'SS', 'SD', 'TZ', 'TG', 'TN', 'UG', 'EH', 'ZM', 'ZW']
-    yield create_shipping_zone(
-        shipping_zone_name='Africa', countries=african_countries,
-        shipping_methods_names=[
+    yield create_delivery_zone(
+        delivery_zone_name='Africa', countries=african_countries,
+        delivery_methods_names=[
             'Royale International', 'ACE', 'fastway couriers', 'Post Office'])
 
 
 def create_vouchers():
     voucher, created = Voucher.objects.get_or_create(
-        code='FREESHIPPING', defaults={
-            'type': VoucherType.SHIPPING,
-            'name': 'Free shipping',
+        code='FREEDELIVERY', defaults={
+            'type': VoucherType.DELIVERY,
+            'name': 'Free delivery',
             'discount_value_type': DiscountValueType.PERCENTAGE,
             'discount_value': 100})
     if created:
         yield 'Voucher #%d' % voucher.id
     else:
-        yield 'Shipping voucher already exists'
+        yield 'Delivery voucher already exists'
 
     voucher, created = Voucher.objects.get_or_create(
         code='DISCOUNT', defaults={
             'type': VoucherType.VALUE,
-            'name': 'Big order discount',
+            'name': 'Big task discount',
             'discount_value_type': DiscountValueType.FIXED,
             'discount_value': 25,
             'min_amount_spent': 200})
@@ -547,7 +547,7 @@ def add_address_to_admin(email):
     address = create_address()
     user = User.objects.get(email=email)
     store_user_address(user, address, AddressType.BILLING)
-    store_user_address(user, address, AddressType.SHIPPING)
+    store_user_address(user, address, AddressType.DELIVERY)
 
 
 def create_fake_collection(placeholder_dir, collection_data):

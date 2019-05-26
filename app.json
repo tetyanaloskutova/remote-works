@@ -25,7 +25,7 @@
       "generator": "secret"
     },
     "AWS_MEDIA_BUCKET_NAME": {
-      "description": "If you intend to upload your own product images, we strongly recommend configure S3.",
+      "description": "If you intend to upload your own skill images, we strongly recommend configure S3.",
       "value": "",
       "required": false
     },

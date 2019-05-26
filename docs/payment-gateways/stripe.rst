@@ -16,5 +16,5 @@ This gateway implements payments using `Stripe <https://stripe.com/>`_.
     ``STRIPE_REMEMBER_ME``             Add "Remember Me" for future purchases in the checkout form if set to ``True`` (default)
     ``STRIPE_LOCALE``                   Specify ``auto`` to display checkout form in the user's preferred language (default)
     ``STRIPE_ENABLE_BILLING_ADDRESS``  Collect the user's billing address in the checkout form if set to ``True``. The default is ``False``
-    ``STRIPE_ENABLE_SHIPPING_ADDRESS`` Collect the user's shipping address in the checkout form if set to ``True``. The default is ``False``
+    ``STRIPE_ENABLE_DELIVERY_ADDRESS`` Collect the user's delivery address in the checkout form if set to ``True``. The default is ``False``
     ================================== ======================================================================================================

@@ -107,8 +107,8 @@
                 <div class="row">
                   {{ skill_form.collections|materializecss }}
                 </div>
-                {% if skill.skill_type.is_shipping_required %}
-                  <span class="card-title">{% trans "Shipping" %}</span>
+                {% if skill.skill_type.is_delivery_required %}
+                  <span class="card-title">{% trans "Delivery" %}</span>
                   <br>
                   {{ skill_form.weight|materializecss }}
                 {% endif %}

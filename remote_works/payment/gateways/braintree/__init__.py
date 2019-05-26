@@ -10,7 +10,7 @@ from .forms import BraintreePaymentForm
 
 logger = logging.getLogger(__name__)
 
-TEMPLATE_PATH = 'order/payment/braintree.html'
+TEMPLATE_PATH = 'task/payment/braintree.html'
 
 # FIXME: Move to SiteSettings
 
@@ -41,7 +41,7 @@ class TransactionKind:
 def get_customer_data(payment_information: Dict) -> Dict:
     billing = payment_information['billing']
     return {
-        'order_id': payment_information['order_id'],
+        'task_id': payment_information['task_id'],
         'billing': {
             'first_name': billing['first_name'],
             'last_name': billing['last_name'],

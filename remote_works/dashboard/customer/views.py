@@ -24,8 +24,8 @@ def customer_list(request):
         .filter(
             Q(is_staff=False) | (Q(is_staff=True) & Q(orders__isnull=False)))
         .distinct()
-        .prefetch_related('orders', 'addresses')
-        .select_related('default_billing_address', 'default_shipping_address')
+        .prefetch_related('tasks', 'addresses')
+        .select_related('default_billing_address', 'default_delivery_address')
         .order_by('email'))
     customer_filter = UserFilter(request.GET, queryset=customers)
     customers = get_paginator_items(
@@ -41,10 +41,10 @@ def customer_list(request):
 #@permission_required('account.manage_users')
 def customer_details(request, pk):
     queryset = User.objects.prefetch_related(
-        'orders', 'addresses', 'notes').select_related(
-            'default_billing_address', 'default_shipping_address')
+        'tasks', 'addresses', 'notes').select_related(
+            'default_billing_address', 'default_delivery_address')
     customer = get_object_or_404(queryset, pk=pk)
-    customer_orders = customer.orders.all()
+    customer_orders = customer.tasks.all()
     notes = customer.notes.all()
     ctx = {
         'customer': customer, 'customer_orders': customer_orders,

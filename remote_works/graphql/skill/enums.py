@@ -18,30 +18,30 @@ class StockAvailability(graphene.Enum):
     OUT_OF_STOCK = 'OUT_OF_STOCK'
 
 
-class SkillOrderField(graphene.Enum):
+class SkillTaskField(graphene.Enum):
     NAME = 'name'
     PRICE = 'price'
     DATE = 'updated_at'
 
     @property
     def description(self):
-        if self == SkillOrderField.NAME:
+        if self == SkillTaskField.NAME:
             return 'Sort skills by name.'
-        if self == SkillOrderField.PRICE:
+        if self == SkillTaskField.PRICE:
             return 'Sort skills by price.'
-        if self == SkillOrderField.DATE:
+        if self == SkillTaskField.DATE:
             return 'Sort skills by update date.'
         raise ValueError('Unsupported enum value: %s' % self.value)
 
 
-class OrderDirection(graphene.Enum):
+class TaskDirection(graphene.Enum):
     ASC = ''
     DESC = '-'
 
     @property
     def description(self):
-        if self == OrderDirection.ASC:
-            return 'Specifies an ascending sort order.'
-        if self == OrderDirection.DESC:
-            return 'Specifies a descending sort order.'
+        if self == TaskDirection.ASC:
+            return 'Specifies an ascending sort task.'
+        if self == TaskDirection.DESC:
+            return 'Specifies a descending sort task.'
         raise ValueError('Unsupported enum value: %s' % self.value)

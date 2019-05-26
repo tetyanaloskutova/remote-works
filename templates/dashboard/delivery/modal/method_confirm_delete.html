@@ -1,0 +1,27 @@
+{% extends "dashboard/base_modal.html" %}
+
+{% load i18n %}
+
+{% block form_class %}{% endblock %}
+
+{% block action_url %}
+{% url "dashboard:delivery-method-delete" delivery_zone_pk=delivery_zone_pk delivery_method_pk=delivery_method.pk %}
+{% endblock %}
+
+{% block title %}
+{% blocktrans trimmed context "Modal remove delivery method title" %}
+  Remove delivery method {{ delivery_method }}
+{% endblocktrans %}
+{% endblock title %}
+
+{% block content %}
+  <div class="col s12">
+    {% blocktrans trimmed context "Modal remove delivery method delivery method text" %}
+      Are you sure you want to remove delivery method <strong>{{ delivery_method }}</strong>?
+    {% endblocktrans %}
+  </div>
+{% endblock content %}
+
+{% block primary_action %}
+{% trans "Remove" context "Dashboard delete action" %}
+{% endblock %}

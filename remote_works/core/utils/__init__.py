@@ -120,11 +120,11 @@ def update_conversion_rates_from_openexchangerates():
     return serializers.serialize('json', conversion_rates_queryset)
 
 
-def get_user_shipping_country(request):
+def get_user_delivery_country(request):
     if request.user.is_authenticated:
-        default_shipping = request.user.default_shipping_address
-        if default_shipping:
-            return default_shipping.country
+        default_delivery = request.user.default_delivery_address
+        if default_delivery:
+            return default_delivery.country
     return request.country
 
 

@@ -15,9 +15,9 @@ from . import (
 from ..account.models import Address, User
 from ..checkout.models import Cart
 from ..core import analytics
-from ..order import OrderEvents, OrderEventsEmails
-from ..order.emails import send_payment_confirmation
-from ..order.models import Order
+from ..task import TaskEvents, TaskEventsEmails
+from ..task.emails import send_payment_confirmation
+from ..task.models import Task
 from .models import Payment, Transaction
 
 logger = logging.getLogger(__name__)
@@ -47,40 +47,40 @@ def get_gateway_operation_func(gateway, operation_type):
 def create_payment_information(
         payment: Payment, payment_token: str = None,
         amount: Decimal = None) -> Dict:
-    """Extracts order information along with payment details.
+    """Extracts task information along with payment details.
 
     Returns information required to process payment and additional
-    billing/shipping addresses for optional fraud-prevention mechanisms.
+    billing/delivery addresses for optional fraud-prevention mechanisms.
     """
     return {
         'token': payment_token,
         'amount': amount or payment.total,
         'currency': payment.currency,
         'billing': (
-            payment.order.billing_address.as_data()
-            if payment.order.billing_address else None),
-        'shipping': (
-            payment.order.shipping_address.as_data()
-            if payment.order.shipping_address else None),
-        'order_id': payment.order.id,
+            payment.task.billing_address.as_data()
+            if payment.task.billing_address else None),
+        'delivery': (
+            payment.task.delivery_address.as_data()
+            if payment.task.delivery_address else None),
+        'task_id': payment.task.id,
         'customer_ip_address': payment.customer_ip_address,
         'customer_email': payment.billing_email}
 
 
-def handle_fully_paid_order(order):
-    order.events.create(type=OrderEvents.ORDER_FULLY_PAID.value)
-    if order.get_user_current_email():
-        send_payment_confirmation.delay(order.pk)
-        order.events.create(
-            type=OrderEvents.EMAIL_SENT.value,
+def handle_fully_paid_order(task):
+    task.events.create(type=TaskEvents.ORDER_FULLY_PAID.value)
+    if task.get_user_current_email():
+        send_payment_confirmation.delay(task.pk)
+        task.events.create(
+            type=TaskEvents.EMAIL_SENT.value,
             parameters={
-                'email': order.get_user_current_email(),
-                'email_type': OrderEventsEmails.PAYMENT.value})
+                'email': task.get_user_current_email(),
+                'email_type': TaskEventsEmails.PAYMENT.value})
     try:
-        analytics.report_order(order.tracking_client_id, order)
+        analytics.report_order(task.tracking_client_id, task)
     except Exception:
         # Analytics failing should not abort the checkout flow
-        logger.exception('Recording order in analytics failed')
+        logger.exception('Recording task in analytics failed')
 
 
 def require_active_payment(view):
@@ -107,7 +107,7 @@ def create_payment(
         payment_token: str = '',
         extra_data: Dict = None,
         checkout: Cart = None,
-        order: Order = None) -> Payment:
+        task: Task = None) -> Payment:
     """Create a payment instance.
 
     This method is responsible for creating payment instances that works for
@@ -137,8 +137,8 @@ def create_payment(
         'extra_data': extra_data,
         'token': payment_token}
 
-    if order is not None:
-        data['order'] = order
+    if task is not None:
+        data['task'] = task
     if checkout is not None:
         data['checkout'] = checkout
 
@@ -147,25 +147,25 @@ def create_payment(
 
 
 @transaction.atomic
-def mark_order_as_paid(order: Order, request_user: User):
-    """Mark order as paid.
+def mark_task_as_paid(task: Task, request_user: User):
+    """Mark task as paid.
 
-    Allows to create a payment for an order without actually performing any
+    Allows to create a payment for an task without actually performing any
     payment by the gateway.
     """
     payment = create_payment(
         gateway=CustomPaymentChoices.MANUAL,
         payment_token='',
-        currency=order.total.gross.currency,
-        email=order.user_email,
-        billing_address=order.billing_address,
-        total=order.total.gross.amount,
-        order=order)
+        currency=task.total.gross.currency,
+        email=task.user_email,
+        billing_address=task.billing_address,
+        total=task.total.gross.amount,
+        task=task)
     payment.charge_status = ChargeStatus.FULLY_CHARGED
-    payment.captured_amount = order.total.gross.amount
+    payment.captured_amount = task.total.gross.amount
     payment.save(update_fields=['captured_amount', 'charge_status'])
-    order.events.create(
-        type=OrderEvents.ORDER_MARKED_AS_PAID.value, user=request_user)
+    task.events.create(
+        type=TaskEvents.ORDER_MARKED_AS_PAID.value, user=request_user)
 
 
 def create_transaction(
@@ -227,13 +227,13 @@ def clean_authorize(payment: Payment):
         raise PaymentError('Charged transactions cannot be authorized again.')
 
 
-def clean_mark_order_as_paid(order: Order):
-    """Check if an order can be marked as paid."""
-    if order.payments.exists():
+def clean_mark_task_as_paid(task: Task):
+    """Check if an task can be marked as paid."""
+    if task.payments.exists():
         raise PaymentError(
             pgettext_lazy(
-                'Mark order as paid validation error',
-                'Orders with payments can not be manually marked as paid.'))
+                'Mark task as paid validation error',
+                'Tasks with payments can not be manually marked as paid.'))
 
 
 def call_gateway(operation_type, payment, payment_token, **extra_params):
@@ -361,9 +361,9 @@ def _gateway_postprocess(transaction, payment):
             payment.charge_status = ChargeStatus.FULLY_CHARGED
 
         payment.save(update_fields=['charge_status', 'captured_amount'])
-        order = payment.order
-        if order and order.is_fully_paid():
-            handle_fully_paid_order(order)
+        task = payment.task
+        if task and task.is_fully_paid():
+            handle_fully_paid_order(task)
 
     elif transaction_kind == TransactionKind.VOID:
         payment.is_active = False

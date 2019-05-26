@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {{ delivery_zone }} - {{ block.super }}
+{% endblock %}
+
+{% block body_class %}body-delivery-zones{% endblock %}
+
+{% block menu_delivery_class %}active{% endblock %}
+
+{% block menu_delivery_class %} active{% endblock %}
+
+{% block breadcrumbs %}
+  <ul class="breadcrumbs breadcrumbs--history">
+    <li>
+      <a href="{% url 'dashboard:delivery-zone-list' %}">
+        {% trans "Delivery zones" context "Delivery zone form breadcrumbs" %}
+      </a>
+    </li>
+    <li class="back-mobile">
+      <a href="{% url 'dashboard:delivery-zone-list' %}"><i class="material-icons">arrow_back</i></a>
+    </li>
+    <li>
+      <span class="breadcrumbs--elipsed-item">
+        {{ delivery_zone }}
+      </span>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col m12 l9">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            {% blocktrans with delivery_name=delivery_zone.name list_of_countries=delivery_zone.countries_display %}
+              {{ delivery_name }}  <small>(ships to {{ list_of_countries }})</small>
+            {% endblocktrans %}
+          </span>
+        </div>
+        <div class="card-action">
+          <a class="btn-flat waves-effect" href="{% url 'dashboard:delivery-zone-update' delivery_zone.pk %}">
+            {% trans "Edit delivery zone" context "Delivery zone action" %}
+          </a>
+          <a class="btn-flat waves-effect modal-trigger-custom" href="#base-modal" data-href="{% url 'dashboard:delivery-zone-delete' delivery_zone.pk %}">
+            {% trans "Remove delivery zone" context "Delivery zone action" %}
+          </a>
+        </div>
+      </div>
+    </div>
+    {% trans "Price based delivery" context "Title of the delivery methods list" as price_based_header %}
+    {% trans "Weight based delivery" context "Title of the delivery methods list" as weight_based_header %}
+    {% include "dashboard/delivery/methods/_delivery_methods_table.html" with type='price' header=price_based_header delivery_methods=price_based %}
+    {% include "dashboard/delivery/methods/_delivery_methods_table.html" with type='weight' header=weight_based_header delivery_methods=weight_based %}
+  </div>
+{% endblock %}

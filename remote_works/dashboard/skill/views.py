@@ -53,7 +53,7 @@ def skill_details(request, pk):
     purchase_cost, margin = get_skill_costs_data(skill)
 
     # no_variants is True for skill types that doesn't require variant.
-    # In this case we're using the first variant under the hood to allow stock
+    # In this case we're using the first variant under the hood to allow availability
     # management.
     no_variants = not skill.skill_type.has_variants
     only_variant = variants.first() if no_variants else None
@@ -482,7 +482,7 @@ def skill_image_delete(request, skill_pk, img_pk):
 
 
 @require_POST
-def ajax_reorder_skill_images(request, skill_type_pk):
+def ajax_retask_skill_images(request, skill_type_pk):
     skill = get_object_or_404(Skill, pk=skill_type_pk)
     form = forms.ReorderSkillImagesForm(request.POST, instance=skill)
     status = 200
@@ -504,7 +504,7 @@ def ajax_upload_image(request, skill_pk):
     status = 200
     if form.is_valid():
         image = form.save()
-        ctx = {'id': image.pk, 'image': None, 'order': image.sort_order}
+        ctx = {'id': image.pk, 'image': None, 'task': image.sort_order}
     elif form.errors:
         status = 400
         ctx = {'error': form.errors}
@@ -645,7 +645,7 @@ def attribute_value_delete(request, attribute_pk, value_pk):
 
 
 @permission_required('skill.manage_skills')
-def ajax_reorder_attribute_values(request, attribute_pk):
+def ajax_retask_attribute_values(request, attribute_pk):
     attribute = get_object_or_404(Attribute, pk=attribute_pk)
     form = forms.ReorderAttributeValuesForm(
         request.POST, instance=attribute)

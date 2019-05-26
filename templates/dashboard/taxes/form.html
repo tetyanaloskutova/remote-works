@@ -84,12 +84,12 @@
             </div>
             <div class="row">
               <div class="col s12">
-                {{ taxes_form.charge_taxes_on_shipping|materializecss }}
+                {{ taxes_form.charge_taxes_on_delivery|materializecss }}
               </div>
               <div class="col s12 checkbox-helptext">
                 <h6>
                   {% blocktrans context "Dashboard site taxes settings form help text" %}
-                    If selected, standard tax rate will be charged on a shipping price.
+                    If selected, standard tax rate will be charged on a delivery price.
                   {% endblocktrans %}
                 </h6>
               </div>
@@ -110,7 +110,7 @@
       <p class="grey-text">
         <svg data-src="{% static "dashboard/images/help.svg" %}" width="18" height="18" />
         {% blocktrans trimmed context "Taxes help text" %}
-          Taxes are charged according to the rates applicable in the country to which the order is delivered. For now, only rates in European Union are handled.
+          Taxes are charged according to the rates applicable in the country to which the task is delivered. For now, only rates in European Union are handled.
         {% endblocktrans %}
       </p>
     </div>

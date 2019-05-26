@@ -5,7 +5,7 @@ from django.urls import reverse
 from elasticsearch_dsl.connections import connections
 
 from remote_works.account.models import User
-from remote_works.order.models import Order
+from remote_works.task.models import Task
 from remote_works.product.models import Skill
 
 MATCH_SEARCH_REQUEST = ['method', 'host', 'port', 'path']
@@ -40,7 +40,7 @@ def elasticsearch_autosync_disabled(settings):
 
 @pytest.mark.vcr()
 @pytest.fixture
-def indexed_products(product_type, category):
+def indexed_products(skill_type, category):
     """Skills to be found by search backend.
 
     We need existing objects with primary keys same as search service
@@ -48,15 +48,15 @@ def indexed_products(product_type, category):
     Purpose of this fixture is for integration with search service only!
     pks must be in response in appropiate recorded cassette.
     """
-    def gen_product_with_id(object_id):
-        product = Skill.objects.create(
+    def gen_skill_with_id(object_id):
+        skill = Skill.objects.create(
             pk=object_id,
             name='Test skill ' + str(object_id),
             price=Decimal(10.0),
-            product_type=product_type,
+            skill_type=skill_type,
             category=category)
         return product
-    return [gen_product_with_id(prod) for prod in PRODUCTS_INDEXED]
+    return [gen_skill_with_id(prod) for prod in PRODUCTS_INDEXED]
 
 
 def execute_search(client, phrase):
@@ -75,7 +75,7 @@ def test_new_search_with_empty_results(db, client):
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_new_search_with_result(db, indexed_products, client):
-    found_products = execute_search(client, PHRASE_WITH_RESULTS)
+    found_skills = execute_search(client, PHRASE_WITH_RESULTS)
     assert STOREFRONT_PRODUCTS == set(found_products)
 
 
@@ -93,9 +93,9 @@ def products_with_mixed_publishing(indexed_products):
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_new_search_doesnt_show_unpublished(
         db, products_with_mixed_publishing, client):
-    published_products = STOREFRONT_PRODUCTS - PRODUCTS_TO_UNPUBLISH
-    found_products = execute_search(client, PHRASE_WITH_RESULTS)
-    assert published_products == set(found_products)
+    published_skills = STOREFRONT_PRODUCTS - PRODUCTS_TO_UNPUBLISH
+    found_skills = execute_search(client, PHRASE_WITH_RESULTS)
+    assert published_skills == set(found_products)
 
 
 def execute_dashboard_search(client, phrase):
@@ -103,23 +103,23 @@ def execute_dashboard_search(client, phrase):
     assert phrase == response.context['query']
     found_prod = {p.pk for p in response.context['skills']}
     found_users = {p.pk for p in response.context['users']}
-    found_orders = {p.pk for p in response.context['orders']}
+    found_orders = {p.pk for p in response.context['tasks']}
     return found_prod, found_users, found_orders
 
 
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_dashboard_search_with_empty_results(db, admin_client):
-    products, users, orders = execute_dashboard_search(
+    products, users, tasks = execute_dashboard_search(
         admin_client, PHRASE_WITHOUT_RESULTS)
     assert 0 == len(products)
     assert 0 == len(users)
-    assert 0 == len(orders)
+    assert 0 == len(tasks)
 
 
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
-def test_dashboard_search_with_product_result(
+def test_dashboard_search_with_skill_result(
         db, indexed_products, admin_client):
     products, _, _ = execute_dashboard_search(admin_client,
                                               PHRASE_WITH_RESULTS)
@@ -177,11 +177,11 @@ def test_dashboard_search_user_name_without_address(db, admin_client,
 
 
 @pytest.fixture
-def orders(db, address):
+def tasks(db, address):
     all_pks = set()
     for email, pks in ORDERS.items():
         for pk in pks:
-            Order.objects.create(
+            Task.objects.create(
                 billing_address=address, user_email=email, pk=pk)
         all_pks = all_pks | pks
     return all_pks
@@ -190,26 +190,26 @@ def orders(db, address):
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_dashboard_search_orders_by_user_email(db, admin_client,
-                                               customers, orders):
-    _, _, orders = execute_dashboard_search(
+                                               customers, tasks):
+    _, _, tasks = execute_dashboard_search(
         admin_client, USER_EMAIL_WITH_ORDER)
-    assert ORDERS[USER_EMAIL_WITH_ORDER] == orders
+    assert ORDERS[USER_EMAIL_WITH_ORDER] == tasks
 
 
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_dashboard_search_orders_by_user_name(db, admin_client,
-                                              customers, orders):
-    _, _, orders = execute_dashboard_search(
+                                              customers, tasks):
+    _, _, tasks = execute_dashboard_search(
         admin_client, USER_NAME_WITH_ORDER)
-    assert ORDERS[USER_EMAIL_WITH_ORDER] == orders
+    assert ORDERS[USER_EMAIL_WITH_ORDER] == tasks
 
 
 @pytest.mark.integration
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_dashboard_search_orders_by_user_name_without_address(db, admin_client,
                                                               customers,
-                                                              orders):
-    _, _, orders = execute_dashboard_search(
+                                                              tasks):
+    _, _, tasks = execute_dashboard_search(
         admin_client, USER_NAME_WITH_ORDER_WITHOUT_ADDRES)
-    assert ORDERS[USER_EMAIL_WITH_ORDER_WITHOUT_ADDRES] == orders
+    assert ORDERS[USER_EMAIL_WITH_ORDER_WITHOUT_ADDRES] == tasks

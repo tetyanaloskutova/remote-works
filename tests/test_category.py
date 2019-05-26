@@ -1,13 +1,13 @@
 from remote_works.product.filters import SkillCategoryFilter
 
 
-def test_product_category_filter_filters_from_child_category(
-        product_type, categories_tree):
-    product_filter = SkillCategoryFilter(data={}, category=categories_tree)
-    (product_attributes, variant_attributes) = product_filter._get_attributes()
+def test_skill_category_filter_filters_from_child_category(
+        skill_type, categories_tree):
+    skill_filter = SkillCategoryFilter(data={}, category=categories_tree)
+    (skill_attributes, variant_attributes) = skill_filter._get_attributes()
 
-    attribut = product_type.product_attributes.get()
-    variant = product_type.variant_attributes.get()
+    attribut = skill_type.skill_attributes.get()
+    variant = skill_type.variant_attributes.get()
 
-    assert attribut in product_attributes
+    assert attribut in skill_attributes
     assert variant in variant_attributes

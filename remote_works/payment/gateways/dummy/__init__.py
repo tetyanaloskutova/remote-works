@@ -4,7 +4,7 @@ from typing import Dict
 from ... import ChargeStatus
 from .forms import DummyPaymentForm
 
-TEMPLATE_PATH = 'order/payment/dummy.html'
+TEMPLATE_PATH = 'task/payment/dummy.html'
 
 
 class TransactionKind:

@@ -243,7 +243,7 @@ Example
             'country': 'US',
             'country_area': 'OK',
             'phone': '+19188249023'},
-        'shipping': {  # shipping information
+        'delivery': {  # delivery information
             'first_name': 'Dollie',
             'last_name': 'Sullivan',
             'company_name': '',
@@ -255,7 +255,7 @@ Example
             'country': 'US',
             'country_area': 'IA',
             'phone': '+19188249023'},
-        'order': 117,  # order id
+        'task': 117,  # task id
         'customer_ip_address': '10.0.0.1',  # ip address of the customer
         'customer_email': 'joedoe@example.com',  # email of the customer
     }
@@ -322,7 +322,7 @@ Adding payment method to the old checkout (optional)
 ----------------------------------------------------
 
 If you are not using SPA Storefront, there are some additional steps you need
-to perform in order to enable the payment method in your checkout flow.
+to perform in task to enable the payment method in your checkout flow.
 
 Add a Form
 ^^^^^^^^^^
@@ -375,14 +375,14 @@ Example
 
     .. code-block:: python
 
-        TEMPLATE_PATH = 'order/payment/braintree.html'
+        TEMPLATE_PATH = 'task/payment/braintree.html'
 
 Add template
 ^^^^^^^^^^^^
 
 Add a new template to handle the payment process with your payment form.
 Your changes should live under
-``remote-works.templates.order.payment.<gateway name>.html``
+``remote-works.templates.task.payment.<gateway name>.html``
 
 Adding new payment gateway to the settings
 ------------------------------------------

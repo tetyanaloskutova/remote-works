@@ -17,5 +17,5 @@ QUERY = {
                     'is_published': True}}]}}}
 
 
-def test_storefront_product_search_query_syntax():
+def test_storefront_skill_search_query_syntax():
     assert QUERY == elasticsearch_storefront.get_search_query(PHRASE).to_dict()

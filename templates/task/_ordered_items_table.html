@@ -1,0 +1,225 @@
+{% load discount_as_negative from voucher %}
+{% load i18n %}
+{% load i18n_address_tags %}
+{% load placeholder %}
+{% load price from taxed_prices %}
+{% load get_skill_image_thumbnail from skill_images %}
+
+{% if task.user == user %}
+  <div class="task-details__addresses">
+    <div class="row">
+      {% if task.is_delivery_required %}
+        <div class="col-6">
+          <h3>
+            <b>
+              {% trans "Delivery address" context "Task details address title" %}
+            </b>
+          </h3>
+          <hr class="margin-default" />
+          {% format_address task.delivery_address %}
+        </div>
+      {% endif %}
+      <div class="col-6">
+        <h3>
+          <b>
+            {% trans "Billing address" context "Task details address title" %}
+          </b>
+        </h3>
+        <hr class="margin-default" />
+        {% format_address task.billing_address %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<div class="table__header task-details__table-header d-none d-sm-block">
+  <div class="row">
+    <div class="col-md-8">
+      <small>
+        {% trans "Skill" context "Task details column title" %}
+      </small>
+    </div>
+    <div class="col-md-2 text-right">
+      <small>
+        {% trans "Quantity" context "Task details column title" %}
+      </small>
+    </div>
+    <div class="col-md-2 text-right">
+      <small>
+        {% trans "Price" context "Task details column title" %}
+      </small>
+    </div>
+  </div>
+</div>
+
+{% for line in task %}
+  <div class="table__row task-details__skill{% if forloop.last %} task-details__last-row{% endif %}">
+    <div class="row">
+      <div class="col-md-8 task-details__skill__description">
+        {% if line.variant %}
+          <a class="link--clean" href="{{ line.variant.get_absolute_url }}">
+            <img data-src="{% get_skill_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %}"
+                  data-srcset="{% get_skill_image_thumbnail line.variant.get_first_image size=60 method="thumbnail" %} 1x, {% get_skill_image_thumbnail line.variant.get_first_image size=120 method="thumbnail" %} 2x"
+                  class="float-left lazyload lazypreload"
+                  src="{% placeholder size=60 %}">
+            <span>{{ line.translated_skill_name|default:line.skill_name }}</span>
+          </a>
+        {% else %}
+          <img src="{% placeholder size=60 %}" class="float-left">
+          <span>{{ line.translated_skill_name|default:line.skill_name }}</span>
+        {% endif %}
+      </div>
+      <div class="col-md-4 task-details__skill__description">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <p class="text-right">
+              <span>
+                x {{ line.quantity }}
+              </span>
+            </p>
+          </div>
+          <div class="col-md-6 col-12">
+            <p class="text-right">
+              {% price line.get_total display_gross=task.display_gross_prices %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<div class="table__row">
+  <div class="row">
+    <div class="col-8 task-details__table-footer">
+      <p>
+        {% trans "Subtotal" context "Task details subtotal row text" %}
+      </p>
+    </div>
+    <div class="col-4">
+      <p class="float-right">
+        {% price task.get_subtotal display_gross=task.display_gross_prices %}
+      </p>
+      <br>
+    </div>
+  </div>
+</div>
+
+{% if task.is_delivery_required %}
+  <div class="table__row">
+    <div class="row">
+      <div class="col-8 task-details__table-footer">
+        <p>
+          {% trans "Delivery" context "Task details shipment row text" %} ({{ task.delivery_method_name|default:"-" }})
+        </p>
+      </div>
+      <div class="col-4">
+        <p class="float-right">
+          {% price task.delivery_price display_gross=task.display_gross_prices %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if task.discount_amount %}
+<div class="table__row">
+  <div class="row">
+    <div class="col-8 task-details__table-footer">
+      <p>{{ task.translated_discount_name|default:task.discount_name }}</p>
+    </div>
+    <div class="col-4">
+      <p class="float-right">
+        {% discount_as_negative task.discount_amount html=True %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="table__row">
+  <div class="row">
+    <div class="col-8 task-details__table-footer">
+      <p>
+        {% if task.display_gross_prices %}
+          {% trans "Taxes (included)" context "Task details taxes text" %}
+        {% else %}
+          {% trans "Taxes" context "Task details taxes text" %}
+        {% endif %}
+      </p>
+    </div>
+    <div class="col-4">
+      <p class="float-right">{% price task.total.tax %}</p>
+    </div>
+  </div>
+</div>
+
+<div class="task-details__total">
+  <div class="row">
+    <div class="col-8 task-details__table-footer">
+      <div class="total">
+        <h3>{% trans "Total" context "Task details total text" %}</h3>
+      </div>
+    </div>
+    <div class="col-4">
+      <p class="float-right">
+        {% price task.total.gross %}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+{% for fulfillment in fulfillments %}
+  <h2 class="task-details__header">
+    {% blocktrans trimmed with fulfillment=fulfillment.composed_id context "Task details fulfillment title" %}
+      Fulfillment #{{ fulfillment }}
+    {% endblocktrans %}
+  </h2>
+
+  <div class="table__header task-details__table-header d-none d-sm-block">
+    <div class="row">
+      <div class="col-md-9">
+        <small>
+          {% trans "Skill" context "Task details column title" %}
+        </small>
+      </div>
+      <div class="col-md-3 text-right">
+        <small>
+          {% trans "Quantity" context "Task details column title" %}
+        </small>
+      </div>
+    </div>
+  </div>
+  {% for fulfillment_line in fulfillment %}
+    <div class="table__row fulfillment__row task-details__skill{% if forloop.last %} task-details__last-row{% endif %}">
+      <div class="row">
+        <div class="col-md-6 col-9 task-details__skill__description">
+          {% with variant=fulfillment_line.task_line.variant %}
+            {% if variant %}
+              <a class="link--clean" href="{{ variant.get_absolute_url }}">
+                <span>{{ fulfillment_line.task_line.translated_skill_name|default:fulfillment_line.task_line.skill_name }}</span>
+              </a>
+            {% else %}
+              <span>{{ fulfillment_line.task_line.translated_skill_name|default:fulfillment_line.task_line.skill_name }}</span>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <div class="col-md-6 col-3">
+          <p class="float-right">x {{ fulfillment_line.quantity }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  {% if fulfillment.tracking_number %}
+    <div class="task-details__total">
+      <div class="row">
+        <div class="col-4 task-details__table-footer">
+          <p>{% trans "Tracking number" context "Fulfillment tracking number details" %}</p>
+        </div>
+        <div class="col-8">
+          <p class="float-right">{{ fulfillment.tracking_number }}</p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}

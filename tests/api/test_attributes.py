@@ -16,7 +16,7 @@ def test_attributes_to_hstore(product, color_attribute):
     # test transforming slugs of existing attributes to IDs
     input_data = [{
         'slug': color_attribute.slug, 'value': color_value.slug}]
-    attrs_qs = product.product_type.product_attributes.all()
+    attrs_qs = product.skill_type.skill_attributes.all()
     ids = attributes_to_hstore(input_data, attrs_qs)
     assert str(color_attribute.pk) in ids
     assert ids[str(color_attribute.pk)] == str(color_value.pk)
@@ -89,11 +89,11 @@ def test_attributes_in_category_query(user_api_client, product):
 
 
 def test_attributes_in_collection_query(user_api_client, sale):
-    product_types = set(
-        sale.products.all().values_list('product_type_id', flat=True))
+    skill_types = set(
+        sale.products.all().values_list('skill_type_id', flat=True))
     expected_attrs = Attribute.objects.filter(
-        Q(product_type__in=product_types)
-        | Q(product_variant_type__in=product_types))
+        Q(skill_type__in=skill_types)
+        | Q(skill_variant_type__in=skill_types))
 
     query = """
     query {
@@ -147,9 +147,9 @@ CREATE_ATTRIBUTES_QUERY = """
 
 
 def test_create_attribute_and_attribute_values(
-        staff_api_client, permission_manage_products, product_type):
+        staff_api_client, permission_manage_products, skill_type):
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('SkillType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', skill_type.id)
 
     attribute_name = 'Example name'
     name = 'Value name'
@@ -169,8 +169,8 @@ def test_create_attribute_and_attribute_values(
     assert data['attribute']['values'][0]['name'] == name
     assert data['attribute']['values'][0]['slug'] == slugify(name)
     attribute = Attribute.objects.get(name=attribute_name)
-    assert attribute in product_type.product_attributes.all()
-    assert data['productType']['name'] == product_type.name
+    assert attribute in skill_type.skill_attributes.all()
+    assert data['productType']['name'] == skill_type.name
 
 
 @pytest.mark.parametrize(
@@ -183,9 +183,9 @@ def test_create_attribute_and_attribute_values(
             'Provided values are not unique.')))
 def test_create_attribute_and_attribute_values_errors(
         staff_api_client, name_1, name_2, error_msg,
-        permission_manage_products, product_type):
+        permission_manage_products, skill_type):
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('SkillType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', skill_type.id)
     variables = {
         'name': 'Example name', 'id': id,
         'type': AttributeTypeEnum.PRODUCT.name,
@@ -202,12 +202,12 @@ def test_create_attribute_and_attribute_values_errors(
 
 
 def test_create_variant_attribute(
-        staff_api_client, permission_manage_products, product_type):
-    product_type.has_variants = True
-    product_type.save()
+        staff_api_client, permission_manage_products, skill_type):
+    skill_type.has_variants = True
+    skill_type.save()
 
     query = CREATE_ATTRIBUTES_QUERY
-    id = graphene.Node.to_global_id('SkillType', product_type.id)
+    id = graphene.Node.to_global_id('SkillType', skill_type.id)
     attribute_name = 'Example name'
     variables = {
         'name': attribute_name, 'id': id,
@@ -217,11 +217,11 @@ def test_create_variant_attribute(
     content = get_graphql_content(response)
     assert not content['data']['attributeCreate']['errors']
     attribute = Attribute.objects.get(name=attribute_name)
-    assert attribute in product_type.variant_attributes.all()
+    assert attribute in skill_type.variant_attributes.all()
 
 
-def test_create_attribute_incorrect_product_type_id(
-        staff_api_client, permission_manage_products, product_type):
+def test_create_attribute_incorrect_skill_type_id(
+        staff_api_client, permission_manage_products, skill_type):
     query = CREATE_ATTRIBUTES_QUERY
     variables = {
         'name': 'Example name', 'id': 'incorrect-id',
@@ -264,7 +264,7 @@ UPDATE_ATTRIBUTE_QUERY = """
 
 
 def test_update_attribute_name(
-        staff_api_client, color_attribute, product_type,
+        staff_api_client, color_attribute, skill_type,
         permission_manage_products):
     query = UPDATE_ATTRIBUTE_QUERY
     attribute = color_attribute
@@ -277,7 +277,7 @@ def test_update_attribute_name(
     attribute.refresh_from_db()
     data = content['data']['attributeUpdate']
     assert data['attribute']['name'] == name == attribute.name
-    assert data['productType']['name'] == attribute.product_type.name
+    assert data['productType']['name'] == attribute.skill_type.name
 
 
 def test_update_attribute_remove_and_add_values(
@@ -377,7 +377,7 @@ def test_update_attribute_and_remove_others_attribute_value(
 
 def test_delete_attribute(
         staff_api_client, color_attribute, permission_manage_products,
-        product_type):
+        skill_type):
     attribute = color_attribute
     query = """
     mutation deleteAttribute($id: ID!) {
@@ -401,7 +401,7 @@ def test_delete_attribute(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['attributeDelete']
-    assert data['productType']['name'] == attribute.product_type.name
+    assert data['productType']['name'] == attribute.skill_type.name
     with pytest.raises(attribute._meta.model.DoesNotExist):
         attribute.refresh_from_db()
 

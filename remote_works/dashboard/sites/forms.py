@@ -34,8 +34,8 @@ class SiteSettingsForm(forms.ModelForm):
                 'Default weight unit', 'Default weight unit')}
         help_texts = {
             'track_inventory_by_default': pgettext_lazy(
-                'handle stock by default settings field help text',
-                'This will set the default value of stock handling '
+                'handle availability by default settings field help text',
+                'This will set the default value of availability handling '
                 'on skill and variant creation')}
 
 

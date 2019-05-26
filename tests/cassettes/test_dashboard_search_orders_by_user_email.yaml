@@ -37,9 +37,9 @@ interactions:
       connection: [keep-alive]
       content-type: [application/json]
     method: GET
-    uri: http://search:9200/orders/doc/_search
+    uri: http://search:9200/tasks/doc/_search
   response:
-    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":2,"max_score":2.1282318,"hits":[{"_index":"orders","_type":"doc","_id":"17","_score":2.1282318,"_source":{}},{"_index":"orders","_type":"doc","_id":"11","_score":2.1282318,"_source":{}}]}}'}
+    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":2,"max_score":2.1282318,"hits":[{"_index":"tasks","_type":"doc","_id":"17","_score":2.1282318,"_source":{}},{"_index":"tasks","_type":"doc","_id":"11","_score":2.1282318,"_source":{}}]}}'}
     headers:
       content-length: ['302']
       content-type: [application/json; charset=UTF-8]

@@ -25,17 +25,17 @@ class CustomerDeleteForm(forms.Form):
 
         if self.instance == self.user:
             raise forms.ValidationError(pgettext_lazy(
-                'Edit customer details in order form error',
+                'Edit customer details in task form error',
                 'You can\'t delete your own account via dashboard, '
                 'please try from the storefront.'))
         if self.instance.is_superuser:
             raise forms.ValidationError(pgettext_lazy(
-                'Edit customer details in order form error',
+                'Edit customer details in task form error',
                 'Only superuser can delete his own account.'))
         can_manage_staff_users = self.user.has_perm('account.manage_staff')
         if not can_manage_staff_users:
             raise forms.ValidationError(pgettext_lazy(
-                'Edit customer details in order form error',
+                'Edit customer details in task form error',
                 'You have insufficient permissions, to edit staff users.'))
         return data
 

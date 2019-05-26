@@ -40,12 +40,12 @@ def test_jwt_middleware(admin_user):
 
 
 def test_real_query(user_api_client, product):
-    product_attr = product.product_type.product_attributes.first()
+    skill_attr = product.skill_type.skill_attributes.first()
     category = product.category
-    attr_value = product_attr.values.first()
-    filter_by = '%s:%s' % (product_attr.slug, attr_value.slug)
+    attr_value = skill_attr.values.first()
+    filter_by = '%s:%s' % (skill_attr.slug, attr_value.slug)
     query = """
-    query Root($categoryId: ID!, $sortBy: SkillOrder, $first: Int, $attributesFilter: [AttributeScalar], $minPrice: Float, $maxPrice: Float) {
+    query Root($categoryId: ID!, $sortBy: SkillTask, $first: Int, $attributesFilter: [AttributeScalar], $minPrice: Float, $maxPrice: Float) {
         category(id: $categoryId) {
             ...CategoryPageFragmentQuery
             __typename
@@ -187,14 +187,14 @@ def test_real_query(user_api_client, product):
     get_graphql_content(response)
 
 
-def test_get_nodes(product_list):
+def test_get_nodes(skill_list):
     global_ids = [
-        to_global_id('Skill', product.pk) for product in product_list]
+        to_global_id('Skill', product.pk) for skill in skill_list]
     # Make sure function works even if duplicated ids are provided
-    global_ids.append(to_global_id('Skill', product_list[0].pk))
+    global_ids.append(to_global_id('Skill', skill_list[0].pk))
     # Return skills corresponding to global ids
-    products = get_nodes(global_ids, Skill)
-    assert products == product_list
+    skills = get_nodes(global_ids, Skill)
+    assert skills == skill_list
 
     # Raise an error if requested id has no related database object
     nonexistent_item = Mock(type='Skill', pk=123)

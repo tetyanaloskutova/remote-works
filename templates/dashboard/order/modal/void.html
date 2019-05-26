@@ -4,7 +4,7 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:void-payment' order_pk=order.pk payment_pk=payment.pk %}
+{% url 'dashboard:void-payment' task_pk=task.pk payment_pk=payment.pk %}
 {% endblock %}
 
 {% block title %}

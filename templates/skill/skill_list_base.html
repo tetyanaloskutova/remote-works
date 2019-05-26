@@ -97,7 +97,7 @@
                       {% endblocktrans %}
                     {% endif %}
                   </span>
-                  <div class="sort-order-icon">
+                  <div class="sort-task-icon">
                     {% if is_descending %}
                       <svg data-src="{% static "images/chevron-down.svg" %}" />
                     {% else %}
@@ -118,13 +118,13 @@
                         <div>
                           <a href="{% get_sort_by_url choice %}">
                             <span>{% trans 'ascending' context 'sort by option' %}</span>
-                            <div class="sort-order-icon float-right">
+                            <div class="sort-task-icon float-right">
                               <img class="lazyload lazypreload" data-src="{% static "images/arrow-up.svg" %}">
                             </div>
                           </a>
                           <a href="{% get_sort_by_url choice descending=True %}">
                             <span>{% trans 'descending' context 'sort by option' %}</span>
-                            <div class="sort-order-icon float-right">
+                            <div class="sort-task-icon float-right">
                               <img class="lazyload lazypreload" data-src="{% static "images/arrow-down.svg" %}">
                             </div>
                           </a>

@@ -22,9 +22,9 @@ interactions:
       connection: [keep-alive]
       content-type: [application/json]
     method: GET
-    uri: http://search:9200/orders/doc/_search
+    uri: http://search:9200/tasks/doc/_search
   response:
-    body: {string: '{"took":2,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":2,"max_score":2.1282318,"hits":[{"_index":"orders","_type":"doc","_id":"19","_score":2.1282318,"_source":{}},{"_index":"orders","_type":"doc","_id":"18","_score":2.1282318,"_source":{}}]}}'}
+    body: {string: '{"took":2,"timed_out":false,"_shards":{"total":1,"successful":1,"failed":0},"hits":{"total":2,"max_score":2.1282318,"hits":[{"_index":"tasks","_type":"doc","_id":"19","_score":2.1282318,"_source":{}},{"_index":"tasks","_type":"doc","_id":"18","_score":2.1282318,"_source":{}}]}}'}
     headers:
       Warning: ['299 Elasticsearch-5.4.3-eed30a8 "Deprecated field [exclude] used,
           expected [excludes] instead" "Thu, 16 Nov 2017 09:44:26 GMT"']

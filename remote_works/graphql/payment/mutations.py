@@ -107,7 +107,7 @@ class PaymentCapture(BaseMutation):
         description = 'Captures the authorized payment amount'
 
     @classmethod
-    @permission_required('order.manage_orders')
+    @permission_required('task.manage_orders')
     def mutate(cls, root, info, payment_id, amount=None):
         errors = []
         payment = cls.get_node_or_error(
@@ -126,7 +126,7 @@ class PaymentCapture(BaseMutation):
 
 class PaymentRefund(PaymentCapture):
     @classmethod
-    @permission_required('order.manage_orders')
+    @permission_required('task.manage_orders')
     def mutate(cls, root, info, payment_id, amount=None):
         errors = []
         payment = cls.get_node_or_error(
@@ -156,7 +156,7 @@ class PaymentVoid(BaseMutation):
         description = 'Voids the authorized payment'
 
     @classmethod
-    @permission_required('order.manage_orders')
+    @permission_required('task.manage_orders')
     def mutate(cls, root, info, payment_id, amount=None):
         errors = []
         payment = cls.get_node_or_error(

@@ -6,9 +6,9 @@ from .forms import StripePaymentModalForm
 from .utils import (
     get_amount_for_stripe, get_amount_from_stripe, get_currency_for_stripe,
     get_currency_from_stripe, get_payment_billing_fullname,
-    shipping_to_stripe_dict)
+    delivery_to_stripe_dict)
 
-TEMPLATE_PATH = 'order/payment/stripe.html'
+TEMPLATE_PATH = 'task/payment/stripe.html'
 
 
 class TransactionKind:
@@ -141,7 +141,7 @@ def _get_client(**connection_params):
 
 def _get_stripe_charge_payload(
         payment_information: Dict, should_capture: bool):
-    shipping = payment_information['shipping']
+    delivery = payment_information['delivery']
 
     # Get currency
     currency = get_currency_for_stripe(payment_information['currency'])
@@ -161,11 +161,11 @@ def _get_stripe_charge_payload(
         'source': payment_information['token'],
         'description': name}
 
-    if shipping:
-        # Update shipping address to prevent fraud in Stripe
-        charge_payload['shipping'] = {
+    if delivery:
+        # Update delivery address to prevent fraud in Stripe
+        charge_payload['delivery'] = {
             'name': name,
-            'address': shipping_to_stripe_dict(shipping)}
+            'address': delivery_to_stripe_dict(delivery)}
 
     return charge_payload
 

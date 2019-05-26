@@ -7,7 +7,7 @@ from ...page.models import Page
 from ...skill.models import Category, Collection
 from ...site.models import SiteSettings
 from ..forms import (
-    AjaxSelect2CombinedChoiceField, OrderedModelMultipleChoiceField)
+    AjaxSelect2CombinedChoiceField, TaskedModelMultipleChoiceField)
 from .utils import update_menu_item_linked_object
 
 
@@ -99,7 +99,7 @@ class ReorderMenuItemsForm(forms.ModelForm):
         ordered_menu_items - sorted menu items
     """
 
-    ordered_menu_items = OrderedModelMultipleChoiceField(
+    ordered_menu_items = TaskedModelMultipleChoiceField(
         queryset=MenuItem.objects.none())
 
     class Meta:

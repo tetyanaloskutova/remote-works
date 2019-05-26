@@ -140,16 +140,16 @@
               </ul>
             </li>
             {% endif %}
-            {% if perms.order.manage_orders or perms.account.manage_users %}
+            {% if perms.task.manage_orders or perms.account.manage_users %}
             <li class="side-nav-section">
               <p>
                 {% trans "Sales" context "Dashboard sales. `Sales' is noun of to sell" %}
               </p>
               <ul>
-                {% if perms.order.manage_orders %}
+                {% if perms.task.manage_orders %}
                   <li class="{% block menu_orders_class %}{% endblock %}">
-                    <a href="{% url 'dashboard:orders' %}">
-                      {% trans "Orders" context "Dashboard orders list" %}
+                    <a href="{% url 'dashboard:tasks' %}">
+                      {% trans "Tasks" context "Dashboard tasks list" %}
                     </a>
                   </li>
                 {% endif %}
@@ -177,7 +177,7 @@
                 </ul>
               </li>
             {% endif %}
-            {% if perms.site.manage_settings or perms.shipping.manage_shipping or perms.skill.manage_skills or perms.page.manage_pages %}
+            {% if perms.site.manage_settings or perms.delivery.manage_delivery or perms.skill.manage_skills or perms.page.manage_pages %}
               <li class="side-nav-section">
                 <p>
                   {% trans "Configuration"  context "Dashboard configuration" %}
@@ -195,10 +195,10 @@
                       </a>
                     </li>
                   {% endif %}
-                  {% if perms.shipping.manage_shipping %}
+                  {% if perms.delivery.manage_delivery %}
                     <li class="{% block menu_delivery_class %}{% endblock %}">
-                      <a href="{% url 'dashboard:shipping-zone-list' %}">
-                        {% trans "Shipping" context "Dashboard shipping zones list" %}
+                      <a href="{% url 'dashboard:delivery-zone-list' %}">
+                        {% trans "Delivery" context "Dashboard delivery zones list" %}
                       </a>
                     </li>
                   {% endif %}

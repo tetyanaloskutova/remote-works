@@ -88,12 +88,12 @@ def display_gross_prices():
     return Site.objects.get_current().settings.display_gross_prices
 
 
-def charge_taxes_on_shipping():
-    return Site.objects.get_current().settings.charge_taxes_on_shipping
+def charge_taxes_on_delivery():
+    return Site.objects.get_current().settings.charge_taxes_on_delivery
 
 
-def get_taxed_shipping_price(shipping_price, taxes):
-    """Calculate shipping price based on settings and taxes."""
-    if not charge_taxes_on_shipping():
+def get_taxed_delivery_price(delivery_price, taxes):
+    """Calculate delivery price based on settings and taxes."""
+    if not charge_taxes_on_delivery():
         taxes = None
-    return apply_tax_to_price(taxes, DEFAULT_TAX_RATE_NAME, shipping_price)
+    return apply_tax_to_price(taxes, DEFAULT_TAX_RATE_NAME, delivery_price)

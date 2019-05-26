@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('checkout', '0001_initial'),
-        ('order', '0001_initial'),
+        ('task', '0001_initial'),
     ]
 
     operations = [
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('customer_ip_address', models.GenericIPAddressField(blank=True, null=True)),
                 ('extra_data', models.TextField(blank=True, default='')),
                 ('checkout', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='payments', to='checkout.Cart')),
-                ('order', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, related_name='payments', to='order.Order')),
+                ('task', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, related_name='payments', to='task.Task')),
             ],
             options={
                 'ordering': ('pk',),

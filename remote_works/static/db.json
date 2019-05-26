@@ -56,7 +56,7 @@
   "fields": {
     "name": "Paint",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -67,7 +67,7 @@
   "fields": {
     "name": "Music",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "0.2 kg"
   }
@@ -78,7 +78,7 @@
   "fields": {
     "name": "Juice",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -89,7 +89,7 @@
   "fields": {
     "name": "Wine",
     "has_variants": false,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -100,7 +100,7 @@
   "fields": {
     "name": "Beer",
     "has_variants": false,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -111,7 +111,7 @@
   "fields": {
     "name": "Cushion",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "0.5 kg"
   }
@@ -122,7 +122,7 @@
   "fields": {
     "name": "Shoe",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -133,7 +133,7 @@
   "fields": {
     "name": "Top (clothing)",
     "has_variants": true,
-    "is_shipping_required": true,
+    "is_delivery_required": true,
     "tax_rate": "standard",
     "weight": "1.0 kg"
   }
@@ -144,7 +144,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.&nbsp;",
-    "product_type": 7,
+    "skill_type": 7,
     "name": "Nebula Night Sky Paint",
     "description": "<p>Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.&nbsp;</p>",
     "category": 7,
@@ -168,7 +168,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "The rich, deep hue of space dust. Vacuum packed and airlocked for long-lasting freshness of color.",
-    "product_type": 7,
+    "skill_type": 7,
     "name": "Space Dust Navy Paint",
     "description": "<p>The rich, deep hue of space dust. Vacuum packed and airlocked for long-lasting freshness of color.</p>",
     "category": 7,
@@ -192,7 +192,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "",
-    "product_type": 7,
+    "skill_type": 7,
     "name": "Red Dwarf Red Paint",
     "description": "We are all connected to the universe, because every cell in our bodies was cooked in the hearts of dying stars. Red Dwarf Paint: the color of Carl Sagan\u2019s dreams.",
     "category": 7,
@@ -216,7 +216,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "There is life in outer space. This vibrant light speed yellow paint brings life to any surface. Goes on easy and dries at light speed.",
-    "product_type": 7,
+    "skill_type": 7,
     "name": "Light Speed Yellow Paint",
     "description": "<p>There is life in outer space. This vibrant light speed yellow paint brings life to any surface. Goes on easy and dries at light speed.</p>",
     "category": 7,
@@ -240,7 +240,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Turquoise is the new black. No more gloomy night skies, brighten up your evenings with hyperspace paint.&nbsp;",
-    "product_type": 7,
+    "skill_type": 7,
     "name": "Hyperspace Turquoise Paint",
     "description": "<p>Turquoise is the new black. No more gloomy night skies, brighten up your evenings with hyperspace paint.&nbsp;</p>",
     "category": 7,
@@ -264,7 +264,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Fell from a tree straight into the bottle. No additives, no preservatives, just the refreshing taste of pure sun-kissed Californian oranges.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Orange Juice",
     "description": "<p>Fell from a tree straight into the bottle. No additives, no preservatives, just the refreshing taste of pure sun-kissed Californian oranges.</p>",
     "category": 8,
@@ -288,7 +288,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Fell straight from the tree, on to Newton\u2019s head, then into the bottle. The autumn taste of English apples. Brought to you by gravity.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Apple Juice",
     "description": "Fell straight from the tree, on to Newton\u2019s head, then into the bottle. The autumn taste of English apples. Brought to you by gravity.",
     "category": 8,
@@ -312,7 +312,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Improve your eyesight the natural way with 100% pure, squeezed carrot juice. The sweet, orange nectar of Mother Earth.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Carrot Juice",
     "description": "Improve your eyesight the natural way with 100% pure, squeezed carrot juice. The sweet, orange nectar of Mother Earth.",
     "category": 8,
@@ -336,7 +336,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Build your protein the natural way, with exotic banana juice made from ripe fruit and packed with all the goodness of the tropical sun.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Banana Juice",
     "description": "Build your protein the natural way, with exotic banana juice made from ripe fruit and packed with all the goodness of the tropical sun.",
     "category": 8,
@@ -360,7 +360,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "I can\u2019t stand pineapples, so this one is not for me. They have a weird, fluffy, tangy taste. But if it is your kind of thing, then knock yourself out.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Pineapple Juice",
     "description": "I can\u2019t stand pineapples, so this one is not for me. They have a weird, fluffy, tangy taste. But if it is your kind of thing, then knock yourself out.",
     "category": 8,
@@ -384,7 +384,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Did you know falling coconuts kill 150 people a year? But did you know that coconut juice is the new superfood? You win some, you lose some.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Coconut Juice",
     "description": "Did you know falling coconuts kill 150 people a year? But did you know that coconut juice is the new superfood? You win some, you lose some.",
     "category": 8,
@@ -408,7 +408,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Is it a bird? Is it a plane? No! It\u2019s some jacked dude who just sucked down a bottle of our brand new power juice! Look at him go!",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Power Juice",
     "description": "Is it a bird? Is a plane? No! It\u2019s some jacked dude who just sucked down a bottle of our brand new power juice! Look at him go!",
     "category": 8,
@@ -432,7 +432,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Brussel sprouts, spinach, peas, kale, lettuce, cabbage, zucchini, more brussel sprouts. All the greens you\u2019ll ever need in one delicious juice.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Green Juice",
     "description": "Brussel sprouts, spinach, peas, kale, lettuce, cabbage, zucchini, more brussel sprouts. All the greens you\u2019ll ever need in one delicious juice.",
     "category": 8,
@@ -456,7 +456,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Bean there, drunk that! The energy drink for the health-conscious. Brand new bean juice; from allotment to bottle in under 8 hours.",
-    "product_type": 9,
+    "skill_type": 9,
     "name": "Bean Juice",
     "description": "Bean there, drunk that! The energy drink for the health-conscious. Brand new bean juice; from allotment to bottle in under 8 hours.",
     "category": 8,
@@ -480,7 +480,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "A fine, mature red with a hint of blackberry, an undertone of the alkaline Burgundy soil, a delicate aftertaste of burnt garlic, and a whole lot of grapes.",
-    "product_type": 10,
+    "skill_type": 10,
     "name": "Red Wine",
     "description": "<p>A fine, mature red with a hint of blackberry, an undertone of the alkaline Burgundy soil, a delicate aftertaste of burnt garlic, and a whole lot of grapes.</p>",
     "category": 8,
@@ -504,7 +504,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Watch the slow setting sun of a wild summer evening sink into the horizon as you sip white wine that tastes like bittersweet memories of halcyon days.",
-    "product_type": 10,
+    "skill_type": 10,
     "name": "White Wine",
     "description": "<p>Watch the slow setting sun of a wild summer evening sink into the horizon as you sip white wine that tastes like bittersweet memories of halcyon days.</p>",
     "category": 8,
@@ -528,7 +528,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
-    "product_type": 11,
+    "skill_type": 11,
     "name": "Seaman Lager",
     "description": "<p>Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!</p>",
     "category": 8,
@@ -552,7 +552,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Best beer on the seven seas. A dark ale for when the dark clouds gather overhead. The nutty nautical taste that sailors love.",
-    "product_type": 11,
+    "skill_type": 11,
     "name": "Seaman Beer",
     "description": "<p>Best beer on the seven seas. A dark ale for when the dark clouds gather overhead. The nutty nautical taste that sailors love.</p>",
     "category": 8,
@@ -576,7 +576,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Add a little color to your life with a Saleor parrot cushion. Turns any old sofa into a rainbow of classy interior design.&nbsp;",
-    "product_type": 12,
+    "skill_type": 12,
     "name": "Colored Parrot Cushion",
     "description": "<p>Add a little color to your life with a Saleor parrot cushion. Turns any old sofa into a rainbow of classy interior design.&nbsp;</p>",
     "category": 7,
@@ -600,7 +600,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Minimalist interiors need simple, sleek soft furnishings. Don\u2019t parrot what others do, set your own monochrome trends with Saleor designs.",
-    "product_type": 12,
+    "skill_type": 12,
     "name": "White Parrot Cushion",
     "description": "<p>Minimalist interiors need simple, sleek soft furnishings. Don\u2019t parrot what others do, set your own monochrome trends with Saleor designs.</p>",
     "category": 7,
@@ -624,7 +624,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Mellow yellow. Step into summer with Saleor. Every time your head goes down, you see these beauties, and your mood bounces right back up.&nbsp;",
-    "product_type": 13,
+    "skill_type": 13,
     "name": "Yellow Plimsolls",
     "description": "<p>Mellow yellow. Step into summer with Saleor. Every time your head goes down, you see these beauties, and your mood bounces right back up.&nbsp;</p>",
     "category": 9,
@@ -648,7 +648,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "PE at school wouldn\u2019t have been such a drag with these on your feet. Slip on the style and stride tall with Saleor branded plimsolls. PE now stands for pretty elegant.&nbsp;&nbsp;",
-    "product_type": 13,
+    "skill_type": 13,
     "name": "White Plimsolls",
     "description": "<p>PE at school wouldn\u2019t have been such a drag with these on your feet. Slip on the style and stride tall with Saleor branded plimsolls. PE now stands for pretty elegant.&nbsp;&nbsp;</p>",
     "category": 9,
@@ -672,7 +672,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Pay homage to the music and art of Joy Division and Peter Saville, but with a Mirumee twist. Perfect live transmission apparel for dead souls.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Code Division T-shirt",
     "description": "<p>Pay homage to the music and art of a Joy Division and Peter Saville, but with a Mirumee twist. Perfect live transmission apparel for dead souls.</p>",
     "category": 9,
@@ -696,7 +696,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Ever have those days where you feel a bit geometric? Can't quite shape yourself up right? Show your different sides with a Saleor styles.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Polo Shirt",
     "description": "<p>Ever have those days where you feel a bit geometric? Can't quite shape yourself up right? Show your different sides with a Saleor styles.&nbsp;</p>",
     "category": 9,
@@ -720,7 +720,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Polo? Yolo\u2026 so don\u2019t waste time on the wrong apparel. Choose a polo shirt that looks as good as you feel.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Polo Shirt",
     "description": "Polo? Yolo\u2026 so don\u2019t waste time on the wrong apparel. Choose a polo shirt that looks as good as you feel.",
     "category": 9,
@@ -744,7 +744,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Wondering if this will look as good on you as it does on the screen? The answer is yes. A quality polo with smart styling.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Polo Shirt",
     "description": "Wondering if this will look as good on you as it does on the screen? The answer is yes. A quality polo with smart styling.",
     "category": 9,
@@ -768,7 +768,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "They say polo is the sport of kings. Or was that stamp collecting? Either way, this shirt is fit for a king of Saturday night.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Polo Shirt",
     "description": "<p>They say polo is the sport of kings. Or was that stamp collecting? Either way, this shirt is fit for a king of Saturday night.</p>",
     "category": 9,
@@ -792,7 +792,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "One style fits all. Get a look that works even when you are taking it easy. Relaxed wear for the masses.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "T-shirt",
     "description": "One style fits all. Get a look that works even when you are taking it easy. Relaxed wear for the masses.",
     "category": 9,
@@ -816,7 +816,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "A classic tee for a timeless look, at a great price. Feel like a million bucks without breaking the bank.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "T-shirt",
     "description": "A classic tee for a timeless look, at a great price. Feel like a million bucks without breaking the bank.",
     "category": 9,
@@ -840,7 +840,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Want to look like you just fell out of bed? Sometimes style can be effortless. Throw it on get on with having a good day.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "T-shirt",
     "description": "Want to look like you just fell out of bed? Sometimes style can be effortless. Throw it on get on with having a good day.",
     "category": 9,
@@ -864,7 +864,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Your t-shirt is your second skin. It\u2019s the version of you that you show to the world. Wear one that flows with your movements and is built to last.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "T-shirt",
     "description": "Your t-shirt is your second skin. It\u2019s the version of you that you show to the world. Wear one that flows with your movements and is built to last.",
     "category": 9,
@@ -888,7 +888,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Special offer. Buy a hood and get a free jet black sweater attached. Perfect for when you are up to no good.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Black Hoodie",
     "description": "Special offer. Buy a hood and get a free jet black sweater attached. Perfect for when you are up to no good.",
     "category": 9,
@@ -912,7 +912,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Special offer. Buy a superhero blue sweater and get a free hood attached. Ideal for when you are out saving the world.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Blue Hoodie",
     "description": "Special offer. Buy a superhero blue sweater and get a free hood attached. Ideal for when you are out saving the world.",
     "category": 9,
@@ -936,7 +936,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Who dunnit? It was Colonel Mustard, in the dining room, with the lead piping, wearing this hot as mustard hoodie.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "Mustard Hoodie",
     "description": "Who dunnit? It was Colonel Mustard, in the dining room, with the lead piping, wearing this hot as mustard hoodie.",
     "category": 9,
@@ -960,7 +960,7 @@
   "fields": {
     "seo_title": "",
     "seo_description": "Get your slouch on and be seen with a whiter than white hoodie straight from the streets. Relaxed stylin\u2019 and profilin\u2019 with flair.",
-    "product_type": 14,
+    "skill_type": 14,
     "name": "White Hoodie",
     "description": "Get your slouch on and be seen with a whiter than white hoodie straight from the streets. Relaxed stylin\u2019 and profilin\u2019 with flair.",
     "category": 9,
@@ -3580,8 +3580,8 @@
   "fields": {
     "slug": "size",
     "name": "Size",
-    "product_type": null,
-    "product_variant_type": 14
+    "skill_type": null,
+    "skill_variant_type": 14
   }
 },
 {
@@ -3590,8 +3590,8 @@
   "fields": {
     "slug": "color",
     "name": "Color",
-    "product_type": null,
-    "product_variant_type": null
+    "skill_type": null,
+    "skill_variant_type": null
   }
 },
 {
@@ -3600,8 +3600,8 @@
   "fields": {
     "slug": "bottle-size",
     "name": "Size",
-    "product_type": 11,
-    "product_variant_type": null
+    "skill_type": 11,
+    "skill_variant_type": null
   }
 },
 {
@@ -3610,8 +3610,8 @@
   "fields": {
     "slug": "flavor",
     "name": "Flavor",
-    "product_type": 9,
-    "product_variant_type": null
+    "skill_type": 9,
+    "skill_variant_type": null
   }
 },
 {
@@ -3620,8 +3620,8 @@
   "fields": {
     "slug": "bucket-size",
     "name": "Size",
-    "product_type": null,
-    "product_variant_type": 7
+    "skill_type": null,
+    "skill_variant_type": 7
   }
 },
 {
@@ -3630,8 +3630,8 @@
   "fields": {
     "slug": "medium",
     "name": "Medium",
-    "product_type": null,
-    "product_variant_type": 8
+    "skill_type": null,
+    "skill_variant_type": 8
   }
 },
 {
@@ -3640,8 +3640,8 @@
   "fields": {
     "slug": "volume",
     "name": "Volume",
-    "product_type": 10,
-    "product_variant_type": null
+    "skill_type": 10,
+    "skill_variant_type": null
   }
 },
 {
@@ -3650,8 +3650,8 @@
   "fields": {
     "slug": "abv",
     "name": "ABV",
-    "product_type": 11,
-    "product_variant_type": null
+    "skill_type": 11,
+    "skill_variant_type": null
   }
 },
 {
@@ -3660,8 +3660,8 @@
   "fields": {
     "slug": "cushion-size",
     "name": "Size",
-    "product_type": null,
-    "product_variant_type": 12
+    "skill_type": null,
+    "skill_variant_type": 12
   }
 },
 {
@@ -3670,8 +3670,8 @@
   "fields": {
     "slug": "material",
     "name": "Material",
-    "product_type": 12,
-    "product_variant_type": null
+    "skill_type": 12,
+    "skill_variant_type": null
   }
 },
 {
@@ -3680,8 +3680,8 @@
   "fields": {
     "slug": "shoe-size",
     "name": "Shoe size",
-    "product_type": null,
-    "product_variant_type": 13
+    "skill_type": null,
+    "skill_variant_type": 13
   }
 },
 {
@@ -3690,8 +3690,8 @@
   "fields": {
     "slug": "shirt-material",
     "name": "Material",
-    "product_type": 14,
-    "product_variant_type": null
+    "skill_type": 14,
+    "skill_variant_type": null
   }
 },
 {
@@ -4195,7 +4195,7 @@
   "fields": {
     "sort_order": 0,
     "product": 61,
-    "image": "products/saleordemoproduct_paints_01_Zv5xJCl.png",
+    "image": "products/saleordemoskill_paints_01_Zv5xJCl.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4206,7 +4206,7 @@
   "fields": {
     "sort_order": 0,
     "product": 62,
-    "image": "products/saleordemoproduct_paints_02_eBKihwk.png",
+    "image": "products/saleordemoskill_paints_02_eBKihwk.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4217,7 +4217,7 @@
   "fields": {
     "sort_order": 0,
     "product": 63,
-    "image": "products/saleordemoproduct_paints_03_8NhNssT.png",
+    "image": "products/saleordemoskill_paints_03_8NhNssT.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4228,7 +4228,7 @@
   "fields": {
     "sort_order": 0,
     "product": 64,
-    "image": "products/saleordemoproduct_paints_04_oO7QZV2.png",
+    "image": "products/saleordemoskill_paints_04_oO7QZV2.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4239,7 +4239,7 @@
   "fields": {
     "sort_order": 0,
     "product": 65,
-    "image": "products/saleordemoproduct_paints_05_JuztMPF.png",
+    "image": "products/saleordemoskill_paints_05_JuztMPF.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4250,7 +4250,7 @@
   "fields": {
     "sort_order": 0,
     "product": 71,
-    "image": "products/saleordemoproduct_fd_juice_06_C3OoAQO.png",
+    "image": "products/saleordemoskill_fd_juice_06_C3OoAQO.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4261,7 +4261,7 @@
   "fields": {
     "sort_order": 0,
     "product": 72,
-    "image": "products/saleordemoproduct_fd_juice_06_w0MtJXJ.png",
+    "image": "products/saleordemoskill_fd_juice_06_w0MtJXJ.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4272,7 +4272,7 @@
   "fields": {
     "sort_order": 0,
     "product": 73,
-    "image": "products/saleordemoproduct_fd_juice_05_53w0t3q.png",
+    "image": "products/saleordemoskill_fd_juice_05_53w0t3q.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4283,7 +4283,7 @@
   "fields": {
     "sort_order": 0,
     "product": 74,
-    "image": "products/saleordemoproduct_fd_juice_01_IaWgwUI.png",
+    "image": "products/saleordemoskill_fd_juice_01_IaWgwUI.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4294,7 +4294,7 @@
   "fields": {
     "sort_order": 0,
     "product": 75,
-    "image": "products/saleordemoproduct_fd_juice_03_q5Wq59X.png",
+    "image": "products/saleordemoskill_fd_juice_03_q5Wq59X.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4305,7 +4305,7 @@
   "fields": {
     "sort_order": 0,
     "product": 76,
-    "image": "products/saleordemoproduct_fd_juice_02_O7S875d.png",
+    "image": "products/saleordemoskill_fd_juice_02_O7S875d.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4316,7 +4316,7 @@
   "fields": {
     "sort_order": 0,
     "product": 77,
-    "image": "products/saleordemoproduct_fd_juice_03_GEu22f0.png",
+    "image": "products/saleordemoskill_fd_juice_03_GEu22f0.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4327,7 +4327,7 @@
   "fields": {
     "sort_order": 0,
     "product": 78,
-    "image": "products/saleordemoproduct_fd_juice_04_sqK71mC.png",
+    "image": "products/saleordemoskill_fd_juice_04_sqK71mC.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4338,7 +4338,7 @@
   "fields": {
     "sort_order": 0,
     "product": 79,
-    "image": "products/saleordemoproduct_fd_juice_02_SwckdWe.png",
+    "image": "products/saleordemoskill_fd_juice_02_SwckdWe.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4349,7 +4349,7 @@
   "fields": {
     "sort_order": 0,
     "product": 81,
-    "image": "products/saleordemoproduct_wine-red_pUcuxQv.png",
+    "image": "products/saleordemoskill_wine-red_pUcuxQv.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4360,7 +4360,7 @@
   "fields": {
     "sort_order": 0,
     "product": 82,
-    "image": "products/saleordemoproduct_wine-white_4cCs90C.png",
+    "image": "products/saleordemoskill_wine-white_4cCs90C.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4371,7 +4371,7 @@
   "fields": {
     "sort_order": 0,
     "product": 83,
-    "image": "products/saleordemoproduct_beer-02_1_9t1BfZn.png",
+    "image": "products/saleordemoskill_beer-02_1_9t1BfZn.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4382,7 +4382,7 @@
   "fields": {
     "sort_order": 1,
     "product": 83,
-    "image": "products/saleordemoproduct_beer-02_2_rLQRJDC.png",
+    "image": "products/saleordemoskill_beer-02_2_rLQRJDC.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4393,7 +4393,7 @@
   "fields": {
     "sort_order": 0,
     "product": 84,
-    "image": "products/saleordemoproduct_beer-01_1_Qh8BaiR.png",
+    "image": "products/saleordemoskill_beer-01_1_Qh8BaiR.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4404,7 +4404,7 @@
   "fields": {
     "sort_order": 1,
     "product": 84,
-    "image": "products/saleordemoproduct_beer-01_2_92CFmqa.png",
+    "image": "products/saleordemoskill_beer-01_2_92CFmqa.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4415,7 +4415,7 @@
   "fields": {
     "sort_order": 0,
     "product": 85,
-    "image": "products/saleordemoproduct_cuschion01_DmDS3DM.png",
+    "image": "products/saleordemoskill_cuschion01_DmDS3DM.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4426,7 +4426,7 @@
   "fields": {
     "sort_order": 0,
     "product": 86,
-    "image": "products/saleordemoproduct_cuschion02_JabUGVI.png",
+    "image": "products/saleordemoskill_cuschion02_JabUGVI.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4437,7 +4437,7 @@
   "fields": {
     "sort_order": 0,
     "product": 87,
-    "image": "products/saleordemoproduct_sneakers_01_1_UF2jkqe.png",
+    "image": "products/saleordemoskill_sneakers_01_1_UF2jkqe.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4448,7 +4448,7 @@
   "fields": {
     "sort_order": 1,
     "product": 87,
-    "image": "products/saleordemoproduct_sneakers_01_2_T1UPq2W.png",
+    "image": "products/saleordemoskill_sneakers_01_2_T1UPq2W.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4459,7 +4459,7 @@
   "fields": {
     "sort_order": 2,
     "product": 87,
-    "image": "products/saleordemoproduct_sneakers_01_3_vzD3TAq.png",
+    "image": "products/saleordemoskill_sneakers_01_3_vzD3TAq.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4470,7 +4470,7 @@
   "fields": {
     "sort_order": 3,
     "product": 87,
-    "image": "products/saleordemoproduct_sneakers_01_4_N1A4Bfr.png",
+    "image": "products/saleordemoskill_sneakers_01_4_N1A4Bfr.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4481,7 +4481,7 @@
   "fields": {
     "sort_order": 0,
     "product": 88,
-    "image": "products/saleordemoproduct_sneakers_02_1_bsyba3o.png",
+    "image": "products/saleordemoskill_sneakers_02_1_bsyba3o.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4492,7 +4492,7 @@
   "fields": {
     "sort_order": 1,
     "product": 88,
-    "image": "products/saleordemoproduct_sneakers_02_2_XOrJi1r.png",
+    "image": "products/saleordemoskill_sneakers_02_2_XOrJi1r.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4503,7 +4503,7 @@
   "fields": {
     "sort_order": 2,
     "product": 88,
-    "image": "products/saleordemoproduct_sneakers_02_3_IzqfgoY.png",
+    "image": "products/saleordemoskill_sneakers_02_3_IzqfgoY.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4514,7 +4514,7 @@
   "fields": {
     "sort_order": 3,
     "product": 88,
-    "image": "products/saleordemoproduct_sneakers_02_4_0yxkDqy.png",
+    "image": "products/saleordemoskill_sneakers_02_4_0yxkDqy.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4525,7 +4525,7 @@
   "fields": {
     "sort_order": 0,
     "product": 89,
-    "image": "products/saleordemoproduct_cl_boot07_1_eoegAde.png",
+    "image": "products/saleordemoskill_cl_boot07_1_eoegAde.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4536,7 +4536,7 @@
   "fields": {
     "sort_order": 1,
     "product": 89,
-    "image": "products/saleordemoproduct_cl_boot07_2_rXgyqbH.png",
+    "image": "products/saleordemoskill_cl_boot07_2_rXgyqbH.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4547,7 +4547,7 @@
   "fields": {
     "sort_order": 0,
     "product": 107,
-    "image": "products/saleordemoproduct_cl_polo01_Pad8IDP.png",
+    "image": "products/saleordemoskill_cl_polo01_Pad8IDP.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4558,7 +4558,7 @@
   "fields": {
     "sort_order": 0,
     "product": 108,
-    "image": "products/saleordemoproduct_cl_polo02_2f28ejB.png",
+    "image": "products/saleordemoskill_cl_polo02_2f28ejB.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4569,7 +4569,7 @@
   "fields": {
     "sort_order": 0,
     "product": 109,
-    "image": "products/saleordemoproduct_cl_polo03-woman_aAQGDse.png",
+    "image": "products/saleordemoskill_cl_polo03-woman_aAQGDse.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4580,7 +4580,7 @@
   "fields": {
     "sort_order": 0,
     "product": 110,
-    "image": "products/saleordemoproduct_cl_polo04-woman_RmKizf6.png",
+    "image": "products/saleordemoskill_cl_polo04-woman_RmKizf6.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4591,7 +4591,7 @@
   "fields": {
     "sort_order": 0,
     "product": 111,
-    "image": "products/saleordemoproduct_cl_boot01_1_tGSPn9w.png",
+    "image": "products/saleordemoskill_cl_boot01_1_tGSPn9w.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4602,7 +4602,7 @@
   "fields": {
     "sort_order": 1,
     "product": 111,
-    "image": "products/saleordemoproduct_cl_boot01_2_4XjIOoq.png",
+    "image": "products/saleordemoskill_cl_boot01_2_4XjIOoq.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4613,7 +4613,7 @@
   "fields": {
     "sort_order": 2,
     "product": 111,
-    "image": "products/saleordemoproduct_cl_boot01_3_NbfQDwS.png",
+    "image": "products/saleordemoskill_cl_boot01_3_NbfQDwS.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4624,7 +4624,7 @@
   "fields": {
     "sort_order": 0,
     "product": 112,
-    "image": "products/saleordemoproduct_cl_boot03_1_OTMCIYO.png",
+    "image": "products/saleordemoskill_cl_boot03_1_OTMCIYO.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4635,7 +4635,7 @@
   "fields": {
     "sort_order": 1,
     "product": 112,
-    "image": "products/saleordemoproduct_cl_boot03_2_OTGLbAG.png",
+    "image": "products/saleordemoskill_cl_boot03_2_OTGLbAG.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4646,7 +4646,7 @@
   "fields": {
     "sort_order": 0,
     "product": 113,
-    "image": "products/saleordemoproduct_cl_boot06_1_6ch6CKG.png",
+    "image": "products/saleordemoskill_cl_boot06_1_6ch6CKG.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4657,7 +4657,7 @@
   "fields": {
     "sort_order": 1,
     "product": 113,
-    "image": "products/saleordemoproduct_cl_boot06_2_bCwXZeb.png",
+    "image": "products/saleordemoskill_cl_boot06_2_bCwXZeb.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4668,7 +4668,7 @@
   "fields": {
     "sort_order": 0,
     "product": 114,
-    "image": "products/saleordemoproduct_cl_boot06_1_yriHg5K.png",
+    "image": "products/saleordemoskill_cl_boot06_1_yriHg5K.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4679,7 +4679,7 @@
   "fields": {
     "sort_order": 1,
     "product": 114,
-    "image": "products/saleordemoproduct_cl_boot06_2_FXc2d9y.png",
+    "image": "products/saleordemoskill_cl_boot06_2_FXc2d9y.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4690,7 +4690,7 @@
   "fields": {
     "sort_order": 0,
     "product": 115,
-    "image": "products/saleordemoproduct_cl_bogo01_1_8UFpEGr.png",
+    "image": "products/saleordemoskill_cl_bogo01_1_8UFpEGr.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4701,7 +4701,7 @@
   "fields": {
     "sort_order": 0,
     "product": 116,
-    "image": "products/saleordemoproduct_cl_bogo02_1_mLVLNPA.png",
+    "image": "products/saleordemoskill_cl_bogo02_1_mLVLNPA.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4712,7 +4712,7 @@
   "fields": {
     "sort_order": 0,
     "product": 117,
-    "image": "products/saleordemoproduct_cl_bogo03_1_qYbwk8n.png",
+    "image": "products/saleordemoskill_cl_bogo03_1_qYbwk8n.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4723,7 +4723,7 @@
   "fields": {
     "sort_order": 0,
     "product": 118,
-    "image": "products/saleordemoproduct_cl_bogo04_1_K6D7GaK.png",
+    "image": "products/saleordemoskill_cl_bogo04_1_K6D7GaK.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -4734,7 +4734,7 @@
   "fields": {
     "sort_order": 1,
     "product": 118,
-    "image": "products/saleordemoproduct_cl_bogo04_2_lFMzM2H.png",
+    "image": "products/saleordemoskill_cl_bogo04_2_lFMzM2H.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }

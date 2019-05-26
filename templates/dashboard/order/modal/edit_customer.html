@@ -4,7 +4,7 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:order-customer-edit' order_pk=order.pk %}
+{% url 'dashboard:task-customer-edit' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col s12">
       {% blocktrans trimmed context "Modal edit customer text" %}
-        Connect an order with an account of an existing customer or provide a contact email address.
+        Connect an task with an account of an existing customer or provide a contact email address.
       {% endblocktrans %}
     </div>
   </div>
@@ -29,9 +29,9 @@
 {% endblock %}
 
 {% block actions_left %}
-  {% if order.get_user_current_email %}
-    <button type="submit" class="modal-action btn-flat waves-effect" formaction="{% url 'dashboard:order-customer-remove' order_pk=order.pk %}">
-      {% trans "Remove customer from order" context "Dashboard edit draft order remove action" %}
+  {% if task.get_user_current_email %}
+    <button type="submit" class="modal-action btn-flat waves-effect" formaction="{% url 'dashboard:task-customer-remove' task_pk=task.pk %}">
+      {% trans "Remove customer from task" context "Dashboard edit draft task remove action" %}
     </button>
   {% endif %}
 {% endblock %}

@@ -21,21 +21,21 @@ from remote_works.checkout import utils
 from remote_works.checkout.models import Cart
 from remote_works.checkout.utils import add_variant_to_cart
 from remote_works.dashboard.menu.utils import update_menu
-from remote_works.dashboard.order.utils import fulfill_order_line
+from remote_works.dashboard.task.utils import fulfill_task_line
 from remote_works.discount import VoucherType
 from remote_works.discount.models import Sale, Voucher, VoucherTranslation
 from remote_works.menu.models import Menu, MenuItem
-from remote_works.order import OrderEvents, OrderStatus
-from remote_works.order.models import FulfillmentStatus, Order, OrderEvent
-from remote_works.order.utils import recalculate_order
+from remote_works.task import TaskEvents, TaskStatus
+from remote_works.task.models import FulfillmentStatus, Task, TaskEvent
+from remote_works.task.utils import recalculate_order
 from remote_works.page.models import Page
 from remote_works.payment import ChargeStatus, TransactionKind
 from remote_works.payment.models import Payment
 from remote_works.skill.models import (
     Attribute, AttributeTranslation, AttributeValue, Category, Collection,
     Skill, SkillImage, SkillTranslation, SkillType, SkillVariant)
-from remote_works.shipping.models import (
-    ShippingMethod, ShippingMethodType, ShippingZone)
+from remote_works.delivery.models import (
+    DeliveryMethod, DeliveryMethodType, DeliveryZone)
 from remote_works.site import AuthenticationBackends
 from remote_works.site.models import AuthorizationKey, SiteSettings
 
@@ -134,7 +134,7 @@ def customer_user(address):  # pylint: disable=W0613
         'test@example.com',
         'password',
         default_billing_address=default_address,
-        default_shipping_address=default_address)
+        default_delivery_address=default_address)
     user.addresses.add(default_address)
     return user
 
@@ -156,9 +156,9 @@ def request_cart_with_item(skill, request_cart):
 
 
 @pytest.fixture
-def order(customer_user):
+def task(customer_user):
     address = customer_user.default_billing_address.get_copy()
-    return Order.objects.create(
+    return Task.objects.create(
         billing_address=address,
         user_email=customer_user.email,
         user=customer_user)
@@ -200,32 +200,32 @@ def authorized_client(client, customer_user):
 
 
 @pytest.fixture
-def shipping_zone(db):  # pylint: disable=W0613
-    shipping_zone = ShippingZone.objects.create(
+def delivery_zone(db):  # pylint: disable=W0613
+    delivery_zone = DeliveryZone.objects.create(
         name='Europe', countries=[code for code, name in countries])
-    shipping_zone.shipping_methods.create(
-        name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED, price=Money(10, 'USD'),
-        shipping_zone=shipping_zone)
-    return shipping_zone
+    delivery_zone.delivery_methods.create(
+        name='DHL', minimum_task_price=Money(0, 'USD'),
+        type=DeliveryMethodType.PRICE_BASED, price=Money(10, 'USD'),
+        delivery_zone=delivery_zone)
+    return delivery_zone
 
 
 @pytest.fixture
-def shipping_zone_without_countries(db):  # pylint: disable=W0613
-    shipping_zone = ShippingZone.objects.create(
+def delivery_zone_without_countries(db):  # pylint: disable=W0613
+    delivery_zone = DeliveryZone.objects.create(
         name='Europe', countries=[])
-    shipping_zone.shipping_methods.create(
-        name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED, price=Money(10, 'USD'),
-        shipping_zone=shipping_zone)
-    return shipping_zone
+    delivery_zone.delivery_methods.create(
+        name='DHL', minimum_task_price=Money(0, 'USD'),
+        type=DeliveryMethodType.PRICE_BASED, price=Money(10, 'USD'),
+        delivery_zone=delivery_zone)
+    return delivery_zone
 
 @pytest.fixture
-def shipping_method(shipping_zone):
-    return ShippingMethod.objects.create(
-        name='DHL', minimum_order_price=Money(0, 'USD'),
-        type=ShippingMethodType.PRICE_BASED,
-        price=Money(10, 'USD'), shipping_zone=shipping_zone)
+def delivery_method(delivery_zone):
+    return DeliveryMethod.objects.create(
+        name='DHL', minimum_task_price=Money(0, 'USD'),
+        type=DeliveryMethodType.PRICE_BASED,
+        price=Money(10, 'USD'), delivery_zone=delivery_zone)
 
 
 @pytest.fixture
@@ -314,7 +314,7 @@ def permission_manage_orders():
 @pytest.fixture
 def skill_type(color_attribute, size_attribute):
     skill_type = SkillType.objects.create(
-        name='Default Type', has_variants=True, is_shipping_required=True)
+        name='Default Type', has_variants=True, is_delivery_required=True)
     skill_type.skill_attributes.add(color_attribute)
     skill_type.variant_attributes.add(size_attribute)
     return skill_type
@@ -323,7 +323,7 @@ def skill_type(color_attribute, size_attribute):
 @pytest.fixture
 def skill_type_without_variant():
     skill_type = SkillType.objects.create(
-        name='Type', has_variants=False, is_shipping_required=True)
+        name='Type', has_variants=False, is_delivery_required=True)
     return skill_type
 
 
@@ -368,10 +368,10 @@ def variant(skill):
 
 
 @pytest.fixture
-def skill_without_shipping(category):
+def skill_without_delivery(category):
     skill_type = SkillType.objects.create(
-        name='Type with no shipping', has_variants=False,
-        is_shipping_required=False)
+        name='Type with no delivery', has_variants=False,
+        is_delivery_required=False)
     skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
         skill_type=skill_type, category=category)
@@ -404,16 +404,16 @@ def skill_list(skill_type, category):
 
 
 @pytest.fixture
-def order_list(customer_user):
+def task_list(customer_user):
     address = customer_user.default_billing_address.get_copy()
     data = {
         'billing_address': address, 'user': customer_user,
         'user_email': customer_user.email}
-    order = Order.objects.create(**data)
-    order1 = Order.objects.create(**data)
-    order2 = Order.objects.create(**data)
+    task = Task.objects.create(**data)
+    order1 = Task.objects.create(**data)
+    order2 = Task.objects.create(**data)
 
-    return [order, order1, order2]
+    return [task, order1, order2]
 
 
 @pytest.fixture
@@ -476,17 +476,17 @@ def voucher_with_high_min_amount_spent():
 
 
 @pytest.fixture
-def voucher_shipping_type():
+def voucher_delivery_type():
     return Voucher.objects.create(
         code='mirumee',
         discount_value=10,
-        type=VoucherType.SHIPPING,
+        type=VoucherType.DELIVERY,
         countries='IS')
 
 
 @pytest.fixture()
-def order_with_lines(
-        order, skill_type, category, shipping_zone, vatlayer):
+def task_with_lines(
+        task, skill_type, category, delivery_zone, vatlayer):
     taxes = vatlayer
     skill = Skill.objects.create(
         name='Test skill', price=Money('10.00', 'USD'),
@@ -494,10 +494,10 @@ def order_with_lines(
     variant = SkillVariant.objects.create(
         skill=skill, sku='SKU_A', cost_price=Money(1, 'USD'), quantity=5,
         quantity_allocated=3)
-    order.lines.create(
+    task.lines.create(
         skill_name=variant.display_skill(),
         skill_sku=variant.sku,
-        is_shipping_required=variant.is_shipping_required(),
+        is_delivery_required=variant.is_delivery_required(),
         quantity=3,
         variant=variant,
         unit_price=variant.get_price(taxes=taxes),
@@ -509,56 +509,56 @@ def order_with_lines(
     variant = SkillVariant.objects.create(
         skill=skill, sku='SKU_B', cost_price=Money(2, 'USD'), quantity=2,
         quantity_allocated=2)
-    order.lines.create(
+    task.lines.create(
         skill_name=variant.display_skill(),
         skill_sku=variant.sku,
-        is_shipping_required=variant.is_shipping_required(),
+        is_delivery_required=variant.is_delivery_required(),
         quantity=2,
         variant=variant,
         unit_price=variant.get_price(taxes=taxes),
         tax_rate=taxes['standard']['value'])
 
-    order.shipping_address = order.billing_address.get_copy()
-    method = shipping_zone.shipping_methods.get()
-    order.shipping_method_name = method.name
-    order.shipping_method = method
-    order.shipping_price = method.get_total(taxes)
-    order.save()
+    task.delivery_address = task.billing_address.get_copy()
+    method = delivery_zone.delivery_methods.get()
+    task.delivery_method_name = method.name
+    task.delivery_method = method
+    task.delivery_price = method.get_total(taxes)
+    task.save()
 
-    recalculate_order(order)
+    recalculate_order(task)
 
-    order.refresh_from_db()
-    return order
-
-
-@pytest.fixture()
-def order_events(order):
-    for event_type in OrderEvents:
-        OrderEvent.objects.create(type=event_type.value, order=order)
+    task.refresh_from_db()
+    return task
 
 
 @pytest.fixture()
-def fulfilled_order(order_with_lines):
-    order = order_with_lines
-    fulfillment = order.fulfillments.create()
-    line_1 = order.lines.first()
-    line_2 = order.lines.last()
-    fulfillment.lines.create(order_line=line_1, quantity=line_1.quantity)
-    fulfill_order_line(line_1, line_1.quantity)
-    fulfillment.lines.create(order_line=line_2, quantity=line_2.quantity)
-    fulfill_order_line(line_2, line_2.quantity)
-    order.status = OrderStatus.FULFILLED
-    order.save(update_fields=['status'])
-    return order
+def task_events(task):
+    for event_type in TaskEvents:
+        TaskEvent.objects.create(type=event_type.value, task=task)
 
 
 @pytest.fixture()
-def fulfilled_order_with_cancelled_fulfillment(fulfilled_order):
+def fulfilled_order(task_with_lines):
+    task = task_with_lines
+    fulfillment = task.fulfillments.create()
+    line_1 = task.lines.first()
+    line_2 = task.lines.last()
+    fulfillment.lines.create(task_line=line_1, quantity=line_1.quantity)
+    fulfill_task_line(line_1, line_1.quantity)
+    fulfillment.lines.create(task_line=line_2, quantity=line_2.quantity)
+    fulfill_task_line(line_2, line_2.quantity)
+    task.status = TaskStatus.FULFILLED
+    task.save(update_fields=['status'])
+    return task
+
+
+@pytest.fixture()
+def fulfilled_task_with_cancelled_fulfillment(fulfilled_order):
     fulfillment = fulfilled_order.fulfillments.create()
     line_1 = fulfilled_order.lines.first()
     line_2 = fulfilled_order.lines.last()
-    fulfillment.lines.create(order_line=line_1, quantity=line_1.quantity)
-    fulfillment.lines.create(order_line=line_2, quantity=line_2.quantity)
+    fulfillment.lines.create(task_line=line_1, quantity=line_1.quantity)
+    fulfillment.lines.create(task_line=line_2, quantity=line_2.quantity)
     fulfillment.status = FulfillmentStatus.CANCELED
     fulfillment.save()
     return fulfilled_order
@@ -570,17 +570,17 @@ def fulfillment(fulfilled_order):
 
 
 @pytest.fixture
-def draft_order(order_with_lines):
-    order_with_lines.status = OrderStatus.DRAFT
-    order_with_lines.save(update_fields=['status'])
-    return order_with_lines
+def draft_order(task_with_lines):
+    task_with_lines.status = TaskStatus.DRAFT
+    task_with_lines.save(update_fields=['status'])
+    return task_with_lines
 
 
 @pytest.fixture()
-def payment_txn_preauth(order_with_lines, payment_dummy):
-    order = order_with_lines
+def payment_txn_preauth(task_with_lines, payment_dummy):
+    task = task_with_lines
     payment = payment_dummy
-    payment.order = order
+    payment.task = task
     payment.save()
 
     payment.transactions.create(
@@ -592,10 +592,10 @@ def payment_txn_preauth(order_with_lines, payment_dummy):
 
 
 @pytest.fixture()
-def payment_txn_captured(order_with_lines, payment_dummy):
-    order = order_with_lines
+def payment_txn_captured(task_with_lines, payment_dummy):
+    task = task_with_lines
     payment = payment_dummy
-    payment.order = order
+    payment.task = task
     payment.charge_status = ChargeStatus.FULLY_CHARGED
     payment.captured_amount = payment.total
     payment.save()
@@ -609,10 +609,10 @@ def payment_txn_captured(order_with_lines, payment_dummy):
 
 
 @pytest.fixture()
-def payment_txn_refunded(order_with_lines, payment_dummy):
-    order = order_with_lines
+def payment_txn_refunded(task_with_lines, payment_dummy):
+    task = task_with_lines
     payment = payment_dummy
-    payment.order = order
+    payment.task = task
     payment.charge_status = ChargeStatus.FULLY_REFUNDED
     payment.is_active = False
     payment.save()
@@ -670,8 +670,8 @@ def permission_manage_skills():
 
 
 @pytest.fixture
-def permission_manage_shipping():
-    return Permission.objects.get(codename='manage_shipping')
+def permission_manage_delivery():
+    return Permission.objects.get(codename='manage_delivery')
 
 
 @pytest.fixture
@@ -860,25 +860,25 @@ def skill_translation_fr(skill):
 
 
 @pytest.fixture
-def payment_dummy(db, settings, order_with_lines):
+def payment_dummy(db, settings, task_with_lines):
     return Payment.objects.create(
         gateway=settings.DUMMY,
-        order=order_with_lines,
+        task=task_with_lines,
         is_active=True,
         cc_first_digits='4111',
         cc_last_digits='1111',
         cc_brand='VISA',
         cc_exp_month=12,
         cc_exp_year=2027,
-        total=order_with_lines.total.gross.amount,
-        currency=order_with_lines.total.gross.currency,
-        billing_first_name=order_with_lines.billing_address.first_name,
-        billing_last_name=order_with_lines.billing_address.last_name,
-        billing_company_name=order_with_lines.billing_address.company_name,
-        billing_address_1=order_with_lines.billing_address.street_address_1,
-        billing_address_2=order_with_lines.billing_address.street_address_2,
-        billing_city=order_with_lines.billing_address.city,
-        billing_postal_code=order_with_lines.billing_address.postal_code,
-        billing_country_code=order_with_lines.billing_address.country.code,
-        billing_country_area=order_with_lines.billing_address.country_area,
-        billing_email=order_with_lines.user_email)
+        total=task_with_lines.total.gross.amount,
+        currency=task_with_lines.total.gross.currency,
+        billing_first_name=task_with_lines.billing_address.first_name,
+        billing_last_name=task_with_lines.billing_address.last_name,
+        billing_company_name=task_with_lines.billing_address.company_name,
+        billing_address_1=task_with_lines.billing_address.street_address_1,
+        billing_address_2=task_with_lines.billing_address.street_address_2,
+        billing_city=task_with_lines.billing_address.city,
+        billing_postal_code=task_with_lines.billing_address.postal_code,
+        billing_country_code=task_with_lines.billing_address.country.code,
+        billing_country_area=task_with_lines.billing_address.country_area,
+        billing_email=task_with_lines.user_email)

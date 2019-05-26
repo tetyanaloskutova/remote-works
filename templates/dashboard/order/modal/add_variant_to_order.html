@@ -4,12 +4,12 @@
 {% load materializecss %}
 
 {% block action_url %}
-{% url 'dashboard:add-variant-to-order' order_pk=order.pk %}
+{% url 'dashboard:add-variant-to-task' task_pk=task.pk %}
 {% endblock %}
 
 {% block title %}
-{% blocktrans trimmed with order=order context "Modal order add variant title" %}
-  Add skill to {{ order }}
+{% blocktrans trimmed with task=task context "Modal task add variant title" %}
+  Add skill to {{ task }}
 {% endblocktrans %}
 {% endblock %}
 
@@ -19,5 +19,5 @@
 {% endblock %}
 
 {% block primary_action %}
-{% trans "Add" context "Modal order add variant primary action" %}
+{% trans "Add" context "Modal task add variant primary action" %}
 {% endblock %}

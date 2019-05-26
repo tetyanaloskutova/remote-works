@@ -3,7 +3,7 @@ Taxes
 
 Remote-works gives a possibility to configure taxes. It can be done in dashboard ``Taxes`` tab.
 
-Taxes are charged according to the rates applicable in the country to which the order is delivered. If tax rate set for the product is not available, standard tax rate is used by default.
+Taxes are charged according to the rates applicable in the country to which the task is delivered. If tax rate set for the skill is not available, standard tax rate is used by default.
 
 For now, only taxes in European Union are handled.
 
@@ -13,17 +13,17 @@ Configuring taxes
 
 There are three ways in which you can configure taxes:
 
-#. All products prices are entered with tax included
+#. All skills prices are entered with tax included
 
-   If selected, all prices entered and displayed in dashboard will be treated as gross prices. For example: product with entered price 4.00 € and 19% VAT will have net price calculated to 3.36 € (rounded).
+   If selected, all prices entered and displayed in dashboard will be treated as gross prices. For example: skill with entered price 4.00 € and 19% VAT will have net price calculated to 3.36 € (rounded).
 
 #. Show gross prices to customers in the storefront
 
-   If selected, prices displayed for customers in storefront will be gross. Taxes will be properly calculated at checkout. Changing this setting has no effect on displaying orders placed in the past.
+   If selected, prices displayed for customers in storefront will be gross. Taxes will be properly calculated at checkout. Changing this setting has no effect on displaying tasks placed in the past.
 
-#. Charge taxes on shipping rates
+#. Charge taxes on delivery rates
 
-   If selected, standard tax rate will be charged on shipping price.
+   If selected, standard tax rate will be charged on delivery price.
 
 
 Tax rates preview

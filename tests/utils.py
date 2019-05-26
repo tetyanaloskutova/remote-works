@@ -21,9 +21,9 @@ def get_redirect_location(response):
 def filter_products_by_attribute(queryset, attribute_id, value):
     key = smart_text(attribute_id)
     value = smart_text(value)
-    in_product = Q(attributes__contains={key: value})
+    in_skill = Q(attributes__contains={key: value})
     in_variant = Q(variants__attributes__contains={key: value})
-    return queryset.filter(in_product | in_variant)
+    return queryset.filter(in_skill | in_variant)
 
 
 def get_form_errors(response, form_name='form'):
@@ -53,7 +53,7 @@ def create_image():
 def create_pdf_file_with_image_ext():
     file_name = 'skill.jpg'
     file_data = SimpleUploadedFile(
-        file_name, b'product_data', 'application/pdf')
+        file_name, b'skill_data', 'application/pdf')
     return file_data, file_name
 
 

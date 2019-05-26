@@ -29,7 +29,7 @@ INCORRECT_ZIP_ERRORS = [
     '81737',  # ZIP verification failed.
     '91826',  # ZIP must be a string.
     '94527',  # Billing postal code format is invalid.
-    '915164',  # Shipping amount is too large.
+    '915164',  # Delivery amount is too large.
     '915165',  # Ships from postal code is too long.
     '915166',  # Ships from postal code must be a string.
     '915167',  # Ships from zip can only contain letters, numbers, spaces, and hyphens.

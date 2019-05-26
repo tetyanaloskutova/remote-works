@@ -6,67 +6,67 @@ from django.db import transaction
 from ...checkout import models
 from ...checkout.utils import (
     add_variant_to_cart, add_voucher_to_cart, change_billing_address_in_cart,
-    change_shipping_address_in_cart, create_order, get_or_create_user_cart,
+    change_delivery_address_in_cart, create_order, get_or_create_user_cart,
     get_taxes_for_cart, get_voucher_for_cart, ready_to_place_order,
     recalculate_cart_discount, remove_voucher_from_cart)
 from ...core import analytics
 from ...core.exceptions import InsufficientStock
 from ...core.utils.taxes import get_taxes_for_address
 from ...discount import models as voucher_model
-from ...order import OrderEvents, OrderEventsEmails
-from ...order.emails import send_order_confirmation
+from ...task import TaskEvents, TaskEventsEmails
+from ...task.emails import send_task_confirmation
 from ...payment import PaymentError
 from ...payment.utils import gateway_process_payment
-from ...shipping.models import ShippingMethod as ShippingMethodModel
+from ...delivery.models import DeliveryMethod as DeliveryMethodModel
 from ..account.i18n import I18nMixin
 from ..account.types import AddressInput, User
 from ..core.mutations import BaseMutation, ModelMutation
 from ..core.types.common import Error
-from ..order.types import Order
+from ..task.types import Task
 from ..skill.types import SkillVariant
-from ..shipping.types import ShippingMethod
+from ..delivery.types import DeliveryMethod
 from .types import Checkout, CheckoutLine
 
 
-def clean_shipping_method(
+def clean_delivery_method(
         checkout, method, errors, discounts, taxes, country_code=None,
         remove=True):
     # FIXME Add tests for this function
     if not method:
         return errors
-    if not checkout.is_shipping_required():
+    if not checkout.is_delivery_required():
         errors.append(
             Error(
                 field='checkout',
-                message='This checkout does not requires shipping.'))
-    if not checkout.shipping_address:
+                message='This checkout does not requires delivery.'))
+    if not checkout.delivery_address:
         errors.append(
             Error(
                 field='checkout',
                 message=(
-                    'Cannot choose a shipping method for a '
-                    'checkout without the shipping address.')))
+                    'Cannot choose a delivery method for a '
+                    'checkout without the delivery address.')))
         return errors
     valid_methods = (
-        ShippingMethodModel.objects.applicable_shipping_methods(
+        DeliveryMethodModel.objects.applicable_delivery_methods(
             price=checkout.get_subtotal(discounts, taxes).gross.amount,
             weight=checkout.get_total_weight(),
-            country_code=country_code or checkout.shipping_address.country.code
+            country_code=country_code or checkout.delivery_address.country.code
         ))
     valid_methods = valid_methods.values_list('id', flat=True)
     if method.pk not in valid_methods and not remove:
         errors.append(
             Error(
-                field='shippingMethod',
-                message='Shipping method cannot be used with this checkout.'))
+                field='deliveryMethod',
+                message='Delivery method cannot be used with this checkout.'))
     if remove:
-        checkout.shipping_method = None
-        checkout.save(update_fields=['shipping_method'])
+        checkout.delivery_method = None
+        checkout.save(update_fields=['delivery_method'])
     return errors
 
 
 def check_lines_quantity(variants, quantities):
-    """Check if stock is sufficient for each line in the list of dicts.
+    """Check if availability is sufficient for each line in the list of dicts.
     Return list of errors.
     """
     errors = []
@@ -76,7 +76,7 @@ def check_lines_quantity(variants, quantities):
         except InsufficientStock as e:
             message = (
                 'Could not add item '
-                + '%(item_name)s. Only %(remaining)d remaining in stock.' % {
+                + '%(item_name)s. Only %(remaining)d remaining in availability.' % {
                     'remaining': e.item.quantity_available,
                     'item_name': e.item.display_skill()})
             errors.append(('quantity', message))
@@ -98,7 +98,7 @@ class CheckoutCreateInput(graphene.InputObjectType):
             'an item in the checkout.'), required=True)
     email = graphene.String(
         description='The customer\'s email address.')
-    shipping_address = AddressInput(
+    delivery_address = AddressInput(
         description=(
             'The mailling address to where the checkout will be shipped.'))
     billing_address = AddressInput(
@@ -135,18 +135,18 @@ class CheckoutCreate(ModelMutation, I18nMixin):
                     cleaned_input['variants'] = variants
                     cleaned_input['quantities'] = quantities
 
-        default_shipping_address = None
+        default_delivery_address = None
         default_billing_address = None
         if user.is_authenticated:
             default_billing_address = user.default_billing_address
-            default_shipping_address = user.default_shipping_address
+            default_delivery_address = user.default_delivery_address
 
-        if 'shipping_address' in input:
-            shipping_address, errors = cls.validate_address(
-                input['shipping_address'], errors)
-            cleaned_input['shipping_address'] = shipping_address
+        if 'delivery_address' in input:
+            delivery_address, errors = cls.validate_address(
+                input['delivery_address'], errors)
+            cleaned_input['delivery_address'] = delivery_address
         else:
-            cleaned_input['shipping_address'] = default_shipping_address
+            cleaned_input['delivery_address'] = default_delivery_address
 
         if 'billing_address' in input:
             billing_address, errors = cls.validate_address(
@@ -164,11 +164,11 @@ class CheckoutCreate(ModelMutation, I18nMixin):
 
     @classmethod
     def save(cls, info, instance, cleaned_input):
-        shipping_address = cleaned_input.get('shipping_address')
+        delivery_address = cleaned_input.get('delivery_address')
         billing_address = cleaned_input.get('billing_address')
-        if shipping_address:
-            shipping_address.save()
-            instance.shipping_address = shipping_address
+        if delivery_address:
+            delivery_address.save()
+            instance.delivery_address = delivery_address
         if billing_address:
             billing_address.save()
             instance.billing_address = billing_address
@@ -245,10 +245,10 @@ class CheckoutLinesAdd(BaseMutation):
                         cls.add_error(errors, field=err[0], message=err[1])
 
         # FIXME test if below function is called
-        clean_shipping_method(
-            checkout=checkout, method=checkout.shipping_method,
+        clean_delivery_method(
+            checkout=checkout, method=checkout.delivery_method,
             errors=errors, discounts=info.context.discounts,
-            taxes=get_taxes_for_address(checkout.shipping_address))
+            taxes=get_taxes_for_address(checkout.delivery_address))
 
         if errors:
             return CheckoutLinesAdd(errors=errors)
@@ -302,10 +302,10 @@ class CheckoutLineDelete(BaseMutation):
             line.delete()
 
         # FIXME test if below function is called
-        clean_shipping_method(
-            checkout=checkout, method=checkout.shipping_method, errors=errors,
+        clean_delivery_method(
+            checkout=checkout, method=checkout.delivery_method, errors=errors,
             discounts=info.context.discounts,
-            taxes=get_taxes_for_address(checkout.shipping_address))
+            taxes=get_taxes_for_address(checkout.delivery_address))
         if errors:
             return CheckoutLineDelete(errors=errors)
 
@@ -366,43 +366,43 @@ class CheckoutCustomerDetach(BaseMutation):
         return CheckoutCustomerDetach(checkout=checkout)
 
 
-class CheckoutShippingAddressUpdate(BaseMutation, I18nMixin):
+class CheckoutDeliveryAddressUpdate(BaseMutation, I18nMixin):
     checkout = graphene.Field(Checkout, description='An updated checkout')
 
     class Arguments:
         checkout_id = graphene.ID(description='ID of the Checkout.')
-        shipping_address = AddressInput(
+        delivery_address = AddressInput(
             description=(
                 'The mailling address to where the checkout will be shipped.'))
 
     class Meta:
-        description = 'Update shipping address in the existing Checkout.'
+        description = 'Update delivery address in the existing Checkout.'
 
     @classmethod
-    def mutate(cls, root, info, checkout_id, shipping_address):
+    def mutate(cls, root, info, checkout_id, delivery_address):
         errors = []
         checkout = cls.get_node_or_error(
             info, checkout_id, errors, 'checkout_id', only_type=Checkout)
 
-        if checkout is not None and shipping_address:
-            shipping_address, errors = cls.validate_address(
-                shipping_address, errors, instance=checkout.shipping_address)
+        if checkout is not None and delivery_address:
+            delivery_address, errors = cls.validate_address(
+                delivery_address, errors, instance=checkout.delivery_address)
             # FIXME test if below function is called
-            clean_shipping_method(
-                checkout, checkout.shipping_method, errors,
+            clean_delivery_method(
+                checkout, checkout.delivery_method, errors,
                 info.context.discounts,
-                get_taxes_for_address(shipping_address))
+                get_taxes_for_address(delivery_address))
             if not errors:
                 with transaction.atomic():
-                    shipping_address.save()
-                    change_shipping_address_in_cart(checkout, shipping_address)
+                    delivery_address.save()
+                    change_delivery_address_in_cart(checkout, delivery_address)
                 recalculate_cart_discount(
                     checkout, info.context.discounts, info.context.taxes)
 
-        return CheckoutShippingAddressUpdate(checkout=checkout, errors=errors)
+        return CheckoutDeliveryAddressUpdate(checkout=checkout, errors=errors)
 
 
-class CheckoutBillingAddressUpdate(CheckoutShippingAddressUpdate):
+class CheckoutBillingAddressUpdate(CheckoutDeliveryAddressUpdate):
     checkout = graphene.Field(Checkout, description='An updated checkout')
 
     class Arguments:
@@ -427,7 +427,7 @@ class CheckoutBillingAddressUpdate(CheckoutShippingAddressUpdate):
                 with transaction.atomic():
                     billing_address.save()
                     change_billing_address_in_cart(checkout, billing_address)
-        return CheckoutShippingAddressUpdate(checkout=checkout, errors=errors)
+        return CheckoutDeliveryAddressUpdate(checkout=checkout, errors=errors)
 
 
 class CheckoutEmailUpdate(BaseMutation):
@@ -455,49 +455,49 @@ class CheckoutEmailUpdate(BaseMutation):
         return CheckoutEmailUpdate(checkout=checkout, errors=errors)
 
 
-class CheckoutShippingMethodUpdate(BaseMutation):
+class CheckoutDeliveryMethodUpdate(BaseMutation):
     checkout = graphene.Field(Checkout, description='An updated checkout')
 
     class Arguments:
         checkout_id = graphene.ID(description='Checkout ID')
-        shipping_method_id = graphene.ID(
-            required=True, description='Shipping method')
+        delivery_method_id = graphene.ID(
+            required=True, description='Delivery method')
 
     class Meta:
-        description = 'Updates the shipping address of the checkout.'
+        description = 'Updates the delivery address of the checkout.'
 
     @classmethod
-    def mutate(cls, root, info, checkout_id, shipping_method_id):
+    def mutate(cls, root, info, checkout_id, delivery_method_id):
         errors = []
         checkout = cls.get_node_or_error(
             info, checkout_id, errors, 'checkout_id', only_type=Checkout)
-        shipping_method = cls.get_node_or_error(
-            info, shipping_method_id, errors, 'shipping_method_id',
-            only_type=ShippingMethod)
+        delivery_method = cls.get_node_or_error(
+            info, delivery_method_id, errors, 'delivery_method_id',
+            only_type=DeliveryMethod)
 
-        if checkout is not None and shipping_method:
-            clean_shipping_method(
-                checkout, shipping_method, errors, info.context.discounts,
+        if checkout is not None and delivery_method:
+            clean_delivery_method(
+                checkout, delivery_method, errors, info.context.discounts,
                 info.context.taxes, remove=False)
 
         if not errors:
-            checkout.shipping_method = shipping_method
-            checkout.save(update_fields=['shipping_method'])
+            checkout.delivery_method = delivery_method
+            checkout.save(update_fields=['delivery_method'])
             recalculate_cart_discount(
                 checkout, info.context.discounts, info.context.taxes)
 
-        return CheckoutShippingMethodUpdate(checkout=checkout, errors=errors)
+        return CheckoutDeliveryMethodUpdate(checkout=checkout, errors=errors)
 
 
 class CheckoutComplete(BaseMutation):
-    order = graphene.Field(Order, description='Placed order')
+    task = graphene.Field(Task, description='Placed task')
 
     class Arguments:
         checkout_id = graphene.ID(description='Checkout ID', required=True)
 
     class Meta:
         description = (
-            'Completes the checkout. As a result a new order is created and '
+            'Completes the checkout. As a result a new task is created and '
             'a payment charge is made. This action requires a successful '
             'payment before it can be performed.')
 
@@ -518,13 +518,13 @@ class CheckoutComplete(BaseMutation):
             return CheckoutComplete(errors=errors)
 
         try:
-            order = create_order(
+            task = create_order(
                 cart=checkout,
                 tracking_code=analytics.get_client_id(info.context),
                 discounts=info.context.discounts, taxes=taxes)
         except InsufficientStock:
             cls.add_error(
-                field=None, message='Insufficient skill stock.',
+                field=None, message='Insufficient skill availability.',
                 errors=errors)
             return CheckoutComplete(errors=errors)
         except voucher_model.NotApplicable:
@@ -536,20 +536,20 @@ class CheckoutComplete(BaseMutation):
 
         # remove cart after checkout is created
         checkout.delete()
-        order.events.create(type=OrderEvents.PLACED.value)
-        send_order_confirmation.delay(order.pk)
-        order.events.create(
-            type=OrderEvents.EMAIL_SENT.value,
+        task.events.create(type=TaskEvents.PLACED.value)
+        send_task_confirmation.delay(task.pk)
+        task.events.create(
+            type=TaskEvents.EMAIL_SENT.value,
             parameters={
-                'email': order.get_user_current_email(),
-                'email_type': OrderEventsEmails.ORDER.value})
+                'email': task.get_user_current_email(),
+                'email_type': TaskEventsEmails.ORDER.value})
 
         try:
             gateway_process_payment(
                 payment=payment, payment_token=payment.token)
         except PaymentError as e:
             cls.add_error(errors=errors, field=None, message=str(e))
-        return CheckoutComplete(order=order, errors=errors)
+        return CheckoutComplete(task=task, errors=errors)
 
 
 class CheckoutUpdateVoucher(BaseMutation):

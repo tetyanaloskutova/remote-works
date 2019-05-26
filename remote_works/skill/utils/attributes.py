@@ -35,7 +35,7 @@ def get_attributes_display_map(obj, attributes):
 
 def generate_name_from_values(attributes_dict):
     """Generates name from AttributeValues. Attributes dict is sorted,
-    as attributes order should be kept within each save.
+    as attributes task should be kept within each save.
 
     Args:
         attributes_dict: dict of attribute_pk: AttributeValue values

@@ -23,7 +23,7 @@ class SiteSettings(models.Model):
         null=True)
     include_taxes_in_prices = models.BooleanField(default=True)
     display_gross_prices = models.BooleanField(default=True)
-    charge_taxes_on_shipping = models.BooleanField(default=True)
+    charge_taxes_on_delivery = models.BooleanField(default=True)
     track_inventory_by_default = models.BooleanField(default=True)
     homepage_collection = models.ForeignKey(
         'skill.Collection', on_delete=models.SET_NULL, related_name='+',

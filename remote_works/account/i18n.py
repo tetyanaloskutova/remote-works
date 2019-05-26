@@ -123,7 +123,7 @@ class AddressForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         autocomplete_type = kwargs.pop('autocomplete_type', None)
         super().__init__(*args, **kwargs)
-        # countries order was taken as defined in the model,
+        # countries task was taken as defined in the model,
         # not being sorted accordingly to the selected language
         self.fields['country'].choices = sorted(
             COUNTRY_CHOICES, key=lambda choice: choice[1])

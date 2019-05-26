@@ -19,7 +19,7 @@ from remote_works.checkout.views import clear_cart, update_cart_line
 from remote_works.core.exceptions import InsufficientStock
 from remote_works.core.utils.taxes import ZERO_TAXED_MONEY
 from remote_works.discount.models import Sale
-from remote_works.shipping.utils import get_shipping_price_estimate
+from remote_works.delivery.utils import get_delivery_price_estimate
 
 
 @pytest.fixture()
@@ -272,11 +272,11 @@ def test_getting_line(cart, product):
     assert cart.lines.get() == cart.get_line(variant)
 
 
-def test_shipping_detection(cart, product):
-    assert not cart.is_shipping_required()
+def test_delivery_detection(cart, product):
+    assert not cart.is_delivery_required()
     variant = product.variants.get()
     add_variant_to_cart(cart, variant, replace=True)
-    assert cart.is_shipping_required()
+    assert cart.is_delivery_required()
 
 
 def test_cart_counter(monkeypatch):
@@ -289,7 +289,7 @@ def test_cart_counter(monkeypatch):
 
 def test_get_prices_of_discounted_products(cart_with_item):
     discounted_line = cart_with_item.lines.first()
-    discounted_product = discounted_line.variant.product
+    discounted_skill = discounted_line.variant.product
     prices = utils.get_prices_of_discounted_products(
         cart_with_item, [discounted_product])
     excepted_value = [
@@ -319,7 +319,7 @@ def test_remove_unavailable_variants(cart, product):
     assert len(cart) == 0
 
 
-def test_check_product_availability_and_warn(
+def test_check_skill_availability_and_warn(
         monkeypatch, cart, product):
     variant = product.variants.get()
     add_variant_to_cart(cart, variant)
@@ -329,7 +329,7 @@ def test_check_product_availability_and_warn(
         'remote_works.checkout.utils.contains_unavailable_variants',
         Mock(return_value=False))
 
-    utils.check_product_availability_and_warn(MagicMock(), cart)
+    utils.check_skill_availability_and_warn(MagicMock(), cart)
     assert len(cart) == 1
 
     monkeypatch.setattr(
@@ -339,7 +339,7 @@ def test_check_product_availability_and_warn(
         'remote_works.checkout.utils.remove_unavailable_variants',
         lambda c: add_variant_to_cart(cart, variant, 0, replace=True))
 
-    utils.check_product_availability_and_warn(MagicMock(), cart)
+    utils.check_skill_availability_and_warn(MagicMock(), cart)
     assert len(cart) == 0
 
 
@@ -593,7 +593,7 @@ def test_cart_line_state(product, request_cart_with_item):
 def test_get_prices_of_products_in_discounted_collections(
         collection, product, cart_with_item):
     discounted_line = cart_with_item.lines.first()
-    assert discounted_line.variant.product == product
+    assert discounted_line.variant.skill == product
     product.collections.add(collection)
     result = utils.get_prices_of_products_in_discounted_collections(
         cart_with_item, [collection])
@@ -610,28 +610,28 @@ def test_update_view_must_be_ajax(customer_user, rf):
     assert result.status_code == 302
 
 
-def test_get_cart_data(request_cart_with_item, shipping_zone, vatlayer):
+def test_get_cart_data(request_cart_with_item, delivery_zone, vatlayer):
     cart = request_cart_with_item
-    shipment_option = get_shipping_price_estimate(
+    shipment_option = get_delivery_price_estimate(
         cart.get_subtotal().gross, cart.get_total_weight(), 'PL', vatlayer)
     cart_data = utils.get_cart_data(
         cart, shipment_option, 'USD', None, vatlayer)
     assert cart_data['cart_total'] == TaxedMoney(
         net=Money('8.13', 'USD'), gross=Money(10, 'USD'))
-    assert cart_data['total_with_shipping'].start == TaxedMoney(
+    assert cart_data['total_with_delivery'].start == TaxedMoney(
         net=Money('16.26', 'USD'), gross=Money(20, 'USD'))
 
 
-def test_get_cart_data_no_shipping(request_cart_with_item, vatlayer):
+def test_get_cart_data_no_delivery(request_cart_with_item, vatlayer):
     cart = request_cart_with_item
-    shipment_option = get_shipping_price_estimate(
+    shipment_option = get_delivery_price_estimate(
         cart.get_subtotal().gross, cart.get_total_weight(), 'PL', vatlayer)
     cart_data = utils.get_cart_data(
         cart, shipment_option, 'USD', None, vatlayer)
     cart_total = cart_data['cart_total']
     assert cart_total == TaxedMoney(
         net=Money('8.13', 'USD'), gross=Money(10, 'USD'))
-    assert cart_data['total_with_shipping'].start == cart_total
+    assert cart_data['total_with_delivery'].start == cart_total
 
 
 def test_cart_total_with_discount(request_cart_with_item, sale, vatlayer):
@@ -641,12 +641,12 @@ def test_cart_total_with_discount(request_cart_with_item, sale, vatlayer):
         net=Money('4.07', 'USD'), gross=Money('5.00', 'USD'))
 
 
-def test_cart_taxes(request_cart_with_item, shipping_zone, vatlayer):
+def test_cart_taxes(request_cart_with_item, delivery_zone, vatlayer):
     cart = request_cart_with_item
-    cart.shipping_method = shipping_zone.shipping_methods.get()
+    cart.delivery_method = delivery_zone.delivery_methods.get()
     cart.save()
     taxed_price = TaxedMoney(net=Money('8.13', 'USD'), gross=Money(10, 'USD'))
-    assert cart.get_shipping_price(taxes=vatlayer) == taxed_price
+    assert cart.get_delivery_price(taxes=vatlayer) == taxed_price
     assert cart.get_subtotal(taxes=vatlayer) == taxed_price
 
 

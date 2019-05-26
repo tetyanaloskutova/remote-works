@@ -73,10 +73,10 @@ def get_value_voucher_discount(voucher, total_price):
     return voucher.get_discount_amount_for(total_price)
 
 
-def get_shipping_voucher_discount(voucher, total_price, shipping_price):
-    """Calculate discount value for a voucher of shipping type."""
+def get_delivery_voucher_discount(voucher, total_price, delivery_price):
+    """Calculate discount value for a voucher of delivery type."""
     voucher.validate_min_amount_spent(total_price)
-    return voucher.get_discount_amount_for(shipping_price)
+    return voucher.get_discount_amount_for(delivery_price)
 
 
 def get_skills_voucher_discount(voucher, prices):

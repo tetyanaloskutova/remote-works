@@ -26,7 +26,7 @@ def get_skill_availability_status(skill):
     if not skill.is_published:
         return SkillAvailabilityStatus.NOT_PUBLISHED
     if requires_variants and not skill.variants.exists():
-        # We check the requires_variants flag here in order to not show this
+        # We check the requires_variants flag here in task to not show this
         # status with skill types that don't require variants, as in that
         # case variants are hidden from the UI and user doesn't manage them.
         return SkillAvailabilityStatus.VARIANTS_MISSSING

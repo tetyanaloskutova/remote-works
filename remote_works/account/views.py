@@ -82,12 +82,12 @@ def password_reset_confirm(request, uidb64=None, token=None):
 def details(request):
     password_form = get_or_process_password_form(request)
     name_form = get_or_process_name_form(request)
-    orders = request.user.orders.confirmed().prefetch_related('lines')
+    tasks = request.user.tasks.confirmed().prefetch_related('lines')
     orders_paginated = get_paginator_items(
-        orders, settings.PAGINATE_BY, request.GET.get('page'))
+        tasks, settings.PAGINATE_BY, request.GET.get('page'))
     schedules = request.user.schedules.all()
     ctx = {'addresses': request.user.addresses.all(),
-           'orders': orders_paginated,
+           'tasks': orders_paginated,
            'change_password_form': password_form,
            'user_name_form': name_form,
            'schedules': schedules}
@@ -178,7 +178,7 @@ def account_delete_confirm(request, token):
 
 def profile_list(request):
     profiles = (
-        User.objects.filter(Q(is_staff=False)).distinct().prefetch_related('skills', 'addresses').select_related('default_billing_address', 'default_shipping_address').order_by('email'))
+        User.objects.filter(Q(is_staff=False)).distinct().prefetch_related('skills', 'addresses').select_related('default_billing_address', 'default_delivery_address').order_by('email'))
     print(len(profiles))
     profile_filter = UserFilter(request.GET, queryset=profiles)
     profiles = get_paginator_items(
@@ -193,10 +193,10 @@ def profile_list(request):
 
 def profile_details(request, pk):
     queryset = User.objects.prefetch_related(
-        'orders', 'addresses', 'notes').select_related(
-            'default_billing_address', 'default_shipping_address')
+        'tasks', 'addresses', 'notes').select_related(
+            'default_billing_address', 'default_delivery_address')
     customer = get_object_or_404(queryset, pk=pk)
-    customer_orders = customer.orders.all()
+    customer_orders = customer.tasks.all()
     customer_skills = Skill.objects.filter(owner=customer.id)
     notes = customer.notes.all()
     schedules = customer.schedules.all()

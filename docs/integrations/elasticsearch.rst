@@ -39,7 +39,7 @@ Initial search index can be created with following command:
 
     $ python manage.py search_index --rebuild
 
-By default all indexed objects (products, users, orders) are reindexed every time they are changed.
+By default all indexed objects (products, users, tasks) are reindexed every time they are changed.
 
 
 Search integration architecture
@@ -47,7 +47,7 @@ Search integration architecture
 
 Search backends use `Elasticsearch DSL <https://github.com/elastic/elasticsearch-dsl-py>`_ for query definition in remote-works/search/backends.
 
-There are two backends defined for elasticsearch integration, `storefront <https://github.com/mirumee/remote-works/blob/master/remote-works/search/backends/elasticsearch_storefront.py>`_ and `dashboard <https://github.com/mirumee/remote-works/blob/master/remote-works/search/backends/elasticsearch_dashboard.py>`_. Storefront search uses only storefront index for product only search, dashboard backend does additional searches in users and orders indexes as well.
+There are two backends defined for elasticsearch integration, `storefront <https://github.com/mirumee/remote-works/blob/master/remote-works/search/backends/elasticsearch_storefront.py>`_ and `dashboard <https://github.com/mirumee/remote-works/blob/master/remote-works/search/backends/elasticsearch_dashboard.py>`_. Storefront search uses only storefront index for skill only search, dashboard backend does additional searches in users and tasks indexes as well.
 
 
 Testing

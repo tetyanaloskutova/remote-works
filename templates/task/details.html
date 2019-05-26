@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load bootstrap_form from bootstrap4 %}
+
+{% block title %}
+  {% blocktrans trimmed context "Task details page title" %}
+    Task {{ task }}
+  {% endblocktrans %} — {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {% if task.user == user %}
+    <ul class="breadcrumbs list-unstyled">
+      <li>
+        <a href="{% url 'home'%}">
+          {% trans "Home" context "Main navigation item" %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url "account:details" %}">
+          {% trans "Your account" context "Main navigation item" %}
+        </a>
+      </li>
+      <li>
+        <a href="{{ task.get_absolute_url }}">
+          {% blocktrans trimmed context "Task details breadcrumb" %}
+            Task {{ task }}
+          {% endblocktrans %}
+        </a>
+      </li>
+    </ul>
+  {% endif %}
+{% endblock breadcrumb %}
+
+{% block meta_tags %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock meta_tags %}
+
+{% block content %}
+  {# This view is available by just knowing url,          #}
+  {# so we don't show all details (like delivery address) #}
+  {# unless current user is owner of the task.           #}
+
+  <div class="row task-details">
+    <div class="col-lg-10 m-auto">
+      <h2 class="task-details__header">
+        {% blocktrans trimmed with payment_status=task.get_payment_status_display task_status=task.get_status_display context "Task detail text" %}
+          Task {{ task }}: {{ payment_status }} & {{ task_status }}
+        {% endblocktrans %}
+      </h2>
+      {% if not task.is_partly_paid %}
+        {% if task.is_pre_authorized %}
+          <a href="{% url "task:payment" token=task.token %}" class="btn btn-link">
+            {% trans "Payment details" context "Task details link text" %}
+          </a>
+        {% else %}
+          <a href="{% url "task:payment" token=task.token %}" class="btn btn-primary">
+            {% trans "Pay for task" context "Task details primary action" %}
+          </a>
+        {% endif %}
+      {% endif %}
+      {% include "task/_ordered_items_table.html" %}
+      <div class="task-notes">
+      {% if task.customer_note %}
+        <h2 class="task-notes__header">{% trans "Your note" context "Customer task note" %}</h2>
+        <p>{{ task.customer_note }}</p>
+      {% endif %}
+      {% if task.is_open and not task.customer_note %}
+        <form method="post" class="form-group">
+          {% csrf_token %}
+          <h2>{% trans "Add a note to your task" context "Task note title" %}</h2>
+          {% bootstrap_form note_form display_labels=False %}
+          <input type="submit" value="{% trans 'Submit note' context 'Customer panel - task details: add note submit button' %}" class="btn btn-primary" />
+        </form>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

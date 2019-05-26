@@ -44,7 +44,7 @@ def test_configure_taxes(admin_client, site_settings):
     data = {
         'include_taxes_in_prices': False,
         'display_gross_prices': False,
-        'charge_taxes_on_shipping': False}
+        'charge_taxes_on_delivery': False}
 
     response = admin_client.post(url, data)
 
@@ -54,7 +54,7 @@ def test_configure_taxes(admin_client, site_settings):
     site_settings.refresh_from_db()
     assert not site_settings.include_taxes_in_prices
     assert not site_settings.display_gross_prices
-    assert not site_settings.charge_taxes_on_shipping
+    assert not site_settings.charge_taxes_on_delivery
 
 
 @mock.patch('remote_works.dashboard.taxes.views.messages', create=True)

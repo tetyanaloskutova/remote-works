@@ -4,7 +4,7 @@ import pytest
 from django.urls import reverse
 
 from remote_works.account.models import Address, User
-from remote_works.order.models import Order
+from remote_works.task.models import Task
 from remote_works.skill.models import Skill
 
 
@@ -69,14 +69,14 @@ def search_dashboard(client, phrase):
     response = client.get(reverse('dashboard:search'), {'q': phrase})
     assert response.context['query'] in phrase
     context = response.context
-    return context['skills'], context['orders'], context['users']
+    return context['skills'], context['tasks'], context['users']
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
 def test_dashboard_search_with_empty_results(admin_client, named_skills):
-    skills, orders, users = search_dashboard(admin_client, 'foo')
-    assert 0 == len(skills) == len(orders) == len(users)
+    skills, tasks, users = search_dashboard(admin_client, 'foo')
+    assert 0 == len(skills) == len(tasks) == len(users)
 
 
 @pytest.mark.integration
@@ -121,78 +121,78 @@ def gen_address_for_user(first_name, last_name):
 
 @pytest.fixture
 def orders_with_addresses():
-    orders = []
+    tasks = []
     for pk, name, lastname, email in ORDERS:
         addr = gen_address_for_user(name, lastname)
-        user = User.objects.create(default_shipping_address=addr, email=email)
-        order = Order.objects.create(user=user, billing_address=addr, pk=pk)
-        orders.append(order)
-    return orders
+        user = User.objects.create(default_delivery_address=addr, email=email)
+        task = Task.objects.create(user=user, billing_address=addr, pk=pk)
+        tasks.append(task)
+    return tasks
 
 
 @pytest.fixture
 def orders_with_user_names():
-    orders = []
+    tasks = []
     for pk, first_name, last_name, email in ORDERS:
         user = User.objects.create(
             email=email, first_name=first_name, last_name=last_name)
-        order = Order.objects.create(user=user, pk=pk)
-        orders.append(order)
-    return orders
+        task = Task.objects.create(user=user, pk=pk)
+        tasks.append(task)
+    return tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
 def test_find_order_by_id_with_no_result(admin_client, orders_with_addresses):
     phrase = '991'  # not existing id
-    _, orders, _ = search_dashboard(admin_client, phrase)
-    assert 0 == len(orders)
+    _, tasks, _ = search_dashboard(admin_client, phrase)
+    assert 0 == len(tasks)
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
 def test_find_order_by_id(admin_client, orders_with_addresses):
     phrase = ' 10 '
-    _, orders, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(orders)
-    assert orders_with_addresses[0] in orders
+    _, tasks, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(tasks)
+    assert orders_with_addresses[0] in tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('euzeb.potato@cebula.pl', 1),
+@pytest.mark.parametrize('phrase,task_num', [('euzeb.potato@cebula.pl', 1),
                                               ('  johndoe@example.com ', 2)])
-def test_find_order_with_email(admin_client, orders_with_addresses, phrase,
-                               order_num):
-    _, orders, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(orders)
-    assert orders_with_addresses[order_num] in orders
+def test_find_task_with_email(admin_client, orders_with_addresses, phrase,
+                               task_num):
+    _, tasks, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(tasks)
+    assert orders_with_addresses[task_num] in tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('knop', 0), ('ZIEMniak', 1),
+@pytest.mark.parametrize('phrase,task_num', [('knop', 0), ('ZIEMniak', 1),
                                               ('  john  ', 2), ('ANDREAS', 0)])
-def test_find_order_with_user_name(admin_client, orders_with_addresses, phrase,
-                                   order_num):
-    _, orders, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(orders)
-    assert orders_with_addresses[order_num] in orders
+def test_find_task_with_user_name(admin_client, orders_with_addresses, phrase,
+                                   task_num):
+    _, tasks, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(tasks)
+    assert orders_with_addresses[task_num] in tasks
 
 
 @pytest.mark.integration
 @pytest.mark.django_db(transaction=True)
-@pytest.mark.parametrize('phrase,order_num', [('knop', 0), ('ZIEMniak', 1),
+@pytest.mark.parametrize('phrase,task_num', [('knop', 0), ('ZIEMniak', 1),
                                               ('  john  ', 2), ('ANDREAS', 0)])
-def test_find_order_with_user_name_without_addres(
-        admin_client, orders_with_user_names, phrase, order_num):
-    _, orders, _ = search_dashboard(admin_client, phrase)
-    assert 1 == len(orders)
-    assert orders_with_user_names[order_num] in orders
+def test_find_task_with_user_name_without_addres(
+        admin_client, orders_with_user_names, phrase, task_num):
+    _, tasks, _ = search_dashboard(admin_client, phrase)
+    assert 1 == len(tasks)
+    assert orders_with_user_names[task_num] in tasks
 
 
 ORDER_PHRASE_WITH_RESULT = 'Andreas'
-ORDER_RESULTS_PERMISSION = 'order.manage_orders'
+ORDER_RESULTS_PERMISSION = 'task.manage_orders'
 
 
 @pytest.mark.integration
@@ -200,8 +200,8 @@ ORDER_RESULTS_PERMISSION = 'order.manage_orders'
 def test_orders_search_results_restricted_to_users_with_permission(
         orders_with_addresses, staff_client, staff_user):
     assert not staff_user.has_perm(ORDER_RESULTS_PERMISSION)
-    _, orders, _ = search_dashboard(staff_client, ORDER_PHRASE_WITH_RESULT)
-    assert 0 == len(orders)
+    _, tasks, _ = search_dashboard(staff_client, ORDER_PHRASE_WITH_RESULT)
+    assert 0 == len(tasks)
 
 
 @pytest.mark.integration
@@ -211,8 +211,8 @@ def test_show_orders_search_result_to_user_with_permission_granted(
         permission_manage_orders):
     assert not staff_user.has_perm(ORDER_RESULTS_PERMISSION)
     staff_user.user_permissions.add(permission_manage_orders)
-    _, orders, _ = search_dashboard(staff_client, ORDER_PHRASE_WITH_RESULT)
-    assert 1 == len(orders)
+    _, tasks, _ = search_dashboard(staff_client, ORDER_PHRASE_WITH_RESULT)
+    assert 1 == len(tasks)
 
 
 @pytest.fixture

@@ -18,9 +18,9 @@ from remote_works.core.utils import (
 from remote_works.core.utils.text import get_cleaner, strip_html
 from remote_works.core.weight import WeightUnits, convert_weight
 from remote_works.discount.models import Sale, Voucher
-from remote_works.order.models import Order
+from remote_works.task.models import Task
 from remote_works.skill.models import SkillImage
-from remote_works.shipping.models import ShippingZone
+from remote_works.delivery.models import DeliveryZone
 
 type_schema = {
     'Vegetable': {
@@ -33,7 +33,7 @@ type_schema = {
         'variant_attributes': {
             'GMO': ['Yes', 'No']},
         'images_dir': 'candy/',
-        'is_shipping_required': True}}
+        'is_delivery_required': True}}
 
 
 def test_format_money():
@@ -83,11 +83,11 @@ def test_create_superuser(db, client):
     assert response.context['request'].user == admin
 
 
-def test_create_shipping_zones(db):
-    assert ShippingZone.objects.all().count() == 0
-    for _ in random_data.create_shipping_zones():
+def test_create_delivery_zones(db):
+    assert DeliveryZone.objects.all().count() == 0
+    for _ in random_data.create_delivery_zones():
         pass
-    assert ShippingZone.objects.all().count() == 5
+    assert DeliveryZone.objects.all().count() == 5
 
 
 def test_create_fake_user(db):
@@ -116,14 +116,14 @@ def test_create_fake_order(db, monkeypatch, image):
     monkeypatch.setattr(
         'remote_works.core.utils.random_data.get_image',
         Mock(return_value=image))
-    for _ in random_data.create_shipping_zones():
+    for _ in random_data.create_delivery_zones():
         pass
     for _ in random_data.create_users(3):
         random_data.create_skills_by_schema('/', 10)
     how_many = 5
     for _ in random_data.create_orders(how_many):
         pass
-    assert Order.objects.all().count() == 5
+    assert Task.objects.all().count() == 5
 
 
 def test_create_skill_sales(db):

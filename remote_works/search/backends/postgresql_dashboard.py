@@ -2,7 +2,7 @@ from django.contrib.postgres.search import (
     SearchQuery, SearchRank, SearchVector)
 
 from ...account.models import User
-from ...order.models import Order
+from ...task.models import Task
 from ...product.models import Skill
 
 
@@ -16,14 +16,14 @@ def search_products(phrase):
 
 
 def search_orders(phrase):
-    """Return matching orders for dashboard views.
+    """Return matching tasks for dashboard views.
 
     When phrase is convertable to int, no full text search is performed,
-    just order with matching id is looked up.
+    just task with matching id is looked up.
     """
     try:
-        order_id = int(phrase.strip())
-        return Order.objects.filter(id=order_id)
+        task_id = int(phrase.strip())
+        return Task.objects.filter(id=task_id)
     except ValueError:
         pass
 
@@ -31,11 +31,11 @@ def search_orders(phrase):
         SearchVector('user__first_name', weight='B') +
         SearchVector('user__last_name', weight='B') +
         SearchVector(
-            'user__default_shipping_address__first_name', weight='B') +
-        SearchVector('user__default_shipping_address__last_name', weight='B') +
+            'user__default_delivery_address__first_name', weight='B') +
+        SearchVector('user__default_delivery_address__last_name', weight='B') +
         SearchVector('user__email', weight='A'))
     rank = SearchRank(sv, SearchQuery(phrase))
-    return Order.objects.annotate(rank=rank).filter(
+    return Task.objects.annotate(rank=rank).filter(
         rank__gte=0.2).order_by('-rank')
 
 
@@ -61,5 +61,5 @@ def search(phrase):
     """
     return {
         'skills': search_products(phrase),
-        'orders': search_orders(phrase),
+        'tasks': search_orders(phrase),
         'users': search_users(phrase)}

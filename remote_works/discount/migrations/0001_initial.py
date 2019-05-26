@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='Voucher',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('value', 'All skills'), ('skill', 'Specific skills'), ('collection', 'Specific collections of skills'), ('category', 'Specific categories of skills'), ('shipping', 'Shipping')], default='value', max_length=20)),
+                ('type', models.CharField(choices=[('value', 'All skills'), ('skill', 'Specific skills'), ('collection', 'Specific collections of skills'), ('category', 'Specific categories of skills'), ('delivery', 'Delivery')], default='value', max_length=20)),
                 ('name', models.CharField(blank=True, max_length=255, null=True)),
                 ('code', models.CharField(db_index=True, max_length=12, unique=True)),
                 ('usage_limit', models.PositiveIntegerField(blank=True, null=True)),

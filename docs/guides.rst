@@ -4,7 +4,7 @@ Guides
 .. toctree::
    :maxdepth: 2
 
-   guides/orders
+   guides/tasks
    guides/payments
    guides/navigation
    guides/taxes

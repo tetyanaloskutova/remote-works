@@ -20,7 +20,7 @@ from ...skill.models import (
 from ...skill.tasks import update_variants_names
 from ...skill.thumbnails import create_skill_thumbnails
 from ...skill.utils.attributes import get_name_from_attributes
-from ..forms import ModelChoiceOrCreationField, OrderedModelMultipleChoiceField
+from ..forms import ModelChoiceOrCreationField, TaskedModelMultipleChoiceField
 from ..seo.fields import SeoDescriptionField, SeoTitleField
 from ..seo.utils import prepare_seo_description
 from ..widgets import RichTextEditorWidget
@@ -75,7 +75,7 @@ class SkillTypeForm(forms.ModelForm):
         label=pgettext_lazy('SkillType weight', 'Weight'),
         help_text=pgettext_lazy(
             'SkillVariant weight help text',
-            'Default weight that will be used for calculating shipping'
+            'Default weight that will be used for calculating delivery'
             ' price for skills of that type.'))
     skill_attributes = forms.ModelMultipleChoiceField(
         queryset=Attribute.objects.none(), required=False,
@@ -97,9 +97,9 @@ class SkillTypeForm(forms.ModelForm):
             'has_variants': pgettext_lazy(
                 'Enable variants',
                 'Enable variants'),
-            'is_shipping_required': pgettext_lazy(
-                'Shipping toggle',
-                'Require shipping')}
+            'is_delivery_required': pgettext_lazy(
+                'Delivery toggle',
+                'Require delivery')}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -237,7 +237,7 @@ class SkillForm(forms.ModelForm, AttributesMixin):
         required=False, label=pgettext_lazy('SkillType weight', 'Weight'),
         help_text=pgettext_lazy(
             'Skill weight field help text',
-            'Weight will be used to calculate shipping price, '
+            'Weight will be used to calculate delivery price, '
             'if empty, equal to default value used on the SkillType.'))
 
     model_attributes_field = 'attributes'
@@ -279,7 +279,7 @@ class SkillForm(forms.ModelForm, AttributesMixin):
             self.fields['price'].label = pgettext_lazy(
                 'Currency net amount', 'Net price')
 
-        if not skill_type.is_shipping_required:
+        if not skill_type.is_delivery_required:
             del self.fields['weight']
         else:
             self.fields['weight'].widget.attrs['placeholder'] = (
@@ -308,7 +308,7 @@ class SkillVariantForm(forms.ModelForm, AttributesMixin):
         required=False, label=pgettext_lazy('SkillVariant weight', 'Weight'),
         help_text=pgettext_lazy(
             'SkillVariant weight help text',
-            'Weight will be used to calculate shipping price. '
+            'Weight will be used to calculate delivery price. '
             'If empty, weight from Skill or SkillType will be used.'))
 
     class Meta:
@@ -320,13 +320,13 @@ class SkillVariantForm(forms.ModelForm, AttributesMixin):
             'sku': pgettext_lazy('SKU', 'SKU'),
             'price_override': pgettext_lazy(
                 'Override price', 'Selling price override'),
-            'quantity': pgettext_lazy('Integer number', 'Number in stock'),
+            'quantity': pgettext_lazy('Integer number', 'Number in availability'),
             'cost_price': pgettext_lazy('Currency amount', 'Cost price'),
             'track_inventory': pgettext_lazy(
                 'Track inventory field', 'Track inventory')}
         help_texts = {
             'track_inventory': pgettext_lazy(
-                'skill variant handle stock field help text',
+                'skill variant handle availability field help text',
                 'Automatically track this skill\'s inventory')}
 
     def __init__(self, *args, **kwargs):
@@ -351,7 +351,7 @@ class SkillVariantForm(forms.ModelForm, AttributesMixin):
             self.fields['cost_price'].label = pgettext_lazy(
                 'Currency amount', 'Cost net price')
 
-        if not self.instance.skill.skill_type.is_shipping_required:
+        if not self.instance.skill.skill_type.is_delivery_required:
             del self.fields['weight']
         else:
             self.fields['weight'].widget.attrs['placeholder'] = (
@@ -463,7 +463,7 @@ class AttributeValueForm(forms.ModelForm):
 
 
 class ReorderAttributeValuesForm(forms.ModelForm):
-    ordered_values = OrderedModelMultipleChoiceField(
+    ordered_values = TaskedModelMultipleChoiceField(
         queryset=AttributeValue.objects.none())
 
     class Meta:
@@ -476,14 +476,14 @@ class ReorderAttributeValuesForm(forms.ModelForm):
             self.fields['ordered_values'].queryset = self.instance.values.all()
 
     def save(self):
-        for order, value in enumerate(self.cleaned_data['ordered_values']):
-            value.sort_order = order
+        for task, value in enumerate(self.cleaned_data['ordered_values']):
+            value.sort_order = task
             value.save()
         return self.instance
 
 
 class ReorderSkillImagesForm(forms.ModelForm):
-    ordered_images = OrderedModelMultipleChoiceField(
+    ordered_images = TaskedModelMultipleChoiceField(
         queryset=SkillImage.objects.none())
 
     class Meta:
@@ -496,8 +496,8 @@ class ReorderSkillImagesForm(forms.ModelForm):
             self.fields['ordered_images'].queryset = self.instance.images.all()
 
     def save(self):
-        for order, image in enumerate(self.cleaned_data['ordered_images']):
-            image.sort_order = order
+        for task, image in enumerate(self.cleaned_data['ordered_images']):
+            image.sort_order = task
             image.save()
         return self.instance
 

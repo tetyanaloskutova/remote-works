@@ -62,11 +62,11 @@ def get_payment_billing_fullname(payment_information: Dict):
         payment_information['billing']['first_name'])
 
 
-def shipping_to_stripe_dict(shipping: Dict):
+def delivery_to_stripe_dict(delivery: Dict):
     return {
-        'line1': shipping['street_address_1'],
-        'line2': shipping['street_address_2'],
-        'city': shipping['city'],
-        'state': shipping['country_area'],
-        'postal_code': shipping['postal_code'],
-        'country': dict(countries).get(shipping['country'], '')}
+        'line1': delivery['street_address_1'],
+        'line2': delivery['street_address_2'],
+        'city': delivery['city'],
+        'state': delivery['country_area'],
+        'postal_code': delivery['postal_code'],
+        'country': dict(countries).get(delivery['country'], '')}

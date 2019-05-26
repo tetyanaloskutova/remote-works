@@ -1,0 +1,30 @@
+{% extends "dashboard/base_modal.html" %}
+
+{% load i18n %}
+{% load materializecss %}
+
+{% block action_url %}
+{% url 'dashboard:task-delivery-edit' task_pk=task.pk %}
+{% endblock %}
+
+{% block title %}
+{% trans "Edit delivery" context "Modal edit delivery title" %}
+{% endblock %}
+
+{% block content %}
+  <div class="col s12">
+    {{ form.delivery_method|materializecss }}
+  </div>
+{% endblock %}
+
+{% block actions_left %}
+  {% if task.delivery_method or task.delivery_method_name %}
+    <button type="submit" class="modal-action btn-flat waves-effect" formaction="{% url 'dashboard:task-delivery-remove' task_pk=task.pk %}">
+      {% trans "Remove delivery from task" context "Dashboard edit draft task remove action" %}
+    </button>
+  {% endif %}
+{% endblock %}
+
+{% block primary_action %}
+{% trans "Update" context "Modal edit delivery primary action" %}
+{% endblock %}

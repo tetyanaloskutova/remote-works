@@ -40,27 +40,27 @@ def get_skill_data(line, organization):
     return skill_data
 
 
-def get_order_confirmation_markup(order):
-    """Generates schema.org markup for order confirmation e-mail message."""
+def get_task_confirmation_markup(task):
+    """Generates schema.org markup for task confirmation e-mail message."""
     organization = get_organization()
-    order_url = build_absolute_uri(order.get_absolute_url())
+    task_url = build_absolute_uri(task.get_absolute_url())
     data = {
         '@context': 'http://schema.org',
-        '@type': 'Order',
+        '@type': 'Task',
         'merchant': organization,
-        'orderNumber': order.pk,
-        'priceCurrency': order.total.gross.currency,
-        'price': order.total.gross.amount,
+        'orderNumber': task.pk,
+        'priceCurrency': task.total.gross.currency,
+        'price': task.total.gross.amount,
         'acceptedOffer': [],
-        'url': order_url,
+        'url': task_url,
         'potentialAction': {
             '@type': 'ViewAction',
-            'url': order_url
+            'url': task_url
         },
-        'orderStatus': 'http://schema.org/OrderProcessing',
-        'orderDate': order.created}
+        'orderStatus': 'http://schema.org/TaskProcessing',
+        'orderDate': task.created}
 
-    lines = order.lines.prefetch_related('variant')
+    lines = task.lines.prefetch_related('variant')
     for line in lines:
         skill_data = get_skill_data(line=line, organization=organization)
         data['acceptedOffer'].append(skill_data)

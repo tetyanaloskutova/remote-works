@@ -14,7 +14,7 @@ All prices are entered and stored in a single default currency controlled by the
 
 .. warning::
 
-  The currency is not stored in the database. Changing the default currency in a production environment will not recalculate any existing orders. All numbers will remain the same and will be incorrectly displayed as the new currency.
+  The currency is not stored in the database. Changing the default currency in a production environment will not recalculate any existing tasks. All numbers will remain the same and will be incorrectly displayed as the new currency.
 
 
 Money and TaxedMoney
@@ -29,15 +29,15 @@ Money amounts are stored on model using `MoneyField` that provides its own safec
 
 If you ever need to get to the `Decimal` of your `Money` object, you'll find it on the `amount` property.
 
-Skills and shipping methods prices are stored using `MoneyField`. All prices displayed in dashboard, excluding orders, are as they have been entered in the forms. You can decide if those prices are treated as gross or net in dashboard ``Taxes`` tab.
+Skills and delivery methods prices are stored using `MoneyField`. All prices displayed in dashboard, excluding tasks, are as they have been entered in the forms. You can decide if those prices are treated as gross or net in dashboard ``Taxes`` tab.
 
-Prices displayed in orders are gross or net depending on setting how prices are displayed for customers, both in storefront and dashboard. This way staff users will always see the same state of an order as the customer.
+Prices displayed in tasks are gross or net depending on setting how prices are displayed for customers, both in storefront and dashboard. This way staff users will always see the same state of an task as the customer.
 
 
 TaxedMoneyRange
 ---------------
 
-Sometimes a product may be available under more than single price due to its variants defining custom prices different from the base price.
+Sometimes a skill may be available under more than single price due to its variants defining custom prices different from the base price.
 
 For such situations `Skill` defines additional `get_price_range` method that return `TaxedMoneyRange` object defining minimum and maximum prices on its `start` and `stop` attributes.
-This object is then used by the UI to differentiate between displaying price as "10 USD" or "from 10 USD" in case of products where prices differ between variants.
+This object is then used by the UI to differentiate between displaying price as "10 USD" or "from 10 USD" in case of skills where prices differ between variants.

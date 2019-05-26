@@ -1,7 +1,7 @@
 Example Data
 ============
 
-If you'd like some data to test your new storefront you can populate the database with example products and orders:
+If you'd like some data to test your new storefront you can populate the database with example skills and tasks:
 
 .. code-block:: console
 

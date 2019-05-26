@@ -1,11 +1,11 @@
 {% load i18n %}
 {% load taxed_prices %}
 
-{% if shipping_required %}
+{% if delivery_required %}
   <div class="table__row">
     <div class="row">
       <div class="col-8 cart__total__subtotal">
-        <h3>{% trans "Subtotal" context "Order subtotal" %}</h3>
+        <h3>{% trans "Subtotal" context "Task subtotal" %}</h3>
       </div>
       <div class="col-4">
         <h3 class="text-right cart-subtotal" data-value="{% price cart_total.gross html=False %}" {% if local_cart_total is not None %}data-value-local="{% price local_cart_total.gross html=False %}"{% endif %}>
@@ -29,7 +29,7 @@
         <div class="col-7 cart__total__subtotal deliveryform" data-csrf="{{ csrf_token }}">
           <div class="row">
             <div class="col-12 col-md-4">
-              <p>{% trans "Shipping cost for:" context "Cart shipping cost form" %}</p>
+              <p>{% trans "Delivery cost for:" context "Cart delivery cost form" %}</p>
             </div>
             <div class="col-12 col-md-8">
               {{ country_form.country }}
@@ -40,8 +40,8 @@
           <div class="row">
             <div class="col-md-12 col-12 text-right">
               <p class="cart__delivery-info__price">
-                {% if shipping_price_range %}
-                  {% price_range shipping_price_range %}
+                {% if delivery_price_range %}
+                  {% price_range delivery_price_range %}
                 {% endif %}
               </p>
             </div>
@@ -54,18 +54,18 @@
 <div class="cart__total">
   <div class="row">
     <div class="col-8 cart__total__subtotal">
-      <h3>{% trans "Total" context "Order subtotal" %}</h3>
+      <h3>{% trans "Total" context "Task subtotal" %}</h3>
       <small>{% trans "Shipment and taxes calculated at checkout" context "Cart summary text" %}</small>
     </div>
     <div class="col-4">
       {% spaceless %}
-        {% if total_with_shipping %}
-          <h3 class="text-right cart-total"><span>{% price_range total_with_shipping %}</span>
-            {% if local_total_with_shipping %}
+        {% if total_with_delivery %}
+          <h3 class="text-right cart-total"><span>{% price_range total_with_delivery %}</span>
+            {% if local_total_with_delivery %}
               <br>
               <small>
                 &asymp;
-                {% price_range local_total_with_shipping %}
+                {% price_range local_total_with_delivery %}
               </small>
             {% endif %}
           </h3>

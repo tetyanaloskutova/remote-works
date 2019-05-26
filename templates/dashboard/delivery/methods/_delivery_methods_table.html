@@ -1,0 +1,55 @@
+{% load i18n %}
+{% load price from taxed_prices %}
+
+<div class="col m12 l9">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">
+        {{ header }}
+      </span>
+    </div>
+    <div class="data-table-header-action">
+        <a href="{% url 'dashboard:delivery-method-add' type=type delivery_zone_pk=delivery_zone.pk %}" class="btn-data-table btn-flat waves-effect">
+          {% trans "Add" %}
+        </a>
+    </div>
+    <div class="data-table-container">
+      <table class="bordered highlight responsive data-table">
+        <thead>
+          <tr>
+            <th>
+              {% trans "Name" context "Header of the delivery methods list" %}
+            </th>
+            <th>
+              {% trans "Range" context "Header of the delivery methods list" %}
+            </th>
+            <th>
+              {% trans "Price" context "Header of the delivery methods list" %}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for delivery in delivery_methods %}
+            <tr>
+              <td>{{ delivery.name }}</td>
+              <td>{{ delivery.get_type_display }}</td>
+              <td>{% price delivery.price %}</td>
+              <td class="right-align">
+                <a href="{% url 'dashboard:delivery-method-edit' delivery_zone_pk=delivery_zone.pk delivery_method_pk=delivery.pk %}" class="btn-flat waves-effect">
+                  {% trans 'Edit' context 'Attribute value edit action' %}
+                </a>
+                <a class="btn-flat waves-effect modal-trigger-custom" href="#base-modal" data-href="{% url 'dashboard:delivery-method-delete' delivery_zone_pk=delivery_zone.pk delivery_method_pk=delivery.pk %}">
+                  {% trans 'Remove' context 'Attribute value remove action' %}
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="2">{% trans "No delivery methods" context "Empty list of delivery methods prices" %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

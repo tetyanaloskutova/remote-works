@@ -107,7 +107,7 @@ Environment variables
   Controls all prices entered and stored in the store as this single default currency (for more information, see :ref:`money_architecture`).
 
 ``DEFAULT_COUNTRY``
-  Sets the default country for the store. It controls the default VAT to be shown if required, the default shipping country, etc.
+  Sets the default country for the store. It controls the default VAT to be shown if required, the default delivery country, etc.
 
 ``CREATE_IMAGES_ON_DEMAND``
   Whether or not to create new images on-the-fly (``True`` by default).

@@ -74,7 +74,7 @@ def staff_create(request):
 @staff_member_required
 @permission_required('account.manage_staff')
 def staff_delete(request, pk):
-    queryset = User.objects.prefetch_related('orders')
+    queryset = User.objects.prefetch_related('tasks')
     staff = get_object_or_404(queryset, pk=pk)
     if request.method == 'POST':
         remove_staff_member(staff)
@@ -82,6 +82,6 @@ def staff_delete(request, pk):
             'Dashboard message', 'Removed staff member %s') % (staff,)
         messages.success(request, msg)
         return redirect('dashboard:staff-list')
-    ctx = {'staff': staff, 'orders': staff.orders.count()}
+    ctx = {'staff': staff, 'tasks': staff.tasks.count()}
     return TemplateResponse(
         request, 'dashboard/staff/modal/confirm_delete.html', ctx)

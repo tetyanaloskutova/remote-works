@@ -53,7 +53,7 @@ urlpatterns = [
     url(r'types/(?P<skill_type_pk>[0-9]+)/images/(?P<img_pk>[0-9]+)/delete/$',
         views.skill_image_delete, name='skill-image-delete'),
     url(r'types/(?P<skill_type_pk>[0-9]+)/images/reorder/$',
-        views.ajax_reorder_skill_images, name='skill-images-reorder'),
+        views.ajax_retask_skill_images, name='skill-images-reorder'),
     url(r'types/(?P<skill_type_pk>[0-9]+)/images/upload/$',
         views.ajax_upload_image, name='skill-images-upload'),
 
@@ -77,5 +77,5 @@ urlpatterns = [
         views.attribute_value_delete,
         name='attribute-value-delete'),
     url(r'attributes/(?P<attribute_pk>[0-9]+)/values/reorder/$',
-        views.ajax_reorder_attribute_values,
+        views.ajax_retask_attribute_values,
         name='attribute-values-reorder')]

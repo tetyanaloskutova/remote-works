@@ -11,57 +11,57 @@
   <div class="row">
     <div class="col s12">
       <div class="card">
-        <div class="data-table-header{% if not orders_to_ship %} data-table-header--no-data{% endif %}">
-          <span class="data-table-title" title="{% blocktrans trimmed with counter=orders_to_ship|length context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
-            {% trans "Orders ready for shipment" context "Dashboard homepage table title" %}
+        <div class="data-table-header{% if not tasks_to_ship %} data-table-header--no-data{% endif %}">
+          <span class="data-table-title" title="{% blocktrans trimmed with counter=tasks_to_ship|length context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
+            {% trans "Tasks ready for shipment" context "Dashboard homepage table title" %}
           </span>
         </div>
-        {% if orders_to_ship %}
+        {% if tasks_to_ship %}
           <div class="data-table-container">
-            <table class="bordered highlight responsive data-table last-right-align">
+            <table class="btasked highlight responsive data-table last-right-align">
               <thead>
                 <tr>
                   <th>
                     #
                   </th>
                   <th>
-                    {% trans "Placed on" context "Orders table header" %}
+                    {% trans "Placed on" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Customer" context "Orders table header" %}
+                    {% trans "Customer" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Payment status" context "Orders table header" %}
+                    {% trans "Payment status" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Order status" context "Orders table header" %}
+                    {% trans "Task status" context "Tasks table header" %}
                   </th>
                   <th>
-                    {% trans "Total" context "Orders table header" %}
+                    {% trans "Total" context "Tasks table header" %}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {% for order in orders_to_ship %}
-                  <tr data-action-go="{% url 'dashboard:order-details' order_pk=order.pk %}">
+                {% for task in tasks_to_ship %}
+                  <tr data-action-go="{% url 'dashboard:task-details' task_pk=task.pk %}">
                     <td>
-                      #{{ order.id }}
+                      #{{ task.id }}
                     </td>
                     <td>
-                      {{ order.created }}
+                      {{ task.created }}
                     </td>
                     {% trans "Guest" context "Anonymous user account value" as guest %}
                     <td>
-                      {{ order.user|default:guest }}
+                      {{ task.user|default:guest }}
                     </td>
                     <td>
-                      {% render_status order.get_payment_status order.get_payment_status_display %}
+                      {% render_status task.get_payment_status task.get_payment_status_display %}
                     </td>
                     <td>
-                      {% render_order_status order.status order.get_status_display %}
+                      {% render_task_status task.status task.get_status_display %}
                     </td>
                     <td class="right-align">
-                      {% price order.total.gross %}
+                      {% price task.total.gross %}
                     </td>
                   </tr>
                 {% endfor %}
@@ -71,7 +71,7 @@
         {% else %}
           <div class="card-content card-content--no-data not-found ">
             <p class="grey-text">
-              {% trans "No orders are ready for shipment." context "Empty order table message" %}
+              {% trans "No tasks are ready for shipment." context "Empty task table message" %}
             </p>
           </div>
         {% endif %}
@@ -85,11 +85,11 @@
         </div>
         {% if preauthorized_payments %}
           <div class="data-table-container">
-            <table class="bordered highlight responsive data-table">
+            <table class="btasked highlight responsive data-table">
               <thead>
                 <tr>
                   <th>
-                    {% trans "Order" context "Preauthorized payments table header" %}
+                    {% trans "Task" context "Preauthorized payments table header" %}
                   </th>
                   <th>
                     {% trans "Date" context "Preauthorized payments table header" %}
@@ -104,16 +104,16 @@
               </thead>
               <tbody>
                 {% for payment in preauthorized_payments %}
-                  {% if payment.order %}
-                    <tr data-action-go="{% url "dashboard:order-details" order_pk=payment.order.pk %}">
+                  {% if payment.task %}
+                    <tr data-action-go="{% url "dashboard:task-details" task_pk=payment.task.pk %}">
                       <td>
-                        {{ payment.order }}
+                        {{ payment.task }}
                       </td>
                       <td>
                         {{ payment.created }}
                       </td>
                       <td>
-                        {{ payment.order.user|default:_("Guest") }}
+                        {{ payment.task.user|default:_("Guest") }}
                       </td>
                       <td class="right-align">
                         {% price payment.get_total %}
@@ -136,19 +136,19 @@
       <div class="card">
         <div class="data-table-header{% if not low_stock %} data-table-header--no-data{% endif %}">
           <span class="data-table-title" title="{% blocktrans trimmed with counter=low_stock.count context "Dashboard homepage summary header title" %}Showing last {{ counter }} results{% endblocktrans %}">
-            {% trans "Skills with low stock" context "Dashboard homepage table title" %}
+            {% trans "Skills with low availability" context "Dashboard homepage table title" %}
           </span>
         </div>
         {% if low_stock %}
           <div class="data-table-container">
-            <table class="bordered highlight responsive data-table">
+            <table class="btasked highlight responsive data-table">
               <thead>
                 <tr>
                   <th>
-                    {% trans "Skill name" context "Low stock skill list" %}
+                    {% trans "Skill name" context "Low availability skill list" %}
                   </th>
                   <th class="right-align">
-                    {% trans "Stock left" context "Low stock skill list" %}
+                    {% trans "Stock left" context "Low availability skill list" %}
                   </th>
                 </tr>
               </thead>
@@ -169,7 +169,7 @@
         {% else %}
           <div class="card-content card-content--no-data not-found">
             <p class="grey-text">
-              {% trans "No skills are low in stock." context "Empty low stock table message" %}
+              {% trans "No skills are low in availability." context "Empty low availability table message" %}
             </p>
           </div>
         {% endif %}

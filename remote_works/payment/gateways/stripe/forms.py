@@ -33,8 +33,8 @@ class StripeCheckoutWidget(HiddenInput):
                 'enable_billing_address') else 'false',
             'data-zip-code': 'true' if gateway_params.get(
                 'enable_billing_address') else 'false',
-            'data-shipping-address': 'true' if gateway_params.get(
-                'enable_shipping_address') else 'false'
+            'data-delivery-address': 'true' if gateway_params.get(
+                'enable_delivery_address') else 'false'
         }
 
         if gateway_params.get('prefill'):

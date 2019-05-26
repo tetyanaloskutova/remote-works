@@ -55,7 +55,7 @@ def test_collections_query(
 
 
 def test_create_collection(
-        monkeypatch, staff_api_client, product_list, permission_manage_products):
+        monkeypatch, staff_api_client, skill_list, permission_manage_products):
     query = """
         mutation createCollection(
                 $name: String!, $slug: String!, $description: String,
@@ -96,8 +96,8 @@ def test_create_collection(
          'create_collection_background_image_thumbnails.delay'),
         mock_create_thumbnails)
 
-    product_ids = [
-        to_global_id('Skill', product.pk) for product in product_list]
+    skill_ids = [
+        to_global_id('Skill', product.pk) for skill in skill_list]
     image_file, image_name = create_image()
     image_alt = 'Alt text for an image.'
     name = 'test-name'
@@ -107,7 +107,7 @@ def test_create_collection(
     publication_date = date.today()
     variables = {
         'name': name, 'slug': slug, 'description': description,
-        'descriptionJson': description_json, 'skills': product_ids,
+        'descriptionJson': description_json, 'skills': skill_ids,
         'backgroundImage': image_name, 'backgroundImageAlt': image_alt,
         'isPublished': True, 'publicationDate': publication_date}
     body = get_multipart_request_body(query, variables, image_file, image_name)
@@ -120,7 +120,7 @@ def test_create_collection(
     assert data['description'] == description
     assert data['descriptionJson'] == description_json
     assert data['publicationDate'] == publication_date.isoformat()
-    assert data['skills']['totalCount'] == len(product_ids)
+    assert data['skills']['totalCount'] == len(skill_ids)
     collection = Collection.objects.get(slug=slug)
     assert collection.background_image.file
     mock_create_thumbnails.assert_called_once_with(collection.pk)
@@ -128,7 +128,7 @@ def test_create_collection(
 
 
 def test_create_collection_without_background_image(
-        monkeypatch, staff_api_client, product_list, permission_manage_products):
+        monkeypatch, staff_api_client, skill_list, permission_manage_products):
     query = """
         mutation createCollection(
             $name: String!, $slug: String!, $skills: [ID], $isPublished: Boolean!) {
@@ -298,7 +298,7 @@ def test_delete_collection(
 
 
 def test_auto_create_slug_on_collection(
-        staff_api_client, product_list, permission_manage_products):
+        staff_api_client, skill_list, permission_manage_products):
     query = """
         mutation createCollection(
             $name: String!, $isPublished: Boolean!) {
@@ -322,7 +322,7 @@ def test_auto_create_slug_on_collection(
 
 
 def test_add_products_to_collection(
-        staff_api_client, collection, product_list,
+        staff_api_client, collection, skill_list,
         permission_manage_products):
     query = """
         mutation collectionAddSkills(
@@ -337,20 +337,20 @@ def test_add_products_to_collection(
         }
     """
     collection_id = to_global_id('Collection', collection.id)
-    product_ids = [
-        to_global_id('Skill', product.pk) for product in product_list]
+    skill_ids = [
+        to_global_id('Skill', product.pk) for skill in skill_list]
     no_products_before = collection.products.count()
-    variables = {'id': collection_id, 'skills': product_ids}
+    variables = {'id': collection_id, 'skills': skill_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['collectionAddSkills']['collection']
     assert data[
-        'skills']['totalCount'] == no_products_before + len(product_ids)
+        'skills']['totalCount'] == no_products_before + len(skill_ids)
 
 
 def test_remove_products_from_collection(
-        staff_api_client, collection, product_list,
+        staff_api_client, collection, skill_list,
         permission_manage_products):
     query = """
         mutation collectionRemoveSkills(
@@ -364,18 +364,18 @@ def test_remove_products_from_collection(
             }
         }
     """
-    collection.products.add(*product_list)
+    collection.products.add(*skill_list)
     collection_id = to_global_id('Collection', collection.id)
-    product_ids = [
-        to_global_id('Skill', product.pk) for product in product_list]
+    skill_ids = [
+        to_global_id('Skill', product.pk) for skill in skill_list]
     no_products_before = collection.products.count()
-    variables = {'id': collection_id, 'skills': product_ids}
+    variables = {'id': collection_id, 'skills': skill_ids}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)
     data = content['data']['collectionRemoveSkills']['collection']
     assert data[
-        'skills']['totalCount'] == no_products_before - len(product_ids)
+        'skills']['totalCount'] == no_products_before - len(skill_ids)
 
 
 FETCH_COLLECTION_QUERY = """

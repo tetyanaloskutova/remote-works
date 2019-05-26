@@ -3,7 +3,7 @@ from elasticsearch_dsl import analyzer, token_filter
 
 from ..account.models import User
 from ..account.utils import get_user_first_name, get_user_last_name
-from ..order.models import Order
+from ..task.models import Task
 from ..product.models import Skill
 
 storefront = Index('storefront')
@@ -55,12 +55,12 @@ class UserDocument(DocType):
         fields = ['email']
 
 
-orders = Index('orders')
-orders.settings(number_of_shards=1, number_of_replicas=0)
+tasks = Index('tasks')
+tasks.settings(number_of_shards=1, number_of_replicas=0)
 
 
-@orders.doc_type
-class OrderDocument(DocType):
+@tasks.doc_type
+class TaskDocument(DocType):
     user = fields.StringField(analyzer=email_analyzer)
     first_name = fields.StringField()
     last_name = fields.StringField()
@@ -81,5 +81,5 @@ class OrderDocument(DocType):
         return None
 
     class Meta:
-        model = Order
+        model = Task
         fields = ['user_email', 'discount_name']

@@ -65,7 +65,7 @@ class Voucher(CountableDjangoObjectType):
         model_field='skills')
     countries = graphene.List(
         CountryDisplay,
-        description='List of countries available for the shipping voucher.')
+        description='List of countries available for the delivery voucher.')
     translation = graphene.Field(
         VoucherTranslation, language_code=graphene.String(
             description='A language code to return the translation for.',

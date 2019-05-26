@@ -26,8 +26,8 @@ urlpatterns = [
         views.menu_item_details, name='menu-item-details'),
 
     url(r'^(?P<menu_pk>[0-9]+)/items/reorder/$',
-        views.ajax_reorder_menu_items, name='menu-items-reorder'),
+        views.ajax_retask_menu_items, name='menu-items-reorder'),
     url(r'^(?P<menu_pk>[0-9]+)/item/(?P<root_pk>[0-9]+)/items/reorder/$',
-        views.ajax_reorder_menu_items, name='menu-items-reorder'),
+        views.ajax_retask_menu_items, name='menu-items-reorder'),
     url(r'^ajax/links/$',
         views.ajax_menu_links, name='ajax-menu-links')]

@@ -72,7 +72,7 @@ def site(get_response):
 
     By default django.contrib.sites caches Site instances at the module
     level. This leads to problems when updating Site instances, as it's
-    required to restart all application servers in order to invalidate
+    required to restart all application servers in task to invalidate
     the cache. Using this middleware solves this problem.
     """
     def middleware(request):

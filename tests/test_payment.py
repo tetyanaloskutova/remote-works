@@ -6,19 +6,19 @@ from django.conf import settings as dj_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import get_template
 
-from remote_works.order import OrderEvents, OrderEventsEmails
-from remote_works.order.views import PAYMENT_TEMPLATE
+from remote_works.task import TaskEvents, TaskEventsEmails
+from remote_works.task.views import PAYMENT_TEMPLATE
 from remote_works.payment import (
     ChargeStatus, GatewayError, OperationType, PaymentError, TransactionKind,
     get_payment_gateway)
 from remote_works.payment.models import Payment
 from remote_works.payment.utils import (
     ALLOWED_GATEWAY_KINDS, REQUIRED_GATEWAY_KEYS, call_gateway,
-    clean_authorize, clean_capture, clean_charge, clean_mark_order_as_paid,
+    clean_authorize, clean_capture, clean_charge, clean_mark_task_as_paid,
     create_payment, create_payment_information, create_transaction,
     gateway_authorize, gateway_capture, gateway_charge,
     gateway_get_client_token, gateway_process_payment, gateway_refund,
-    gateway_void, handle_fully_paid_order, mark_order_as_paid,
+    gateway_void, handle_fully_paid_order, mark_task_as_paid,
     require_active_payment, validate_gateway_response)
 
 NOT_ACTIVE_PAYMENT_ERROR = 'This payment is no longer active.'
@@ -94,30 +94,30 @@ def test_get_payment_gateway(settings):
     assert gateway_params == gateway['connection_params']
 
 
-@patch('remote_works.order.emails.send_payment_confirmation.delay')
-def test_handle_fully_paid_order_no_email(
-        mock_send_payment_confirmation, order):
-    order.user = None
-    order.user_email = ''
+@patch('remote_works.task.emails.send_payment_confirmation.delay')
+def test_handle_fully_paid_task_no_email(
+        mock_send_payment_confirmation, task):
+    task.user = None
+    task.user_email = ''
 
-    handle_fully_paid_order(order)
-    event = order.events.get()
-    assert event.type == OrderEvents.ORDER_FULLY_PAID.value
+    handle_fully_paid_order(task)
+    event = task.events.get()
+    assert event.type == TaskEvents.ORDER_FULLY_PAID.value
     assert not mock_send_payment_confirmation.called
 
 
-@patch('remote_works.order.emails.send_payment_confirmation.delay')
-def test_handle_fully_paid_order(mock_send_payment_confirmation, order):
-    handle_fully_paid_order(order)
-    event_order_paid, event_email_sent = order.events.all()
-    assert event_order_paid.type == OrderEvents.ORDER_FULLY_PAID.value
+@patch('remote_works.task.emails.send_payment_confirmation.delay')
+def test_handle_fully_paid_order(mock_send_payment_confirmation, task):
+    handle_fully_paid_order(task)
+    event_task_paid, event_email_sent = task.events.all()
+    assert event_task_paid.type == TaskEvents.ORDER_FULLY_PAID.value
 
-    assert event_email_sent.type == OrderEvents.EMAIL_SENT.value
+    assert event_email_sent.type == TaskEvents.EMAIL_SENT.value
     assert event_email_sent.parameters == {
-        'email': order.get_user_current_email(),
-        'email_type': OrderEventsEmails.PAYMENT.value}
+        'email': task.get_user_current_email(),
+        'email_type': TaskEventsEmails.PAYMENT.value}
 
-    mock_send_payment_confirmation.assert_called_once_with(order.pk)
+    mock_send_payment_confirmation.assert_called_once_with(task.pk)
 
 
 def test_require_active_payment():
@@ -150,18 +150,18 @@ def test_create_payment(address, settings):
 
 
 def test_mark_as_paid(admin_user, draft_order):
-    mark_order_as_paid(draft_order, admin_user)
+    mark_task_as_paid(draft_order, admin_user)
     payment = draft_order.payments.last()
     assert payment.charge_status == ChargeStatus.FULLY_CHARGED
     assert payment.captured_amount == draft_order.total.gross.amount
     assert draft_order.events.last().type == (
-        OrderEvents.ORDER_MARKED_AS_PAID.value)
+        TaskEvents.ORDER_MARKED_AS_PAID.value)
 
 
-def test_clean_mark_order_as_paid(payment_txn_preauth):
-    order = payment_txn_preauth.order
+def test_clean_mark_task_as_paid(payment_txn_preauth):
+    task = payment_txn_preauth.task
     with pytest.raises(PaymentError):
-        clean_mark_order_as_paid(order)
+        clean_mark_task_as_paid(task)
 
 
 def test_create_transaction(transaction_data):
@@ -306,7 +306,7 @@ def test_gateway_capture(
     payment.refresh_from_db()
     assert payment.charge_status == ChargeStatus.FULLY_CHARGED
     assert payment.captured_amount == payment.total
-    mock_handle_fully_paid_order.assert_called_once_with(payment.order)
+    mock_handle_fully_paid_order.assert_called_once_with(payment.task)
 
 
 @patch('remote_works.payment.utils.handle_fully_paid_order')
@@ -403,7 +403,7 @@ def test_gateway_charge(
     payment.refresh_from_db()
     assert payment.charge_status == ChargeStatus.FULLY_CHARGED
     assert payment.captured_amount == payment.total
-    mock_handle_fully_paid_order.assert_called_once_with(payment.order)
+    mock_handle_fully_paid_order.assert_called_once_with(payment.task)
 
 
 @patch('remote_works.payment.utils.handle_fully_paid_order')
@@ -801,7 +801,7 @@ def test_payment_get_authorized_amount(payment_txn_preauth):
 
     authorized_amount = payment.transactions.first().amount
     assert payment.get_authorized_amount().amount == authorized_amount
-    assert payment.order.total_authorized.amount == authorized_amount
+    assert payment.task.total_authorized.amount == authorized_amount
 
     payment.transactions.create(
         amount=payment.total,

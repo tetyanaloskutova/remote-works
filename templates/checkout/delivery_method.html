@@ -1,0 +1,52 @@
+{% extends "checkout/details.html" %}
+{% load i18n %}
+{% load i18n_address_tags %}
+
+{% block forms %}
+  <div class="checkout__delivery-methods">
+    <h3>{% trans "Delivery address" context "Checkout delivery address title" %}</h3>
+    <div class="card card-default address">
+      <div class="card-body">
+        {% format_address cart.delivery_address %}
+      </div>
+    </div>
+    <p>
+      <a class="text-uppercase" href="{% url 'checkout:delivery-address' %}">
+        {% trans "Select other address" %}
+      </a>
+    </p>
+    <hr>
+    {% if delivery_method_form.delivery_method.field.choices %}
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <h2>
+          {% trans "Delivery method" context "Checkout delivery method form title" %}
+        </h2>
+        <div class="checkout__delivery-methods-form">
+          {% for choice in delivery_method_form.delivery_method %}
+            <div class="radio">
+              <label>
+                <div class="card card-default">
+                  <div class="card-body">
+                    <strong>
+                      {{choice}}
+                    </strong>
+                  </div>
+                </div>
+              </label>
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">
+            {% trans "Continue" context "Checkout delivery method primary action" %}
+          </button>
+        </div>
+      </form>
+    {% else %}
+      {% blocktrans context "Message displayed to the user if there's no delivery methods for his country" %}
+        Unfortunately we do not ship to your selected country.
+        <br>
+        Please enter an alternative delivery address or contact us, if you think that's a mistake.
+      {% endblocktrans %}
+    {% endif %}
+  </div>
+{% endblock %}

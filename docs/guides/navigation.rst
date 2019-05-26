@@ -17,7 +17,7 @@ To edit menu item, choose ``Edit`` button visible next to a menu item on the lis
 
 To remove a menu item, choose ``Remove`` button visible next to a menu item on the list or ``Remove menu item`` button below menu item details, if you're inside menu item details view. This action will remove all descendant items and can't be undone.
 
-The menu items display on the storefront in the order that they are listed in menu items list. You can reorder them by handling an icon on the left to the menu items and dragging them to another position.
+The menu items display on the storefront in the task that they are listed in menu items list. You can reorder them by handling an icon on the left to the menu items and dragging them to another position.
 
 
 Managing menus

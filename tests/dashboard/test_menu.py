@@ -219,10 +219,10 @@ def test_view_menu_item_details(admin_client, menu, menu_item):
     assert response.context['menu_item'] == menu_item
 
 
-def test_view_ajax_reorder_menu_items(admin_client, menu, menu_with_items):
+def test_view_ajax_retask_menu_items(admin_client, menu, menu_with_items):
     items = menu_with_items.items.filter(parent=None)
-    order_before = [item.pk for item in items]
-    ordered_menu_items = list(reversed(order_before))
+    task_before = [item.pk for item in items]
+    ordered_menu_items = list(reversed(task_before))
     url = reverse(
         'dashboard:menu-items-reorder', kwargs={'menu_pk': menu.pk})
     data = {'ordered_menu_items': ordered_menu_items}
@@ -233,16 +233,16 @@ def test_view_ajax_reorder_menu_items(admin_client, menu, menu_with_items):
     assert response.status_code == 200
     menu_with_items.refresh_from_db()
     items = menu_with_items.items.filter(parent=None)
-    order_after = [item.pk for item in items]
-    assert order_after == ordered_menu_items
+    task_after = [item.pk for item in items]
+    assert task_after == ordered_menu_items
 
 
 @pytest.mark.integration
-def test_view_ajax_reorder_menu_items_with_parent(
+def test_view_ajax_retask_menu_items_with_parent(
         admin_client, menu, menu_with_items):
     items = menu_with_items.items.exclude(parent=None)
-    order_before = [item.pk for item in items]
-    ordered_menu_items = list(reversed(order_before))
+    task_before = [item.pk for item in items]
+    ordered_menu_items = list(reversed(task_before))
     menu_item = items.first().parent
     url = reverse(
         'dashboard:menu-items-reorder',
@@ -255,8 +255,8 @@ def test_view_ajax_reorder_menu_items_with_parent(
     assert response.status_code == 200
     menu_with_items.refresh_from_db()
     items = menu_with_items.items.exclude(parent=None)
-    order_after = [item.pk for item in items]
-    assert order_after == ordered_menu_items
+    task_after = [item.pk for item in items]
+    assert task_after == ordered_menu_items
 
 
 @pytest.mark.integration

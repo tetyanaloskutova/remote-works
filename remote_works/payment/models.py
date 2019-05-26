@@ -12,7 +12,7 @@ from . import (
     ChargeStatus, CustomPaymentChoices, TransactionError, TransactionKind)
 from ..checkout.models import Cart
 from ..core.utils.taxes import zero_money
-from ..order.models import Order
+from ..task.models import Task
 
 
 class Payment(models.Model):
@@ -26,7 +26,7 @@ class Payment(models.Model):
     at the gateway level, we are operating on the reusable token
     which is a unique identifier of the customer for given gateway.
 
-    Several payment methods can be used within a single order. Each payment
+    Several payment methods can be used within a single task. Each payment
     method may consist of multiple transactions.
     """
 
@@ -50,8 +50,8 @@ class Payment(models.Model):
 
     checkout = models.ForeignKey(
         Cart, null=True, related_name='payments', on_delete=models.SET_NULL)
-    order = models.ForeignKey(
-        Order, null=True, related_name='payments', on_delete=models.PROTECT)
+    task = models.ForeignKey(
+        Task, null=True, related_name='payments', on_delete=models.PROTECT)
 
     billing_email = models.EmailField(blank=True)
     billing_first_name = models.CharField(max_length=256, blank=True)

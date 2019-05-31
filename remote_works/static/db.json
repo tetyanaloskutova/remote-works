@@ -168,17 +168,17 @@
 },
 {
   "model": "skill.skill",
-  "pk": 61,
+  "pk": 2,
   "fields": {
-    "seo_title": "",
-    "seo_description": "Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.&nbsp;",
-    "skill_type": 7,
-    "name": "Nebula Night Sky Paint",
-    "description": "<p>Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.&nbsp;</p>",
+    "seo_title": "linear regression",
+    "seo_description": "Linear regression, logistic regression",
+    "skill_type": 1,
+    "name": "Linear regression",
+    "description": "logistic regression\t<p>Linear regression, logistic regression</p>",
     "category": 7,
     "price": {
       "_type": "Money",
-      "amount": "15.00",
+      "amount": "35.00",
       "currency": "USD"
     },
     "publication_date": null,
@@ -187,19 +187,20 @@
     "updated_at": "2018-11-05T11:30:13.329Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 2
   }
 },
 {
   "model": "skill.skill",
-  "pk": 62,
+  "pk": 1,
   "fields": {
     "seo_title": "",
-    "seo_description": "The rich, deep hue of space dust. Vacuum packed and airlocked for long-lasting freshness of color.",
-    "skill_type": 7,
-    "name": "Space Dust Navy Paint",
-    "description": "<p>The rich, deep hue of space dust. Vacuum packed and airlocked for long-lasting freshness of color.</p>",
-    "category": 7,
+    "seo_description": "Stats calculation work hourly rate.",
+    "skill_type": 1,
+    "name": "Stats calculation",
+    "description": "<p>Stats calculation.</p>",
+    "category": 1,
     "price": {
       "_type": "Money",
       "amount": "15.00",
@@ -211,18 +212,19 @@
     "updated_at": "2018-11-05T11:30:13.431Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "1.0 kg"
+    "owner_id": 1,
+    "experience_years": 2
   }
 },
 {
   "model": "skill.skill",
-  "pk": 63,
+  "pk": 111,
   "fields": {
     "seo_title": "",
-    "seo_description": "",
-    "skill_type": 7,
-    "name": "Red Dwarf Red Paint",
-    "description": "We are all connected to the universe, because every cell in our bodies was cooked in the hearts of dying stars. Red Dwarf Paint: the color of Carl Sagan\u2019s dreams.",
+    "seo_description": "Machine Learning work, hourly",
+    "skill_type": 14,
+    "name": "Machine Learning",
+    "description": "Machine Learning, model development, implementation",
     "category": 7,
     "price": {
       "_type": "Money",
@@ -231,22 +233,23 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{}",
+    "attributes": "{\"25\":\"82\"}",
     "updated_at": "2018-11-05T11:30:13.446Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 2
   }
 },
 {
   "model": "skill.skill",
-  "pk": 64,
+  "pk": 72,
   "fields": {
     "seo_title": "",
-    "seo_description": "There is life in outer space. This vibrant light speed yellow paint brings life to any surface. Goes on easy and dries at light speed.",
+    "seo_description": "c# programming - all types",
     "skill_type": 7,
-    "name": "Light Speed Yellow Paint",
-    "description": "<p>There is life in outer space. This vibrant light speed yellow paint brings life to any surface. Goes on easy and dries at light speed.</p>",
+    "name": "c# programming - all types",
+    "description": "<p>c# programming - all types.</p>",
     "category": 7,
     "price": {
       "_type": "Money",
@@ -255,22 +258,23 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{}",
+    "attributes": "{\"16\":\"3\"}",
     "updated_at": "2018-11-05T11:30:13.462Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 6
   }
 },
 {
   "model": "skill.skill",
-  "pk": 65,
+  "pk": 114,
   "fields": {
     "seo_title": "",
-    "seo_description": "Turquoise is the new black. No more gloomy night skies, brighten up your evenings with hyperspace paint.&nbsp;",
-    "skill_type": 7,
-    "name": "Hyperspace Turquoise Paint",
-    "description": "<p>Turquoise is the new black. No more gloomy night skies, brighten up your evenings with hyperspace paint.&nbsp;</p>",
+    "seo_description": "Data Engineering;",
+    "skill_type": 11,
+    "name": "Data Engineering",
+    "description": "<p>Data Engineering</p>",
     "category": 7,
     "price": {
       "_type": "Money",
@@ -283,583 +287,8 @@
     "updated_at": "2018-11-05T11:30:13.477Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 71,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Fell from a tree straight into the bottle. No additives, no preservatives, just the refreshing taste of pure sun-kissed Californian oranges.",
-    "skill_type": 9,
-    "name": "Orange Juice",
-    "description": "<p>Fell from a tree straight into the bottle. No additives, no preservatives, just the refreshing taste of pure sun-kissed Californian oranges.</p>",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"49\"}",
-    "updated_at": "2018-11-05T11:30:13.493Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 72,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Fell straight from the tree, on to Newton\u2019s head, then into the bottle. The autumn taste of English apples. Brought to you by gravity.",
-    "skill_type": 9,
-    "name": "Apple Juice",
-    "description": "Fell straight from the tree, on to Newton\u2019s head, then into the bottle. The autumn taste of English apples. Brought to you by gravity.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"3\"}",
-    "updated_at": "2018-11-05T11:30:13.508Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 73,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Improve your eyesight the natural way with 100% pure, squeezed carrot juice. The sweet, orange nectar of Mother Earth.",
-    "skill_type": 9,
-    "name": "Carrot Juice",
-    "description": "Improve your eyesight the natural way with 100% pure, squeezed carrot juice. The sweet, orange nectar of Mother Earth.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"52\"}",
-    "updated_at": "2018-11-05T11:30:13.523Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 74,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Build your protein the natural way, with exotic banana juice made from ripe fruit and packed with all the goodness of the tropical sun.",
-    "skill_type": 9,
-    "name": "Banana Juice",
-    "description": "Build your protein the natural way, with exotic banana juice made from ripe fruit and packed with all the goodness of the tropical sun.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"50\"}",
-    "updated_at": "2018-11-05T11:30:13.538Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 75,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "I can\u2019t stand pineapples, so this one is not for me. They have a weird, fluffy, tangy taste. But if it is your kind of thing, then knock yourself out.",
-    "skill_type": 9,
-    "name": "Pineapple Juice",
-    "description": "I can\u2019t stand pineapples, so this one is not for me. They have a weird, fluffy, tangy taste. But if it is your kind of thing, then knock yourself out.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"1\"}",
-    "updated_at": "2018-11-05T11:30:13.553Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 76,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Did you know falling coconuts kill 150 people a year? But did you know that coconut juice is the new superfood? You win some, you lose some.",
-    "skill_type": 9,
-    "name": "Coconut Juice",
-    "description": "Did you know falling coconuts kill 150 people a year? But did you know that coconut juice is the new superfood? You win some, you lose some.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"2\"}",
-    "updated_at": "2018-11-05T11:30:13.568Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 77,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Is it a bird? Is it a plane? No! It\u2019s some jacked dude who just sucked down a bottle of our brand new power juice! Look at him go!",
-    "skill_type": 9,
-    "name": "Power Juice",
-    "description": "Is it a bird? Is a plane? No! It\u2019s some jacked dude who just sucked down a bottle of our brand new power juice! Look at him go!",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"54\"}",
-    "updated_at": "2018-11-05T11:30:13.583Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 78,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Brussel sprouts, spinach, peas, kale, lettuce, cabbage, zucchini, more brussel sprouts. All the greens you\u2019ll ever need in one delicious juice.",
-    "skill_type": 9,
-    "name": "Green Juice",
-    "description": "Brussel sprouts, spinach, peas, kale, lettuce, cabbage, zucchini, more brussel sprouts. All the greens you\u2019ll ever need in one delicious juice.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"53\"}",
-    "updated_at": "2018-11-05T11:30:13.597Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 79,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Bean there, drunk that! The energy drink for the health-conscious. Brand new bean juice; from allotment to bottle in under 8 hours.",
-    "skill_type": 9,
-    "name": "Bean Juice",
-    "description": "Bean there, drunk that! The energy drink for the health-conscious. Brand new bean juice; from allotment to bottle in under 8 hours.",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"16\": \"51\"}",
-    "updated_at": "2018-11-05T11:30:13.613Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 81,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "A fine, mature red with a hint of blackberry, an undertone of the alkaline Burgundy soil, a delicate aftertaste of burnt garlic, and a whole lot of grapes.",
-    "skill_type": 10,
-    "name": "Red Wine",
-    "description": "<p>A fine, mature red with a hint of blackberry, an undertone of the alkaline Burgundy soil, a delicate aftertaste of burnt garlic, and a whole lot of grapes.</p>",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "15.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"20\": \"67\"}",
-    "updated_at": "2018-11-05T11:30:13.628Z",
-    "charge_taxes": true,
-    "tax_rate": "",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 82,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Watch the slow setting sun of a wild summer evening sink into the horizon as you sip white wine that tastes like bittersweet memories of halcyon days.",
-    "skill_type": 10,
-    "name": "White Wine",
-    "description": "<p>Watch the slow setting sun of a wild summer evening sink into the horizon as you sip white wine that tastes like bittersweet memories of halcyon days.</p>",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "15.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"20\": \"67\"}",
-    "updated_at": "2018-11-05T11:30:13.644Z",
-    "charge_taxes": true,
-    "tax_rate": "",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 83,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
-    "skill_type": 11,
-    "name": "Seaman Lager",
-    "description": "<p>Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!</p>",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"15\": \"46\", \"21\": \"68\"}",
-    "updated_at": "2018-11-05T11:30:13.661Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 84,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Best beer on the seven seas. A dark ale for when the dark clouds gather overhead. The nutty nautical taste that sailors love.",
-    "skill_type": 11,
-    "name": "Seaman Beer",
-    "description": "<p>Best beer on the seven seas. A dark ale for when the dark clouds gather overhead. The nutty nautical taste that sailors love.</p>",
-    "category": 8,
-    "price": {
-      "_type": "Money",
-      "amount": "3.20",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"15\": \"46\", \"21\": \"69\"}",
-    "updated_at": "2018-11-05T11:30:13.686Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 85,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Add a little color to your life with a Saleor parrot cushion. Turns any old sofa into a rainbow of classy interior design.&nbsp;",
-    "skill_type": 12,
-    "name": "Colored Parrot Cushion",
-    "description": "<p>Add a little color to your life with a Saleor parrot cushion. Turns any old sofa into a rainbow of classy interior design.&nbsp;</p>",
-    "category": 7,
-    "price": {
-      "_type": "Money",
-      "amount": "20.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"23\": \"72\"}",
-    "updated_at": "2018-11-05T11:30:13.713Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 86,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Minimalist interiors need simple, sleek soft furnishings. Don\u2019t parrot what others do, set your own monochrome trends with Saleor designs.",
-    "skill_type": 12,
-    "name": "White Parrot Cushion",
-    "description": "<p>Minimalist interiors need simple, sleek soft furnishings. Don\u2019t parrot what others do, set your own monochrome trends with Saleor designs.</p>",
-    "category": 7,
-    "price": {
-      "_type": "Money",
-      "amount": "20.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"23\": \"72\"}",
-    "updated_at": "2018-11-05T11:30:13.730Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 87,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Mellow yellow. Step into summer with Saleor. Every time your head goes down, you see these beauties, and your mood bounces right back up.&nbsp;",
-    "skill_type": 13,
-    "name": "Yellow Plimsolls",
-    "description": "<p>Mellow yellow. Step into summer with Saleor. Every time your head goes down, you see these beauties, and your mood bounces right back up.&nbsp;</p>",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "59.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{}",
-    "updated_at": "2018-11-05T11:30:13.746Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 88,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "PE at school wouldn\u2019t have been such a drag with these on your feet. Slip on the style and stride tall with Saleor branded plimsolls. PE now stands for pretty elegant.&nbsp;&nbsp;",
-    "skill_type": 13,
-    "name": "White Plimsolls",
-    "description": "<p>PE at school wouldn\u2019t have been such a drag with these on your feet. Slip on the style and stride tall with Saleor branded plimsolls. PE now stands for pretty elegant.&nbsp;&nbsp;</p>",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "49.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{}",
-    "updated_at": "2018-11-05T11:30:13.792Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "1.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 89,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Pay homage to the music and art of Joy Division and Peter Saville, but with a Mirumee twist. Perfect live transmission apparel for dead souls.",
-    "skill_type": 14,
-    "name": "Code Division T-shirt",
-    "description": "<p>Pay homage to the music and art of a Joy Division and Peter Saville, but with a Mirumee twist. Perfect live transmission apparel for dead souls.</p>",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.840Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 107,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Ever have those days where you feel a bit geometric? Can't quite shape yourself up right? Show your different sides with a Saleor styles.",
-    "skill_type": 14,
-    "name": "Polo Shirt",
-    "description": "<p>Ever have those days where you feel a bit geometric? Can't quite shape yourself up right? Show your different sides with a Saleor styles.&nbsp;</p>",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.867Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 108,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Polo? Yolo\u2026 so don\u2019t waste time on the wrong apparel. Choose a polo shirt that looks as good as you feel.",
-    "skill_type": 14,
-    "name": "Polo Shirt",
-    "description": "Polo? Yolo\u2026 so don\u2019t waste time on the wrong apparel. Choose a polo shirt that looks as good as you feel.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.884Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 109,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Wondering if this will look as good on you as it does on the screen? The answer is yes. A quality polo with smart styling.",
-    "skill_type": 14,
-    "name": "Polo Shirt",
-    "description": "Wondering if this will look as good on you as it does on the screen? The answer is yes. A quality polo with smart styling.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.901Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 110,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "They say polo is the sport of kings. Or was that stamp collecting? Either way, this shirt is fit for a king of Saturday night.",
-    "skill_type": 14,
-    "name": "Polo Shirt",
-    "description": "<p>They say polo is the sport of kings. Or was that stamp collecting? Either way, this shirt is fit for a king of Saturday night.</p>",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.918Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 111,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "One style fits all. Get a look that works even when you are taking it easy. Relaxed wear for the masses.",
-    "skill_type": 14,
-    "name": "T-shirt",
-    "description": "One style fits all. Get a look that works even when you are taking it easy. Relaxed wear for the masses.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.935Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 112,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "A classic tee for a timeless look, at a great price. Feel like a million bucks without breaking the bank.",
-    "skill_type": 14,
-    "name": "T-shirt",
-    "description": "A classic tee for a timeless look, at a great price. Feel like a million bucks without breaking the bank.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.972Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 5
   }
 },
 {
@@ -867,11 +296,11 @@
   "pk": 113,
   "fields": {
     "seo_title": "",
-    "seo_description": "Want to look like you just fell out of bed? Sometimes style can be effortless. Throw it on get on with having a good day.",
-    "skill_type": 14,
-    "name": "T-shirt",
-    "description": "Want to look like you just fell out of bed? Sometimes style can be effortless. Throw it on get on with having a good day.",
-    "category": 9,
+    "seo_description": "Big Data.",
+    "skill_type": 11,
+    "name": "Big Data",
+    "description": "<p>Big Data.</p>",
+    "category": 7,
     "price": {
       "_type": "Money",
       "amount": "30.00",
@@ -879,22 +308,23 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:13.999Z",
+    "attributes": "{}",
+    "updated_at": "2018-11-05T11:30:13.493Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 1
   }
 },
 {
   "model": "skill.skill",
-  "pk": 114,
+  "pk": 112,
   "fields": {
     "seo_title": "",
-    "seo_description": "Your t-shirt is your second skin. It\u2019s the version of you that you show to the world. Wear one that flows with your movements and is built to last.",
-    "skill_type": 14,
-    "name": "T-shirt",
-    "description": "Your t-shirt is your second skin. It\u2019s the version of you that you show to the world. Wear one that flows with your movements and is built to last.",
+    "seo_description": "Classic web development.",
+    "skill_type": 9,
+    "name": "Classic web development",
+    "description": "Classic web development",
     "category": 9,
     "price": {
       "_type": "Money",
@@ -903,107 +333,62 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:14.025Z",
+    "attributes": "",
+    "updated_at": "2018-11-05T11:30:13.508Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 12
   }
 },
 {
   "model": "skill.skill",
-  "pk": 115,
+  "pk": 79,
   "fields": {
     "seo_title": "",
-    "seo_description": "Special offer. Buy a hood and get a free jet black sweater attached. Perfect for when you are up to no good.",
+    "seo_description": "Beautiful visualizations and analytics",
     "skill_type": 14,
-    "name": "Black Hoodie",
-    "description": "Special offer. Buy a hood and get a free jet black sweater attached. Perfect for when you are up to no good.",
-    "category": 9,
+    "name": "Tableau dashboards",
+    "description": "Beautiful visualizations and analytics.",
+    "category": 7,
     "price": {
       "_type": "Money",
-      "amount": "30.00",
+      "amount": "3.00",
       "currency": "USD"
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:14.050Z",
+    "attributes": "",
+    "updated_at": "2018-11-05T11:30:13.523Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 2
   }
 },
 {
   "model": "skill.skill",
-  "pk": 116,
+  "pk": 74,
   "fields": {
     "seo_title": "",
-    "seo_description": "Special offer. Buy a superhero blue sweater and get a free hood attached. Ideal for when you are out saving the world.",
-    "skill_type": 14,
-    "name": "Blue Hoodie",
-    "description": "Special offer. Buy a superhero blue sweater and get a free hood attached. Ideal for when you are out saving the world.",
-    "category": 9,
+    "seo_description": "Python programming.",
+    "skill_type": 9,
+    "name": "Python programming",
+    "description": "Python programming.",
+    "category": 8,
     "price": {
       "_type": "Money",
-      "amount": "30.00",
+      "amount": "3.00",
       "currency": "USD"
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:14.066Z",
+    "attributes": "",
+    "updated_at": "2018-11-05T11:30:13.538Z",
     "charge_taxes": true,
     "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 117,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Who dunnit? It was Colonel Mustard, in the dining room, with the lead piping, wearing this hot as mustard hoodie.",
-    "skill_type": 14,
-    "name": "Mustard Hoodie",
-    "description": "Who dunnit? It was Colonel Mustard, in the dining room, with the lead piping, wearing this hot as mustard hoodie.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:14.083Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
-  }
-},
-{
-  "model": "skill.skill",
-  "pk": 118,
-  "fields": {
-    "seo_title": "",
-    "seo_description": "Get your slouch on and be seen with a whiter than white hoodie straight from the streets. Relaxed stylin\u2019 and profilin\u2019 with flair.",
-    "skill_type": 14,
-    "name": "White Hoodie",
-    "description": "Get your slouch on and be seen with a whiter than white hoodie straight from the streets. Relaxed stylin\u2019 and profilin\u2019 with flair.",
-    "category": 9,
-    "price": {
-      "_type": "Money",
-      "amount": "30.00",
-      "currency": "USD"
-    },
-    "publication_date": null,
-    "is_published": true,
-    "attributes": "{\"25\": \"82\"}",
-    "updated_at": "2018-11-05T11:30:14.101Z",
-    "charge_taxes": true,
-    "tax_rate": "standard",
-    "weight": "0.0 kg"
+    "owner_id": 1,
+    "experience_years": 2
   }
 },
 {
@@ -1370,18 +755,8 @@
   "model": "skill.attribute",
   "pk": 13,
   "fields": {
-    "slug": "size",
-    "name": "Size",
-    "skill_type": null,
-    "skill_variant_type": 14
-  }
-},
-{
-  "model": "skill.attribute",
-  "pk": 14,
-  "fields": {
-    "slug": "color",
-    "name": "Color",
+    "slug": "modular",
+    "name": "Modular",
     "skill_type": null,
     "skill_variant_type": null
   }
@@ -1390,8 +765,8 @@
   "model": "skill.attribute",
   "pk": 15,
   "fields": {
-    "slug": "bottle-size",
-    "name": "Size",
+    "slug": "db-engine",
+    "name": "db engine",
     "skill_type": 11,
     "skill_variant_type": null
   }
@@ -1400,8 +775,8 @@
   "model": "skill.attribute",
   "pk": 16,
   "fields": {
-    "slug": "flavor",
-    "name": "Flavor",
+    "slug": "csharp-programming-framework",
+    "name": "framework",
     "skill_type": 9,
     "skill_variant_type": null
   }
@@ -1410,8 +785,8 @@
   "model": "skill.attribute",
   "pk": 18,
   "fields": {
-    "slug": "bucket-size",
-    "name": "Size",
+    "slug": "ba-methodology",
+    "name": "methodology",
     "skill_type": null,
     "skill_variant_type": 7
   }
@@ -1430,8 +805,8 @@
   "model": "skill.attribute",
   "pk": 20,
   "fields": {
-    "slug": "volume",
-    "name": "Volume",
+    "slug": "ml-libraries",
+    "name": "libraries",
     "skill_type": 10,
     "skill_variant_type": null
   }
@@ -1440,8 +815,8 @@
   "model": "skill.attribute",
   "pk": 21,
   "fields": {
-    "slug": "abv",
-    "name": "ABV",
+    "slug": "dbe-environment",
+    "name": "environment",
     "skill_type": 11,
     "skill_variant_type": null
   }
@@ -1460,414 +835,41 @@
   "model": "skill.attribute",
   "pk": 23,
   "fields": {
-    "slug": "material",
-    "name": "Material",
+    "slug": "java-framework",
+    "name": "framework",
     "skill_type": 12,
     "skill_variant_type": null
   }
 },
 {
   "model": "skill.attribute",
-  "pk": 24,
-  "fields": {
-    "slug": "shoe-size",
-    "name": "Shoe size",
-    "skill_type": null,
-    "skill_variant_type": 13
-  }
-},
-{
-  "model": "skill.attribute",
   "pk": 25,
   "fields": {
-    "slug": "shirt-material",
-    "name": "Material",
+    "slug": "da-tools",
+    "name": "tools",
     "skill_type": 14,
     "skill_variant_type": null
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 1,
-  "fields": {
-    "sort_order": 6,
-    "name": "Pineapple",
-    "value": "",
-    "slug": "pineapple",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 2,
-  "fields": {
-    "sort_order": 7,
-    "name": "Coconut",
-    "value": "",
-    "slug": "coconut",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 3,
-  "fields": {
-    "sort_order": 8,
-    "name": "Apple",
-    "value": "",
-    "slug": "apple",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 36,
-  "fields": {
-    "sort_order": 0,
-    "name": "S",
-    "value": "",
-    "slug": "s",
-    "attribute": 13
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 37,
-  "fields": {
-    "sort_order": 1,
-    "name": "M",
-    "value": "",
-    "slug": "m",
-    "attribute": 13
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 38,
-  "fields": {
-    "sort_order": 2,
-    "name": "L",
-    "value": "",
-    "slug": "l",
-    "attribute": 13
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 39,
-  "fields": {
-    "sort_order": 3,
-    "name": "XL",
-    "value": "",
-    "slug": "xl",
-    "attribute": 13
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 40,
-  "fields": {
-    "sort_order": 4,
-    "name": "XXL",
-    "value": "",
-    "slug": "xxl",
-    "attribute": 13
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 41,
-  "fields": {
-    "sort_order": 0,
-    "name": "White",
-    "value": "",
-    "slug": "white",
-    "attribute": 14
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 42,
-  "fields": {
-    "sort_order": 1,
-    "name": "Blue",
-    "value": "",
-    "slug": "blue",
-    "attribute": 14
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 43,
-  "fields": {
-    "sort_order": 2,
-    "name": "Orange",
-    "value": "",
-    "slug": "orange",
-    "attribute": 14
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 44,
-  "fields": {
-    "sort_order": 3,
-    "name": "Black",
-    "value": "",
-    "slug": "black",
-    "attribute": 14
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 45,
-  "fields": {
-    "sort_order": 4,
-    "name": "Cyan",
-    "value": "",
-    "slug": "cyan",
-    "attribute": 14
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 46,
-  "fields": {
-    "sort_order": 0,
-    "name": "500ml",
-    "value": "",
-    "slug": "500ml",
-    "attribute": 15
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 47,
-  "fields": {
-    "sort_order": 1,
-    "name": "1l",
-    "value": "",
-    "slug": "1l",
-    "attribute": 15
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 48,
-  "fields": {
-    "sort_order": 2,
-    "name": "2l",
-    "value": "",
-    "slug": "2l",
-    "attribute": 15
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 49,
-  "fields": {
-    "sort_order": 0,
-    "name": "Orange",
-    "value": "",
-    "slug": "orange",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 50,
-  "fields": {
-    "sort_order": 1,
-    "name": "Banana",
-    "value": "",
-    "slug": "banana",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 51,
-  "fields": {
-    "sort_order": 2,
-    "name": "Bean",
-    "value": "",
-    "slug": "bean",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 52,
-  "fields": {
-    "sort_order": 3,
-    "name": "Carrot",
-    "value": "",
-    "slug": "carrot",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 53,
-  "fields": {
-    "sort_order": 4,
-    "name": "Sprouty",
-    "value": "",
-    "slug": "sprouty",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 54,
-  "fields": {
-    "sort_order": 5,
-    "name": "Salty, like the tears of your enemy",
-    "value": "",
-    "slug": "salty-like-the-tears-of-your-enemy",
-    "attribute": 16
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 60,
-  "fields": {
-    "sort_order": 0,
-    "name": "1l",
-    "value": "",
-    "slug": "1l",
-    "attribute": 18
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 61,
-  "fields": {
-    "sort_order": 1,
-    "name": "2.5l",
-    "value": "",
-    "slug": "25l",
-    "attribute": 18
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 62,
-  "fields": {
-    "sort_order": 2,
-    "name": "5l",
-    "value": "",
-    "slug": "5l",
-    "attribute": 18
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 63,
-  "fields": {
-    "sort_order": 0,
-    "name": "Vinyl",
-    "value": "",
-    "slug": "vinyl",
-    "attribute": 19
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 64,
-  "fields": {
-    "sort_order": 1,
-    "name": "DVD",
-    "value": "",
-    "slug": "dvd",
-    "attribute": 19
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 65,
-  "fields": {
-    "sort_order": 2,
-    "name": "VHS",
-    "value": "",
-    "slug": "vhs",
-    "attribute": 19
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 66,
-  "fields": {
-    "sort_order": 3,
-    "name": "iTunes",
-    "value": "",
-    "slug": "itunes",
-    "attribute": 19
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 67,
-  "fields": {
-    "sort_order": 0,
-    "name": "700ml",
-    "value": "",
-    "slug": "700ml",
-    "attribute": 20
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 68,
-  "fields": {
-    "sort_order": 0,
-    "name": "5.1%",
-    "value": "",
-    "slug": "51",
-    "attribute": 21
-  }
-},
-{
-  "model": "skill.attributevalue",
   "pk": 69,
   "fields": {
-    "sort_order": 1,
-    "name": "6.7%",
+    "sort_order": 6,
+    "name": "mapreduce",
     "value": "",
-    "slug": "67",
+    "slug": "mapreduce",
     "attribute": 21
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 70,
-  "fields": {
-    "sort_order": 0,
-    "name": "45cm x 45cm",
-    "value": "",
-    "slug": "45cm-x-45cm",
-    "attribute": 22
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 71,
-  "fields": {
-    "sort_order": 1,
-    "name": "55cm x 55cm",
-    "value": "",
-    "slug": "55cm-x-55cm",
-    "attribute": 22
   }
 },
 {
   "model": "skill.attributevalue",
   "pk": 72,
   "fields": {
-    "sort_order": 0,
-    "name": "Cotton",
+    "sort_order": 7,
+    "name": "Spring",
     "value": "",
-    "slug": "cotton",
+    "slug": "spring",
     "attribute": 23
   }
 },
@@ -1875,10 +877,10 @@
   "model": "skill.attributevalue",
   "pk": 73,
   "fields": {
-    "sort_order": 1,
-    "name": "Elastane",
+    "sort_order": 8,
+    "name": "icefaces",
     "value": "",
-    "slug": "elastane",
+    "slug": "icefaces",
     "attribute": 23
   }
 },
@@ -1886,165 +888,110 @@
   "model": "skill.attributevalue",
   "pk": 74,
   "fields": {
-    "sort_order": 2,
-    "name": "Polyester",
+    "sort_order": 0,
+    "name": "Hibernate",
     "value": "",
-    "slug": "polyester",
+    "slug": "hibernate",
     "attribute": 23
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 75,
-  "fields": {
-    "sort_order": 0,
-    "name": "39",
-    "value": "",
-    "slug": "39",
-    "attribute": 24
-  }
-},
-{
-  "model": "skill.attributevalue",
-  "pk": 76,
+  "pk": 49,
   "fields": {
     "sort_order": 1,
-    "name": "40",
+    "name": "jquery",
     "value": "",
-    "slug": "40",
-    "attribute": 24
+    "slug": "jquery",
+    "attribute": 16
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 77,
+  "pk": 50,
   "fields": {
     "sort_order": 2,
-    "name": "41",
+    "name": "NHibernate",
     "value": "",
-    "slug": "41",
-    "attribute": 24
+    "slug": "nhibernate",
+    "attribute": 16
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 78,
+  "pk": 51,
   "fields": {
     "sort_order": 3,
-    "name": "42",
+    "name": "LINQ",
     "value": "",
-    "slug": "42",
-    "attribute": 24
+    "slug": "linq",
+    "attribute": 16
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 79,
+  "pk": 63,
   "fields": {
     "sort_order": 4,
-    "name": "43",
+    "name": "keras",
     "value": "",
-    "slug": "43",
-    "attribute": 24
+    "slug": "keras",
+    "attribute": 19
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 80,
+  "pk": 64,
   "fields": {
-    "sort_order": 5,
-    "name": "44",
+    "sort_order": 0,
+    "name": "theano",
     "value": "",
-    "slug": "44",
-    "attribute": 24
+    "slug": "theano",
+    "attribute": 19
   }
 },
 {
   "model": "skill.attributevalue",
-  "pk": 81,
+  "pk": 65,
   "fields": {
-    "sort_order": 6,
-    "name": "45",
+    "sort_order": 1,
+    "name": "pandas",
     "value": "",
-    "slug": "45",
-    "attribute": 24
+    "slug": "pandas",
+    "attribute": 19
+  }
+},
+{
+  "model": "skill.attributevalue",
+  "pk": 66,
+  "fields": {
+    "sort_order": 2,
+    "name": "scikit",
+    "value": "",
+    "slug": "scikit",
+    "attribute": 19
   }
 },
 {
   "model": "skill.attributevalue",
   "pk": 82,
   "fields": {
-    "sort_order": 0,
-    "name": "Cotton",
+    "sort_order": 3,
+    "name": "python",
     "value": "",
-    "slug": "cotton",
+    "slug": "python",
     "attribute": 25
   }
 },
 {
-  "model": "skill.skillimage",
-  "pk": 1,
-  "fields": {
-    "sort_order": 0,
-    "product": 61,
-    "image": "skills/saleordemoskill_paints_01_Zv5xJCl.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 2,
-  "fields": {
-    "sort_order": 0,
-    "skill": 62,
-    "image": "skills/saleordemoskill_paints_02_eBKihwk.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
+  "model": "skill.attributevalue",
   "pk": 3,
   "fields": {
-    "sort_order": 0,
-    "skill": 63,
-    "image": "skills/saleordemoskill_paints_03_8NhNssT.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 4,
-  "fields": {
-    "sort_order": 0,
-    "skill": 64,
-    "image": "skills/saleordemoskill_paints_04_oO7QZV2.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 5,
-  "fields": {
-    "sort_order": 0,
-    "skill": 65,
-    "image": "skills/saleordemoskill_paints_05_JuztMPF.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 6,
-  "fields": {
-    "sort_order": 0,
-    "skill": 71,
-    "image": "skills/saleordemoskill_fd_juice_06_C3OoAQO.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
+    "sort_order": 4,
+    "name": "R",
+    "value": "",
+    "slug": "r",
+    "attribute": 25
   }
 },
 {
@@ -2052,19 +999,19 @@
   "pk": 7,
   "fields": {
     "sort_order": 0,
-    "skill": 72,
-    "image": "skills/saleordemoskill_fd_juice_06_w0MtJXJ.png",
+    "skill_type": 9,
+    "image": "skills/Microsoft_.NET_logo_yjeACAr.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
 },
 {
   "model": "skill.skillimage",
-  "pk": 8,
+  "pk": 51,
   "fields": {
     "sort_order": 0,
-    "skill": 73,
-    "image": "skills/saleordemoskill_fd_juice_05_53w0t3q.png",
+    "skill_type": 1,
+    "image": "skills/stats1_kSuP9Ku.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -2074,52 +1021,8 @@
   "pk": 9,
   "fields": {
     "sort_order": 0,
-    "skill": 74,
-    "image": "skills/saleordemoskill_fd_juice_01_IaWgwUI.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 10,
-  "fields": {
-    "sort_order": 0,
-    "skill": 75,
-    "image": "skills/saleordemoskill_fd_juice_03_q5Wq59X.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 11,
-  "fields": {
-    "sort_order": 0,
-    "skill": 76,
-    "image": "skills/saleordemoskill_fd_juice_02_O7S875d.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 12,
-  "fields": {
-    "sort_order": 0,
-    "skill": 77,
-    "image": "skills/saleordemoskill_fd_juice_03_GEu22f0.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 13,
-  "fields": {
-    "sort_order": 0,
-    "skill": 78,
-    "image": "skills/saleordemoskill_fd_juice_04_sqK71mC.png",
+    "skill_type": 8,
+    "image": "skills/python_xrOy2uN.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -2129,184 +1032,52 @@
   "pk": 14,
   "fields": {
     "sort_order": 0,
-    "skill": 79,
-    "image": "skills/saleordemoskill_fd_juice_02_SwckdWe.png",
+    "skill_type": 14,
+    "image": "skills/visualisation_eb1tnh0.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
 },
 {
   "model": "skill.skillimage",
-  "pk": 15,
+  "pk": 40,
   "fields": {
     "sort_order": 0,
-    "skill": 81,
-    "image": "skills/saleordemoskill_wine-red_pUcuxQv.png",
+    "skill_type": 13,
+    "image": "skills/download.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
 },
 {
   "model": "skill.skillimage",
-  "pk": 16,
+  "pk": 44,
   "fields": {
     "sort_order": 0,
-    "skill": 82,
-    "image": "skills/saleordemoskill_wine-white_4cCs90C.png",
+    "skill_type": 10,
+    "image": "skills/data_MlLpHpu.png",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
 },
 {
   "model": "skill.skillimage",
-  "pk": 17,
+  "pk": 37,
   "fields": {
     "sort_order": 0,
-    "skill": 83,
-    "image": "skills/saleordemoskill_beer-02_1_9t1BfZn.png",
+    "skill_type": 7,
+    "image": "skills/classification_DHigUwZ.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
 },
 {
   "model": "skill.skillimage",
-  "pk": 18,
-  "fields": {
-    "sort_order": 1,
-    "skill": 83,
-    "image": "skills/saleordemoskill_beer-02_2_rLQRJDC.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 19,
+  "pk": 42,
   "fields": {
     "sort_order": 0,
-    "skill": 84,
-    "image": "skills/saleordemoskill_beer-01_1_Qh8BaiR.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 20,
-  "fields": {
-    "sort_order": 1,
-    "skill": 84,
-    "image": "skills/saleordemoskill_beer-01_2_92CFmqa.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 21,
-  "fields": {
-    "sort_order": 0,
-    "skill": 85,
-    "image": "skills/saleordemoskill_cuschion01_DmDS3DM.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 22,
-  "fields": {
-    "sort_order": 0,
-    "skill": 86,
-    "image": "skills/saleordemoskill_cuschion02_JabUGVI.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 23,
-  "fields": {
-    "sort_order": 0,
-    "skill": 87,
-    "image": "skills/saleordemoskill_sneakers_01_1_UF2jkqe.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 24,
-  "fields": {
-    "sort_order": 1,
-    "skill": 87,
-    "image": "skills/saleordemoskill_sneakers_01_2_T1UPq2W.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 25,
-  "fields": {
-    "sort_order": 2,
-    "skill": 87,
-    "image": "skills/saleordemoskill_sneakers_01_3_vzD3TAq.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 26,
-  "fields": {
-    "sort_order": 3,
-    "skill": 87,
-    "image": "skills/saleordemoskill_sneakers_01_4_N1A4Bfr.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 27,
-  "fields": {
-    "sort_order": 0,
-    "skill": 88,
-    "image": "skills/saleordemoskill_sneakers_02_1_bsyba3o.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 28,
-  "fields": {
-    "sort_order": 1,
-    "skill": 88,
-    "image": "skills/saleordemoskill_sneakers_02_2_XOrJi1r.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 29,
-  "fields": {
-    "sort_order": 2,
-    "skill": 88,
-    "image": "skills/saleordemoskill_sneakers_02_3_IzqfgoY.png",
-    "ppoi": "0.5x0.5",
-    "alt": ""
-  }
-},
-{
-  "model": "skill.skillimage",
-  "pk": 30,
-  "fields": {
-    "sort_order": 3,
-    "skill": 88,
-    "image": "skills/saleordemoskill_sneakers_02_4_0yxkDqy.png",
+    "skill_type": 11,
+    "image": "skills/bigdata_Xqz6b6e.jfif",
     "ppoi": "0.5x0.5",
     "alt": ""
   }
@@ -2328,5 +1099,5 @@
       114
     ]
   }
-},
+}
 ]

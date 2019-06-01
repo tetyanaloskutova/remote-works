@@ -77,7 +77,7 @@ const TaskUnfulfilledItems = withStyles(styles, {
           >
             <TableCellAvatar thumbnail={line.thumbnailUrl} />
             <TableCell>
-              {maybe(() => line.productName) || <Skeleton />}
+              {maybe(() => line.skillName) || <Skeleton />}
             </TableCell>
             <TableCell className={classes.textCenter}>
               {maybe(() => line.quantity - line.quantityFulfilled) || (

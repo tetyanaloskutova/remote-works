@@ -75,13 +75,13 @@ function loadStories() {
   require("./stories/pages/PageListPage")
 
   // Skills
-  require("./stories/products/SkillCreatePage");
-  require("./stories/products/SkillImagePage");
-  require("./stories/products/SkillListCard");
-  require("./stories/products/SkillUpdatePage");
-  require("./stories/products/SkillVariantCreatePage");
-  require("./stories/products/SkillVariantImageSelectDialog");
-  require("./stories/products/SkillVariantPage");
+  require("./stories/skills/SkillCreatePage");
+  require("./stories/skills/SkillImagePage");
+  require("./stories/skills/SkillListCard");
+  require("./stories/skills/SkillUpdatePage");
+  require("./stories/skills/SkillVariantCreatePage");
+  require("./stories/skills/SkillVariantImageSelectDialog");
+  require("./stories/skills/SkillVariantPage");
 
   // Tasks
   require("./stories/tasks/TaskAddressEditDialog");

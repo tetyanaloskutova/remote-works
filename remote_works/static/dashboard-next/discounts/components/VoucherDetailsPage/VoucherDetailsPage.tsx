@@ -28,11 +28,11 @@ import VoucherSummary from "../VoucherSummary";
 export enum VoucherDetailsPageTab {
   categories = "categories",
   collections = "collections",
-  skills = "products"
+  skills = "skills"
 }
 export function voucherDetailsPageTab(tab: string): VoucherDetailsPageTab {
-  return tab === VoucherDetailsPageTab.products
-    ? VoucherDetailsPageTab.products
+  return tab === VoucherDetailsPageTab.skills
+    ? VoucherDetailsPageTab.skills
     : tab === VoucherDetailsPageTab.collections
     ? VoucherDetailsPageTab.collections
     : VoucherDetailsPageTab.categories;
@@ -77,7 +77,7 @@ export interface VoucherDetailsPageProps
 
 const CategoriesTab = Tab(VoucherDetailsPageTab.categories);
 const CollectionsTab = Tab(VoucherDetailsPageTab.collections);
-const SkillsTab = Tab(VoucherDetailsPageTab.products);
+const SkillsTab = Tab(VoucherDetailsPageTab.skills);
 
 const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
   activeTab,
@@ -146,7 +146,7 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
               <CardSpacer />
               {data.type === VoucherType.CATEGORY ||
               data.type === VoucherType.COLLECTION ||
-              data.type === VoucherType.PRODUCT ? (
+              data.type === VoucherType.SKILL ? (
                 <>
                   <TabContainer>
                     <CategoriesTab
@@ -172,12 +172,12 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
                       })}
                     </CollectionsTab>
                     <SkillsTab
-                      isActive={activeTab === VoucherDetailsPageTab.products}
+                      isActive={activeTab === VoucherDetailsPageTab.skills}
                       changeTab={onTabClick}
                     >
                       {i18n.t("Skills ({{ number }})", {
                         number: maybe(
-                          () => voucher.products.totalCount.toString(),
+                          () => voucher.skills.totalCount.toString(),
                           "…"
                         )
                       })}

@@ -1,4 +1,4 @@
-@mixin product-gallery {
+@mixin skill-gallery {
   margin: 0;
   &-item {
     position: relative;
@@ -64,6 +64,6 @@
   }
 }
 
-.product-gallery {
-  @include product-gallery;
+.skill-gallery {
+  @include skill-gallery;
 }

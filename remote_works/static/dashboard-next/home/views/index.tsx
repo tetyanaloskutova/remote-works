@@ -4,7 +4,7 @@ import { UserContext } from "../../auth";
 import Navigator from "../../components/Navigator";
 import { maybe } from "../../misc";
 import { orderListUrl } from "../../tasks/urls";
-import { productListUrl, productVariantEditUrl } from "../../products/urls";
+import { skillListUrl, skillVariantEditUrl } from "../../skills/urls";
 import { TaskStatusFilter, StockAvailability } from "../../types/globalTypes";
 import HomePage from "../components/HomePage";
 import { HomePageQuery } from "../queries";
@@ -23,10 +23,10 @@ const HomeSection = () => (
                 tasks={maybe(() => data.ordersToday.totalCount)}
                 sales={maybe(() => data.salesToday.gross)}
                 topSkills={maybe(() =>
-                  data.productTopToday.edges.map(edge => edge.node)
+                  data.skillTopToday.edges.map(edge => edge.node)
                 )}
-                onSkillClick={(productId, variantId) =>
-                  navigate(productVariantEditUrl(productId, variantId))
+                onSkillClick={(skillId, variantId) =>
+                  navigate(skillVariantEditUrl(skillId, variantId))
                 }
                 onTasksToCaptureClick={() =>
                   navigate(
@@ -44,15 +44,15 @@ const HomeSection = () => (
                 }
                 onSkillsOutOfStockClick={() =>
                   navigate(
-                    productListUrl({
+                    skillListUrl({
                       status: StockAvailability.OUT_OF_STOCK
                     })
                   )
                 }
                 ordersToCapture={maybe(() => data.ordersToCapture.totalCount)}
                 ordersToFulfill={maybe(() => data.ordersToFulfill.totalCount)}
-                productsOutOfStock={maybe(
-                  () => data.productsOutOfStock.totalCount
+                skillsOutOfStock={maybe(
+                  () => data.skillsOutOfStock.totalCount
                 )}
                 userName={user.email}
               />

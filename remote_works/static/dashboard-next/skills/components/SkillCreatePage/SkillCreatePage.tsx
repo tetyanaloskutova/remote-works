@@ -11,7 +11,7 @@ import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 import SeoForm from "../../../components/SeoForm";
 import i18n from "../../../i18n";
 import { UserError } from "../../../types";
-import { SkillCreateData_productTypes_edges_node_productAttributes } from "../../types/SkillCreateData";
+import { SkillCreateData_skillTypes_edges_node_skillAttributes } from "../../types/SkillCreateData";
 import SkillAvailabilityForm from "../SkillAvailabilityForm";
 import SkillDetailsForm from "../SkillDetailsForm";
 import SkillOrganization from "../SkillOrganization";
@@ -34,13 +34,13 @@ export interface FormData {
   description: RawDraftContentState;
   name: string;
   price: number;
-  productType: {
+  skillType: {
     label: string;
     value: {
       hasVariants: boolean;
       id: string;
       name: string;
-      productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
+      skillAttributes: SkillCreateData_skillTypes_edges_node_skillAttributes[];
     };
   };
   seoDescription: string;
@@ -61,11 +61,11 @@ interface SkillCreatePageProps {
     name: string;
   }>;
   disabled: boolean;
-  productTypes?: Array<{
+  skillTypes?: Array<{
     id: string;
     name: string;
     hasVariants: boolean;
-    productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
+    skillAttributes: SkillCreateData_skillTypes_edges_node_skillAttributes[];
   }>;
   header: string;
   saveButtonBarState: ConfirmButtonTransitionState;
@@ -87,7 +87,7 @@ export const SkillCreatePage: React.StatelessComponent<
   fetchCategories,
   fetchCollections,
   header,
-  productTypes,
+  skillTypes,
   saveButtonBarState,
   onBack,
   onSubmit
@@ -104,13 +104,13 @@ export const SkillCreatePage: React.StatelessComponent<
     description: {} as any,
     name: "",
     price: 0,
-    productType: {
+    skillType: {
       label: "",
       value: {
         hasVariants: false,
         id: "",
         name: "",
-        productAttributes: [] as SkillCreateData_productTypes_edges_node_productAttributes[]
+        skillAttributes: [] as SkillCreateData_skillTypes_edges_node_skillAttributes[]
       }
     },
     publicationDate: "",
@@ -178,7 +178,7 @@ export const SkillCreatePage: React.StatelessComponent<
                       }))
                     : []
                 }
-                productTypes={productTypes}
+                skillTypes={skillTypes}
                 data={data}
                 disabled={disabled}
                 onChange={change}

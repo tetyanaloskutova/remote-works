@@ -6,7 +6,7 @@ import { createPaginationState, Paginator } from "../../components/Paginator";
 import { maybe } from "../../misc";
 import SkillTypeListPage from "../components/SkillTypeListPage";
 import { TypedSkillTypeListQuery } from "../queries";
-import { productTypeAddUrl, productTypeUrl } from "../urls";
+import { skillTypeAddUrl, skillTypeUrl } from "../urls";
 
 export type SkillTypeListQueryParams = Partial<{
   after: string;
@@ -33,21 +33,21 @@ export const SkillTypeList: React.StatelessComponent<
             }
             return (
               <Paginator
-                pageInfo={maybe(() => data.productTypes.pageInfo)}
+                pageInfo={maybe(() => data.skillTypes.pageInfo)}
                 paginationState={paginationState}
                 queryString={params}
               >
                 {({ loadNextPage, loadPreviousPage, pageInfo }) => (
                   <SkillTypeListPage
                     disabled={loading}
-                    productTypes={maybe(() =>
-                      data.productTypes.edges.map(edge => edge.node)
+                    skillTypes={maybe(() =>
+                      data.skillTypes.edges.map(edge => edge.node)
                     )}
                     pageInfo={pageInfo}
-                    onAdd={() => navigate(productTypeAddUrl)}
+                    onAdd={() => navigate(skillTypeAddUrl)}
                     onNextPage={loadNextPage}
                     onPreviousPage={loadPreviousPage}
-                    onRowClick={id => () => navigate(productTypeUrl(id))}
+                    onRowClick={id => () => navigate(skillTypeUrl(id))}
                   />
                 )}
               </Paginator>

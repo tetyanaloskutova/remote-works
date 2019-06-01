@@ -4,8 +4,8 @@ import * as React from "react";
 
 import SkillTypeDetailsPage, {
   SkillTypeDetailsPageProps
-} from "../../../productTypes/components/SkillTypeDetailsPage";
-import { productType } from "../../../productTypes/fixtures";
+} from "../../../skillTypes/components/SkillTypeDetailsPage";
+import { skillType } from "../../../skillTypes/fixtures";
 import { WeightUnitsEnum } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
@@ -19,8 +19,8 @@ const props: Omit<SkillTypeDetailsPageProps, "classes"> = {
   onBack: () => undefined,
   onDelete: () => undefined,
   onSubmit: () => undefined,
-  pageTitle: productType.name,
-  productType,
+  pageTitle: skillType.name,
+  skillType,
   saveButtonBarState: "default"
 };
 
@@ -32,6 +32,6 @@ storiesOf("Views / Skill types / Skill type details", module)
       {...props}
       disabled={true}
       pageTitle={undefined}
-      productType={undefined}
+      skillType={undefined}
     />
   ));

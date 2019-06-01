@@ -32,7 +32,7 @@ interface SkillVariantCreatePageProps {
   errors: UserError[];
   header: string;
   loading: boolean;
-  product: SkillVariantCreateData_product;
+  skill: SkillVariantCreateData_skill;
   saveButtonBarState: ConfirmButtonTransitionState;
   onBack: () => void;
   onSubmit: (data: FormData) => void;
@@ -46,7 +46,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
   errors: formErrors,
   loading,
   header,
-  product,
+  skill,
   saveButtonBarState,
   onBack,
   onSubmit,
@@ -54,13 +54,13 @@ const SkillVariantCreatePage: React.StatelessComponent<
 }) => {
   const initialForm = {
     attributes: maybe(() =>
-      product.productType.variantAttributes.map(attribute => ({
+      skill.skillType.variantAttributes.map(attribute => ({
         slug: attribute.slug,
         value: ""
       }))
     ),
     costPrice: "",
-    images: maybe(() => product.images.map(image => image.id)),
+    images: maybe(() => skill.images.map(image => image.id)),
     priceOverride: "",
     quantity: 0,
     sku: ""
@@ -70,7 +70,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
       initial={initialForm}
       errors={formErrors}
       onSubmit={onSubmit}
-      key={skill ? JSON.stringify(product) : "noproduct"}
+      key={skill ? JSON.stringify(skill) : "noskill"}
     >
       {({ change, data, errors, hasChanged, submit }) => (
         <Container width="md">
@@ -78,9 +78,9 @@ const SkillVariantCreatePage: React.StatelessComponent<
           <Grid variant="inverted">
             <div>
               <SkillVariantNavigation
-                variants={maybe(() => product.variants)}
+                variants={maybe(() => skill.variants)}
                 onRowClick={(variantId: string) => {
-                  if (skill && product.variants) {
+                  if (skill && skill.variants) {
                     return onVariantClick(variantId);
                   }
                 }}
@@ -88,7 +88,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
             </div>
             <div>
               <SkillVariantAttributes
-                attributes={maybe(() => product.productType.variantAttributes)}
+                attributes={maybe(() => skill.skillType.variantAttributes)}
                 data={data}
                 disabled={loading}
                 onChange={change}

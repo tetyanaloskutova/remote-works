@@ -18,6 +18,6 @@ storiesOf("Tasks / TaskSkillAddDialog", module)
       hasMore={false}
       onFetch={() => undefined}
       onFetchMore={() => undefined}
-      products={orderLineSearch(placeholderImage)}
+      skills={orderLineSearch(placeholderImage)}
     />
   ));

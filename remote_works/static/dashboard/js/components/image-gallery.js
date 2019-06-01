@@ -9,10 +9,10 @@ function createLink (link, index, replacement) {
 
 // -----
 
-$('#product-image-form').dropzone({
+$('#skill-image-form').dropzone({
   paramName: 'image_0',
   maxFilesize: 20,
-  previewsContainer: '.product-gallery',
+  previewsContainer: '.skill-gallery',
   thumbnailWidth: 400,
   thumbnailHeight: 400,
   previewTemplate: $('#template').html(),
@@ -21,7 +21,7 @@ $('#product-image-form').dropzone({
   init: function () {
     this.on('success', (e, response) => {
       const $previewElement = $(e.previewElement);
-      $previewElement.find('.product-gallery-item-desc').html(response.image);
+      $previewElement.find('.skill-gallery-item-desc').html(response.image);
       $previewElement.attr('data-id', response.id);
 
       const $editLinkElement = $previewElement.find('.card-action-edit');

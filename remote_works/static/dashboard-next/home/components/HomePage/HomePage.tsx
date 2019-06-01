@@ -15,7 +15,7 @@ import Money from "../../../components/Money";
 import Skeleton from "../../../components/Skeleton";
 import {
   Home_activities_edges_node,
-  Home_productTopToday_edges_node,
+  Home_skillTopToday_edges_node,
   Home_salesToday_gross
 } from "../../types/Home";
 import HomeActivityCard from "../HomeActivityCard";
@@ -44,13 +44,13 @@ export interface HomePageProps extends WithStyles<typeof styles> {
   tasks: number;
   ordersToCapture: number;
   ordersToFulfill: number;
-  productsOutOfStock: number;
+  skillsOutOfStock: number;
   sales: Home_salesToday_gross;
-  topSkills: Home_productTopToday_edges_node[];
+  topSkills: Home_skillTopToday_edges_node[];
   userName: string;
   onTasksToCaptureClick: () => void;
   onTasksToFulfillClick: () => void;
-  onSkillClick: (productId: string, variantId: string) => void;
+  onSkillClick: (skillId: string, variantId: string) => void;
   onSkillsOutOfStockClick: () => void;
 }
 
@@ -68,7 +68,7 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
     onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
-    productsOutOfStock
+    skillsOutOfStock
   }: HomePageProps) => (
     <Container width="md">
       <HomeHeader userName={userName} />
@@ -103,7 +103,7 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
             onSkillsOutOfStockClick={onSkillsOutOfStockClick}
             ordersToCapture={ordersToCapture}
             ordersToFulfill={ordersToFulfill}
-            productsOutOfStock={productsOutOfStock}
+            skillsOutOfStock={skillsOutOfStock}
           />
           <CardSpacer />
           <HomeSkillListCard

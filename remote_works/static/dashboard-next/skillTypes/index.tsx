@@ -5,9 +5,9 @@ import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
 import {
-  productTypeAddPath,
-  productTypeListPath,
-  productTypePath
+  skillTypeAddPath,
+  skillTypeListPath,
+  skillTypePath
 } from "./urls";
 import SkillTypeCreate from "./views/SkillTypeCreate";
 import SkillTypeListComponent, {
@@ -41,9 +41,9 @@ export const SkillTypeRouter: React.StatelessComponent<
   <>
     <WindowTitle title={i18n.t("Skill types")} />
     <Switch>
-      <Route exact path={productTypeListPath} component={SkillTypeList} />
-      <Route exact path={productTypeAddPath} component={SkillTypeCreate} />
-      <Route path={productTypePath(":id")} component={SkillTypeUpdate} />
+      <Route exact path={skillTypeListPath} component={SkillTypeList} />
+      <Route exact path={skillTypeAddPath} component={SkillTypeCreate} />
+      <Route path={skillTypePath(":id")} component={SkillTypeUpdate} />
     </Switch>
   </>
 );

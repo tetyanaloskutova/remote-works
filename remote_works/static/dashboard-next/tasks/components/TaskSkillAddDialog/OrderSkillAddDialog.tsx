@@ -29,12 +29,12 @@ import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import {
-  TaskVariantSearch_products_edges_node,
-  TaskVariantSearch_products_edges_node_variants
+  TaskVariantSearch_skills_edges_node,
+  TaskVariantSearch_skills_edges_node_variants
 } from "../../types/TaskVariantSearch";
 
 export interface FormData {
-  variants: TaskVariantSearch_products_edges_node_variants[];
+  variants: TaskVariantSearch_skills_edges_node_variants[];
   query: string;
 }
 
@@ -59,7 +59,7 @@ const styles = (theme: Theme) =>
     overflow: {
       overflowY: "visible"
     },
-    productCheckboxCell: {
+    skillCheckboxCell: {
       "&:first-child": {
         paddingLeft: 0,
         paddingRight: 0
@@ -79,7 +79,7 @@ const styles = (theme: Theme) =>
 interface TaskSkillAddDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  products: TaskVariantSearch_products_edges_node[];
+  skills: TaskVariantSearch_skills_edges_node[];
   loading: boolean;
   hasMore: boolean;
   onClose: () => void;
@@ -94,22 +94,22 @@ const initialForm: FormData = {
 };
 
 function hasAllVariantsSelected(
-  productVariants: TaskVariantSearch_products_edges_node_variants[],
-  selectedVariants: TaskVariantSearch_products_edges_node_variants[]
+  skillVariants: TaskVariantSearch_skills_edges_node_variants[],
+  selectedVariants: TaskVariantSearch_skills_edges_node_variants[]
 ): boolean {
-  return productVariants.reduce(
-    (acc, productVariant) =>
+  return skillVariants.reduce(
+    (acc, skillVariant) =>
       acc &&
       !!selectedVariants.find(
-        selectedVariant => selectedVariant.id === productVariant.id
+        selectedVariant => selectedVariant.id === skillVariant.id
       ),
     true
   );
 }
 
 function isVariantSelected(
-  variant: TaskVariantSearch_products_edges_node_variants,
-  selectedVariants: TaskVariantSearch_products_edges_node_variants[]
+  variant: TaskVariantSearch_skills_edges_node_variants,
+  selectedVariants: TaskVariantSearch_skills_edges_node_variants[]
 ): boolean {
   return !!selectedVariants.find(
     selectedVariant => selectedVariant.id === variant.id
@@ -125,7 +125,7 @@ const TaskSkillAddDialog = withStyles(styles, {
     open,
     loading,
     hasMore,
-    products,
+    skills,
     onFetch,
     onFetchMore,
     onClose,
@@ -139,32 +139,32 @@ const TaskSkillAddDialog = withStyles(styles, {
     >
       <Form initial={initialForm} onSubmit={onSubmit}>
         {({ data, change }) => {
-          const selectedVariants = products
-            ? products.map(skill =>
-                product.variants.map(variant =>
+          const selectedVariants = skills
+            ? skills.map(skill =>
+                skill.variants.map(variant =>
                   isVariantSelected(variant, data.variants)
                 )
               )
             : [];
-          const selectedSkills = products
-            ? products.map(skill =>
-                hasAllVariantsSelected(product.variants, data.variants)
+          const selectedSkills = skills
+            ? skills.map(skill =>
+                hasAllVariantsSelected(skill.variants, data.variants)
               )
             : [];
 
           const onSkillAdd = (
-            product: TaskVariantSearch_products_edges_node,
-            productIndex: number
+            skill: TaskVariantSearch_skills_edges_node,
+            skillIndex: number
           ) =>
-            selectedSkills[productIndex]
+            selectedSkills[skillIndex]
               ? change({
                   target: {
                     name: "variants",
                     value: data.variants.filter(
                       selectedVariant =>
-                        !product.variants.find(
-                          productVariant =>
-                            productVariant.id === selectedVariant.id
+                        !skill.variants.find(
+                          skillVariant =>
+                            skillVariant.id === selectedVariant.id
                         )
                     )
                   }
@@ -174,22 +174,22 @@ const TaskSkillAddDialog = withStyles(styles, {
                     name: "variants",
                     value: [
                       ...data.variants,
-                      ...product.variants.filter(
-                        productVariant =>
+                      ...skill.variants.filter(
+                        skillVariant =>
                           !data.variants.find(
                             selectedVariant =>
-                              selectedVariant.id === productVariant.id
+                              selectedVariant.id === skillVariant.id
                           )
                       )
                     ]
                   }
                 } as any);
           const onVariantAdd = (
-            variant: TaskVariantSearch_products_edges_node_variants,
+            variant: TaskVariantSearch_skills_edges_node_variants,
             variantIndex: number,
-            productIndex: number
+            skillIndex: number
           ) =>
-            selectedVariants[productIndex][variantIndex]
+            selectedVariants[skillIndex][variantIndex]
               ? change({
                   target: {
                     name: "variants",
@@ -207,7 +207,7 @@ const TaskSkillAddDialog = withStyles(styles, {
 
           return (
             <>
-              <DialogTitle>{i18n.t("Add product")}</DialogTitle>
+              <DialogTitle>{i18n.t("Add skill")}</DialogTitle>
               <DialogContent className={classes.overflow}>
                 <Debounce debounceFn={onFetch}>
                   {fetch => (
@@ -249,36 +249,36 @@ const TaskSkillAddDialog = withStyles(styles, {
                   <Table key="table">
                     <TableBody>
                       {renderCollection(
-                        products,
-                        (product, productIndex) => (
+                        skills,
+                        (skill, skillIndex) => (
                           <React.Fragment
-                            key={skill ? product.id : "skeleton"}
+                            key={skill ? skill.id : "skeleton"}
                           >
                             <TableRow>
                               <TableCell
                                 padding="checkbox"
-                                className={classes.productCheckboxCell}
+                                className={classes.skillCheckboxCell}
                               >
                                 <Checkbox
-                                  checked={selectedSkills[productIndex]}
+                                  checked={selectedSkills[skillIndex]}
                                   disabled={loading}
                                   onChange={() =>
-                                    onSkillAdd(product, productIndex)
+                                    onSkillAdd(skill, skillIndex)
                                   }
                                 />
                               </TableCell>
                               <TableCellAvatar
                                 className={classes.avatar}
-                                thumbnail={maybe(() => product.thumbnail.url)}
+                                thumbnail={maybe(() => skill.thumbnail.url)}
                               />
                               <TableCell
                                 className={classes.wideCell}
                                 colSpan={2}
                               >
-                                {maybe(() => product.name)}
+                                {maybe(() => skill.name)}
                               </TableCell>
                             </TableRow>
-                            {maybe(() => product.variants, []).map(
+                            {maybe(() => skill.variants, []).map(
                               (variant, variantIndex) => (
                                 <TableRow key={variant.id}>
                                   <TableCell />
@@ -286,7 +286,7 @@ const TaskSkillAddDialog = withStyles(styles, {
                                     <Checkbox
                                       className={classes.variantCheckbox}
                                       checked={
-                                        selectedVariants[productIndex][
+                                        selectedVariants[skillIndex][
                                           variantIndex
                                         ]
                                       }
@@ -295,7 +295,7 @@ const TaskSkillAddDialog = withStyles(styles, {
                                         onVariantAdd(
                                           variant,
                                           variantIndex,
-                                          productIndex
+                                          skillIndex
                                         )
                                       }
                                     />

@@ -9,7 +9,7 @@ const skills = [
   {
     id: "UHJvZHVjdDox",
     name: "Gardner, Graham and King",
-    productType: {
+    skillType: {
       id: "1",
       name: "T-Shirt"
     },
@@ -18,7 +18,7 @@ const skills = [
   {
     id: "UHJvZHVjdDoy",
     name: "Gardner, Graham and King",
-    productType: {
+    skillType: {
       id: "1",
       name: "T-Shirt"
     },
@@ -27,7 +27,7 @@ const skills = [
   {
     id: "UHJvZHVjdDoz",
     name: "Gardner, Graham and King",
-    productType: {
+    skillType: {
       id: "1",
       name: "T-Shirt"
     },
@@ -36,7 +36,7 @@ const skills = [
   {
     id: "UHJvZHVjdDoa",
     name: "Gardner, Graham and King",
-    productType: {
+    skillType: {
       id: "1",
       name: "T-Shirt"
     },
@@ -50,7 +50,7 @@ storiesOf("Categories / CategorySkills", module)
     <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
-      products={[]}
+      skills={[]}
       onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
@@ -60,7 +60,7 @@ storiesOf("Categories / CategorySkills", module)
     <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
-      products={products}
+      skills={skills}
       onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}
@@ -70,7 +70,7 @@ storiesOf("Categories / CategorySkills", module)
     <CategorySkills
       hasNextPage={true}
       hasPreviousPage={false}
-      products={products}
+      skills={skills}
       onAddSkill={undefined}
       onNextPage={undefined}
       onPreviousPage={undefined}

@@ -12,7 +12,7 @@ import Navigation from "../icons/Navigation";
 import Pages from "../icons/Pages";
 import StoreMall from "../icons/StoreMall";
 import { pageListUrl } from "../pages/urls";
-import { productTypeListUrl } from "../productTypes/urls";
+import { skillTypeListUrl } from "../skillTypes/urls";
 import { siteSettingsUrl } from "../siteSettings/urls";
 import { staffListUrl } from "../staff/urls";
 import { taxSection } from "../taxes/urls";
@@ -23,9 +23,9 @@ export const configurationMenu: MenuItem[] = [
   {
     description: i18n.t("Define types of skills you sell"),
     icon: <Folder fontSize="inherit" />,
-    permission: PermissionEnum.MANAGE_PRODUCTS,
+    permission: PermissionEnum.MANAGE_SKILLS,
     title: i18n.t("Skill Types"),
-    url: productTypeListUrl
+    url: skillTypeListUrl
   },
   {
     description: i18n.t("Manage your employees and their permissions"),
@@ -43,7 +43,7 @@ export const configurationMenu: MenuItem[] = [
   {
     description: i18n.t("Manage how your store charges tax"),
     icon: <Monetization fontSize="inherit" />,
-    permission: PermissionEnum.MANAGE_PRODUCTS,
+    permission: PermissionEnum.MANAGE_SKILLS,
     title: i18n.t("Taxes"),
     url: taxSection
   },

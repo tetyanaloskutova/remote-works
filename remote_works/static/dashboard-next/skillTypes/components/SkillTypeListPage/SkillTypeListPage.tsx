@@ -6,17 +6,17 @@ import Container from "../../../components/Container";
 import PageHeader from "../../../components/PageHeader";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
-import { SkillTypeList_productTypes_edges_node } from "../../types/SkillTypeList";
+import { SkillTypeList_skillTypes_edges_node } from "../../types/SkillTypeList";
 import SkillTypeList from "../SkillTypeList";
 
 interface SkillTypeListPageProps extends PageListProps {
-  productTypes: SkillTypeList_productTypes_edges_node[];
+  skillTypes: SkillTypeList_skillTypes_edges_node[];
 }
 
 const SkillTypeListPage: React.StatelessComponent<
   SkillTypeListPageProps
 > = ({
-  productTypes,
+  skillTypes,
   disabled,
   pageInfo,
   onAdd,
@@ -36,7 +36,7 @@ const SkillTypeListPage: React.StatelessComponent<
       </Button>
     </PageHeader>
     <SkillTypeList
-      productTypes={productTypes}
+      skillTypes={skillTypes}
       disabled={disabled}
       pageInfo={pageInfo}
       onNextPage={onNextPage}

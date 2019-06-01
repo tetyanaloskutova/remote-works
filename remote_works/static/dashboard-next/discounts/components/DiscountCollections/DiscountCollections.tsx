@@ -114,7 +114,7 @@ const DiscountCollections = withStyles(styles, {
                 </TableCell>
                 <TableCell className={classes.textRight}>
                   {maybe<React.ReactNode>(
-                    () => collection.products.totalCount,
+                    () => collection.skills.totalCount,
                     <Skeleton />
                   )}
                 </TableCell>

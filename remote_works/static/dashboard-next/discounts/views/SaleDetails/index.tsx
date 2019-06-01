@@ -22,7 +22,7 @@ import { SearchCollectionsProvider } from "../../../containers/SearchCollections
 import { SearchSkillsProvider } from "../../../containers/SearchSkills";
 import i18n from "../../../i18n";
 import { decimal, getMutationState, maybe } from "../../../misc";
-import { productUrl } from "../../../products/urls";
+import { skillUrl } from "../../../skills/urls";
 import { DiscountValueTypeEnum, SaleType } from "../../../types/globalTypes";
 import SaleDetailsPage, {
   SaleDetailsPageTab
@@ -147,7 +147,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                 data.sale.collections.pageInfo
                                             )
                                           : maybe(
-                                              () => data.sale.products.pageInfo
+                                              () => data.sale.skills.pageInfo
                                             );
                                       const formTransitionState = getMutationState(
                                         saleUpdateOpts.called,
@@ -259,19 +259,19 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                     true
                                                   )
                                                 }
-                                                onSkillUnassign={productId =>
+                                                onSkillUnassign={skillId =>
                                                   saleCataloguesRemove({
                                                     variables: {
                                                       ...paginationState,
                                                       id,
                                                       input: {
-                                                        products: [productId]
+                                                        skills: [skillId]
                                                       }
                                                     }
                                                   })
                                                 }
                                                 onSkillClick={id => () =>
-                                                  navigate(productUrl(id))}
+                                                  navigate(skillUrl(id))}
                                                 activeTab={params.tab}
                                                 onBack={() =>
                                                   navigate(saleListUrl)
@@ -342,16 +342,16 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               ...paginationState,
                                                               id,
                                                               input: {
-                                                                products: formData.products.map(
+                                                                skills: formData.skills.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }
                                                           })
                                                         }
-                                                        products={maybe(() =>
-                                                          searchSkillsOpts.data.products.edges
+                                                        skills={maybe(() =>
+                                                          searchSkillsOpts.data.skills.edges
                                                             .map(
                                                               edge => edge.node
                                                             )
@@ -411,7 +411,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               input: {
                                                                 categories: formData.categories.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }
@@ -468,7 +468,7 @@ export const SaleDetails: React.StatelessComponent<SaleDetailsProps> = ({
                                                               input: {
                                                                 collections: formData.collections.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }

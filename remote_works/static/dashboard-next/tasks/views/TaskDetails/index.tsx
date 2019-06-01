@@ -5,7 +5,7 @@ import ErrorMessageCard from "../../../components/ErrorMessageCard";
 import Navigator from "../../../components/Navigator";
 import { WindowTitle } from "../../../components/WindowTitle";
 import { getMutationState, maybe, transformAddressToForm } from "../../../misc";
-import { productUrl } from "../../../products/urls";
+import { skillUrl } from "../../../skills/urls";
 import { TaskStatus } from "../../../types/globalTypes";
 import TaskAddressEditDialog from "../../components/TaskAddressEditDialog";
 import TaskCancelDialog from "../../components/TaskCancelDialog";
@@ -27,39 +27,39 @@ import TaskOperations from "../../containers/TaskOperations";
 import { TaskVariantSearchProvider } from "../../containers/TaskVariantSearch";
 import { UserSearchProvider } from "../../containers/UserSearch";
 import { TypedTaskDetailsQuery } from "../../queries";
-import { TaskDetails_order } from "../../types/TaskDetails";
-import { orderListUrl, orderUrl } from "../../urls";
+import { TaskDetails_task } from "../../types/TaskDetails";
+import { taskListUrl, taskUrl } from "../../urls";
 import { TaskDetailsMessages } from "./TaskDetailsMessages";
 import {
-  orderBillingAddressEditPath,
-  orderBillingAddressEditUrl,
-  orderCancelPath,
-  orderCancelUrl,
-  orderDraftFinalizePath,
-  orderDraftFinalizeUrl,
-  orderDraftLineAddPath,
-  orderDraftLineAddUrl,
-  orderDraftDeliveryMethodPath,
-  orderDraftDeliveryMethodUrl,
-  orderFulfillmentCancelPath,
-  orderFulfillmentCancelUrl,
-  orderFulfillmentEditTrackingPath,
-  orderFulfillmentEditTrackingUrl,
-  orderFulfillPath,
-  orderFulfillUrl,
-  orderMarkAsPaidPath,
-  orderMarkAsPaidUrl,
-  orderPaymentCapturePath,
-  orderPaymentCaptureUrl,
-  orderPaymentRefundPath,
-  orderPaymentRefundUrl,
-  orderPaymentVoidPath,
-  orderPaymentVoidUrl,
-  orderDeliveryAddressEditPath,
-  orderDeliveryAddressEditUrl
+  taskBillingAddressEditPath,
+  taskBillingAddressEditUrl,
+  taskCancelPath,
+  taskCancelUrl,
+  taskDraftFinalizePath,
+  taskDraftFinalizeUrl,
+  taskDraftLineAddPath,
+  taskDraftLineAddUrl,
+  taskDraftDeliveryMethodPath,
+  taskDraftDeliveryMethodUrl,
+  taskFulfillmentCancelPath,
+  taskFulfillmentCancelUrl,
+  taskFulfillmentEditTrackingPath,
+  taskFulfillmentEditTrackingUrl,
+  taskFulfillPath,
+  taskFulfillUrl,
+  taskMarkAsPaidPath,
+  taskMarkAsPaidUrl,
+  taskPaymentCapturePath,
+  taskPaymentCaptureUrl,
+  taskPaymentRefundPath,
+  taskPaymentRefundUrl,
+  taskPaymentVoidPath,
+  taskPaymentVoidUrl,
+  taskDeliveryAddressEditPath,
+  taskDeliveryAddressEditUrl
 } from "./urls";
 
-const orderDraftFinalizeWarnings = (task: TaskDetails_order) => {
+const taskDraftFinalizeWarnings = (task: TaskDetails_task) => {
   const warnings = [] as TaskDraftFinalizeWarning[];
   if (!(task && task.deliveryAddress)) {
     warnings.push("no-delivery");
@@ -108,65 +108,65 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
             return <ErrorMessageCard message="Something went wrong" />;
           }
           const task = maybe(() => data.task);
-          const onModalClose = () => navigate(orderUrl(id), true);
+          const onModalClose = () => navigate(taskUrl(id), true);
           return (
             <UserSearchProvider>
               {users => (
                 <TaskDetailsMessages>
-                  {orderMessages => (
+                  {taskMessages => (
                     <TaskOperations
                       task={id}
                       onTaskFulfillmentCreate={
-                        orderMessages.handleTaskFulfillmentCreate
+                        taskMessages.handleTaskFulfillmentCreate
                       }
-                      onNoteAdd={orderMessages.handleNoteAdd}
-                      onTaskCancel={orderMessages.handleTaskCancel}
-                      onTaskVoid={orderMessages.handleTaskVoid}
-                      onPaymentCapture={orderMessages.handlePaymentCapture}
-                      onPaymentRefund={orderMessages.handlePaymentRefund}
-                      onUpdate={orderMessages.handleUpdate}
-                      onDraftUpdate={orderMessages.handleDraftUpdate}
+                      onNoteAdd={taskMessages.handleNoteAdd}
+                      onTaskCancel={taskMessages.handleTaskCancel}
+                      onTaskVoid={taskMessages.handleTaskVoid}
+                      onPaymentCapture={taskMessages.handlePaymentCapture}
+                      onPaymentRefund={taskMessages.handlePaymentRefund}
+                      onUpdate={taskMessages.handleUpdate}
+                      onDraftUpdate={taskMessages.handleDraftUpdate}
                       onDeliveryMethodUpdate={
-                        orderMessages.handleDeliveryMethodUpdate
+                        taskMessages.handleDeliveryMethodUpdate
                       }
-                      onTaskLineDelete={orderMessages.handleTaskLineDelete}
-                      onTaskLineAdd={orderMessages.handleTaskLineAdd}
-                      onTaskLineUpdate={orderMessages.handleTaskLineUpdate}
+                      onTaskLineDelete={taskMessages.handleTaskLineDelete}
+                      onTaskLineAdd={taskMessages.handleTaskLineAdd}
+                      onTaskLineUpdate={taskMessages.handleTaskLineUpdate}
                       onTaskFulfillmentCancel={
-                        orderMessages.handleTaskFulfillmentCancel
+                        taskMessages.handleTaskFulfillmentCancel
                       }
                       onTaskFulfillmentUpdate={
-                        orderMessages.handleTaskFulfillmentUpdate
+                        taskMessages.handleTaskFulfillmentUpdate
                       }
-                      onDraftFinalize={orderMessages.handleDraftFinalize}
-                      onDraftCancel={orderMessages.handleDraftCancel}
-                      onTaskMarkAsPaid={orderMessages.handleTaskMarkAsPaid}
+                      onDraftFinalize={taskMessages.handleDraftFinalize}
+                      onDraftCancel={taskMessages.handleDraftCancel}
+                      onTaskMarkAsPaid={taskMessages.handleTaskMarkAsPaid}
                     >
                       {({
-                        orderAddNote,
-                        orderCancel,
-                        orderCreateFulfillment,
-                        orderDraftUpdate,
-                        orderLineAdd,
-                        orderLineDelete,
-                        orderLineUpdate,
-                        orderPaymentCapture,
-                        orderPaymentRefund,
-                        orderVoid,
-                        orderDeliveryMethodUpdate,
-                        orderUpdate,
-                        orderFulfillmentCancel,
-                        orderFulfillmentUpdateTracking,
-                        orderDraftCancel,
-                        orderDraftFinalize,
-                        orderPaymentMarkAsPaid
+                        taskAddNote,
+                        taskCancel,
+                        taskCreateFulfillment,
+                        taskDraftUpdate,
+                        taskLineAdd,
+                        taskLineDelete,
+                        taskLineUpdate,
+                        taskPaymentCapture,
+                        taskPaymentRefund,
+                        taskVoid,
+                        taskDeliveryMethodUpdate,
+                        taskUpdate,
+                        taskFulfillmentCancel,
+                        taskFulfillmentUpdateTracking,
+                        taskDraftCancel,
+                        taskDraftFinalize,
+                        taskPaymentMarkAsPaid
                       }) => {
                         const finalizeTransitionState = getMutationState(
-                          orderDraftFinalize.opts.called,
-                          orderDraftFinalize.opts.loading,
+                          taskDraftFinalize.opts.called,
+                          taskDraftFinalize.opts.loading,
                           maybe(
                             () =>
-                              orderDraftFinalize.opts.data.draftTaskComplete
+                              taskDraftFinalize.opts.data.draftTaskComplete
                                 .errors
                           )
                         );
@@ -181,26 +181,26 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                 />
                                 <TaskDetailsPage
                                   onNoteAdd={variables =>
-                                    orderAddNote.mutate({
+                                    taskAddNote.mutate({
                                       input: variables,
                                       task: id
                                     })
                                   }
-                                  onBack={() => navigate(orderListUrl())}
+                                  onBack={() => navigate(taskListUrl())}
                                   task={task}
                                   deliveryMethods={maybe(
                                     () => data.task.availableDeliveryMethods,
                                     []
                                   )}
                                   onTaskCancel={() =>
-                                    navigate(orderCancelUrl(id))
+                                    navigate(taskCancelUrl(id))
                                   }
                                   onTaskFulfill={() =>
-                                    navigate(orderFulfillUrl(id))
+                                    navigate(taskFulfillUrl(id))
                                   }
                                   onFulfillmentCancel={fulfillmentId =>
                                     navigate(
-                                      orderFulfillmentCancelUrl(
+                                      taskFulfillmentCancelUrl(
                                         id,
                                         fulfillmentId
                                       )
@@ -208,43 +208,43 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   }
                                   onFulfillmentTrackingNumberUpdate={fulfillmentId =>
                                     navigate(
-                                      orderFulfillmentEditTrackingUrl(
+                                      taskFulfillmentEditTrackingUrl(
                                         id,
                                         fulfillmentId
                                       )
                                     )
                                   }
                                   onPaymentCapture={() =>
-                                    navigate(orderPaymentCaptureUrl(id))
+                                    navigate(taskPaymentCaptureUrl(id))
                                   }
                                   onPaymentVoid={() =>
-                                    navigate(orderPaymentVoidUrl(id))
+                                    navigate(taskPaymentVoidUrl(id))
                                   }
                                   onPaymentRefund={() =>
-                                    navigate(orderPaymentRefundUrl(id))
+                                    navigate(taskPaymentRefundUrl(id))
                                   }
                                   onSkillClick={id => () =>
-                                    navigate(productUrl(id))}
+                                    navigate(skillUrl(id))}
                                   onBillingAddressEdit={() =>
-                                    navigate(orderBillingAddressEditUrl(id))
+                                    navigate(taskBillingAddressEditUrl(id))
                                   }
                                   onDeliveryAddressEdit={() =>
-                                    navigate(orderDeliveryAddressEditUrl(id))
+                                    navigate(taskDeliveryAddressEditUrl(id))
                                   }
                                   onPaymentPaid={() =>
-                                    navigate(orderMarkAsPaidUrl(id))
+                                    navigate(taskMarkAsPaidUrl(id))
                                   }
                                 />
                                 <Route
-                                  path={orderCancelPath(":id")}
+                                  path={taskCancelPath(":id")}
                                   render={({ match }) => (
                                     <TaskCancelDialog
                                       confirmButtonState={getMutationState(
-                                        orderCancel.opts.called,
-                                        orderCancel.opts.loading,
+                                        taskCancel.opts.called,
+                                        taskCancel.opts.loading,
                                         maybe(
                                           () =>
-                                            orderCancel.opts.data.orderCancel
+                                            taskCancel.opts.data.taskCancel
                                               .errors
                                         )
                                       )}
@@ -252,7 +252,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       open={!!match}
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderCancel.mutate({
+                                        taskCancel.mutate({
                                           id,
                                           ...variables
                                         })
@@ -261,21 +261,21 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderMarkAsPaidPath(":id")}
+                                  path={taskMarkAsPaidPath(":id")}
                                   render={({ match }) => (
                                     <TaskMarkAsPaidDialog
                                       confirmButtonState={getMutationState(
-                                        orderPaymentMarkAsPaid.opts.called,
-                                        orderPaymentMarkAsPaid.opts.loading,
+                                        taskPaymentMarkAsPaid.opts.called,
+                                        taskPaymentMarkAsPaid.opts.loading,
                                         maybe(
                                           () =>
-                                            orderPaymentMarkAsPaid.opts.data
-                                              .orderMarkAsPaid.errors
+                                            taskPaymentMarkAsPaid.opts.data
+                                              .taskMarkAsPaid.errors
                                         )
                                       )}
                                       onClose={onModalClose}
                                       onConfirm={() =>
-                                        orderPaymentMarkAsPaid.mutate({
+                                        taskPaymentMarkAsPaid.mutate({
                                           id
                                         })
                                       }
@@ -284,34 +284,34 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderPaymentVoidPath(":id")}
+                                  path={taskPaymentVoidPath(":id")}
                                   render={({ match }) => (
                                     <TaskPaymentVoidDialog
                                       confirmButtonState={getMutationState(
-                                        orderVoid.opts.called,
-                                        orderVoid.opts.loading,
+                                        taskVoid.opts.called,
+                                        taskVoid.opts.loading,
                                         maybe(
                                           () =>
-                                            orderVoid.opts.data.orderVoid.errors
+                                            taskVoid.opts.data.taskVoid.errors
                                         )
                                       )}
                                       open={!!match}
                                       onClose={onModalClose}
-                                      onConfirm={() => orderVoid.mutate({ id })}
+                                      onConfirm={() => taskVoid.mutate({ id })}
                                     />
                                   )}
                                 />
                                 <Route
-                                  path={orderPaymentCapturePath(":id")}
+                                  path={taskPaymentCapturePath(":id")}
                                   render={({ match }) => (
                                     <TaskPaymentDialog
                                       confirmButtonState={getMutationState(
-                                        orderPaymentCapture.opts.called,
-                                        orderPaymentCapture.opts.loading,
+                                        taskPaymentCapture.opts.called,
+                                        taskPaymentCapture.opts.loading,
                                         maybe(
                                           () =>
-                                            orderPaymentCapture.opts.data
-                                              .orderCapture.errors
+                                            taskPaymentCapture.opts.data
+                                              .taskCapture.errors
                                         )
                                       )}
                                       initial={maybe(
@@ -321,7 +321,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       variant="capture"
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderPaymentCapture.mutate({
+                                        taskPaymentCapture.mutate({
                                           ...variables,
                                           id
                                         })
@@ -330,16 +330,16 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderPaymentRefundPath(":id")}
+                                  path={taskPaymentRefundPath(":id")}
                                   render={({ match }) => (
                                     <TaskPaymentDialog
                                       confirmButtonState={getMutationState(
-                                        orderPaymentRefund.opts.called,
-                                        orderPaymentRefund.opts.loading,
+                                        taskPaymentRefund.opts.called,
+                                        taskPaymentRefund.opts.loading,
                                         maybe(
                                           () =>
-                                            orderPaymentRefund.opts.data
-                                              .orderRefund.errors
+                                            taskPaymentRefund.opts.data
+                                              .taskRefund.errors
                                         )
                                       )}
                                       initial={maybe(
@@ -349,7 +349,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       variant="refund"
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderPaymentRefund.mutate({
+                                        taskPaymentRefund.mutate({
                                           ...variables,
                                           id
                                         })
@@ -358,16 +358,16 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderFulfillPath(":id")}
+                                  path={taskFulfillPath(":id")}
                                   render={({ match }) => (
                                     <TaskFulfillmentDialog
                                       confirmButtonState={getMutationState(
-                                        orderCreateFulfillment.opts.called,
-                                        orderCreateFulfillment.opts.loading,
+                                        taskCreateFulfillment.opts.called,
+                                        taskCreateFulfillment.opts.loading,
                                         maybe(
                                           () =>
-                                            orderCreateFulfillment.opts.data
-                                              .orderFulfillmentCreate.errors
+                                            taskCreateFulfillment.opts.data
+                                              .taskFulfillmentCreate.errors
                                         )
                                       )}
                                       open={!!match}
@@ -380,7 +380,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       )}
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderCreateFulfillment.mutate({
+                                        taskCreateFulfillment.mutate({
                                           input: {
                                             ...variables,
                                             lines: maybe(() => task.lines, [])
@@ -390,7 +390,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                                   line.quantity
                                               )
                                               .map((line, lineIndex) => ({
-                                                orderLineId: line.id,
+                                                taskLineId: line.id,
                                                 quantity:
                                                   variables.lines[lineIndex]
                                               }))
@@ -403,24 +403,24 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderFulfillmentCancelPath(
-                                    ":orderId",
+                                  path={taskFulfillmentCancelPath(
+                                    ":taskId",
                                     ":fulfillmentId"
                                   )}
                                   render={({ match }) => (
                                     <TaskFulfillmentCancelDialog
                                       confirmButtonState={getMutationState(
-                                        orderFulfillmentCancel.opts.called,
-                                        orderFulfillmentCancel.opts.loading,
+                                        taskFulfillmentCancel.opts.called,
+                                        taskFulfillmentCancel.opts.loading,
                                         maybe(
                                           () =>
-                                            orderFulfillmentCancel.opts.data
-                                              .orderFulfillmentCancel.errors
+                                            taskFulfillmentCancel.opts.data
+                                              .taskFulfillmentCancel.errors
                                         )
                                       )}
                                       open={!!match}
                                       onConfirm={variables =>
-                                        orderFulfillmentCancel.mutate({
+                                        taskFulfillmentCancel.mutate({
                                           id: decodeURIComponent(
                                             match.params.fulfillmentId
                                           ),
@@ -432,22 +432,22 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderFulfillmentEditTrackingPath(
-                                    ":orderId",
+                                  path={taskFulfillmentEditTrackingPath(
+                                    ":taskId",
                                     ":fulfillmentId"
                                   )}
                                   render={({ match }) => (
                                     <TaskFulfillmentTrackingDialog
                                       confirmButtonState={getMutationState(
-                                        orderFulfillmentUpdateTracking.opts
+                                        taskFulfillmentUpdateTracking.opts
                                           .called,
-                                        orderFulfillmentUpdateTracking.opts
+                                        taskFulfillmentUpdateTracking.opts
                                           .loading,
                                         maybe(
                                           () =>
-                                            orderFulfillmentUpdateTracking.opts
+                                            taskFulfillmentUpdateTracking.opts
                                               .data
-                                              .orderFulfillmentUpdateTracking
+                                              .taskFulfillmentUpdateTracking
                                               .errors
                                         )
                                       )}
@@ -463,7 +463,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                           ).trackingNumber
                                       )}
                                       onConfirm={variables =>
-                                        orderFulfillmentUpdateTracking.mutate({
+                                        taskFulfillmentUpdateTracking.mutate({
                                           id: decodeURIComponent(
                                             match.params.fulfillmentId
                                           ),
@@ -488,7 +488,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                 <TaskDraftPage
                                   disabled={loading}
                                   onNoteAdd={variables =>
-                                    orderAddNote.mutate({
+                                    taskAddNote.mutate({
                                       input: variables,
                                       task: id
                                     })
@@ -503,21 +503,21 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   fetchUsers={users.search}
                                   usersLoading={users.searchOpts.loading}
                                   onCustomerEdit={data =>
-                                    orderDraftUpdate.mutate({
+                                    taskDraftUpdate.mutate({
                                       id,
                                       input: data
                                     })
                                   }
                                   onDraftFinalize={() =>
-                                    navigate(orderDraftFinalizeUrl(id), true)
+                                    navigate(taskDraftFinalizeUrl(id), true)
                                   }
                                   onDraftRemove={() =>
-                                    navigate(orderCancelUrl(id))
+                                    navigate(taskCancelUrl(id))
                                   }
                                   onTaskLineAdd={() =>
-                                    navigate(orderDraftLineAddUrl(id))
+                                    navigate(taskDraftLineAddUrl(id))
                                   }
-                                  onBack={() => navigate(orderListUrl())}
+                                  onBack={() => navigate(taskListUrl())}
                                   task={task}
                                   countries={maybe(
                                     () => data.shop.countries,
@@ -528,22 +528,22 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   }))}
                                   onSkillClick={id => () =>
                                     navigate(
-                                      productUrl(encodeURIComponent(id))
+                                      skillUrl(encodeURIComponent(id))
                                     )}
                                   onBillingAddressEdit={() =>
-                                    navigate(orderBillingAddressEditUrl(id))
+                                    navigate(taskBillingAddressEditUrl(id))
                                   }
                                   onDeliveryAddressEdit={() =>
-                                    navigate(orderDeliveryAddressEditUrl(id))
+                                    navigate(taskDeliveryAddressEditUrl(id))
                                   }
                                   onDeliveryMethodEdit={() =>
-                                    navigate(orderDraftDeliveryMethodUrl(id))
+                                    navigate(taskDraftDeliveryMethodUrl(id))
                                   }
                                   onTaskLineRemove={id =>
-                                    orderLineDelete.mutate({ id })
+                                    taskLineDelete.mutate({ id })
                                   }
                                   onTaskLineChange={(id, data) =>
-                                    orderLineUpdate.mutate({
+                                    taskLineUpdate.mutate({
                                       id,
                                       input: data
                                     })
@@ -551,29 +551,29 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   saveButtonBarState="default"
                                 />
                                 <Route
-                                  path={orderCancelPath(":id")}
+                                  path={taskCancelPath(":id")}
                                   render={({ match }) => (
                                     <TaskDraftCancelDialog
                                       confirmButtonState={getMutationState(
-                                        orderDraftCancel.opts.called,
-                                        orderDraftCancel.opts.loading,
+                                        taskDraftCancel.opts.called,
+                                        taskDraftCancel.opts.loading,
                                         maybe(
                                           () =>
-                                            orderDraftCancel.opts.data
+                                            taskDraftCancel.opts.data
                                               .draftTaskDelete.errors
                                         )
                                       )}
                                       onClose={onModalClose}
                                       onConfirm={() =>
-                                        orderDraftCancel.mutate({ id })
+                                        taskDraftCancel.mutate({ id })
                                       }
                                       open={!!match}
-                                      orderNumber={maybe(() => task.number)}
+                                      taskNumber={maybe(() => task.number)}
                                     />
                                   )}
                                 />
                                 <Route
-                                  path={orderDraftFinalizePath(":id")}
+                                  path={taskDraftFinalizePath(":id")}
                                   render={({ match }) => (
                                     <TaskDraftFinalizeDialog
                                       confirmButtonState={
@@ -581,27 +581,27 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       }
                                       onClose={onModalClose}
                                       onConfirm={() =>
-                                        orderDraftFinalize.mutate({ id })
+                                        taskDraftFinalize.mutate({ id })
                                       }
                                       open={!!match}
-                                      orderNumber={maybe(() => task.number)}
-                                      warnings={orderDraftFinalizeWarnings(
+                                      taskNumber={maybe(() => task.number)}
+                                      warnings={taskDraftFinalizeWarnings(
                                         task
                                       )}
                                     />
                                   )}
                                 />
                                 <Route
-                                  path={orderDraftDeliveryMethodPath(":id")}
+                                  path={taskDraftDeliveryMethodPath(":id")}
                                   render={({ match }) => (
                                     <TaskDeliveryMethodEditDialog
                                       confirmButtonState={getMutationState(
-                                        orderDeliveryMethodUpdate.opts.called,
-                                        orderDeliveryMethodUpdate.opts.loading,
+                                        taskDeliveryMethodUpdate.opts.called,
+                                        taskDeliveryMethodUpdate.opts.loading,
                                         maybe(
                                           () =>
-                                            orderDeliveryMethodUpdate.opts.data
-                                              .orderUpdateDelivery.errors
+                                            taskDeliveryMethodUpdate.opts.data
+                                              .taskUpdateDelivery.errors
                                         )
                                       )}
                                       open={!!match}
@@ -614,7 +614,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                       )}
                                       onClose={onModalClose}
                                       onSubmit={variables =>
-                                        orderDeliveryMethodUpdate.mutate({
+                                        taskDeliveryMethodUpdate.mutate({
                                           id,
                                           input: {
                                             deliveryMethod:
@@ -626,7 +626,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   )}
                                 />
                                 <Route
-                                  path={orderDraftLineAddPath(":id")}
+                                  path={taskDraftLineAddPath(":id")}
                                   render={({ match }) => (
                                     <TaskVariantSearchProvider>
                                       {({
@@ -639,39 +639,39 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                           variantSearchOpts.loadMore(
                                             (prev, next) => {
                                               if (
-                                                prev.products.pageInfo
+                                                prev.skills.pageInfo
                                                   .endCursor ===
-                                                next.products.pageInfo.endCursor
+                                                next.skills.pageInfo.endCursor
                                               ) {
                                                 return prev;
                                               }
                                               return {
                                                 ...prev,
-                                                products: {
-                                                  ...prev.products,
+                                                skills: {
+                                                  ...prev.skills,
                                                   edges: [
-                                                    ...prev.products.edges,
-                                                    ...next.products.edges
+                                                    ...prev.skills.edges,
+                                                    ...next.skills.edges
                                                   ],
                                                   pageInfo:
-                                                    next.products.pageInfo
+                                                    next.skills.pageInfo
                                                 }
                                               };
                                             },
                                             {
                                               after:
-                                                variantSearchOpts.data.products
+                                                variantSearchOpts.data.skills
                                                   .pageInfo.endCursor
                                             }
                                           );
                                         return (
                                           <TaskSkillAddDialog
                                             confirmButtonState={getMutationState(
-                                              orderLineAdd.opts.called,
-                                              orderLineAdd.opts.loading,
+                                              taskLineAdd.opts.called,
+                                              taskLineAdd.opts.loading,
                                               maybe(
                                                 () =>
-                                                  orderLineAdd.opts.data
+                                                  taskLineAdd.opts.data
                                                     .draftTaskLinesCreate
                                                     .errors
                                               )
@@ -680,11 +680,11 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                             open={!!match}
                                             hasMore={maybe(
                                               () =>
-                                                variantSearchOpts.data.products
+                                                variantSearchOpts.data.skills
                                                   .pageInfo.hasNextPage
                                             )}
-                                            products={maybe(() =>
-                                              variantSearchOpts.data.products.edges.map(
+                                            skills={maybe(() =>
+                                              variantSearchOpts.data.skills.edges.map(
                                                 edge => edge.node
                                               )
                                             )}
@@ -692,7 +692,7 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                             onFetch={variantSearch}
                                             onFetchMore={fetchMore}
                                             onSubmit={formData =>
-                                              orderLineAdd.mutate({
+                                              taskLineAdd.mutate({
                                                 id,
                                                 input: formData.variants.map(
                                                   variant => ({
@@ -711,15 +711,15 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                               </>
                             )}
                             <Route
-                              path={orderDeliveryAddressEditPath(":id")}
+                              path={taskDeliveryAddressEditPath(":id")}
                               render={({ match }) => (
                                 <TaskAddressEditDialog
                                   confirmButtonState={getMutationState(
-                                    orderUpdate.opts.called,
-                                    orderUpdate.opts.loading,
+                                    taskUpdate.opts.called,
+                                    taskUpdate.opts.loading,
                                     maybe(
                                       () =>
-                                        orderUpdate.opts.data.orderUpdate.errors
+                                        taskUpdate.opts.data.taskUpdate.errors
                                     )
                                   )}
                                   address={transformAddressToForm(
@@ -734,14 +734,14 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   }))}
                                   errors={maybe(
                                     () =>
-                                      orderUpdate.opts.data.orderUpdate.errors,
+                                      taskUpdate.opts.data.taskUpdate.errors,
                                     []
                                   )}
                                   open={!!match}
                                   variant="delivery"
                                   onClose={onModalClose}
                                   onConfirm={variables =>
-                                    orderUpdate.mutate({
+                                    taskUpdate.mutate({
                                       id,
                                       input: {
                                         deliveryAddress: {
@@ -755,15 +755,15 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                               )}
                             />
                             <Route
-                              path={orderBillingAddressEditPath(":id")}
+                              path={taskBillingAddressEditPath(":id")}
                               render={({ match }) => (
                                 <TaskAddressEditDialog
                                   confirmButtonState={getMutationState(
-                                    orderUpdate.opts.called,
-                                    orderUpdate.opts.loading,
+                                    taskUpdate.opts.called,
+                                    taskUpdate.opts.loading,
                                     maybe(
                                       () =>
-                                        orderUpdate.opts.data.orderUpdate.errors
+                                        taskUpdate.opts.data.taskUpdate.errors
                                     )
                                   )}
                                   address={transformAddressToForm(
@@ -778,14 +778,14 @@ export const TaskDetails: React.StatelessComponent<TaskDetailsProps> = ({
                                   }))}
                                   errors={maybe(
                                     () =>
-                                      orderUpdate.opts.data.orderUpdate.errors,
+                                      taskUpdate.opts.data.taskUpdate.errors,
                                     []
                                   )}
                                   open={!!match}
                                   variant="billing"
                                   onClose={onModalClose}
                                   onConfirm={variables =>
-                                    orderUpdate.mutate({
+                                    taskUpdate.mutate({
                                       id,
                                       input: {
                                         billingAddress: {

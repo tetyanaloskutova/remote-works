@@ -37,8 +37,8 @@ import i18n from "./i18n";
 import { NotFound } from "./NotFound";
 import TasksSection from "./tasks";
 import PageSection from "./pages";
-import SkillSection from "./products";
-import SkillTypesSection from "./productTypes";
+import SkillSection from "./skills";
+import SkillTypesSection from "./skillTypes";
 import SiteSettingsSection from "./siteSettings";
 import StaffSection from "./staff";
 import TaxesSection from "./taxes";
@@ -131,12 +131,12 @@ render(
                           <Switch>
                             <SectionRoute exact path="/" component={HomePage} />
                             <SectionRoute
-                              permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                              permissions={[PermissionEnum.MANAGE_SKILLS]}
                               path="/categories"
                               component={CategorySection}
                             />
                             <SectionRoute
-                              permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                              permissions={[PermissionEnum.MANAGE_SKILLS]}
                               path="/collections"
                               component={CollectionSection}
                             />
@@ -161,13 +161,13 @@ render(
                               component={TasksSection}
                             />
                             <SectionRoute
-                              permissions={[PermissionEnum.MANAGE_PRODUCTS]}
-                              path="/products"
+                              permissions={[PermissionEnum.MANAGE_SKILLS]}
+                              path="/skills"
                               component={SkillSection}
                             />
                             <SectionRoute
-                              permissions={[PermissionEnum.MANAGE_PRODUCTS]}
-                              path="/product-types"
+                              permissions={[PermissionEnum.MANAGE_SKILLS]}
+                              path="/skill-types"
                               component={SkillTypesSection}
                             />
                             <SectionRoute

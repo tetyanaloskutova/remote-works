@@ -12,7 +12,7 @@ interface SkillCategoryAndCollectionsFormProps {
   categories?: Array<{ value: string; label: string }>;
   collections?: Array<{ value: string; label: string }>;
   errors: { [key: string]: string };
-  productCollections?: string[];
+  skillCollections?: string[];
   category?: string;
   loading?: boolean;
   onChange: (event: React.ChangeEvent<any>) => void;
@@ -22,7 +22,7 @@ const SkillCategoryAndCollectionsForm = ({
   categories,
   collections,
   errors,
-  productCollections,
+  skillCollections,
   category,
   loading,
   onChange
@@ -48,7 +48,7 @@ const SkillCategoryAndCollectionsForm = ({
         label={i18n.t("Collections")}
         choices={loading ? [] : collections}
         name="collections"
-        value={productCollections}
+        value={skillCollections}
         onChange={onChange}
       />
     </CardContent>

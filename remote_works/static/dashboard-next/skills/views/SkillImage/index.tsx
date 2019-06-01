@@ -14,25 +14,25 @@ import {
 } from "../../mutations";
 import { TypedSkillImageQuery } from "../../queries";
 import { SkillImageUpdate } from "../../types/SkillImageUpdate";
-import { productImageUrl, productUrl } from "../../urls";
-import { productImageRemovePath, productImageRemoveUrl } from "./urls";
+import { skillImageUrl, skillUrl } from "../../urls";
+import { skillImageRemovePath, skillImageRemoveUrl } from "./urls";
 
 interface SkillImageProps {
   imageId: string;
-  productId: string;
+  skillId: string;
 }
 
 export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
   imageId,
-  productId
+  skillId
 }) => (
   <Messages>
     {pushMessage => (
       <Navigator>
         {navigate => {
-          const handleBack = () => navigate(productUrl(productId));
+          const handleBack = () => navigate(skillUrl(skillId));
           const handleUpdateSuccess = (data: SkillImageUpdate) => {
-            if (data.productImageUpdate.errors.length === 0) {
+            if (data.skillImageUpdate.errors.length === 0) {
               pushMessage({ text: "Saved changes" });
             }
           };
@@ -41,9 +41,9 @@ export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
               displayLoader
               variables={{
                 imageId,
-                productId
+                skillId
               }}
-              require={["product"]}
+              require={["skill"]}
             >
               {({ data, loading }) => {
                 return (
@@ -56,7 +56,7 @@ export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
                           const handleDelete = () =>
                             deleteImage({ variables: { id: imageId } });
                           const handleImageClick = (id: string) => () =>
-                            navigate(productImageUrl(productId, id));
+                            navigate(skillImageUrl(skillId, id));
                           const handleUpdate = (formData: {
                             description: string;
                           }) => {
@@ -68,13 +68,13 @@ export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
                             });
                           };
                           const image =
-                            data && data.skill && data.product.mainImage;
+                            data && data.skill && data.skill.mainImage;
 
                           const formTransitionState = getMutationState(
                             updateResult.called,
                             updateResult.loading,
                             maybe(
-                              () => updateResult.data.productImageUpdate.errors
+                              () => updateResult.data.skillImageUpdate.errors
                             )
                           );
                           const deleteTransitionState = getMutationState(
@@ -87,11 +87,11 @@ export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
                               <SkillImagePage
                                 disabled={loading}
                                 image={image || null}
-                                images={maybe(() => data.product.images)}
+                                images={maybe(() => data.skill.images)}
                                 onBack={handleBack}
                                 onDelete={() =>
                                   navigate(
-                                    productImageRemoveUrl(productId, imageId)
+                                    skillImageRemoveUrl(skillId, imageId)
                                   )
                                 }
                                 onRowClick={handleImageClick}
@@ -99,15 +99,15 @@ export const SkillImage: React.StatelessComponent<SkillImageProps> = ({
                                 saveButtonBarState={formTransitionState}
                               />
                               <Route
-                                path={productImageRemovePath(
-                                  ":productId",
+                                path={skillImageRemovePath(
+                                  ":skillId",
                                   ":imageId"
                                 )}
                                 render={({ match }) => (
                                   <ActionDialog
                                     onClose={() =>
                                       navigate(
-                                        productImageUrl(productId, imageId)
+                                        skillImageUrl(skillId, imageId)
                                       )
                                     }
                                     onConfirm={handleDelete}

@@ -13,12 +13,12 @@ import SkillVariantPage from "../../components/SkillVariantPage";
 import SkillVariantOperations from "../../containers/SkillVariantOperations";
 import { TypedSkillVariantQuery } from "../../queries";
 import { VariantUpdate } from "../../types/VariantUpdate";
-import { productUrl, productVariantEditUrl } from "../../urls";
-import { productVariantRemovePath, productVariantRemoveUrl } from "./urls";
+import { skillUrl, skillVariantEditUrl } from "../../urls";
+import { skillVariantRemovePath, skillVariantRemoveUrl } from "./urls";
 
 interface SkillUpdateProps {
   variantId: string;
-  productId: string;
+  skillId: string;
 }
 
 interface FormData {
@@ -35,7 +35,7 @@ interface FormData {
 
 export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
   variantId,
-  productId
+  skillId
 }) => (
   <Navigator>
     {navigate => (
@@ -44,20 +44,20 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
           <TypedSkillVariantQuery
             displayLoader
             variables={{ id: variantId }}
-            require={["productVariant"]}
+            require={["skillVariant"]}
           >
             {({ data, loading, error }) => {
               if (error) {
                 return <ErrorMessageCard message="Something went wrong" />;
               }
-              const variant = data ? data.productVariant : undefined;
-              const handleBack = () => navigate(productUrl(productId));
+              const variant = data ? data.skillVariant : undefined;
+              const handleBack = () => navigate(skillUrl(skillId));
               const handleDelete = () => {
                 pushMessage({ text: i18n.t("Variant removed") });
-                navigate(productUrl(productId));
+                navigate(skillUrl(skillId));
               };
               const handleUpdate = (data: VariantUpdate) => {
-                if (!maybe(() => data.productVariantUpdate.errors.length)) {
+                if (!maybe(() => data.skillVariantUpdate.errors.length)) {
                   pushMessage({ text: i18n.t("Changes saved") });
                 }
               };
@@ -84,7 +84,7 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                       updateVariant.opts.loading,
                       maybe(
                         () =>
-                          updateVariant.opts.data.productVariantUpdate.errors
+                          updateVariant.opts.data.skillVariantUpdate.errors
                       )
                     );
                     const removeTransitionState = getMutationState(
@@ -92,7 +92,7 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                       deleteVariant.opts.loading,
                       maybe(
                         () =>
-                          deleteVariant.opts.data.productVariantDelete.errors
+                          deleteVariant.opts.data.skillVariantDelete.errors
                       )
                     );
                     const handleImageSelect = (id: string) => () => {
@@ -118,12 +118,12 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                     return (
                       <>
                         <WindowTitle
-                          title={maybe(() => data.productVariant.name)}
+                          title={maybe(() => data.skillVariant.name)}
                         />
                         <SkillVariantPage
                           errors={maybe(
                             () =>
-                              updateVariant.opts.data.productVariantUpdate
+                              updateVariant.opts.data.skillVariantUpdate
                                 .errors,
                             []
                           )}
@@ -137,7 +137,7 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                           onBack={handleBack}
                           onDelete={() =>
                             navigate(
-                              productVariantRemoveUrl(productId, variantId)
+                              skillVariantRemoveUrl(skillId, variantId)
                             )
                           }
                           onImageSelect={handleImageSelect}
@@ -158,13 +158,13 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                           }}
                           onVariantClick={variantId => {
                             navigate(
-                              productVariantEditUrl(productId, variantId)
+                              skillVariantEditUrl(skillId, variantId)
                             );
                           }}
                         />
                         <Route
-                          path={productVariantRemovePath(
-                            ":productId",
+                          path={skillVariantRemovePath(
+                            ":skillId",
                             ":variantId"
                           )}
                           render={({ match }) => (
@@ -172,7 +172,7 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                               confirmButtonState={removeTransitionState}
                               onClose={() =>
                                 navigate(
-                                  productVariantEditUrl(productId, variantId)
+                                  skillVariantEditUrl(skillId, variantId)
                                 )
                               }
                               onConfirm={() =>
@@ -181,7 +181,7 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                                 })
                               }
                               open={!!match}
-                              name={maybe(() => data.productVariant.name)}
+                              name={maybe(() => data.skillVariant.name)}
                             />
                           )}
                         />

@@ -77,7 +77,7 @@ export const CategoryCreateSubcategories = withStyles(styles, {
             <Typography
               className={classNames({ [classes.helperText]: toggled })}
             >
-              {i18n.t("Add subcategories to help you organize your products")}
+              {i18n.t("Add subcategories to help you organize your skills")}
             </Typography>
             {toggled && (
               <>

@@ -11,10 +11,10 @@ import SkillVariantCreatePage from "../components/SkillVariantCreatePage";
 import { TypedVariantCreateMutation } from "../mutations";
 import { TypedSkillVariantCreateQuery } from "../queries";
 import { VariantCreate } from "../types/VariantCreate";
-import { productUrl, productVariantEditUrl } from "../urls";
+import { skillUrl, skillVariantEditUrl } from "../urls";
 
 interface SkillUpdateProps {
-  productId: string;
+  skillId: string;
 }
 
 interface FormData {
@@ -29,7 +29,7 @@ interface FormData {
 }
 
 export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
-  productId
+  skillId
 }) => (
   <Shop>
     {shop => (
@@ -39,17 +39,17 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
             {pushMessage => (
               <TypedSkillVariantCreateQuery
                 displayLoader
-                variables={{ id: productId }}
-                require={["product"]}
+                variables={{ id: skillId }}
+                require={["skill"]}
               >
-                {({ data, loading: productLoading }) => {
+                {({ data, loading: skillLoading }) => {
                   const handleCreateSuccess = (data: VariantCreate) => {
-                    if (data.productVariantCreate.errors.length === 0) {
+                    if (data.skillVariantCreate.errors.length === 0) {
                       pushMessage({ text: i18n.t("Skill created") });
                       navigate(
-                        productVariantEditUrl(
-                          productId,
-                          data.productVariantCreate.productVariant.id
+                        skillVariantEditUrl(
+                          skillId,
+                          data.skillVariantCreate.skillVariant.id
                         )
                       );
                     }
@@ -69,31 +69,31 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                         }
 
                         const handleBack = () =>
-                          navigate(productUrl(productId));
+                          navigate(skillUrl(skillId));
                         const handleSubmit = (formData: FormData) =>
                           variantCreate({
                             variables: {
                               attributes: formData.attributes,
                               costPrice: decimal(formData.costPrice),
                               priceOverride: decimal(formData.priceOverride),
-                              product: productId,
+                              skill: skillId,
                               quantity: formData.quantity || null,
                               sku: formData.sku,
                               trackInventory: true
                             }
                           });
                         const handleVariantClick = (id: string) =>
-                          navigate(productVariantEditUrl(productId, id));
+                          navigate(skillVariantEditUrl(skillId, id));
 
                         const disableForm =
-                          productLoading || variantCreateResult.loading;
+                          skillLoading || variantCreateResult.loading;
 
                         const formTransitionstate = getMutationState(
                           variantCreateResult.called,
                           variantCreateResult.loading,
                           maybe(
                             () =>
-                              variantCreateResult.data.productVariantCreate
+                              variantCreateResult.data.skillVariantCreate
                                 .errors
                           )
                         );
@@ -104,13 +104,13 @@ export const SkillVariant: React.StatelessComponent<SkillUpdateProps> = ({
                               currencySymbol={maybe(() => shop.defaultCurrency)}
                               errors={maybe(
                                 () =>
-                                  variantCreateResult.data.productVariantCreate
+                                  variantCreateResult.data.skillVariantCreate
                                     .errors,
                                 []
                               )}
                               header={i18n.t("Add Variant")}
                               loading={disableForm}
-                              product={maybe(() => data.product)}
+                              skill={maybe(() => data.skill)}
                               onBack={handleBack}
                               onSubmit={handleSubmit}
                               onVariantClick={handleVariantClick}

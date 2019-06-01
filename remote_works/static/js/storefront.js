@@ -11,7 +11,7 @@ import './components/language-picker';
 import './components/misc';
 import './components/navbar';
 import './components/password-input';
-import './components/product-filters';
+import './components/skill-filters';
 import './components/sorter';
 import './components/styleguide';
 import './components/variant-picker';

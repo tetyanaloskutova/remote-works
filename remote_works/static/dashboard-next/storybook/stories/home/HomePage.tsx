@@ -18,9 +18,9 @@ const HomePageProps: Omit<HomePageProps, "classes"> = {
   tasks: shop.ordersToday.totalCount,
   ordersToCapture: shop.ordersToCapture.totalCount,
   ordersToFulfill: shop.ordersToFulfill.totalCount,
-  productsOutOfStock: shop.productsOutOfStock.totalCount,
+  skillsOutOfStock: shop.skillsOutOfStock.totalCount,
   sales: shop.salesToday.gross,
-  topSkills: shop.productTopToday.edges.map(edge => edge.node),
+  topSkills: shop.skillTopToday.edges.map(edge => edge.node),
   userName: "admin@example.com"
 };
 
@@ -34,7 +34,7 @@ storiesOf("Views / HomePage", module)
       tasks={undefined}
       ordersToCapture={undefined}
       ordersToFulfill={undefined}
-      productsOutOfStock={undefined}
+      skillsOutOfStock={undefined}
       sales={undefined}
       topSkills={undefined}
       userName={undefined}

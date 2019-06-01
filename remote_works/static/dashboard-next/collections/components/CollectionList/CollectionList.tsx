@@ -90,7 +90,7 @@ const CollectionList = withStyles(styles, { name: "CollectionList" })(
                 </TableCell>
                 <TableCell className={classes.textCenter}>
                   {maybe<React.ReactNode>(
-                    () => collection.products.totalCount,
+                    () => collection.skills.totalCount,
                     <Skeleton />
                   )}
                 </TableCell>

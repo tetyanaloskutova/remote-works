@@ -14,7 +14,7 @@ import TablePagination from "../../../components/TablePagination";
 import i18n from "../../../i18n";
 import { maybe, renderCollection, translatedTaxRates } from "../../../misc";
 import { ListProps } from "../../../types";
-import { SkillTypeList_productTypes_edges_node } from "../../types/SkillTypeList";
+import { SkillTypeList_skillTypes_edges_node } from "../../types/SkillTypeList";
 
 const styles = createStyles({
   leftText: {
@@ -29,14 +29,14 @@ const styles = createStyles({
 });
 
 interface SkillTypeListProps extends ListProps, WithStyles<typeof styles> {
-  productTypes: SkillTypeList_productTypes_edges_node[];
+  skillTypes: SkillTypeList_skillTypes_edges_node[];
 }
 
 const SkillTypeList = withStyles(styles, { name: "SkillTypeList" })(
   ({
     classes,
     disabled,
-    productTypes,
+    skillTypes,
     pageInfo,
     onNextPage,
     onPreviousPage,
@@ -72,23 +72,23 @@ const SkillTypeList = withStyles(styles, { name: "SkillTypeList" })(
         </TableFooter>
         <TableBody>
           {renderCollection(
-            productTypes,
-            productType => (
+            skillTypes,
+            skillType => (
               <TableRow
-                className={!!productType ? classes.link : undefined}
-                hover={!!productType}
-                key={productType ? productType.id : "skeleton"}
+                className={!!skillType ? classes.link : undefined}
+                hover={!!skillType}
+                key={skillType ? skillType.id : "skeleton"}
               >
                 <TableCell
-                  onClick={productType ? onRowClick(productType.id) : undefined}
+                  onClick={skillType ? onRowClick(skillType.id) : undefined}
                 >
-                  {productType ? (
+                  {skillType ? (
                     <>
-                      {productType.name}
+                      {skillType.name}
                       <Typography variant="caption">
-                        {maybe(() => productType.hasVariants)
+                        {maybe(() => skillType.hasVariants)
                           ? i18n.t("Configurable", { context: "skill type" })
-                          : i18n.t("Simple product", {
+                          : i18n.t("Simple skill", {
                               context: "skill type"
                             })}
                       </Typography>
@@ -98,8 +98,8 @@ const SkillTypeList = withStyles(styles, { name: "SkillTypeList" })(
                   )}
                 </TableCell>
                 <TableCell className={classes.leftText}>
-                  {maybe(() => productType.isDeliveryRequired) !== undefined ? (
-                    productType.isDeliveryRequired ? (
+                  {maybe(() => skillType.isDeliveryRequired) !== undefined ? (
+                    skillType.isDeliveryRequired ? (
                       <>{i18n.t("Physical", { context: "skill type" })}</>
                     ) : (
                       <>{i18n.t("Digital", { context: "skill type" })}</>
@@ -109,8 +109,8 @@ const SkillTypeList = withStyles(styles, { name: "SkillTypeList" })(
                   )}
                 </TableCell>
                 <TableCell className={classes.leftText}>
-                  {maybe(() => productType.taxRate) ? (
-                    translatedTaxRates()[productType.taxRate]
+                  {maybe(() => skillType.taxRate) ? (
+                    translatedTaxRates()[skillType.taxRate]
                   ) : (
                     <Skeleton />
                   )}

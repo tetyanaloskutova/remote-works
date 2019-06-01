@@ -72,7 +72,7 @@ const DiscountSkills = withStyles(styles, {
         })}
         toolbar={
           <Button variant="flat" color="secondary" onClick={onSkillAssign}>
-            {i18n.t("Assign products")}
+            {i18n.t("Assign skills")}
           </Button>
         }
       />
@@ -107,37 +107,37 @@ const DiscountSkills = withStyles(styles, {
         </TableFooter>
         <TableBody>
           {renderCollection(
-            maybe(() => sale.products.edges.map(edge => edge.node)),
+            maybe(() => sale.skills.edges.map(edge => edge.node)),
             skill => (
               <TableRow
-                hover={!!product}
-                key={skill ? product.id : "skeleton"}
-                onClick={skill && onRowClick(product.id)}
+                hover={!!skill}
+                key={skill ? skill.id : "skeleton"}
+                onClick={skill && onRowClick(skill.id)}
                 className={classes.tableRow}
               >
                 <TableCellAvatar
-                  thumbnail={maybe(() => product.thumbnail.url)}
+                  thumbnail={maybe(() => skill.thumbnail.url)}
                 />
                 <TableCell>
-                  {maybe<React.ReactNode>(() => product.name, <Skeleton />)}
+                  {maybe<React.ReactNode>(() => skill.name, <Skeleton />)}
                 </TableCell>
                 <TableCell className={classes.textRight}>
                   {maybe<React.ReactNode>(
-                    () => product.productType.name,
+                    () => skill.skillType.name,
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell className={classes.textRight}>
-                  {skill && product.isPublished !== undefined ? (
+                  {skill && skill.isPublished !== undefined ? (
                     <StatusLabel
                       label={
-                        product.isPublished
+                        skill.isPublished
                           ? i18n.t("Published", { context: "skill status" })
                           : i18n.t("Not published", {
                               context: "skill status"
                             })
                       }
-                      status={product.isPublished ? "success" : "error"}
+                      status={skill.isPublished ? "success" : "error"}
                     />
                   ) : (
                     <Skeleton />
@@ -148,7 +148,7 @@ const DiscountSkills = withStyles(styles, {
                     disabled={!skill || disabled}
                     onClick={event => {
                       event.stopPropagation();
-                      onSkillUnassign(product.id);
+                      onSkillUnassign(skill.id);
                     }}
                   >
                     <DeleteIcon color="secondary" />

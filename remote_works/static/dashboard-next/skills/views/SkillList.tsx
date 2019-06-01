@@ -8,7 +8,7 @@ import { StockAvailability } from "../../types/globalTypes";
 import SkillListCard from "../components/SkillListCard";
 import { getTabName } from "../misc";
 import { TypedSkillListQuery } from "../queries";
-import { productAddUrl, productUrl } from "../urls";
+import { skillAddUrl, skillUrl } from "../urls";
 
 export interface SkillListFilters {
   status: StockAvailability;
@@ -52,7 +52,7 @@ export const SkillList: React.StatelessComponent<SkillListProps> = ({
             const currentTab = getTabName(params);
             return (
               <Paginator
-                pageInfo={maybe(() => data.products.pageInfo)}
+                pageInfo={maybe(() => data.skills.pageInfo)}
                 paginationState={paginationState}
                 queryString={params}
               >
@@ -60,19 +60,19 @@ export const SkillList: React.StatelessComponent<SkillListProps> = ({
                   <SkillListCard
                     currentTab={currentTab}
                     filtersList={[]}
-                    onAdd={() => navigate(productAddUrl)}
+                    onAdd={() => navigate(skillAddUrl)}
                     disabled={loading}
-                    products={
+                    skills={
                       data &&
                       data.skills !== undefined &&
                       data.skills !== null
-                        ? data.products.edges.map(p => p.node)
+                        ? data.skills.edges.map(p => p.node)
                         : undefined
                     }
                     onNextPage={loadNextPage}
                     onPreviousPage={loadPreviousPage}
                     pageInfo={pageInfo}
-                    onRowClick={id => () => navigate(productUrl(id))}
+                    onRowClick={id => () => navigate(skillUrl(id))}
                     onAllSkills={() =>
                       changeFilters({
                         status: undefined

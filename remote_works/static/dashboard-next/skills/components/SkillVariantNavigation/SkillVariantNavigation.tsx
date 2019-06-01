@@ -18,7 +18,7 @@ import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { SkillVariantCreateData_skill_variants } from "../../types/SkillVariantCreateData";
-import { SkillVariantDetails_productVariant } from "../../types/SkillVariantDetails";
+import { SkillVariantDetails_skillVariant } from "../../types/SkillVariantDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -45,7 +45,7 @@ const styles = (theme: Theme) =>
 interface SkillVariantNavigationProps extends WithStyles<typeof styles> {
   current?: string;
   variants:
-    | SkillVariantDetails_productVariant[]
+    | SkillVariantDetails_skillVariant[]
     | SkillVariantCreateData_skill_variants[];
   onRowClick: (variantId: string) => void;
 }

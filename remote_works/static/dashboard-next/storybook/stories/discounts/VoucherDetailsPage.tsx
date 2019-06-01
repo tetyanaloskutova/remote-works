@@ -13,7 +13,7 @@ import { formError } from "../../misc";
 
 const props: VoucherDetailsPageProps = {
   ...pageListProps.default,
-  activeTab: VoucherDetailsPageTab.products,
+  activeTab: VoucherDetailsPageTab.skills,
   defaultCurrency: "USD",
   errors: [],
   onBack: () => undefined,

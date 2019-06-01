@@ -15,7 +15,7 @@ import {
   TaxRateType,
   WeightUnitsEnum
 } from "../../../types/globalTypes";
-import { SkillTypeDetails_productType } from "../../types/SkillTypeDetails";
+import { SkillTypeDetails_skillType } from "../../types/SkillTypeDetails";
 import SkillTypeAttributes from "../SkillTypeAttributes/SkillTypeAttributes";
 import SkillTypeDetails from "../SkillTypeDetails/SkillTypeDetails";
 import SkillTypeDelivery from "../SkillTypeDelivery/SkillTypeDelivery";
@@ -31,7 +31,7 @@ export interface SkillTypeForm {
   hasVariants: boolean;
   isDeliveryRequired: boolean;
   taxRate: TaxRateType;
-  productAttributes: ChoiceType[];
+  skillAttributes: ChoiceType[];
   variantAttributes: ChoiceType[];
   weight: number;
 }
@@ -41,7 +41,7 @@ export interface SkillTypeDetailsPageProps {
     field: string;
     message: string;
   }>;
-  productType: SkillTypeDetails_productType;
+  skillType: SkillTypeDetails_skillType;
   defaultWeightUnit: WeightUnitsEnum;
   disabled: boolean;
   pageTitle: string;
@@ -61,7 +61,7 @@ const SkillTypeDetailsPage: React.StatelessComponent<
   disabled,
   errors,
   pageTitle,
-  productType,
+  skillType,
   saveButtonBarState,
   onAttributeAdd,
   onAttributeDelete,
@@ -72,33 +72,33 @@ const SkillTypeDetailsPage: React.StatelessComponent<
 }) => {
   const formInitialData: SkillTypeForm = {
     hasVariants:
-      maybe(() => productType.hasVariants) !== undefined
-        ? productType.hasVariants
+      maybe(() => skillType.hasVariants) !== undefined
+        ? skillType.hasVariants
         : false,
     isDeliveryRequired:
-      maybe(() => productType.isDeliveryRequired) !== undefined
-        ? productType.isDeliveryRequired
+      maybe(() => skillType.isDeliveryRequired) !== undefined
+        ? skillType.isDeliveryRequired
         : false,
-    name: maybe(() => productType.name) !== undefined ? productType.name : "",
-    productAttributes:
-      maybe(() => productType.productAttributes) !== undefined
-        ? productType.productAttributes.map(attribute => ({
+    name: maybe(() => skillType.name) !== undefined ? skillType.name : "",
+    skillAttributes:
+      maybe(() => skillType.skillAttributes) !== undefined
+        ? skillType.skillAttributes.map(attribute => ({
             label: attribute.name,
             value: attribute.id
           }))
         : [],
     taxRate:
-      maybe(() => productType.taxRate) !== undefined
-        ? productType.taxRate
+      maybe(() => skillType.taxRate) !== undefined
+        ? skillType.taxRate
         : null,
     variantAttributes:
-      maybe(() => productType.variantAttributes) !== undefined
-        ? productType.variantAttributes.map(attribute => ({
+      maybe(() => skillType.variantAttributes) !== undefined
+        ? skillType.variantAttributes.map(attribute => ({
             label: attribute.name,
             value: attribute.id
           }))
         : [],
-    weight: maybe(() => productType.weight.value)
+    weight: maybe(() => skillType.weight.value)
   };
   return (
     <Form
@@ -119,8 +119,8 @@ const SkillTypeDetailsPage: React.StatelessComponent<
               />
               <CardSpacer />
               <SkillTypeAttributes
-                attributes={maybe(() => productType.productAttributes)}
-                type={AttributeTypeEnum.PRODUCT}
+                attributes={maybe(() => skillType.skillAttributes)}
+                type={AttributeTypeEnum.SKILL}
                 onAttributeAdd={onAttributeAdd}
                 onAttributeDelete={onAttributeDelete}
                 onAttributeUpdate={onAttributeUpdate}
@@ -137,7 +137,7 @@ const SkillTypeDetailsPage: React.StatelessComponent<
                 <>
                   <CardSpacer />
                   <SkillTypeAttributes
-                    attributes={maybe(() => productType.variantAttributes)}
+                    attributes={maybe(() => skillType.variantAttributes)}
                     type={AttributeTypeEnum.VARIANT}
                     onAttributeAdd={onAttributeAdd}
                     onAttributeDelete={onAttributeDelete}

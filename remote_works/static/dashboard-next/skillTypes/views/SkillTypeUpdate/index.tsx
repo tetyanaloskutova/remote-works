@@ -22,15 +22,15 @@ import { AttributeDelete } from "../../types/AttributeDelete";
 import { AttributeUpdate } from "../../types/AttributeUpdate";
 import { SkillTypeDelete } from "../../types/SkillTypeDelete";
 import { SkillTypeUpdate as SkillTypeUpdateMutation } from "../../types/SkillTypeUpdate";
-import { productTypeListUrl, productTypeUrl } from "../../urls";
+import { skillTypeListUrl, skillTypeUrl } from "../../urls";
 import { SkillTypeUpdateErrors } from "./errors";
 import {
   addAttributePath,
   addAttributeUrl,
   editAttributePath,
   editAttributeUrl,
-  productTypeRemovePath,
-  productTypeRemoveUrl
+  skillTypeRemovePath,
+  skillTypeRemoveUrl
 } from "./urls";
 
 interface SkillTypeUpdateProps {
@@ -49,11 +49,11 @@ export const SkillTypeUpdate: React.StatelessComponent<
               <TypedSkillTypeDetailsQuery
                 displayLoader
                 variables={{ id }}
-                require={["productType"]}
+                require={["skillType"]}
               >
                 {({ data, loading: dataLoading }) => {
                   const closeModal = () => {
-                    navigate(productTypeUrl(id), true);
+                    navigate(skillTypeUrl(id), true);
                     setErrors.addAttributeErrors([]);
                     setErrors.editAttributeErrors([]);
                   };
@@ -107,21 +107,21 @@ export const SkillTypeUpdate: React.StatelessComponent<
                   const handleSkillTypeDeleteSuccess = (
                     deleteData: SkillTypeDelete
                   ) => {
-                    if (deleteData.productTypeDelete.errors.length === 0) {
+                    if (deleteData.skillTypeDelete.errors.length === 0) {
                       pushMessage({
                         text: i18n.t("Skill type deleted", {
                           context: "notification"
                         })
                       });
-                      navigate(productTypeListUrl);
+                      navigate(skillTypeListUrl);
                     }
                   };
                   const handleSkillTypeUpdateSuccess = (
                     updateData: SkillTypeUpdateMutation
                   ) => {
                     if (
-                      !updateData.productTypeUpdate.errors ||
-                      updateData.productTypeUpdate.errors.length === 0
+                      !updateData.skillTypeUpdate.errors ||
+                      updateData.skillTypeUpdate.errors.length === 0
                     ) {
                       pushMessage({
                         text: i18n.t("Skill type updated", {
@@ -129,10 +129,10 @@ export const SkillTypeUpdate: React.StatelessComponent<
                         })
                       });
                     } else if (
-                      updateData.productTypeUpdate.errors !== null &&
-                      updateData.productTypeUpdate.errors.length > 0
+                      updateData.skillTypeUpdate.errors !== null &&
+                      updateData.skillTypeUpdate.errors.length > 0
                     ) {
-                      setErrors.formErrors(updateData.productTypeUpdate.errors);
+                      setErrors.formErrors(updateData.skillTypeUpdate.errors);
                     }
                   };
 
@@ -162,7 +162,7 @@ export const SkillTypeUpdate: React.StatelessComponent<
                               hasVariants: formData.hasVariants,
                               isDeliveryRequired: formData.isDeliveryRequired,
                               name: formData.name,
-                              productAttributes: formData.productAttributes.map(
+                              skillAttributes: formData.skillAttributes.map(
                                 choice => choice.value
                               ),
                               taxRate: formData.taxRate,
@@ -198,8 +198,8 @@ export const SkillTypeUpdate: React.StatelessComponent<
                           id: string,
                           formData: AttributeForm
                         ) => {
-                          const attribute = data.productType.variantAttributes
-                            .concat(data.productType.productAttributes)
+                          const attribute = data.skillType.variantAttributes
+                            .concat(data.skillType.skillAttributes)
                             .filter(attribute => attribute.id === id)[0];
                           updateAttribute.mutate({
                             id,
@@ -233,14 +233,14 @@ export const SkillTypeUpdate: React.StatelessComponent<
                           deleteSkillType.opts.loading,
                           maybe(
                             () =>
-                              deleteSkillType.opts.data.productTypeDelete
+                              deleteSkillType.opts.data.skillTypeDelete
                                 .errors
                           )
                         );
                         return (
                           <>
                             <WindowTitle
-                              title={maybe(() => data.productType.name)}
+                              title={maybe(() => data.skillType.name)}
                             />
                             <SkillTypeDetailsPage
                               defaultWeightUnit={maybe(
@@ -248,8 +248,8 @@ export const SkillTypeUpdate: React.StatelessComponent<
                               )}
                               disabled={loading}
                               errors={errors.formErrors}
-                              pageTitle={maybe(() => data.productType.name)}
-                              productType={maybe(() => data.productType)}
+                              pageTitle={maybe(() => data.skillType.name)}
+                              skillType={maybe(() => data.skillType)}
                               saveButtonBarState={
                                 loading ? "loading" : "default"
                               }
@@ -267,9 +267,9 @@ export const SkillTypeUpdate: React.StatelessComponent<
                                   )
                                 )
                               }
-                              onBack={() => navigate(productTypeListUrl)}
+                              onBack={() => navigate(skillTypeListUrl)}
                               onDelete={() =>
-                                navigate(productTypeRemoveUrl(id))
+                                navigate(skillTypeRemoveUrl(id))
                               }
                               onSubmit={handleSkillTypeUpdate}
                             />
@@ -308,16 +308,16 @@ export const SkillTypeUpdate: React.StatelessComponent<
                                 <Route
                                   exact
                                   path={editAttributePath(
-                                    ":productTypeId",
+                                    ":skillTypeId",
                                     ":id"
                                   )}
                                 >
                                   {({ match }) => {
                                     const attribute = maybe(
                                       () =>
-                                        data.productType.productAttributes
+                                        data.skillType.skillAttributes
                                           .concat(
-                                            data.productType.variantAttributes
+                                            data.skillType.variantAttributes
                                           )
                                           .filter(
                                             attribute =>
@@ -354,7 +354,7 @@ export const SkillTypeUpdate: React.StatelessComponent<
                                   }}
                                 </Route>
                                 <Route
-                                  path={productTypeRemovePath(":id")}
+                                  path={skillTypeRemovePath(":id")}
                                   render={({ match }) => (
                                     <ActionDialog
                                       confirmButtonState={
@@ -362,7 +362,7 @@ export const SkillTypeUpdate: React.StatelessComponent<
                                       }
                                       open={!!match}
                                       onClose={() =>
-                                        navigate(productTypeUrl(id))
+                                        navigate(skillTypeUrl(id))
                                       }
                                       onConfirm={handleSkillTypeDelete}
                                       title={i18n.t("Remove skill type")}
@@ -374,7 +374,7 @@ export const SkillTypeUpdate: React.StatelessComponent<
                                             "Are you sure you want to remove <strong>{{ name }}</strong>?",
                                             {
                                               name: maybe(
-                                                () => data.productType.name
+                                                () => data.skillType.name
                                               )
                                             }
                                           )

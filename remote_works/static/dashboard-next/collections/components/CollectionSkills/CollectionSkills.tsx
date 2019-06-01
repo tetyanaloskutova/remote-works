@@ -79,7 +79,7 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
             color="secondary"
             onClick={onAdd}
           >
-            {i18n.t("Assign product", {
+            {i18n.t("Assign skill", {
               context: "button"
             })}
           </Button>
@@ -112,23 +112,23 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
         </TableFooter>
         <TableBody>
           {renderCollection(
-            maybe(() => collection.products.edges.map(edge => edge.node)),
+            maybe(() => collection.skills.edges.map(edge => edge.node)),
             skill => (
               <TableRow
                 className={classes.tableRow}
-                hover={!!product}
-                onClick={!!skill ? onRowClick(product.id) : undefined}
-                key={skill ? product.id : "skeleton"}
+                hover={!!skill}
+                onClick={!!skill ? onRowClick(skill.id) : undefined}
+                key={skill ? skill.id : "skeleton"}
               >
                 <TableCellAvatar
-                  thumbnail={maybe(() => product.thumbnail.url)}
+                  thumbnail={maybe(() => skill.thumbnail.url)}
                 />
                 <TableCell>
-                  {maybe<React.ReactNode>(() => product.name, <Skeleton />)}
+                  {maybe<React.ReactNode>(() => skill.name, <Skeleton />)}
                 </TableCell>
                 <TableCell className={classes.textCenter}>
                   {maybe<React.ReactNode>(
-                    () => product.productType.name,
+                    () => skill.skillType.name,
                     <Skeleton />
                   )}
                 </TableCell>
@@ -137,11 +137,11 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
                     () => (
                       <StatusLabel
                         label={
-                          product.isPublished
+                          skill.isPublished
                             ? i18n.t("Published")
                             : i18n.t("Not published")
                         }
-                        status={product.isPublished ? "success" : "error"}
+                        status={skill.isPublished ? "success" : "error"}
                       />
                     ),
                     <Skeleton />
@@ -149,8 +149,8 @@ const CollectionSkills = withStyles(styles, { name: "CollectionSkills" })(
                 </TableCell>
                 <TableCell className={classes.iconCell}>
                   <IconButton
-                    disabled={!product}
-                    onClick={event => onSkillUnassign(product.id, event)}
+                    disabled={!skill}
+                    onClick={event => onSkillUnassign(skill.id, event)}
                   >
                     <DeleteIcon color="secondary" />
                   </IconButton>

@@ -52,6 +52,6 @@ storiesOf("Views / Discounts / Sale details", module)
   .add("collections", () => (
     <SaleDetailsPage {...props} activeTab={SaleDetailsPageTab.collections} />
   ))
-  .add("products", () => (
-    <SaleDetailsPage {...props} activeTab={SaleDetailsPageTab.products} />
+  .add("skills", () => (
+    <SaleDetailsPage {...props} activeTab={SaleDetailsPageTab.skills} />
   ));

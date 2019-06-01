@@ -34,7 +34,7 @@ const updateProps: Omit<CategoryUpdatePageProps, "classes"> = {
     hasNextPage: true,
     hasPreviousPage: true
   },
-  products: category.products.edges.map(edge => edge.node),
+  skills: category.skills.edges.map(edge => edge.node),
   saveButtonBarState: "default",
   subcategories: category.children.edges.map(edge => edge.node)
 };
@@ -48,11 +48,11 @@ storiesOf("Views / Categories / Update category", module)
   .add("no subcategories", () => (
     <CategoryUpdatePage {...updateProps} subcategories={[]} />
   ))
-  .add("no products", () => (
+  .add("no skills", () => (
     <CategoryUpdatePage
       {...updateProps}
-      products={[]}
-      currentTab={CategoryPageTab.products}
+      skills={[]}
+      currentTab={CategoryPageTab.skills}
     />
   ))
   .add("loading", () => (
@@ -60,7 +60,7 @@ storiesOf("Views / Categories / Update category", module)
       {...updateProps}
       subcategories={undefined}
       disabled={true}
-      products={undefined}
+      skills={undefined}
       category={undefined}
     />
   ));

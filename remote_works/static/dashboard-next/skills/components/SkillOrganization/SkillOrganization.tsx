@@ -17,7 +17,7 @@ import SingleSelectField from "../../../components/SingleSelectField";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { SkillCreateData_productTypes_edges_node_productAttributes } from "../../types/SkillCreateData";
+import { SkillCreateData_skillTypes_edges_node_skillAttributes } from "../../types/SkillCreateData";
 
 interface ChoiceType {
   label: string;
@@ -27,7 +27,7 @@ interface SkillType {
   hasVariants: boolean;
   id: string;
   name: string;
-  productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
+  skillAttributes: SkillCreateData_skillTypes_edges_node_skillAttributes[];
 }
 
 const styles = (theme: Theme) =>
@@ -57,25 +57,25 @@ interface SkillOrganizationProps extends WithStyles<typeof styles> {
     }>;
     category: ChoiceType;
     collections: ChoiceType[];
-    productType: {
+    skillType: {
       label: string;
       value: {
         hasVariants: boolean;
         id: string;
         name: string;
-        productAttributes: SkillCreateData_productTypes_edges_node_productAttributes[];
+        skillAttributes: SkillCreateData_skillTypes_edges_node_skillAttributes[];
       };
     };
   };
   disabled: boolean;
   errors: { [key: string]: string };
-  product?: {
-    productType?: {
+  skill?: {
+    skillType?: {
       hasVariants?: boolean;
       name?: string;
     };
   };
-  productTypes?: SkillType[];
+  skillTypes?: SkillType[];
   fetchCategories: (query: string) => void;
   fetchCollections: (query: string) => void;
   onChange: (event: React.ChangeEvent<any>, cb?: () => void) => void;
@@ -90,12 +90,12 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
     disabled,
     fetchCategories,
     fetchCollections,
-    product,
-    productTypes,
+    skill,
+    skillTypes,
     onChange
   }: SkillOrganizationProps) => {
     const unrolledAttributes = maybe(
-      () => data.productType.value.productAttributes,
+      () => data.skillType.value.skillAttributes,
       []
     );
     const getAttributeName = (slug: string) =>
@@ -134,7 +134,7 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
           target: {
             ...event.target,
             name: "attributes",
-            value: event.target.value.value.productAttributes.map(
+            value: event.target.value.value.skillAttributes.map(
               attribute => ({
                 slug: attribute.slug,
                 value: ""
@@ -171,19 +171,19 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
         <CardTitle title={i18n.t("Organize Skill")} />
         <CardContent>
           <SingleAutocompleteSelectField
-            name="productType"
+            name="skillType"
             disabled={!!skill || disabled}
             label={i18n.t("Skill Type")}
             choices={
               skill &&
-              product.productType &&
-              product.productType.name !== undefined
-                ? [{ label: product.productType.name, value: "1" }]
-                : productTypes
-                ? productTypes.map(pt => ({ label: pt.name, value: pt }))
+              skill.skillType &&
+              skill.skillType.name !== undefined
+                ? [{ label: skill.skillType.name, value: "1" }]
+                : skillTypes
+                ? skillTypes.map(pt => ({ label: pt.name, value: pt }))
                 : []
             }
-            value={data.productType}
+            value={data.skillType}
             onChange={handleSkillTypeSelect}
           />
           <FormSpacer />
@@ -197,11 +197,11 @@ const SkillOrganization = withStyles(styles, { name: "SkillOrganization" })(
             ]}
             value={
               skill &&
-              product.productType &&
-              product.productType.hasVariants !== undefined
-                ? product.productType.hasVariants + ""
-                : data.productType
-                ? data.productType.value.hasVariants + ""
+              skill.skillType &&
+              skill.skillType.hasVariants !== undefined
+                ? skill.skillType.hasVariants + ""
+                : data.skillType
+                ? data.skillType.value.hasVariants + ""
                 : false + ""
             }
             onChange={onChange}

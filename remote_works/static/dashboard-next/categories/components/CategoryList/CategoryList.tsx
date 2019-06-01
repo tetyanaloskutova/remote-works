@@ -35,7 +35,7 @@ interface CategoryListProps extends ListProps, WithStyles<typeof styles> {
     children: {
       totalCount: number;
     };
-    products: {
+    skills: {
       totalCount: number;
     };
   }>;
@@ -120,8 +120,8 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
                 <TableCell className={classes.centerText}>
                   {category &&
                   category.skills &&
-                  category.products.totalCount !== undefined ? (
-                    category.products.totalCount
+                  category.skills.totalCount !== undefined ? (
+                    category.skills.totalCount
                   ) : (
                     <Skeleton />
                   )}

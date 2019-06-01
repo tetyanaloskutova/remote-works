@@ -36,13 +36,13 @@ storiesOf("Views / Collections / Collection details", module)
   .add("loading", () => (
     <CollectionDetailsPage {...props} collection={undefined} disabled={true} />
   ))
-  .add("no products", () => (
+  .add("no skills", () => (
     <CollectionDetailsPage
       {...props}
       collection={{
         ...collection,
-        products: {
-          ...collection.products,
+        skills: {
+          ...collection.skills,
           edges: []
         }
       }}

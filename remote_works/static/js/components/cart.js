@@ -4,7 +4,7 @@ export const summaryLink = $('html').data('cart-summary-url');
 export const $cartDropdown = $('.cart-dropdown');
 export const $cartIcon = $('.cart__icon');
 export const $addToCartError = $('.skill__info__form-error small');
-export const $removeSkillSuccess = $('.remove-product-alert');
+export const $removeSkillSuccess = $('.remove-skill-alert');
 
 export const onAddToCartError = (response) => {
   $addToCartError.html(getAjaxError(response));
@@ -38,12 +38,12 @@ export default $(document).ready((e) => {
     $cartDropdown.removeClass('show');
     $cartIcon.removeClass('hover');
   });
-  $('.product-form button').click((e) => {
+  $('.skill-form button').click((e) => {
     e.preventDefault();
     let quantity = $('#id_quantity').val();
     let variant = $('#id_variant').val();
     $.ajax({
-      url: $('.product-form').attr('action'),
+      url: $('.skill-form').attr('action'),
       type: 'POST',
       data: {
         variant: variant,

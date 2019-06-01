@@ -15,7 +15,7 @@ export interface CategoryTableProps extends PageListProps {
     children: {
       totalCount: number;
     };
-    products: {
+    skills: {
       totalCount: number;
     };
   }>;

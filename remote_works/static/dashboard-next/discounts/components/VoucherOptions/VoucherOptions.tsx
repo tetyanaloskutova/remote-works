@@ -132,7 +132,7 @@ const VoucherOptions = withStyles(styles, {
               })}
               <Typography variant="caption">
                 {i18n.t(
-                  "If this option is disabled, discount will be counted for every eligible product"
+                  "If this option is disabled, discount will be counted for every eligible skill"
                 )}
               </Typography>
             </>

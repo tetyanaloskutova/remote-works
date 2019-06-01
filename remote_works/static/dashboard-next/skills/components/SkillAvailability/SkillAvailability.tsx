@@ -29,12 +29,12 @@ interface SkillStockProps extends WithStyles<typeof styles> {
     stockQuantity: number;
   };
   disabled: boolean;
-  product: SkillDetails_product;
+  skill: SkillDetails_skill;
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
 const SkillStock = withStyles(styles, { name: "SkillStock" })(
-  ({ classes, data, disabled, product, onChange }: SkillStockProps) => (
+  ({ classes, data, disabled, skill, onChange }: SkillStockProps) => (
     <Card>
       <CardTitle title={i18n.t("Inventory")} />
       <CardContent>
@@ -54,7 +54,7 @@ const SkillStock = withStyles(styles, { name: "SkillStock" })(
             type="number"
             onChange={onChange}
             helperText={i18n.t("Allocated: {{ quantity }}", {
-              quantity: maybe(() => product.variants[0].quantityAllocated)
+              quantity: maybe(() => skill.variants[0].quantityAllocated)
             })}
           />
         </div>

@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import AddIcon from "@material-ui/icons/Add";
 import * as React from "react";
 
-import { CategoryDetails_category_products_edges_node } from "../../../categories/types/CategoryDetails";
+import { CategoryDetails_category_skills_edges_node } from "../../../categories/types/CategoryDetails";
 import Container from "../../../components/Container";
 import PageHeader from "../../../components/PageHeader";
 import SkillList from "../../../components/SkillList";
@@ -15,7 +15,7 @@ import SkillListFilter, { SkillListFilterTabs } from "../SkillListFilter";
 interface SkillListCardProps extends PageListProps {
   currentTab: SkillListFilterTabs;
   filtersList: Filter[];
-  products: CategoryDetails_category_products_edges_node[];
+  skills: CategoryDetails_category_skills_edges_node[];
   onAllSkills: () => void;
   onAvailable: () => void;
   onOfStock: () => void;
@@ -25,7 +25,7 @@ interface SkillListCardProps extends PageListProps {
 export const SkillListCard: React.StatelessComponent<
   SkillListCardProps
 > = ({
-  products,
+  skills,
   disabled,
   pageInfo,
   onAdd,
@@ -42,7 +42,7 @@ export const SkillListCard: React.StatelessComponent<
   <Container width="md">
     <PageHeader title={i18n.t("Skills")}>
       <Button onClick={onAdd} color="secondary" variant="contained">
-        {i18n.t("Add product")} <AddIcon />
+        {i18n.t("Add skill")} <AddIcon />
       </Button>
     </PageHeader>
     <Card>
@@ -55,7 +55,7 @@ export const SkillListCard: React.StatelessComponent<
         onCustomFilter={onCustomFilter}
       />
       <SkillList
-        products={products}
+        skills={skills}
         disabled={disabled}
         pageInfo={pageInfo}
         onNextPage={onNextPage}

@@ -94,10 +94,10 @@ const TaskDraftDetailsSkills = withStyles(styles, {
             <TableRow key={line ? line.id : "skeleton"}>
               <TableCellAvatar thumbnail={maybe(() => line.thumbnailUrl)} />
               <TableCell>
-                {maybe(() => line.productName && line.productSku) ? (
+                {maybe(() => line.skillName && line.skillSku) ? (
                   <>
-                    <Typography variant="body1">{line.productName}</Typography>
-                    <Typography variant="caption">{line.productSku}</Typography>
+                    <Typography variant="body1">{line.skillName}</Typography>
+                    <Typography variant="caption">{line.skillSku}</Typography>
                   </>
                 ) : (
                   <Skeleton />

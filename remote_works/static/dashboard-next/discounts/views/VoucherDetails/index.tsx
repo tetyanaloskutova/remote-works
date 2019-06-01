@@ -22,7 +22,7 @@ import { SearchCollectionsProvider } from "../../../containers/SearchCollections
 import { SearchSkillsProvider } from "../../../containers/SearchSkills";
 import i18n from "../../../i18n";
 import { decimal, getMutationState, maybe } from "../../../misc";
-import { productUrl } from "../../../products/urls";
+import { skillUrl } from "../../../skills/urls";
 import {
   DiscountValueTypeEnum,
   VoucherDiscountValueType
@@ -162,7 +162,7 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                             )
                                           : maybe(
                                               () =>
-                                                data.voucher.products.pageInfo
+                                                data.voucher.skills.pageInfo
                                             );
                                       const formTransitionState = getMutationState(
                                         voucherUpdateOpts.called,
@@ -309,19 +309,19 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                     true
                                                   )
                                                 }
-                                                onSkillUnassign={productId =>
+                                                onSkillUnassign={skillId =>
                                                   voucherCataloguesRemove({
                                                     variables: {
                                                       ...paginationState,
                                                       id,
                                                       input: {
-                                                        products: [productId]
+                                                        skills: [skillId]
                                                       }
                                                     }
                                                   })
                                                 }
                                                 onSkillClick={id => () =>
-                                                  navigate(productUrl(id))}
+                                                  navigate(skillUrl(id))}
                                                 activeTab={params.tab}
                                                 onBack={() =>
                                                   navigate(voucherListUrl)
@@ -392,16 +392,16 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                               ...paginationState,
                                                               id,
                                                               input: {
-                                                                products: formData.products.map(
+                                                                skills: formData.skills.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }
                                                           })
                                                         }
-                                                        products={maybe(() =>
-                                                          searchSkillsOpts.data.products.edges
+                                                        skills={maybe(() =>
+                                                          searchSkillsOpts.data.skills.edges
                                                             .map(
                                                               edge => edge.node
                                                             )
@@ -461,7 +461,7 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                               input: {
                                                                 categories: formData.categories.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }
@@ -518,7 +518,7 @@ export const VoucherDetails: React.StatelessComponent<VoucherDetailsProps> = ({
                                                               input: {
                                                                 collections: formData.collections.map(
                                                                   skill =>
-                                                                    product.id
+                                                                    skill.id
                                                                 )
                                                               }
                                                             }

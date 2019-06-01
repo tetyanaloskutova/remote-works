@@ -72,7 +72,7 @@ const TaskFulfillmentDialog = withStyles(styles, {
           lines: maybe(
             () =>
               lines.map(
-                skill => product.quantity - product.quantityFulfilled
+                skill => skill.quantity - skill.quantityFulfilled
               ),
             []
           ),
@@ -82,11 +82,11 @@ const TaskFulfillmentDialog = withStyles(styles, {
       >
         {({ data, change }) => {
           const handleQuantityChange = (
-            productIndex: number,
+            skillIndex: number,
             event: React.ChangeEvent<any>
           ) => {
             const newData = data.lines;
-            newData[productIndex] = event.target.value;
+            newData[skillIndex] = event.target.value;
             change({
               target: {
                 name: "lines",
@@ -96,7 +96,7 @@ const TaskFulfillmentDialog = withStyles(styles, {
           };
           return (
             <>
-              <DialogTitle>{i18n.t("Fulfill products")}</DialogTitle>
+              <DialogTitle>{i18n.t("Fulfill skills")}</DialogTitle>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -109,14 +109,14 @@ const TaskFulfillmentDialog = withStyles(styles, {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {lines.map((product, productIndex) => {
+                  {lines.map((skill, skillIndex) => {
                     const remainingQuantity =
-                      product.quantity - product.quantityFulfilled;
+                      skill.quantity - skill.quantityFulfilled;
                     return (
-                      <TableRow key={product.id}>
-                        <TableCellAvatar thumbnail={product.thumbnailUrl} />
-                        <TableCell>{product.productName}</TableCell>
-                        <TableCell>{product.productSku}</TableCell>
+                      <TableRow key={skill.id}>
+                        <TableCellAvatar thumbnail={skill.thumbnailUrl} />
+                        <TableCell>{skill.skillName}</TableCell>
+                        <TableCell>{skill.skillSku}</TableCell>
                         <TableCell className={classes.textRight}>
                           <TextField
                             type="number"
@@ -125,11 +125,11 @@ const TaskFulfillmentDialog = withStyles(styles, {
                               style: { textAlign: "right" }
                             }}
                             className={classes.quantityInput}
-                            value={data.lines[productIndex]}
+                            value={data.lines[skillIndex]}
                             onChange={event =>
-                              handleQuantityChange(productIndex, event)
+                              handleQuantityChange(skillIndex, event)
                             }
-                            error={remainingQuantity < data.lines[productIndex]}
+                            error={remainingQuantity < data.lines[skillIndex]}
                           />{" "}
                           / {remainingQuantity}
                         </TableCell>

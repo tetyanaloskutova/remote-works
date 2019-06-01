@@ -16,7 +16,7 @@ function onVoucherTypeChange (e) {
  */
 function onDiscountTypeChange (e) {
   const $target = $(e.currentTarget);
-  const showOnPercentage = '[name="product-apply_to"], [name="category-apply_to"]';
+  const showOnPercentage = '[name="skill-apply_to"], [name="category-apply_to"]';
   const $showOnPercentage = $(showOnPercentage).parents('.input');
   $showOnPercentage.toggleClass('hide', $target.val() === 'percentage');
 }

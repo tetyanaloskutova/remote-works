@@ -31,7 +31,7 @@ import {
 import SkillImagesReorderProvider from "./SkillImagesReorder";
 
 interface SkillUpdateOperationsProps {
-  product: SkillDetails_product;
+  skill: SkillDetails_skill;
   children: (
     props: {
       createSkillImage: PartialMutationProviderOutput<
@@ -70,7 +70,7 @@ interface SkillUpdateOperationsProps {
 const SkillUpdateOperations: React.StatelessComponent<
   SkillUpdateOperationsProps
 > = ({
-  product,
+  skill,
   children,
   onDelete,
   onImageDelete,
@@ -78,13 +78,13 @@ const SkillUpdateOperations: React.StatelessComponent<
   onImageReorder,
   onUpdate
 }) => {
-  const productId = skill ? product.id : "";
+  const skillId = skill ? skill.id : "";
   return (
     <TypedSkillUpdateMutation onCompleted={onUpdate}>
       {(...updateSkill) => (
         <SkillImagesReorderProvider
-          productId={productId}
-          productImages={maybe(() => product.images, [])}
+          skillId={skillId}
+          skillImages={maybe(() => skill.images, [])}
           onCompleted={onImageReorder}
         >
           {(...reorderSkillImages) => (

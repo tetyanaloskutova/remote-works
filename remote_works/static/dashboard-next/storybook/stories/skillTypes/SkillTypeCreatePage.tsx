@@ -4,7 +4,7 @@ import * as React from "react";
 
 import SkillTypeCreatePage, {
   SkillTypeCreatePageProps
-} from "../../../productTypes/components/SkillTypeCreatePage";
+} from "../../../skillTypes/components/SkillTypeCreatePage";
 import { WeightUnitsEnum } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 

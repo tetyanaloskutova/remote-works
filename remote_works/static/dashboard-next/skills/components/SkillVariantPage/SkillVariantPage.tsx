@@ -46,13 +46,13 @@ const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
   onVariantClick
 }) => {
   const variantImages = variant ? variant.images.map(image => image.id) : [];
-  const productImages = variant
-    ? variant.product.images.sort((prev, next) =>
+  const skillImages = variant
+    ? variant.skill.images.sort((prev, next) =>
         prev.sortTask > next.sortTask ? 1 : -1
       )
     : undefined;
-  const images = productImages
-    ? productImages
+  const images = skillImages
+    ? skillImages
         .filter(image => variantImages.indexOf(image.id) !== -1)
         .sort((prev, next) => (prev.sortTask > next.sortTask ? 1 : -1))
     : undefined;
@@ -92,7 +92,7 @@ const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
                     <div>
                       <SkillVariantNavigation
                         current={variant ? variant.id : undefined}
-                        variants={maybe(() => variant.product.variants)}
+                        variants={maybe(() => variant.skill.variants)}
                         onRowClick={(variantId: string) => {
                           if (variant) {
                             return onVariantClick(variantId);
@@ -163,7 +163,7 @@ const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
                 onClose={toggleImageSelectModal}
                 onImageSelect={onImageSelect}
                 open={isImageSelectModalActive}
-                images={productImages}
+                images={skillImages}
                 selectedImages={maybe(() =>
                   variant.images.map(image => image.id)
                 )}

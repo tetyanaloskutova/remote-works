@@ -2,11 +2,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder255x255.png";
-import SkillVariantImageSelectDialog from "../../../products/components/SkillVariantImageSelectDialog";
+import SkillVariantImageSelectDialog from "../../../skills/components/SkillVariantImageSelectDialog";
 import {
   variantImages as variantImagesFixture,
   variantSkillImages as variantSkillImagesFixture
-} from "../../../products/fixtures";
+} from "../../../skills/fixtures";
 
 const variantImages = variantImagesFixture(placeholderImage);
 const variantSkillImages = variantSkillImagesFixture(placeholderImage);

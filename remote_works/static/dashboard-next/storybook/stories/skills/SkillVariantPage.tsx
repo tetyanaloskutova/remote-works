@@ -2,8 +2,8 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
-import SkillVariantPage from "../../../products/components/SkillVariantPage";
-import { variant as variantFixture } from "../../../products/fixtures";
+import SkillVariantPage from "../../../skills/components/SkillVariantPage";
+import { variant as variantFixture } from "../../../skills/fixtures";
 import Decorator from "../../Decorator";
 
 const variant = variantFixture(placeholderImage);

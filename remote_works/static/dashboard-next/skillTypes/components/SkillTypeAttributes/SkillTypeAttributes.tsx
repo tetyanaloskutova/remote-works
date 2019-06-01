@@ -21,8 +21,8 @@ import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { AttributeTypeEnum } from "../../../types/globalTypes";
 import {
-  SkillTypeDetails_productType_productAttributes,
-  SkillTypeDetails_productType_variantAttributes
+  SkillTypeDetails_skillType_skillAttributes,
+  SkillTypeDetails_skillType_variantAttributes
 } from "../../types/SkillTypeDetails";
 
 const styles = (theme: Theme) =>
@@ -43,8 +43,8 @@ const styles = (theme: Theme) =>
 
 interface SkillTypeAttributesProps extends WithStyles<typeof styles> {
   attributes:
-    | SkillTypeDetails_productType_productAttributes[]
-    | SkillTypeDetails_productType_variantAttributes[];
+    | SkillTypeDetails_skillType_skillAttributes[]
+    | SkillTypeDetails_skillType_variantAttributes[];
   type: AttributeTypeEnum;
   onAttributeAdd: (type: AttributeTypeEnum) => void;
   onAttributeDelete: (id: string, event: React.MouseEvent<any>) => void;
@@ -65,7 +65,7 @@ const SkillTypeAttributes = withStyles(styles, {
     <Card>
       <CardTitle
         title={
-          type === AttributeTypeEnum.PRODUCT
+          type === AttributeTypeEnum.SKILL
             ? i18n.t("Skill Attributes")
             : i18n.t("Variant Attributes")
         }

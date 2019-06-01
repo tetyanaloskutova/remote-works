@@ -37,7 +37,7 @@ const TaskDraftDetails: React.StatelessComponent<TaskDraftDetailsProps> = ({
       })}
       toolbar={
         <Button color="secondary" variant="text" onClick={onTaskLineAdd}>
-          {i18n.t("Add products", {
+          {i18n.t("Add skills", {
             context: "button"
           })}
         </Button>

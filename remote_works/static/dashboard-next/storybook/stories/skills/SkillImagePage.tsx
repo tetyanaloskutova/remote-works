@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholder from "../../../../images/placeholder1080x1080.png";
-import SkillImagePage from "../../../products/components/SkillImagePage";
+import SkillImagePage from "../../../skills/components/SkillImagePage";
 import Decorator from "../../Decorator";
 
 const image = { id: "", url: placeholder, alt: "Lorem ipsum" };

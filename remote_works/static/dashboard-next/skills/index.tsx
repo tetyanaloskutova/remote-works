@@ -5,12 +5,12 @@ import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
 import {
-  productAddPath,
-  productImagePath,
-  productListPath,
-  productPath,
-  productVariantAddPath,
-  productVariantEditPath
+  skillAddPath,
+  skillImagePath,
+  skillListPath,
+  skillPath,
+  skillVariantAddPath,
+  skillVariantEditPath
 } from "./urls";
 import SkillCreate from "./views/SkillCreate";
 import SkillImageComponent from "./views/SkillImage";
@@ -45,7 +45,7 @@ const SkillVariant: React.StatelessComponent<RouteComponentProps<any>> = ({
   return (
     <SkillVariantComponent
       variantId={decodeURIComponent(match.params.variantId)}
-      productId={decodeURIComponent(match.params.productId)}
+      skillId={decodeURIComponent(match.params.skillId)}
     />
   );
 };
@@ -56,7 +56,7 @@ const SkillImage: React.StatelessComponent<RouteComponentProps<any>> = ({
   return (
     <SkillImageComponent
       imageId={decodeURIComponent(match.params.imageId)}
-      productId={decodeURIComponent(match.params.productId)}
+      skillId={decodeURIComponent(match.params.skillId)}
     />
   );
 };
@@ -66,7 +66,7 @@ const SkillVariantCreate: React.StatelessComponent<
 > = ({ match }) => {
   return (
     <SkillVariantCreateComponent
-      productId={decodeURIComponent(match.params.id)}
+      skillId={decodeURIComponent(match.params.id)}
     />
   );
 };
@@ -75,22 +75,22 @@ const Component = () => (
   <>
     <WindowTitle title={i18n.t("Skills")} />
     <Switch>
-      <Route exact path={productListPath} component={SkillList} />
-      <Route exact path={productAddPath} component={SkillCreate} />
+      <Route exact path={skillListPath} component={SkillList} />
+      <Route exact path={skillAddPath} component={SkillCreate} />
       <Route
         exact
-        path={productVariantAddPath(":id")}
+        path={skillVariantAddPath(":id")}
         component={SkillVariantCreate}
       />
       <Route
-        path={productVariantEditPath(":productId", ":variantId")}
+        path={skillVariantEditPath(":skillId", ":variantId")}
         component={SkillVariant}
       />
       <Route
-        path={productImagePath(":productId", ":imageId")}
+        path={skillImagePath(":skillId", ":imageId")}
         component={SkillImage}
       />
-      <Route path={productPath(":id")} component={SkillUpdate} />
+      <Route path={skillPath(":id")} component={SkillUpdate} />
     </Switch>
   </>
 );

@@ -19,7 +19,7 @@ import Skeleton from "../../../components/Skeleton";
 import TableCellAvatar from "../../../components/TableCellAvatar";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
-import { Home_productTopToday_edges_node } from "../../types/Home";
+import { Home_skillTopToday_edges_node } from "../../types/Home";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -41,14 +41,14 @@ const styles = (theme: Theme) =>
   });
 
 interface HomeSkillListProps extends WithStyles<typeof styles> {
-  topSkills: Home_productTopToday_edges_node[];
-  onRowClick: (productId: string, variantId: string) => void;
+  topSkills: Home_skillTopToday_edges_node[];
+  onRowClick: (skillId: string, variantId: string) => void;
 }
 
 export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
   ({ classes, topSkills, onRowClick }: HomeSkillListProps) => (
     <Card>
-      <CardTitle title={i18n.t("Top products")} />
+      <CardTitle title={i18n.t("Top skills")} />
       <Table>
         <TableBody>
           {renderCollection(
@@ -62,13 +62,13 @@ export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
                 })}
                 onClick={
                   !!variant
-                    ? () => onRowClick(variant.product.id, variant.id)
+                    ? () => onRowClick(variant.skill.id, variant.id)
                     : undefined
                 }
               >
                 <TableCellAvatar
                   className={classes.avatarSpacing}
-                  thumbnail={maybe(() => variant.product.thumbnail.url)}
+                  thumbnail={maybe(() => variant.skill.thumbnail.url)}
                   avatarProps={classes.avatarProps}
                 />
 
@@ -76,7 +76,7 @@ export const HomeSkillList = withStyles(styles, { name: "HomeSkillList" })(
                   {variant ? (
                     <>
                       <Typography color={"primary"}>
-                        {variant.product.name}
+                        {variant.skill.name}
                       </Typography>
                       <Typography color={"textSecondary"}>
                         {maybe(() =>

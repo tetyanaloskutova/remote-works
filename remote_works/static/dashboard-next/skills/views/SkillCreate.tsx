@@ -12,7 +12,7 @@ import { CollectionSearchProvider } from "../containers/CollectionSearch";
 import { TypedSkillCreateMutation } from "../mutations";
 import { TypedSkillCreateQuery } from "../queries";
 import { SkillCreate } from "../types/SkillCreate";
-import { productListUrl, productUrl } from "../urls";
+import { skillListUrl, skillUrl } from "../urls";
 
 interface SkillUpdateProps {
   id: string;
@@ -29,7 +29,7 @@ export const SkillUpdate: React.StatelessComponent<
             <Navigator>
               {navigate => {
                 const handleAttributesEdit = undefined;
-                const handleBack = () => navigate(productListUrl());
+                const handleBack = () => navigate(skillListUrl());
 
                 return (
                   <CategorySearchProvider>
@@ -45,12 +45,12 @@ export const SkillUpdate: React.StatelessComponent<
                           <TypedSkillCreateQuery displayLoader>
                             {({ data, loading }) => {
                               const handleSuccess = (data: SkillCreate) => {
-                                if (data.productCreate.errors.length === 0) {
+                                if (data.skillCreate.errors.length === 0) {
                                   pushMessage({
                                     text: i18n.t("Skill created")
                                   });
                                   navigate(
-                                    productUrl(data.productCreate.product.id)
+                                    skillUrl(data.skillCreate.skill.id)
                                   );
                                 }
                               };
@@ -60,17 +60,17 @@ export const SkillUpdate: React.StatelessComponent<
                                   onCompleted={handleSuccess}
                                 >
                                   {(
-                                    productCreate,
+                                    skillCreate,
                                     {
-                                      called: productCreateCalled,
-                                      data: productCreateData,
-                                      loading: productCreateDataLoading
+                                      called: skillCreateCalled,
+                                      data: skillCreateData,
+                                      loading: skillCreateDataLoading
                                     }
                                   ) => {
                                     const handleSubmit = (
                                       formData: FormData
                                     ) => {
-                                      productCreate({
+                                      skillCreate({
                                         variables: {
                                           attributes: formData.attributes,
                                           category: formData.category.value,
@@ -84,8 +84,8 @@ export const SkillUpdate: React.StatelessComponent<
                                           isPublished: formData.available,
                                           name: formData.name,
                                           price: decimal(formData.price),
-                                          productType:
-                                            formData.productType.value.id,
+                                          skillType:
+                                            formData.skillType.value.id,
                                           publicationDate:
                                             formData.publicationDate !== ""
                                               ? formData.publicationDate
@@ -95,20 +95,20 @@ export const SkillUpdate: React.StatelessComponent<
                                     };
 
                                     const disabled =
-                                      loading || productCreateDataLoading;
+                                      loading || skillCreateDataLoading;
 
                                     const formTransitionState = getMutationState(
-                                      productCreateCalled,
-                                      productCreateDataLoading,
+                                      skillCreateCalled,
+                                      skillCreateDataLoading,
                                       maybe(
                                         () =>
-                                          productCreateData.productCreate.errors
+                                          skillCreateData.skillCreate.errors
                                       )
                                     );
                                     return (
                                       <>
                                         <WindowTitle
-                                          title={i18n.t("Create product")}
+                                          title={i18n.t("Create skill")}
                                         />
                                         <SkillCreatePage
                                           currency={maybe(
@@ -128,20 +128,20 @@ export const SkillUpdate: React.StatelessComponent<
                                           ).map(edge => edge.node)}
                                           disabled={disabled}
                                           errors={
-                                            productCreateData &&
-                                            productCreateData.productCreate &&
-                                            productCreateData.productCreate
+                                            skillCreateData &&
+                                            skillCreateData.skillCreate &&
+                                            skillCreateData.skillCreate
                                               .errors
-                                              ? productCreateData.productCreate
+                                              ? skillCreateData.skillCreate
                                                   .errors
                                               : []
                                           }
                                           fetchCategories={searchCategory}
                                           fetchCollections={searchCollection}
                                           header={i18n.t("New Skill")}
-                                          productTypes={
-                                            data && data.productTypes
-                                              ? data.productTypes.edges.map(
+                                          skillTypes={
+                                            data && data.skillTypes
+                                              ? data.skillTypes.edges.map(
                                                   edge => edge.node
                                                 )
                                               : undefined

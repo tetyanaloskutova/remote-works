@@ -11,7 +11,7 @@ import { WindowTitle } from "../../components/WindowTitle";
 import { SearchSkillsProvider } from "../../containers/SearchSkills";
 import i18n from "../../i18n";
 import { getMutationState, maybe } from "../../misc";
-import { productUrl } from "../../products/urls";
+import { skillUrl } from "../../skills/urls";
 import { CollectionInput } from "../../types/globalTypes";
 import CollectionDetailsPage, {
   CollectionDetailsPageFormData
@@ -214,7 +214,7 @@ export const CollectionDetails: React.StatelessComponent<
                           />
                           <Paginator
                             pageInfo={maybe(
-                              () => data.collection.products.pageInfo
+                              () => data.collection.skills.pageInfo
                             )}
                             paginationState={paginationState}
                             queryString={params}
@@ -259,16 +259,16 @@ export const CollectionDetails: React.StatelessComponent<
                                 onNextPage={loadNextPage}
                                 onPreviousPage={loadPreviousPage}
                                 pageInfo={pageInfo}
-                                onSkillUnassign={(productId, event) => {
+                                onSkillUnassign={(skillId, event) => {
                                   event.stopPropagation();
                                   unassignSkill.mutate({
                                     collectionId: id,
-                                    productId,
+                                    skillId,
                                     ...paginationState
                                   });
                                 }}
                                 onRowClick={id => () =>
-                                  navigate(productUrl(id))}
+                                  navigate(skillUrl(id))}
                                 saveButtonBarState={formTransitionState}
                               />
                             )}
@@ -290,13 +290,13 @@ export const CollectionDetails: React.StatelessComponent<
                                       assignSkill.mutate({
                                         ...paginationState,
                                         collectionId: id,
-                                        productIds: formData.products.map(
-                                          skill => product.id
+                                        skillIds: formData.skills.map(
+                                          skill => skill.id
                                         )
                                       })
                                     }
-                                    products={maybe(() =>
-                                      searchSkillsOpts.data.products.edges
+                                    skills={maybe(() =>
+                                      searchSkillsOpts.data.skills.edges
                                         .map(edge => edge.node)
                                         .filter(
                                           suggestedSkill =>

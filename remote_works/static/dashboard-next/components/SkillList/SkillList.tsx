@@ -12,7 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import * as React from "react";
 
-import { CategoryDetails_category_products_edges_node } from "../../categories/types/CategoryDetails";
+import { CategoryDetails_category_skills_edges_node } from "../../categories/types/CategoryDetails";
 import TableCellAvatar from "../../components/TableCellAvatar";
 import i18n from "../../i18n";
 import { maybe, renderCollection } from "../../misc";
@@ -41,7 +41,7 @@ const styles = (theme: Theme) =>
   });
 
 interface SkillListProps extends ListProps, WithStyles<typeof styles> {
-  products: CategoryDetails_category_products_edges_node[];
+  skills: CategoryDetails_category_skills_edges_node[];
 }
 
 export const SkillList = withStyles(styles, { name: "SkillList" })(
@@ -52,12 +52,12 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
     onNextPage,
     onPreviousPage,
     onRowClick,
-    products
+    skills
   }: SkillListProps) => (
     <Table>
       <TableHead>
         <TableRow>
-          {(skills === undefined || products.length > 0) && <TableCell />}
+          {(skills === undefined || skills.length > 0) && <TableCell />}
           <TableCell className={classes.textLeft}>
             {i18n.t("Name", { context: "object" })}
           </TableCell>
@@ -83,37 +83,37 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
       </TableFooter>
       <TableBody>
         {renderCollection(
-          products,
+          skills,
           skill => (
             <TableRow
-              hover={!!product}
-              key={skill ? product.id : "skeleton"}
-              onClick={skill && onRowClick(product.id)}
+              hover={!!skill}
+              key={skill ? skill.id : "skeleton"}
+              onClick={skill && onRowClick(skill.id)}
               className={classes.link}
             >
-              <TableCellAvatar thumbnail={maybe(() => product.thumbnail.url)} />
+              <TableCellAvatar thumbnail={maybe(() => skill.thumbnail.url)} />
               <TableCell className={classes.textLeft}>
-                {skill ? product.name : <Skeleton />}
+                {skill ? skill.name : <Skeleton />}
               </TableCell>
               <TableCell>
-                {skill && product.productType ? (
-                  product.productType.name
+                {skill && skill.skillType ? (
+                  skill.skillType.name
                 ) : (
                   <Skeleton />
                 )}
               </TableCell>
               <TableCell>
                 {skill &&
-                product.availability &&
-                product.availability.available !== undefined ? (
+                skill.availability &&
+                skill.availability.available !== undefined ? (
                   <StatusLabel
                     label={
-                      product.availability.available
+                      skill.availability.available
                         ? i18n.t("Published", { context: "skill status" })
                         : i18n.t("Not published", { context: "skill status" })
                     }
                     status={
-                      product.availability.available ? "success" : "error"
+                      skill.availability.available ? "success" : "error"
                     }
                   />
                 ) : (
@@ -122,10 +122,10 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
               </TableCell>
               <TableCell className={classes.textRight}>
                 {skill &&
-                product.price &&
-                product.price.amount !== undefined &&
-                product.price.currency !== undefined ? (
-                  <Money money={product.price} />
+                skill.price &&
+                skill.price.amount !== undefined &&
+                skill.price.currency !== undefined ? (
+                  <Money money={skill.price} />
                 ) : (
                   <Skeleton />
                 )}

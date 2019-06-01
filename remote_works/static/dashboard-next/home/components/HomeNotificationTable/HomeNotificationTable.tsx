@@ -29,7 +29,7 @@ const styles = (theme: Theme) =>
 interface HomeNotificationTableProps extends WithStyles<typeof styles> {
   ordersToCapture: number;
   ordersToFulfill: number;
-  productsOutOfStock: number;
+  skillsOutOfStock: number;
   onTasksToFulfillClick: () => void;
   onTasksToCaptureClick: () => void;
   onSkillsOutOfStockClick: () => void;
@@ -45,7 +45,7 @@ const HomeNotificationTable = withStyles(styles, {
     onSkillsOutOfStockClick,
     ordersToCapture,
     ordersToFulfill,
-    productsOutOfStock
+    skillsOutOfStock
   }: HomeNotificationTableProps) => {
     return (
       <Card>
@@ -99,16 +99,16 @@ const HomeNotificationTable = withStyles(styles, {
             </TableRow>
             <TableRow hover={true} onClick={onSkillsOutOfStockClick}>
               <TableCell>
-                {productsOutOfStock === undefined ? (
+                {skillsOutOfStock === undefined ? (
                   <Skeleton />
-                ) : productsOutOfStock === 0 ? (
+                ) : skillsOutOfStock === 0 ? (
                   <Typography>{i18n.t("No skills out of availability")}</Typography>
                 ) : (
                   <Typography
                     dangerouslySetInnerHTML={{
                       __html: i18n.t(
                         "<b>{{ amount }} Skills</b> out of availability",
-                        { amount: productsOutOfStock }
+                        { amount: skillsOutOfStock }
                       )
                     }}
                   />

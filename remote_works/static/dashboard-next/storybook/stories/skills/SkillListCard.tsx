@@ -5,10 +5,10 @@ import * as placeholderImage from "../../../../images/placeholder255x255.png";
 import { category as categoryFixture } from "../../../categories/fixtures";
 import { Filter } from "../../../components/TableFilter";
 import { pageListProps } from "../../../fixtures";
-import SkillListCard from "../../../products/components/SkillListCard";
+import SkillListCard from "../../../skills/components/SkillListCard";
 import Decorator from "../../Decorator";
 
-const skills = categoryFixture(placeholderImage).products.edges.map(
+const skills = categoryFixture(placeholderImage).skills.edges.map(
   edge => edge.node
 );
 
@@ -33,7 +33,7 @@ storiesOf("Views / Skills / Skill list", module)
     <SkillListCard
       filtersList={[]}
       currentTab="all"
-      products={products}
+      skills={skills}
       {...pageListProps.default}
       onAllSkills={() => undefined}
       onAvailable={() => undefined}
@@ -43,7 +43,7 @@ storiesOf("Views / Skills / Skill list", module)
   ))
   .add("with custom filters", () => (
     <SkillListCard
-      products={products}
+      skills={skills}
       {...pageListProps.default}
       filtersList={filtersList}
       currentTab="custom"
@@ -56,7 +56,7 @@ storiesOf("Views / Skills / Skill list", module)
   .add("loading", () => (
     <SkillListCard
       {...pageListProps.loading}
-      products={undefined}
+      skills={undefined}
       filtersList={undefined}
       currentTab={undefined}
       onAllSkills={() => undefined}
@@ -67,7 +67,7 @@ storiesOf("Views / Skills / Skill list", module)
   ))
   .add("no data", () => (
     <SkillListCard
-      products={[]}
+      skills={[]}
       {...pageListProps.default}
       filtersList={[]}
       currentTab="all"

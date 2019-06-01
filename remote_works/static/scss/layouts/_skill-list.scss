@@ -1,4 +1,4 @@
-#product-list-image {
+#skill-list-image {
   background-position: top;
   background-repeat: repeat-x;
   background-size: cover;
@@ -11,13 +11,13 @@
   }
 }
 
-.product-image {
+.skill-image {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.product-list {
+.skill-list {
   text-align: center;
   margin-bottom: $global-margin * 2;
   img {

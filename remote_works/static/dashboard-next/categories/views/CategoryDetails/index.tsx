@@ -13,7 +13,7 @@ import {
 import { WindowTitle } from "../../../components/WindowTitle";
 import i18n from "../../../i18n";
 import { getMutationState, maybe } from "../../../misc";
-import { productAddUrl, productUrl } from "../../../products/urls";
+import { skillAddUrl, skillUrl } from "../../../skills/urls";
 import { CategoryInput } from "../../../types/globalTypes";
 import {
   CategoryPageTab,
@@ -40,8 +40,8 @@ export interface CategoryDetailsProps {
 }
 
 export function getActiveTab(tabName: string): CategoryPageTab {
-  return tabName === CategoryPageTab.products
-    ? CategoryPageTab.products
+  return tabName === CategoryPageTab.skills
+    ? CategoryPageTab.skills
     : CategoryPageTab.categories;
 }
 
@@ -118,7 +118,7 @@ export const CategoryDetails: React.StatelessComponent<
                             />
                             <Paginator
                               pageInfo={maybe(
-                                () => data.category.products.pageInfo
+                                () => data.category.skills.pageInfo
                               )}
                               paginationState={paginationState}
                               queryString={params}
@@ -140,7 +140,7 @@ export const CategoryDetails: React.StatelessComponent<
                                   onAddCategory={() =>
                                     navigate(categoryAddUrl(id))
                                   }
-                                  onAddSkill={() => navigate(productAddUrl)}
+                                  onAddSkill={() => navigate(skillAddUrl)}
                                   onBack={() =>
                                     navigate(
                                       maybe(
@@ -179,7 +179,7 @@ export const CategoryDetails: React.StatelessComponent<
                                   onPreviousPage={loadPreviousPage}
                                   pageInfo={pageInfo}
                                   onSkillClick={id => () =>
-                                    navigate(productUrl(id))}
+                                    navigate(skillUrl(id))}
                                   onSubmit={formData =>
                                     updateCategory({
                                       variables: {
@@ -200,8 +200,8 @@ export const CategoryDetails: React.StatelessComponent<
                                       }
                                     })
                                   }
-                                  products={maybe(() =>
-                                    data.category.products.edges.map(
+                                  skills={maybe(() =>
+                                    data.category.skills.edges.map(
                                       edge => edge.node
                                     )
                                   )}

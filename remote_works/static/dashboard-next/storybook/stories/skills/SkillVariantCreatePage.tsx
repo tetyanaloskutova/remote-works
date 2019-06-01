@@ -2,11 +2,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder255x255.png";
-import SkillVariantCreatePage from "../../../products/components/SkillVariantCreatePage";
-import { skill as productFixture } from "../../../products/fixtures";
+import SkillVariantCreatePage from "../../../skills/components/SkillVariantCreatePage";
+import { skill as skillFixture } from "../../../skills/fixtures";
 import Decorator from "../../Decorator";
 
-const skill = productFixture(placeholderImage);
+const skill = skillFixture(placeholderImage);
 const errors = [
   {
     field: "cost_price",
@@ -34,7 +34,7 @@ storiesOf("Views / Skills / Create skill variant", module)
       errors={[]}
       header="Add variant"
       loading={false}
-      product={product}
+      skill={skill}
       onBack={() => undefined}
       onSubmit={() => undefined}
       onVariantClick={undefined}
@@ -47,7 +47,7 @@ storiesOf("Views / Skills / Create skill variant", module)
       errors={errors}
       header="Add variant"
       loading={false}
-      product={product}
+      skill={skill}
       onBack={() => undefined}
       onSubmit={() => undefined}
       onVariantClick={undefined}
@@ -60,7 +60,7 @@ storiesOf("Views / Skills / Create skill variant", module)
       errors={[]}
       header="Add variant"
       loading={true}
-      product={undefined}
+      skill={undefined}
       onBack={() => undefined}
       onSubmit={() => undefined}
       onVariantClick={undefined}

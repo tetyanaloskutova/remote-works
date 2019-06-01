@@ -6,17 +6,17 @@ import CardTitle from "../../../components/CardTitle";
 import SkillList from "../../../components/SkillList";
 import i18n from "../../../i18n";
 import { PageListProps } from "../../../types";
-import { CategoryDetails_category_products_edges_node } from "../../types/CategoryDetails";
+import { CategoryDetails_category_skills_edges_node } from "../../types/CategoryDetails";
 
 interface CategorySkillsCardProps extends PageListProps {
-  products: CategoryDetails_category_products_edges_node[];
+  skills: CategoryDetails_category_skills_edges_node[];
   categoryName: string;
 }
 
 export const CategorySkillsCard: React.StatelessComponent<
   CategorySkillsCardProps
 > = ({
-  products,
+  skills,
   disabled,
   pageInfo,
   onAdd,
@@ -30,12 +30,12 @@ export const CategorySkillsCard: React.StatelessComponent<
       title={i18n.t("Skills in {{ categoryName }}", { categoryName })}
       toolbar={
         <Button color="secondary" variant="text" onClick={onAdd}>
-          {i18n.t("Add product")}
+          {i18n.t("Add skill")}
         </Button>
       }
     />
     <SkillList
-      products={products}
+      skills={skills}
       disabled={disabled}
       pageInfo={pageInfo}
       onNextPage={onNextPage}

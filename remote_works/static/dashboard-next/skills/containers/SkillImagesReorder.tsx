@@ -12,8 +12,8 @@ interface SkillImagesReorderProviderProps
     SkillImageReorder,
     SkillImageReorderVariables
   > {
-  productId: string;
-  productImages: Array<{
+  skillId: string;
+  skillImages: Array<{
     id: string;
     url: string;
   }>;
@@ -21,26 +21,26 @@ interface SkillImagesReorderProviderProps
 
 const SkillImagesReorderProvider: React.StatelessComponent<
   SkillImagesReorderProviderProps
-> = ({ children, productId, productImages, ...mutationProps }) => (
+> = ({ children, skillId, skillImages, ...mutationProps }) => (
   <TypedSkillImagesReorder {...mutationProps}>
     {(mutate, mutationResult) =>
       children(opts => {
-        const productImagesMap = productImages.reduce((prev, curr) => {
+        const skillImagesMap = skillImages.reduce((prev, curr) => {
           prev[curr.id] = curr;
           return prev;
         }, {});
         const newSkillImages = opts.variables.imagesIds.map((id, index) => ({
           __typename: "SkillImage",
-          ...productImagesMap[id],
+          ...skillImagesMap[id],
           sortTask: index
         }));
         const optimisticResponse: typeof mutationResult["data"] = {
-          productImageReorder: {
+          skillImageReorder: {
             __typename: "SkillImageReorder",
             errors: null,
-            product: {
+            skill: {
               __typename: "Skill",
-              id: productId,
+              id: skillId,
               images: newSkillImages
             }
           }

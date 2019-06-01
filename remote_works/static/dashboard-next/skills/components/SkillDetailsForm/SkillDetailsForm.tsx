@@ -31,7 +31,7 @@ interface SkillDetailsFormProps extends WithStyles<typeof styles> {
   data: CreateFormData & UpdateFormData;
   disabled?: boolean;
   errors: { [key: string]: string };
-  product?: SkillDetails_product;
+  skill?: SkillDetails_skill;
   onChange(event: any);
 }
 
@@ -43,7 +43,7 @@ export const SkillDetailsForm = withStyles(styles, {
     data,
     disabled,
     errors,
-    product,
+    skill,
     onChange
   }: SkillDetailsFormProps) => (
     <Card>
@@ -67,7 +67,7 @@ export const SkillDetailsForm = withStyles(styles, {
           disabled={disabled}
           error={!!errors.descriptionJson}
           helperText={errors.descriptionJson}
-          initial={maybe(() => JSON.parse(product.descriptionJson))}
+          initial={maybe(() => JSON.parse(skill.descriptionJson))}
           label={i18n.t("Description")}
           name="description"
           onChange={onChange}

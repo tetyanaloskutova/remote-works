@@ -18,7 +18,7 @@ import CategoryList from "../../components/CategoryList";
 import {
   CategoryDetails_category,
   CategoryDetails_category_children_edges_node,
-  CategoryDetails_category_products_edges_node
+  CategoryDetails_category_skills_edges_node
 } from "../../types/CategoryDetails";
 import CategoryBackground from "../CategoryBackground";
 import CategorySkillsCard from "../CategorySkillsCard";
@@ -33,7 +33,7 @@ export interface FormData {
 
 export enum CategoryPageTab {
   categories = "categories",
-  skills = "products"
+  skills = "skills"
 }
 
 export interface CategoryUpdatePageProps {
@@ -42,7 +42,7 @@ export interface CategoryUpdatePageProps {
   errors: UserError[];
   disabled: boolean;
   category: CategoryDetails_category;
-  products: CategoryDetails_category_products_edges_node[];
+  skills: CategoryDetails_category_skills_edges_node[];
   subcategories: CategoryDetails_category_children_edges_node[];
   pageInfo: {
     hasNextPage: boolean;
@@ -63,7 +63,7 @@ export interface CategoryUpdatePageProps {
 }
 
 const CategoriesTab = Tab(CategoryPageTab.categories);
-const SkillsTab = Tab(CategoryPageTab.products);
+const SkillsTab = Tab(CategoryPageTab.skills);
 
 export const CategoryUpdatePage: React.StatelessComponent<
   CategoryUpdatePageProps
@@ -74,7 +74,7 @@ export const CategoryUpdatePage: React.StatelessComponent<
   disabled,
   errors: userErrors,
   pageInfo,
-  products,
+  skills,
   saveButtonBarState,
   subcategories,
   onAddCategory,
@@ -154,7 +154,7 @@ export const CategoryUpdatePage: React.StatelessComponent<
               {i18n.t("Subcategories")}
             </CategoriesTab>
             <SkillsTab
-              isActive={currentTab === CategoryPageTab.products}
+              isActive={currentTab === CategoryPageTab.skills}
               changeTab={changeTab}
             >
               {i18n.t("Skills")}
@@ -176,7 +176,7 @@ export const CategoryUpdatePage: React.StatelessComponent<
           {currentTab === CategoryPageTab.skills && (
             <CategorySkillsCard
               categoryName={maybe(() => category.name)}
-              products={products}
+              skills={skills}
               disabled={disabled}
               pageInfo={pageInfo}
               onNextPage={onNextPage}

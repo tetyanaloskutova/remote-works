@@ -143,7 +143,7 @@ const TaskFulfillment = withStyles(styles, { name: "TaskFulfillment" })(
                   thumbnail={maybe(() => line.orderLine.thumbnailUrl)}
                 />
                 <TableCell>
-                  {maybe(() => line.orderLine.productName) || <Skeleton />}
+                  {maybe(() => line.orderLine.skillName) || <Skeleton />}
                 </TableCell>
                 <TableCell className={classes.textCenter}>
                   {maybe(() => line.quantity) || <Skeleton />}

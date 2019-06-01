@@ -3,8 +3,8 @@ import * as React from "react";
 
 import SkillTypeAttributeEditDialog, {
   SkillTypeAttributeEditDialogProps
-} from "../../../productTypes/components/SkillTypeAttributeEditDialog";
-import { attributes } from "../../../productTypes/fixtures";
+} from "../../../skillTypes/components/SkillTypeAttributeEditDialog";
+import { attributes } from "../../../skillTypes/fixtures";
 import Decorator from "../../Decorator";
 
 const attribute = attributes[0];

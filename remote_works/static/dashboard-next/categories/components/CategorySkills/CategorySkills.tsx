@@ -35,10 +35,10 @@ const styles = (theme: Theme) =>
 interface SkillListProps extends WithStyles<typeof styles> {
   hasNextPage?: boolean;
   hasPreviousPage?: boolean;
-  products?: Array<{
+  skills?: Array<{
     id: string;
     name: string;
-    productType: {
+    skillType: {
       name: string;
     };
     thumbnailUrl: string;
@@ -54,7 +54,7 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
     classes,
     hasNextPage,
     hasPreviousPage,
-    products,
+    skills,
     onAddSkill,
     onNextPage,
     onPreviousPage,
@@ -65,14 +65,14 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
         title={i18n.t("Skills")}
         toolbar={
           <Button variant="text" color="secondary" onClick={onAddSkill}>
-            {i18n.t("Add product")}
+            {i18n.t("Add skill")}
           </Button>
         }
       />
       <Table>
         <TableHead>
           <TableRow>
-            {(skills === undefined || products.length > 0) && <TableCell />}
+            {(skills === undefined || skills.length > 0) && <TableCell />}
             <TableCell className={classes.textLeft}>
               {i18n.t("Name", { context: "object" })}
             </TableCell>
@@ -92,25 +92,25 @@ export const SkillList = withStyles(styles, { name: "SkillList" })(
         </TableFooter>
         <TableBody>
           {renderCollection(
-            products,
+            skills,
             skill => (
-              <TableRow key={skill ? product.id : "skeleton"}>
-                <TableCellAvatar thumbnail={skill && product.thumbnailUrl} />
+              <TableRow key={skill ? skill.id : "skeleton"}>
+                <TableCellAvatar thumbnail={skill && skill.thumbnailUrl} />
                 <TableCell className={classes.textLeft}>
                   {skill ? (
                     <span
-                      onClick={onRowClick && onRowClick(product.id)}
+                      onClick={onRowClick && onRowClick(skill.id)}
                       className={classes.link}
                     >
-                      {product.name}
+                      {skill.name}
                     </span>
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell>
-                  {skill && product.productType ? (
-                    product.productType.name
+                  {skill && skill.skillType ? (
+                    skill.skillType.name
                   ) : (
                     <Skeleton />
                   )}

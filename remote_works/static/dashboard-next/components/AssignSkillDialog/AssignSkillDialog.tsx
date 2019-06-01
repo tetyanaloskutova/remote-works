@@ -20,11 +20,11 @@ import Debounce from "../../components/Debounce";
 import Form from "../../components/Form";
 import FormSpacer from "../../components/FormSpacer";
 import TableCellAvatar from "../../components/TableCellAvatar";
-import { SearchSkills_products_edges_node } from "../../containers/SearchSkills/types/SearchSkills";
+import { SearchSkills_skills_edges_node } from "../../containers/SearchSkills/types/SearchSkills";
 import i18n from "../../i18n";
 
 export interface FormData {
-  products: SearchSkills_products_edges_node[];
+  skills: SearchSkills_skills_edges_node[];
   query: string;
 }
 
@@ -48,7 +48,7 @@ const styles = createStyles({
 interface AssignSkillDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  products: SearchSkills_products_edges_node[];
+  skills: SearchSkills_skills_edges_node[];
   loading: boolean;
   onClose: () => void;
   onFetch: (value: string) => void;
@@ -56,7 +56,7 @@ interface AssignSkillDialogProps extends WithStyles<typeof styles> {
 }
 
 const initialForm: FormData = {
-  products: [],
+  skills: [],
   query: ""
 };
 const AssignSkillDialog = withStyles(styles, {
@@ -67,7 +67,7 @@ const AssignSkillDialog = withStyles(styles, {
     confirmButtonState,
     open,
     loading,
-    products,
+    skills,
     onClose,
     onFetch,
     onSubmit
@@ -110,19 +110,19 @@ const AssignSkillDialog = withStyles(styles, {
               <Table>
                 <TableBody>
                   {skills &&
-                    products.map(skill => {
-                      const isChecked = !!data.products.find(
-                        selectedSkill => selectedSkill.id === product.id
+                    skills.map(skill => {
+                      const isChecked = !!data.skills.find(
+                        selectedSkill => selectedSkill.id === skill.id
                       );
 
                       return (
-                        <TableRow key={product.id}>
+                        <TableRow key={skill.id}>
                           <TableCellAvatar
                             className={classes.avatar}
-                            thumbnail={product.thumbnail.url}
+                            thumbnail={skill.thumbnail.url}
                           />
                           <TableCell className={classes.wideCell}>
-                            {product.name}
+                            {skill.name}
                           </TableCell>
                           <TableCell
                             padding="checkbox"
@@ -134,17 +134,17 @@ const AssignSkillDialog = withStyles(styles, {
                                 isChecked
                                   ? change({
                                       target: {
-                                        name: "products",
-                                        value: data.products.filter(
+                                        name: "skills",
+                                        value: data.skills.filter(
                                           selectedSkill =>
-                                            selectedSkill.id !== product.id
+                                            selectedSkill.id !== skill.id
                                         )
                                       }
                                     } as any)
                                   : change({
                                       target: {
-                                        name: "products",
-                                        value: [...data.products, product]
+                                        name: "skills",
+                                        value: [...data.skills, skill]
                                       }
                                     } as any)
                               }
@@ -166,7 +166,7 @@ const AssignSkillDialog = withStyles(styles, {
                 variant="contained"
                 type="submit"
               >
-                {i18n.t("Assign products", { context: "button" })}
+                {i18n.t("Assign skills", { context: "button" })}
               </ConfirmButton>
             </DialogActions>
           </>

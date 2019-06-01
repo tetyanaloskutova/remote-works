@@ -11,7 +11,7 @@ import SkillTypeCreatePage, {
 import { TypedSkillTypeCreateMutation } from "../mutations";
 import { TypedSkillTypeCreateDataQuery } from "../queries";
 import { SkillTypeCreate as SkillTypeCreateMutation } from "../types/SkillTypeCreate";
-import { productTypeListUrl, productTypeUrl } from "../urls";
+import { skillTypeListUrl, skillTypeUrl } from "../urls";
 
 export const SkillTypeCreate: React.StatelessComponent = () => (
   <Messages>
@@ -21,12 +21,12 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
           const handleCreateSuccess = (
             updateData: SkillTypeCreateMutation
           ) => {
-            if (updateData.productTypeCreate.errors.length === 0) {
+            if (updateData.skillTypeCreate.errors.length === 0) {
               pushMessage({
                 text: i18n.t("Successfully created skill type")
               });
               navigate(
-                productTypeUrl(updateData.productTypeCreate.productType.id)
+                skillTypeUrl(updateData.skillTypeCreate.skillType.id)
               );
             }
           };
@@ -60,7 +60,7 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
                           disabled={loadingCreate || loading}
                           errors={
                             createSkillTypeData
-                              ? createSkillTypeData.productTypeCreate.errors
+                              ? createSkillTypeData.skillTypeCreate.errors
                               : undefined
                           }
                           pageTitle={i18n.t("Create Skill Type", {
@@ -69,7 +69,7 @@ export const SkillTypeCreate: React.StatelessComponent = () => (
                           saveButtonBarState={
                             loadingCreate ? "loading" : "default"
                           }
-                          onBack={() => navigate(productTypeListUrl)}
+                          onBack={() => navigate(skillTypeListUrl)}
                           onSubmit={handleCreate}
                         />
                       </>

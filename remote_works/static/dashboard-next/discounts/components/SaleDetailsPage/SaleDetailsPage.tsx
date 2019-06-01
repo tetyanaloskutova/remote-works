@@ -32,11 +32,11 @@ export interface FormData {
 export enum SaleDetailsPageTab {
   categories = "categories",
   collections = "collections",
-  skills = "products"
+  skills = "skills"
 }
 export function saleDetailsPageTab(tab: string): SaleDetailsPageTab {
-  return tab === SaleDetailsPageTab.products
-    ? SaleDetailsPageTab.products
+  return tab === SaleDetailsPageTab.skills
+    ? SaleDetailsPageTab.skills
     : tab === SaleDetailsPageTab.collections
     ? SaleDetailsPageTab.collections
     : SaleDetailsPageTab.categories;
@@ -66,7 +66,7 @@ export interface SaleDetailsPageProps
 
 const CategoriesTab = Tab(SaleDetailsPageTab.categories);
 const CollectionsTab = Tab(SaleDetailsPageTab.collections);
-const SkillsTab = Tab(SaleDetailsPageTab.products);
+const SkillsTab = Tab(SaleDetailsPageTab.skills);
 
 const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
   activeTab,
@@ -145,12 +145,12 @@ const SaleDetailsPage: React.StatelessComponent<SaleDetailsPageProps> = ({
                   })}
                 </CollectionsTab>
                 <SkillsTab
-                  isActive={activeTab === SaleDetailsPageTab.products}
+                  isActive={activeTab === SaleDetailsPageTab.skills}
                   changeTab={onTabClick}
                 >
                   {i18n.t("Skills ({{ number }})", {
                     number: maybe(
-                      () => sale.products.totalCount.toString(),
+                      () => sale.skills.totalCount.toString(),
                       "…"
                     )
                   })}

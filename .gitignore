@@ -31,7 +31,7 @@ dist/
 /media/
 /node_modules/
 /static/
-/saleor/static/assets/
+/remote_works/static/assets/
 webpack-bundle.json
 /templates/templated_email/compiled/*
 !/templates/templated_email/compiled/.gitkeep

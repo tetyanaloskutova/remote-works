@@ -1,2 +1,2 @@
-export { default } from "./SkillVariantStock";
-export * from "./SkillVariantStock";
+export { default } from "./SkillVariantAvailability";
+export * from "./SkillVariantAvailability";

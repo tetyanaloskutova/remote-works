@@ -23,7 +23,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface SkillStockProps extends WithStyles<typeof styles> {
+interface SkillAvailabilityProps extends WithStyles<typeof styles> {
   data: {
     sku: string;
     stockQuantity: number;
@@ -33,8 +33,8 @@ interface SkillStockProps extends WithStyles<typeof styles> {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const SkillStock = withStyles(styles, { name: "SkillStock" })(
-  ({ classes, data, disabled, skill, onChange }: SkillStockProps) => (
+const SkillAvailability = withStyles(styles, { name: "SkillAvailability" })(
+  ({ classes, data, disabled, skill, onChange }: SkillAvailabilityProps) => (
     <Card>
       <CardTitle title={i18n.t("Inventory")} />
       <CardContent>
@@ -62,5 +62,5 @@ const SkillStock = withStyles(styles, { name: "SkillStock" })(
     </Card>
   )
 );
-SkillStock.displayName = "SkillStock";
-export default SkillStock;
+SkillAvailability.displayName = "SkillAvailability";
+export default SkillAvailability;

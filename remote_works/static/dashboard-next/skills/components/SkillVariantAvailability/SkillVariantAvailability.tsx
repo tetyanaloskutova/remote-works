@@ -28,7 +28,7 @@ interface SkillVariantStockProps extends WithStyles<typeof styles> {
   };
   sku: string;
   quantity: number;
-  stockAllocated?: number;
+  availabilityAllocated?: number;
   loading?: boolean;
   onChange(event: any);
 }
@@ -39,7 +39,7 @@ const SkillVariantStock = withStyles(styles, { name: "SkillVariantStock" })(
     errors,
     sku,
     quantity,
-    stockAllocated,
+    availabilityAllocated,
     loading,
     onChange
   }: SkillVariantStockProps) => (
@@ -56,10 +56,10 @@ const SkillVariantStock = withStyles(styles, { name: "SkillVariantStock" })(
               helperText={
                 errors.quantity
                   ? errors.quantity
-                  : !!stockAllocated
+                  : !!availabilityAllocated
                   ? i18n.t("Allocated: {{ quantity }}", {
                       context: "variant allocated availability",
-                      quantity: stockAllocated
+                      quantity: availabilityAllocated
                     })
                   : undefined
               }

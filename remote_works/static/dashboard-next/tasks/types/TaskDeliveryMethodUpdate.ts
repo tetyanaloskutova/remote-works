@@ -7,59 +7,59 @@ import { TaskUpdateDeliveryInput } from "./../../types/globalTypes";
 // GraphQL mutation operation: TaskDeliveryMethodUpdate
 // ====================================================
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_errors {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_task_availableDeliveryMethods {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_task_availableDeliveryMethods {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryMethod_price {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryMethod_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryMethod {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryMethod {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryMethod_price | null;
+  price: TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryMethod_price | null;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryPrice_gross {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryPrice {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryPrice_gross;
+  gross: TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryPrice_gross;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery_order {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery_order {
   __typename: "Task";
-  availableDeliveryMethods: (TaskDeliveryMethodUpdate_orderUpdateDelivery_task_availableDeliveryMethods | null)[] | null;
+  availableDeliveryMethods: (TaskDeliveryMethodUpdate_taskUpdateDelivery_task_availableDeliveryMethods | null)[] | null;
   id: string;
-  deliveryMethod: TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryMethod | null;
+  deliveryMethod: TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryMethod | null;
   deliveryMethodName: string | null;
-  deliveryPrice: TaskDeliveryMethodUpdate_orderUpdateDelivery_task_deliveryPrice | null;
+  deliveryPrice: TaskDeliveryMethodUpdate_taskUpdateDelivery_task_deliveryPrice | null;
 }
 
-export interface TaskDeliveryMethodUpdate_orderUpdateDelivery {
+export interface TaskDeliveryMethodUpdate_taskUpdateDelivery {
   __typename: "TaskUpdateDelivery";
-  errors: TaskDeliveryMethodUpdate_orderUpdateDelivery_errors[] | null;
-  task: TaskDeliveryMethodUpdate_orderUpdateDelivery_order | null;
+  errors: TaskDeliveryMethodUpdate_taskUpdateDelivery_errors[] | null;
+  task: TaskDeliveryMethodUpdate_taskUpdateDelivery_order | null;
 }
 
 export interface TaskDeliveryMethodUpdate {
-  orderUpdateDelivery: TaskDeliveryMethodUpdate_orderUpdateDelivery | null;
+  taskUpdateDelivery: TaskDeliveryMethodUpdate_taskUpdateDelivery | null;
 }
 
 export interface TaskDeliveryMethodUpdateVariables {

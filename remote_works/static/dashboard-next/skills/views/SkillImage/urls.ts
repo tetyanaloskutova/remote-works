@@ -1,11 +1,11 @@
 import * as urlJoin from "url-join";
 
-import { productImagePath } from "../../urls";
+import { skillImagePath } from "../../urls";
 
-export const productImageRemovePath = (productId: string, imageId: string) =>
-  urlJoin(productImagePath(productId, imageId), "remove");
-export const productImageRemoveUrl = (productId: string, imageId: string) =>
-  productImageRemovePath(
-    encodeURIComponent(productId),
+export const skillImageRemovePath = (skillId: string, imageId: string) =>
+  urlJoin(skillImagePath(skillId, imageId), "remove");
+export const skillImageRemoveUrl = (skillId: string, imageId: string) =>
+  skillImageRemovePath(
+    encodeURIComponent(skillId),
     encodeURIComponent(imageId)
   );

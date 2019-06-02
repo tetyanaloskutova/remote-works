@@ -3,17 +3,17 @@ import * as urlJoin from "url-join";
 
 import { TaskListQueryParams } from "./views/TaskList";
 
-const orderSectionUrl = "/tasks/";
+const taskSectionUrl = "/tasks/";
 
-export const orderListPath = orderSectionUrl;
-export const orderListUrl = (params?: TaskListQueryParams): string => {
-  const orderList = orderSectionUrl;
+export const taskListPath = taskSectionUrl;
+export const taskListUrl = (params?: TaskListQueryParams): string => {
+  const taskList = taskSectionUrl;
   if (params === undefined) {
-    return orderList;
+    return taskList;
   } else {
-    return urlJoin(orderList, "?" + stringifyQs(params));
+    return urlJoin(taskList, "?" + stringifyQs(params));
   }
 };
 
-export const orderPath = (id: string) => urlJoin(orderSectionUrl, id);
-export const orderUrl = (id: string) => orderPath(encodeURIComponent(id));
+export const taskPath = (id: string) => urlJoin(taskSectionUrl, id);
+export const taskUrl = (id: string) => taskPath(encodeURIComponent(id));

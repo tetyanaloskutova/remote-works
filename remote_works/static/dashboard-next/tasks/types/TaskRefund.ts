@@ -53,33 +53,33 @@ export interface TaskRefund_orderRefund_task_events {
   user: TaskRefund_orderRefund_task_events_user | null;
 }
 
-export interface TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskRefund_orderRefund_task_fulfillments_lines_orderLine {
+export interface TaskRefund_orderRefund_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskRefund_orderRefund_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskRefund_orderRefund_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskRefund_orderRefund_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskRefund_orderRefund_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskRefund_orderRefund_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskRefund_orderRefund_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskRefund_orderRefund_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskRefund_orderRefund_task_lines_unitPrice | null;

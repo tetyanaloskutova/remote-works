@@ -104,10 +104,10 @@ function loadStories() {
   require("./stories/tasks/TaskDeliveryMethodEditDialog");
 
   // Skill types
-  require("./stories/productTypes/SkillTypeAttributeEditDialog");
-  require("./stories/productTypes/SkillTypeCreatePage");
-  require("./stories/productTypes/SkillTypeDetailsPage");
-  require("./stories/productTypes/SkillTypeListPage");
+  require("./stories/skillTypes/SkillTypeAttributeEditDialog");
+  require("./stories/skillTypes/SkillTypeCreatePage");
+  require("./stories/skillTypes/SkillTypeDetailsPage");
+  require("./stories/skillTypes/SkillTypeListPage");
 
   // Site settings
   require("./stories/siteSettings/SiteSettingsKeyDialog");

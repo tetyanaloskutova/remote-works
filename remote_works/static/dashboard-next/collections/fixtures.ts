@@ -8,7 +8,7 @@ export const collections: CollectionList_collections_edges_node[] = [
     id: "Q29sbGVjdGlvbjox",
     isPublished: true,
     name: "Summer collection",
-    products: {
+    skills: {
       __typename: "SkillCountableConnection",
       totalCount: 4
     }
@@ -18,7 +18,7 @@ export const collections: CollectionList_collections_edges_node[] = [
     id: "Q29sbGVjdGlvbjoy",
     isPublished: true,
     name: "Winter sale",
-    products: {
+    skills: {
       __typename: "SkillCountableConnection",
       totalCount: 4
     }
@@ -41,7 +41,7 @@ export const collection: (
   id: "Q29sbGVjdGlvbjox",
   isPublished: true,
   name: "Summer collection",
-  products: {
+  skills: {
     __typename: "SkillCountableConnection",
     edges: [
       {
@@ -52,7 +52,7 @@ export const collection: (
           id: "UHJvZHVjdDoxNw==",
           isPublished: true,
           name: "Murray Inc",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mg==",
             name: "Mugs"
@@ -68,7 +68,7 @@ export const collection: (
           id: "UHJvZHVjdDoyNw==",
           isPublished: true,
           name: "Williams-Taylor",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -84,7 +84,7 @@ export const collection: (
           id: "UHJvZHVjdDoyOQ==",
           isPublished: true,
           name: "Hebert-Sherman",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -100,7 +100,7 @@ export const collection: (
           id: "UHJvZHVjdDo1Mw==",
           isPublished: true,
           name: "Estes, Johnson and Graham",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Ng==",
             name: "Books"

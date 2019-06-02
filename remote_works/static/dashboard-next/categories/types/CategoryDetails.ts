@@ -31,7 +31,7 @@ export interface CategoryDetails_category_children_edges_node {
   id: string;
   name: string;
   children: CategoryDetails_category_children_edges_node_children | null;
-  products: CategoryDetails_category_children_edges_node_skills | null;
+  skills: CategoryDetails_category_children_edges_node_skills | null;
 }
 
 export interface CategoryDetails_category_children_edges {
@@ -44,7 +44,7 @@ export interface CategoryDetails_category_children {
   edges: CategoryDetails_category_children_edges[];
 }
 
-export interface CategoryDetails_category_products_pageInfo {
+export interface CategoryDetails_category_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -52,48 +52,48 @@ export interface CategoryDetails_category_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface CategoryDetails_category_products_edges_node_availability {
+export interface CategoryDetails_category_skills_edges_node_availability {
   __typename: "SkillAvailability";
   available: boolean | null;
 }
 
-export interface CategoryDetails_category_products_edges_node_thumbnail {
+export interface CategoryDetails_category_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface CategoryDetails_category_products_edges_node_price {
+export interface CategoryDetails_category_skills_edges_node_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface CategoryDetails_category_products_edges_node_productType {
+export interface CategoryDetails_category_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface CategoryDetails_category_products_edges_node {
+export interface CategoryDetails_category_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
-  availability: CategoryDetails_category_products_edges_node_availability | null;
-  thumbnail: CategoryDetails_category_products_edges_node_thumbnail | null;
-  price: CategoryDetails_category_products_edges_node_price | null;
-  productType: CategoryDetails_category_products_edges_node_productType;
+  availability: CategoryDetails_category_skills_edges_node_availability | null;
+  thumbnail: CategoryDetails_category_skills_edges_node_thumbnail | null;
+  price: CategoryDetails_category_skills_edges_node_price | null;
+  skillType: CategoryDetails_category_skills_edges_node_skillType;
 }
 
-export interface CategoryDetails_category_products_edges {
+export interface CategoryDetails_category_skills_edges {
   __typename: "SkillCountableEdge";
   cursor: string;
-  node: CategoryDetails_category_products_edges_node;
+  node: CategoryDetails_category_skills_edges_node;
 }
 
 export interface CategoryDetails_category_skills {
   __typename: "SkillCountableConnection";
-  pageInfo: CategoryDetails_category_products_pageInfo;
-  edges: CategoryDetails_category_products_edges[];
+  pageInfo: CategoryDetails_category_skills_pageInfo;
+  edges: CategoryDetails_category_skills_edges[];
 }
 
 export interface CategoryDetails_category {
@@ -106,7 +106,7 @@ export interface CategoryDetails_category {
   seoTitle: string | null;
   parent: CategoryDetails_category_parent | null;
   children: CategoryDetails_category_children | null;
-  products: CategoryDetails_category_skills | null;
+  skills: CategoryDetails_category_skills | null;
 }
 
 export interface CategoryDetails {

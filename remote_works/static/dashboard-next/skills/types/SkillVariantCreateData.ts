@@ -12,7 +12,7 @@ export interface SkillVariantCreateData_skill_images {
   url: string;
 }
 
-export interface SkillVariantCreateData_skill_productType_variantAttributes_values {
+export interface SkillVariantCreateData_skill_skillType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   sortTask: number;
@@ -20,18 +20,18 @@ export interface SkillVariantCreateData_skill_productType_variantAttributes_valu
   slug: string | null;
 }
 
-export interface SkillVariantCreateData_skill_productType_variantAttributes {
+export interface SkillVariantCreateData_skill_skillType_variantAttributes {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (SkillVariantCreateData_skill_productType_variantAttributes_values | null)[] | null;
+  values: (SkillVariantCreateData_skill_skillType_variantAttributes_values | null)[] | null;
 }
 
-export interface SkillVariantCreateData_skill_productType {
+export interface SkillVariantCreateData_skill_skillType {
   __typename: "SkillType";
   id: string;
-  variantAttributes: (SkillVariantCreateData_skill_productType_variantAttributes | null)[] | null;
+  variantAttributes: (SkillVariantCreateData_skill_skillType_variantAttributes | null)[] | null;
 }
 
 export interface SkillVariantCreateData_skill_variants_images {
@@ -52,12 +52,12 @@ export interface SkillVariantCreateData_skill {
   __typename: "Skill";
   id: string;
   images: (SkillVariantCreateData_skill_images | null)[] | null;
-  productType: SkillVariantCreateData_skill_productType;
+  skillType: SkillVariantCreateData_skill_skillType;
   variants: (SkillVariantCreateData_skill_variants | null)[] | null;
 }
 
 export interface SkillVariantCreateData {
-  product: SkillVariantCreateData_skill | null;
+  skill: SkillVariantCreateData_skill | null;
 }
 
 export interface SkillVariantCreateDataVariables {

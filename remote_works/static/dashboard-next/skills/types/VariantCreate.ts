@@ -7,59 +7,59 @@ import { AttributeValueInput } from "./../../types/globalTypes";
 // GraphQL mutation operation: VariantCreate
 // ====================================================
 
-export interface VariantCreate_productVariantCreate_errors {
+export interface VariantCreate_skillVariantCreate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_attributes_attribute_values {
+export interface VariantCreate_skillVariantCreate_skillVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_attributes_attribute {
+export interface VariantCreate_skillVariantCreate_skillVariant_attributes_attribute {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (VariantCreate_productVariantCreate_productVariant_attributes_attribute_values | null)[] | null;
+  values: (VariantCreate_skillVariantCreate_skillVariant_attributes_attribute_values | null)[] | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_attributes_value {
+export interface VariantCreate_skillVariantCreate_skillVariant_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_attributes {
+export interface VariantCreate_skillVariantCreate_skillVariant_attributes {
   __typename: "SelectedAttribute";
-  attribute: VariantCreate_productVariantCreate_productVariant_attributes_attribute;
-  value: VariantCreate_productVariantCreate_productVariant_attributes_value;
+  attribute: VariantCreate_skillVariantCreate_skillVariant_attributes_attribute;
+  value: VariantCreate_skillVariantCreate_skillVariant_attributes_value;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_costPrice {
+export interface VariantCreate_skillVariantCreate_skillVariant_costPrice {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_images {
+export interface VariantCreate_skillVariantCreate_skillVariant_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_priceOverride {
+export interface VariantCreate_skillVariantCreate_skillVariant_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_skill_images {
+export interface VariantCreate_skillVariantCreate_skillVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -67,63 +67,63 @@ export interface VariantCreate_productVariantCreate_productVariant_skill_images 
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_skill_thumbnail {
+export interface VariantCreate_skillVariantCreate_skillVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_skill_variants_images {
+export interface VariantCreate_skillVariantCreate_skillVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_skill_variants {
+export interface VariantCreate_skillVariantCreate_skillVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (VariantCreate_productVariantCreate_productVariant_skill_variants_images | null)[] | null;
+  images: (VariantCreate_skillVariantCreate_skillVariant_skill_variants_images | null)[] | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant_skill {
+export interface VariantCreate_skillVariantCreate_skillVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (VariantCreate_productVariantCreate_productVariant_skill_images | null)[] | null;
+  images: (VariantCreate_skillVariantCreate_skillVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: VariantCreate_productVariantCreate_productVariant_skill_thumbnail | null;
-  variants: (VariantCreate_productVariantCreate_productVariant_skill_variants | null)[] | null;
+  thumbnail: VariantCreate_skillVariantCreate_skillVariant_skill_thumbnail | null;
+  variants: (VariantCreate_skillVariantCreate_skillVariant_skill_variants | null)[] | null;
 }
 
-export interface VariantCreate_productVariantCreate_productVariant {
+export interface VariantCreate_skillVariantCreate_skillVariant {
   __typename: "SkillVariant";
   id: string;
-  attributes: VariantCreate_productVariantCreate_productVariant_attributes[];
-  costPrice: VariantCreate_productVariantCreate_productVariant_costPrice | null;
-  images: (VariantCreate_productVariantCreate_productVariant_images | null)[] | null;
+  attributes: VariantCreate_skillVariantCreate_skillVariant_attributes[];
+  costPrice: VariantCreate_skillVariantCreate_skillVariant_costPrice | null;
+  images: (VariantCreate_skillVariantCreate_skillVariant_images | null)[] | null;
   name: string;
-  priceOverride: VariantCreate_productVariantCreate_productVariant_priceOverride | null;
-  product: VariantCreate_productVariantCreate_productVariant_product;
+  priceOverride: VariantCreate_skillVariantCreate_skillVariant_priceOverride | null;
+  skill: VariantCreate_skillVariantCreate_skillVariant_skill;
   sku: string;
   quantity: number;
   quantityAllocated: number;
 }
 
-export interface VariantCreate_productVariantCreate {
+export interface VariantCreate_skillVariantCreate {
   __typename: "SkillVariantCreate";
-  errors: VariantCreate_productVariantCreate_errors[] | null;
-  productVariant: VariantCreate_productVariantCreate_productVariant | null;
+  errors: VariantCreate_skillVariantCreate_errors[] | null;
+  skillVariant: VariantCreate_skillVariantCreate_skillVariant | null;
 }
 
 export interface VariantCreate {
-  productVariantCreate: VariantCreate_productVariantCreate | null;
+  skillVariantCreate: VariantCreate_skillVariantCreate | null;
 }
 
 export interface VariantCreateVariables {
   attributes: (AttributeValueInput | null)[];
   costPrice?: any | null;
   priceOverride?: any | null;
-  product: string;
+  skill: string;
   sku?: string | null;
   quantity?: number | null;
   trackInventory: boolean;

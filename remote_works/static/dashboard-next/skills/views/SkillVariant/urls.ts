@@ -1,12 +1,12 @@
 import * as urlJoin from "url-join";
-import { productVariantEditPath } from "../../urls";
+import { skillVariantEditPath } from "../../urls";
 
-export const productVariantRemovePath = (
-  productId: string,
+export const skillVariantRemovePath = (
+  skillId: string,
   variantId: string
-) => urlJoin(productVariantEditPath(productId, variantId), "remove");
-export const productVariantRemoveUrl = (productId: string, variantId: string) =>
-  productVariantRemovePath(
-    encodeURIComponent(productId),
+) => urlJoin(skillVariantEditPath(skillId, variantId), "remove");
+export const skillVariantRemoveUrl = (skillId: string, variantId: string) =>
+  skillVariantRemovePath(
+    encodeURIComponent(skillId),
     encodeURIComponent(variantId)
   );

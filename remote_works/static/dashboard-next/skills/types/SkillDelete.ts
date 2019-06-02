@@ -5,25 +5,25 @@
 // GraphQL mutation operation: SkillDelete
 // ====================================================
 
-export interface SkillDelete_productDelete_errors {
+export interface SkillDelete_skillDelete_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface SkillDelete_productDelete_skill {
+export interface SkillDelete_skillDelete_skill {
   __typename: "Skill";
   id: string;
 }
 
-export interface SkillDelete_productDelete {
+export interface SkillDelete_skillDelete {
   __typename: "SkillDelete";
-  errors: SkillDelete_productDelete_errors[] | null;
-  product: SkillDelete_productDelete_skill | null;
+  errors: SkillDelete_skillDelete_errors[] | null;
+  skill: SkillDelete_skillDelete_skill | null;
 }
 
 export interface SkillDelete {
-  productDelete: SkillDelete_productDelete | null;
+  skillDelete: SkillDelete_skillDelete | null;
 }
 
 export interface SkillDeleteVariables {

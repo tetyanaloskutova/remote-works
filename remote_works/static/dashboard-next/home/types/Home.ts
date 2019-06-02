@@ -33,63 +33,63 @@ export interface Home_ordersToCapture {
   totalCount: number | null;
 }
 
-export interface Home_productsOutOfStock {
+export interface Home_skillsOutOfStock {
   __typename: "SkillCountableConnection";
   totalCount: number | null;
 }
 
-export interface Home_productTopToday_edges_node_revenue_gross {
+export interface Home_skillTopToday_edges_node_revenue_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface Home_productTopToday_edges_node_revenue {
+export interface Home_skillTopToday_edges_node_revenue {
   __typename: "TaxedMoney";
-  gross: Home_productTopToday_edges_node_revenue_gross;
+  gross: Home_skillTopToday_edges_node_revenue_gross;
 }
 
-export interface Home_productTopToday_edges_node_attributes_value {
+export interface Home_skillTopToday_edges_node_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   sortTask: number;
 }
 
-export interface Home_productTopToday_edges_node_attributes {
+export interface Home_skillTopToday_edges_node_attributes {
   __typename: "SelectedAttribute";
-  value: Home_productTopToday_edges_node_attributes_value;
+  value: Home_skillTopToday_edges_node_attributes_value;
 }
 
-export interface Home_productTopToday_edges_node_skill_thumbnail {
+export interface Home_skillTopToday_edges_node_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface Home_productTopToday_edges_node_skill {
+export interface Home_skillTopToday_edges_node_skill {
   __typename: "Skill";
   id: string;
   name: string;
-  thumbnail: Home_productTopToday_edges_node_skill_thumbnail | null;
+  thumbnail: Home_skillTopToday_edges_node_skill_thumbnail | null;
 }
 
-export interface Home_productTopToday_edges_node {
+export interface Home_skillTopToday_edges_node {
   __typename: "SkillVariant";
   id: string;
-  revenue: Home_productTopToday_edges_node_revenue | null;
-  attributes: Home_productTopToday_edges_node_attributes[];
-  product: Home_productTopToday_edges_node_product;
+  revenue: Home_skillTopToday_edges_node_revenue | null;
+  attributes: Home_skillTopToday_edges_node_attributes[];
+  skill: Home_skillTopToday_edges_node_skill;
   quantityTasked: number | null;
 }
 
-export interface Home_productTopToday_edges {
+export interface Home_skillTopToday_edges {
   __typename: "SkillVariantCountableEdge";
-  node: Home_productTopToday_edges_node;
+  node: Home_skillTopToday_edges_node;
 }
 
-export interface Home_productTopToday {
+export interface Home_skillTopToday {
   __typename: "SkillVariantCountableConnection";
-  edges: Home_productTopToday_edges[];
+  edges: Home_skillTopToday_edges[];
 }
 
 export interface Home_activities_edges_node_user {
@@ -129,7 +129,7 @@ export interface Home {
   ordersToday: Home_ordersToday | null;
   ordersToFulfill: Home_ordersToFulfill | null;
   ordersToCapture: Home_ordersToCapture | null;
-  productsOutOfStock: Home_productsOutOfStock | null;
-  productTopToday: Home_productTopToday | null;
+  skillsOutOfStock: Home_skillsOutOfStock | null;
+  skillTopToday: Home_skillTopToday | null;
   activities: Home_activities | null;
 }

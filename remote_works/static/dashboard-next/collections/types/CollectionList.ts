@@ -15,7 +15,7 @@ export interface CollectionList_collections_edges_node {
   id: string;
   isPublished: boolean;
   name: string;
-  products: CollectionList_collections_edges_node_skills | null;
+  skills: CollectionList_collections_edges_node_skills | null;
 }
 
 export interface CollectionList_collections_edges {

@@ -3,7 +3,7 @@ import * as urlJoin from "url-join";
 import { salePath } from "../../urls";
 
 export const saleAssignSkillsPath = (id: string) =>
-  urlJoin(salePath(id), "assign-products");
+  urlJoin(salePath(id), "assign-skills");
 export const saleAssignSkillsUrl = (id: string) =>
   saleAssignSkillsPath(encodeURIComponent(id));
 

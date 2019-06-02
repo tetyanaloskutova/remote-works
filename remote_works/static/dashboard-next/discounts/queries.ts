@@ -25,13 +25,13 @@ export const saleDetailsFragment = gql`
   ${saleFragment}
   fragment SaleDetailsFragment on Sale {
     ...SaleFragment
-    products(after: $after, before: $before, first: $first, last: $last) {
+    skills(after: $after, before: $before, first: $first, last: $last) {
       edges {
         node {
           id
           name
           isPublished
-          productType {
+          skillType {
             id
             name
           }
@@ -108,12 +108,12 @@ export const voucherDetailsFragment = gql`
     usageLimit
     used
     applyOncePerTask
-    products(after: $after, before: $before, first: $first, last: $last) {
+    skills(after: $after, before: $before, first: $first, last: $last) {
       edges {
         node {
           id
           name
-          productType {
+          skillType {
             id
             name
           }

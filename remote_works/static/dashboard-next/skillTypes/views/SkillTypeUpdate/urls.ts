@@ -1,28 +1,28 @@
 import * as urlJoin from "url-join";
 
 import { AttributeTypeEnum } from "../../../types/globalTypes";
-import { productTypePath } from "../../urls";
+import { skillTypePath } from "../../urls";
 
 export const addAttributePath = (
-  productTypeId: string,
+  skillTypeId: string,
   type: AttributeTypeEnum
 ) =>
   type === AttributeTypeEnum.PRODUCT
-    ? urlJoin(productTypePath(productTypeId), "attribute/product/add")
-    : urlJoin(productTypePath(productTypeId), "attribute/variant/add");
+    ? urlJoin(skillTypePath(skillTypeId), "attribute/skill/add")
+    : urlJoin(skillTypePath(skillTypeId), "attribute/variant/add");
 export const addAttributeUrl = (
-  productTypeId: string,
+  skillTypeId: string,
   type: AttributeTypeEnum
-) => addAttributePath(encodeURIComponent(productTypeId), type);
+) => addAttributePath(encodeURIComponent(skillTypeId), type);
 
-export const editAttributePath = (productTypeId: string, attributeId: string) =>
-  urlJoin(productTypePath(productTypeId), "attribute", attributeId);
-export const editAttributeUrl = (productTypeId: string, attributeId: string) =>
+export const editAttributePath = (skillTypeId: string, attributeId: string) =>
+  urlJoin(skillTypePath(skillTypeId), "attribute", attributeId);
+export const editAttributeUrl = (skillTypeId: string, attributeId: string) =>
   editAttributePath(
-    encodeURIComponent(productTypeId),
+    encodeURIComponent(skillTypeId),
     encodeURIComponent(attributeId)
   );
-export const productTypeRemovePath = (id: string) =>
-  urlJoin(productTypePath(id), "remove");
-export const productTypeRemoveUrl = (id: string) =>
-  productTypeRemovePath(encodeURIComponent(id));
+export const skillTypeRemovePath = (id: string) =>
+  urlJoin(skillTypePath(id), "remove");
+export const skillTypeRemoveUrl = (id: string) =>
+  skillTypeRemovePath(encodeURIComponent(id));

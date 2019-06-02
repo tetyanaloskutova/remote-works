@@ -2,37 +2,37 @@ import { stringify as stringifyQs } from "qs";
 import * as urlJoin from "url-join";
 import { SkillListQueryParams } from "./views/SkillList";
 
-const productSection = "/products/";
+const skillSection = "/skills/";
 
-export const productAddPath = urlJoin(productSection, "add");
-export const productAddUrl = productAddPath;
+export const skillAddPath = urlJoin(skillSection, "add");
+export const skillAddUrl = skillAddPath;
 
-export const productListPath = productSection;
-export const productListUrl = (params?: SkillListQueryParams): string => {
+export const skillListPath = skillSection;
+export const skillListUrl = (params?: SkillListQueryParams): string => {
   if (params === undefined) {
-    return productListPath;
+    return skillListPath;
   } else {
-    return urlJoin(productListPath, "?" + stringifyQs(params));
+    return urlJoin(skillListPath, "?" + stringifyQs(params));
   }
 };
 
-export const productPath = (id: string) => urlJoin(productSection, id);
-export const productUrl = (id: string) => productPath(encodeURIComponent(id));
+export const skillPath = (id: string) => urlJoin(skillSection, id);
+export const skillUrl = (id: string) => skillPath(encodeURIComponent(id));
 
-export const productVariantEditPath = (productId: string, variantId: string) =>
-  urlJoin(productSection, productId, "variant", variantId);
-export const productVariantEditUrl = (productId: string, variantId: string) =>
-  productVariantEditPath(
-    encodeURIComponent(productId),
+export const skillVariantEditPath = (skillId: string, variantId: string) =>
+  urlJoin(skillSection, skillId, "variant", variantId);
+export const skillVariantEditUrl = (skillId: string, variantId: string) =>
+  skillVariantEditPath(
+    encodeURIComponent(skillId),
     encodeURIComponent(variantId)
   );
 
-export const productVariantAddPath = (productId: string) =>
-  urlJoin(productSection, productId, "variant/add");
-export const productVariantAddUrl = (productId: string) =>
-  productVariantAddPath(encodeURIComponent(productId));
+export const skillVariantAddPath = (skillId: string) =>
+  urlJoin(skillSection, skillId, "variant/add");
+export const skillVariantAddUrl = (skillId: string) =>
+  skillVariantAddPath(encodeURIComponent(skillId));
 
-export const productImagePath = (productId: string, imageId: string) =>
-  urlJoin(productSection, productId, "image", imageId);
-export const productImageUrl = (productId: string, imageId: string) =>
-  productImagePath(encodeURIComponent(productId), encodeURIComponent(imageId));
+export const skillImagePath = (skillId: string, imageId: string) =>
+  urlJoin(skillSection, skillId, "image", imageId);
+export const skillImageUrl = (skillId: string, imageId: string) =>
+  skillImagePath(encodeURIComponent(skillId), encodeURIComponent(imageId));

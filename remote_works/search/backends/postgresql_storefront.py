@@ -1,7 +1,7 @@
 from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models import Q
 
-from ...product.models import Skill
+from ...skill.models import Skill
 
 
 def search(phrase):

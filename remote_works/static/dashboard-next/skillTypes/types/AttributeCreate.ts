@@ -13,58 +13,58 @@ export interface AttributeCreate_attributeCreate_errors {
   message: string | null;
 }
 
-export interface AttributeCreate_attributeCreate_productType_productAttributes_values {
+export interface AttributeCreate_attributeCreate_skillType_skillAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface AttributeCreate_attributeCreate_productType_productAttributes {
+export interface AttributeCreate_attributeCreate_skillType_skillAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (AttributeCreate_attributeCreate_productType_productAttributes_values | null)[] | null;
+  values: (AttributeCreate_attributeCreate_skillType_skillAttributes_values | null)[] | null;
 }
 
-export interface AttributeCreate_attributeCreate_productType_variantAttributes_values {
+export interface AttributeCreate_attributeCreate_skillType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface AttributeCreate_attributeCreate_productType_variantAttributes {
+export interface AttributeCreate_attributeCreate_skillType_variantAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (AttributeCreate_attributeCreate_productType_variantAttributes_values | null)[] | null;
+  values: (AttributeCreate_attributeCreate_skillType_variantAttributes_values | null)[] | null;
 }
 
-export interface AttributeCreate_attributeCreate_productType_weight {
+export interface AttributeCreate_attributeCreate_skillType_weight {
   __typename: "Weight";
   unit: string;
   value: number;
 }
 
-export interface AttributeCreate_attributeCreate_productType {
+export interface AttributeCreate_attributeCreate_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
   isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (AttributeCreate_attributeCreate_productType_productAttributes | null)[] | null;
-  variantAttributes: (AttributeCreate_attributeCreate_productType_variantAttributes | null)[] | null;
-  weight: AttributeCreate_attributeCreate_productType_weight | null;
+  skillAttributes: (AttributeCreate_attributeCreate_skillType_skillAttributes | null)[] | null;
+  variantAttributes: (AttributeCreate_attributeCreate_skillType_variantAttributes | null)[] | null;
+  weight: AttributeCreate_attributeCreate_skillType_weight | null;
 }
 
 export interface AttributeCreate_attributeCreate {
   __typename: "AttributeCreate";
   errors: AttributeCreate_attributeCreate_errors[] | null;
-  productType: AttributeCreate_attributeCreate_productType | null;
+  skillType: AttributeCreate_attributeCreate_skillType | null;
 }
 
 export interface AttributeCreate {

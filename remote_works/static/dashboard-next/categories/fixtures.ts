@@ -8,7 +8,7 @@ export const categories = [
     },
     id: "123123",
     name: "Lorem ipsum dolor",
-    products: {
+    skills: {
       totalCount: 4
     }
   },
@@ -18,7 +18,7 @@ export const categories = [
     },
     id: "876752",
     name: "Mauris vehicula tortor vulputate",
-    products: {
+    skills: {
       totalCount: 3
     }
   },
@@ -28,7 +28,7 @@ export const categories = [
     },
     id: "876542",
     name: "Excepteur sint occaecat cupidatat non proident",
-    products: {
+    skills: {
       totalCount: 6
     }
   },
@@ -38,7 +38,7 @@ export const categories = [
     },
     id: "875352",
     name: "Ut enim ad minim veniam",
-    products: {
+    skills: {
       totalCount: 12
     }
   },
@@ -48,7 +48,7 @@ export const categories = [
     },
     id: "865752",
     name: "Duis aute irure dolor in reprehenderit",
-    products: {
+    skills: {
       totalCount: 43
     }
   },
@@ -58,7 +58,7 @@ export const categories = [
     },
     id: "878752",
     name: "Neque porro quisquam est",
-    products: {
+    skills: {
       totalCount: 21
     }
   }
@@ -83,7 +83,7 @@ export const category: (
     __typename: "Category",
     id: "Q2F0ZWdvcnk6Mw=="
   },
-  products: {
+  skills: {
     __typename: "SkillCountableConnection",
     edges: [
       {
@@ -102,7 +102,7 @@ export const category: (
             amount: 83.3,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -126,7 +126,7 @@ export const category: (
             amount: 68.27,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -150,7 +150,7 @@ export const category: (
             amount: 21.43,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -174,7 +174,7 @@ export const category: (
             amount: 62.76,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -198,7 +198,7 @@ export const category: (
             amount: 7.13,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -222,7 +222,7 @@ export const category: (
             amount: 48.82,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -246,7 +246,7 @@ export const category: (
             amount: 27.34,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -270,7 +270,7 @@ export const category: (
             amount: 75.42,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -294,7 +294,7 @@ export const category: (
             amount: 86.62,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"
@@ -318,7 +318,7 @@ export const category: (
             amount: 48.66,
             currency: "USD"
           },
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6Mw==",
             name: "Coffee"

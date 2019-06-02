@@ -14,7 +14,7 @@ export interface FulfillmentCreateInput {
 
 export interface FulfillmentLineInput {
   // The ID of the task line.
-  orderLineId?: string | null;
+  taskLineId?: string | null;
   // The number of line item(s) to be fulfiled.
   quantity?: number | null;
 }
@@ -482,7 +482,7 @@ export interface RootCategoryChildrenQuery {
           totalCount: number | null;
         } | null;
         // List of skills in the category.
-        products: {
+        skills: {
           // A total count of items in the collection
           totalCount: number | null;
         } | null;
@@ -524,7 +524,7 @@ export interface CategoryPropertiesQuery {
             totalCount: number | null;
           } | null;
           // List of skills in the category.
-          products: {
+          skills: {
             // A total count of items in the collection
             totalCount: number | null;
           } | null;
@@ -532,7 +532,7 @@ export interface CategoryPropertiesQuery {
       }>;
     } | null;
     // List of skills in the category.
-    products: {
+    skills: {
       // A total count of items in the collection
       totalCount: number | null;
       pageInfo: {
@@ -553,9 +553,9 @@ export interface CategoryPropertiesQuery {
           // The ID of the object.
           id: string;
           name: string;
-          // The URL of a main thumbnail for a product.
+          // The URL of a main thumbnail for a skill.
           thumbnailUrl: string | null;
-          productType: {
+          skillType: {
             // The ID of the object.
             id: string;
             name: string;
@@ -625,10 +625,10 @@ export interface TaskCancelMutation {
             node: {
               // The ID of the object.
               id: string;
-              orderLine: {
+              taskLine: {
                 // The ID of the object.
                 id: string;
-                productName: string;
+                skillName: string;
               };
               quantity: number;
             };
@@ -643,8 +643,8 @@ export interface TaskCancelMutation {
           node: {
             // The ID of the object.
             id: string;
-            productName: string;
-            productSku: string;
+            skillName: string;
+            skillSku: string;
             quantity: number;
             quantityFulfilled: number;
             unitPrice: {
@@ -818,10 +818,10 @@ export interface TaskRefundMutation {
             node: {
               // The ID of the object.
               id: string;
-              orderLine: {
+              taskLine: {
                 // The ID of the object.
                 id: string;
-                productName: string;
+                skillName: string;
               };
               quantity: number;
             };
@@ -836,8 +836,8 @@ export interface TaskRefundMutation {
           node: {
             // The ID of the object.
             id: string;
-            productName: string;
-            productSku: string;
+            skillName: string;
+            skillSku: string;
             quantity: number;
             quantityFulfilled: number;
             unitPrice: {
@@ -1001,10 +1001,10 @@ export interface TaskVoidMutation {
             node: {
               // The ID of the object.
               id: string;
-              orderLine: {
+              taskLine: {
                 // The ID of the object.
                 id: string;
-                productName: string;
+                skillName: string;
               };
               quantity: number;
             };
@@ -1019,8 +1019,8 @@ export interface TaskVoidMutation {
           node: {
             // The ID of the object.
             id: string;
-            productName: string;
-            productSku: string;
+            skillName: string;
+            skillSku: string;
             quantity: number;
             quantityFulfilled: number;
             unitPrice: {
@@ -1194,10 +1194,10 @@ export interface TaskCaptureMutation {
             node: {
               // The ID of the object.
               id: string;
-              orderLine: {
+              taskLine: {
                 // The ID of the object.
                 id: string;
-                productName: string;
+                skillName: string;
               };
               quantity: number;
             };
@@ -1212,8 +1212,8 @@ export interface TaskCaptureMutation {
           node: {
             // The ID of the object.
             id: string;
-            productName: string;
-            productSku: string;
+            skillName: string;
+            skillSku: string;
             quantity: number;
             quantityFulfilled: number;
             unitPrice: {
@@ -1442,10 +1442,10 @@ export interface TaskDetailsQuery {
           node: {
             // The ID of the object.
             id: string;
-            orderLine: {
+            taskLine: {
               // The ID of the object.
               id: string;
-              productName: string;
+              skillName: string;
             };
             quantity: number;
           };
@@ -1460,8 +1460,8 @@ export interface TaskDetailsQuery {
         node: {
           // The ID of the object.
           id: string;
-          productName: string;
-          productSku: string;
+          skillName: string;
+          skillSku: string;
           quantity: number;
           quantityFulfilled: number;
           unitPrice: {
@@ -1722,13 +1722,13 @@ export interface PageDetailsQuery {
 }
 
 export interface SkillImageCreateMutationVariables {
-  product: string;
+  skill: string;
   image: string;
   alt?: string | null;
 }
 
 export interface SkillImageCreateMutation {
-  productImageCreate: {
+  skillImageCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -1738,7 +1738,7 @@ export interface SkillImageCreateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       name: string;
@@ -1760,7 +1760,7 @@ export interface SkillImageCreateMutation {
           };
         }>;
       } | null;
-      // The product's base price (without any discounts
+      // The skill's base price (without any discounts
       // applied).
       price: {
         // Amount of money.
@@ -1791,7 +1791,7 @@ export interface SkillImageCreateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of skill attributes assigned to this product.
+      // List of skill attributes assigned to this skill.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -1819,7 +1819,7 @@ export interface SkillImageCreateMutation {
           slug: string | null;
         } | null;
       } | null> | null;
-      // Informs about product's availability in the storefront,
+      // Informs about skill's availability in the storefront,
       // current price and discounts.
       availability: {
         available: boolean | null;
@@ -1882,13 +1882,13 @@ export interface SkillImageCreateMutation {
           };
         }>;
       } | null;
-      productType: {
+      skillType: {
         // The ID of the object.
         id: string;
         name: string;
         hasVariants: boolean;
       };
-      // The storefront URL for the product.
+      // The storefront URL for the skill.
       url: string;
     } | null;
   } | null;
@@ -1899,7 +1899,7 @@ export interface SkillDeleteMutationVariables {
 }
 
 export interface SkillDeleteMutation {
-  productDelete: {
+  skillDelete: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -1909,7 +1909,7 @@ export interface SkillDeleteMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
     } | null;
@@ -1917,12 +1917,12 @@ export interface SkillDeleteMutation {
 }
 
 export interface SkillImageReorderMutationVariables {
-  productId: string;
+  skillId: string;
   imagesIds: Array<string | null>;
 }
 
 export interface SkillImageReorderMutation {
-  productImageReorder: {
+  skillImageReorder: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -1932,7 +1932,7 @@ export interface SkillImageReorderMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       images: {
@@ -1966,7 +1966,7 @@ export interface SkillUpdateMutationVariables {
 }
 
 export interface SkillUpdateMutation {
-  productUpdate: {
+  skillUpdate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -1976,7 +1976,7 @@ export interface SkillUpdateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       name: string;
@@ -1998,7 +1998,7 @@ export interface SkillUpdateMutation {
           };
         }>;
       } | null;
-      // The product's base price (without any discounts
+      // The skill's base price (without any discounts
       // applied).
       price: {
         // Amount of money.
@@ -2029,7 +2029,7 @@ export interface SkillUpdateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of skill attributes assigned to this product.
+      // List of skill attributes assigned to this skill.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2057,7 +2057,7 @@ export interface SkillUpdateMutation {
           slug: string | null;
         } | null;
       } | null> | null;
-      // Informs about product's availability in the storefront,
+      // Informs about skill's availability in the storefront,
       // current price and discounts.
       availability: {
         available: boolean | null;
@@ -2120,13 +2120,13 @@ export interface SkillUpdateMutation {
           };
         }>;
       } | null;
-      productType: {
+      skillType: {
         // The ID of the object.
         id: string;
         name: string;
         hasVariants: boolean;
       };
-      // The storefront URL for the product.
+      // The storefront URL for the skill.
       url: string;
     } | null;
   } | null;
@@ -2142,11 +2142,11 @@ export interface SkillCreateMutationVariables {
   isPublished: boolean;
   name: string;
   price?: string | null;
-  productType: string;
+  skillType: string;
 }
 
 export interface SkillCreateMutation {
-  productCreate: {
+  skillCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -2156,7 +2156,7 @@ export interface SkillCreateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       name: string;
@@ -2178,7 +2178,7 @@ export interface SkillCreateMutation {
           };
         }>;
       } | null;
-      // The product's base price (without any discounts
+      // The skill's base price (without any discounts
       // applied).
       price: {
         // Amount of money.
@@ -2209,7 +2209,7 @@ export interface SkillCreateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of skill attributes assigned to this product.
+      // List of skill attributes assigned to this skill.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2237,7 +2237,7 @@ export interface SkillCreateMutation {
           slug: string | null;
         } | null;
       } | null> | null;
-      // Informs about product's availability in the storefront,
+      // Informs about skill's availability in the storefront,
       // current price and discounts.
       availability: {
         available: boolean | null;
@@ -2300,13 +2300,13 @@ export interface SkillCreateMutation {
           };
         }>;
       } | null;
-      productType: {
+      skillType: {
         // The ID of the object.
         id: string;
         name: string;
         hasVariants: boolean;
       };
-      // The storefront URL for the product.
+      // The storefront URL for the skill.
       url: string;
     } | null;
   } | null;
@@ -2317,7 +2317,7 @@ export interface VariantDeleteMutationVariables {
 }
 
 export interface VariantDeleteMutation {
-  productVariantDelete: {
+  skillVariantDelete: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -2327,7 +2327,7 @@ export interface VariantDeleteMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    productVariant: {
+    skillVariant: {
       // The ID of the object.
       id: string;
     } | null;
@@ -2345,7 +2345,7 @@ export interface VariantUpdateMutationVariables {
 }
 
 export interface VariantUpdateMutation {
-  productVariantUpdate: {
+  skillVariantUpdate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -2355,7 +2355,7 @@ export interface VariantUpdateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    productVariant: {
+    skillVariant: {
       // The ID of the object.
       id: string;
       // List of attributes assigned to this variant.
@@ -2413,7 +2413,7 @@ export interface VariantUpdateMutation {
         // Currency code.
         currency: string;
       } | null;
-      product: {
+      skill: {
         // The ID of the object.
         id: string;
         images: {
@@ -2430,7 +2430,7 @@ export interface VariantUpdateMutation {
           }>;
         } | null;
         name: string;
-        // The URL of a main thumbnail for a product.
+        // The URL of a main thumbnail for a skill.
         thumbnailUrl: string | null;
         variants: {
           // A total count of items in the collection
@@ -2468,14 +2468,14 @@ export interface VariantCreateMutationVariables {
   attributes?: Array<AttributeValueInput | null> | null;
   costPrice?: string | null;
   priceOverride?: string | null;
-  product: string;
+  skill: string;
   sku?: string | null;
   quantity?: number | null;
   trackInventory: boolean;
 }
 
 export interface VariantCreateMutation {
-  productVariantCreate: {
+  skillVariantCreate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -2485,7 +2485,7 @@ export interface VariantCreateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    productVariant: {
+    skillVariant: {
       // The ID of the object.
       id: string;
       // List of attributes assigned to this variant.
@@ -2543,7 +2543,7 @@ export interface VariantCreateMutation {
         // Currency code.
         currency: string;
       } | null;
-      product: {
+      skill: {
         // The ID of the object.
         id: string;
         images: {
@@ -2560,7 +2560,7 @@ export interface VariantCreateMutation {
           }>;
         } | null;
         name: string;
-        // The URL of a main thumbnail for a product.
+        // The URL of a main thumbnail for a skill.
         thumbnailUrl: string | null;
         variants: {
           // A total count of items in the collection
@@ -2599,8 +2599,8 @@ export interface SkillImageDeleteMutationVariables {
 }
 
 export interface SkillImageDeleteMutation {
-  productImageDelete: {
-    product: {
+  skillImageDelete: {
+    skill: {
       // The ID of the object.
       id: string;
       images: {
@@ -2622,7 +2622,7 @@ export interface SkillImageUpdateMutationVariables {
 }
 
 export interface SkillImageUpdateMutation {
-  productImageUpdate: {
+  skillImageUpdate: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -2632,7 +2632,7 @@ export interface SkillImageUpdateMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       name: string;
@@ -2654,7 +2654,7 @@ export interface SkillImageUpdateMutation {
           };
         }>;
       } | null;
-      // The product's base price (without any discounts
+      // The skill's base price (without any discounts
       // applied).
       price: {
         // Amount of money.
@@ -2685,7 +2685,7 @@ export interface SkillImageUpdateMutation {
       isPublished: boolean;
       chargeTaxes: boolean;
       publicationDate: string | null;
-      // List of skill attributes assigned to this product.
+      // List of skill attributes assigned to this skill.
       attributes: Array<{
         // Name of an attribute
         attribute: {
@@ -2713,7 +2713,7 @@ export interface SkillImageUpdateMutation {
           slug: string | null;
         } | null;
       } | null> | null;
-      // Informs about product's availability in the storefront,
+      // Informs about skill's availability in the storefront,
       // current price and discounts.
       availability: {
         available: boolean | null;
@@ -2776,13 +2776,13 @@ export interface SkillImageUpdateMutation {
           };
         }>;
       } | null;
-      productType: {
+      skillType: {
         // The ID of the object.
         id: string;
         name: string;
         hasVariants: boolean;
       };
-      // The storefront URL for the product.
+      // The storefront URL for the skill.
       url: string;
     } | null;
   } | null;
@@ -2804,7 +2804,7 @@ export interface VariantImageAssignMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    productVariant: {
+    skillVariant: {
       // The ID of the object.
       id: string;
       // List of attributes assigned to this variant.
@@ -2862,7 +2862,7 @@ export interface VariantImageAssignMutation {
         // Currency code.
         currency: string;
       } | null;
-      product: {
+      skill: {
         // The ID of the object.
         id: string;
         images: {
@@ -2879,7 +2879,7 @@ export interface VariantImageAssignMutation {
           }>;
         } | null;
         name: string;
-        // The URL of a main thumbnail for a product.
+        // The URL of a main thumbnail for a skill.
         thumbnailUrl: string | null;
         variants: {
           // A total count of items in the collection
@@ -2929,7 +2929,7 @@ export interface VariantImageUnassignMutation {
       // The error message.
       message: string | null;
     } | null> | null;
-    productVariant: {
+    skillVariant: {
       // The ID of the object.
       id: string;
       // List of attributes assigned to this variant.
@@ -2987,7 +2987,7 @@ export interface VariantImageUnassignMutation {
         // Currency code.
         currency: string;
       } | null;
-      product: {
+      skill: {
         // The ID of the object.
         id: string;
         images: {
@@ -3004,7 +3004,7 @@ export interface VariantImageUnassignMutation {
           }>;
         } | null;
         name: string;
-        // The URL of a main thumbnail for a product.
+        // The URL of a main thumbnail for a skill.
         thumbnailUrl: string | null;
         variants: {
           // A total count of items in the collection
@@ -3046,22 +3046,22 @@ export interface SkillListQueryVariables {
 }
 
 export interface SkillListQuery {
-  // List of the shop's products.
-  products: {
+  // List of the shop's skills.
+  skills: {
     edges: Array<{
       // The item at the end of the edge
       node: {
         // The ID of the object.
         id: string;
         name: string;
-        // The URL of a main thumbnail for a product.
+        // The URL of a main thumbnail for a skill.
         thumbnailUrl: string | null;
-        // Informs about product's availability in the storefront,
+        // Informs about skill's availability in the storefront,
         // current price and discounts.
         availability: {
           available: boolean | null;
         } | null;
-        // The product's base price (without any discounts
+        // The skill's base price (without any discounts
         // applied).
         price: {
           // Amount of money.
@@ -3069,7 +3069,7 @@ export interface SkillListQuery {
           // Currency code.
           currency: string;
         } | null;
-        productType: {
+        skillType: {
           // The ID of the object.
           id: string;
           name: string;
@@ -3095,7 +3095,7 @@ export interface SkillDetailsQueryVariables {
 
 export interface SkillDetailsQuery {
   // Lookup a skill by ID.
-  product: {
+  skill: {
     // The ID of the object.
     id: string;
     name: string;
@@ -3117,7 +3117,7 @@ export interface SkillDetailsQuery {
         };
       }>;
     } | null;
-    // The product's base price (without any discounts
+    // The skill's base price (without any discounts
     // applied).
     price: {
       // Amount of money.
@@ -3148,7 +3148,7 @@ export interface SkillDetailsQuery {
     isPublished: boolean;
     chargeTaxes: boolean;
     publicationDate: string | null;
-    // List of skill attributes assigned to this product.
+    // List of skill attributes assigned to this skill.
     attributes: Array<{
       // Name of an attribute
       attribute: {
@@ -3176,7 +3176,7 @@ export interface SkillDetailsQuery {
         slug: string | null;
       } | null;
     } | null> | null;
-    // Informs about product's availability in the storefront,
+    // Informs about skill's availability in the storefront,
     // current price and discounts.
     availability: {
       available: boolean | null;
@@ -3239,13 +3239,13 @@ export interface SkillDetailsQuery {
         };
       }>;
     } | null;
-    productType: {
+    skillType: {
       // The ID of the object.
       id: string;
       name: string;
       hasVariants: boolean;
     };
-    // The storefront URL for the product.
+    // The storefront URL for the skill.
     url: string;
   } | null;
   // List of the shop's collections.
@@ -3278,7 +3278,7 @@ export interface SkillVariantDetailsQueryVariables {
 
 export interface SkillVariantDetailsQuery {
   // Lookup a variant by ID.
-  productVariant: {
+  skillVariant: {
     // The ID of the object.
     id: string;
     // List of attributes assigned to this variant.
@@ -3336,7 +3336,7 @@ export interface SkillVariantDetailsQuery {
       // Currency code.
       currency: string;
     } | null;
-    product: {
+    skill: {
       // The ID of the object.
       id: string;
       images: {
@@ -3353,7 +3353,7 @@ export interface SkillVariantDetailsQuery {
         }>;
       } | null;
       name: string;
-      // The URL of a main thumbnail for a product.
+      // The URL of a main thumbnail for a skill.
       thumbnailUrl: string | null;
       variants: {
         // A total count of items in the collection
@@ -3388,7 +3388,7 @@ export interface SkillVariantDetailsQuery {
 
 export interface SkillCreateDataQuery {
   // List of the shop's skill types.
-  productTypes: {
+  skillTypes: {
     edges: Array<{
       // The item at the end of the edge
       node: {
@@ -3396,7 +3396,7 @@ export interface SkillCreateDataQuery {
         id: string;
         name: string;
         hasVariants: boolean;
-        productAttributes: {
+        skillAttributes: {
           edges: Array<{
             // The item at the end of the edge
             node: {
@@ -3452,7 +3452,7 @@ export interface SkillVariantCreateDataQueryVariables {
 
 export interface SkillVariantCreateDataQuery {
   // Lookup a skill by ID.
-  product: {
+  skill: {
     // The ID of the object.
     id: string;
     images: {
@@ -3467,7 +3467,7 @@ export interface SkillVariantCreateDataQuery {
         };
       }>;
     } | null;
-    productType: {
+    skillType: {
       // The ID of the object.
       id: string;
       variantAttributes: {
@@ -3520,13 +3520,13 @@ export interface SkillVariantCreateDataQuery {
 }
 
 export interface SkillImageQueryVariables {
-  productId: string;
+  skillId: string;
   imageId: string;
 }
 
 export interface SkillImageQuery {
   // Lookup a skill by ID.
-  product: {
+  skill: {
     // The ID of the object.
     id: string;
     // Get a single skill image by ID
@@ -3627,10 +3627,10 @@ export interface TaskDetailsFragment {
         node: {
           // The ID of the object.
           id: string;
-          orderLine: {
+          taskLine: {
             // The ID of the object.
             id: string;
-            productName: string;
+            skillName: string;
           };
           quantity: number;
         };
@@ -3645,8 +3645,8 @@ export interface TaskDetailsFragment {
       node: {
         // The ID of the object.
         id: string;
-        productName: string;
-        productSku: string;
+        skillName: string;
+        skillSku: string;
         quantity: number;
         quantityFulfilled: number;
         unitPrice: {
@@ -3787,7 +3787,7 @@ export interface SkillFragment {
       };
     }>;
   } | null;
-  // The product's base price (without any discounts
+  // The skill's base price (without any discounts
   // applied).
   price: {
     // Amount of money.
@@ -3818,7 +3818,7 @@ export interface SkillFragment {
   isPublished: boolean;
   chargeTaxes: boolean;
   publicationDate: string | null;
-  // List of skill attributes assigned to this product.
+  // List of skill attributes assigned to this skill.
   attributes: Array<{
     // Name of an attribute
     attribute: {
@@ -3846,7 +3846,7 @@ export interface SkillFragment {
       slug: string | null;
     } | null;
   } | null> | null;
-  // Informs about product's availability in the storefront,
+  // Informs about skill's availability in the storefront,
   // current price and discounts.
   availability: {
     available: boolean | null;
@@ -3909,13 +3909,13 @@ export interface SkillFragment {
       };
     }>;
   } | null;
-  productType: {
+  skillType: {
     // The ID of the object.
     id: string;
     name: string;
     hasVariants: boolean;
   };
-  // The storefront URL for the product.
+  // The storefront URL for the skill.
   url: string;
 }
 
@@ -3977,7 +3977,7 @@ export interface SkillVariantFragment {
     // Currency code.
     currency: string;
   } | null;
-  product: {
+  skill: {
     // The ID of the object.
     id: string;
     images: {
@@ -3994,7 +3994,7 @@ export interface SkillVariantFragment {
       }>;
     } | null;
     name: string;
-    // The URL of a main thumbnail for a product.
+    // The URL of a main thumbnail for a skill.
     thumbnailUrl: string | null;
     variants: {
       // A total count of items in the collection

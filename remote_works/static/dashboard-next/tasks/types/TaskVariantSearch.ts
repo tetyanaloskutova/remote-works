@@ -5,39 +5,39 @@
 // GraphQL query operation: TaskVariantSearch
 // ====================================================
 
-export interface TaskVariantSearch_products_edges_node_thumbnail {
+export interface TaskVariantSearch_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface TaskVariantSearch_products_edges_node_variants_price {
+export interface TaskVariantSearch_skills_edges_node_variants_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskVariantSearch_products_edges_node_variants {
+export interface TaskVariantSearch_skills_edges_node_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  price: TaskVariantSearch_products_edges_node_variants_price | null;
+  price: TaskVariantSearch_skills_edges_node_variants_price | null;
 }
 
-export interface TaskVariantSearch_products_edges_node {
+export interface TaskVariantSearch_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
-  thumbnail: TaskVariantSearch_products_edges_node_thumbnail | null;
-  variants: (TaskVariantSearch_products_edges_node_variants | null)[] | null;
+  thumbnail: TaskVariantSearch_skills_edges_node_thumbnail | null;
+  variants: (TaskVariantSearch_skills_edges_node_variants | null)[] | null;
 }
 
-export interface TaskVariantSearch_products_edges {
+export interface TaskVariantSearch_skills_edges {
   __typename: "SkillCountableEdge";
-  node: TaskVariantSearch_products_edges_node;
+  node: TaskVariantSearch_skills_edges_node;
 }
 
-export interface TaskVariantSearch_products_pageInfo {
+export interface TaskVariantSearch_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -47,12 +47,12 @@ export interface TaskVariantSearch_products_pageInfo {
 
 export interface TaskVariantSearch_skills {
   __typename: "SkillCountableConnection";
-  edges: TaskVariantSearch_products_edges[];
-  pageInfo: TaskVariantSearch_products_pageInfo;
+  edges: TaskVariantSearch_skills_edges[];
+  pageInfo: TaskVariantSearch_skills_pageInfo;
 }
 
 export interface TaskVariantSearch {
-  products: TaskVariantSearch_skills | null;
+  skills: TaskVariantSearch_skills | null;
 }
 
 export interface TaskVariantSearchVariables {

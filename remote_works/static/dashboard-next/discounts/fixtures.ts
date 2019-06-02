@@ -105,7 +105,7 @@ export const sale: SaleDetails_sale = {
           __typename: "Category",
           id: "U2FsZTo1=",
           name: "Apparel",
-          products: {
+          skills: {
             __typename: "SkillCountableConnection",
             totalCount: 18
           }
@@ -130,7 +130,7 @@ export const sale: SaleDetails_sale = {
           __typename: "Collection",
           id: "U2FsZBo4=",
           name: "Winter Collection",
-          products: {
+          skills: {
             __typename: "SkillCountableConnection",
             totalCount: 110
           }
@@ -149,7 +149,7 @@ export const sale: SaleDetails_sale = {
   endDate: null,
   id: "U2FsZTo1",
   name: "Happy minute day!",
-  products: {
+  skills: {
     __typename: "SkillCountableConnection",
     edges: [
       {
@@ -159,7 +159,7 @@ export const sale: SaleDetails_sale = {
           id: "UHJvZHVjdDo3MQ==",
           isPublished: true,
           name: "Orange Juice",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
@@ -177,7 +177,7 @@ export const sale: SaleDetails_sale = {
           id: "UHJvZHVjdDo3Mw==",
           isPublished: true,
           name: "Carrot Juice",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
@@ -195,7 +195,7 @@ export const sale: SaleDetails_sale = {
           id: "UHJvZHVjdDo3OQ==",
           isPublished: true,
           name: "Bean Juice",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6OQ==",
             name: "Juice"
@@ -213,7 +213,7 @@ export const sale: SaleDetails_sale = {
           id: "UHJvZHVjdDoxMTU=",
           isPublished: true,
           name: "Black Hoodie",
-          productType: {
+          skillType: {
             __typename: "SkillType",
             id: "UHJvZHVjdFR5cGU6MTQ=",
             name: "Top (clothing)"
@@ -284,7 +284,7 @@ export const voucherDetails: VoucherDetails_voucher = {
     currency: "USD"
   },
   name: "Big task discount",
-  products: {
+  skills: {
     __typename: "SkillCountableConnection",
     edges: [],
     pageInfo: {

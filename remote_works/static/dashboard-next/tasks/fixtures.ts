@@ -824,12 +824,12 @@ export const task = (placeholder: string): TaskDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjM5",
-          orderLine: {
+          taskLine: {
             __typename: "TaskLine",
             id: "T3JkZXJMaW5lOjIz",
             isDeliveryRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
+            skillName: "Williams, Garcia and Walker (XS)",
+            skillSku: "5-1337",
             quantity: 2,
             quantityFulfilled: 2,
             thumbnailUrl: placeholder,
@@ -861,12 +861,12 @@ export const task = (placeholder: string): TaskDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjE1",
-          orderLine: {
+          taskLine: {
             __typename: "TaskLine",
             id: "T3JkZXJMaW5lOjIz",
             isDeliveryRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
+            skillName: "Williams, Garcia and Walker (XS)",
+            skillSku: "5-1337",
             quantity: 2,
             quantityFulfilled: 2,
             thumbnailUrl: placeholder,
@@ -897,8 +897,8 @@ export const task = (placeholder: string): TaskDetails_order => ({
       __typename: "TaskLine",
       id: "T3JkZXJMaW5lOjIy",
       isDeliveryRequired: true,
-      productName: "Watkins-Gonzalez (Soft)",
-      productSku: "59-1337",
+      skillName: "Watkins-Gonzalez (Soft)",
+      skillSku: "59-1337",
       quantity: 3,
       quantityFulfilled: 0,
       thumbnailUrl: placeholder,
@@ -920,8 +920,8 @@ export const task = (placeholder: string): TaskDetails_order => ({
       __typename: "TaskLine",
       id: "T3JkZXJMaW5lOjIz",
       isDeliveryRequired: true,
-      productName: "Williams, Garcia and Walker (XS)",
-      productSku: "5-1337",
+      skillName: "Williams, Garcia and Walker (XS)",
+      skillSku: "5-1337",
       quantity: 2,
       quantityFulfilled: 2,
       thumbnailUrl: placeholder,
@@ -1022,8 +1022,8 @@ export const draftTask = (placeholder: string): TaskDetails_order => ({
       __typename: "TaskLine" as "TaskLine",
       id: "T3JkZXJMaW5lOjQ1",
       isDeliveryRequired: false,
-      productName: "Davis Group (Hard)",
-      productSku: "58-1338",
+      skillName: "Davis Group (Hard)",
+      skillSku: "58-1338",
       quantity: 2,
       quantityFulfilled: 0,
       thumbnailUrl: placeholder,
@@ -1045,8 +1045,8 @@ export const draftTask = (placeholder: string): TaskDetails_order => ({
       __typename: "TaskLine" as "TaskLine",
       id: "T3JkZXJMaW5lOjQ2",
       isDeliveryRequired: false,
-      productName: "Anderson PLC (15-1337)",
-      productSku: "15-1337",
+      skillName: "Anderson PLC (15-1337)",
+      skillSku: "15-1337",
       quantity: 2,
       quantityFulfilled: 0,
       thumbnailUrl: placeholder,
@@ -1107,7 +1107,7 @@ export const draftTask = (placeholder: string): TaskDetails_order => ({
 });
 export const flatTasks = tasks.map(task => ({
   ...task,
-  orderStatus: transformTaskStatus(task.status),
+  taskStatus: transformTaskStatus(task.status),
   paymentStatus: transformPaymentStatus(task.paymentStatus)
 }));
 export const variants = [
@@ -1131,7 +1131,7 @@ export const deliveryMethods = [
   { id: "s1", name: "DHL", country: "whole world", price: {} },
   { id: "s2", name: "UPS", country: "Afghanistan" }
 ];
-export const orderLineSearch = (placeholderImage: string) => [
+export const taskLineSearch = (placeholderImage: string) => [
   {
     __typename: "Skill" as "Skill",
     id: "UHJvZHVjdDo3Mg==",

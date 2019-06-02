@@ -140,30 +140,30 @@ const TaskFulfillment = withStyles(styles, { name: "TaskFulfillment" })(
                 key={maybe(() => line.id)}
               >
                 <TableCellAvatar
-                  thumbnail={maybe(() => line.orderLine.thumbnailUrl)}
+                  thumbnail={maybe(() => line.taskLine.thumbnailUrl)}
                 />
                 <TableCell>
-                  {maybe(() => line.orderLine.skillName) || <Skeleton />}
+                  {maybe(() => line.taskLine.skillName) || <Skeleton />}
                 </TableCell>
                 <TableCell className={classes.textCenter}>
                   {maybe(() => line.quantity) || <Skeleton />}
                 </TableCell>
                 <TableCell className={classes.textRight}>
-                  {maybe(() => line.orderLine.unitPrice.gross) ? (
-                    <Money money={line.orderLine.unitPrice.gross} />
+                  {maybe(() => line.taskLine.unitPrice.gross) ? (
+                    <Money money={line.taskLine.unitPrice.gross} />
                   ) : (
                     <Skeleton />
                   )}
                 </TableCell>
                 <TableCell className={classes.textRight}>
                   {maybe(
-                    () => line.quantity * line.orderLine.unitPrice.gross.amount
+                    () => line.quantity * line.taskLine.unitPrice.gross.amount
                   ) ? (
                     <Money
                       money={{
                         amount:
-                          line.quantity * line.orderLine.unitPrice.gross.amount,
-                        currency: line.orderLine.unitPrice.gross.currency
+                          line.quantity * line.taskLine.unitPrice.gross.amount,
+                        currency: line.taskLine.unitPrice.gross.currency
                       }}
                     />
                   ) : (

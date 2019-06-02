@@ -134,7 +134,7 @@ export interface SkillDetails_skill_variants {
   stockQuantity: number;
 }
 
-export interface SkillDetails_skill_productType {
+export interface SkillDetails_skill_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
@@ -160,12 +160,12 @@ export interface SkillDetails_skill {
   availability: SkillDetails_skill_availability | null;
   images: (SkillDetails_skill_images | null)[] | null;
   variants: (SkillDetails_skill_variants | null)[] | null;
-  productType: SkillDetails_skill_productType;
+  skillType: SkillDetails_skill_skillType;
   url: string;
 }
 
 export interface SkillDetails {
-  product: SkillDetails_skill | null;
+  skill: SkillDetails_skill | null;
 }
 
 export interface SkillDetailsVariables {

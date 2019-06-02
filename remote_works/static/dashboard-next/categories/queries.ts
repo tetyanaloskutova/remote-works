@@ -88,7 +88,7 @@ export const categoryDetails = gql`
           }
         }
       }
-      products(first: $first, after: $after, last: $last, before: $before) {
+      skills(first: $first, after: $after, last: $last, before: $before) {
         pageInfo {
           endCursor
           hasNextPage
@@ -110,7 +110,7 @@ export const categoryDetails = gql`
               amount
               currency
             }
-            productType {
+            skillType {
               id
               name
             }

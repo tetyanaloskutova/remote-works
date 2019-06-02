@@ -156,7 +156,7 @@ render(
                               component={PageSection}
                             />
                             <SectionRoute
-                              permissions={[PermissionEnum.MANAGE_ORDERS]}
+                              permissions={[PermissionEnum.MANAGE_TASKS]}
                               path="/tasks"
                               component={TasksSection}
                             />

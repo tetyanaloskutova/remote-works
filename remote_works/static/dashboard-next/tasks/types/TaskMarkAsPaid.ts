@@ -53,33 +53,33 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_task_events {
   user: TaskMarkAsPaid_orderMarkAsPaid_task_events_user | null;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine {
+export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskMarkAsPaid_orderMarkAsPaid_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskMarkAsPaid_orderMarkAsPaid_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskMarkAsPaid_orderMarkAsPaid_task_lines_unitPrice | null;

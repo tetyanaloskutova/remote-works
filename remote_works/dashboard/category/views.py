@@ -125,6 +125,6 @@ def category_delete(request, pk):
             return redirect('dashboard:category-list')
     ctx = {'category': category,
            'descendants': list(category.get_descendants()),
-           'products_count': len(category.products.all())}
+           'skills_count': len(category.skills.all())}
     return TemplateResponse(
         request, 'dashboard/category/modal/confirm_delete.html', ctx)

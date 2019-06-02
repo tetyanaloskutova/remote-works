@@ -20,7 +20,7 @@ export interface RootCategories_categories_edges_node {
   id: string;
   name: string;
   children: RootCategories_categories_edges_node_children | null;
-  products: RootCategories_categories_edges_node_skills | null;
+  skills: RootCategories_categories_edges_node_skills | null;
 }
 
 export interface RootCategories_categories_edges {

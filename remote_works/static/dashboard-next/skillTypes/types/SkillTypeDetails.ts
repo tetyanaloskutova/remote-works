@@ -7,52 +7,52 @@ import { TaxRateType, WeightUnitsEnum } from "./../../types/globalTypes";
 // GraphQL query operation: SkillTypeDetails
 // ====================================================
 
-export interface SkillTypeDetails_productType_productAttributes_values {
+export interface SkillTypeDetails_skillType_skillAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SkillTypeDetails_productType_productAttributes {
+export interface SkillTypeDetails_skillType_skillAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (SkillTypeDetails_productType_productAttributes_values | null)[] | null;
+  values: (SkillTypeDetails_skillType_skillAttributes_values | null)[] | null;
 }
 
-export interface SkillTypeDetails_productType_variantAttributes_values {
+export interface SkillTypeDetails_skillType_variantAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SkillTypeDetails_productType_variantAttributes {
+export interface SkillTypeDetails_skillType_variantAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (SkillTypeDetails_productType_variantAttributes_values | null)[] | null;
+  values: (SkillTypeDetails_skillType_variantAttributes_values | null)[] | null;
 }
 
-export interface SkillTypeDetails_productType_weight {
+export interface SkillTypeDetails_skillType_weight {
   __typename: "Weight";
   unit: string;
   value: number;
 }
 
-export interface SkillTypeDetails_productType {
+export interface SkillTypeDetails_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
   isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (SkillTypeDetails_productType_productAttributes | null)[] | null;
-  variantAttributes: (SkillTypeDetails_productType_variantAttributes | null)[] | null;
-  weight: SkillTypeDetails_productType_weight | null;
+  skillAttributes: (SkillTypeDetails_skillType_skillAttributes | null)[] | null;
+  variantAttributes: (SkillTypeDetails_skillType_variantAttributes | null)[] | null;
+  weight: SkillTypeDetails_skillType_weight | null;
 }
 
 export interface SkillTypeDetails_shop {
@@ -61,7 +61,7 @@ export interface SkillTypeDetails_shop {
 }
 
 export interface SkillTypeDetails {
-  productType: SkillTypeDetails_productType | null;
+  skillType: SkillTypeDetails_skillType | null;
   shop: SkillTypeDetails_shop | null;
 }
 

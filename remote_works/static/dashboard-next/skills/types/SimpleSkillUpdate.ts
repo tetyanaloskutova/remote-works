@@ -7,116 +7,116 @@ import { AttributeValueInput, SkillVariantInput } from "./../../types/globalType
 // GraphQL mutation operation: SimpleSkillUpdate
 // ====================================================
 
-export interface SimpleSkillUpdate_productUpdate_errors {
+export interface SimpleSkillUpdate_skillUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_category {
+export interface SimpleSkillUpdate_skillUpdate_skill_category {
   __typename: "Category";
   id: string;
   name: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_collections {
+export interface SimpleSkillUpdate_skillUpdate_skill_collections {
   __typename: "Collection";
   id: string;
   name: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_price {
+export interface SimpleSkillUpdate_skillUpdate_skill_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_margin {
+export interface SimpleSkillUpdate_skillUpdate_skill_margin {
   __typename: "Margin";
   start: number | null;
   stop: number | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_purchaseCost_start {
+export interface SimpleSkillUpdate_skillUpdate_skill_purchaseCost_start {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_purchaseCost_stop {
+export interface SimpleSkillUpdate_skillUpdate_skill_purchaseCost_stop {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_purchaseCost {
+export interface SimpleSkillUpdate_skillUpdate_skill_purchaseCost {
   __typename: "MoneyRange";
-  start: SimpleSkillUpdate_productUpdate_skill_purchaseCost_start | null;
-  stop: SimpleSkillUpdate_productUpdate_skill_purchaseCost_stop | null;
+  start: SimpleSkillUpdate_skillUpdate_skill_purchaseCost_start | null;
+  stop: SimpleSkillUpdate_skillUpdate_skill_purchaseCost_stop | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_attributes_attribute_values {
+export interface SimpleSkillUpdate_skillUpdate_skill_attributes_attribute_values {
   __typename: "AttributeValue";
   name: string | null;
   slug: string | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_attributes_attribute {
+export interface SimpleSkillUpdate_skillUpdate_skill_attributes_attribute {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (SimpleSkillUpdate_productUpdate_skill_attributes_attribute_values | null)[] | null;
+  values: (SimpleSkillUpdate_skillUpdate_skill_attributes_attribute_values | null)[] | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_attributes_value {
+export interface SimpleSkillUpdate_skillUpdate_skill_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_attributes {
+export interface SimpleSkillUpdate_skillUpdate_skill_attributes {
   __typename: "SelectedAttribute";
-  attribute: SimpleSkillUpdate_productUpdate_skill_attributes_attribute;
-  value: SimpleSkillUpdate_productUpdate_skill_attributes_value;
+  attribute: SimpleSkillUpdate_skillUpdate_skill_attributes_attribute;
+  value: SimpleSkillUpdate_skillUpdate_skill_attributes_value;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability_priceRange_start_net {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_start_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability_priceRange_start {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_start {
   __typename: "TaxedMoney";
-  net: SimpleSkillUpdate_productUpdate_skill_availability_priceRange_start_net;
+  net: SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_start_net;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability_priceRange_stop_net {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_stop_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability_priceRange_stop {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_stop {
   __typename: "TaxedMoney";
-  net: SimpleSkillUpdate_productUpdate_skill_availability_priceRange_stop_net;
+  net: SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_stop_net;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability_priceRange {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability_priceRange {
   __typename: "TaxedMoneyRange";
-  start: SimpleSkillUpdate_productUpdate_skill_availability_priceRange_start | null;
-  stop: SimpleSkillUpdate_productUpdate_skill_availability_priceRange_stop | null;
+  start: SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_start | null;
+  stop: SimpleSkillUpdate_skillUpdate_skill_availability_priceRange_stop | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_availability {
+export interface SimpleSkillUpdate_skillUpdate_skill_availability {
   __typename: "SkillAvailability";
   available: boolean | null;
-  priceRange: SimpleSkillUpdate_productUpdate_skill_availability_priceRange | null;
+  priceRange: SimpleSkillUpdate_skillUpdate_skill_availability_priceRange | null;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_images {
+export interface SimpleSkillUpdate_skillUpdate_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -124,113 +124,113 @@ export interface SimpleSkillUpdate_productUpdate_skill_images {
   url: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_variants_priceOverride {
+export interface SimpleSkillUpdate_skillUpdate_skill_variants_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_variants {
+export interface SimpleSkillUpdate_skillUpdate_skill_variants {
   __typename: "SkillVariant";
   id: string;
   sku: string;
   name: string;
-  priceOverride: SimpleSkillUpdate_productUpdate_skill_variants_priceOverride | null;
+  priceOverride: SimpleSkillUpdate_skillUpdate_skill_variants_priceOverride | null;
   margin: number | null;
   quantity: number;
   quantityAllocated: number;
   stockQuantity: number;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill_productType {
+export interface SimpleSkillUpdate_skillUpdate_skill_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
 }
 
-export interface SimpleSkillUpdate_productUpdate_skill {
+export interface SimpleSkillUpdate_skillUpdate_skill {
   __typename: "Skill";
   id: string;
   name: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
-  category: SimpleSkillUpdate_productUpdate_skill_category;
-  collections: (SimpleSkillUpdate_productUpdate_skill_collections | null)[] | null;
-  price: SimpleSkillUpdate_productUpdate_skill_price | null;
-  margin: SimpleSkillUpdate_productUpdate_skill_margin | null;
-  purchaseCost: SimpleSkillUpdate_productUpdate_skill_purchaseCost | null;
+  category: SimpleSkillUpdate_skillUpdate_skill_category;
+  collections: (SimpleSkillUpdate_skillUpdate_skill_collections | null)[] | null;
+  price: SimpleSkillUpdate_skillUpdate_skill_price | null;
+  margin: SimpleSkillUpdate_skillUpdate_skill_margin | null;
+  purchaseCost: SimpleSkillUpdate_skillUpdate_skill_purchaseCost | null;
   isPublished: boolean;
   chargeTaxes: boolean;
   publicationDate: any | null;
-  attributes: SimpleSkillUpdate_productUpdate_skill_attributes[];
-  availability: SimpleSkillUpdate_productUpdate_skill_availability | null;
-  images: (SimpleSkillUpdate_productUpdate_skill_images | null)[] | null;
-  variants: (SimpleSkillUpdate_productUpdate_skill_variants | null)[] | null;
-  productType: SimpleSkillUpdate_productUpdate_skill_productType;
+  attributes: SimpleSkillUpdate_skillUpdate_skill_attributes[];
+  availability: SimpleSkillUpdate_skillUpdate_skill_availability | null;
+  images: (SimpleSkillUpdate_skillUpdate_skill_images | null)[] | null;
+  variants: (SimpleSkillUpdate_skillUpdate_skill_variants | null)[] | null;
+  skillType: SimpleSkillUpdate_skillUpdate_skill_skillType;
   url: string;
 }
 
-export interface SimpleSkillUpdate_productUpdate {
+export interface SimpleSkillUpdate_skillUpdate {
   __typename: "SkillUpdate";
-  errors: SimpleSkillUpdate_productUpdate_errors[] | null;
-  product: SimpleSkillUpdate_productUpdate_skill | null;
+  errors: SimpleSkillUpdate_skillUpdate_errors[] | null;
+  skill: SimpleSkillUpdate_skillUpdate_skill | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_errors {
+export interface SimpleSkillUpdate_skillVariantUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_attribute_values {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_attribute {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_attribute {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_attribute_values | null)[] | null;
+  values: (SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_attribute_values | null)[] | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_value {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_attributes {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes {
   __typename: "SelectedAttribute";
-  attribute: SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_attribute;
-  value: SimpleSkillUpdate_productVariantUpdate_productVariant_attributes_value;
+  attribute: SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_attribute;
+  value: SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes_value;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_costPrice {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_costPrice {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_images {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_priceOverride {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill_images {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -238,57 +238,57 @@ export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill_ima
   url: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill_thumbnail {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill_variants_images {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill_variants {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (SimpleSkillUpdate_productVariantUpdate_productVariant_skill_variants_images | null)[] | null;
+  images: (SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_variants_images | null)[] | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant_skill {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (SimpleSkillUpdate_productVariantUpdate_productVariant_skill_images | null)[] | null;
+  images: (SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: SimpleSkillUpdate_productVariantUpdate_productVariant_skill_thumbnail | null;
-  variants: (SimpleSkillUpdate_productVariantUpdate_productVariant_skill_variants | null)[] | null;
+  thumbnail: SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_thumbnail | null;
+  variants: (SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill_variants | null)[] | null;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate_productVariant {
+export interface SimpleSkillUpdate_skillVariantUpdate_skillVariant {
   __typename: "SkillVariant";
   id: string;
-  attributes: SimpleSkillUpdate_productVariantUpdate_productVariant_attributes[];
-  costPrice: SimpleSkillUpdate_productVariantUpdate_productVariant_costPrice | null;
-  images: (SimpleSkillUpdate_productVariantUpdate_productVariant_images | null)[] | null;
+  attributes: SimpleSkillUpdate_skillVariantUpdate_skillVariant_attributes[];
+  costPrice: SimpleSkillUpdate_skillVariantUpdate_skillVariant_costPrice | null;
+  images: (SimpleSkillUpdate_skillVariantUpdate_skillVariant_images | null)[] | null;
   name: string;
-  priceOverride: SimpleSkillUpdate_productVariantUpdate_productVariant_priceOverride | null;
-  product: SimpleSkillUpdate_productVariantUpdate_productVariant_product;
+  priceOverride: SimpleSkillUpdate_skillVariantUpdate_skillVariant_priceOverride | null;
+  skill: SimpleSkillUpdate_skillVariantUpdate_skillVariant_skill;
   sku: string;
   quantity: number;
   quantityAllocated: number;
 }
 
-export interface SimpleSkillUpdate_productVariantUpdate {
+export interface SimpleSkillUpdate_skillVariantUpdate {
   __typename: "SkillVariantUpdate";
-  errors: SimpleSkillUpdate_productVariantUpdate_errors[] | null;
-  productVariant: SimpleSkillUpdate_productVariantUpdate_productVariant | null;
+  errors: SimpleSkillUpdate_skillVariantUpdate_errors[] | null;
+  skillVariant: SimpleSkillUpdate_skillVariantUpdate_skillVariant | null;
 }
 
 export interface SimpleSkillUpdate {
-  productUpdate: SimpleSkillUpdate_productUpdate | null;
-  productVariantUpdate: SimpleSkillUpdate_productVariantUpdate | null;
+  skillUpdate: SimpleSkillUpdate_skillUpdate | null;
+  skillVariantUpdate: SimpleSkillUpdate_skillVariantUpdate | null;
 }
 
 export interface SimpleSkillUpdateVariables {
@@ -302,6 +302,6 @@ export interface SimpleSkillUpdateVariables {
   isPublished: boolean;
   name?: string | null;
   price?: any | null;
-  productVariantId: string;
-  productVariantInput: SkillVariantInput;
+  skillVariantId: string;
+  skillVariantInput: SkillVariantInput;
 }

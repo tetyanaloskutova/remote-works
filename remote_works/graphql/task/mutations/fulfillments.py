@@ -24,7 +24,7 @@ def send_fulfillment_confirmation_to_customer(task, fulfillment, user):
 
 class FulfillmentLineInput(graphene.InputObjectType):
     task_line_id = graphene.ID(
-        description='The ID of the task line.', name='orderLineId')
+        description='The ID of the task line.', name='taskLineId')
     quantity = graphene.Int(
         description='The number of line item(s) to be fulfiled.')
 

@@ -5,7 +5,7 @@
 // GraphQL query operation: SkillCreateData
 // ====================================================
 
-export interface SkillCreateData_productTypes_edges_node_productAttributes_values {
+export interface SkillCreateData_skillTypes_edges_node_skillAttributes_values {
   __typename: "AttributeValue";
   id: string;
   sortTask: number;
@@ -13,32 +13,32 @@ export interface SkillCreateData_productTypes_edges_node_productAttributes_value
   slug: string | null;
 }
 
-export interface SkillCreateData_productTypes_edges_node_productAttributes {
+export interface SkillCreateData_skillTypes_edges_node_skillAttributes {
   __typename: "Attribute";
   id: string;
   slug: string | null;
   name: string | null;
-  values: (SkillCreateData_productTypes_edges_node_productAttributes_values | null)[] | null;
+  values: (SkillCreateData_skillTypes_edges_node_skillAttributes_values | null)[] | null;
 }
 
-export interface SkillCreateData_productTypes_edges_node {
+export interface SkillCreateData_skillTypes_edges_node {
   __typename: "SkillType";
   id: string;
   name: string;
   hasVariants: boolean;
-  productAttributes: (SkillCreateData_productTypes_edges_node_productAttributes | null)[] | null;
+  skillAttributes: (SkillCreateData_skillTypes_edges_node_skillAttributes | null)[] | null;
 }
 
-export interface SkillCreateData_productTypes_edges {
+export interface SkillCreateData_skillTypes_edges {
   __typename: "SkillTypeCountableEdge";
-  node: SkillCreateData_productTypes_edges_node;
+  node: SkillCreateData_skillTypes_edges_node;
 }
 
-export interface SkillCreateData_productTypes {
+export interface SkillCreateData_skillTypes {
   __typename: "SkillTypeCountableConnection";
-  edges: SkillCreateData_productTypes_edges[];
+  edges: SkillCreateData_skillTypes_edges[];
 }
 
 export interface SkillCreateData {
-  productTypes: SkillCreateData_productTypes | null;
+  skillTypes: SkillCreateData_skillTypes | null;
 }

@@ -4,7 +4,7 @@ from elasticsearch_dsl import analyzer, token_filter
 from ..account.models import User
 from ..account.utils import get_user_first_name, get_user_last_name
 from ..task.models import Task
-from ..product.models import Skill
+from ..skill.models import Skill
 
 storefront = Index('storefront')
 storefront.settings(number_of_shards=1, number_of_replicas=0)

@@ -25,7 +25,7 @@ export interface CategoryProperties_category_children_edges_node {
   id: string;
   name: string;
   children: CategoryProperties_category_children_edges_node_children | null;
-  products: CategoryProperties_category_children_edges_node_skills | null;
+  skills: CategoryProperties_category_children_edges_node_skills | null;
 }
 
 export interface CategoryProperties_category_children_edges {
@@ -38,7 +38,7 @@ export interface CategoryProperties_category_children {
   edges: CategoryProperties_category_children_edges[];
 }
 
-export interface CategoryProperties_category_products_pageInfo {
+export interface CategoryProperties_category_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -46,30 +46,30 @@ export interface CategoryProperties_category_products_pageInfo {
   startCursor: string | null;
 }
 
-export interface CategoryProperties_category_products_edges_node_productType {
+export interface CategoryProperties_category_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface CategoryProperties_category_products_edges_node {
+export interface CategoryProperties_category_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
   thumbnailUrl: string | null;
-  productType: CategoryProperties_category_products_edges_node_productType;
+  skillType: CategoryProperties_category_skills_edges_node_skillType;
 }
 
-export interface CategoryProperties_category_products_edges {
+export interface CategoryProperties_category_skills_edges {
   __typename: "SkillCountableEdge";
   cursor: string;
-  node: CategoryProperties_category_products_edges_node;
+  node: CategoryProperties_category_skills_edges_node;
 }
 
 export interface CategoryProperties_category_skills {
   __typename: "SkillCountableConnection";
-  pageInfo: CategoryProperties_category_products_pageInfo;
-  edges: CategoryProperties_category_products_edges[];
+  pageInfo: CategoryProperties_category_skills_pageInfo;
+  edges: CategoryProperties_category_skills_edges[];
 }
 
 export interface CategoryProperties_category {
@@ -79,7 +79,7 @@ export interface CategoryProperties_category {
   description: string;
   parent: CategoryProperties_category_parent | null;
   children: CategoryProperties_category_children | null;
-  products: CategoryProperties_category_skills | null;
+  skills: CategoryProperties_category_skills | null;
 }
 
 export interface CategoryProperties {

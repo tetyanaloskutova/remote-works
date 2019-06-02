@@ -21,7 +21,7 @@ import { TaskRefund } from "../../types/TaskRefund";
 import { TaskDeliveryMethodUpdate } from "../../types/TaskDeliveryMethodUpdate";
 import { TaskUpdate } from "../../types/TaskUpdate";
 import { TaskVoid } from "../../types/TaskVoid";
-import { orderListUrl, orderUrl } from "../../urls";
+import { taskListUrl, taskUrl } from "../../urls";
 
 interface TaskDetailsMessages {
   children: (
@@ -101,7 +101,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderFulfillmentCreate.task.id), true);
+              navigate(taskUrl(data.orderFulfillmentCreate.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not fulfill items", {
@@ -117,7 +117,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderMarkAsPaid.task.id), true);
+              navigate(taskUrl(data.orderMarkAsPaid.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not mark task as paid", {
@@ -132,7 +132,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 context: "notification"
               })
             });
-            navigate(orderUrl(data.orderCancel.task.id), true);
+            navigate(taskUrl(data.orderCancel.task.id), true);
           };
           const handleDraftCancel = () => {
             pushMessage({
@@ -140,7 +140,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 context: "notification"
               })
             });
-            navigate(orderListUrl(), true);
+            navigate(taskListUrl(), true);
           };
           const handleTaskVoid = () => {
             pushMessage({
@@ -165,13 +165,13 @@ export const TaskDetailsMessages: React.StatelessComponent<
             }
           };
           const handleUpdate = (data: TaskUpdate) => {
-            if (!maybe(() => data.orderUpdate.errors.length)) {
+            if (!maybe(() => data.taskUpdate.errors.length)) {
               pushMessage({
                 text: i18n.t("Task successfully updated", {
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderUpdate.task.id), true);
+              navigate(taskUrl(data.taskUpdate.task.id), true);
             }
           };
           const handleDraftUpdate = (data: TaskDraftUpdate) => {
@@ -181,13 +181,13 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftTaskUpdate.task.id), true);
+              navigate(taskUrl(data.draftTaskUpdate.task.id), true);
             }
           };
           const handleDeliveryMethodUpdate = (
             data: TaskDeliveryMethodUpdate
           ) => {
-            if (!maybe(() => data.orderUpdateDelivery.errors.length)) {
+            if (!maybe(() => data.taskUpdateDelivery.errors.length)) {
               pushMessage({
                 text: i18n.t("Delivery method successfully updated", {
                   context: "notification"
@@ -200,7 +200,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 })
               });
             }
-            navigate(orderUrl(data.orderUpdateDelivery.task.id), true);
+            navigate(taskUrl(data.taskUpdateDelivery.task.id), true);
           };
           const handleTaskLineDelete = (data: TaskLineDelete) => {
             if (!maybe(() => data.draftTaskLineDelete.errors.length)) {
@@ -224,7 +224,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftTaskLinesCreate.task.id), true);
+              navigate(taskUrl(data.draftTaskLinesCreate.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not create task line", {
@@ -257,7 +257,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.orderFulfillmentCancel.task.id), true);
+              navigate(taskUrl(data.orderFulfillmentCancel.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not cancel fulfillment", {
@@ -278,7 +278,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 })
               });
               navigate(
-                orderUrl(data.orderFulfillmentUpdateTracking.task.id),
+                taskUrl(data.orderFulfillmentUpdateTracking.task.id),
                 true
               );
             } else {
@@ -296,7 +296,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                   context: "notification"
                 })
               });
-              navigate(orderUrl(data.draftTaskComplete.task.id), true);
+              navigate(taskUrl(data.draftTaskComplete.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not finalize draft", {

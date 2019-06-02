@@ -47,33 +47,33 @@ export interface TaskDetails_task_events {
   user: TaskDetails_task_events_user | null;
 }
 
-export interface TaskDetails_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskDetails_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDetails_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskDetails_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDetails_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskDetails_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskDetails_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskDetails_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskDetails_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskDetails_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskDetails_task_fulfillments_lines_orderLine {
+export interface TaskDetails_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskDetails_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskDetails_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -81,7 +81,7 @@ export interface TaskDetails_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskDetails_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskDetails_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskDetails_task_fulfillments {
@@ -115,8 +115,8 @@ export interface TaskDetails_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskDetails_task_lines_unitPrice | null;

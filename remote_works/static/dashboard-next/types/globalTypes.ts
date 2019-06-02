@@ -84,9 +84,9 @@ export enum PermissionEnum {
   IMPERSONATE_USERS = "IMPERSONATE_USERS",
   MANAGE_DISCOUNTS = "MANAGE_DISCOUNTS",
   MANAGE_MENUS = "MANAGE_MENUS",
-  MANAGE_ORDERS = "MANAGE_ORDERS",
+  MANAGE_TASKS = "MANAGE_TASKS",
   MANAGE_PAGES = "MANAGE_PAGES",
-  MANAGE_PRODUCTS = "MANAGE_PRODUCTS",
+  MANAGE_SKILLS = "MANAGE_SKILLS",
   MANAGE_SETTINGS = "MANAGE_SETTINGS",
   MANAGE_DELIVERY = "MANAGE_DELIVERY",
   MANAGE_STAFF = "MANAGE_STAFF",
@@ -200,7 +200,7 @@ export interface AuthorizationKeyInput {
 }
 
 export interface CatalogueInput {
-  products?: (string | null)[] | null;
+  skills?: (string | null)[] | null;
   categories?: (string | null)[] | null;
   collections?: (string | null)[] | null;
 }
@@ -225,7 +225,7 @@ export interface CollectionCreateInput {
   backgroundImageAlt?: string | null;
   seo?: SeoInput | null;
   publicationDate?: any | null;
-  products?: (string | null)[] | null;
+  skills?: (string | null)[] | null;
 }
 
 export interface CollectionInput {
@@ -271,7 +271,7 @@ export interface FulfillmentCreateInput {
 }
 
 export interface FulfillmentLineInput {
-  orderLineId?: string | null;
+  taskLineId?: string | null;
   quantity?: number | null;
 }
 
@@ -316,7 +316,7 @@ export interface PageInput {
 export interface SkillTypeInput {
   name?: string | null;
   hasVariants?: boolean | null;
-  productAttributes?: (string | null)[] | null;
+  skillAttributes?: (string | null)[] | null;
   variantAttributes?: (string | null)[] | null;
   isDeliveryRequired?: boolean | null;
   weight?: any | null;
@@ -337,7 +337,7 @@ export interface SaleInput {
   name?: string | null;
   type?: DiscountValueTypeEnum | null;
   value?: any | null;
-  products?: (string | null)[] | null;
+  skills?: (string | null)[] | null;
   categories?: (string | null)[] | null;
   collections?: (string | null)[] | null;
   startDate?: any | null;
@@ -402,7 +402,7 @@ export interface VoucherInput {
   endDate?: any | null;
   discountValueType?: DiscountValueTypeEnum | null;
   discountValue?: any | null;
-  products?: (string | null)[] | null;
+  skills?: (string | null)[] | null;
   collections?: (string | null)[] | null;
   categories?: (string | null)[] | null;
   minAmountSpent?: any | null;

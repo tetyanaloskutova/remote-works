@@ -27,7 +27,7 @@ export const attributeFragment = gql`
     }
   }
 `;
-export const productTypeFragment = gql`
+export const skillTypeFragment = gql`
   fragment SkillTypeFragment on SkillType {
     id
     name
@@ -37,12 +37,12 @@ export const productTypeFragment = gql`
   }
 `;
 
-export const productTypeDetailsFragment = gql`
+export const skillTypeDetailsFragment = gql`
   ${attributeFragment}
-  ${productTypeFragment}
+  ${skillTypeFragment}
   fragment SkillTypeDetailsFragment on SkillType {
     ...SkillTypeFragment
-    productAttributes {
+    skillAttributes {
       ...AttributeFragment
     }
     variantAttributes {
@@ -55,15 +55,15 @@ export const productTypeDetailsFragment = gql`
   }
 `;
 
-export const productTypeListQuery = gql`
-  ${productTypeFragment}
+export const skillTypeListQuery = gql`
+  ${skillTypeFragment}
   query SkillTypeList(
     $after: String
     $before: String
     $first: Int
     $last: Int
   ) {
-    productTypes(after: $after, before: $before, first: $first, last: $last) {
+    skillTypes(after: $after, before: $before, first: $first, last: $last) {
       edges {
         node {
           ...SkillTypeFragment
@@ -81,12 +81,12 @@ export const productTypeListQuery = gql`
 export const TypedSkillTypeListQuery = TypedQuery<
   SkillTypeList,
   SkillTypeListVariables
->(productTypeListQuery);
+>(skillTypeListQuery);
 
-export const productTypeDetailsQuery = gql`
-  ${productTypeDetailsFragment}
+export const skillTypeDetailsQuery = gql`
+  ${skillTypeDetailsFragment}
   query SkillTypeDetails($id: ID!) {
-    productType(id: $id) {
+    skillType(id: $id) {
       ...SkillTypeDetailsFragment
     }
     shop {
@@ -97,9 +97,9 @@ export const productTypeDetailsQuery = gql`
 export const TypedSkillTypeDetailsQuery = TypedQuery<
   SkillTypeDetails,
   SkillTypeDetailsVariables
->(productTypeDetailsQuery);
+>(skillTypeDetailsQuery);
 
-export const productTypeCreateDataQuery = gql`
+export const skillTypeCreateDataQuery = gql`
   query SkillTypeCreateData {
     shop {
       defaultWeightUnit
@@ -109,7 +109,7 @@ export const productTypeCreateDataQuery = gql`
 export const TypedSkillTypeCreateDataQuery = TypedQuery<
   SkillTypeCreateData,
   {}
->(productTypeCreateDataQuery);
+>(skillTypeCreateDataQuery);
 
 export const searchAttributeQuery = gql`
   ${attributeFragment}

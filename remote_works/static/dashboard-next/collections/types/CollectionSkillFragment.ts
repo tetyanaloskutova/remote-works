@@ -5,7 +5,7 @@
 // GraphQL fragment: CollectionSkillFragment
 // ====================================================
 
-export interface CollectionSkillFragment_productType {
+export interface CollectionSkillFragment_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
@@ -21,6 +21,6 @@ export interface CollectionSkillFragment {
   id: string;
   isPublished: boolean;
   name: string;
-  productType: CollectionSkillFragment_productType;
+  skillType: CollectionSkillFragment_skillType;
   thumbnail: CollectionSkillFragment_thumbnail | null;
 }

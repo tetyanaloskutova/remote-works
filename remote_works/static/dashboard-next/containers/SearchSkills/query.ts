@@ -8,7 +8,7 @@ import {
 
 export const searchSkills = gql`
   query SearchSkills($query: String!) {
-    products(first: 5, query: $query) {
+    skills(first: 5, query: $query) {
       edges {
         node {
           id

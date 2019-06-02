@@ -8,7 +8,7 @@ import Navigator from "../../components/Navigator";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
 import { getMutationState, maybe } from "../../misc";
-import { orderUrl } from "../../tasks/urls";
+import { taskUrl } from "../../tasks/urls";
 import CustomerDetailsPage from "../components/CustomerDetailsPage/CustomerDetailsPage";
 import {
   TypedRemoveCustomerMutation,
@@ -106,7 +106,7 @@ export const CustomerDetailsView: React.StatelessComponent<
                               saveButtonBar={formTransitionState}
                               onAddressManageClick={() => undefined} // TODO: add address management #3173
                               onBack={() => navigate(customerListUrl)}
-                              onRowClick={id => navigate(orderUrl(id))}
+                              onRowClick={id => navigate(taskUrl(id))}
                               onSubmit={formData =>
                                 updateCustomer({
                                   variables: {

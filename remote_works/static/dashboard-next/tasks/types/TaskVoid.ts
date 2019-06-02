@@ -53,33 +53,33 @@ export interface TaskVoid_orderVoid_task_events {
   user: TaskVoid_orderVoid_task_events_user | null;
 }
 
-export interface TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskVoid_orderVoid_task_fulfillments_lines_orderLine {
+export interface TaskVoid_orderVoid_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskVoid_orderVoid_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskVoid_orderVoid_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskVoid_orderVoid_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskVoid_orderVoid_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskVoid_orderVoid_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskVoid_orderVoid_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskVoid_orderVoid_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskVoid_orderVoid_task_lines_unitPrice | null;

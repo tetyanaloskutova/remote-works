@@ -1,13 +1,13 @@
 import * as urlJoin from "url-join";
 
-const productTypeSection = "/product-types/";
+const skillTypeSection = "/skill-types/";
 
-export const productTypeListPath = productTypeSection;
-export const productTypeListUrl = productTypeListPath;
+export const skillTypeListPath = skillTypeSection;
+export const skillTypeListUrl = skillTypeListPath;
 
-export const productTypeAddPath = urlJoin(productTypeSection, "add");
-export const productTypeAddUrl = productTypeAddPath;
+export const skillTypeAddPath = urlJoin(skillTypeSection, "add");
+export const skillTypeAddUrl = skillTypeAddPath;
 
-export const productTypePath = (id: string) => urlJoin(productTypeSection, id);
-export const productTypeUrl = (id: string) =>
-  productTypePath(encodeURIComponent(id));
+export const skillTypePath = (id: string) => urlJoin(skillTypeSection, id);
+export const skillTypeUrl = (id: string) =>
+  skillTypePath(encodeURIComponent(id));

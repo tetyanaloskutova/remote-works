@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 import { TypedMutation } from "../mutations";
-import { attributeFragment, productTypeDetailsFragment } from "./queries";
+import { attributeFragment, skillTypeDetailsFragment } from "./queries";
 import {
   AttributeCreate,
   AttributeCreateVariables
@@ -27,14 +27,14 @@ import {
   SkillTypeUpdateVariables
 } from "./types/SkillTypeUpdate";
 
-export const productTypeDeleteMutation = gql`
+export const skillTypeDeleteMutation = gql`
   mutation SkillTypeDelete($id: ID!) {
-    productTypeDelete(id: $id) {
+    skillTypeDelete(id: $id) {
       errors {
         field
         message
       }
-      productType {
+      skillType {
         id
       }
     }
@@ -43,17 +43,17 @@ export const productTypeDeleteMutation = gql`
 export const TypedSkillTypeDeleteMutation = TypedMutation<
   SkillTypeDelete,
   SkillTypeDeleteVariables
->(productTypeDeleteMutation);
+>(skillTypeDeleteMutation);
 
-export const productTypeUpdateMutation = gql`
-  ${productTypeDetailsFragment}
+export const skillTypeUpdateMutation = gql`
+  ${skillTypeDetailsFragment}
   mutation SkillTypeUpdate($id: ID!, $input: SkillTypeInput!) {
-    productTypeUpdate(id: $id, input: $input) {
+    skillTypeUpdate(id: $id, input: $input) {
       errors {
         field
         message
       }
-      productType {
+      skillType {
         ...SkillTypeDetailsFragment
       }
     }
@@ -62,17 +62,17 @@ export const productTypeUpdateMutation = gql`
 export const TypedSkillTypeUpdateMutation = TypedMutation<
   SkillTypeUpdate,
   SkillTypeUpdateVariables
->(productTypeUpdateMutation);
+>(skillTypeUpdateMutation);
 
-export const productTypeCreateMutation = gql`
-  ${productTypeDetailsFragment}
+export const skillTypeCreateMutation = gql`
+  ${skillTypeDetailsFragment}
   mutation SkillTypeCreate($input: SkillTypeInput!) {
-    productTypeCreate(input: $input) {
+    skillTypeCreate(input: $input) {
       errors {
         field
         message
       }
-      productType {
+      skillType {
         ...SkillTypeDetailsFragment
       }
     }
@@ -81,10 +81,10 @@ export const productTypeCreateMutation = gql`
 export const TypedSkillTypeCreateMutation = TypedMutation<
   SkillTypeCreate,
   SkillTypeCreateVariables
->(productTypeCreateMutation);
+>(skillTypeCreateMutation);
 
 export const attributeCreateMutation = gql`
-  ${productTypeDetailsFragment}
+  ${skillTypeDetailsFragment}
   mutation AttributeCreate(
     $id: ID!
     $input: AttributeCreateInput!
@@ -95,7 +95,7 @@ export const attributeCreateMutation = gql`
         field
         message
       }
-      productType {
+      skillType {
         ...SkillTypeDetailsFragment
       }
     }
@@ -126,14 +126,14 @@ export const TypedAttributeUpdateMutation = TypedMutation<
 >(attributeUpdateMutation);
 
 export const attributeDeleteMutation = gql`
-  ${productTypeDetailsFragment}
+  ${skillTypeDetailsFragment}
   mutation AttributeDelete($id: ID!) {
     attributeDelete(id: $id) {
       errors {
         field
         message
       }
-      productType {
+      skillType {
         ...SkillTypeDetailsFragment
       }
     }

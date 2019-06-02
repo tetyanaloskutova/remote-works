@@ -3,7 +3,7 @@ from elasticsearch_dsl.query import MultiMatch
 from ..documents import TaskDocument, SkillDocument, UserDocument
 
 
-def _search_products(phrase):
+def _search_skills(phrase):
     prod_query = MultiMatch(
         fields=['name', 'title', 'description'],
         query=phrase,
@@ -35,7 +35,7 @@ def get_search_queries(phrase):
         phrase (str): searched phrase
     """
     return {
-        'skills': _search_products(phrase),
+        'skills': _search_skills(phrase),
         'users': _search_users(phrase),
         'tasks': _search_orders(phrase)}
 

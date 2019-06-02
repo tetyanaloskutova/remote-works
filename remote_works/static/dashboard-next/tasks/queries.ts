@@ -48,8 +48,8 @@ export const fragmentTaskLine = gql`
   fragment TaskLineFragment on TaskLine {
     id
     isDeliveryRequired
-    productName
-    productSku
+    skillName
+    skillSku
     quantity
     quantityFulfilled
     unitPrice {
@@ -86,7 +86,7 @@ export const fragmentTaskDetails = gql`
       lines {
         id
         quantity
-        orderLine {
+        taskLine {
           ...TaskLineFragment
         }
       }
@@ -154,7 +154,7 @@ export const fragmentTaskDetails = gql`
   }
 `;
 
-export const orderListQuery = gql`
+export const taskListQuery = gql`
   ${fragmentAddress}
   query TaskList(
     $first: Int
@@ -202,7 +202,7 @@ export const orderListQuery = gql`
   }
 `;
 export const TypedTaskListQuery = TypedQuery<TaskList, TaskListVariables>(
-  orderListQuery
+  taskListQuery
 );
 
 export const orderDetailsQuery = gql`
@@ -227,7 +227,7 @@ export const TypedTaskDetailsQuery = TypedQuery<
 
 export const orderVariantSearchQuery = gql`
   query TaskVariantSearch($search: String!, $after: String) {
-    products(query: $search, first: 5, after: $after) {
+    skills(query: $search, first: 5, after: $after) {
       edges {
         node {
           id

@@ -125,7 +125,7 @@ export const fragmentSkill = gql`
       quantityAllocated
       stockQuantity
     }
-    productType {
+    skillType {
       id
       name
       hasVariants
@@ -192,7 +192,7 @@ export const fragmentVariant = gql`
   }
 `;
 
-const productListQuery = gql`
+const skillListQuery = gql`
   ${fragmentMoney}
   query SkillList(
     $first: Int
@@ -201,7 +201,7 @@ const productListQuery = gql`
     $before: String
     $stockAvailability: StockAvailability
   ) {
-    products(
+    skills(
       before: $before
       after: $after
       first: $first
@@ -221,7 +221,7 @@ const productListQuery = gql`
           price {
             ...Money
           }
-          productType {
+          skillType {
             id
             name
           }
@@ -239,12 +239,12 @@ const productListQuery = gql`
 export const TypedSkillListQuery = TypedQuery<
   SkillList,
   SkillListVariables
->(productListQuery);
+>(skillListQuery);
 
-const productDetailsQuery = gql`
+const skillDetailsQuery = gql`
   ${fragmentSkill}
   query SkillDetails($id: ID!) {
-    product(id: $id) {
+    skill(id: $id) {
       ...Skill
     }
   }
@@ -252,12 +252,12 @@ const productDetailsQuery = gql`
 export const TypedSkillDetailsQuery = TypedQuery<
   SkillDetails,
   SkillDetailsVariables
->(productDetailsQuery);
+>(skillDetailsQuery);
 
-const productVariantQuery = gql`
+const skillVariantQuery = gql`
   ${fragmentVariant}
   query SkillVariantDetails($id: ID!) {
-    productVariant(id: $id) {
+    skillVariant(id: $id) {
       ...SkillVariant
     }
   }
@@ -265,17 +265,17 @@ const productVariantQuery = gql`
 export const TypedSkillVariantQuery = TypedQuery<
   SkillVariantDetails,
   SkillVariantDetailsVariables
->(productVariantQuery);
+>(skillVariantQuery);
 
-const productCreateQuery = gql`
+const skillCreateQuery = gql`
   query SkillCreateData {
-    productTypes(first: 20) {
+    skillTypes(first: 20) {
       edges {
         node {
           id
           name
           hasVariants
-          productAttributes {
+          skillAttributes {
             id
             slug
             name
@@ -292,19 +292,19 @@ const productCreateQuery = gql`
   }
 `;
 export const TypedSkillCreateQuery = TypedQuery<SkillCreateData, {}>(
-  productCreateQuery
+  skillCreateQuery
 );
 
-const productVariantCreateQuery = gql`
+const skillVariantCreateQuery = gql`
   query SkillVariantCreateData($id: ID!) {
-    product(id: $id) {
+    skill(id: $id) {
       id
       images {
         id
         sortTask
         url
       }
-      productType {
+      skillType {
         id
         variantAttributes {
           id
@@ -333,11 +333,11 @@ const productVariantCreateQuery = gql`
 export const TypedSkillVariantCreateQuery = TypedQuery<
   SkillVariantCreateData,
   SkillVariantCreateDataVariables
->(productVariantCreateQuery);
+>(skillVariantCreateQuery);
 
-const productImageQuery = gql`
-  query SkillImageById($productId: ID!, $imageId: ID!) {
-    product(id: $productId) {
+const skillImageQuery = gql`
+  query SkillImageById($skillId: ID!, $imageId: ID!) {
+    skill(id: $skillId) {
       id
       mainImage: imageById(id: $imageId) {
         id
@@ -354,7 +354,7 @@ const productImageQuery = gql`
 export const TypedSkillImageQuery = TypedQuery<
   SkillImageById,
   SkillImageByIdVariables
->(productImageQuery);
+>(skillImageQuery);
 
 const categorySearch = gql`
   query CategorySearch($query: String) {

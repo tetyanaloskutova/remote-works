@@ -279,7 +279,7 @@ export const shop: (placeholderImage: string) => Home = (
     __typename: "TaskCountableConnection",
     totalCount: 1
   },
-  productTopToday: {
+  skillTopToday: {
     __typename: "SkillVariantCountableConnection",
     edges: [
       {
@@ -298,7 +298,7 @@ export const shop: (placeholderImage: string) => Home = (
             }
           ],
           id: "UHJvZHVjdFZhcmlhbnQ6NDM=",
-          product: {
+          skill: {
             __typename: "Skill",
             id: "UHJvZHVjdDo4",
             name: "Gardner-Martin",
@@ -325,7 +325,7 @@ export const shop: (placeholderImage: string) => Home = (
       }
     ]
   },
-  productsOutOfStock: {
+  skillsOutOfStock: {
     __typename: "SkillCountableConnection",
     totalCount: 0
   },

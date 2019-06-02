@@ -7,32 +7,32 @@ import { SaleType } from "./../../types/globalTypes";
 // GraphQL fragment: SaleDetailsFragment
 // ====================================================
 
-export interface SaleDetailsFragment_products_edges_node_productType {
+export interface SaleDetailsFragment_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface SaleDetailsFragment_products_edges_node_thumbnail {
+export interface SaleDetailsFragment_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface SaleDetailsFragment_products_edges_node {
+export interface SaleDetailsFragment_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
   isPublished: boolean;
-  productType: SaleDetailsFragment_products_edges_node_productType;
-  thumbnail: SaleDetailsFragment_products_edges_node_thumbnail | null;
+  skillType: SaleDetailsFragment_skills_edges_node_skillType;
+  thumbnail: SaleDetailsFragment_skills_edges_node_thumbnail | null;
 }
 
-export interface SaleDetailsFragment_products_edges {
+export interface SaleDetailsFragment_skills_edges {
   __typename: "SkillCountableEdge";
-  node: SaleDetailsFragment_products_edges_node;
+  node: SaleDetailsFragment_skills_edges_node;
 }
 
-export interface SaleDetailsFragment_products_pageInfo {
+export interface SaleDetailsFragment_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -42,8 +42,8 @@ export interface SaleDetailsFragment_products_pageInfo {
 
 export interface SaleDetailsFragment_skills {
   __typename: "SkillCountableConnection";
-  edges: SaleDetailsFragment_products_edges[];
-  pageInfo: SaleDetailsFragment_products_pageInfo;
+  edges: SaleDetailsFragment_skills_edges[];
+  pageInfo: SaleDetailsFragment_skills_pageInfo;
   totalCount: number | null;
 }
 
@@ -56,7 +56,7 @@ export interface SaleDetailsFragment_categories_edges_node {
   __typename: "Category";
   id: string;
   name: string;
-  products: SaleDetailsFragment_categories_edges_node_skills | null;
+  skills: SaleDetailsFragment_categories_edges_node_skills | null;
 }
 
 export interface SaleDetailsFragment_categories_edges {
@@ -88,7 +88,7 @@ export interface SaleDetailsFragment_collections_edges_node {
   __typename: "Collection";
   id: string;
   name: string;
-  products: SaleDetailsFragment_collections_edges_node_skills | null;
+  skills: SaleDetailsFragment_collections_edges_node_skills | null;
 }
 
 export interface SaleDetailsFragment_collections_edges {
@@ -119,7 +119,7 @@ export interface SaleDetailsFragment {
   startDate: any;
   endDate: any | null;
   value: number;
-  products: SaleDetailsFragment_skills | null;
+  skills: SaleDetailsFragment_skills | null;
   categories: SaleDetailsFragment_categories | null;
   collections: SaleDetailsFragment_collections | null;
 }

@@ -12,7 +12,7 @@ import { getTabName } from "../misc";
 import { TypedTaskDraftCreateMutation } from "../mutations";
 import { TypedTaskListQuery } from "../queries";
 import { TaskDraftCreate } from "../types/TaskDraftCreate";
-import { orderUrl } from "../urls";
+import { taskUrl } from "../urls";
 
 export interface TaskListFilters {
   status: TaskStatusFilter;
@@ -41,7 +41,7 @@ export const TaskList: React.StatelessComponent<TaskListProps> = ({
             pushMessage({
               text: i18n.t("Task draft succesfully created")
             });
-            navigate(orderUrl(data.draftTaskCreate.task.id));
+            navigate(taskUrl(data.draftTaskCreate.task.id));
           };
 
           const changeFilters = (newParams: TaskListQueryParams) =>
@@ -90,7 +90,7 @@ export const TaskList: React.StatelessComponent<TaskListProps> = ({
                             onAdd={createTask}
                             onNextPage={loadNextPage}
                             onPreviousPage={loadPreviousPage}
-                            onRowClick={id => () => navigate(orderUrl(id))}
+                            onRowClick={id => () => navigate(taskUrl(id))}
                             onAllSkills={() =>
                               changeFilters({
                                 status: undefined

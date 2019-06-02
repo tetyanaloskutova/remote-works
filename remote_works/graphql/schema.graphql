@@ -681,19 +681,19 @@ input DraftTaskInput {
 type DraftTaskLineDelete {
   errors: [Error!]
   task: Task
-  orderLine: TaskLine
+  taskLine: TaskLine
 }
 
 type DraftTaskLineUpdate {
   errors: [Error!]
   task: Task
-  orderLine: TaskLine
+  taskLine: TaskLine
 }
 
 type DraftTaskLinesCreate {
   errors: [Error!]
   task: Task!
-  orderLines: [TaskLine!]!
+  taskLines: [TaskLine!]!
 }
 
 type DraftTaskUpdate {
@@ -740,12 +740,12 @@ input FulfillmentCreateInput {
 
 type FulfillmentLine implements Node {
   id: ID!
-  orderLine: TaskLine
+  taskLine: TaskLine
   quantity: Int!
 }
 
 input FulfillmentLineInput {
-  orderLineId: ID
+  taskLineId: ID
   quantity: Int
 }
 
@@ -999,8 +999,8 @@ type Mutations {
   orderFulfillmentUpdateTracking(id: ID!, input: FulfillmentUpdateTrackingInput!): FulfillmentUpdateTracking
   orderMarkAsPaid(id: ID!): TaskMarkAsPaid
   orderRefund(amount: Decimal!, id: ID!): TaskRefund
-  orderUpdate(id: ID!, input: TaskUpdateInput!): TaskUpdate
-  orderUpdateDelivery(task: ID!, input: TaskUpdateDeliveryInput): TaskUpdateDelivery
+  taskUpdate(id: ID!, input: TaskUpdateInput!): TaskUpdate
+  taskUpdateDelivery(task: ID!, input: TaskUpdateDeliveryInput): TaskUpdateDelivery
   orderVoid(id: ID!): TaskVoid
   assignNavigation(menu: ID, navigationType: NavigationType!): AssignNavigation
   menuCreate(input: MenuCreateInput!): MenuCreate
@@ -1447,7 +1447,7 @@ enum PermissionEnum {
   IMPERSONATE_USERS
   MANAGE_DISCOUNTS
   MANAGE_MENUS
-  MANAGE_ORDERS
+  MANAGE_TASKS
   MANAGE_PAGES
   MANAGE_SKILLS
   MANAGE_DELIVERY

@@ -53,33 +53,33 @@ export interface TaskDraftCancel_draftTaskDelete_task_events {
   user: TaskDraftCancel_draftTaskDelete_task_events_user | null;
 }
 
-export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine {
+export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskDraftCancel_draftTaskDelete_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskDraftCancel_draftTaskDelete_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskDraftCancel_draftTaskDelete_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskDraftCancel_draftTaskDelete_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskDraftCancel_draftTaskDelete_task_lines_unitPrice | null;

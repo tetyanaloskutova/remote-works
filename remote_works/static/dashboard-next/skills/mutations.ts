@@ -38,10 +38,10 @@ import { VariantUpdate, VariantUpdateVariables } from "./types/VariantUpdate";
 
 import { fragmentSkill, fragmentVariant } from "./queries";
 
-export const productImageCreateMutation = gql`
+export const skillImageCreateMutation = gql`
   ${fragmentSkill}
-  mutation SkillImageCreate($product: ID!, $image: Upload!, $alt: String) {
-    productImageCreate(input: { alt: $alt, image: $image, product: $skill }) {
+  mutation SkillImageCreate($skill: ID!, $image: Upload!, $alt: String) {
+    skillImageCreate(input: { alt: $alt, image: $image, skill: $skill }) {
       errors {
         field
         message
@@ -55,11 +55,11 @@ export const productImageCreateMutation = gql`
 export const TypedSkillImageCreateMutation = TypedMutation<
   SkillImageCreate,
   SkillImageCreateVariables
->(productImageCreateMutation);
+>(skillImageCreateMutation);
 
-export const productDeleteMutation = gql`
+export const skillDeleteMutation = gql`
   mutation SkillDelete($id: ID!) {
-    productDelete(id: $id) {
+    skillDelete(id: $id) {
       errors {
         field
         message
@@ -73,11 +73,11 @@ export const productDeleteMutation = gql`
 export const TypedSkillDeleteMutation = TypedMutation<
   SkillDelete,
   SkillDeleteVariables
->(productDeleteMutation);
+>(skillDeleteMutation);
 
-export const productImagesReorder = gql`
-  mutation SkillImageReorder($productId: ID!, $imagesIds: [ID]!) {
-    productImageReorder(productId: $productId, imagesIds: $imagesIds) {
+export const skillImagesReorder = gql`
+  mutation SkillImageReorder($skillId: ID!, $imagesIds: [ID]!) {
+    skillImageReorder(skillId: $skillId, imagesIds: $imagesIds) {
       errors {
         field
         message
@@ -97,9 +97,9 @@ export const productImagesReorder = gql`
 export const TypedSkillImagesReorder = TypedMutation<
   SkillImageReorder,
   SkillImageReorderVariables
->(productImagesReorder);
+>(skillImagesReorder);
 
-export const productUpdateMutation = gql`
+export const skillUpdateMutation = gql`
   ${fragmentSkill}
   mutation SkillUpdate(
     $id: ID!
@@ -113,7 +113,7 @@ export const productUpdateMutation = gql`
     $name: String
     $price: Decimal
   ) {
-    productUpdate(
+    skillUpdate(
       id: $id
       input: {
         attributes: $attributes
@@ -140,7 +140,7 @@ export const productUpdateMutation = gql`
 export const TypedSkillUpdateMutation = TypedMutation<
   SkillUpdate,
   SkillUpdateVariables
->(productUpdateMutation);
+>(skillUpdateMutation);
 
 export const simpleSkillUpdateMutation = gql`
   ${fragmentSkill}
@@ -156,10 +156,10 @@ export const simpleSkillUpdateMutation = gql`
     $isPublished: Boolean!
     $name: String
     $price: Decimal
-    $productVariantId: ID!
-    $productVariantInput: SkillVariantInput!
+    $skillVariantId: ID!
+    $skillVariantInput: SkillVariantInput!
   ) {
-    productUpdate(
+    skillUpdate(
       id: $id
       input: {
         attributes: $attributes
@@ -181,12 +181,12 @@ export const simpleSkillUpdateMutation = gql`
         ...Skill
       }
     }
-    productVariantUpdate(id: $productVariantId, input: $productVariantInput) {
+    skillVariantUpdate(id: $skillVariantId, input: $skillVariantInput) {
       errors {
         field
         message
       }
-      productVariant {
+      skillVariant {
         ...SkillVariant
       }
     }
@@ -197,7 +197,7 @@ export const TypedSimpleSkillUpdateMutation = TypedMutation<
   SimpleSkillUpdateVariables
 >(simpleSkillUpdateMutation);
 
-export const productCreateMutation = gql`
+export const skillCreateMutation = gql`
   ${fragmentSkill}
   mutation SkillCreate(
     $attributes: [AttributeValueInput]
@@ -209,9 +209,9 @@ export const productCreateMutation = gql`
     $isPublished: Boolean!
     $name: String!
     $price: Decimal
-    $productType: ID!
+    $skillType: ID!
   ) {
-    productCreate(
+    skillCreate(
       input: {
         attributes: $attributes
         publicationDate: $publicationDate
@@ -222,7 +222,7 @@ export const productCreateMutation = gql`
         isPublished: $isPublished
         name: $name
         price: $price
-        productType: $productType
+        skillType: $skillType
       }
     ) {
       errors {
@@ -238,16 +238,16 @@ export const productCreateMutation = gql`
 export const TypedSkillCreateMutation = TypedMutation<
   SkillCreate,
   SkillCreateVariables
->(productCreateMutation);
+>(skillCreateMutation);
 
 export const variantDeleteMutation = gql`
   mutation VariantDelete($id: ID!) {
-    productVariantDelete(id: $id) {
+    skillVariantDelete(id: $id) {
       errors {
         field
         message
       }
-      productVariant {
+      skillVariant {
         id
       }
     }
@@ -269,7 +269,7 @@ export const variantUpdateMutation = gql`
     $quantity: Int
     $trackInventory: Boolean!
   ) {
-    productVariantUpdate(
+    skillVariantUpdate(
       id: $id
       input: {
         attributes: $attributes
@@ -284,7 +284,7 @@ export const variantUpdateMutation = gql`
         field
         message
       }
-      productVariant {
+      skillVariant {
         ...SkillVariant
       }
     }
@@ -301,17 +301,17 @@ export const variantCreateMutation = gql`
     $attributes: [AttributeValueInput]!
     $costPrice: Decimal
     $priceOverride: Decimal
-    $product: ID!
+    $skill: ID!
     $sku: String
     $quantity: Int
     $trackInventory: Boolean!
   ) {
-    productVariantCreate(
+    skillVariantCreate(
       input: {
         attributes: $attributes
         costPrice: $costPrice
         priceOverride: $priceOverride
-        product: $product
+        skill: $skill
         sku: $sku
         quantity: $quantity
         trackInventory: $trackInventory
@@ -321,7 +321,7 @@ export const variantCreateMutation = gql`
         field
         message
       }
-      productVariant {
+      skillVariant {
         ...SkillVariant
       }
     }
@@ -332,9 +332,9 @@ export const TypedVariantCreateMutation = TypedMutation<
   VariantCreateVariables
 >(variantCreateMutation);
 
-export const productImageDeleteMutation = gql`
+export const skillImageDeleteMutation = gql`
   mutation SkillImageDelete($id: ID!) {
-    productImageDelete(id: $id) {
+    skillImageDelete(id: $id) {
       skill {
         id
         images {
@@ -347,12 +347,12 @@ export const productImageDeleteMutation = gql`
 export const TypedSkillImageDeleteMutation = TypedMutation<
   SkillImageDelete,
   SkillImageDeleteVariables
->(productImageDeleteMutation);
+>(skillImageDeleteMutation);
 
-export const productImageUpdateMutation = gql`
+export const skillImageUpdateMutation = gql`
   ${fragmentSkill}
   mutation SkillImageUpdate($id: ID!, $alt: String!) {
-    productImageUpdate(id: $id, input: { alt: $alt }) {
+    skillImageUpdate(id: $id, input: { alt: $alt }) {
       errors {
         field
         message
@@ -366,7 +366,7 @@ export const productImageUpdateMutation = gql`
 export const TypedSkillImageUpdateMutation = TypedMutation<
   SkillImageUpdate,
   SkillImageUpdateVariables
->(productImageUpdateMutation);
+>(skillImageUpdateMutation);
 
 export const variantImageAssignMutation = gql`
   ${fragmentVariant}
@@ -376,7 +376,7 @@ export const variantImageAssignMutation = gql`
         field
         message
       }
-      productVariant {
+      skillVariant {
         ...SkillVariant
       }
     }
@@ -395,7 +395,7 @@ export const variantImageUnassignMutation = gql`
         field
         message
       }
-      productVariant {
+      skillVariant {
         ...SkillVariant
       }
     }

@@ -11,32 +11,32 @@ export interface CollectionDetails_collection_backgroundImage {
   url: string;
 }
 
-export interface CollectionDetails_collection_products_edges_node_productType {
+export interface CollectionDetails_collection_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface CollectionDetails_collection_products_edges_node_thumbnail {
+export interface CollectionDetails_collection_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface CollectionDetails_collection_products_edges_node {
+export interface CollectionDetails_collection_skills_edges_node {
   __typename: "Skill";
   id: string;
   isPublished: boolean;
   name: string;
-  productType: CollectionDetails_collection_products_edges_node_productType;
-  thumbnail: CollectionDetails_collection_products_edges_node_thumbnail | null;
+  skillType: CollectionDetails_collection_skills_edges_node_skillType;
+  thumbnail: CollectionDetails_collection_skills_edges_node_thumbnail | null;
 }
 
-export interface CollectionDetails_collection_products_edges {
+export interface CollectionDetails_collection_skills_edges {
   __typename: "SkillCountableEdge";
-  node: CollectionDetails_collection_products_edges_node;
+  node: CollectionDetails_collection_skills_edges_node;
 }
 
-export interface CollectionDetails_collection_products_pageInfo {
+export interface CollectionDetails_collection_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -46,8 +46,8 @@ export interface CollectionDetails_collection_products_pageInfo {
 
 export interface CollectionDetails_collection_skills {
   __typename: "SkillCountableConnection";
-  edges: CollectionDetails_collection_products_edges[];
-  pageInfo: CollectionDetails_collection_products_pageInfo;
+  edges: CollectionDetails_collection_skills_edges[];
+  pageInfo: CollectionDetails_collection_skills_pageInfo;
 }
 
 export interface CollectionDetails_collection {
@@ -59,7 +59,7 @@ export interface CollectionDetails_collection {
   descriptionJson: any;
   seoDescription: string | null;
   seoTitle: string | null;
-  products: CollectionDetails_collection_skills | null;
+  skills: CollectionDetails_collection_skills | null;
 }
 
 export interface CollectionDetails_shop_homepageCollection {

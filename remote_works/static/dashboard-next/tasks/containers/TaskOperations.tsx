@@ -93,20 +93,20 @@ interface TaskOperationsProps {
         TaskFulfillmentUpdateTracking,
         TaskFulfillmentUpdateTrackingVariables
       >;
-      orderPaymentCapture: PartialMutationProviderOutput<
+      taskPaymentCapture: PartialMutationProviderOutput<
         TaskCapture,
         TaskCaptureVariables
       >;
-      orderPaymentRefund: PartialMutationProviderOutput<
+      taskPaymentRefund: PartialMutationProviderOutput<
         TaskRefund,
         TaskRefundVariables
       >;
-      orderPaymentMarkAsPaid: PartialMutationProviderOutput<
+      taskPaymentMarkAsPaid: PartialMutationProviderOutput<
         TaskMarkAsPaid,
         TaskMarkAsPaidVariables
       >;
       orderVoid: PartialMutationProviderOutput<TaskVoid, TaskVoidVariables>;
-      orderUpdate: PartialMutationProviderOutput<
+      taskUpdate: PartialMutationProviderOutput<
         TaskUpdate,
         TaskUpdateVariables
       >;
@@ -126,15 +126,15 @@ interface TaskOperationsProps {
         TaskDeliveryMethodUpdate,
         TaskDeliveryMethodUpdateVariables
       >;
-      orderLineDelete: PartialMutationProviderOutput<
+      taskLineDelete: PartialMutationProviderOutput<
         TaskLineDelete,
         TaskLineDeleteVariables
       >;
-      orderLineAdd: PartialMutationProviderOutput<
+      taskLineAdd: PartialMutationProviderOutput<
         TaskLineAdd,
         TaskLineAddVariables
       >;
-      orderLineUpdate: PartialMutationProviderOutput<
+      taskLineUpdate: PartialMutationProviderOutput<
         TaskLineUpdate,
         TaskLineUpdateVariables
       >;
@@ -278,28 +278,28 @@ const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
                                                                         orderFulfillmentUpdateTracking: getMutationProviderData(
                                                                           ...updateTrackingNumber
                                                                         ),
-                                                                        orderLineAdd: getMutationProviderData(
+                                                                        taskLineAdd: getMutationProviderData(
                                                                           ...addTaskLine
                                                                         ),
-                                                                        orderLineDelete: getMutationProviderData(
+                                                                        taskLineDelete: getMutationProviderData(
                                                                           ...deleteTaskLine
                                                                         ),
-                                                                        orderLineUpdate: getMutationProviderData(
+                                                                        taskLineUpdate: getMutationProviderData(
                                                                           ...updateTaskLine
                                                                         ),
-                                                                        orderPaymentCapture: getMutationProviderData(
+                                                                        taskPaymentCapture: getMutationProviderData(
                                                                           ...paymentCapture
                                                                         ),
-                                                                        orderPaymentMarkAsPaid: getMutationProviderData(
+                                                                        taskPaymentMarkAsPaid: getMutationProviderData(
                                                                           ...markAsPaid
                                                                         ),
-                                                                        orderPaymentRefund: getMutationProviderData(
+                                                                        taskPaymentRefund: getMutationProviderData(
                                                                           ...paymentRefund
                                                                         ),
                                                                         orderDeliveryMethodUpdate: getMutationProviderData(
                                                                           ...updateDeliveryMethod
                                                                         ),
-                                                                        orderUpdate: getMutationProviderData(
+                                                                        taskUpdate: getMutationProviderData(
                                                                           ...update
                                                                         ),
                                                                         orderVoid: getMutationProviderData(

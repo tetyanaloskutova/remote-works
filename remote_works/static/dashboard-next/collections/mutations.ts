@@ -87,20 +87,20 @@ const assignCollectionSkill = gql`
   ${collectionSkillFragment}
   mutation CollectionAssignSkill(
     $collectionId: ID!
-    $productIds: [ID!]!
+    $skillIds: [ID!]!
     $first: Int
     $after: String
     $last: Int
     $before: String
   ) {
-    collectionAddSkills(collectionId: $collectionId, products: $productIds) {
+    collectionAddSkills(collectionId: $collectionId, skills: $skillIds) {
       errors {
         field
         message
       }
       collection {
         id
-        products(first: $first, after: $after, before: $before, last: $last) {
+        skills(first: $first, after: $after, before: $before, last: $last) {
           edges {
             node {
               ...CollectionSkillFragment
@@ -159,7 +159,7 @@ export const TypedCollectionRemoveMutation = TypedMutation<
 const unassignCollectionSkill = gql`
   mutation UnassignCollectionSkill(
     $collectionId: ID!
-    $productId: ID!
+    $skillId: ID!
     $first: Int
     $after: String
     $last: Int
@@ -167,7 +167,7 @@ const unassignCollectionSkill = gql`
   ) {
     collectionRemoveSkills(
       collectionId: $collectionId
-      products: [$productId]
+      skills: [$skillId]
     ) {
       errors {
         field
@@ -175,13 +175,13 @@ const unassignCollectionSkill = gql`
       }
       collection {
         id
-        products(first: $first, after: $after, before: $before, last: $last) {
+        skills(first: $first, after: $after, before: $before, last: $last) {
           edges {
             node {
               id
               isPublished
               name
-              productType {
+              skillType {
                 id
                 name
               }

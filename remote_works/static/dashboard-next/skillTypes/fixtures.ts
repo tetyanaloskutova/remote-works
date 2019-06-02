@@ -1,12 +1,12 @@
 import {
-  SkillCreateData_productTypes_edges_node,
-  SkillCreateData_productTypes_edges_node_productAttributes
-} from "../products/types/SkillCreateData";
+  SkillCreateData_skillTypes_edges_node,
+  SkillCreateData_skillTypes_edges_node_skillAttributes
+} from "../skills/types/SkillCreateData";
 import { TaxRateType } from "../types/globalTypes";
-import { SkillTypeDetails_productType } from "./types/SkillTypeDetails";
-import { SkillTypeList_productTypes_edges_node } from "./types/SkillTypeList";
+import { SkillTypeDetails_skillType } from "./types/SkillTypeDetails";
+import { SkillTypeList_skillTypes_edges_node } from "./types/SkillTypeList";
 
-export const attributes: SkillCreateData_productTypes_edges_node_productAttributes[] = [
+export const attributes: SkillCreateData_skillTypes_edges_node_skillAttributes[] = [
   {
     node: {
       __typename: "Attribute" as "Attribute",
@@ -444,9 +444,9 @@ export const attributes: SkillCreateData_productTypes_edges_node_productAttribut
   }
 ].map(edge => edge.node);
 
-export const productTypes: Array<
-  SkillCreateData_productTypes_edges_node &
-    SkillTypeList_productTypes_edges_node
+export const skillTypes: Array<
+  SkillCreateData_skillTypes_edges_node &
+    SkillTypeList_skillTypes_edges_node
 > = [
   {
     __typename: "SkillType" as "SkillType",
@@ -454,7 +454,7 @@ export const productTypes: Array<
     id: "UHJvZHVjdFR5cGU6NA==",
     isDeliveryRequired: true,
     name: "Candy",
-    productAttributes: [attributes[0]],
+    skillAttributes: [attributes[0]],
     taxRate: "FOODSTUFFS" as TaxRateType,
     variantAttributes: [attributes[1], attributes[2]]
   },
@@ -464,7 +464,7 @@ export const productTypes: Array<
     id: "UHJvZHVjdFR5cGU6NQ==",
     isDeliveryRequired: false,
     name: "E-books",
-    productAttributes: [attributes[5]],
+    skillAttributes: [attributes[5]],
     taxRate: "STANDARD" as TaxRateType,
     variantAttributes: [attributes[0], attributes[3]]
   },
@@ -474,7 +474,7 @@ export const productTypes: Array<
     id: "UHJvZHVjdFR5cGU6Mg==",
     isDeliveryRequired: true,
     name: "Mugs",
-    productAttributes: [attributes[7]],
+    skillAttributes: [attributes[7]],
     taxRate: "STANDARD" as TaxRateType,
     variantAttributes: [attributes[2], attributes[5]]
   },
@@ -484,7 +484,7 @@ export const productTypes: Array<
     id: "UHJvZHVjdFR5cGU6Mw==",
     isDeliveryRequired: true,
     name: "Coffee",
-    productAttributes: [attributes[8]],
+    skillAttributes: [attributes[8]],
     taxRate: "STANDARD" as TaxRateType,
     variantAttributes: [attributes[1], attributes[4]]
   },
@@ -494,21 +494,21 @@ export const productTypes: Array<
     id: "UHJvZHVjdFR5cGU6MQ==",
     isDeliveryRequired: true,
     name: "T-Shirt",
-    productAttributes: [attributes[4]],
+    skillAttributes: [attributes[4]],
     taxRate: "STANDARD" as TaxRateType,
     variantAttributes: [attributes[1], attributes[6]]
   }
-].map(productType => ({
+].map(skillType => ({
   __typename: "SkillType" as "SkillType",
-  ...productType
+  ...skillType
 }));
-export const productType: SkillTypeDetails_productType = {
+export const skillType: SkillTypeDetails_skillType = {
   __typename: "SkillType" as "SkillType",
   hasVariants: false,
   id: "UHJvZHVjdFR5cGU6NQ==",
   isDeliveryRequired: false,
   name: "E-books",
-  productAttributes: [
+  skillAttributes: [
     {
       __typename: "Attribute" as "Attribute",
       id: "UHJvZHVjdEF0dHJpYnV0ZTo5",

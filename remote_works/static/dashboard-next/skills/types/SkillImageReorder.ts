@@ -5,13 +5,13 @@
 // GraphQL mutation operation: SkillImageReorder
 // ====================================================
 
-export interface SkillImageRetask_productImageRetask_errors {
+export interface SkillImageRetask_skillImageRetask_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface SkillImageRetask_productImageRetask_skill_images {
+export interface SkillImageRetask_skillImageRetask_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -19,23 +19,23 @@ export interface SkillImageRetask_productImageRetask_skill_images {
   url: string;
 }
 
-export interface SkillImageRetask_productImageRetask_skill {
+export interface SkillImageRetask_skillImageRetask_skill {
   __typename: "Skill";
   id: string;
-  images: (SkillImageRetask_productImageRetask_skill_images | null)[] | null;
+  images: (SkillImageRetask_skillImageRetask_skill_images | null)[] | null;
 }
 
-export interface SkillImageRetask_productImageReorder {
+export interface SkillImageRetask_skillImageReorder {
   __typename: "SkillImageReorder";
-  errors: SkillImageRetask_productImageRetask_errors[] | null;
-  product: SkillImageRetask_productImageRetask_skill | null;
+  errors: SkillImageRetask_skillImageRetask_errors[] | null;
+  skill: SkillImageRetask_skillImageRetask_skill | null;
 }
 
 export interface SkillImageReorder {
-  productImageReorder: SkillImageRetask_productImageReorder | null;
+  skillImageReorder: SkillImageRetask_skillImageReorder | null;
 }
 
 export interface SkillImageReorderVariables {
-  productId: string;
+  skillId: string;
   imagesIds: (string | null)[];
 }

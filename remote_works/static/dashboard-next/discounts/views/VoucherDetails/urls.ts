@@ -3,7 +3,7 @@ import * as urlJoin from "url-join";
 import { voucherPath } from "../../urls";
 
 export const voucherAssignSkillsPath = (id: string) =>
-  urlJoin(voucherPath(id), "assign-products");
+  urlJoin(voucherPath(id), "assign-skills");
 export const voucherAssignSkillsUrl = (id: string) =>
   voucherAssignSkillsPath(encodeURIComponent(id));
 

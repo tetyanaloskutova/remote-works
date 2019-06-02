@@ -53,33 +53,33 @@ export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_ta
   user: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_events_user | null;
 }
 
-export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine {
+export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_ta
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_ta
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_task_lines_unitPrice | null;

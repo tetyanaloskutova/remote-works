@@ -11,32 +11,32 @@ export interface CollectionAssignSkill_collectionAddSkills_errors {
   message: string | null;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products_edges_node_productType {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products_edges_node_thumbnail {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products_edges_node {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node {
   __typename: "Skill";
   id: string;
   isPublished: boolean;
   name: string;
-  productType: CollectionAssignSkill_collectionAddSkills_collection_products_edges_node_productType;
-  thumbnail: CollectionAssignSkill_collectionAddSkills_collection_products_edges_node_thumbnail | null;
+  skillType: CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node_skillType;
+  thumbnail: CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node_thumbnail | null;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products_edges {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills_edges {
   __typename: "SkillCountableEdge";
-  node: CollectionAssignSkill_collectionAddSkills_collection_products_edges_node;
+  node: CollectionAssignSkill_collectionAddSkills_collection_skills_edges_node;
 }
 
-export interface CollectionAssignSkill_collectionAddSkills_collection_products_pageInfo {
+export interface CollectionAssignSkill_collectionAddSkills_collection_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -46,14 +46,14 @@ export interface CollectionAssignSkill_collectionAddSkills_collection_products_p
 
 export interface CollectionAssignSkill_collectionAddSkills_collection_skills {
   __typename: "SkillCountableConnection";
-  edges: CollectionAssignSkill_collectionAddSkills_collection_products_edges[];
-  pageInfo: CollectionAssignSkill_collectionAddSkills_collection_products_pageInfo;
+  edges: CollectionAssignSkill_collectionAddSkills_collection_skills_edges[];
+  pageInfo: CollectionAssignSkill_collectionAddSkills_collection_skills_pageInfo;
 }
 
 export interface CollectionAssignSkill_collectionAddSkills_collection {
   __typename: "Collection";
   id: string;
-  products: CollectionAssignSkill_collectionAddSkills_collection_skills | null;
+  skills: CollectionAssignSkill_collectionAddSkills_collection_skills | null;
 }
 
 export interface CollectionAssignSkill_collectionAddSkills {
@@ -68,7 +68,7 @@ export interface CollectionAssignSkill {
 
 export interface CollectionAssignSkillVariables {
   collectionId: string;
-  productIds: string[];
+  skillIds: string[];
   first?: number | null;
   after?: string | null;
   last?: number | null;

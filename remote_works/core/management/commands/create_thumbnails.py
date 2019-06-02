@@ -12,9 +12,9 @@ class Command(BaseCommand):
     help = 'Generate thumbnails for all images'
 
     def handle(self, *args, **options):
-        self.warm_products()
+        self.warm_skills()
 
-    def warm_products(self):
+    def warm_skills(self):
         self.stdout.write('Skills thumbnails generation:')
         warmer = VersatileImageFieldWarmer(
             instance_or_queryset=SkillImage.objects.all(),

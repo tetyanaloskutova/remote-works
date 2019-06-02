@@ -33,7 +33,7 @@ export const collectionDetailsFragment = gql`
   }
 `;
 
-// This fragment is used to make sure that product's fields that are returned
+// This fragment is used to make sure that skill's fields that are returned
 // are always the same - fixes apollo cache
 // https://github.com/apollographql/apollo-client/issues/2496
 // https://github.com/apollographql/apollo-client/issues/3468
@@ -42,7 +42,7 @@ export const collectionSkillFragment = gql`
     id
     isPublished
     name
-    productType {
+    skillType {
       id
       name
     }
@@ -95,7 +95,7 @@ export const collectionDetails = gql`
   ) {
     collection(id: $id) {
       ...CollectionDetailsFragment
-      products(first: $first, after: $after, before: $before, last: $last) {
+      skills(first: $first, after: $after, before: $before, last: $last) {
         edges {
           node {
             ...CollectionSkillFragment

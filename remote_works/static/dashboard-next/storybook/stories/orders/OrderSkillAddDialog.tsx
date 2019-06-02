@@ -3,7 +3,7 @@ import * as React from "react";
 
 import * as placeholderImage from "../../../../images/placeholder60x60.png";
 import TaskSkillAddDialog from "../../../tasks/components/TaskSkillAddDialog";
-import { orderLineSearch } from "../../../tasks/fixtures";
+import { taskLineSearch } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
 storiesOf("Tasks / TaskSkillAddDialog", module)
@@ -18,6 +18,6 @@ storiesOf("Tasks / TaskSkillAddDialog", module)
       hasMore={false}
       onFetch={() => undefined}
       onFetchMore={() => undefined}
-      skills={orderLineSearch(placeholderImage)}
+      skills={taskLineSearch(placeholderImage)}
     />
   ));

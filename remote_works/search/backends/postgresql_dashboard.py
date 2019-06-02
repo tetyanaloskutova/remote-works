@@ -3,10 +3,10 @@ from django.contrib.postgres.search import (
 
 from ...account.models import User
 from ...task.models import Task
-from ...product.models import Skill
+from ...skill.models import Skill
 
 
-def search_products(phrase):
+def search_skills(phrase):
     """Return matching skills for dashboard views."""
     sv = (SearchVector('name', weight='A') +
           SearchVector('description', weight='B'))
@@ -60,6 +60,6 @@ def search(phrase):
         phrase (str): searched phrase
     """
     return {
-        'skills': search_products(phrase),
+        'skills': search_skills(phrase),
         'tasks': search_orders(phrase),
         'users': search_users(phrase)}

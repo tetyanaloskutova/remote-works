@@ -53,33 +53,33 @@ export interface TaskLineAdd_draftTaskLinesCreate_task_events {
   user: TaskLineAdd_draftTaskLinesCreate_task_events_user | null;
 }
 
-export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice {
+export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine {
+export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -87,7 +87,7 @@ export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_orderLine | null;
+  taskLine: TaskLineAdd_draftTaskLinesCreate_task_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskLineAdd_draftTaskLinesCreate_task_fulfillments {
@@ -121,8 +121,8 @@ export interface TaskLineAdd_draftTaskLinesCreate_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskLineAdd_draftTaskLinesCreate_task_lines_unitPrice | null;

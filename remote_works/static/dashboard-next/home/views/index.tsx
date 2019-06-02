@@ -3,7 +3,7 @@ import * as React from "react";
 import { UserContext } from "../../auth";
 import Navigator from "../../components/Navigator";
 import { maybe } from "../../misc";
-import { orderListUrl } from "../../tasks/urls";
+import { taskListUrl } from "../../tasks/urls";
 import { skillListUrl, skillVariantEditUrl } from "../../skills/urls";
 import { TaskStatusFilter, StockAvailability } from "../../types/globalTypes";
 import HomePage from "../components/HomePage";
@@ -30,14 +30,14 @@ const HomeSection = () => (
                 }
                 onTasksToCaptureClick={() =>
                   navigate(
-                    orderListUrl({
+                    taskListUrl({
                       status: TaskStatusFilter.READY_TO_CAPTURE
                     })
                   )
                 }
                 onTasksToFulfillClick={() =>
                   navigate(
-                    orderListUrl({
+                    taskListUrl({
                       status: TaskStatusFilter.READY_TO_FULFILL
                     })
                   )

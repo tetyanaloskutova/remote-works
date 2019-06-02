@@ -163,7 +163,7 @@ const styles = (theme: Theme) =>
         },
         "&-block": {
           "&--blockquote": {
-            borderLeft: `2px solid ${theme.palette.grey[300]}`,
+            btaskLeft: `2px solid ${theme.palette.grey[300]}`,
             margin: 0,
             padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
           }

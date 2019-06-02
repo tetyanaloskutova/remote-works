@@ -5,30 +5,30 @@
 // GraphQL query operation: SearchSkills
 // ====================================================
 
-export interface SearchSkills_products_edges_node_thumbnail {
+export interface SearchSkills_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface SearchSkills_products_edges_node {
+export interface SearchSkills_skills_edges_node {
   __typename: "Skill";
   id: string;
-  thumbnail: SearchSkills_products_edges_node_thumbnail | null;
+  thumbnail: SearchSkills_skills_edges_node_thumbnail | null;
   name: string;
 }
 
-export interface SearchSkills_products_edges {
+export interface SearchSkills_skills_edges {
   __typename: "SkillCountableEdge";
-  node: SearchSkills_products_edges_node;
+  node: SearchSkills_skills_edges_node;
 }
 
 export interface SearchSkills_skills {
   __typename: "SkillCountableConnection";
-  edges: SearchSkills_products_edges[];
+  edges: SearchSkills_skills_edges[];
 }
 
 export interface SearchSkills {
-  products: SearchSkills_skills | null;
+  skills: SearchSkills_skills | null;
 }
 
 export interface SearchSkillsVariables {

@@ -24,7 +24,7 @@ exports[`Storyshots Categories / CategorySkills when loading data 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Add product
+            Add skill
           </span>
         </button>
       </div>
@@ -207,7 +207,7 @@ exports[`Storyshots Categories / CategorySkills with clickable rows 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Add product
+            Add skill
           </span>
         </button>
       </div>
@@ -465,7 +465,7 @@ exports[`Storyshots Categories / CategorySkills with initial data 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Add product
+            Add skill
           </span>
         </button>
       </div>
@@ -723,7 +723,7 @@ exports[`Storyshots Categories / CategorySkills without initial data 1`] = `
           <span
             class="MuiButton-label-id"
           >
-            Add product
+            Add skill
           </span>
         </button>
       </div>
@@ -11654,7 +11654,7 @@ Ctrl + K"
               <span
                 class="MuiButton-label-id"
               >
-                Add product
+                Add skill
               </span>
             </button>
           </div>
@@ -13581,7 +13581,7 @@ Ctrl + K"
                   <span
                     class="MuiButton-label-id"
                   >
-                    Assign product
+                    Assign skill
                   </span>
                 </button>
               </div>
@@ -14677,7 +14677,7 @@ Ctrl + K"
                   <span
                     class="MuiButton-label-id"
                   >
-                    Assign product
+                    Assign skill
                   </span>
                 </button>
               </div>
@@ -15850,7 +15850,7 @@ Ctrl + K"
                   <span
                     class="MuiButton-label-id"
                   >
-                    Assign product
+                    Assign skill
                   </span>
                 </button>
               </div>
@@ -28296,7 +28296,7 @@ exports[`Storyshots Views / Discounts / Sale details skills 1`] = `
                   <span
                     class="MuiButton-label-id"
                   >
-                    Assign products
+                    Assign skills
                   </span>
                 </button>
               </div>
@@ -29866,7 +29866,7 @@ exports[`Storyshots Views / Discounts / Voucher create default 1`] = `
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
-                      If this option is disabled, discount will be counted for every eligible product
+                      If this option is disabled, discount will be counted for every eligible skill
                     </span>
                   </div>
                 </span>
@@ -30376,7 +30376,7 @@ exports[`Storyshots Views / Discounts / Voucher create form errors 1`] = `
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
-                      If this option is disabled, discount will be counted for every eligible product
+                      If this option is disabled, discount will be counted for every eligible skill
                     </span>
                   </div>
                 </span>
@@ -30880,7 +30880,7 @@ exports[`Storyshots Views / Discounts / Voucher details default 1`] = `
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
-                      If this option is disabled, discount will be counted for every eligible product
+                      If this option is disabled, discount will be counted for every eligible skill
                     </span>
                   </div>
                 </span>
@@ -31528,7 +31528,7 @@ exports[`Storyshots Views / Discounts / Voucher details form errors 1`] = `
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
-                      If this option is disabled, discount will be counted for every eligible product
+                      If this option is disabled, discount will be counted for every eligible skill
                     </span>
                   </div>
                 </span>
@@ -32178,7 +32178,7 @@ exports[`Storyshots Views / Discounts / Voucher details loading 1`] = `
                     <span
                       class="MuiTypography-root-id MuiTypography-caption-id"
                     >
-                      If this option is disabled, discount will be counted for every eligible product
+                      If this option is disabled, discount will be counted for every eligible skill
                     </span>
                   </div>
                 </span>
@@ -33391,7 +33391,7 @@ exports[`Storyshots Views / HomePage default 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
             >
-              Top products
+              Top skills
             </span>
             <div
               class="CardTitle-toolbar-id"
@@ -34063,7 +34063,7 @@ exports[`Storyshots Views / HomePage loading 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
             >
-              Top products
+              Top skills
             </span>
             <div
               class="CardTitle-toolbar-id"
@@ -34428,7 +34428,7 @@ exports[`Storyshots Views / HomePage no data 1`] = `
             <span
               class="MuiTypography-root-id MuiTypography-body1-id CardTitle-title-id"
             >
-              Top products
+              Top skills
             </span>
             <div
               class="CardTitle-toolbar-id"
@@ -48390,7 +48390,7 @@ exports[`Storyshots Views / Tasks / Task draft default 1`] = `
                 <span
                   class="MuiButton-label-id"
                 >
-                  Add products
+                  Add skills
                 </span>
               </button>
             </div>
@@ -49097,7 +49097,7 @@ exports[`Storyshots Views / Tasks / Task draft loading 1`] = `
                 <span
                   class="MuiButton-label-id"
                 >
-                  Add products
+                  Add skills
                 </span>
               </button>
             </div>
@@ -49613,7 +49613,7 @@ exports[`Storyshots Views / Tasks / Task draft without lines 1`] = `
                 <span
                   class="MuiButton-label-id"
                 >
-                  Add products
+                  Add skills
                 </span>
               </button>
             </div>
@@ -57826,7 +57826,7 @@ exports[`Storyshots Views / Skill types / Skill types list default 1`] = `
               <span
                 class="MuiTypography-root-id MuiTypography-caption-id"
               >
-                Simple product
+                Simple skill
               </span>
             </td>
             <td
@@ -57850,7 +57850,7 @@ exports[`Storyshots Views / Skill types / Skill types list default 1`] = `
               <span
                 class="MuiTypography-root-id MuiTypography-caption-id"
               >
-                Simple product
+                Simple skill
               </span>
             </td>
             <td
@@ -58142,7 +58142,7 @@ exports[`Storyshots Views / Skills / Create skill When loading 1`] = `
         <h2
           class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
         >
-          Add product
+          Add skill
         </h2>
         <div
           class="ExtendedPageHeader-action-id"
@@ -59044,7 +59044,7 @@ exports[`Storyshots Views / Skills / Create skill default 1`] = `
         <h2
           class="MuiTypography-root-id MuiTypography-title-id Component-title-id"
         >
-          Add product
+          Add skill
         </h2>
         <div
           class="ExtendedPageHeader-action-id"
@@ -72005,7 +72005,7 @@ exports[`Storyshots Views / Staff / Staff member details loading 1`] = `
                       class="MuiPrivateSwitchBase-input-id"
                       data-indeterminate="false"
                       disabled=""
-                      name="MANAGE_ORDERS"
+                      name="MANAGE_TASKS"
                       type="checkbox"
                     />
                   </span>
@@ -72077,7 +72077,7 @@ exports[`Storyshots Views / Staff / Staff member details loading 1`] = `
                       class="MuiPrivateSwitchBase-input-id"
                       data-indeterminate="false"
                       disabled=""
-                      name="MANAGE_PRODUCTS"
+                      name="MANAGE_SKILLS"
                       type="checkbox"
                     />
                   </span>
@@ -72085,7 +72085,7 @@ exports[`Storyshots Views / Staff / Staff member details loading 1`] = `
                 <span
                   class="MuiTypography-root-id MuiTypography-body1-id MuiFormControlLabel-label-id MuiFormControlLabel-disabled-id"
                 >
-                  Manage products
+                  Manage skills
                 </span>
               </label>
               <label
@@ -72763,7 +72763,7 @@ exports[`Storyshots Views / Staff / Staff member details not admin 1`] = `
                       checked=""
                       class="MuiPrivateSwitchBase-input-id"
                       data-indeterminate="false"
-                      name="MANAGE_ORDERS"
+                      name="MANAGE_TASKS"
                       type="checkbox"
                     />
                   </span>
@@ -72833,7 +72833,7 @@ exports[`Storyshots Views / Staff / Staff member details not admin 1`] = `
                       checked=""
                       class="MuiPrivateSwitchBase-input-id"
                       data-indeterminate="false"
-                      name="MANAGE_PRODUCTS"
+                      name="MANAGE_SKILLS"
                       type="checkbox"
                     />
                   </span>
@@ -72841,7 +72841,7 @@ exports[`Storyshots Views / Staff / Staff member details not admin 1`] = `
                 <span
                   class="MuiTypography-root-id MuiTypography-body1-id MuiFormControlLabel-label-id"
                 >
-                  Manage products
+                  Manage skills
                 </span>
               </label>
               <label

@@ -25,32 +25,32 @@ export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_minAmountSpen
   amount: number;
 }
 
-export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node_productType {
+export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node_thumbnail {
+export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node {
+export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
-  productType: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node_productType;
+  skillType: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node_skillType;
   isPublished: boolean;
-  thumbnail: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node_thumbnail | null;
+  thumbnail: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node_thumbnail | null;
 }
 
-export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges {
+export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges {
   __typename: "SkillCountableEdge";
-  node: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges_node;
+  node: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges_node;
 }
 
-export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_pageInfo {
+export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -60,9 +60,9 @@ export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_page
 
 export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills {
   __typename: "SkillCountableConnection";
-  edges: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_edges[];
+  edges: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_edges[];
   totalCount: number | null;
-  pageInfo: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_products_pageInfo;
+  pageInfo: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills_pageInfo;
 }
 
 export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections_edges_node_skills {
@@ -74,7 +74,7 @@ export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections_e
   __typename: "Collection";
   id: string;
   name: string;
-  products: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections_edges_node_skills | null;
+  skills: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections_edges_node_skills | null;
 }
 
 export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections_edges {
@@ -106,7 +106,7 @@ export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_categories_ed
   __typename: "Category";
   id: string;
   name: string;
-  products: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_categories_edges_node_skills | null;
+  skills: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_categories_edges_node_skills | null;
 }
 
 export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher_categories_edges {
@@ -144,7 +144,7 @@ export interface VoucherCataloguesAdd_voucherCataloguesAdd_voucher {
   code: string;
   used: number;
   applyOncePerTask: boolean;
-  products: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills | null;
+  skills: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_skills | null;
   collections: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_collections | null;
   categories: VoucherCataloguesAdd_voucherCataloguesAdd_voucher_categories | null;
 }

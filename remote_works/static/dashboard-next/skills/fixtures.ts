@@ -3,7 +3,7 @@ import { SkillDetails_skill } from "./types/SkillDetails";
 import { SkillVariant } from "./types/SkillVariant";
 import { SkillVariantCreateData_skill } from "./types/SkillVariantCreateData";
 
-export const product: (
+export const skill: (
   placeholderImage: string
 ) => SkillDetails_skill &
   SkillVariantCreateData_skill = placeholderImage => ({
@@ -181,7 +181,7 @@ export const product: (
     currency: "NZD",
     localized: "339.39 NZD"
   },
-  productType: {
+  skillType: {
     __typename: "SkillType",
     hasVariants: true,
     id: "pt76406",
@@ -431,7 +431,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 6, stop: 18 },
     name: "Gorgeous Frozen Chips",
     price: { amount: 274.99389477595827, currency: "XAG" },
-    productType: {
+    skillType: {
       hasVariants: true,
       id: "pt41284",
       name: "Awesome Wooden Pizza"
@@ -592,7 +592,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 4, stop: 19 },
     name: "Handcrafted Wooden Towels",
     price: { amount: 432.2991706153576, currency: "ZWL" },
-    productType: { hasVariants: false, id: "pt29020", name: "Future" },
+    skillType: { hasVariants: false, id: "pt29020", name: "Future" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 432.2991706153576, currency: "ZWL" },
@@ -789,7 +789,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 3, stop: 18 },
     name: "Handcrafted Metal Cheese",
     price: { amount: 688.3543328975433, currency: "XDR" },
-    productType: { hasVariants: true, id: "pt23508", name: "SMS" },
+    skillType: { hasVariants: true, id: "pt23508", name: "SMS" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 688.3543328975433, currency: "XDR" },
@@ -997,7 +997,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 4, stop: 19 },
     name: "Refined Rubber Keyboard",
     price: { amount: 540.3817687240911, currency: "SLL" },
-    productType: { hasVariants: false, id: "pt20625", name: "Virtual" },
+    skillType: { hasVariants: false, id: "pt20625", name: "Virtual" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 540.3817687240911, currency: "SLL" },
@@ -1214,7 +1214,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 6, stop: 17 },
     name: "Gorgeous Metal Gloves",
     price: { amount: 4.359138839276078, currency: "AMD" },
-    productType: { hasVariants: true, id: "pt91547", name: "Vermont" },
+    skillType: { hasVariants: true, id: "pt91547", name: "Vermont" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 4.359138839276078, currency: "AMD" },
@@ -1470,7 +1470,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 1, stop: 15 },
     name: "Small Cotton Shirt",
     price: { amount: 538.0974149450597, currency: "GMD" },
-    productType: { hasVariants: false, id: "pt69941", name: "Gorgeous" },
+    skillType: { hasVariants: false, id: "pt69941", name: "Gorgeous" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 538.0974149450597, currency: "GMD" },
@@ -1665,7 +1665,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 0, stop: 4 },
     name: "Fantastic Cotton Tuna",
     price: { amount: 56.90596710694962, currency: "CVE" },
-    productType: { hasVariants: true, id: "pt41677", name: "TCP" },
+    skillType: { hasVariants: true, id: "pt41677", name: "TCP" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 56.90596710694962, currency: "CVE" },
@@ -1774,7 +1774,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 0, stop: 18 },
     name: "Tasty Steel Pants",
     price: { amount: 981.0598640464501, currency: "XAG" },
-    productType: { hasVariants: true, id: "pt93233", name: "Buckinghamshire" },
+    skillType: { hasVariants: true, id: "pt93233", name: "Buckinghamshire" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 981.0598640464501, currency: "XAG" },
@@ -1981,7 +1981,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 0, stop: 11 },
     name: "Ergonomic Cotton Shoes",
     price: { amount: 449.93166054829857, currency: "WST" },
-    productType: { hasVariants: true, id: "pt53386", name: "Jewelery" },
+    skillType: { hasVariants: true, id: "pt53386", name: "Jewelery" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 449.93166054829857, currency: "WST" },
@@ -2113,7 +2113,7 @@ export const skills = (placeholderImage: string) => [
     margin: { start: 4, stop: 17 },
     name: "Unbranded Steel Tuna",
     price: { amount: 590.5928694420302, currency: "MGA" },
-    productType: { hasVariants: true, id: "pt48315", name: "Agent" },
+    skillType: { hasVariants: true, id: "pt48315", name: "Agent" },
     publicationDate: null,
     purchaseCost: {
       start: { amount: 590.5928694420302, currency: "MGA" },
@@ -2287,7 +2287,7 @@ export const variant = (placeholderImage: string): SkillVariant => ({
     amount: 100,
     currency: "USD"
   },
-  product: {
+  skill: {
     __typename: "Skill",
     id: "prod1",
     images: [
@@ -2419,6 +2419,6 @@ export const variant = (placeholderImage: string): SkillVariant => ({
 export const variantImages = (placeholderImage: string) =>
   variant(placeholderImage).images;
 export const variantSkillImages = (placeholderImage: string) =>
-  variant(placeholderImage).product.images;
+  variant(placeholderImage).skill.images;
 export const variantSiblings = (placeholderImage: string) =>
-  variant(placeholderImage).product.variants;
+  variant(placeholderImage).skill.variants;

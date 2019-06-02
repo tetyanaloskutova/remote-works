@@ -4,7 +4,7 @@ import { Route, RouteComponentProps, Switch } from "react-router-dom";
 
 import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
-import { orderListPath, orderPath } from "./urls";
+import { taskListPath, taskPath } from "./urls";
 import TaskDetailsComponent from "./views/TaskDetails";
 import TaskListComponent, { TaskListQueryParams } from "./views/TaskList";
 
@@ -30,8 +30,8 @@ const Component = () => (
   <>
     <WindowTitle title={i18n.t("Tasks")} />
     <Switch>
-      <Route exact path={orderListPath} component={TaskList} />
-      <Route path={orderPath(":id")} component={TaskDetails} />
+      <Route exact path={taskListPath} component={TaskList} />
+      <Route path={taskPath(":id")} component={TaskDetails} />
     </Switch>
   </>
 );

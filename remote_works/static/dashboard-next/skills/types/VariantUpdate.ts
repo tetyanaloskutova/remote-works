@@ -7,59 +7,59 @@ import { AttributeValueInput } from "./../../types/globalTypes";
 // GraphQL mutation operation: VariantUpdate
 // ====================================================
 
-export interface VariantUpdate_productVariantUpdate_errors {
+export interface VariantUpdate_skillVariantUpdate_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_attributes_attribute_values {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_attributes_attribute {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_attributes_attribute {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (VariantUpdate_productVariantUpdate_productVariant_attributes_attribute_values | null)[] | null;
+  values: (VariantUpdate_skillVariantUpdate_skillVariant_attributes_attribute_values | null)[] | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_attributes_value {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_attributes_value {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_attributes {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_attributes {
   __typename: "SelectedAttribute";
-  attribute: VariantUpdate_productVariantUpdate_productVariant_attributes_attribute;
-  value: VariantUpdate_productVariantUpdate_productVariant_attributes_value;
+  attribute: VariantUpdate_skillVariantUpdate_skillVariant_attributes_attribute;
+  value: VariantUpdate_skillVariantUpdate_skillVariant_attributes_value;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_costPrice {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_costPrice {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_images {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_priceOverride {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_priceOverride {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_skill_images {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -67,56 +67,56 @@ export interface VariantUpdate_productVariantUpdate_productVariant_skill_images 
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_skill_thumbnail {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_skill_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_skill_variants_images {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_skill_variants_images {
   __typename: "SkillImage";
   id: string;
   url: string;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_skill_variants {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_skill_variants {
   __typename: "SkillVariant";
   id: string;
   name: string;
   sku: string;
-  images: (VariantUpdate_productVariantUpdate_productVariant_skill_variants_images | null)[] | null;
+  images: (VariantUpdate_skillVariantUpdate_skillVariant_skill_variants_images | null)[] | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant_skill {
+export interface VariantUpdate_skillVariantUpdate_skillVariant_skill {
   __typename: "Skill";
   id: string;
-  images: (VariantUpdate_productVariantUpdate_productVariant_skill_images | null)[] | null;
+  images: (VariantUpdate_skillVariantUpdate_skillVariant_skill_images | null)[] | null;
   name: string;
-  thumbnail: VariantUpdate_productVariantUpdate_productVariant_skill_thumbnail | null;
-  variants: (VariantUpdate_productVariantUpdate_productVariant_skill_variants | null)[] | null;
+  thumbnail: VariantUpdate_skillVariantUpdate_skillVariant_skill_thumbnail | null;
+  variants: (VariantUpdate_skillVariantUpdate_skillVariant_skill_variants | null)[] | null;
 }
 
-export interface VariantUpdate_productVariantUpdate_productVariant {
+export interface VariantUpdate_skillVariantUpdate_skillVariant {
   __typename: "SkillVariant";
   id: string;
-  attributes: VariantUpdate_productVariantUpdate_productVariant_attributes[];
-  costPrice: VariantUpdate_productVariantUpdate_productVariant_costPrice | null;
-  images: (VariantUpdate_productVariantUpdate_productVariant_images | null)[] | null;
+  attributes: VariantUpdate_skillVariantUpdate_skillVariant_attributes[];
+  costPrice: VariantUpdate_skillVariantUpdate_skillVariant_costPrice | null;
+  images: (VariantUpdate_skillVariantUpdate_skillVariant_images | null)[] | null;
   name: string;
-  priceOverride: VariantUpdate_productVariantUpdate_productVariant_priceOverride | null;
-  product: VariantUpdate_productVariantUpdate_productVariant_product;
+  priceOverride: VariantUpdate_skillVariantUpdate_skillVariant_priceOverride | null;
+  skill: VariantUpdate_skillVariantUpdate_skillVariant_skill;
   sku: string;
   quantity: number;
   quantityAllocated: number;
 }
 
-export interface VariantUpdate_productVariantUpdate {
+export interface VariantUpdate_skillVariantUpdate {
   __typename: "SkillVariantUpdate";
-  errors: VariantUpdate_productVariantUpdate_errors[] | null;
-  productVariant: VariantUpdate_productVariantUpdate_productVariant | null;
+  errors: VariantUpdate_skillVariantUpdate_errors[] | null;
+  skillVariant: VariantUpdate_skillVariantUpdate_skillVariant | null;
 }
 
 export interface VariantUpdate {
-  productVariantUpdate: VariantUpdate_productVariantUpdate | null;
+  skillVariantUpdate: VariantUpdate_skillVariantUpdate | null;
 }
 
 export interface VariantUpdateVariables {

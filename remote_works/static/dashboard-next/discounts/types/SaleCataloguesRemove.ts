@@ -13,32 +13,32 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_errors {
   message: string | null;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node_productType {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node_thumbnail {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
   isPublished: boolean;
-  productType: SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node_productType;
-  thumbnail: SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node_thumbnail | null;
+  skillType: SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node_skillType;
+  thumbnail: SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node_thumbnail | null;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges {
   __typename: "SkillCountableEdge";
-  node: SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges_node;
+  node: SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges_node;
 }
 
-export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_pageInfo {
+export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -48,8 +48,8 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_products_pageInf
 
 export interface SaleCataloguesRemove_saleCataloguesRemove_sale_skills {
   __typename: "SkillCountableConnection";
-  edges: SaleCataloguesRemove_saleCataloguesRemove_sale_products_edges[];
-  pageInfo: SaleCataloguesRemove_saleCataloguesRemove_sale_products_pageInfo;
+  edges: SaleCataloguesRemove_saleCataloguesRemove_sale_skills_edges[];
+  pageInfo: SaleCataloguesRemove_saleCataloguesRemove_sale_skills_pageInfo;
   totalCount: number | null;
 }
 
@@ -62,7 +62,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges
   __typename: "Category";
   id: string;
   name: string;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_skills | null;
+  skills: SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges_node_skills | null;
 }
 
 export interface SaleCataloguesRemove_saleCataloguesRemove_sale_categories_edges {
@@ -94,7 +94,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edge
   __typename: "Collection";
   id: string;
   name: string;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_skills | null;
+  skills: SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges_node_skills | null;
 }
 
 export interface SaleCataloguesRemove_saleCataloguesRemove_sale_collections_edges {
@@ -125,7 +125,7 @@ export interface SaleCataloguesRemove_saleCataloguesRemove_sale {
   startDate: any;
   endDate: any | null;
   value: number;
-  products: SaleCataloguesRemove_saleCataloguesRemove_sale_skills | null;
+  skills: SaleCataloguesRemove_saleCataloguesRemove_sale_skills | null;
   categories: SaleCataloguesRemove_saleCataloguesRemove_sale_categories | null;
   collections: SaleCataloguesRemove_saleCataloguesRemove_sale_collections | null;
 }

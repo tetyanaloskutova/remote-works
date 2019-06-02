@@ -7,19 +7,19 @@ import { TaxRateType } from "./../../types/globalTypes";
 // GraphQL fragment: SkillTypeDetailsFragment
 // ====================================================
 
-export interface SkillTypeDetailsFragment_productAttributes_values {
+export interface SkillTypeDetailsFragment_skillAttributes_values {
   __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
-export interface SkillTypeDetailsFragment_productAttributes {
+export interface SkillTypeDetailsFragment_skillAttributes {
   __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
-  values: (SkillTypeDetailsFragment_productAttributes_values | null)[] | null;
+  values: (SkillTypeDetailsFragment_skillAttributes_values | null)[] | null;
 }
 
 export interface SkillTypeDetailsFragment_variantAttributes_values {
@@ -50,7 +50,7 @@ export interface SkillTypeDetailsFragment {
   hasVariants: boolean;
   isDeliveryRequired: boolean;
   taxRate: TaxRateType | null;
-  productAttributes: (SkillTypeDetailsFragment_productAttributes | null)[] | null;
+  skillAttributes: (SkillTypeDetailsFragment_skillAttributes | null)[] | null;
   variantAttributes: (SkillTypeDetailsFragment_variantAttributes | null)[] | null;
   weight: SkillTypeDetailsFragment_weight | null;
 }

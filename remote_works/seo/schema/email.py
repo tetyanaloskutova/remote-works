@@ -57,7 +57,7 @@ def get_task_confirmation_markup(task):
             '@type': 'ViewAction',
             'url': task_url
         },
-        'orderStatus': 'http://schema.org/TaskProcessing',
+        'taskStatus': 'http://schema.org/TaskProcessing',
         'orderDate': task.created}
 
     lines = task.lines.prefetch_related('variant')

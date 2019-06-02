@@ -32,8 +32,8 @@ export default $(document).ready((e) => {
 
   // Function for update skill image height
   function updateSkillImageHeight() {
-    let productImageWidth = $('.skill-image').width();
-    $('.skill-image').css({'height': productImageWidth + 'px'});
+    let skillImageWidth = $('.skill-image').width();
+    $('.skill-image').css({'height': skillImageWidth + 'px'});
   }
 
   // Update skill-image height when window is initialized

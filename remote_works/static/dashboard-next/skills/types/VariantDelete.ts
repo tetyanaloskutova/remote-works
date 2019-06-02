@@ -5,25 +5,25 @@
 // GraphQL mutation operation: VariantDelete
 // ====================================================
 
-export interface VariantDelete_productVariantDelete_errors {
+export interface VariantDelete_skillVariantDelete_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface VariantDelete_productVariantDelete_productVariant {
+export interface VariantDelete_skillVariantDelete_skillVariant {
   __typename: "SkillVariant";
   id: string;
 }
 
-export interface VariantDelete_productVariantDelete {
+export interface VariantDelete_skillVariantDelete {
   __typename: "SkillVariantDelete";
-  errors: VariantDelete_productVariantDelete_errors[] | null;
-  productVariant: VariantDelete_productVariantDelete_productVariant | null;
+  errors: VariantDelete_skillVariantDelete_errors[] | null;
+  skillVariant: VariantDelete_skillVariantDelete_skillVariant | null;
 }
 
 export interface VariantDelete {
-  productVariantDelete: VariantDelete_productVariantDelete | null;
+  skillVariantDelete: VariantDelete_skillVariantDelete | null;
 }
 
 export interface VariantDeleteVariables {

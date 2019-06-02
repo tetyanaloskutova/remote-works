@@ -19,32 +19,32 @@ export interface VoucherDetailsFragment_minAmountSpent {
   amount: number;
 }
 
-export interface VoucherDetailsFragment_products_edges_node_productType {
+export interface VoucherDetailsFragment_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface VoucherDetailsFragment_products_edges_node_thumbnail {
+export interface VoucherDetailsFragment_skills_edges_node_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface VoucherDetailsFragment_products_edges_node {
+export interface VoucherDetailsFragment_skills_edges_node {
   __typename: "Skill";
   id: string;
   name: string;
-  productType: VoucherDetailsFragment_products_edges_node_productType;
+  skillType: VoucherDetailsFragment_skills_edges_node_skillType;
   isPublished: boolean;
-  thumbnail: VoucherDetailsFragment_products_edges_node_thumbnail | null;
+  thumbnail: VoucherDetailsFragment_skills_edges_node_thumbnail | null;
 }
 
-export interface VoucherDetailsFragment_products_edges {
+export interface VoucherDetailsFragment_skills_edges {
   __typename: "SkillCountableEdge";
-  node: VoucherDetailsFragment_products_edges_node;
+  node: VoucherDetailsFragment_skills_edges_node;
 }
 
-export interface VoucherDetailsFragment_products_pageInfo {
+export interface VoucherDetailsFragment_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -54,9 +54,9 @@ export interface VoucherDetailsFragment_products_pageInfo {
 
 export interface VoucherDetailsFragment_skills {
   __typename: "SkillCountableConnection";
-  edges: VoucherDetailsFragment_products_edges[];
+  edges: VoucherDetailsFragment_skills_edges[];
   totalCount: number | null;
-  pageInfo: VoucherDetailsFragment_products_pageInfo;
+  pageInfo: VoucherDetailsFragment_skills_pageInfo;
 }
 
 export interface VoucherDetailsFragment_collections_edges_node_skills {
@@ -68,7 +68,7 @@ export interface VoucherDetailsFragment_collections_edges_node {
   __typename: "Collection";
   id: string;
   name: string;
-  products: VoucherDetailsFragment_collections_edges_node_skills | null;
+  skills: VoucherDetailsFragment_collections_edges_node_skills | null;
 }
 
 export interface VoucherDetailsFragment_collections_edges {
@@ -100,7 +100,7 @@ export interface VoucherDetailsFragment_categories_edges_node {
   __typename: "Category";
   id: string;
   name: string;
-  products: VoucherDetailsFragment_categories_edges_node_skills | null;
+  skills: VoucherDetailsFragment_categories_edges_node_skills | null;
 }
 
 export interface VoucherDetailsFragment_categories_edges {
@@ -138,7 +138,7 @@ export interface VoucherDetailsFragment {
   code: string;
   used: number;
   applyOncePerTask: boolean;
-  products: VoucherDetailsFragment_skills | null;
+  skills: VoucherDetailsFragment_skills | null;
   collections: VoucherDetailsFragment_collections | null;
   categories: VoucherDetailsFragment_categories | null;
 }

@@ -47,32 +47,32 @@ export interface TaskRelease_orderRelease_task_events {
   user: TaskRelease_orderRelease_task_events_user | null;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice_gross {
+export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice_net {
+export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice {
+export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice_gross;
-  net: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice_net;
+  gross: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross;
+  net: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine {
+export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine {
   __typename: "TaskLine";
   id: string;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine_unitPrice | null;
+  unitPrice: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -80,7 +80,7 @@ export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_orderLine | null;
+  taskLine: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine | null;
 }
 
 export interface TaskRelease_orderRelease_task_fulfillments_lines_edges {
@@ -123,8 +123,8 @@ export interface TaskRelease_orderRelease_task_lines_unitPrice {
 export interface TaskRelease_orderRelease_task_lines {
   __typename: "TaskLine";
   id: string;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskRelease_orderRelease_task_lines_unitPrice | null;

@@ -11,27 +11,27 @@ export interface UnassignCollectionSkill_collectionRemoveSkills_errors {
   message: string | null;
 }
 
-export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node_productType {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges_node_skillType {
   __typename: "SkillType";
   id: string;
   name: string;
 }
 
-export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges_node {
   __typename: "Skill";
   id: string;
   isPublished: boolean;
   name: string;
-  productType: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node_productType;
+  skillType: UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges_node_skillType;
   thumbnailUrl: string | null;
 }
 
-export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges {
   __typename: "SkillCountableEdge";
-  node: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges_node;
+  node: UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges_node;
 }
 
-export interface UnassignCollectionSkill_collectionRemoveSkills_collection_products_pageInfo {
+export interface UnassignCollectionSkill_collectionRemoveSkills_collection_skills_pageInfo {
   __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
@@ -41,14 +41,14 @@ export interface UnassignCollectionSkill_collectionRemoveSkills_collection_produ
 
 export interface UnassignCollectionSkill_collectionRemoveSkills_collection_skills {
   __typename: "SkillCountableConnection";
-  edges: UnassignCollectionSkill_collectionRemoveSkills_collection_products_edges[];
-  pageInfo: UnassignCollectionSkill_collectionRemoveSkills_collection_products_pageInfo;
+  edges: UnassignCollectionSkill_collectionRemoveSkills_collection_skills_edges[];
+  pageInfo: UnassignCollectionSkill_collectionRemoveSkills_collection_skills_pageInfo;
 }
 
 export interface UnassignCollectionSkill_collectionRemoveSkills_collection {
   __typename: "Collection";
   id: string;
-  products: UnassignCollectionSkill_collectionRemoveSkills_collection_skills | null;
+  skills: UnassignCollectionSkill_collectionRemoveSkills_collection_skills | null;
 }
 
 export interface UnassignCollectionSkill_collectionRemoveSkills {
@@ -63,7 +63,7 @@ export interface UnassignCollectionSkill {
 
 export interface UnassignCollectionSkillVariables {
   collectionId: string;
-  productId: string;
+  skillId: string;
   first?: number | null;
   after?: string | null;
   last?: number | null;

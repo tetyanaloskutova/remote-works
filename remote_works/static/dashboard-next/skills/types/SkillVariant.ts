@@ -95,7 +95,7 @@ export interface SkillVariant {
   images: (SkillVariant_images | null)[] | null;
   name: string;
   priceOverride: SkillVariant_priceOverride | null;
-  product: SkillVariant_product;
+  skill: SkillVariant_skill;
   sku: string;
   quantity: number;
   quantityAllocated: number;

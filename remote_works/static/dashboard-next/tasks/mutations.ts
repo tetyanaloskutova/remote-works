@@ -273,10 +273,10 @@ export const TypedTaskAddNoteMutation = TypedMutation<
   TaskAddNoteVariables
 >(orderAddNoteMutation);
 
-const orderUpdateMutation = gql`
+const taskUpdateMutation = gql`
   ${fragmentAddress}
   mutation TaskUpdate($id: ID!, $input: TaskUpdateInput!) {
-    orderUpdate(id: $id, input: $input) {
+    taskUpdate(id: $id, input: $input) {
       errors {
         field
         message
@@ -297,7 +297,7 @@ const orderUpdateMutation = gql`
 export const TypedTaskUpdateMutation = TypedMutation<
   TaskUpdate,
   TaskUpdateVariables
->(orderUpdateMutation);
+>(taskUpdateMutation);
 
 const orderDraftUpdateMutation = gql`
   ${fragmentTaskDetails}
@@ -323,7 +323,7 @@ const orderDeliveryMethodUpdateMutation = gql`
     $id: ID!
     $input: TaskUpdateDeliveryInput!
   ) {
-    orderUpdateDelivery(task: $id, input: $input) {
+    taskUpdateDelivery(task: $id, input: $input) {
       errors {
         field
         message
@@ -376,7 +376,7 @@ export const TypedTaskDraftCreateMutation = TypedMutation<
   {}
 >(orderDraftCreateMutation);
 
-const orderLineDeleteMutation = gql`
+const taskLineDeleteMutation = gql`
   ${fragmentTaskDetails}
   mutation TaskLineDelete($id: ID!) {
     draftTaskLineDelete(id: $id) {
@@ -393,9 +393,9 @@ const orderLineDeleteMutation = gql`
 export const TypedTaskLineDeleteMutation = TypedMutation<
   TaskLineDelete,
   TaskLineDeleteVariables
->(orderLineDeleteMutation);
+>(taskLineDeleteMutation);
 
-const orderLinesAddMutation = gql`
+const taskLinesAddMutation = gql`
   ${fragmentTaskDetails}
   mutation TaskLinesAdd($id: ID!, $input: [TaskLineCreateInput]!) {
     draftTaskLinesCreate(id: $id, input: $input) {
@@ -412,9 +412,9 @@ const orderLinesAddMutation = gql`
 export const TypedTaskLinesAddMutation = TypedMutation<
   TaskLinesAdd,
   TaskLinesAddVariables
->(orderLinesAddMutation);
+>(taskLinesAddMutation);
 
-const orderLineUpdateMutation = gql`
+const taskLineUpdateMutation = gql`
   ${fragmentTaskDetails}
   mutation TaskLineUpdate($id: ID!, $input: TaskLineInput!) {
     draftTaskLineUpdate(id: $id, input: $input) {
@@ -431,4 +431,4 @@ const orderLineUpdateMutation = gql`
 export const TypedTaskLineUpdateMutation = TypedMutation<
   TaskLineUpdate,
   TaskLineUpdateVariables
->(orderLineUpdateMutation);
+>(taskLineUpdateMutation);

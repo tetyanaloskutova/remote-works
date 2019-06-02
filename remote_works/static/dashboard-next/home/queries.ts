@@ -20,10 +20,10 @@ const home = gql`
     ordersToCapture: tasks(status: READY_TO_CAPTURE) {
       totalCount
     }
-    productsOutOfStock: products(stockAvailability: OUT_OF_STOCK) {
+    skillsOutOfStock: skills(stockAvailability: OUT_OF_STOCK) {
       totalCount
     }
-    productTopToday: reportSkillSales(period: TODAY, first: 5) {
+    skillTopToday: reportSkillSales(period: TODAY, first: 5) {
       edges {
         node {
           id

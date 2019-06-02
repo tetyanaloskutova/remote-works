@@ -26,10 +26,10 @@ export interface SkillImageById_skill {
 }
 
 export interface SkillImageById {
-  product: SkillImageById_skill | null;
+  skill: SkillImageById_skill | null;
 }
 
 export interface SkillImageByIdVariables {
-  productId: string;
+  skillId: string;
   imageId: string;
 }

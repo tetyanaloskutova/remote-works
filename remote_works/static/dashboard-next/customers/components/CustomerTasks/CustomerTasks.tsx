@@ -39,7 +39,7 @@ const CustomerTasks = withStyles(styles, { name: "CustomerTasks" })(
     onRowClick,
     onViewAllTasksClick
   }: CustomerTasksProps) => {
-    const orderList = tasks
+    const taskList = tasks
       ? tasks.map(task => ({
           ...task,
           paymentStatus: transformPaymentStatus(task.paymentStatus)
@@ -78,7 +78,7 @@ const CustomerTasks = withStyles(styles, { name: "CustomerTasks" })(
           </TableHead>
           <TableBody>
             {renderCollection(
-              orderList,
+              taskList,
               task => (
                 <TableRow
                   hover={!!task}

@@ -45,7 +45,7 @@ export const TaskList = withStyles(styles, { name: "TaskList" })(
     onNextPage,
     onRowClick
   }: TaskListProps) => {
-    const orderList = tasks
+    const taskList = tasks
       ? tasks.map(task => ({
           ...task,
           paymentStatus: transformPaymentStatus(task.paymentStatus),
@@ -91,7 +91,7 @@ export const TaskList = withStyles(styles, { name: "TaskList" })(
         </TableFooter>
         <TableBody>
           {renderCollection(
-            orderList,
+            taskList,
             task => (
               <TableRow
                 hover={!!task}

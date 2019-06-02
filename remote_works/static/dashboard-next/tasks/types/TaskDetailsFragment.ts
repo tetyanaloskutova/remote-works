@@ -47,33 +47,33 @@ export interface TaskDetailsFragment_events {
   user: TaskDetailsFragment_events_user | null;
 }
 
-export interface TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice_gross {
+export interface TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice_net {
+export interface TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice {
+export interface TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice_gross;
-  net: TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice_net;
+  gross: TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskDetailsFragment_fulfillments_lines_orderLine {
+export interface TaskDetailsFragment_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskDetailsFragment_fulfillments_lines_orderLine_unitPrice | null;
+  unitPrice: TaskDetailsFragment_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
@@ -81,7 +81,7 @@ export interface TaskDetailsFragment_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  orderLine: TaskDetailsFragment_fulfillments_lines_orderLine | null;
+  taskLine: TaskDetailsFragment_fulfillments_lines_taskLine | null;
 }
 
 export interface TaskDetailsFragment_fulfillments {
@@ -115,8 +115,8 @@ export interface TaskDetailsFragment_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
-  productName: string;
-  productSku: string;
+  skillName: string;
+  skillSku: string;
   quantity: number;
   quantityFulfilled: number;
   unitPrice: TaskDetailsFragment_lines_unitPrice | null;

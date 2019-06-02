@@ -6,7 +6,7 @@ import { WindowTitle } from "../components/WindowTitle";
 import i18n from "../i18n";
 import AccountCircle from "../icons/AccountCircle";
 import Folder from "../icons/Folder";
-import LocalDelivery from "../icons/Folder";
+import LocalDelivery from "../icons/LocalDelivery";
 import Monetization from "../icons/Monetization";
 import Navigation from "../icons/Navigation";
 import Pages from "../icons/Pages";

@@ -68,7 +68,7 @@ def create_payment_information(
 
 
 def handle_fully_paid_order(task):
-    task.events.create(type=TaskEvents.ORDER_FULLY_PAID.value)
+    task.events.create(type=TaskEvents.TASK_FULLY_PAID.value)
     if task.get_user_current_email():
         send_payment_confirmation.delay(task.pk)
         task.events.create(
@@ -165,7 +165,7 @@ def mark_task_as_paid(task: Task, request_user: User):
     payment.captured_amount = task.total.gross.amount
     payment.save(update_fields=['captured_amount', 'charge_status'])
     task.events.create(
-        type=TaskEvents.ORDER_MARKED_AS_PAID.value, user=request_user)
+        type=TaskEvents.TASK_MARKED_AS_PAID.value, user=request_user)
 
 
 def create_transaction(

@@ -19,7 +19,7 @@ import Skeleton from "../../../components/Skeleton";
 import Toggle from "../../../components/Toggle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 import { UserSearch_customers_edges_node } from "../../types/UserSearch";
 
 const styles = (theme: Theme) =>
@@ -45,7 +45,7 @@ const styles = (theme: Theme) =>
   });
 
 export interface TaskCustomerProps extends WithStyles<typeof styles> {
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   users?: UserSearch_customers_edges_node[];
   loading?: boolean;
   canEditAddresses: boolean;

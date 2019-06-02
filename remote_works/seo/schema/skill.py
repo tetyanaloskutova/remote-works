@@ -1,7 +1,7 @@
 from django.utils.encoding import smart_text
 
-IN_STOCK = 'http://schema.org/InStock'
-OUT_OF_STOCK = 'http://schema.org/OutOfStock'
+IN_AVAILABILITY = 'http://schema.org/InStock'
+OUT_OF_AVAILABILITY = 'http://schema.org/OutOfStock'
 
 
 def get_brand_from_attributes(attributes):
@@ -31,10 +31,10 @@ def skill_json_ld(skill, attributes=None):
 
     for variant in skill.variants.all():
         price = variant.get_price()
-        in_stock = True
-        if not skill.is_visible or not variant.is_in_stock():
-            in_stock = False
-        variant_data = variant_json_ld(price, variant, in_stock)
+        in_availability = True
+        if not skill.is_visible or not variant.is_in_availability():
+            in_availability = False
+        variant_data = variant_json_ld(price, variant, in_availability)
         data['offers'].append(variant_data)
 
     brand = get_brand_from_attributes(attributes)
@@ -43,15 +43,15 @@ def skill_json_ld(skill, attributes=None):
     return data
 
 
-def variant_json_ld(price, variant, in_stock):
+def variant_json_ld(price, variant, in_availability):
     schema_data = {
         '@type': 'Offer',
         'itemCondition': 'http://schema.org/NewCondition',
         'priceCurrency': price.currency,
         'price': price.net.amount,
         'sku': variant.sku}
-    if in_stock:
-        schema_data['availability'] = IN_STOCK
+    if in_availability:
+        schema_data['availability'] = IN_AVAILABILITY
     else:
-        schema_data['availability'] = OUT_OF_STOCK
+        schema_data['availability'] = OUT_OF_AVAILABILITY
     return schema_data

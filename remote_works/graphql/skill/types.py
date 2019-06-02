@@ -154,7 +154,7 @@ class SkillTask(graphene.InputObjectType):
 
 
 class SkillVariant(CountableDjangoObjectType):
-    stock_quantity = graphene.Int(
+    availability_quantity = graphene.Int(
         required=True, description='Quantity of a skill available for sale.')
     price_override = graphene.Field(
         Money,
@@ -197,7 +197,7 @@ class SkillVariant(CountableDjangoObjectType):
         interfaces = [relay.Node]
         model = models.SkillVariant
 
-    def resolve_stock_quantity(self, info):
+    def resolve_availability_quantity(self, info):
         return self.quantity_available
 
     @gql_optimizer.resolver_hints(

@@ -26,11 +26,11 @@ def get_variant_picker_data(
             price_local_currency = to_local_currency(price, local_currency)
         else:
             price_local_currency = None
-        in_stock = variant.is_in_stock()
-        schema_data = variant_json_ld(price, variant, in_stock)
+        in_availability = variant.is_in_availability()
+        schema_data = variant_json_ld(price, variant, in_availability)
         variant_data = {
             'id': variant.id,
-            'availability': in_stock,
+            'availability': in_availability,
             'price': price_as_dict(price),
             'priceUndiscounted': price_as_dict(price_undiscounted),
             'attributes': variant.attributes,

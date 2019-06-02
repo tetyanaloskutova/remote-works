@@ -20,7 +20,7 @@ const home = gql`
     ordersToCapture: tasks(status: READY_TO_CAPTURE) {
       totalCount
     }
-    skillsOutOfStock: skills(stockAvailability: OUT_OF_STOCK) {
+    skillsOutOfStock: skills(availabilityAvailability: OUT_OF_AVAILABILITY) {
       totalCount
     }
     skillTopToday: reportSkillSales(period: TODAY, first: 5) {
@@ -61,7 +61,7 @@ const home = gql`
           emailType
           id
           message
-          orderNumber
+          taskNumber
           oversoldItems
           quantity
           type

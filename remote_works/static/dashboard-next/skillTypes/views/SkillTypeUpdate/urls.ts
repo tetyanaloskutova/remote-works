@@ -7,7 +7,7 @@ export const addAttributePath = (
   skillTypeId: string,
   type: AttributeTypeEnum
 ) =>
-  type === AttributeTypeEnum.PRODUCT
+  type === AttributeTypeEnum.TYPE
     ? urlJoin(skillTypePath(skillTypeId), "attribute/skill/add")
     : urlJoin(skillTypePath(skillTypeId), "attribute/variant/add");
 export const addAttributeUrl = (

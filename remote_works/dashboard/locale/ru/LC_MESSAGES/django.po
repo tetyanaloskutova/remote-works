@@ -989,8 +989,8 @@ msgstr[3] "Только  %(remaining)d осталось на складе"
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Пополнить запас %(quantity)d товара"
 msgstr[1] "Пополнить запас %(quantity)d товаров"
 msgstr[2] "Пополнить запас %(quantity)d товаров"
@@ -1004,8 +1004,8 @@ msgstr "Этот заказ не может быть отменён"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Пополнить запас %(quantity)d товара"
 msgstr[1] "Пополнить запас %(quantity)d товаров"
 msgstr[2] "Пополнить запас %(quantity)d товаров"

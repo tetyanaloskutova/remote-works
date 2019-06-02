@@ -5,13 +5,13 @@
 // GraphQL mutation operation: SkillImageReorder
 // ====================================================
 
-export interface SkillImageRetask_skillImageRetask_errors {
+export interface SkillImageReorder_skillImageReorder_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface SkillImageRetask_skillImageRetask_skill_images {
+export interface SkillImageReorder_skillImageReorder_skill_images {
   __typename: "SkillImage";
   id: string;
   alt: string;
@@ -19,20 +19,20 @@ export interface SkillImageRetask_skillImageRetask_skill_images {
   url: string;
 }
 
-export interface SkillImageRetask_skillImageRetask_skill {
+export interface SkillImageReorder_skillImageReorder_skill {
   __typename: "Skill";
   id: string;
-  images: (SkillImageRetask_skillImageRetask_skill_images | null)[] | null;
+  images: (SkillImageReorder_skillImageReorder_skill_images | null)[] | null;
 }
 
-export interface SkillImageRetask_skillImageReorder {
+export interface SkillImageReorder_skillImageReorder {
   __typename: "SkillImageReorder";
-  errors: SkillImageRetask_skillImageRetask_errors[] | null;
-  skill: SkillImageRetask_skillImageRetask_skill | null;
+  errors: SkillImageReorder_skillImageReorder_errors[] | null;
+  skill: SkillImageReorder_skillImageReorder_skill | null;
 }
 
 export interface SkillImageReorder {
-  skillImageReorder: SkillImageRetask_skillImageReorder | null;
+  skillImageReorder: SkillImageReorder_skillImageReorder | null;
 }
 
 export interface SkillImageReorderVariables {

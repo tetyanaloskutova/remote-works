@@ -6,7 +6,7 @@ import * as placeholderImage from "../../../../images/placeholder60x60.png";
 import TaskDetailsPage, {
   TaskDetailsPageProps
 } from "../../../tasks/components/TaskDetailsPage";
-import { countries, task as orderFixture } from "../../../tasks/fixtures";
+import { countries, task as taskFixture } from "../../../tasks/fixtures";
 import {
   FulfillmentStatus,
   TaskStatus,
@@ -14,7 +14,7 @@ import {
 } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
-const task = orderFixture(placeholderImage);
+const task = taskFixture(placeholderImage);
 
 const props: Omit<TaskDetailsPageProps, "classes"> = {
   countries,

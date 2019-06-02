@@ -17,10 +17,10 @@ def skills_with_availability(skills, discounts, taxes, local_currency):
 
 def get_skill_availability_status(skill):
     is_visible = skill.is_visible
-    are_all_variants_in_stock = all(
-        variant.is_in_stock() for variant in skill.variants.all())
-    is_in_stock = any(
-        variant.is_in_stock() for variant in skill.variants.all())
+    are_all_variants_in_availability = all(
+        variant.is_in_availability() for variant in skill.variants.all())
+    is_in_availability = any(
+        variant.is_in_availability() for variant in skill.variants.all())
     requires_variants = skill.skill_type.has_variants
 
     if not skill.is_published:
@@ -30,18 +30,18 @@ def get_skill_availability_status(skill):
         # status with skill types that don't require variants, as in that
         # case variants are hidden from the UI and user doesn't manage them.
         return SkillAvailabilityStatus.VARIANTS_MISSSING
-    if not is_in_stock:
-        return SkillAvailabilityStatus.OUT_OF_STOCK
-    if not are_all_variants_in_stock:
-        return SkillAvailabilityStatus.LOW_STOCK
+    if not is_in_availability:
+        return SkillAvailabilityStatus.OUT_OF_AVAILABILITY
+    if not are_all_variants_in_availability:
+        return SkillAvailabilityStatus.LOW_AVAILABILITY
     if not is_visible and skill.publication_date is not None:
         return SkillAvailabilityStatus.NOT_YET_AVAILABLE
     return SkillAvailabilityStatus.READY_FOR_PURCHASE
 
 
 def get_variant_availability_status(variant):
-    if not variant.is_in_stock():
-        return VariantAvailabilityStatus.OUT_OF_STOCK
+    if not variant.is_in_availability():
+        return VariantAvailabilityStatus.OUT_OF_AVAILABILITY
     return VariantAvailabilityStatus.AVAILABLE
 
 
@@ -70,7 +70,7 @@ def get_availability(skill, discounts=None, taxes=None, local_currency=None):
         price_range_local = None
         discount_local_currency = None
 
-    is_available = skill.is_in_stock() and skill.is_visible
+    is_available = skill.is_in_availability() and skill.is_visible
     is_on_sale = (
         skill.is_visible and discount is not None and
         undiscounted.start != price_range.start)

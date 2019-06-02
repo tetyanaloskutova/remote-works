@@ -957,8 +957,8 @@ msgstr[1] "Kun %(remaining)d tilbage på lager."
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Genopfyld %(quantity)d produkt"
 msgstr[1] "Genopfyld %(quantity)dprodukter"
 
@@ -970,8 +970,8 @@ msgstr "Denne ordre kan ikke annulleres"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Genopfyld %(quantity)d vare"
 msgstr[1] "Genopfyld %(quantity)d varer"
 

@@ -8,7 +8,7 @@ from ..core.utils import build_absolute_uri
 from ..seo.schema.email import get_task_confirmation_markup
 from .models import Fulfillment, Task
 
-CONFIRM_ORDER_TEMPLATE = 'task/confirm_order'
+CONFIRM_TASK_TEMPLATE = 'task/confirm_order'
 CONFIRM_FULFILLMENT_TEMPLATE = 'task/confirm_fulfillment'
 UPDATE_FULFILLMENT_TEMPLATE = 'task/update_fulfillment'
 CONFIRM_PAYMENT_TEMPLATE = 'task/payment/confirm_payment'
@@ -28,14 +28,14 @@ def collect_data_for_email(task_pk, template):
         reverse('task:details', kwargs={'token': task.token}))
 
     # Task confirmation template requires additional information
-    if template == CONFIRM_ORDER_TEMPLATE:
+    if template == CONFIRM_TASK_TEMPLATE:
         email_markup = get_task_confirmation_markup(task)
         email_context.update(
             {'task': task, 'schema_markup': email_markup})
 
     return {
         'recipient_list': [recipient_email], 'template_name': template,
-        'context': email_context, 'from_email': settings.ORDER_FROM_EMAIL}
+        'context': email_context, 'from_email': settings.TASK_FROM_EMAIL}
 
 
 def collect_data_for_fullfillment_email(task_pk, template, fulfillment_pk):
@@ -48,7 +48,7 @@ def collect_data_for_fullfillment_email(task_pk, template, fulfillment_pk):
 @shared_task
 def send_task_confirmation(task_pk):
     """Sends task confirmation email."""
-    email_data = collect_data_for_email(task_pk, CONFIRM_ORDER_TEMPLATE)
+    email_data = collect_data_for_email(task_pk, CONFIRM_TASK_TEMPLATE)
     send_templated_mail(**email_data)
 
 

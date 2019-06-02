@@ -10,12 +10,12 @@ export interface TaskDraftCancelDialogProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  orderNumber: string;
+  taskNumber: string;
 }
 
 const TaskDraftCancelDialog: React.StatelessComponent<
   TaskDraftCancelDialogProps
-> = ({ confirmButtonState, onClose, onConfirm, open, orderNumber }) => (
+> = ({ confirmButtonState, onClose, onConfirm, open, taskNumber }) => (
   <ActionDialog
     confirmButtonState={confirmButtonState}
     onClose={onClose}
@@ -32,7 +32,7 @@ const TaskDraftCancelDialog: React.StatelessComponent<
           "Are you sure you want to remove draft <strong>#{{ number }}</strong>?",
           {
             context: "modal",
-            number: orderNumber
+            number: taskNumber
           }
         )
       }}

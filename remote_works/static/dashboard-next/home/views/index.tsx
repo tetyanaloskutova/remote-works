@@ -45,7 +45,7 @@ const HomeSection = () => (
                 onSkillsOutOfStockClick={() =>
                   navigate(
                     skillListUrl({
-                      status: StockAvailability.OUT_OF_STOCK
+                      status: StockAvailability.OUT_OF_AVAILABILITY
                     })
                   )
                 }

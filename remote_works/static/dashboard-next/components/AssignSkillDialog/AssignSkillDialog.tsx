@@ -56,8 +56,8 @@ interface AssignSkillDialogProps extends WithStyles<typeof styles> {
 }
 
 const initialForm: FormData = {
+  query: "",
   skills: [],
-  query: ""
 };
 const AssignSkillDialog = withStyles(styles, {
   name: "AssignSkillDialog"

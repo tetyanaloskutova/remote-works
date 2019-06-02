@@ -3,10 +3,10 @@ import * as React from "react";
 
 import { transformAddressToForm } from "../../../misc";
 import TaskAddressEditDialog from "../../../tasks/components/TaskAddressEditDialog";
-import { countries, task as orderFixture } from "../../../tasks/fixtures";
+import { countries, task as taskFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const task = orderFixture("");
+const task = taskFixture("");
 
 storiesOf("Tasks / TaskAddressEditDialog", module)
   .addDecorator(Decorator)

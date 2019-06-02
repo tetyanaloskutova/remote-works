@@ -288,10 +288,10 @@ export enum TaskEvents {
   EMAIL_SENT = "EMAIL_SENT",
   FULFILLMENT_CANCELED = "FULFILLMENT_CANCELED",
   FULFILLMENT_FULFILLED_ITEMS = "FULFILLMENT_FULFILLED_ITEMS",
-  FULFILLMENT_RESTOCKED_ITEMS = "FULFILLMENT_RESTOCKED_ITEMS",
+  FULFILLMENT_REAVAILED_ITEMS = "FULFILLMENT_REAVAILED_ITEMS",
   NOTE_ADDED = "NOTE_ADDED",
-  ORDER_FULLY_PAID = "ORDER_FULLY_PAID",
-  ORDER_MARKED_AS_PAID = "ORDER_MARKED_AS_PAID",
+  TASK_FULLY_PAID = "TASK_FULLY_PAID",
+  TASK_MARKED_AS_PAID = "TASK_MARKED_AS_PAID",
   OTHER = "OTHER",
   PAYMENT_CAPTURED = "PAYMENT_CAPTURED",
   PAYMENT_REFUNDED = "PAYMENT_REFUNDED",
@@ -571,7 +571,7 @@ export interface TaskCancelMutationVariables {
 }
 
 export interface TaskCancelMutation {
-  orderCancel: {
+  taskCancel: {
     // Canceled task.
     task: {
       // The ID of the object.
@@ -755,7 +755,7 @@ export interface TaskRefundMutationVariables {
 }
 
 export interface TaskRefundMutation {
-  orderRefund: {
+  taskRefund: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -947,7 +947,7 @@ export interface TaskVoidMutationVariables {
 }
 
 export interface TaskVoidMutation {
-  orderVoid: {
+  taskVoid: {
     // A voided task.
     task: {
       // The ID of the object.
@@ -1131,7 +1131,7 @@ export interface TaskCaptureMutationVariables {
 }
 
 export interface TaskCaptureMutation {
-  orderCapture: {
+  taskCapture: {
     // List of errors that occurred executing the mutation.
     errors: Array<{
       // Name of a field that caused the error. A value of
@@ -1876,7 +1876,7 @@ export interface SkillImageCreateMutation {
               currency: string;
             } | null;
             // Quantity of a skill available for sale.
-            stockQuantity: number;
+            availabilityQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
           };
@@ -2114,7 +2114,7 @@ export interface SkillUpdateMutation {
               currency: string;
             } | null;
             // Quantity of a skill available for sale.
-            stockQuantity: number;
+            availabilityQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
           };
@@ -2294,7 +2294,7 @@ export interface SkillCreateMutation {
               currency: string;
             } | null;
             // Quantity of a skill available for sale.
-            stockQuantity: number;
+            availabilityQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
           };
@@ -2770,7 +2770,7 @@ export interface SkillImageUpdateMutation {
               currency: string;
             } | null;
             // Quantity of a skill available for sale.
-            stockQuantity: number;
+            availabilityQuantity: number;
             // Gross margin percentage value.
             margin: number | null;
           };
@@ -3233,7 +3233,7 @@ export interface SkillDetailsQuery {
             currency: string;
           } | null;
           // Quantity of a skill available for sale.
-          stockQuantity: number;
+          availabilityQuantity: number;
           // Gross margin percentage value.
           margin: number | null;
         };
@@ -3903,7 +3903,7 @@ export interface SkillFragment {
           currency: string;
         } | null;
         // Quantity of a skill available for sale.
-        stockQuantity: number;
+        availabilityQuantity: number;
         // Gross margin percentage value.
         margin: number | null;
       };

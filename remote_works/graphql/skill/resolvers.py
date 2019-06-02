@@ -76,7 +76,7 @@ def resolve_collections(info, query):
 
 def resolve_skills(
         info, attributes=None, categories=None, collections=None,
-        price_lte=None, price_gte=None, sort_by=None, stock_availability=None,
+        price_lte=None, price_gte=None, sort_by=None, availability_availability=None,
         query=None, **kwargs):
 
     user = info.context.user
@@ -97,11 +97,11 @@ def resolve_skills(
         collections = get_nodes(collections, Collection)
         qs = filter_skills_by_collections(qs, collections)
 
-    if stock_availability:
+    if availability_availability:
         qs = qs.annotate(total_quantity=Sum('variants__quantity'))
-        if stock_availability == StockAvailability.IN_STOCK:
+        if availability_availability == StockAvailability.IN_AVAILABILITY:
             qs = qs.filter(total_quantity__gt=0)
-        elif stock_availability == StockAvailability.OUT_OF_STOCK:
+        elif availability_availability == StockAvailability.OUT_OF_AVAILABILITY:
             qs = qs.filter(total_quantity__lte=0)
 
     qs = filter_skills_by_price(qs, price_lte, price_gte)

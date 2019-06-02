@@ -79,7 +79,7 @@ class SkillQueries(graphene.ObjectType):
                 Filter by price greater than or equal to the given value.''')),
         sort_by=graphene.Argument(
             SkillTask, description='Sort skills.'),
-        stock_availability=graphene.Argument(
+        availability_availability=graphene.Argument(
             StockAvailability,
             description='Filter skills by the availability availability'),
         query=graphene.String(description=DESCRIPTIONS['skill']),

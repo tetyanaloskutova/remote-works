@@ -2,7 +2,7 @@ import graphene
 
 
 class AttributeTypeEnum(graphene.Enum):
-    PRODUCT = 'PRODUCT'
+    TYPE = 'TYPE'
     VARIANT = 'VARIANT'
 
 
@@ -14,8 +14,8 @@ class AttributeValueType(graphene.Enum):
 
 
 class StockAvailability(graphene.Enum):
-    IN_STOCK = 'AVAILABLE'
-    OUT_OF_STOCK = 'OUT_OF_STOCK'
+    IN_AVAILABILITY = 'AVAILABLE'
+    OUT_OF_AVAILABILITY = 'OUT_OF_AVAILABILITY'
 
 
 class SkillTaskField(graphene.Enum):

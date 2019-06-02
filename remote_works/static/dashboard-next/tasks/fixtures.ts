@@ -6,7 +6,7 @@ import {
   TaskStatus,
   PaymentChargeStatusEnum
 } from "../types/globalTypes";
-import { TaskDetails_order } from "./types/TaskDetails";
+import { TaskDetails_task } from "./types/TaskDetails";
 import { TaskList_orders_edges_node } from "./types/TaskList";
 import { UserSearch_customers_edges_node } from "./types/UserSearch";
 
@@ -736,7 +736,7 @@ export const tasks: TaskList_orders_edges_node[] = [
     userEmail: "curtis.bailey@example.com"
   }
 ];
-export const task = (placeholder: string): TaskDetails_order => ({
+export const task = (placeholder: string): TaskDetails_task => ({
   __typename: "Task",
   actions: [
     TaskAction.CAPTURE,
@@ -1006,7 +1006,7 @@ export const task = (placeholder: string): TaskDetails_order => ({
   user: null,
   userEmail: "melissa.simon@example.com"
 });
-export const draftTask = (placeholder: string): TaskDetails_order => ({
+export const draftTask = (placeholder: string): TaskDetails_task => ({
   __typename: "Task" as "Task",
   actions: [TaskAction.CAPTURE],
   availableDeliveryMethods: null,
@@ -1111,13 +1111,13 @@ export const flatTasks = tasks.map(task => ({
   paymentStatus: transformPaymentStatus(task.paymentStatus)
 }));
 export const variants = [
-  { id: "p1", name: "Skill 1: variant 1", sku: "12345", stockQuantity: 3 },
-  { id: "p2", name: "Skill 1: variant 2", sku: "12346", stockQuantity: 1 },
-  { id: "p3", name: "Skill 2: variant 1", sku: "12355", stockQuantity: 10 },
-  { id: "p4", name: "Skill 3: variant 1", sku: "12445", stockQuantity: 12 },
-  { id: "p5", name: "Skill 3: variant 2", sku: "12545", stockQuantity: 7 },
-  { id: "p6", name: "Skill 5: variant 1", sku: "13345", stockQuantity: 3 },
-  { id: "p7", name: "Skill 5: variant 2", sku: "14345", stockQuantity: 11 }
+  { id: "p1", name: "Skill 1: variant 1", sku: "12345", availabilityQuantity: 3 },
+  { id: "p2", name: "Skill 1: variant 2", sku: "12346", availabilityQuantity: 1 },
+  { id: "p3", name: "Skill 2: variant 1", sku: "12355", availabilityQuantity: 10 },
+  { id: "p4", name: "Skill 3: variant 1", sku: "12445", availabilityQuantity: 12 },
+  { id: "p5", name: "Skill 3: variant 2", sku: "12545", availabilityQuantity: 7 },
+  { id: "p6", name: "Skill 5: variant 1", sku: "13345", availabilityQuantity: 3 },
+  { id: "p7", name: "Skill 5: variant 2", sku: "14345", availabilityQuantity: 11 }
 ];
 export const prefixes = ["01", "02", "41", "49"];
 export const countries = [

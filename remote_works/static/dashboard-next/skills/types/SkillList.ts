@@ -67,5 +67,5 @@ export interface SkillListVariables {
   after?: string | null;
   last?: number | null;
   before?: string | null;
-  stockAvailability?: StockAvailability | null;
+  availabilityAvailability?: StockAvailability | null;
 }

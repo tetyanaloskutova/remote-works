@@ -41,6 +41,8 @@ export const collection: (
   id: "Q29sbGVjdGlvbjox",
   isPublished: true,
   name: "Summer collection",
+  seoDescription: null,
+  seoTitle: null
   skills: {
     __typename: "SkillCountableConnection",
     edges: [
@@ -117,6 +119,4 @@ export const collection: (
       startCursor: ""
     }
   },
-  seoDescription: "",
-  seoTitle: ""
 });

@@ -939,8 +939,8 @@ msgstr[0] "残りの %(remaining)d のみが在庫に残ります。"
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] ""
 
 #: saleor/dashboard/task/forms.py:436
@@ -951,8 +951,8 @@ msgstr ""
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] ""
 
 #: saleor/dashboard/task/forms.py:466

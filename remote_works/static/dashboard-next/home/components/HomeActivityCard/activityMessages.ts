@@ -4,19 +4,19 @@ import { Home_activities_edges_node } from "../../types/Home";
 
 export const getActivityMessage = (activity: Home_activities_edges_node) => {
   switch (activity.type) {
-    case TaskEvents.ORDER_FULLY_PAID:
+    case TaskEvents.TASK_FULLY_PAID:
       return i18n.t("Task #{{ orderId }} had been fully paid", {
-        orderId: activity.orderNumber
+        orderId: activity.taskNumber
       });
     case TaskEvents.PLACED:
       return i18n.t("Task #{{ orderId }} had been placed", {
-        orderId: activity.orderNumber
+        orderId: activity.taskNumber
       });
     case TaskEvents.PLACED_FROM_DRAFT:
       return i18n.t(
         "Task #{{ orderId }} had been placed from draft by {{ user }}",
         {
-          orderId: activity.orderNumber,
+          orderId: activity.taskNumber,
           user: activity.user.email
         }
       );

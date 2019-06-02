@@ -974,8 +974,8 @@ msgstr[3] "Na zalogi je %(remaining)d izdelki_ov"
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Ponovno naroči %(quantity)d izdelek"
 msgstr[1] "Ponovno naroči %(quantity)d izdelka"
 msgstr[2] "Ponovno naroči nekaj - %(quantity)d- izdelkov"
@@ -989,8 +989,8 @@ msgstr "Tega naročila ne morete preklicati"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Ponovno naroči %(quantity)d izdelek"
 msgstr[1] "Ponovno naroči %(quantity)d izdelka"
 msgstr[2] "Ponovno naroči nekaj - %(quantity)d - izdelkov"

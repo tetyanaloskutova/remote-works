@@ -150,7 +150,7 @@ export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
                                         skillVariantId:
                                           skill.variants[0].id,
                                         skillVariantInput: {
-                                          quantity: data.stockQuantity,
+                                          quantity: data.availabilityQuantity,
                                           sku: data.sku
                                         },
                                         publicationDate:

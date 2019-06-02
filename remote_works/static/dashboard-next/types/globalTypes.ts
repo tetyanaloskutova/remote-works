@@ -6,7 +6,7 @@
 //==============================================================
 
 export enum AttributeTypeEnum {
-  PRODUCT = "PRODUCT",
+  TYPE = "TYPE",
   VARIANT = "VARIANT",
 }
 
@@ -37,10 +37,10 @@ export enum TaskEvents {
   EMAIL_SENT = "EMAIL_SENT",
   FULFILLMENT_CANCELED = "FULFILLMENT_CANCELED",
   FULFILLMENT_FULFILLED_ITEMS = "FULFILLMENT_FULFILLED_ITEMS",
-  FULFILLMENT_RESTOCKED_ITEMS = "FULFILLMENT_RESTOCKED_ITEMS",
+  FULFILLMENT_REAVAILED_ITEMS = "FULFILLMENT_REAVAILED_ITEMS",
   NOTE_ADDED = "NOTE_ADDED",
-  ORDER_FULLY_PAID = "ORDER_FULLY_PAID",
-  ORDER_MARKED_AS_PAID = "ORDER_MARKED_AS_PAID",
+  TASK_FULLY_PAID = "TASK_FULLY_PAID",
+  TASK_MARKED_AS_PAID = "TASK_MARKED_AS_PAID",
   OTHER = "OTHER",
   OVERSOLD_ITEMS = "OVERSOLD_ITEMS",
   PAYMENT_CAPTURED = "PAYMENT_CAPTURED",
@@ -54,7 +54,7 @@ export enum TaskEvents {
 
 export enum TaskEventsEmails {
   FULFILLMENT = "FULFILLMENT",
-  ORDER = "ORDER",
+  TASK = "TASK",
   PAYMENT = "PAYMENT",
   DELIVERY = "DELIVERY",
 }
@@ -99,8 +99,8 @@ export enum SaleType {
 }
 
 export enum StockAvailability {
-  IN_STOCK = "IN_STOCK",
-  OUT_OF_STOCK = "OUT_OF_STOCK",
+  IN_AVAILABILITY = "IN_AVAILABILITY",
+  OUT_OF_AVAILABILITY = "OUT_OF_AVAILABILITY",
 }
 
 export enum TaxRateType {
@@ -139,7 +139,7 @@ export enum VoucherDiscountValueType {
 export enum VoucherType {
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
-  PRODUCT = "PRODUCT",
+  TYPE = "TYPE",
   DELIVERY = "DELIVERY",
   VALUE = "VALUE",
 }
@@ -147,7 +147,7 @@ export enum VoucherType {
 export enum VoucherTypeEnum {
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
-  PRODUCT = "PRODUCT",
+  TYPE = "TYPE",
   DELIVERY = "DELIVERY",
   VALUE = "VALUE",
 }
@@ -261,7 +261,7 @@ export interface DraftTaskInput {
 }
 
 export interface FulfillmentCancelInput {
-  restock?: boolean | null;
+  reavailability?: boolean | null;
 }
 
 export interface FulfillmentCreateInput {

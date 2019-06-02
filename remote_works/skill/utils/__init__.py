@@ -81,23 +81,23 @@ def get_variant_url(variant):
     return get_variant_url_from_skill(variant.skill, attributes)
 
 
-def allocate_stock(variant, quantity):
+def allocate_availability(variant, quantity):
     variant.quantity_allocated = F('quantity_allocated') + quantity
     variant.save(update_fields=['quantity_allocated'])
 
 
-def deallocate_stock(variant, quantity):
+def deallocate_availability(variant, quantity):
     variant.quantity_allocated = F('quantity_allocated') - quantity
     variant.save(update_fields=['quantity_allocated'])
 
 
-def decrease_stock(variant, quantity):
+def decrease_availability(variant, quantity):
     variant.quantity = F('quantity') - quantity
     variant.quantity_allocated = F('quantity_allocated') - quantity
     variant.save(update_fields=['quantity', 'quantity_allocated'])
 
 
-def increase_stock(variant, quantity, allocate=False):
+def increase_availability(variant, quantity, allocate=False):
     """Return given quantity of skill to a availability."""
     variant.quantity = F('quantity') + quantity
     update_fields = ['quantity']

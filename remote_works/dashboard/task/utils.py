@@ -9,7 +9,7 @@ from ...core.utils.taxes import ZERO_MONEY
 from ...discount import VoucherType
 from ...discount.utils import (
     get_delivery_voucher_discount, get_value_voucher_discount)
-from ...skill.utils import decrease_stock
+from ...skill.utils import decrease_availability
 
 INVOICE_TEMPLATE = 'dashboard/task/pdf/invoice.html'
 PACKING_SLIP_TEMPLATE = 'dashboard/task/pdf/packing_slip.html'
@@ -53,7 +53,7 @@ def create_packing_slip_pdf(task, fulfillment, absolute_url):
 def fulfill_task_line(task_line, quantity):
     """Fulfill task line with given quantity."""
     if task_line.variant and task_line.variant.track_inventory:
-        decrease_stock(task_line.variant, quantity)
+        decrease_availability(task_line.variant, quantity)
     task_line.quantity_fulfilled += quantity
     task_line.save(update_fields=['quantity_fulfilled'])
 
@@ -93,7 +93,7 @@ def get_voucher_discount_for_order(task):
         return get_delivery_voucher_discount(
             task.voucher, task.get_subtotal(), task.delivery_price)
     if task.voucher.type in (
-            VoucherType.PRODUCT, VoucherType.COLLECTION, VoucherType.CATEGORY):
+            VoucherType.TYPE, VoucherType.COLLECTION, VoucherType.CATEGORY):
         return _get_skills_voucher_discount(task, task.voucher)
     raise NotImplementedError('Unknown discount type')
 

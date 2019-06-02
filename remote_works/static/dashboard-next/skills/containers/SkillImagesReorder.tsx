@@ -7,7 +7,7 @@ import {
   SkillImageReorderVariables
 } from "../types/SkillImageReorder";
 
-interface SkillImagesRetaskProviderProps
+interface SkillImagesReorderProviderProps
   extends TypedMutationInnerProps<
     SkillImageReorder,
     SkillImageReorderVariables
@@ -19,8 +19,8 @@ interface SkillImagesRetaskProviderProps
   }>;
 }
 
-const SkillImagesRetaskProvider: React.StatelessComponent<
-  SkillImagesRetaskProviderProps
+const SkillImagesReorderProvider: React.StatelessComponent<
+  SkillImagesReorderProviderProps
 > = ({ children, skillId, skillImages, ...mutationProps }) => (
   <TypedSkillImagesReorder {...mutationProps}>
     {(mutate, mutationResult) =>
@@ -54,4 +54,4 @@ const SkillImagesRetaskProvider: React.StatelessComponent<
   </TypedSkillImagesReorder>
 );
 
-export default SkillImagesRetaskProvider;
+export default SkillImagesReorderProvider;

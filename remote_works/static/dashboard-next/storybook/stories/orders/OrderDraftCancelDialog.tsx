@@ -11,7 +11,7 @@ const props: TaskDraftCancelDialogProps = {
   onClose: () => undefined,
   onConfirm: () => undefined,
   open: true,
-  orderNumber: "4"
+  taskNumber: "4"
 };
 
 storiesOf("Tasks / TaskDraftCancelDialog", module)

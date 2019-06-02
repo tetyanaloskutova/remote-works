@@ -77,19 +77,19 @@ interface TaskOperationsProps {
         TaskAddNote,
         TaskAddNoteVariables
       >;
-      orderCancel: PartialMutationProviderOutput<
+      taskCancel: PartialMutationProviderOutput<
         TaskCancel,
         TaskCancelVariables
       >;
-      orderCreateFulfillment: PartialMutationProviderOutput<
+      taskCreateFulfillment: PartialMutationProviderOutput<
         TaskCreateFulfillment,
         TaskCreateFulfillmentVariables
       >;
-      orderFulfillmentCancel: PartialMutationProviderOutput<
+      taskFulfillmentCancel: PartialMutationProviderOutput<
         TaskFulfillmentCancel,
         TaskFulfillmentCancelVariables
       >;
-      orderFulfillmentUpdateTracking: PartialMutationProviderOutput<
+      taskFulfillmentUpdateTracking: PartialMutationProviderOutput<
         TaskFulfillmentUpdateTracking,
         TaskFulfillmentUpdateTrackingVariables
       >;
@@ -105,24 +105,24 @@ interface TaskOperationsProps {
         TaskMarkAsPaid,
         TaskMarkAsPaidVariables
       >;
-      orderVoid: PartialMutationProviderOutput<TaskVoid, TaskVoidVariables>;
+      taskVoid: PartialMutationProviderOutput<TaskVoid, TaskVoidVariables>;
       taskUpdate: PartialMutationProviderOutput<
         TaskUpdate,
         TaskUpdateVariables
       >;
-      orderDraftCancel: PartialMutationProviderOutput<
+      taskDraftCancel: PartialMutationProviderOutput<
         TaskDraftCancel,
         TaskDraftCancelVariables
       >;
-      orderDraftFinalize: PartialMutationProviderOutput<
+      taskDraftFinalize: PartialMutationProviderOutput<
         TaskDraftFinalize,
         TaskDraftFinalizeVariables
       >;
-      orderDraftUpdate: PartialMutationProviderOutput<
+      taskDraftUpdate: PartialMutationProviderOutput<
         TaskDraftUpdate,
         TaskDraftUpdateVariables
       >;
-      orderDeliveryMethodUpdate: PartialMutationProviderOutput<
+      taskDeliveryMethodUpdate: PartialMutationProviderOutput<
         TaskDeliveryMethodUpdate,
         TaskDeliveryMethodUpdateVariables
       >;
@@ -180,9 +180,9 @@ const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
   onTaskMarkAsPaid
 }) => (
   <TypedTaskVoidMutation onCompleted={onTaskVoid}>
-    {(...orderVoid) => (
+    {(...taskVoid) => (
       <TypedTaskCancelMutation onCompleted={onTaskCancel}>
-        {(...orderCancel) => (
+        {(...taskCancel) => (
           <TypedTaskCaptureMutation onCompleted={onPaymentCapture}>
             {(...paymentCapture) => (
               <TypedTaskRefundMutation onCompleted={onPaymentRefund}>
@@ -257,25 +257,25 @@ const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
                                                                         orderAddNote: getMutationProviderData(
                                                                           ...addNote
                                                                         ),
-                                                                        orderCancel: getMutationProviderData(
-                                                                          ...orderCancel
+                                                                        taskCancel: getMutationProviderData(
+                                                                          ...taskCancel
                                                                         ),
-                                                                        orderCreateFulfillment: getMutationProviderData(
+                                                                        taskCreateFulfillment: getMutationProviderData(
                                                                           ...createFulfillment
                                                                         ),
-                                                                        orderDraftCancel: getMutationProviderData(
+                                                                        taskDraftCancel: getMutationProviderData(
                                                                           ...cancelDraft
                                                                         ),
-                                                                        orderDraftFinalize: getMutationProviderData(
+                                                                        taskDraftFinalize: getMutationProviderData(
                                                                           ...finalizeDraft
                                                                         ),
-                                                                        orderDraftUpdate: getMutationProviderData(
+                                                                        taskDraftUpdate: getMutationProviderData(
                                                                           ...updateDraft
                                                                         ),
-                                                                        orderFulfillmentCancel: getMutationProviderData(
+                                                                        taskFulfillmentCancel: getMutationProviderData(
                                                                           ...cancelFulfillment
                                                                         ),
-                                                                        orderFulfillmentUpdateTracking: getMutationProviderData(
+                                                                        taskFulfillmentUpdateTracking: getMutationProviderData(
                                                                           ...updateTrackingNumber
                                                                         ),
                                                                         taskLineAdd: getMutationProviderData(
@@ -296,14 +296,14 @@ const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
                                                                         taskPaymentRefund: getMutationProviderData(
                                                                           ...paymentRefund
                                                                         ),
-                                                                        orderDeliveryMethodUpdate: getMutationProviderData(
+                                                                        taskDeliveryMethodUpdate: getMutationProviderData(
                                                                           ...updateDeliveryMethod
                                                                         ),
                                                                         taskUpdate: getMutationProviderData(
                                                                           ...update
                                                                         ),
-                                                                        orderVoid: getMutationProviderData(
-                                                                          ...orderVoid
+                                                                        taskVoid: getMutationProviderData(
+                                                                          ...taskVoid
                                                                         )
                                                                       })
                                                                     }

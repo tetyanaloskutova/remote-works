@@ -8,7 +8,7 @@ from .enums import TaskStatusFilter
 from .types import Task
 from .utils import applicable_delivery_methods
 
-ORDER_SEARCH_FIELDS = (
+TASK_SEARCH_FIELDS = (
     'id', 'discount_name', 'token', 'user_email', 'user__email')
 
 
@@ -18,7 +18,7 @@ def resolve_orders(info, created, status, query):
         qs = models.Task.objects.all()
     else:
         qs = user.tasks.confirmed()
-    qs = filter_by_query_param(qs, query, ORDER_SEARCH_FIELDS)
+    qs = filter_by_query_param(qs, query, TASK_SEARCH_FIELDS)
 
     # filter tasks by status
     if status is not None:
@@ -57,7 +57,7 @@ def resolve_homepage_events(info):
     # Filter only selected events to be displayed on homepage.
     types = [
         TaskEvents.PLACED.value, TaskEvents.PLACED_FROM_DRAFT.value,
-        TaskEvents.ORDER_FULLY_PAID.value]
+        TaskEvents.TASK_FULLY_PAID.value]
     return models.TaskEvent.objects.filter(type__in=types)
 
 

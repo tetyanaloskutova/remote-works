@@ -47,7 +47,7 @@ class FulfillmentUpdateTrackingInput(graphene.InputObjectType):
 
 
 class FulfillmentCancelInput(graphene.InputObjectType):
-    restock = graphene.Boolean(description='Whether item lines are restocked.')
+    reavailability = graphene.Boolean(description='Whether item lines are reavailabilityed.')
 
 
 class FulfillmentCreate(BaseMutation):
@@ -199,13 +199,13 @@ class FulfillmentCancel(BaseMutation):
 
     class Meta:
         description = dedent("""Cancels existing fulfillment
-        and optionally restocks items.""")
+        and optionally reavailabilitys items.""")
 
     @classmethod
     @permission_required('task.manage_orders')
     def mutate(cls, root, info, id, input):
         errors = []
-        restock = input.get('restock')
+        reavailability = input.get('reavailability')
         fulfillment = cls.get_node_or_error(
             info, id, errors, 'id', Fulfillment)
         if fulfillment:
@@ -219,11 +219,11 @@ class FulfillmentCancel(BaseMutation):
         if errors:
             return cls(errors=errors)
 
-        cancel_fulfillment(fulfillment, restock)
-        if restock:
+        cancel_fulfillment(fulfillment, reavailability)
+        if reavailability:
             task.events.create(
                 parameters={'quantity': fulfillment.get_total_quantity()},
-                type=TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value,
+                type=TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value,
                 user=info.context.user)
         else:
             task.events.create(

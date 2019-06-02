@@ -39,10 +39,10 @@ def index(request):
         is_active=True, charge_status=ChargeStatus.NOT_CHARGED
     ).order_by('-created')
     payments = payments.select_related('task', 'task__user')
-    low_stock = get_low_stock_skills()
+    low_availability = get_low_availability_skills()
     ctx = {'preauthorized_payments': payments[:paginate_by],
            'orders_to_ship': orders_to_ship[:paginate_by],
-           'low_stock': low_stock[:paginate_by]}
+           'low_availability': low_availability[:paginate_by]}
     return TemplateResponse(request, 'dashboard/index.html', ctx)
 
 
@@ -51,8 +51,8 @@ def styleguide(request):
     return TemplateResponse(request, 'dashboard/styleguide/index.html', {})
 
 
-def get_low_stock_skills():
-    threshold = getattr(settings, 'LOW_STOCK_THRESHOLD', 10)
+def get_low_availability_skills():
+    threshold = getattr(settings, 'LOW_AVAILABILITY_THRESHOLD', 10)
     skills = Skill.objects.annotate(
-        total_stock=Sum('variants__quantity'))
-    return skills.filter(Q(total_stock__lte=threshold)).distinct()
+        total_availability=Sum('variants__quantity'))
+    return skills.filter(Q(total_availability__lte=threshold)).distinct()

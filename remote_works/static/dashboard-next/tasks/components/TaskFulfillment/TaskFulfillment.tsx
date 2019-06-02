@@ -31,7 +31,7 @@ const styles = (theme: Theme) =>
     clickableRow: {
       cursor: "pointer"
     },
-    orderNumber: {
+    taskNumber: {
       display: "inline",
       marginLeft: theme.spacing.unit
     },
@@ -51,7 +51,7 @@ const styles = (theme: Theme) =>
 
 interface TaskFulfillmentProps extends WithStyles<typeof styles> {
   fulfillment: TaskDetails_task_fulfillments;
-  orderNumber: string;
+  taskNumber: string;
   onTaskFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;
 }
@@ -60,7 +60,7 @@ const TaskFulfillment = withStyles(styles, { name: "TaskFulfillment" })(
   ({
     classes,
     fulfillment,
-    orderNumber,
+    taskNumber,
     onTaskFulfillmentCancel,
     onTrackingCodeAdd
   }: TaskFulfillmentProps) => {
@@ -85,9 +85,9 @@ const TaskFulfillment = withStyles(styles, { name: "TaskFulfillment" })(
                             .map(line => line.quantity)
                             .reduce((prev, curr) => prev + curr, 0)
                         })}
-                    <Typography className={classes.orderNumber} variant="body1">
+                    <Typography className={classes.taskNumber} variant="body1">
                       {maybe(
-                        () => `#${orderNumber}-${fulfillment.fulfillmentTask}`
+                        () => `#${taskNumber}-${fulfillment.fulfillmentTask}`
                       )}
                     </Typography>
                   </>

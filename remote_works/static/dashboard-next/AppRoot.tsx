@@ -45,8 +45,8 @@ import Home from "./icons/Home";
 import Shop from "./icons/Shop";
 import Truck from "./icons/Truck";
 import { removeDoubleSlashes } from "./misc";
-import { taskListUrl } from "./tasks/urls";
 import { skillListUrl } from "./skills/urls";
+import { taskListUrl } from "./tasks/urls";
 import { PermissionEnum } from "./types/globalTypes";
 
 const drawerWidth = 256;

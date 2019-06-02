@@ -13,7 +13,7 @@ export const getTabName = (
     return "all";
   }
   if (only(filters, "status")) {
-    return filters.status === StockAvailability.IN_STOCK
+    return filters.status === StockAvailability.IN_AVAILABILITY
       ? "available"
       : "outOfStock";
   }

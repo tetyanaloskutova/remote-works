@@ -2,10 +2,10 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import TaskDeliveryMethodEditDialog from "../../../tasks/components/TaskDeliveryMethodEditDialog";
-import { task as orderFixture } from "../../../tasks/fixtures";
+import { task as taskFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const task = orderFixture("");
+const task = taskFixture("");
 
 storiesOf("Tasks / TaskDeliveryMethodEditDialog", module)
   .addDecorator(Decorator)

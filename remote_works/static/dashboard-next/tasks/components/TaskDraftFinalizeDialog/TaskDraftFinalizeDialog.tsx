@@ -15,7 +15,7 @@ export type TaskDraftFinalizeWarning =
 export interface TaskDraftFinalizeDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
   open: boolean;
-  orderNumber: string;
+  taskNumber: string;
   warnings: TaskDraftFinalizeWarning[];
   onClose: () => void;
   onConfirm: () => void;
@@ -44,7 +44,7 @@ const TaskDraftFinalizeDialog: React.StatelessComponent<
   warnings,
   onClose,
   onConfirm,
-  orderNumber
+  taskNumber
 }) => (
   <ActionDialog
     onClose={onClose}
@@ -80,7 +80,7 @@ const TaskDraftFinalizeDialog: React.StatelessComponent<
             "Are you sure you want to finalize draft <strong>#{{ number }}</strong>?",
             {
               context: "modal",
-              number: orderNumber
+              number: taskNumber
             }
           )
         }}

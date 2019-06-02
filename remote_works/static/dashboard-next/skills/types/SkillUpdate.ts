@@ -139,7 +139,7 @@ export interface SkillUpdate_skillUpdate_skill_variants {
   margin: number | null;
   quantity: number;
   quantityAllocated: number;
-  stockQuantity: number;
+  availabilityQuantity: number;
 }
 
 export interface SkillUpdate_skillUpdate_skill_skillType {

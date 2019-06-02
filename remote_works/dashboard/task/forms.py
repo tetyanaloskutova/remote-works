@@ -22,7 +22,7 @@ from ...payment.utils import (
     clean_mark_task_as_paid, gateway_capture, gateway_refund, gateway_void,
     mark_task_as_paid)
 from ...skill.models import Skill, SkillVariant
-from ...skill.utils import allocate_stock, deallocate_stock
+from ...skill.utils import allocate_availability, deallocate_availability
 from ...delivery.models import DeliveryMethod
 from ..forms import AjaxSelect2ChoiceField
 from ..widgets import PhonePrefixWidget
@@ -369,7 +369,7 @@ class CancelTaskLineForm(forms.Form):
 
     def cancel_line(self):
         if self.line.variant and self.line.variant.track_inventory:
-            deallocate_stock(self.line.variant, self.line.quantity)
+            deallocate_availability(self.line.variant, self.line.quantity)
         task = self.line.task
         delete_task_line(self.line)
         recalculate_order(task)
@@ -410,7 +410,7 @@ class ChangeQuantityForm(forms.ModelForm):
         if variant and variant.track_inventory:
             # update availability allocation
             delta = quantity - self.initial_quantity
-            allocate_stock(variant, delta)
+            allocate_availability(variant, delta)
         change_task_line_quantity(self.instance, quantity)
         recalculate_order(self.instance.task)
         return self.instance
@@ -419,18 +419,18 @@ class ChangeQuantityForm(forms.ModelForm):
 class CancelTaskForm(forms.Form):
     """Allow canceling an entire task.
 
-    Deallocate or increase corresponding stocks for each task line.
+    Deallocate or increase corresponding availabilitys for each task line.
     """
 
-    restock = forms.BooleanField(initial=True, required=False)
+    reavailability = forms.BooleanField(initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
         self.task = kwargs.pop('task')
         super().__init__(*args, **kwargs)
-        self.fields['restock'].label = npgettext_lazy(
+        self.fields['reavailability'].label = npgettext_lazy(
             'Cancel task form action',
-            'Restock %(quantity)d item',
-            'Restock %(quantity)d items',
+            'Reavail %(quantity)d item',
+            'Reavail %(quantity)d items',
             number='quantity') % {'quantity': self.task.get_total_quantity()}
 
     def clean(self):
@@ -443,24 +443,24 @@ class CancelTaskForm(forms.Form):
         return data
 
     def cancel_order(self):
-        cancel_order(self.task, self.cleaned_data.get('restock'))
+        cancel_order(self.task, self.cleaned_data.get('reavailability'))
 
 
 class CancelFulfillmentForm(forms.Form):
     """Allow canceling an entire fulfillment.
 
-    Increase corresponding stocks for each fulfillment line.
+    Increase corresponding availabilitys for each fulfillment line.
     """
 
-    restock = forms.BooleanField(initial=True, required=False)
+    reavailability = forms.BooleanField(initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
         self.fulfillment = kwargs.pop('fulfillment')
         super().__init__(*args, **kwargs)
-        self.fields['restock'].label = npgettext_lazy(
+        self.fields['reavailability'].label = npgettext_lazy(
             'Cancel fulfillment form action',
-            'Restock %(quantity)d item',
-            'Restock %(quantity)d items',
+            'Reavail %(quantity)d item',
+            'Reavail %(quantity)d items',
             number='quantity') % {'quantity': self.fulfillment.get_total_quantity()}
 
     def clean(self):
@@ -473,7 +473,7 @@ class CancelFulfillmentForm(forms.Form):
         return data
 
     def cancel_fulfillment(self):
-        cancel_fulfillment(self.fulfillment, self.cleaned_data.get('restock'))
+        cancel_fulfillment(self.fulfillment, self.cleaned_data.get('reavailability'))
 
 
 class FulfillmentTrackingNumberForm(forms.ModelForm):
@@ -553,7 +553,7 @@ class AddVariantToTaskForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Check if given quantity is available in stocks."""
+        """Check if given quantity is available in availabilitys."""
         cleaned_data = super().clean()
         variant = cleaned_data.get('variant')
         quantity = cleaned_data.get('quantity')
@@ -573,7 +573,7 @@ class AddVariantToTaskForm(forms.Form):
     def save(self):
         """Add variant to task.
 
-        Updates stocks and task.
+        Updates availabilitys and task.
         """
         variant = self.cleaned_data.get('variant')
         quantity = self.cleaned_data.get('quantity')

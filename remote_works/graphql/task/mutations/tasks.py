@@ -218,26 +218,26 @@ class TaskCancel(BaseMutation):
     class Arguments:
         id = graphene.ID(
             required=True, description='ID of the task to cancel.')
-        restock = graphene.Boolean(
+        reavailability = graphene.Boolean(
             required=True,
-            description='Determine if lines will be restocked or not.')
+            description='Determine if lines will be reavailabilityed or not.')
 
     class Meta:
         description = 'Cancel an task.'
 
     @classmethod
     @permission_required('task.manage_orders')
-    def mutate(cls, root, info, id, restock):
+    def mutate(cls, root, info, id, reavailability):
         errors = []
         task = cls.get_node_or_error(info, id, errors, 'id', Task)
         clean_task_cancel(task, errors)
         if errors:
             return TaskCancel(errors=errors)
 
-        cancel_order(task=task, restock=restock)
-        if restock:
+        cancel_order(task=task, reavailability=reavailability)
+        if reavailability:
             task.events.create(
-                type=TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value,
+                type=TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value,
                 user=info.context.user,
                 parameters={'quantity': task.get_total_quantity()})
         else:

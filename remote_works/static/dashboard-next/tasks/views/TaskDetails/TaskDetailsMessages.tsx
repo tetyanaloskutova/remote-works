@@ -57,7 +57,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
       <Messages>
         {pushMessage => {
           const handlePaymentCapture = (data: TaskCapture) => {
-            if (!maybe(() => data.orderCapture.errors.length)) {
+            if (!maybe(() => data.taskCapture.errors.length)) {
               pushMessage({
                 text: i18n.t("Payment successfully captured", {
                   context: "notification"
@@ -67,7 +67,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
               pushMessage({
                 text: i18n.t("Payment not captured: {{ errorMessage }}", {
                   context: "notification",
-                  errorMessage: data.orderCapture.errors.filter(
+                  errorMessage: data.taskCapture.errors.filter(
                     error => error.field === "payment"
                   )[0].message
                 })
@@ -75,7 +75,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
             }
           };
           const handlePaymentRefund = (data: TaskRefund) => {
-            if (!maybe(() => data.orderRefund.errors.length)) {
+            if (!maybe(() => data.taskRefund.errors.length)) {
               pushMessage({
                 text: i18n.t("Payment successfully refunded", {
                   context: "notification"
@@ -85,7 +85,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
               pushMessage({
                 text: i18n.t("Payment not refunded: {{ errorMessage }}", {
                   context: "notification",
-                  errorMessage: data.orderRefund.errors.filter(
+                  errorMessage: data.taskRefund.errors.filter(
                     error => error.field === "payment"
                   )[0].message
                 })
@@ -95,13 +95,13 @@ export const TaskDetailsMessages: React.StatelessComponent<
           const handleTaskFulfillmentCreate = (
             data: TaskCreateFulfillment
           ) => {
-            if (!maybe(() => data.orderFulfillmentCreate.errors.length)) {
+            if (!maybe(() => data.taskFulfillmentCreate.errors.length)) {
               pushMessage({
                 text: i18n.t("Items successfully fulfilled", {
                   context: "notification"
                 })
               });
-              navigate(taskUrl(data.orderFulfillmentCreate.task.id), true);
+              navigate(taskUrl(data.taskFulfillmentCreate.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not fulfill items", {
@@ -111,13 +111,13 @@ export const TaskDetailsMessages: React.StatelessComponent<
             }
           };
           const handleTaskMarkAsPaid = (data: TaskMarkAsPaid) => {
-            if (!maybe(() => data.orderMarkAsPaid.errors.length)) {
+            if (!maybe(() => data.taskMarkAsPaid.errors.length)) {
               pushMessage({
                 text: i18n.t("Task marked as paid", {
                   context: "notification"
                 })
               });
-              navigate(taskUrl(data.orderMarkAsPaid.task.id), true);
+              navigate(taskUrl(data.taskMarkAsPaid.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not mark task as paid", {
@@ -132,7 +132,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 context: "notification"
               })
             });
-            navigate(taskUrl(data.orderCancel.task.id), true);
+            navigate(taskUrl(data.taskCancel.task.id), true);
           };
           const handleDraftCancel = () => {
             pushMessage({
@@ -251,13 +251,13 @@ export const TaskDetailsMessages: React.StatelessComponent<
           const handleTaskFulfillmentCancel = (
             data: TaskFulfillmentCancel
           ) => {
-            if (!maybe(() => data.orderFulfillmentCancel.errors.length)) {
+            if (!maybe(() => data.taskFulfillmentCancel.errors.length)) {
               pushMessage({
                 text: i18n.t("Fulfillment successfully cancelled", {
                   context: "notification"
                 })
               });
-              navigate(taskUrl(data.orderFulfillmentCancel.task.id), true);
+              navigate(taskUrl(data.taskFulfillmentCancel.task.id), true);
             } else {
               pushMessage({
                 text: i18n.t("Could not cancel fulfillment", {
@@ -270,7 +270,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
             data: TaskFulfillmentUpdateTracking
           ) => {
             if (
-              !maybe(() => data.orderFulfillmentUpdateTracking.errors.length)
+              !maybe(() => data.taskFulfillmentUpdateTracking.errors.length)
             ) {
               pushMessage({
                 text: i18n.t("Fulfillment successfully updated", {
@@ -278,7 +278,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
                 })
               });
               navigate(
-                taskUrl(data.orderFulfillmentUpdateTracking.task.id),
+                taskUrl(data.taskFulfillmentUpdateTracking.task.id),
                 true
               );
             } else {

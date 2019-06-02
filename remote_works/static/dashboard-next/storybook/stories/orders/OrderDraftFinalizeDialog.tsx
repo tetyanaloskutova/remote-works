@@ -11,7 +11,7 @@ const props: TaskDraftFinalizeDialogProps = {
   onClose: () => undefined,
   onConfirm: () => undefined,
   open: true,
-  orderNumber: "5",
+  taskNumber: "5",
   warnings: []
 };
 

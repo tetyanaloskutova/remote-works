@@ -18,7 +18,7 @@ import StatusLabel from "../../../components/StatusLabel";
 import i18n from "../../../i18n";
 import { maybe, transformPaymentStatus } from "../../../misc";
 import { TaskAction, TaskStatus } from "../../../types/globalTypes";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -36,7 +36,7 @@ const styles = (theme: Theme) =>
   });
 
 interface TaskPaymentProps extends WithStyles<typeof styles> {
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   onCapture: () => void;
   onMarkAsPaid: () => void;
   onRefund: () => void;

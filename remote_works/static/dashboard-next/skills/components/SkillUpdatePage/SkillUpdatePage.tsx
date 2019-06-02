@@ -238,7 +238,7 @@ export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
                     onVariantAdd={onVariantAdd}
                   />
                 ) : (
-                  <SkillStock
+                  <SkillAvailability
                     data={data}
                     disabled={disabled}
                     skill={skill}

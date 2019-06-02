@@ -1,7 +1,7 @@
 from . import elasticsearch_dashboard
 
 PHRASE = 'You can go to the west'
-PRODUCT_QUERY = {
+TYPE_QUERY = {
     '_source': False,
     'query': {
         'multi_match': {
@@ -9,7 +9,7 @@ PRODUCT_QUERY = {
             'query': PHRASE,
             'type': 'cross_fields'}},
     'sort': ['_score']}
-ORDERS_QUERY = {
+TASKS_QUERY = {
     '_source': False,
     'query': {
         'multi_match': {
@@ -28,6 +28,6 @@ USERS_QUERY = {
 def test_dashboard_search_query_syntax():
     ''' Check if generated ES queries have desired syntax '''
     searches = elasticsearch_dashboard.get_search_queries(PHRASE)
-    assert PRODUCT_QUERY == searches['skills'].to_dict()
-    assert ORDERS_QUERY == searches['tasks'].to_dict()
+    assert TYPE_QUERY == searches['skills'].to_dict()
+    assert TASKS_QUERY == searches['tasks'].to_dict()
     assert USERS_QUERY == searches['users'].to_dict()

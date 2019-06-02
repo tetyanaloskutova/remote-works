@@ -6,10 +6,10 @@ import * as placeholderImage from "../../../../images/placeholder60x60.png";
 import TaskFulfillmentDialog, {
   TaskFulfillmentDialogProps
 } from "../../../tasks/components/TaskFulfillmentDialog";
-import { task as orderFixture } from "../../../tasks/fixtures";
+import { task as taskFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const task = orderFixture(placeholderImage);
+const task = taskFixture(placeholderImage);
 
 const props: Omit<TaskFulfillmentDialogProps, "classes"> = {
   confirmButtonState: "default",

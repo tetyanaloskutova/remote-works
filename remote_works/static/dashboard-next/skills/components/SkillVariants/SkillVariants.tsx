@@ -113,9 +113,9 @@ export const SkillVariants = withStyles(styles, { name: "SkillVariants" })(
                 <TableCell>
                   {variant ? (
                     <StatusLabel
-                      status={variant.stockQuantity > 0 ? "success" : "error"}
+                      status={variant.availabilityQuantity > 0 ? "success" : "error"}
                       label={
-                        variant.stockQuantity > 0
+                        variant.availabilityQuantity > 0
                           ? i18n.t("Available")
                           : i18n.t("Unavailable")
                       }

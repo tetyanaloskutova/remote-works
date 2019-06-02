@@ -123,7 +123,7 @@ export const fragmentSkill = gql`
       margin
       quantity
       quantityAllocated
-      stockQuantity
+      availabilityQuantity
     }
     skillType {
       id
@@ -199,14 +199,14 @@ const skillListQuery = gql`
     $after: String
     $last: Int
     $before: String
-    $stockAvailability: StockAvailability
+    $availabilityAvailability: StockAvailability
   ) {
     skills(
       before: $before
       after: $after
       first: $first
       last: $last
-      stockAvailability: $stockAvailability
+      availabilityAvailability: $availabilityAvailability
     ) {
       edges {
         node {

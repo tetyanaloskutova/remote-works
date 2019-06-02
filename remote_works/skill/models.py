@@ -157,8 +157,8 @@ class Skill(SeoModel, PublishableModel):
     def get_slug(self):
         return slugify(smart_text(unidecode(self.name)))
 
-    def is_in_stock(self):
-        return any(variant.is_in_stock() for variant in self)
+    def is_in_availability(self):
+        return any(variant.is_in_availability() for variant in self)
 
     def get_first_image(self):
         images = list(self.skill_type.images.all())
@@ -267,7 +267,7 @@ class SkillVariant(models.Model):
     def is_delivery_required(self):
         return self.skill.skill_type.is_delivery_required
 
-    def is_in_stock(self):
+    def is_in_availability(self):
         return self.quantity_available > 0
 
     def display_skill(self, translated=False):

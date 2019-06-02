@@ -958,8 +958,8 @@ msgstr[1] "Stokta sadece %(remaining)d adet kaldı."
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Stoğu %(quantity)d ürünle doldur"
 msgstr[1] "Stoğu %(quantity)d ürünle doldur"
 
@@ -971,8 +971,8 @@ msgstr "Bu sipariş iptal olamaz"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Stoğu %(quantity)d ürünle doldur"
 msgstr[1] "Stoğu %(quantity)d ürünle doldur"
 

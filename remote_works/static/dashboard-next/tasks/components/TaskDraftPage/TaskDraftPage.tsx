@@ -18,7 +18,7 @@ import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
 import { DraftTaskInput } from "../../../types/globalTypes";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 import { UserSearch_customers_edges_node } from "../../types/UserSearch";
 import TaskCustomer from "../TaskCustomer";
 import TaskDraftDetails from "../TaskDraftDetails/TaskDraftDetails";
@@ -41,7 +41,7 @@ const styles = (theme: Theme) =>
 
 export interface TaskDraftPageProps extends WithStyles<typeof styles> {
   disabled: boolean;
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   users: UserSearch_customers_edges_node[];
   usersLoading: boolean;
   countries: Array<{

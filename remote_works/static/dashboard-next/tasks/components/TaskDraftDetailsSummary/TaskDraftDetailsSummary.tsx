@@ -11,7 +11,7 @@ import Money from "../../../components/Money";
 import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -26,7 +26,7 @@ const styles = (theme: Theme) =>
   });
 
 interface TaskDraftDetailsSummaryProps extends WithStyles<typeof styles> {
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   onDeliveryMethodEdit: () => void;
 }
 

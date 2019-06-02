@@ -46,7 +46,7 @@ export interface FormData {
   seoDescription: string;
   seoTitle: string;
   sku: string;
-  stockQuantity: number;
+  availabilityQuantity: number;
 }
 
 interface SkillCreatePageProps {
@@ -117,7 +117,7 @@ export const SkillCreatePage: React.StatelessComponent<
     seoDescription: "",
     seoTitle: "",
     sku: null,
-    stockQuantity: null
+    availabilityQuantity: null
   };
   return (
     <Form

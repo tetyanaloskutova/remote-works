@@ -48,7 +48,7 @@ def get_task_confirmation_markup(task):
         '@context': 'http://schema.org',
         '@type': 'Task',
         'merchant': organization,
-        'orderNumber': task.pk,
+        'taskNumber': task.pk,
         'priceCurrency': task.total.gross.currency,
         'price': task.total.gross.amount,
         'acceptedOffer': [],
@@ -58,7 +58,7 @@ def get_task_confirmation_markup(task):
             'url': task_url
         },
         'taskStatus': 'http://schema.org/TaskProcessing',
-        'orderDate': task.created}
+        'taskDate': task.created}
 
     lines = task.lines.prefetch_related('variant')
     for line in lines:

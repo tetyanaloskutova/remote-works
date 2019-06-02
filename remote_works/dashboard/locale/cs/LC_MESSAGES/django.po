@@ -973,8 +973,8 @@ msgstr[3] "Pouze %(remaining)d zbývá na skladě."
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Naskladnit %(quantity)d položku"
 msgstr[1] "Naskladnit %(quantity)d položky"
 msgstr[2] "Naskladnit %(quantity)d položek"
@@ -988,8 +988,8 @@ msgstr "Tuto objednávku nelze zrušit"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Naskladnit %(quantity)d položku "
 msgstr[1] "Naskladnit %(quantity)d položky"
 msgstr[2] "Naskladnit %(quantity)d položek"

@@ -723,7 +723,7 @@ type FulfillmentCancel {
 }
 
 input FulfillmentCancelInput {
-  restock: Boolean
+  reavailability: Boolean
 }
 
 type FulfillmentCreate {
@@ -992,16 +992,16 @@ type Mutations {
   draftTaskLineUpdate(id: ID!, input: TaskLineInput!): DraftTaskLineUpdate
   draftTaskUpdate(id: ID!, input: DraftTaskInput!): DraftTaskUpdate
   orderAddNote(task: ID!, input: TaskAddNoteInput!): TaskAddNote
-  orderCancel(id: ID!, restock: Boolean!): TaskCancel
-  orderCapture(amount: Decimal!, id: ID!): TaskCapture
-  orderFulfillmentCancel(id: ID!, input: FulfillmentCancelInput!): FulfillmentCancel
-  orderFulfillmentCreate(input: FulfillmentCreateInput!, task: ID): FulfillmentCreate
-  orderFulfillmentUpdateTracking(id: ID!, input: FulfillmentUpdateTrackingInput!): FulfillmentUpdateTracking
-  orderMarkAsPaid(id: ID!): TaskMarkAsPaid
-  orderRefund(amount: Decimal!, id: ID!): TaskRefund
+  taskCancel(id: ID!, reavailability: Boolean!): TaskCancel
+  taskCapture(amount: Decimal!, id: ID!): TaskCapture
+  taskFulfillmentCancel(id: ID!, input: FulfillmentCancelInput!): FulfillmentCancel
+  taskFulfillmentCreate(input: FulfillmentCreateInput!, task: ID): FulfillmentCreate
+  taskFulfillmentUpdateTracking(id: ID!, input: FulfillmentUpdateTrackingInput!): FulfillmentUpdateTracking
+  taskMarkAsPaid(id: ID!): TaskMarkAsPaid
+  taskRefund(amount: Decimal!, id: ID!): TaskRefund
   taskUpdate(id: ID!, input: TaskUpdateInput!): TaskUpdate
   taskUpdateDelivery(task: ID!, input: TaskUpdateDeliveryInput): TaskUpdateDelivery
-  orderVoid(id: ID!): TaskVoid
+  taskVoid(id: ID!): TaskVoid
   assignNavigation(menu: ID, navigationType: NavigationType!): AssignNavigation
   menuCreate(input: MenuCreateInput!): MenuCreate
   menuDelete(id: ID!): MenuDelete
@@ -1168,7 +1168,7 @@ type TaskEvent implements Node {
   amount: Float
   quantity: Int
   composedId: String
-  orderNumber: String
+  taskNumber: String
   oversoldItems: [String]
 }
 
@@ -1187,16 +1187,16 @@ enum TaskEvents {
   PLACED
   PLACED_FROM_DRAFT
   OVERSOLD_ITEMS
-  ORDER_MARKED_AS_PAID
+  TASK_MARKED_AS_PAID
   CANCELED
-  ORDER_FULLY_PAID
+  TASK_FULLY_PAID
   UPDATED
   EMAIL_SENT
   PAYMENT_CAPTURED
   PAYMENT_REFUNDED
   PAYMENT_VOIDED
   FULFILLMENT_CANCELED
-  FULFILLMENT_RESTOCKED_ITEMS
+  FULFILLMENT_REAVAILED_ITEMS
   FULFILLMENT_FULFILLED_ITEMS
   TRACKING_UPDATED
   NOTE_ADDED
@@ -1206,7 +1206,7 @@ enum TaskEvents {
 enum TaskEventsEmails {
   PAYMENT
   DELIVERY
-  ORDER
+  TASK
   FULFILLMENT
 }
 
@@ -1689,7 +1689,7 @@ type SkillVariant implements Node {
   quantityAllocated: Int!
   costPrice: Money
   weight: Weight
-  stockQuantity: Int!
+  availabilityQuantity: Int!
   price: Money
   margin: Int
   quantityTasked: Int
@@ -1766,7 +1766,7 @@ type Query {
   collection(id: ID!): Collection
   collections(query: String, before: String, after: String, first: Int, last: Int): CollectionCountableConnection
   skill(id: ID!): Skill
-  skills(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: SkillTask, stockAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): SkillCountableConnection
+  skills(attributes: [AttributeScalar], categories: [ID], collections: [ID], priceLte: Float, priceGte: Float, sortBy: SkillTask, availabilityAvailability: StockAvailability, query: String, before: String, after: String, first: Int, last: Int): SkillCountableConnection
   skillType(id: ID!): SkillType
   skillTypes(before: String, after: String, first: Int, last: Int): SkillTypeCountableConnection
   skillVariant(id: ID!): SkillVariant
@@ -2102,8 +2102,8 @@ type StaffUpdate {
 }
 
 enum StockAvailability {
-  IN_STOCK
-  OUT_OF_STOCK
+  IN_AVAILABILITY
+  OUT_OF_AVAILABILITY
 }
 
 enum TaxRateType {

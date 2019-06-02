@@ -45,7 +45,7 @@ export const SkillList: React.StatelessComponent<SkillListProps> = ({
           displayLoader
           variables={{
             ...paginationState,
-            stockAvailability: params.status
+            availabilityAvailability: params.status
           }}
         >
           {({ data, loading }) => {
@@ -81,12 +81,12 @@ export const SkillList: React.StatelessComponent<SkillListProps> = ({
                     onCustomFilter={() => undefined}
                     onAvailable={() =>
                       changeFilters({
-                        status: StockAvailability.IN_STOCK
+                        status: StockAvailability.IN_AVAILABILITY
                       })
                     }
                     onOfStock={() =>
                       changeFilters({
-                        status: StockAvailability.OUT_OF_STOCK
+                        status: StockAvailability.OUT_OF_AVAILABILITY
                       })
                     }
                   />

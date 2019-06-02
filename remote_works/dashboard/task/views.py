@@ -83,7 +83,7 @@ def create_task_from_draft(request, task_pk):
             task.events.create(
                 parameters={
                     'email': task.get_user_current_email(),
-                    'email_type': TaskEventsEmails.ORDER.value},
+                    'email_type': TaskEventsEmails.TASK.value},
                 type=TaskEvents.EMAIL_SENT.value)
         return redirect('dashboard:task-details', task_pk=task.pk)
     elif form.errors:
@@ -476,7 +476,7 @@ def cancel_order(request, task_pk):
         msg = pgettext_lazy('Dashboard message', 'Task canceled')
         with transaction.atomic():
             form.cancel_order()
-            if form.cleaned_data.get('restock'):
+            if form.cleaned_data.get('reavailability'):
                 task.events.create(
                     user=request.user,
                     type=TaskEvents.UPDATED.value)
@@ -534,7 +534,7 @@ def mark_task_as_paid(request, task_pk):
             form.save()
             task.events.create(
                 user=request.user,
-                type=TaskEvents.ORDER_MARKED_AS_PAID.value)
+                type=TaskEvents.TASK_MARKED_AS_PAID.value)
         msg = pgettext_lazy(
             'Dashboard message',
             'Task manually marked as paid')
@@ -646,11 +646,11 @@ def cancel_fulfillment(request, task_pk, fulfillment_pk):
                 'fulfillment': fulfillment.composed_id}
         with transaction.atomic():
             form.cancel_fulfillment()
-            if form.cleaned_data.get('restock'):
+            if form.cleaned_data.get('reavailability'):
                 task.events.create(
                     parameters={'quantity': fulfillment.get_total_quantity()},
                     user=request.user,
-                    type=TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value)
+                    type=TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value)
             task.events.create(
                 user=request.user,
                 parameters={'composed_id': fulfillment.composed_id},

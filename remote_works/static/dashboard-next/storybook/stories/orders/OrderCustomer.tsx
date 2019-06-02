@@ -5,10 +5,10 @@ import * as React from "react";
 import TaskCustomer, {
   TaskCustomerProps
 } from "../../../tasks/components/TaskCustomer";
-import { clients, task as orderFixture } from "../../../tasks/fixtures";
+import { clients, task as taskFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const task = orderFixture("");
+const task = taskFixture("");
 
 const props: Omit<TaskCustomerProps, "classes"> = {
   canEditAddresses: false,

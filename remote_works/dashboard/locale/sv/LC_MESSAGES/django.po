@@ -961,8 +961,8 @@ msgstr[1] "Endast %(remaining)d kvar i lager."
 #: saleor/dashboard/task/forms.py:426
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Vi har fyllt på %(quantity)d vara"
 msgstr[1] "Fyllt på %(quantity)d varor"
 
@@ -974,8 +974,8 @@ msgstr "Denna task kan inte avbrytas"
 #: saleor/dashboard/task/forms.py:456
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] "Vi har fyllt på %(quantity)d vara"
 msgstr[1] "Fyllt på %(quantity)d varor"
 

@@ -28,7 +28,7 @@ import {
   SimpleSkillUpdate,
   SimpleSkillUpdateVariables
 } from "../types/SimpleSkillUpdate";
-import SkillImagesRetaskProvider from "./SkillImagesReorder";
+import SkillImagesReorderProvider from "./SkillImagesReorder";
 
 interface SkillUpdateOperationsProps {
   skill: SkillDetails_skill;
@@ -82,7 +82,7 @@ const SkillUpdateOperations: React.StatelessComponent<
   return (
     <TypedSkillUpdateMutation onCompleted={onUpdate}>
       {(...updateSkill) => (
-        <SkillImagesRetaskProvider
+        <SkillImagesReorderProvider
           skillId={skillId}
           skillImages={maybe(() => skill.images, [])}
           onCompleted={onImageReorder}
@@ -129,7 +129,7 @@ const SkillUpdateOperations: React.StatelessComponent<
               )}
             </TypedSkillImageCreateMutation>
           )}
-        </SkillImagesRetaskProvider>
+        </SkillImagesReorderProvider>
       )}
     </TypedSkillUpdateMutation>
   );

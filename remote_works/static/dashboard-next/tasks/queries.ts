@@ -205,7 +205,7 @@ export const TypedTaskListQuery = TypedQuery<TaskList, TaskListVariables>(
   taskListQuery
 );
 
-export const orderDetailsQuery = gql`
+export const taskDetailsQuery = gql`
   ${fragmentTaskDetails}
   query TaskDetails($id: ID!) {
     task(id: $id) {
@@ -223,9 +223,9 @@ export const orderDetailsQuery = gql`
 export const TypedTaskDetailsQuery = TypedQuery<
   TaskDetails,
   TaskDetailsVariables
->(orderDetailsQuery);
+>(taskDetailsQuery);
 
-export const orderVariantSearchQuery = gql`
+export const taskVariantSearchQuery = gql`
   query TaskVariantSearch($search: String!, $after: String) {
     skills(query: $search, first: 5, after: $after) {
       edges {
@@ -258,7 +258,7 @@ export const orderVariantSearchQuery = gql`
 export const TypedTaskVariantSearch = TypedQuery<
   TaskVariantSearch,
   TaskVariantSearchVariables
->(orderVariantSearchQuery);
+>(taskVariantSearchQuery);
 
 export const userSearchQuery = gql`
   query UserSearch($search: String!) {

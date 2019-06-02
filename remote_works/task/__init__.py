@@ -50,9 +50,9 @@ class TaskEvents(Enum):
     PLACED = 'placed'
     PLACED_FROM_DRAFT = 'draft_placed'
     OVERSOLD_ITEMS = 'oversold_items'
-    ORDER_MARKED_AS_PAID = 'marked_as_paid'
+    TASK_MARKED_AS_PAID = 'marked_as_paid'
     CANCELED = 'canceled'
-    ORDER_FULLY_PAID = 'task_paid'
+    TASK_FULLY_PAID = 'task_paid'
     UPDATED = 'updated'
 
     EMAIL_SENT = 'email_sent'
@@ -62,7 +62,7 @@ class TaskEvents(Enum):
     PAYMENT_VOIDED = 'voided'
 
     FULFILLMENT_CANCELED = 'fulfillment_canceled'
-    FULFILLMENT_RESTOCKED_ITEMS = 'restocked_items'
+    FULFILLMENT_REAVAILED_ITEMS = 'reavailed_items'
     FULFILLMENT_FULFILLED_ITEMS = 'fulfilled_items'
     TRACKING_UPDATED = 'tracking_updated'
     NOTE_ADDED = 'note_added'
@@ -74,7 +74,7 @@ class TaskEvents(Enum):
 class TaskEventsEmails(Enum):
     PAYMENT = 'payment_confirmation'
     DELIVERY = 'delivery_confirmation'
-    ORDER = 'task_confirmation'
+    TASK = 'task_confirmation'
     FULFILLMENT = 'fulfillment_confirmation'
 
 
@@ -85,7 +85,7 @@ EMAIL_CHOICES = {
         'Email type', 'Delivery confirmation'),
     TaskEventsEmails.FULFILLMENT.value: pgettext_lazy(
         'Email type', 'Fulfillment confirmation'),
-    TaskEventsEmails.ORDER.value: pgettext_lazy(
+    TaskEventsEmails.TASK.value: pgettext_lazy(
         'Email type', 'Task confirmation')}
 
 
@@ -131,7 +131,7 @@ def display_task_event(task_event):
             'Dashboard message related to an task',
             'Successfully captured: %(amount)s' % {
                 'amount': prices_i18n.amount(amount)})
-    if event_type == TaskEvents.ORDER_MARKED_AS_PAID.value:
+    if event_type == TaskEvents.TASK_MARKED_AS_PAID.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task manually marked as paid by %(user_name)s' % {
@@ -141,11 +141,11 @@ def display_task_event(task_event):
             'Dashboard message related to an task',
             'Task was canceled by %(user_name)s' % {
                 'user_name': task_event.user})
-    if event_type == TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value:
+    if event_type == TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value:
         return npgettext_lazy(
             'Dashboard message related to an task',
-            'We restocked %(quantity)d item',
-            'We restocked %(quantity)d items',
+            'We reavailabilityed %(quantity)d item',
+            'We reavailabilityed %(quantity)d items',
             number='quantity') % {'quantity': params['quantity']}
     if event_type == TaskEvents.NOTE_ADDED.value:
         return pgettext_lazy(
@@ -170,7 +170,7 @@ def display_task_event(task_event):
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task was placed')
-    if event_type == TaskEvents.ORDER_FULLY_PAID.value:
+    if event_type == TaskEvents.TASK_FULLY_PAID.value:
         return pgettext_lazy(
             'Dashboard message related to an task',
             'Task was fully paid')

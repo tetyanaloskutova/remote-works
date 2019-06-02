@@ -232,8 +232,8 @@ const RichTextEditor = withStyles(styles, { name: "RichTextEditor" })(
           { icon: <HeaderTwo />, type: BLOCK_TYPE.HEADER_TWO },
           { icon: <HeaderThree />, type: BLOCK_TYPE.HEADER_THREE },
           { icon: <QuotationIcon />, type: BLOCK_TYPE.BLOCKQUOTE },
-          { icon: <UnorderedListIcon />, type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
-          { icon: <TaskedListIcon />, type: BLOCK_TYPE.ORDERED_LIST_ITEM }
+          { icon: <UnorderedListIcon />, type: BLOCK_TYPE.UNTASKED_LIST_ITEM },
+          { icon: <TaskedListIcon />, type: BLOCK_TYPE.TASKED_LIST_ITEM }
         ]}
         inlineStyles={[
           { icon: <BoldIcon />, type: INLINE_STYLE.BOLD },

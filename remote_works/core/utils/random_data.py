@@ -44,7 +44,7 @@ from ...delivery.utils import get_taxed_delivery_price
 
 fake = Factory.create()
 
-PRODUCTS_LIST_DIR = 'skills-list/'
+TYPES_LIST_DIR = 'skills-list/'
 
 GROCERIES_CATEGORY = {'name': 'Groceries', 'image_name': 'groceries.jpg'}
 
@@ -641,7 +641,7 @@ def create_menus():
 
 def get_skill_list_images_dir(placeholder_dir):
     skill_list_images_dir = os.path.join(
-        placeholder_dir, PRODUCTS_LIST_DIR)
+        placeholder_dir, TYPES_LIST_DIR)
     return skill_list_images_dir
 
 

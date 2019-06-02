@@ -946,8 +946,8 @@ msgstr[0] ""
 #: saleor/dashboard/task/forms.py:435
 #, python-format
 msgctxt "Cancel task form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] ""
 
 #: saleor/dashboard/task/forms.py:445
@@ -958,8 +958,8 @@ msgstr ""
 #: saleor/dashboard/task/forms.py:465
 #, python-format
 msgctxt "Cancel fulfillment form action"
-msgid "Restock %(quantity)d item"
-msgid_plural "Restock %(quantity)d items"
+msgid "Reavail %(quantity)d item"
+msgid_plural "Reavail %(quantity)d items"
 msgstr[0] ""
 
 #: saleor/dashboard/task/forms.py:475

@@ -42,8 +42,8 @@ def replace_project_in(file):
         while 'skill' in newText:
             newText=newText.replace('skill', 'skill')
      
-        while 'PRODUCT' in newText:
-            newText=newText.replace('PRODUCT', 'SKILL')
+        while 'TYPE' in newText:
+            newText=newText.replace('TYPE', 'SKILL')
      
         while 'Skill' in newText:
             newText=newText.replace('Skill', 'Skill')

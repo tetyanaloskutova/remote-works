@@ -20,7 +20,7 @@ import Form from "../../../components/Form";
 import i18n from "../../../i18n";
 
 export interface FormData {
-  restock: boolean;
+  reavailability: boolean;
 }
 
 const styles = (theme: Theme) =>
@@ -46,7 +46,7 @@ const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
   ({
     classes,
     confirmButtonState,
-    number: orderNumber,
+    number: taskNumber,
     open,
     onSubmit,
     onClose
@@ -54,7 +54,7 @@ const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
     <Dialog open={open}>
       <Form
         initial={{
-          restock: true
+          reavailability: true
         }}
         onSubmit={onSubmit}
       >
@@ -68,15 +68,15 @@ const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
                 <DialogContentText
                   dangerouslySetInnerHTML={{
                     __html: i18n.t(
-                      "Are you sure you want to cancel task <strong>{{ orderNumber }}</strong>?",
-                      { orderNumber }
+                      "Are you sure you want to cancel task <strong>{{ taskNumber }}</strong>?",
+                      { taskNumber }
                     )
                   }}
                 />
                 <ControlledCheckbox
-                  checked={data.restock}
+                  checked={data.reavailability}
                   label={i18n.t("Release all availability allocated to this task")}
-                  name="restock"
+                  name="reavailability"
                   onChange={change}
                 />
               </DialogContent>

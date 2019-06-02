@@ -7,24 +7,24 @@ import { FulfillmentCancelInput, TaskEventsEmails, TaskEvents, FulfillmentStatus
 // GraphQL mutation operation: TaskFulfillmentCancel
 // ====================================================
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_errors {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_billingAddress_country {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_billingAddress {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskFulfillmentCancel_orderFulfillmentCancel_task_billingAddress_country;
+  country: TaskFulfillmentCancel_taskFulfillmentCancel_task_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,12 +35,12 @@ export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_billingAddres
   streetAddress2: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_events_user {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_events {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -50,28 +50,28 @@ export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskFulfillmentCancel_orderFulfillmentCancel_task_events_user | null;
+  user: TaskFulfillmentCancel_taskFulfillmentCancel_task_events_user | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_gross {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_net {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_gross;
-  net: TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_net;
+  gross: TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -79,45 +79,45 @@ export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice | null;
+  unitPrice: TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  taskLine: TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines_taskLine | null;
+  taskLine: TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines_taskLine | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments_lines | null)[] | null;
+  lines: (TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments_lines | null)[] | null;
   fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice_gross {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice_net {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice_gross;
-  net: TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice_net;
+  gross: TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice_gross;
+  net: TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice_net;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_lines {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -125,22 +125,22 @@ export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_lines {
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskFulfillmentCancel_orderFulfillmentCancel_task_lines_unitPrice | null;
+  unitPrice: TaskFulfillmentCancel_taskFulfillmentCancel_task_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryAddress_country {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryAddress {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryAddress_country;
+  country: TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,117 +151,117 @@ export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryAddre
   streetAddress2: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryMethod {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryMethod {
   __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryPrice_gross {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryPrice {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryPrice_gross;
+  gross: TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryPrice_gross;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_subtotal_gross {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_subtotal {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_subtotal {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentCancel_orderFulfillmentCancel_task_subtotal_gross;
+  gross: TaskFulfillmentCancel_taskFulfillmentCancel_task_subtotal_gross;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_total_gross {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_total_tax {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_total {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_total {
   __typename: "TaxedMoney";
-  gross: TaskFulfillmentCancel_orderFulfillmentCancel_task_total_gross;
-  tax: TaskFulfillmentCancel_orderFulfillmentCancel_task_total_tax;
+  gross: TaskFulfillmentCancel_taskFulfillmentCancel_task_total_gross;
+  tax: TaskFulfillmentCancel_taskFulfillmentCancel_task_total_tax;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_totalAuthorized {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_totalCaptured {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_user {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_availableDeliveryMethods_price {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_task_availableDeliveryMethods {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_task_availableDeliveryMethods {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: TaskFulfillmentCancel_orderFulfillmentCancel_task_availableDeliveryMethods_price | null;
+  price: TaskFulfillmentCancel_taskFulfillmentCancel_task_availableDeliveryMethods_price | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel_order {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel_order {
   __typename: "Task";
   id: string;
-  billingAddress: TaskFulfillmentCancel_orderFulfillmentCancel_task_billingAddress | null;
+  billingAddress: TaskFulfillmentCancel_taskFulfillmentCancel_task_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (TaskFulfillmentCancel_orderFulfillmentCancel_task_events | null)[] | null;
-  fulfillments: (TaskFulfillmentCancel_orderFulfillmentCancel_task_fulfillments | null)[];
-  lines: (TaskFulfillmentCancel_orderFulfillmentCancel_task_lines | null)[];
+  events: (TaskFulfillmentCancel_taskFulfillmentCancel_task_events | null)[] | null;
+  fulfillments: (TaskFulfillmentCancel_taskFulfillmentCancel_task_fulfillments | null)[];
+  lines: (TaskFulfillmentCancel_taskFulfillmentCancel_task_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  deliveryAddress: TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryAddress | null;
-  deliveryMethod: TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryMethod | null;
+  deliveryAddress: TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryAddress | null;
+  deliveryMethod: TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryMethod | null;
   deliveryMethodName: string | null;
-  deliveryPrice: TaskFulfillmentCancel_orderFulfillmentCancel_task_deliveryPrice | null;
+  deliveryPrice: TaskFulfillmentCancel_taskFulfillmentCancel_task_deliveryPrice | null;
   status: TaskStatus;
-  subtotal: TaskFulfillmentCancel_orderFulfillmentCancel_task_subtotal | null;
-  total: TaskFulfillmentCancel_orderFulfillmentCancel_task_total | null;
+  subtotal: TaskFulfillmentCancel_taskFulfillmentCancel_task_subtotal | null;
+  total: TaskFulfillmentCancel_taskFulfillmentCancel_task_total | null;
   actions: (TaskAction | null)[];
-  totalAuthorized: TaskFulfillmentCancel_orderFulfillmentCancel_task_totalAuthorized | null;
-  totalCaptured: TaskFulfillmentCancel_orderFulfillmentCancel_task_totalCaptured | null;
-  user: TaskFulfillmentCancel_orderFulfillmentCancel_task_user | null;
+  totalAuthorized: TaskFulfillmentCancel_taskFulfillmentCancel_task_totalAuthorized | null;
+  totalCaptured: TaskFulfillmentCancel_taskFulfillmentCancel_task_totalCaptured | null;
+  user: TaskFulfillmentCancel_taskFulfillmentCancel_task_user | null;
   userEmail: string | null;
-  availableDeliveryMethods: (TaskFulfillmentCancel_orderFulfillmentCancel_task_availableDeliveryMethods | null)[] | null;
+  availableDeliveryMethods: (TaskFulfillmentCancel_taskFulfillmentCancel_task_availableDeliveryMethods | null)[] | null;
 }
 
-export interface TaskFulfillmentCancel_orderFulfillmentCancel {
+export interface TaskFulfillmentCancel_taskFulfillmentCancel {
   __typename: "FulfillmentCancel";
-  errors: TaskFulfillmentCancel_orderFulfillmentCancel_errors[] | null;
-  task: TaskFulfillmentCancel_orderFulfillmentCancel_order | null;
+  errors: TaskFulfillmentCancel_taskFulfillmentCancel_errors[] | null;
+  task: TaskFulfillmentCancel_taskFulfillmentCancel_order | null;
 }
 
 export interface TaskFulfillmentCancel {
-  orderFulfillmentCancel: TaskFulfillmentCancel_orderFulfillmentCancel | null;
+  taskFulfillmentCancel: TaskFulfillmentCancel_taskFulfillmentCancel | null;
 }
 
 export interface TaskFulfillmentCancelVariables {

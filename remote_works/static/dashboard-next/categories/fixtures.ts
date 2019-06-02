@@ -83,6 +83,8 @@ export const category: (
     __typename: "Category",
     id: "Q2F0ZWdvcnk6Mw=="
   },
+  seoDescription: null,
+  seoTitle: null
   skills: {
     __typename: "SkillCountableConnection",
     edges: [
@@ -335,8 +337,7 @@ export const category: (
       startCursor: "YXJyYXljb25uZWN0aW9uOjA="
     }
   },
-  seoDescription: null,
-  seoTitle: null
+
 });
 export const errors = [
   {

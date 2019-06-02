@@ -35,7 +35,7 @@ const getEventMessage = (event: TaskDetails_task_events) => {
           return i18n.t("Fulfillment confirmation has been sent to customer", {
             context: "task history message"
           });
-        case TaskEventsEmails.ORDER:
+        case TaskEventsEmails.TASK:
           return i18n.t("Task confirmation has been sent to customer", {
             context: "task history message"
           });
@@ -57,16 +57,16 @@ const getEventMessage = (event: TaskDetails_task_events) => {
         context: "task history message",
         quantity: event.quantity
       });
-    case TaskEvents.FULFILLMENT_RESTOCKED_ITEMS:
-      return i18n.t("Restocked {{ quantity }} items", {
+    case TaskEvents.FULFILLMENT_REAVAILED_ITEMS:
+      return i18n.t("Reavailed {{ quantity }} items", {
         context: "task history message",
         quantity: event.quantity
       });
-    case TaskEvents.ORDER_FULLY_PAID:
+    case TaskEvents.TASK_FULLY_PAID:
       return i18n.t("Task has been fully paid", {
         context: "task history message"
       });
-    case TaskEvents.ORDER_MARKED_AS_PAID:
+    case TaskEvents.TASK_MARKED_AS_PAID:
       return i18n.t("Marked task as paid", {
         context: "task history message"
       });

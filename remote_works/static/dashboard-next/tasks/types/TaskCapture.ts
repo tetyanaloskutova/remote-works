@@ -7,24 +7,24 @@ import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnu
 // GraphQL mutation operation: TaskCapture
 // ====================================================
 
-export interface TaskCapture_orderCapture_errors {
+export interface TaskCapture_taskCapture_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface TaskCapture_orderCapture_task_billingAddress_country {
+export interface TaskCapture_taskCapture_task_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskCapture_orderCapture_task_billingAddress {
+export interface TaskCapture_taskCapture_task_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskCapture_orderCapture_task_billingAddress_country;
+  country: TaskCapture_taskCapture_task_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -35,12 +35,12 @@ export interface TaskCapture_orderCapture_task_billingAddress {
   streetAddress2: string;
 }
 
-export interface TaskCapture_orderCapture_task_events_user {
+export interface TaskCapture_taskCapture_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskCapture_orderCapture_task_events {
+export interface TaskCapture_taskCapture_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -50,28 +50,28 @@ export interface TaskCapture_orderCapture_task_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskCapture_orderCapture_task_events_user | null;
+  user: TaskCapture_taskCapture_task_events_user | null;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice_gross {
+export interface TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice_net {
+export interface TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice {
+export interface TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice_gross;
-  net: TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice_net;
+  gross: TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice_gross;
+  net: TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice_net;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments_lines_taskLine {
+export interface TaskCapture_taskCapture_task_fulfillments_lines_taskLine {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -79,45 +79,45 @@ export interface TaskCapture_orderCapture_task_fulfillments_lines_taskLine {
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskCapture_orderCapture_task_fulfillments_lines_taskLine_unitPrice | null;
+  unitPrice: TaskCapture_taskCapture_task_fulfillments_lines_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments_lines {
+export interface TaskCapture_taskCapture_task_fulfillments_lines {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  taskLine: TaskCapture_orderCapture_task_fulfillments_lines_taskLine | null;
+  taskLine: TaskCapture_taskCapture_task_fulfillments_lines_taskLine | null;
 }
 
-export interface TaskCapture_orderCapture_task_fulfillments {
+export interface TaskCapture_taskCapture_task_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: (TaskCapture_orderCapture_task_fulfillments_lines | null)[] | null;
+  lines: (TaskCapture_taskCapture_task_fulfillments_lines | null)[] | null;
   fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface TaskCapture_orderCapture_task_lines_unitPrice_gross {
+export interface TaskCapture_taskCapture_task_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_lines_unitPrice_net {
+export interface TaskCapture_taskCapture_task_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_lines_unitPrice {
+export interface TaskCapture_taskCapture_task_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskCapture_orderCapture_task_lines_unitPrice_gross;
-  net: TaskCapture_orderCapture_task_lines_unitPrice_net;
+  gross: TaskCapture_taskCapture_task_lines_unitPrice_gross;
+  net: TaskCapture_taskCapture_task_lines_unitPrice_net;
 }
 
-export interface TaskCapture_orderCapture_task_lines {
+export interface TaskCapture_taskCapture_task_lines {
   __typename: "TaskLine";
   id: string;
   isDeliveryRequired: boolean;
@@ -125,22 +125,22 @@ export interface TaskCapture_orderCapture_task_lines {
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskCapture_orderCapture_task_lines_unitPrice | null;
+  unitPrice: TaskCapture_taskCapture_task_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskCapture_orderCapture_task_deliveryAddress_country {
+export interface TaskCapture_taskCapture_task_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskCapture_orderCapture_task_deliveryAddress {
+export interface TaskCapture_taskCapture_task_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskCapture_orderCapture_task_deliveryAddress_country;
+  country: TaskCapture_taskCapture_task_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -151,117 +151,117 @@ export interface TaskCapture_orderCapture_task_deliveryAddress {
   streetAddress2: string;
 }
 
-export interface TaskCapture_orderCapture_task_deliveryMethod {
+export interface TaskCapture_taskCapture_task_deliveryMethod {
   __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface TaskCapture_orderCapture_task_deliveryPrice_gross {
+export interface TaskCapture_taskCapture_task_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_deliveryPrice {
+export interface TaskCapture_taskCapture_task_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: TaskCapture_orderCapture_task_deliveryPrice_gross;
+  gross: TaskCapture_taskCapture_task_deliveryPrice_gross;
 }
 
-export interface TaskCapture_orderCapture_task_subtotal_gross {
+export interface TaskCapture_taskCapture_task_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_subtotal {
+export interface TaskCapture_taskCapture_task_subtotal {
   __typename: "TaxedMoney";
-  gross: TaskCapture_orderCapture_task_subtotal_gross;
+  gross: TaskCapture_taskCapture_task_subtotal_gross;
 }
 
-export interface TaskCapture_orderCapture_task_total_gross {
+export interface TaskCapture_taskCapture_task_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_total_tax {
+export interface TaskCapture_taskCapture_task_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_total {
+export interface TaskCapture_taskCapture_task_total {
   __typename: "TaxedMoney";
-  gross: TaskCapture_orderCapture_task_total_gross;
-  tax: TaskCapture_orderCapture_task_total_tax;
+  gross: TaskCapture_taskCapture_task_total_gross;
+  tax: TaskCapture_taskCapture_task_total_tax;
 }
 
-export interface TaskCapture_orderCapture_task_totalAuthorized {
+export interface TaskCapture_taskCapture_task_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_totalCaptured {
+export interface TaskCapture_taskCapture_task_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_user {
+export interface TaskCapture_taskCapture_task_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface TaskCapture_orderCapture_task_availableDeliveryMethods_price {
+export interface TaskCapture_taskCapture_task_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskCapture_orderCapture_task_availableDeliveryMethods {
+export interface TaskCapture_taskCapture_task_availableDeliveryMethods {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: TaskCapture_orderCapture_task_availableDeliveryMethods_price | null;
+  price: TaskCapture_taskCapture_task_availableDeliveryMethods_price | null;
 }
 
-export interface TaskCapture_orderCapture_order {
+export interface TaskCapture_taskCapture_order {
   __typename: "Task";
   id: string;
-  billingAddress: TaskCapture_orderCapture_task_billingAddress | null;
+  billingAddress: TaskCapture_taskCapture_task_billingAddress | null;
   canFinalize: boolean;
   created: any;
   customerNote: string;
-  events: (TaskCapture_orderCapture_task_events | null)[] | null;
-  fulfillments: (TaskCapture_orderCapture_task_fulfillments | null)[];
-  lines: (TaskCapture_orderCapture_task_lines | null)[];
+  events: (TaskCapture_taskCapture_task_events | null)[] | null;
+  fulfillments: (TaskCapture_taskCapture_task_fulfillments | null)[];
+  lines: (TaskCapture_taskCapture_task_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  deliveryAddress: TaskCapture_orderCapture_task_deliveryAddress | null;
-  deliveryMethod: TaskCapture_orderCapture_task_deliveryMethod | null;
+  deliveryAddress: TaskCapture_taskCapture_task_deliveryAddress | null;
+  deliveryMethod: TaskCapture_taskCapture_task_deliveryMethod | null;
   deliveryMethodName: string | null;
-  deliveryPrice: TaskCapture_orderCapture_task_deliveryPrice | null;
+  deliveryPrice: TaskCapture_taskCapture_task_deliveryPrice | null;
   status: TaskStatus;
-  subtotal: TaskCapture_orderCapture_task_subtotal | null;
-  total: TaskCapture_orderCapture_task_total | null;
+  subtotal: TaskCapture_taskCapture_task_subtotal | null;
+  total: TaskCapture_taskCapture_task_total | null;
   actions: (TaskAction | null)[];
-  totalAuthorized: TaskCapture_orderCapture_task_totalAuthorized | null;
-  totalCaptured: TaskCapture_orderCapture_task_totalCaptured | null;
-  user: TaskCapture_orderCapture_task_user | null;
+  totalAuthorized: TaskCapture_taskCapture_task_totalAuthorized | null;
+  totalCaptured: TaskCapture_taskCapture_task_totalCaptured | null;
+  user: TaskCapture_taskCapture_task_user | null;
   userEmail: string | null;
-  availableDeliveryMethods: (TaskCapture_orderCapture_task_availableDeliveryMethods | null)[] | null;
+  availableDeliveryMethods: (TaskCapture_taskCapture_task_availableDeliveryMethods | null)[] | null;
 }
 
-export interface TaskCapture_orderCapture {
+export interface TaskCapture_taskCapture {
   __typename: "TaskCapture";
-  errors: TaskCapture_orderCapture_errors[] | null;
-  task: TaskCapture_orderCapture_order | null;
+  errors: TaskCapture_taskCapture_errors[] | null;
+  task: TaskCapture_taskCapture_order | null;
 }
 
 export interface TaskCapture {
-  orderCapture: TaskCapture_orderCapture | null;
+  taskCapture: TaskCapture_taskCapture | null;
 }
 
 export interface TaskCaptureVariables {

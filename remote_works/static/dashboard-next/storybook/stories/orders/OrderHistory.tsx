@@ -2,10 +2,10 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import TaskHistory from "../../../tasks/components/TaskHistory";
-import { task as orderFixture } from "../../../tasks/fixtures";
+import { task as taskFixture } from "../../../tasks/fixtures";
 import Decorator from "../../Decorator";
 
-const task = orderFixture("");
+const task = taskFixture("");
 
 storiesOf("Tasks / TaskHistory", module)
   .addDecorator(Decorator)

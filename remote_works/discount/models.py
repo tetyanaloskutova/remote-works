@@ -78,7 +78,7 @@ class Voucher(models.Model):
             return pgettext(
                 'Voucher type',
                 '%(discount)s off delivery') % {'discount': discount}
-        if self.type == VoucherType.PRODUCT:
+        if self.type == VoucherType.TYPE:
             skills = len(self.skills.all())
             if skills:
                 return pgettext(

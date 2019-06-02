@@ -26,7 +26,7 @@ const styles = (theme: Theme) =>
 interface SkillAvailabilityProps extends WithStyles<typeof styles> {
   data: {
     sku: string;
-    stockQuantity: number;
+    availabilityQuantity: number;
   };
   disabled: boolean;
   skill: SkillDetails_skill;
@@ -48,9 +48,9 @@ const SkillAvailability = withStyles(styles, { name: "SkillAvailability" })(
           />
           <TextField
             disabled={disabled}
-            name="stockQuantity"
+            name="availabilityQuantity"
             label={i18n.t("Inventory")}
-            value={data.stockQuantity}
+            value={data.availabilityQuantity}
             type="number"
             onChange={onChange}
             helperText={i18n.t("Allocated: {{ quantity }}", {

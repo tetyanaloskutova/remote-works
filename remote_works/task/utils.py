@@ -16,7 +16,7 @@ from ..task import FulfillmentStatus, TaskStatus
 from ..task.models import TaskLine
 from ..payment import ChargeStatus
 from ..payment.utils import gateway_refund, gateway_void
-from ..skill.utils import allocate_stock, deallocate_stock, increase_stock
+from ..skill.utils import allocate_availability, deallocate_availability, increase_availability
 
 
 def check_task_status(func):
@@ -109,13 +109,13 @@ def update_task_prices(task, discounts):
     recalculate_order(task)
 
 
-def cancel_order(task, restock):
+def cancel_order(task, reavailability):
     """Cancel task and associated fulfillments.
 
-    Return skills to corresponding stocks if restock is set to True.
+    Return skills to corresponding availabilitys if reavailability is set to True.
     """
-    if restock:
-        restock_task_lines(task)
+    if reavailability:
+        reavailability_task_lines(task)
     for fulfillment in task.fulfillments.all():
         fulfillment.status = FulfillmentStatus.CANCELED
         fulfillment.save(update_fields=['status'])
@@ -149,13 +149,13 @@ def update_task_status(task):
         task.save(update_fields=['status'])
 
 
-def cancel_fulfillment(fulfillment, restock):
+def cancel_fulfillment(fulfillment, reavailability):
     """Cancel fulfillment.
 
-    Return skills to corresponding stocks if restock is set to True.
+    Return skills to corresponding availabilitys if reavailability is set to True.
     """
-    if restock:
-        restock_fulfillment_lines(fulfillment)
+    if reavailability:
+        reavailability_fulfillment_lines(fulfillment)
     for line in fulfillment:
         task_line = line.task_line
         task_line.quantity_fulfilled -= line.quantity
@@ -213,7 +213,7 @@ def add_variant_to_order(
             tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
     if variant.track_inventory and track_inventory:
-        allocate_stock(variant, quantity)
+        allocate_availability(variant, quantity)
     return line
 
 
@@ -231,25 +231,25 @@ def delete_task_line(line):
     line.delete()
 
 
-def restock_task_lines(task):
-    """Return ordered skills to corresponding stocks."""
+def reavailability_task_lines(task):
+    """Return ordered skills to corresponding availabilitys."""
     for line in task:
         if line.variant and line.variant.track_inventory:
             if line.quantity_unfulfilled > 0:
-                deallocate_stock(line.variant, line.quantity_unfulfilled)
+                deallocate_availability(line.variant, line.quantity_unfulfilled)
             if line.quantity_fulfilled > 0:
-                increase_stock(line.variant, line.quantity_fulfilled)
+                increase_availability(line.variant, line.quantity_fulfilled)
 
         if line.quantity_fulfilled > 0:
             line.quantity_fulfilled = 0
             line.save(update_fields=['quantity_fulfilled'])
 
 
-def restock_fulfillment_lines(fulfillment):
-    """Return fulfilled skills to corresponding stocks."""
+def reavailability_fulfillment_lines(fulfillment):
+    """Return fulfilled skills to corresponding availabilitys."""
     for line in fulfillment:
         if line.task_line.variant and line.task_line.variant.track_inventory:
-            increase_stock(
+            increase_availability(
                 line.task_line.variant, line.quantity, allocate=True)
 
 

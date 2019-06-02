@@ -45,7 +45,7 @@ def handle_task_placement(request, cart):
         type=TaskEvents.EMAIL_SENT.value,
         parameters={
             'email': task.get_user_current_email(),
-            'email_type': TaskEventsEmails.ORDER.value})
+            'email_type': TaskEventsEmails.TASK.value})
     return redirect('task:payment', token=task.token)
 
 

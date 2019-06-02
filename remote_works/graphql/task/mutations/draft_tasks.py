@@ -9,7 +9,7 @@ from ....core.exceptions import InsufficientStock
 from ....core.utils.taxes import ZERO_TAXED_MONEY
 from ....task import TaskEvents, TaskStatus, models
 from ....task.utils import (
-    add_variant_to_order, allocate_stock, change_task_line_quantity,
+    add_variant_to_order, allocate_availability, change_task_line_quantity,
     delete_task_line, recalculate_order)
 from ...account.i18n import I18nMixin
 from ...account.types import AddressInput
@@ -198,9 +198,9 @@ class DraftTaskComplete(BaseMutation):
         for line in task:
             try:
                 line.variant.check_quantity(line.quantity)
-                allocate_stock(line.variant, line.quantity)
+                allocate_availability(line.variant, line.quantity)
             except InsufficientStock:
-                allocate_stock(line.variant, line.variant.quantity_available)
+                allocate_availability(line.variant, line.variant.quantity_available)
                 oversold_items.append(str(line))
         if oversold_items:
             task.events.create(

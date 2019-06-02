@@ -221,7 +221,7 @@ export interface TaskDetails_task_availableDeliveryMethods {
   price: TaskDetails_task_availableDeliveryMethods_price | null;
 }
 
-export interface TaskDetails_order {
+export interface TaskDetails_task {
   __typename: "Task";
   id: string;
   billingAddress: TaskDetails_task_billingAddress | null;
@@ -261,7 +261,7 @@ export interface TaskDetails_shop {
 }
 
 export interface TaskDetails {
-  task: TaskDetails_order | null;
+  task: TaskDetails_task | null;
   shop: TaskDetails_shop | null;
 }
 

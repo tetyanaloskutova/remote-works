@@ -12,8 +12,8 @@ import { UserError } from "../../../types";
 import { CustomerDetails_user } from "../../types/CustomerDetails";
 import CustomerAddresses from "../CustomerAddresses/CustomerAddresses";
 import CustomerDetails from "../CustomerDetails/CustomerDetails";
-import CustomerTasks from "../CustomerTasks/CustomerTasks";
 import CustomerStats from "../CustomerStats/CustomerStats";
+import CustomerTasks from "../CustomerTasks/CustomerTasks";
 
 export interface CustomerDetailsPageFormData {
   firstName: string;

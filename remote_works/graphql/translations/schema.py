@@ -36,7 +36,7 @@ class TranslatableItemConnection(CountableConnection):
 
 
 class TranslatableKinds(graphene.Enum):
-    PRODUCT = 'Skill'
+    TYPE = 'Skill'
     COLLECTION = 'Collection'
     CATEGORY = 'Category'
     PAGE = 'Page'
@@ -57,7 +57,7 @@ class TranslationQueries(graphene.ObjectType):
             required=True, description='Kind of objects to retrieve.'))
 
     def resolve_translations(self, info, kind, **kwargs):
-        if kind == TranslatableKinds.PRODUCT:
+        if kind == TranslatableKinds.TYPE:
             return resolve_skills(info)
         elif kind == TranslatableKinds.COLLECTION:
             return resolve_collections(info, query=None)

@@ -7,18 +7,18 @@ import { TaskEventsEmails, TaskEvents, FulfillmentStatus, PaymentChargeStatusEnu
 // GraphQL mutation operation: TaskRelease
 // ====================================================
 
-export interface TaskRelease_orderRelease_task_billingAddress_country {
+export interface TaskRelease_taskRelease_task_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskRelease_orderRelease_task_billingAddress {
+export interface TaskRelease_taskRelease_task_billingAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskRelease_orderRelease_task_billingAddress_country;
+  country: TaskRelease_taskRelease_task_billingAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -29,12 +29,12 @@ export interface TaskRelease_orderRelease_task_billingAddress {
   streetAddress2: string;
 }
 
-export interface TaskRelease_orderRelease_task_events_user {
+export interface TaskRelease_taskRelease_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskRelease_orderRelease_task_events {
+export interface TaskRelease_taskRelease_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -44,105 +44,105 @@ export interface TaskRelease_orderRelease_task_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskRelease_orderRelease_task_events_user | null;
+  user: TaskRelease_taskRelease_task_events_user | null;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross;
-  net: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net;
+  gross: TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_gross;
+  net: TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice_net;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine {
   __typename: "TaskLine";
   id: string;
   skillName: string;
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice | null;
+  unitPrice: TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges_node {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges_node {
   __typename: "FulfillmentLine";
   id: string;
   quantity: number;
-  taskLine: TaskRelease_orderRelease_task_fulfillments_lines_edges_node_taskLine | null;
+  taskLine: TaskRelease_taskRelease_task_fulfillments_lines_edges_node_taskLine | null;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines_edges {
+export interface TaskRelease_taskRelease_task_fulfillments_lines_edges {
   __typename: "FulfillmentLineCountableEdge";
-  node: TaskRelease_orderRelease_task_fulfillments_lines_edges_node;
+  node: TaskRelease_taskRelease_task_fulfillments_lines_edges_node;
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments_lines {
+export interface TaskRelease_taskRelease_task_fulfillments_lines {
   __typename: "FulfillmentLineCountableConnection";
-  edges: TaskRelease_orderRelease_task_fulfillments_lines_edges[];
+  edges: TaskRelease_taskRelease_task_fulfillments_lines_edges[];
 }
 
-export interface TaskRelease_orderRelease_task_fulfillments {
+export interface TaskRelease_taskRelease_task_fulfillments {
   __typename: "Fulfillment";
   id: string;
-  lines: TaskRelease_orderRelease_task_fulfillments_lines | null;
+  lines: TaskRelease_taskRelease_task_fulfillments_lines | null;
   fulfillmentTask: number;
   status: FulfillmentStatus;
   trackingNumber: string;
 }
 
-export interface TaskRelease_orderRelease_task_lines_unitPrice_gross {
+export interface TaskRelease_taskRelease_task_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_lines_unitPrice_net {
+export interface TaskRelease_taskRelease_task_lines_unitPrice_net {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_lines_unitPrice {
+export interface TaskRelease_taskRelease_task_lines_unitPrice {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_lines_unitPrice_gross;
-  net: TaskRelease_orderRelease_task_lines_unitPrice_net;
+  gross: TaskRelease_taskRelease_task_lines_unitPrice_gross;
+  net: TaskRelease_taskRelease_task_lines_unitPrice_net;
 }
 
-export interface TaskRelease_orderRelease_task_lines {
+export interface TaskRelease_taskRelease_task_lines {
   __typename: "TaskLine";
   id: string;
   skillName: string;
   skillSku: string;
   quantity: number;
   quantityFulfilled: number;
-  unitPrice: TaskRelease_orderRelease_task_lines_unitPrice | null;
+  unitPrice: TaskRelease_taskRelease_task_lines_unitPrice | null;
   thumbnailUrl: string | null;
 }
 
-export interface TaskRelease_orderRelease_task_deliveryAddress_country {
+export interface TaskRelease_taskRelease_task_deliveryAddress_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface TaskRelease_orderRelease_task_deliveryAddress {
+export interface TaskRelease_taskRelease_task_deliveryAddress {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: TaskRelease_orderRelease_task_deliveryAddress_country;
+  country: TaskRelease_taskRelease_task_deliveryAddress_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -153,113 +153,113 @@ export interface TaskRelease_orderRelease_task_deliveryAddress {
   streetAddress2: string;
 }
 
-export interface TaskRelease_orderRelease_task_deliveryMethod {
+export interface TaskRelease_taskRelease_task_deliveryMethod {
   __typename: "DeliveryMethod";
   id: string;
 }
 
-export interface TaskRelease_orderRelease_task_deliveryPrice_gross {
+export interface TaskRelease_taskRelease_task_deliveryPrice_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_deliveryPrice {
+export interface TaskRelease_taskRelease_task_deliveryPrice {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_deliveryPrice_gross;
+  gross: TaskRelease_taskRelease_task_deliveryPrice_gross;
 }
 
-export interface TaskRelease_orderRelease_task_subtotal_gross {
+export interface TaskRelease_taskRelease_task_subtotal_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_subtotal {
+export interface TaskRelease_taskRelease_task_subtotal {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_subtotal_gross;
+  gross: TaskRelease_taskRelease_task_subtotal_gross;
 }
 
-export interface TaskRelease_orderRelease_task_total_gross {
+export interface TaskRelease_taskRelease_task_total_gross {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_total_tax {
+export interface TaskRelease_taskRelease_task_total_tax {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_total {
+export interface TaskRelease_taskRelease_task_total {
   __typename: "TaxedMoney";
-  gross: TaskRelease_orderRelease_task_total_gross;
-  tax: TaskRelease_orderRelease_task_total_tax;
+  gross: TaskRelease_taskRelease_task_total_gross;
+  tax: TaskRelease_taskRelease_task_total_tax;
 }
 
-export interface TaskRelease_orderRelease_task_totalAuthorized {
+export interface TaskRelease_taskRelease_task_totalAuthorized {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_totalCaptured {
+export interface TaskRelease_taskRelease_task_totalCaptured {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_user {
+export interface TaskRelease_taskRelease_task_user {
   __typename: "User";
   id: string;
   email: string;
 }
 
-export interface TaskRelease_orderRelease_task_availableDeliveryMethods_price {
+export interface TaskRelease_taskRelease_task_availableDeliveryMethods_price {
   __typename: "Money";
   amount: number;
   currency: string;
 }
 
-export interface TaskRelease_orderRelease_task_availableDeliveryMethods {
+export interface TaskRelease_taskRelease_task_availableDeliveryMethods {
   __typename: "DeliveryMethod";
   id: string;
   name: string;
-  price: TaskRelease_orderRelease_task_availableDeliveryMethods_price | null;
+  price: TaskRelease_taskRelease_task_availableDeliveryMethods_price | null;
 }
 
-export interface TaskRelease_orderRelease_order {
+export interface TaskRelease_taskRelease_order {
   __typename: "Task";
   id: string;
-  billingAddress: TaskRelease_orderRelease_task_billingAddress | null;
+  billingAddress: TaskRelease_taskRelease_task_billingAddress | null;
   created: any;
-  events: (TaskRelease_orderRelease_task_events | null)[] | null;
-  fulfillments: (TaskRelease_orderRelease_task_fulfillments | null)[];
-  lines: (TaskRelease_orderRelease_task_lines | null)[];
+  events: (TaskRelease_taskRelease_task_events | null)[] | null;
+  fulfillments: (TaskRelease_taskRelease_task_fulfillments | null)[];
+  lines: (TaskRelease_taskRelease_task_lines | null)[];
   number: string | null;
   paymentStatus: PaymentChargeStatusEnum | null;
-  deliveryAddress: TaskRelease_orderRelease_task_deliveryAddress | null;
-  deliveryMethod: TaskRelease_orderRelease_task_deliveryMethod | null;
+  deliveryAddress: TaskRelease_taskRelease_task_deliveryAddress | null;
+  deliveryMethod: TaskRelease_taskRelease_task_deliveryMethod | null;
   deliveryMethodName: string | null;
-  deliveryPrice: TaskRelease_orderRelease_task_deliveryPrice | null;
+  deliveryPrice: TaskRelease_taskRelease_task_deliveryPrice | null;
   status: TaskStatus;
-  subtotal: TaskRelease_orderRelease_task_subtotal | null;
-  total: TaskRelease_orderRelease_task_total | null;
-  totalAuthorized: TaskRelease_orderRelease_task_totalAuthorized | null;
-  totalCaptured: TaskRelease_orderRelease_task_totalCaptured | null;
-  user: TaskRelease_orderRelease_task_user | null;
+  subtotal: TaskRelease_taskRelease_task_subtotal | null;
+  total: TaskRelease_taskRelease_task_total | null;
+  totalAuthorized: TaskRelease_taskRelease_task_totalAuthorized | null;
+  totalCaptured: TaskRelease_taskRelease_task_totalCaptured | null;
+  user: TaskRelease_taskRelease_task_user | null;
   userEmail: string | null;
-  availableDeliveryMethods: (TaskRelease_orderRelease_task_availableDeliveryMethods | null)[] | null;
+  availableDeliveryMethods: (TaskRelease_taskRelease_task_availableDeliveryMethods | null)[] | null;
 }
 
-export interface TaskRelease_orderRelease {
+export interface TaskRelease_taskRelease {
   __typename: "TaskRelease";
-  task: TaskRelease_orderRelease_order | null;
+  task: TaskRelease_taskRelease_order | null;
 }
 
 export interface TaskRelease {
-  orderRelease: TaskRelease_orderRelease | null;
+  taskRelease: TaskRelease_taskRelease | null;
 }
 
 export interface TaskReleaseVariables {

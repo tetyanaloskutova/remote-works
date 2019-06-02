@@ -261,7 +261,7 @@ export const skill: (
       quantity: 12,
       quantityAllocated: 1,
       sku: "87192-94370",
-      stockQuantity: 48
+      availabilityQuantity: 48
     },
     {
       __typename: "SkillVariant",
@@ -284,7 +284,7 @@ export const skill: (
       quantity: 12,
       quantityAllocated: 1,
       sku: "69055-15190",
-      stockQuantity: 14
+      availabilityQuantity: 14
     }
   ]
 });

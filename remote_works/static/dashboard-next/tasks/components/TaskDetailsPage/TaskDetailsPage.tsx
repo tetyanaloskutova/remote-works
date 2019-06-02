@@ -17,7 +17,7 @@ import Skeleton from "../../../components/Skeleton";
 import i18n from "../../../i18n";
 import { maybe, renderCollection } from "../../../misc";
 import { TaskStatus } from "../../../types/globalTypes";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 import TaskCustomer from "../TaskCustomer";
 import TaskCustomerNote from "../TaskCustomerNote";
 import TaskFulfillment from "../TaskFulfillment";
@@ -40,7 +40,7 @@ const styles = (theme: Theme) =>
   });
 
 export interface TaskDetailsPageProps extends WithStyles<typeof styles> {
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   deliveryMethods?: Array<{
     id: string;
     name: string;
@@ -134,7 +134,7 @@ const TaskDetailsPage = withStyles(styles, { name: "TaskDetailsPage" })(
                   )}
                   <TaskFulfillment
                     fulfillment={fulfillment}
-                    orderNumber={maybe(() => task.number)}
+                    taskNumber={maybe(() => task.number)}
                     onTaskFulfillmentCancel={() =>
                       onFulfillmentCancel(fulfillment.id)
                     }

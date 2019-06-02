@@ -6,14 +6,14 @@ import * as React from "react";
 import CardTitle from "../../../components/CardTitle";
 import i18n from "../../../i18n";
 import { maybe } from "../../../misc";
-import { TaskDetails_order } from "../../types/TaskDetails";
+import { TaskDetails_task } from "../../types/TaskDetails";
 import TaskDraftDetailsSkills, {
   FormData as TaskDraftDetailsSkillsFormData
 } from "../TaskDraftDetailsSkills";
 import TaskDraftDetailsSummary from "../TaskDraftDetailsSummary/TaskDraftDetailsSummary";
 
 interface TaskDraftDetailsProps {
-  task: TaskDetails_order;
+  task: TaskDetails_task;
   onTaskLineAdd: () => void;
   onTaskLineChange: (
     id: string,

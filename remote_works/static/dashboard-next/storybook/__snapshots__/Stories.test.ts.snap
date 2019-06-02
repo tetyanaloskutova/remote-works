@@ -34745,7 +34745,7 @@ exports[`Storyshots Views / Tasks / Task details cancelled 1`] = `
               >
                 Cancelled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -34856,7 +34856,7 @@ exports[`Storyshots Views / Tasks / Task details cancelled 1`] = `
               >
                 Cancelled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -35600,7 +35600,7 @@ exports[`Storyshots Views / Tasks / Task details default 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -35756,7 +35756,7 @@ exports[`Storyshots Views / Tasks / Task details default 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -36626,7 +36626,7 @@ exports[`Storyshots Views / Tasks / Task details fulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -36782,7 +36782,7 @@ exports[`Storyshots Views / Tasks / Task details fulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -38243,7 +38243,7 @@ exports[`Storyshots Views / Tasks / Task details no customer note 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -38399,7 +38399,7 @@ exports[`Storyshots Views / Tasks / Task details no customer note 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -39269,7 +39269,7 @@ exports[`Storyshots Views / Tasks / Task details no payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -39425,7 +39425,7 @@ exports[`Storyshots Views / Tasks / Task details no payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -40295,7 +40295,7 @@ exports[`Storyshots Views / Tasks / Task details no delivery address 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -40451,7 +40451,7 @@ exports[`Storyshots Views / Tasks / Task details no delivery address 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -41321,7 +41321,7 @@ exports[`Storyshots Views / Tasks / Task details partially fulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -41477,7 +41477,7 @@ exports[`Storyshots Views / Tasks / Task details partially fulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -42347,7 +42347,7 @@ exports[`Storyshots Views / Tasks / Task details payment confirmed 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -42503,7 +42503,7 @@ exports[`Storyshots Views / Tasks / Task details payment confirmed 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -43373,7 +43373,7 @@ exports[`Storyshots Views / Tasks / Task details payment error 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -43529,7 +43529,7 @@ exports[`Storyshots Views / Tasks / Task details payment error 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -44399,7 +44399,7 @@ exports[`Storyshots Views / Tasks / Task details pending payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -44555,7 +44555,7 @@ exports[`Storyshots Views / Tasks / Task details pending payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -45425,7 +45425,7 @@ exports[`Storyshots Views / Tasks / Task details refunded payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -45581,7 +45581,7 @@ exports[`Storyshots Views / Tasks / Task details refunded payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -46451,7 +46451,7 @@ exports[`Storyshots Views / Tasks / Task details rejected payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -46607,7 +46607,7 @@ exports[`Storyshots Views / Tasks / Task details rejected payment 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -47477,7 +47477,7 @@ exports[`Storyshots Views / Tasks / Task details unfulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-2
                 </p>
@@ -47633,7 +47633,7 @@ exports[`Storyshots Views / Tasks / Task details unfulfilled 1`] = `
               >
                 Fulfilled (1)
                 <p
-                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-orderNumber-id"
+                  class="MuiTypography-root-id MuiTypography-body1-id TaskFulfillment-taskNumber-id"
                 >
                   #9-1
                 </p>
@@ -63307,7 +63307,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="SkillStock-root-id"
+                class="SkillAvailability-root-id"
               >
                 <div
                   class="MuiFormControl-root-id"
@@ -63346,7 +63346,7 @@ Ctrl + K"
                       aria-invalid="false"
                       class="MuiInputBase-input-id MuiInput-input-id MuiInputBase-disabled-id MuiInput-disabled-id MuiInputBase-inputType-id MuiInput-inputType-id"
                       disabled=""
-                      name="stockQuantity"
+                      name="availabilityQuantity"
                       type="number"
                     />
                   </div>
@@ -66053,7 +66053,7 @@ Ctrl + K"
               class="MuiCardContent-root-id"
             >
               <div
-                class="SkillStock-root-id"
+                class="SkillAvailability-root-id"
               >
                 <div
                   class="MuiFormControl-root-id"
@@ -66091,7 +66091,7 @@ Ctrl + K"
                     <input
                       aria-invalid="false"
                       class="MuiInputBase-input-id MuiInput-input-id MuiInputBase-inputType-id MuiInput-inputType-id"
-                      name="stockQuantity"
+                      name="availabilityQuantity"
                       type="number"
                       value="12"
                     />

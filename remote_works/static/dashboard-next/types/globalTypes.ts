@@ -138,7 +138,7 @@ export enum VoucherDiscountValueType {
 }
 
 export enum VoucherType {
-  SKILL = VoucherType.SKILL
+  SKILL = VoucherType.SKILL,
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
   TYPE = "TYPE",

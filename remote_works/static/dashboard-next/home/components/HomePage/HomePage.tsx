@@ -5,7 +5,7 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import AttachMoney from "@material-ui/icons/AttachMoney";
-import LocalDelivery from "@material-ui/icons/LocalDelivery";
+import LocalDelivery from "@material-ui/icons/LocalShipping";
 import * as React from "react";
 
 import CardSpacer from "../../../components/CardSpacer";

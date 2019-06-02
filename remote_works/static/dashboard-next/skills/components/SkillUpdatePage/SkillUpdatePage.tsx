@@ -22,7 +22,7 @@ import SkillDetailsForm from "../SkillDetailsForm";
 import SkillImages from "../SkillImages";
 import SkillOrganization from "../SkillOrganization";
 import SkillPricing from "../SkillPricing";
-import SkillStock from "../SkillStock";
+import SkillAvailability from "../SkillAvailability";
 import SkillVariants from "../SkillVariants";
 
 interface SkillUpdateProps {
@@ -93,7 +93,7 @@ export interface FormData {
   seoDescription: string;
   seoTitle: string;
   sku: string;
-  stockQuantity: number;
+  availabilityQuantity: number;
 }
 
 export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
@@ -165,7 +165,7 @@ export const SkillUpdate: React.StatelessComponent<SkillUpdateProps> = ({
         ? variants[0].sku
         : undefined
     ),
-    stockQuantity: maybe(() =>
+    availabilityQuantity: maybe(() =>
       skill.skillType.hasVariants
         ? undefined
         : variants && variants[0]

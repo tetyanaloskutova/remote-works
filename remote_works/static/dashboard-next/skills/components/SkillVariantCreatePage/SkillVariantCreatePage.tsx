@@ -13,7 +13,7 @@ import { SkillVariantCreateData_skill } from "../../types/SkillVariantCreateData
 import SkillVariantAttributes from "../SkillVariantAttributes";
 import SkillVariantNavigation from "../SkillVariantNavigation";
 import SkillVariantPrice from "../SkillVariantPrice";
-import SkillVariantStock from "../SkillVariantStock";
+import SkillVariantAvailability from "../SkillVariantAvailability";
 
 interface FormData {
   attributes?: Array<{
@@ -101,7 +101,7 @@ const SkillVariantCreatePage: React.StatelessComponent<
                 loading={loading}
                 onChange={change}
               />
-              <SkillVariantStock
+              <SkillVariantAvailability
                 errors={errors}
                 sku={data.sku}
                 quantity={data.quantity}

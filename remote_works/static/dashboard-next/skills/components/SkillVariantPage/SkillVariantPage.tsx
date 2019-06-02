@@ -16,7 +16,7 @@ import SkillVariantImages from "../SkillVariantImages";
 import SkillVariantImageSelectDialog from "../SkillVariantImageSelectDialog";
 import SkillVariantNavigation from "../SkillVariantNavigation";
 import SkillVariantPrice from "../SkillVariantPrice";
-import SkillVariantStock from "../SkillVariantStock";
+import SkillVariantAvailability from "../SkillVariantAvailability";
 
 interface SkillVariantPageProps {
   variant?: SkillVariant;
@@ -134,11 +134,11 @@ const SkillVariantPage: React.StatelessComponent<SkillVariantPageProps> = ({
                         onChange={change}
                       />
                       <CardSpacer />
-                      <SkillVariantStock
+                      <SkillVariantAvailability
                         errors={errors}
                         sku={data.sku}
                         quantity={data.quantity}
-                        stockAllocated={
+                        availabilityAllocated={
                           variant ? variant.quantityAllocated : undefined
                         }
                         loading={loading}

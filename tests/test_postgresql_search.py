@@ -14,7 +14,7 @@ def postgresql_search_enabled(settings):
     settings.SEARCH_BACKEND = 'remote_works.search.backends.postgresql'
 
 
-PRODUCTS = [('Arabica Coffee', 'The best grains in galactic'),
+SKILLS = [('Arabica Coffee', 'The best grains in galactic'),
             ('Cool T-Shirt', 'Blue and big.'),
             ('Roasted chicken', 'Fabulous vertebrate')]
 
@@ -29,7 +29,7 @@ def named_skills(category, skill_type):
             skill_type=skill_type,
             category=category)
         return skill
-    return [gen_skill(name, desc) for name, desc in PRODUCTS]
+    return [gen_skill(name, desc) for name, desc in SKILLS]
 
 
 def search_storefront(client, phrase):

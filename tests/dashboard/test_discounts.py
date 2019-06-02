@@ -151,7 +151,7 @@ def test_skill_voucher_checkout_discount_raises_not_applicable(
         task_with_lines, skill_with_images):
     discounted_skill = skill_with_images
     voucher = Voucher(
-        code='unique', type=VoucherType.PRODUCT,
+        code='unique', type=VoucherType.SKILL,
         discount_value_type=DiscountValueType.FIXED,
         discount_value=10)
     voucher.save()

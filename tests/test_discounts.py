@@ -97,7 +97,7 @@ def test_products_voucher_checkout_discount_not(
             TaxedMoney(net=Money(price, 'USD'), gross=Money(price, 'USD'))
             for price in prices))
     voucher = Voucher(
-        code='unique', type=VoucherType.PRODUCT,
+        code='unique', type=VoucherType.SKILL,
         discount_value_type=discount_type,
         discount_value=discount_value,
         apply_once_per_order=apply_once_per_order)
@@ -195,8 +195,8 @@ def test_get_delivery_voucher_discount(
 
 @pytest.mark.parametrize(
     'prices, discount_value_type, discount_value, voucher_type, expected_value', [  # noqa
-        ([5, 10, 15], DiscountValueType.PERCENTAGE, 10, VoucherType.PRODUCT, 3),
-        ([5, 10, 15], DiscountValueType.FIXED, 2, VoucherType.PRODUCT, 2),
+        ([5, 10, 15], DiscountValueType.PERCENTAGE, 10, VoucherType.SKILL, 3),
+        ([5, 10, 15], DiscountValueType.FIXED, 2, VoucherType.SKILL, 2),
         ([5, 10, 15], DiscountValueType.FIXED, 2, VoucherType.COLLECTION, 2)])
 def test_get_voucher_discount_all_products(
         prices, discount_value_type, discount_value, voucher_type,

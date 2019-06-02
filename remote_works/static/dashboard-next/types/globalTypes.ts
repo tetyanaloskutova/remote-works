@@ -6,6 +6,7 @@
 //==============================================================
 
 export enum AttributeTypeEnum {
+  SKILL = "SKILL",
   TYPE = "TYPE",
   VARIANT = "VARIANT",
 }
@@ -137,6 +138,7 @@ export enum VoucherDiscountValueType {
 }
 
 export enum VoucherType {
+  SKILL = VoucherType.SKILL
   CATEGORY = "CATEGORY",
   COLLECTION = "COLLECTION",
   TYPE = "TYPE",

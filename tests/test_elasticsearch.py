@@ -9,10 +9,10 @@ from remote_works.task.models import Task
 from remote_works.product.models import Skill
 
 MATCH_SEARCH_REQUEST = ['method', 'host', 'port', 'path']
-STOREFRONT_PRODUCTS = {15, 56}  # same as in recorded data!
-DASHBOARD_PRODUCTS = {58, 56}
-PRODUCTS_INDEXED = STOREFRONT_PRODUCTS | DASHBOARD_PRODUCTS
-PRODUCTS_TO_UNPUBLISH = {56}  # choose from PRODUCTS_INDEXED
+STOREFRONT_SKILLS = {15, 56}  # same as in recorded data!
+DASHBOARD_SKILLS = {58, 56}
+SKILLS_INDEXED = STOREFRONT_SKILLS | DASHBOARD_SKILLS
+SKILLS_TO_UNPUBLISH = {56}  # choose from SKILLS_INDEXED
 PHRASE_WITH_RESULTS = 'Group'
 PHRASE_WITHOUT_RESULTS = 'foo'
 
@@ -56,7 +56,7 @@ def indexed_products(skill_type, category):
             skill_type=skill_type,
             category=category)
         return product
-    return [gen_skill_with_id(prod) for prod in PRODUCTS_INDEXED]
+    return [gen_skill_with_id(prod) for prod in SKILLS_INDEXED]
 
 
 def execute_search(client, phrase):
@@ -76,13 +76,13 @@ def test_new_search_with_empty_results(db, client):
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_new_search_with_result(db, indexed_products, client):
     found_skills = execute_search(client, PHRASE_WITH_RESULTS)
-    assert STOREFRONT_PRODUCTS == set(found_products)
+    assert STOREFRONT_SKILLS == set(found_products)
 
 
 @pytest.fixture
 def products_with_mixed_publishing(indexed_products):
     products_to_unpublish = Skill.objects.filter(
-        pk__in=PRODUCTS_TO_UNPUBLISH)
+        pk__in=SKILLS_TO_UNPUBLISH)
     for prod in products_to_unpublish:
         prod.is_published = False
         prod.save()
@@ -93,7 +93,7 @@ def products_with_mixed_publishing(indexed_products):
 @pytest.mark.vcr(record_mode='once', match_on=MATCH_SEARCH_REQUEST)
 def test_new_search_doesnt_show_unpublished(
         db, products_with_mixed_publishing, client):
-    published_skills = STOREFRONT_PRODUCTS - PRODUCTS_TO_UNPUBLISH
+    published_skills = STOREFRONT_SKILLS - SKILLS_TO_UNPUBLISH
     found_skills = execute_search(client, PHRASE_WITH_RESULTS)
     assert published_skills == set(found_products)
 
@@ -123,7 +123,7 @@ def test_dashboard_search_with_skill_result(
         db, indexed_products, admin_client):
     products, _, _ = execute_dashboard_search(admin_client,
                                               PHRASE_WITH_RESULTS)
-    assert DASHBOARD_PRODUCTS == products
+    assert DASHBOARD_SKILLS == products
 
 
 # data below must be aligned with recorded communication every time

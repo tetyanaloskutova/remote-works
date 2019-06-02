@@ -1189,7 +1189,7 @@ def test_shop_update_translation(
 
 
 @pytest.mark.parametrize('kind, expected_typename', [
-    (TranslatableKinds.PRODUCT, 'Skill'),
+    (TranslatableKinds.SKILL, 'Skill'),
     (TranslatableKinds.COLLECTION, 'Collection'),
     (TranslatableKinds.CATEGORY, 'Category'),
     (TranslatableKinds.PAGE, 'Page'),
@@ -1225,7 +1225,7 @@ def test_translations_query_inline_fragment(user_api_client, product):
 
     query = """
     {
-        translations(kind: PRODUCT, first: 1) {
+        translations(kind: SKILL, first: 1) {
             edges {
                 node {
                     ... on Skill {

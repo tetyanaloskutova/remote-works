@@ -155,7 +155,7 @@ def test_create_attribute_and_attribute_values(
     name = 'Value name'
     variables = {
         'name': attribute_name, 'id': id,
-        'type': AttributeTypeEnum.PRODUCT.name,
+        'type': AttributeTypeEnum.SKILL.name,
         'values': [{'name': name, 'value': '#1231'}]}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
@@ -188,7 +188,7 @@ def test_create_attribute_and_attribute_values_errors(
     id = graphene.Node.to_global_id('SkillType', skill_type.id)
     variables = {
         'name': 'Example name', 'id': id,
-        'type': AttributeTypeEnum.PRODUCT.name,
+        'type': AttributeTypeEnum.SKILL.name,
         'values': [
             {'name': name_1, 'value': '#1231'},
             {'name': name_2, 'value': '#121'}]}
@@ -225,7 +225,7 @@ def test_create_attribute_incorrect_skill_type_id(
     query = CREATE_ATTRIBUTES_QUERY
     variables = {
         'name': 'Example name', 'id': 'incorrect-id',
-        'type': AttributeTypeEnum.PRODUCT.name, 'values': []}
+        'type': AttributeTypeEnum.SKILL.name, 'values': []}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_products])
     content = get_graphql_content(response)

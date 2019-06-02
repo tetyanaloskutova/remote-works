@@ -553,7 +553,7 @@ def test_create_product(
     assert color_value_slug in values
 
 
-QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS = """
+QUERY_CREATE_SKILL_WITHOUT_VARIANTS = """
     mutation createSkill(
         $productTypeId: ID!,
         $categoryId: ID!
@@ -604,7 +604,7 @@ QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS = """
 def test_create_skill_without_variants(
         staff_api_client, skill_type_without_variant, category,
         permission_manage_products):
-    query = QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS
+    query = QUERY_CREATE_SKILL_WITHOUT_VARIANTS
 
     skill_type = skill_type_without_variant
     skill_type_id = graphene.Node.to_global_id(
@@ -644,7 +644,7 @@ def test_create_skill_without_variants(
 def test_create_skill_without_variants_sku_validation(
         staff_api_client, skill_type_without_variant, category,
         permission_manage_products):
-    query = QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS
+    query = QUERY_CREATE_SKILL_WITHOUT_VARIANTS
 
     skill_type = skill_type_without_variant
     skill_type_id = graphene.Node.to_global_id(
@@ -678,7 +678,7 @@ def test_create_skill_without_variants_sku_validation(
 def test_create_skill_without_variants_sku_duplication(
         staff_api_client, skill_type_without_variant, category,
         permission_manage_products, skill_with_default_variant):
-    query = QUERY_CREATE_PRODUCT_WITHOUT_VARIANTS
+    query = QUERY_CREATE_SKILL_WITHOUT_VARIANTS
 
     skill_type = skill_type_without_variant
     skill_type_id = graphene.Node.to_global_id(

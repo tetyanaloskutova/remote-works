@@ -711,7 +711,7 @@ def test_staff_create(
     email = 'api_user@example.com'
     variables = {
         'email': email,
-        'permissions': [PermissionEnum.MANAGE_PRODUCTS.name],
+        'permissions': [PermissionEnum.MANAGE_SKILLS.name],
         'send_mail': True}
 
     response = staff_api_client.post_graphql(
@@ -723,7 +723,7 @@ def test_staff_create(
     assert data['user']['isStaff']
     assert data['user']['isActive']
     permissions = data['user']['permissions']
-    assert permissions[0]['code'] == 'MANAGE_PRODUCTS'
+    assert permissions[0]['code'] == 'MANAGE_SKILLS'
 
     User = get_user_model()
     staff_user = User.objects.get(email=email)

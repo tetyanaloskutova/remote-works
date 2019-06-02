@@ -695,7 +695,7 @@ def test_get_discount_for_cart_skill_voucher_not_applicable(monkeypatch):
         'remote_works.checkout.utils.get_prices_of_discounted_products',
         lambda cart, product: [])
     voucher = Voucher(
-        code='unique', type=VoucherType.PRODUCT,
+        code='unique', type=VoucherType.SKILL,
         discount_value_type=DiscountValueType.FIXED,
         discount_value=10)
     voucher.save()

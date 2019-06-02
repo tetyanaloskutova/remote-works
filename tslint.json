@@ -12,6 +12,6 @@
     "no-shadowed-variable": false,
     "no-submodule-imports": [true, "@material-ui"],
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": false
   }
 }

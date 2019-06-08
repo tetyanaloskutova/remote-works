@@ -73,22 +73,16 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           {navigate => (
             <Messages>
               {pushMessage => (
-                <StrictTypedQuery
-                  query={query}
-                  variables={variables}
-                  skip={skip}
-                  context={{ useBatching: true }}
-                >
+                <StrictTypedQuery>
                   {queryData => {
-                    if (queryData.error) {
-                      const msg = i18n.t(
-                        "Something went wrong: {{ message }}",
-                        {
-                          message: queryData.error.message
-                        }
-                      );
-                      pushMessage({ text: msg });
-                    }
+                    const msg = i18n.t(
+                      "Something went wrong: {{ message }}",
+                      {
+                        message: queryData.error.message
+                      }
+                    );
+                    pushMessage({ text: msg });
+
 
                     const loadMore = (
                       mergeFunc: (

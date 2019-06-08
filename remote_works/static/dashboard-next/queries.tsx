@@ -18,6 +18,131 @@ export interface LoadMore<TData, TVariables> {
   ) => Promise<ApolloQueryResult<TData>>;
 }
 
+interface TypedQueryInnerProps<TData, TVariables> {
+  children: (
+    result: QueryResult<TData, TVariables> & LoadMore<TData, TVariables>
+  ) => React.ReactNode;
+  displayLoader?: boolean;
+  skip?: boolean;
+  variables?: TVariables;
+  require?: Array<keyof TData>;
+}
+
+interface QueryProgressProps {
+  loading: boolean;
+  onLoading: () => void;
+  onCompleted: () => void;
+}
+
+class QueryProgress extends React.Component<QueryProgressProps, {}> {
+  componentDidMount() {
+    const { loading, onLoading } = this.props;
+    if (loading) {
+      onLoading();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loading, onLoading, onCompleted } = this.props;
+    if (prevProps.loading !== loading) {
+      if (loading) {
+        onLoading();
+      } else {
+        onCompleted();
+      }
+    }
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
+export function TypedQuery<TData, TVariables>(query: DocumentNode) {
+  class StrictTypedQuery extends Query<TData, TVariables> {}
+  return ({
+    children,
+    displayLoader,
+    skip,
+    variables,
+    require
+  }: TypedQueryInnerProps<TData, TVariables>) => (
+    <AppProgress>
+      {({ funcs: changeProgressState }) => (
+        <Navigator>
+          {navigate => (
+            <Messages>
+              {pushMessage => (
+                <StrictTypedQuery>
+                  {queryData => {
+                    const msg = i18n.t(
+                      "Something went wrong: {{ message }}",
+                      {
+                        message: queryData.error.message
+                      }
+                    );
+                    pushMessage({ text: msg });
+
+
+                    const loadMore = (
+                      mergeFunc: (
+                        previousResults: TData,
+                        fetchMoreResult: TData
+                      ) => TData,
+                      extraVariables: RequireAtLeastOne<TVariables>
+                    ) =>
+                      queryData.fetchMore({
+                        query,
+                        updateQuery: (previousResults, { fetchMoreResult }) => {
+                          if (!fetchMoreResult) {
+                            return previousResults;
+                          }
+                          return mergeFunc(previousResults, fetchMoreResult);
+                        },
+                        variables: { ...variables, ...extraVariables }
+                      });
+
+                    let childrenOrNotFound = children({
+                      ...queryData,
+                      loadMore
+                    });
+                    if (
+                      !queryData.loading &&
+                      require &&
+                      queryData.data &&
+                      !require.reduce(
+                        (acc, key) => acc && queryData.data[key] !== null,
+                        true
+                      )
+                    ) {
+                      childrenOrNotFound = (
+                        <ErrorPage onBack={() => navigate("/")} />
+                      );
+                    }
+
+                    if (displayLoader) {
+                      return (
+                        <QueryProgress
+                          loading={queryData.loading}
+                          onCompleted={changeProgressState.disable}
+                          onLoading={changeProgressState.enable}
+                        >
+                          {childrenOrNotFound}
+                        </QueryProgress>
+                      );
+                    }
+
+                    return childrenOrNotFound;
+                  }}
+                </StrictTypedQuery>
+              )}
+            </Messages>
+          )}
+        </Navigator>
+      )}
+    </AppProgress>
+  );
+}
 
 export const pageInfoFragment = gql`
   fragment PageInfoFragment on PageInfo {

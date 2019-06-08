@@ -197,6 +197,12 @@
     "build-schema": "python manage.py get_graphql_schema > remote_works/graphql/schema.graphql",
     "build-types": "apollo client:codegen --target=typescript types --globalTypesFile=remote_works/static/dashboard-next/types/globalTypes.ts",
     "generate-component": "plop --plopfile .plop/plopfile.js",
-    
+    "heroku-postbuild": "npm run build-assets && npm run build-emails",
+    "lint": "tslint 'remote_works/static/dashboard-next/**/*.{ts,tsx}'",
+    "start": "webpack -d --watch",
+    "build-emails": "mjml --config.beautify false -l skip \"templates/templated_email/source/*.mjml\" -o templates/templated_email/compiled",
+    "storybook": "start-storybook -p 3000 -c remote_works/static/dashboard-next/storybook/",
+    "build-storybook": "build-storybook -c remote_works/static/dashboard-next/storybook/ -o build",
+    "test": "jest remote_works/static/dashboard-next/"
   }
 }

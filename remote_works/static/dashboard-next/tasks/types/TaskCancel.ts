@@ -266,5 +266,5 @@ export interface TaskCancel {
 
 export interface TaskCancelVariables {
   id: string;
-  reavailability: boolean;
+  reavail: boolean;
 }

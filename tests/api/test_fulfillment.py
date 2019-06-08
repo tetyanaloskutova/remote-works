@@ -158,11 +158,11 @@ def test_fulfillment_update_tracking(
     assert data['trackingNumber'] == tracking
 
 
-def test_cancel_fulfillment_restock_items(
+def test_cancel_fulfillment_reavail_items(
         staff_api_client, fulfillment, staff_user, permission_manage_orders):
     query = """
-    mutation cancelFulfillment($id: ID!, $restock: Boolean) {
-            orderFulfillmentCancel(id: $id, input: {restock: $restock}) {
+    mutation cancelFulfillment($id: ID!, $reavail: Boolean) {
+            orderFulfillmentCancel(id: $id, input: {reavail: $reavail}) {
                     fulfillment {
                         status
                     }
@@ -170,25 +170,25 @@ def test_cancel_fulfillment_restock_items(
         }
     """
     fulfillment_id = graphene.Node.to_global_id('Fulfillment', fulfillment.id)
-    variables = {'id': fulfillment_id, 'restock': True}
+    variables = {'id': fulfillment_id, 'reavail': True}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
     data = content['data']['orderFulfillmentCancel']['fulfillment']
     assert data['status'] == FulfillmentStatus.CANCELED.upper()
-    event_restocked_items = fulfillment.task.events.get()
-    assert event_restocked_items.type == (
+    event_reavailed_items = fulfillment.task.events.get()
+    assert event_reavailed_items.type == (
         TaskEvents.FULFILLMENT_RESTOCKED_ITEMS.value)
-    assert event_restocked_items.parameters == {
+    assert event_reavailed_items.parameters == {
         'quantity': fulfillment.get_total_quantity()}
-    assert event_restocked_items.user == staff_user
+    assert event_reavailed_items.user == staff_user
 
 
 def test_cancel_fulfillment(
         staff_api_client, fulfillment, staff_user, permission_manage_orders):
     query = """
-    mutation cancelFulfillment($id: ID!, $restock: Boolean) {
-            orderFulfillmentCancel(id: $id, input: {restock: $restock}) {
+    mutation cancelFulfillment($id: ID!, $reavail: Boolean) {
+            orderFulfillmentCancel(id: $id, input: {reavail: $reavail}) {
                     fulfillment {
                         status
                     }
@@ -196,7 +196,7 @@ def test_cancel_fulfillment(
         }
     """
     fulfillment_id = graphene.Node.to_global_id('Fulfillment', fulfillment.id)
-    variables = {'id': fulfillment_id, 'restock': False}
+    variables = {'id': fulfillment_id, 'reavail': False}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)

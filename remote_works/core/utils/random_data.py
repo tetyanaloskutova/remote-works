@@ -22,7 +22,6 @@ from ...account.utils import store_user_address
 from ...checkout import AddressType
 from ...core.utils.json_serializer import object_hook
 from ...core.utils.taxes import get_tax_rate_by_name, get_taxes_for_country
-from ...core.weight import zero_weight
 from ...dashboard.menu.utils import update_menu
 from ...discount import DiscountValueType, VoucherType
 from ...discount.models import Sale, Voucher
@@ -41,7 +40,7 @@ from ...skill.thumbnails import (
     create_collection_background_image_thumbnails, create_skill_thumbnails)
 from ...delivery.models import DeliveryMethod, DeliveryMethodType, DeliveryZone
 from ...delivery.utils import get_taxed_delivery_price
-
+from ...site.models import SiteSettings
 fake = Factory.create()
 
 TYPES_LIST_DIR = 'skills-list/'
@@ -52,95 +51,48 @@ COLLECTIONS_SCHEMA = [
     {
         'name': 'Summer collection',
         'image_name': 'summer.jpg',
-        'description': dedent('''The Saleor Summer Collection features a range
-            of skills that feel the heat of the market. A demo store for all
-            seasons. Saleor captures the open source, e-commerce sun.''')},
+        'description': dedent('''The remote-works Summer Collection features a range
+            of skills that feel the heat of the market.remote-works captures 
+            the open source, e-commerce sun.''')},
     {
         'name': 'Winter sale',
         'image_name': 'clothing.jpg',
-        'description': dedent('''The Saleor Winter Sale is snowed under with
-            seasonal offers. Unreal skills at unreal prices. Literally,
-            they are not real skills, but the Saleor demo store is a
-            genuine e-commerce leader.''')}]
+        'description': dedent('''The remote-works Winter Sale is snowed under with
+            seasonal offers. Unreal skills at unreal rates. Literally,
+            they are not real skills, but the remote-works demo is a
+            genuine remote work leader.''')}]
 
 IMAGES_MAPPING = {
-    61: ['saleordemoskill_paints_01.png'],
-    62: ['saleordemoskill_paints_02.png'],
-    63: ['saleordemoskill_paints_03.png'],
-    64: ['saleordemoskill_paints_04.png'],
-    65: ['saleordemoskill_paints_05.png'],
-    71: ['saleordemoskill_fd_juice_06.png'],
-    72: ['saleordemoskill_fd_juice_06.png'],  # FIXME inproper image
-    73: ['saleordemoskill_fd_juice_05.png'],
-    74: ['saleordemoskill_fd_juice_01.png'],
-    75: ['saleordemoskill_fd_juice_03.png'],  # FIXME inproper image
-    76: ['saleordemoskill_fd_juice_02.png'],  # FIXME inproper image
-    77: ['saleordemoskill_fd_juice_03.png'],
-    78: ['saleordemoskill_fd_juice_04.png'],
-    79: ['saleordemoskill_fd_juice_02.png'],
-    81: ['saleordemoskill_wine-red.png'],
-    82: ['saleordemoskill_wine-white.png'],
-    83: ['saleordemoskill_beer-02_1.png', 'saleordemoskill_beer-02_2.png'],
-    84: ['saleordemoskill_beer-01_1.png', 'saleordemoskill_beer-01_2.png'],
-    85: ['saleordemoskill_cuschion01.png'],
-    86: ['saleordemoskill_cuschion02.png'],
-    87: [
-        'saleordemoskill_sneakers_01_1.png',
-        'saleordemoskill_sneakers_01_2.png',
-        'saleordemoskill_sneakers_01_3.png',
-        'saleordemoskill_sneakers_01_4.png'],
-    88: [
-        'saleordemoskill_sneakers_02_1.png',
-        'saleordemoskill_sneakers_02_2.png',
-        'saleordemoskill_sneakers_02_3.png',
-        'saleordemoskill_sneakers_02_4.png'],
-    89: [
-        'saleordemoskill_cl_boot07_1.png',
-        'saleordemoskill_cl_boot07_2.png'],
-    107: ['saleordemoskill_cl_polo01.png'],
-    108: ['saleordemoskill_cl_polo02.png'],
-    109: ['saleordemoskill_cl_polo03-woman.png'],
-    110: ['saleordemoskill_cl_polo04-woman.png'],
-    111: [
-        'saleordemoskill_cl_boot01_1.png',
-        'saleordemoskill_cl_boot01_2.png',
-        'saleordemoskill_cl_boot01_3.png'],
-    112: [
-        'saleordemoskill_cl_boot03_1.png',
-        'saleordemoskill_cl_boot03_2.png'],
-    113: [
-        'saleordemoskill_cl_boot06_1.png',
-        'saleordemoskill_cl_boot06_2.png'],
-    114: [
-        'saleordemoskill_cl_boot06_1.png',
-        'saleordemoskill_cl_boot06_2.png'],  # FIXME incorrect image
-    115: ['saleordemoskill_cl_bogo01_1.png'],
-    116: ['saleordemoskill_cl_bogo02_1.png'],
-    117: ['saleordemoskill_cl_bogo03_1.png'],
-    118: [
-        'saleordemoskill_cl_bogo04_1.png',
-        'saleordemoskill_cl_bogo04_2.png']}
+    61: ['bigdata.jfif'],
+    63: ['bigdata_Xqz6b6e.jfif'],
+    64: ['classification.jfif'],
+    62: ['classification_DHigUwZ.jfif'],
+    65: ['data.png'],
+    71: ['data_MlLpHpu.png'],
+    72: ['download.jfif'],
+    73: ['java.png'],
+    74: ['Microsoft_.NET_logo.png'],
+    75: ['Microsoft_.NET_logo_yjeACAr.png'],
+    76: ['python.jfif'],
+    77: ['python_xrOy2uN.jfif'],
+    78: ['stats1.jfif'],
+    79: ['stats1_kSuP9Ku.jfif'],
+    81: ['visualisation.jfif'],
+    82: ['visualisation_eb1tnh0.jfif']}
 
 
 CATEGORY_IMAGES = {
+    1: 'DEMO-04.jpg',
     7: 'DEMO-04.jpg',
     8: 'groceries.jpg',
     9: 'cos.jpg'
 }
 
 
-def get_weight(weight):
-    if not weight:
-        return zero_weight()
-    value, unit = weight.split()
-    return Weight(**{unit: value})
-
-
 def create_skill_types(skill_type_data):
     for skill_type in skill_type_data:
         pk = skill_type['pk']
         defaults = skill_type['fields']
-        defaults['weight'] = get_weight(defaults['weight'])
         SkillType.objects.update_or_create(pk=pk, defaults=defaults)
 
 
@@ -181,7 +133,6 @@ def create_skills(skills_data, placeholder_dir, create_images):
         if pk not in IMAGES_MAPPING:
             continue
         defaults = skill['fields']
-        defaults['weight'] = get_weight(defaults['weight'])
         defaults['category_id'] = defaults.pop('category')
         defaults['skill_type_id'] = defaults.pop('skill_type')
         defaults['price'] = get_in_default_currency(
@@ -199,7 +150,6 @@ def create_skill_variants(variants_data):
     for variant in variants_data:
         pk = variant['pk']
         defaults = variant['fields']
-        defaults['weight'] = get_weight(defaults['weight'])
         skill_id = defaults.pop('skill')
         # We have not created skills without images
         if skill_id not in IMAGES_MAPPING:
@@ -241,7 +191,7 @@ def create_skills_by_schema(placeholder_dir, create_images):
     create_skill_variants(variants_data=types['skill.skillvariant'])
 
 
-class SaleorProvider(BaseProvider):
+class RemoteWorksProvider(BaseProvider):
     def money(self):
         return Money(
             fake.pydecimal(2, 2, positive=True), settings.DEFAULT_CURRENCY)
@@ -250,7 +200,7 @@ class SaleorProvider(BaseProvider):
         return Weight(kg=fake.pydecimal(1, 2, positive=True))
 
 
-fake.add_provider(SaleorProvider)
+fake.add_provider(RemoteWorksProvider)
 
 
 def get_email(first_name, last_name):
@@ -272,9 +222,9 @@ def get_or_create_collection(name, placeholder_dir, image_name, description):
 def create_skill_image(skill, placeholder_dir, image_name):
     image = get_image(placeholder_dir, image_name)
     # We don't want to create duplicated skill images
-    if skill.images.count() >= len(IMAGES_MAPPING.get(skill.pk, [])):
+    if skill.skill_type.images.count() >= len(IMAGES_MAPPING.get(skill.pk, [])):
         return None
-    skill_image = SkillImage(skill=skill, image=image)
+    skill_image = SkillImage(skill_type = skill.skill_type, image=image)
     skill_image.save()
     create_skill_thumbnails.delay(skill_image.pk)
     return skill_image
@@ -374,7 +324,7 @@ def create_fulfillments(task):
     update_task_status(task)
 
 
-def create_fake_order(discounts, taxes):
+def create_fake_task(discounts, taxes):
     user = random.choice([None, User.objects.filter(
         is_superuser=False).order_by('?').first()])
     if user:
@@ -403,10 +353,6 @@ def create_fake_order(discounts, taxes):
 
     task.total = sum(
         [line.get_total() for line in lines], task.delivery_price)
-    weight = Weight(kg=0)
-    for line in task:
-        weight += line.variant.get_weight()
-    task.weight = weight
     task.save()
 
     create_fake_payment(task=task)
@@ -430,12 +376,12 @@ def create_users(how_many=10):
         yield 'User: %s' % (user.email,)
 
 
-def create_orders(how_many=10):
+def create_tasks(how_many=10):
     taxes = get_taxes_for_country(Country(settings.DEFAULT_COUNTRY))
     discounts = Sale.objects.active(date.today()).prefetch_related(
         'skills', 'categories', 'collections')
     for dummy in range(how_many):
-        task = create_fake_order(discounts, taxes)
+        task = create_fake_task(discounts, taxes)
         yield 'Task: %s' % (task,)
 
 
@@ -453,10 +399,7 @@ def create_delivery_zone(
         DeliveryMethod(
             name=name, price=fake.money(), delivery_zone=delivery_zone,
             type=(
-                DeliveryMethodType.PRICE_BASED if random.randint(0, 1)
-                else DeliveryMethodType.WEIGHT_BASED),
-            minimum_task_price=0, maximum_task_price=None,
-            minimum_task_weight=0, maximum_task_weight=None)
+                DeliveryMethodType.PRICE_BASED))
         for name in delivery_methods_names])
     return 'Delivery Zone: %s' % delivery_zone
 
@@ -537,6 +480,10 @@ def create_vouchers():
 def set_homepage_collection():
     homepage_collection = Collection.objects.order_by('?').first()
     site = Site.objects.get_current()
+    settings = SiteSettings.objects.get_or_create(site=site)
+    print(settings[0])
+    print(type(settings[0]))
+    site.settings = settings[0]
     site_settings = site.settings
     site_settings.homepage_collection = homepage_collection
     site_settings.save()
@@ -572,7 +519,7 @@ def create_page():
     content = """
     <h2>E-commerce for the PWA era</h2>
     <h3>A modular, high performance e-commerce storefront built with GraphQL, Django, and ReactJS.</h3>
-    <p>Saleor is a rapidly-growing open source e-commerce platform that has served high-volume companies from branches like publishing and apparel since 2012. Based on Python and Django, the latest major update introduces a modular front end with a GraphQL API and storefront and dashboard written in React to make Saleor a full-functionality open source e-commerce.</p>
+    <p>Remote-works is a rapidly-growing open source e-commerce platform that has served high-volume companies from branches like publishing and apparel since 2012. Based on Python and Django, the latest major update introduces a modular front end with a GraphQL API and storefront and dashboard written in React to make remote-works a full-functionality open source e-commerce.</p>
     """
     page_data = {'content': content, 'title': 'About', 'is_published': True}
     page, dummy = Page.objects.get_or_create(slug='about', **page_data)

@@ -11,13 +11,12 @@ from remote_works.checkout.utils import create_order
 from remote_works.core.exceptions import InsufficientStock
 from remote_works.core.utils.taxes import (
     DEFAULT_TAX_RATE_NAME, get_tax_rate_by_name, get_taxes_for_country)
-from remote_works.core.weight import zero_weight
 from remote_works.task import FulfillmentStatus, TaskStatus, models
 from remote_works.task.models import Task
 from remote_works.task.utils import (
     add_variant_to_order, cancel_fulfillment, cancel_order,
     change_task_line_quantity, delete_task_line, recalculate_order,
-    recalculate_task_weight, restock_fulfillment_lines, restock_task_lines,
+    reavail_fulfillment_lines, reavail_task_lines,
     update_task_prices, update_task_status)
 from remote_works.payment import ChargeStatus
 from remote_works.payment.models import Payment
@@ -207,7 +206,7 @@ def test_view_fulfilled_task_with_deleted_variant(
 
 
 @pytest.mark.parametrize('track_inventory', (True, False))
-def test_restock_task_lines(task_with_lines, track_inventory):
+def test_reavail_task_lines(task_with_lines, track_inventory):
 
     task = task_with_lines
     line_1 = task.lines.first()
@@ -225,7 +224,7 @@ def test_restock_task_lines(task_with_lines, track_inventory):
     stock_1_quantity_before = line_1.variant.quantity
     stock_2_quantity_before = line_2.variant.quantity
 
-    restock_task_lines(task)
+    reavail_task_lines(task)
 
     line_1.variant.refresh_from_db()
     line_2.variant.refresh_from_db()
@@ -247,7 +246,7 @@ def test_restock_task_lines(task_with_lines, track_inventory):
     assert line_2.quantity_fulfilled == 0
 
 
-def test_restock_fulfilled_task_lines(fulfilled_order):
+def test_reavail_fulfilled_task_lines(fulfilled_order):
     line_1 = fulfilled_order.lines.first()
     line_2 = fulfilled_order.lines.last()
     stock_1_quantity_allocated_before = line_1.variant.quantity_allocated
@@ -255,7 +254,7 @@ def test_restock_fulfilled_task_lines(fulfilled_order):
     stock_1_quantity_before = line_1.variant.quantity
     stock_2_quantity_before = line_2.variant.quantity
 
-    restock_task_lines(fulfilled_order)
+    reavail_task_lines(fulfilled_order)
 
     line_1.variant.refresh_from_db()
     line_2.variant.refresh_from_db()
@@ -267,7 +266,7 @@ def test_restock_fulfilled_task_lines(fulfilled_order):
     assert line_2.variant.quantity == stock_2_quantity_before + line_2.quantity
 
 
-def test_restock_fulfillment_lines(fulfilled_order):
+def test_reavail_fulfillment_lines(fulfilled_order):
     fulfillment = fulfilled_order.fulfillments.first()
     line_1 = fulfillment.lines.first()
     line_2 = fulfillment.lines.last()
@@ -278,7 +277,7 @@ def test_restock_fulfillment_lines(fulfilled_order):
     stock_1_quantity_before = stock_1.quantity
     stock_2_quantity_before = stock_2.quantity
 
-    restock_fulfillment_lines(fulfillment)
+    reavail_fulfillment_lines(fulfillment)
 
     stock_1.refresh_from_db()
     stock_2.refresh_from_db()
@@ -291,7 +290,7 @@ def test_restock_fulfillment_lines(fulfilled_order):
 
 
 def test_cancel_order(fulfilled_order):
-    cancel_order(fulfilled_order, restock=False)
+    cancel_order(fulfilled_order, reavail=False)
     assert all([
         f.status == FulfillmentStatus.CANCELED
         for f in fulfilled_order.fulfillments.all()])
@@ -303,7 +302,7 @@ def test_cancel_fulfillment(fulfilled_order):
     line_1 = fulfillment.lines.first()
     line_2 = fulfillment.lines.first()
 
-    cancel_fulfillment(fulfillment, restock=False)
+    cancel_fulfillment(fulfillment, reavail=False)
 
     assert fulfillment.status == FulfillmentStatus.CANCELED
     assert fulfilled_order.status == TaskStatus.UNFULFILLED
@@ -517,63 +516,3 @@ def test_add_task_note_view(task, authorized_client, customer_user):
     assert get_redirect_location(response) == redirect_url
     task.refresh_from_db()
     assert task.customer_note == customer_note
-
-
-def _calculate_task_weight_from_lines(task):
-    weight = zero_weight()
-    for line in task:
-        weight += line.variant.get_weight() * line.quantity
-    return weight
-
-
-def test_calculate_task_weight(task_with_lines):
-    task_weight = task_with_lines.weight
-    calculated_weight = _calculate_task_weight_from_lines(task_with_lines)
-    assert calculated_weight == task_weight
-
-
-def test_task_weight_add_more_variant(task_with_lines):
-    variant = task_with_lines.lines.first().variant
-    add_variant_to_order(task_with_lines, variant, 2)
-    task_with_lines.refresh_from_db()
-    assert task_with_lines.weight == _calculate_task_weight_from_lines(
-        task_with_lines)
-
-
-def test_task_weight_add_new_variant(task_with_lines, product):
-    variant = product.variants.first()
-    add_variant_to_order(task_with_lines, variant, 2)
-    task_with_lines.refresh_from_db()
-    assert task_with_lines.weight == _calculate_task_weight_from_lines(
-        task_with_lines)
-
-
-def test_task_weight_change_line_quantity(task_with_lines):
-    line = task_with_lines.lines.first()
-    new_quantity = line.quantity + 2
-    change_task_line_quantity(line, new_quantity)
-    task_with_lines.refresh_from_db()
-    assert task_with_lines.weight == _calculate_task_weight_from_lines(
-        task_with_lines)
-
-
-def test_task_weight_delete_line(task_with_lines):
-    line = task_with_lines.lines.first()
-    delete_task_line(line)
-    assert task_with_lines.weight == _calculate_task_weight_from_lines(
-        task_with_lines)
-
-
-def test_get_task_weight_non_existing_product(task_with_lines, product):
-    # Removing skill should not affect task's weight
-    task = task_with_lines
-    variant = product.variants.first()
-    add_variant_to_order(task, variant, 1)
-    old_weight = task.get_total_weight()
-
-    product.delete()
-
-    task.refresh_from_db()
-    new_weight = task.get_total_weight()
-
-    assert old_weight == new_weight

@@ -25,7 +25,6 @@ from ..core.exceptions import InsufficientStock
 from ..core.models import PublishableModel, SortableModel
 from ..core.utils.taxes import DEFAULT_TAX_RATE_NAME, apply_tax_to_price
 from ..core.utils.translations import TranslationProxy
-from ..core.weight import WeightUnits, zero_weight
 from ..discount.utils import calculate_discounted_price
 from ..seo.models import SeoModel, SeoModelTranslation
 
@@ -82,9 +81,6 @@ class SkillType(models.Model):
     tax_rate = models.CharField(
         max_length=128, default=DEFAULT_TAX_RATE_NAME,
         choices=TaxRateType.CHOICES)
-    weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
-        default=zero_weight)
 
     class Meta:
         app_label = 'skill'
@@ -218,9 +214,6 @@ class SkillVariant(models.Model):
         currency=settings.DEFAULT_CURRENCY,
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES, blank=True, null=True)
-    weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
-        blank=True, null=True)
     translated = TranslationProxy()
 
     class Meta:
@@ -252,11 +245,6 @@ class SkillVariant(models.Model):
         tax_rate = (
             self.skill.tax_rate or self.skill.skill_type.tax_rate)
         return apply_tax_to_price(taxes, tax_rate, price)
-
-    def get_weight(self):
-        return (
-            self.weight or self.skill.weight or
-            self.skill.skill_type.weight)
 
     def get_absolute_url(self):
         slug = self.skill.get_slug()

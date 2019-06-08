@@ -74,8 +74,7 @@
     "name": "Statistics",
     "has_variants": false,
     "is_delivery_required": true,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
   }
 },
 {
@@ -85,8 +84,7 @@
     "name": "Business analysis",
     "has_variants": true,
     "is_delivery_required": true,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
   }
 },
 {
@@ -96,8 +94,7 @@
     "name": "Machine learning",
     "has_variants": false,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
   }
 },
 {
@@ -107,8 +104,8 @@
     "name": "Infrastructure support",
     "has_variants": false,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -118,8 +115,8 @@
     "name": "Database engineering",
     "has_variants": false,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -129,8 +126,8 @@
     "name": "C# Programming",
     "has_variants": false,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -140,8 +137,8 @@
     "name": "Python programming",
     "has_variants": false,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -151,8 +148,8 @@
     "name": "Data analysis",
     "has_variants": true,
     "is_delivery_required": true,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -162,8 +159,8 @@
     "name": "Java programming",
     "has_variants": true,
     "is_delivery_required": false,
-    "tax_rate": "standard",
-    "weight": "0"
+    "tax_rate": "standard"
+    
   }
 },
 {
@@ -333,7 +330,7 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "",
+    "attributes": "{}",
     "updated_at": "2018-11-05T11:30:13.508Z",
     "charge_taxes": true,
     "tax_rate": "standard",
@@ -358,7 +355,7 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "",
+    "attributes": "{}",
     "updated_at": "2018-11-05T11:30:13.523Z",
     "charge_taxes": true,
     "tax_rate": "standard",
@@ -383,7 +380,7 @@
     },
     "publication_date": null,
     "is_published": true,
-    "attributes": "",
+    "attributes": "{}",
     "updated_at": "2018-11-05T11:30:13.538Z",
     "charge_taxes": true,
     "tax_rate": "standard",
@@ -403,7 +400,7 @@
       "currency": "USD"
     },
     "skill": 79,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 113,
     "quantity_allocated": 14,
@@ -411,8 +408,8 @@
       "_type": "Money",
       "amount": "5.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -427,7 +424,7 @@
       "currency": "USD"
     },
     "skill": 79,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 19,
     "quantity_allocated": 0,
@@ -435,8 +432,8 @@
       "_type": "Money",
       "amount": "10.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -451,7 +448,7 @@
       "currency": "USD"
     },
     "skill": 79,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 7,
     "quantity_allocated": 7,
@@ -459,8 +456,8 @@
       "_type": "Money",
       "amount": "20.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -475,7 +472,7 @@
       "currency": "USD"
     },
     "skill": 112,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 42,
     "quantity_allocated": 18,
@@ -483,8 +480,8 @@
       "_type": "Money",
       "amount": "5.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -499,7 +496,7 @@
       "currency": "USD"
     },
     "skill": 112,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 110,
     "quantity_allocated": 0,
@@ -507,8 +504,8 @@
       "_type": "Money",
       "amount": "10.00",
       "currency": "USD"
-    },
-    "weight": "0.0"
+    }
+    
   }
 },
 {
@@ -523,7 +520,7 @@
       "currency": "USD"
     },
     "skill": 112,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 120,
     "quantity_allocated": 9,
@@ -531,8 +528,8 @@
       "_type": "Money",
       "amount": "25.00",
       "currency": "USD"
-    },
-    "weight": "0.0"
+    }
+    
   }
 },
 {
@@ -547,7 +544,7 @@
       "currency": "USD"
     },
     "skill": 111,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 1235,
     "quantity_allocated": 4,
@@ -555,8 +552,7 @@
       "_type": "Money",
       "amount": "5.00",
       "currency": "USD"
-    },
-    "weight": "1.0"
+    }
   }
 },
 {
@@ -571,7 +567,7 @@
       "currency": "USD"
     },
     "skill": 111,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 1222,
     "quantity_allocated": 11,
@@ -579,8 +575,8 @@
       "_type": "Money",
       "amount": "10.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -595,7 +591,7 @@
       "currency": "USD"
     },
     "skill": 111,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 463,
     "quantity_allocated": 18,
@@ -603,8 +599,8 @@
       "_type": "Money",
       "amount": "20.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -619,7 +615,7 @@
       "currency": "USD"
     },
     "skill": 111,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 987,
     "quantity_allocated": 1,
@@ -627,8 +623,8 @@
       "_type": "Money",
       "amount": "5.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -643,7 +639,7 @@
       "currency": "USD"
     },
     "skill": 114,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 758,
     "quantity_allocated": 7,
@@ -651,8 +647,8 @@
       "_type": "Money",
       "amount": "10.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -667,7 +663,7 @@
       "currency": "USD"
     },
     "skill": 114,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 576,
     "quantity_allocated": 5,
@@ -675,8 +671,8 @@
       "_type": "Money",
       "amount": "15.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {
@@ -691,7 +687,7 @@
       "currency": "USD"
     },
     "skill": 113,
-    "attributes": "=",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 423,
     "quantity_allocated": 12,
@@ -699,8 +695,7 @@
       "_type": "Money",
       "amount": "5.00",
       "currency": "USD"
-    },
-    "weight": ""
+    }
   }
 },
 {
@@ -715,7 +710,7 @@
       "currency": "USD"
     },
     "skill": 113,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 513,
     "quantity_allocated": 2,
@@ -723,8 +718,7 @@
       "_type": "Money",
       "amount": "10.00",
       "currency": "USD"
-    },
-    "weight": ""
+    }
   }
 },
 {
@@ -739,7 +733,7 @@
       "currency": "USD"
     },
     "skill": 113,
-    "attributes": "",
+    "attributes": "{}",
     "track_inventory": true,
     "quantity": 153,
     "quantity_allocated": 12,
@@ -747,8 +741,8 @@
       "_type": "Money",
       "amount": "15.00",
       "currency": "USD"
-    },
-    "weight": "0"
+    }
+    
   }
 },
 {

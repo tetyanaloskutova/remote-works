@@ -422,12 +422,12 @@ class CancelTaskForm(forms.Form):
     Deallocate or increase corresponding availabilitys for each task line.
     """
 
-    reavailability = forms.BooleanField(initial=True, required=False)
+    reavail = forms.BooleanField(initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
         self.task = kwargs.pop('task')
         super().__init__(*args, **kwargs)
-        self.fields['reavailability'].label = npgettext_lazy(
+        self.fields['reavail'].label = npgettext_lazy(
             'Cancel task form action',
             'Reavail %(quantity)d item',
             'Reavail %(quantity)d items',
@@ -443,7 +443,7 @@ class CancelTaskForm(forms.Form):
         return data
 
     def cancel_order(self):
-        cancel_order(self.task, self.cleaned_data.get('reavailability'))
+        cancel_order(self.task, self.cleaned_data.get('reavail'))
 
 
 class CancelFulfillmentForm(forms.Form):
@@ -452,12 +452,12 @@ class CancelFulfillmentForm(forms.Form):
     Increase corresponding availabilitys for each fulfillment line.
     """
 
-    reavailability = forms.BooleanField(initial=True, required=False)
+    reavail = forms.BooleanField(initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
         self.fulfillment = kwargs.pop('fulfillment')
         super().__init__(*args, **kwargs)
-        self.fields['reavailability'].label = npgettext_lazy(
+        self.fields['reavail'].label = npgettext_lazy(
             'Cancel fulfillment form action',
             'Reavail %(quantity)d item',
             'Reavail %(quantity)d items',
@@ -473,7 +473,7 @@ class CancelFulfillmentForm(forms.Form):
         return data
 
     def cancel_fulfillment(self):
-        cancel_fulfillment(self.fulfillment, self.cleaned_data.get('reavailability'))
+        cancel_fulfillment(self.fulfillment, self.cleaned_data.get('reavail'))
 
 
 class FulfillmentTrackingNumberForm(forms.ModelForm):

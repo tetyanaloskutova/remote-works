@@ -23,34 +23,25 @@ from django.utils.translation import pgettext_lazy
 from measurement.measures import Weight
 
 
-class WeightUnits:
-    KILOGRAM = 'kg'
-    POUND = 'lb'
-    OUNCE = 'oz'
-    GRAM = 'g'
+class TimeUnits:
+    HOUR = 'HR'
+    IDD = 'IDD'
+    YEAR = 'YEAR'
 
     CHOICES = [
-        (KILOGRAM, pgettext_lazy('Kilogram weight unit symbol', 'kg')),
-        (POUND, pgettext_lazy('Pound weight unit symbol', 'lb')),
-        (OUNCE, pgettext_lazy('Ounce weight unit symbol', 'oz')),
-        (GRAM, pgettext_lazy('Gram weight unit symbol', 'g'))]
+        (HOUR, pgettext_lazy('Kilogram weight unit symbol', 'HR')),
+        (IDD, pgettext_lazy('Ideal Developer Day', 'IDD')),
+        (YEAR, pgettext_lazy('Experience year', 'YEAR')),]
 
 
-WeightUnitsEnum = Enum(
-    'WeightUnitsEnum',
-    {unit: unit for unit in WeightUnits.CHOICES})
+TimeUnitsEnum = Enum(
+    'TimeUnitsEnum',
+    {unit: unit for unit in TimeUnits.CHOICES})
 
 
 def zero_weight():
     """Represent the zero weight value."""
     return Weight(kg=0)
-
-
-def convert_weight(weight, unit):
-    # Weight amount from the Weight instance can be retrived in serveral units
-    # via its properties. eg. Weight(lb=10).kg
-    converted_weight = getattr(weight, unit)
-    return Weight(**{unit: converted_weight})
 
 
 def get_default_weight_unit():
@@ -65,15 +56,13 @@ class WeightInput(forms.TextInput):
     def format_value(self, value):
         if isinstance(value, Weight):
             unit = get_default_weight_unit()
-            if value.unit != unit:
-                value = convert_weight(value, unit)
             return value.value
         return value
 
     def render(self, name, value, attrs=None, renderer=None):
         widget = super().render(name, value, attrs=attrs, renderer=renderer)
         unit = get_default_weight_unit()
-        translated_unit = dict(WeightUnits.CHOICES)[unit]
+        translated_unit = dict(TimeUnits.CHOICES)[unit]
         return render_to_string(
             self.template,
             {'widget': widget, 'value': value, 'unit': translated_unit})

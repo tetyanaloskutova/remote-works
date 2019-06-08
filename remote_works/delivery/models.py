@@ -5,17 +5,14 @@ from django.utils.translation import pgettext_lazy
 from django_countries.fields import CountryField
 from django_measurement.models import MeasurementField
 from django_prices.models import MoneyField
-from measurement.measures import Weight
 from prices import MoneyRange
 
 from . import DeliveryMethodType
 from ..core.utils import format_money
 from ..core.utils.taxes import get_taxed_delivery_price
 from ..core.utils.translations import TranslationProxy
-from ..core.weight import WeightUnits, zero_weight
 from .utils import (
-    applicable_price_based_methods, applicable_weight_based_methods,
-    get_price_type_display, get_weight_type_display)
+    applicable_price_based_methods, get_price_type_display)
 
 
 class DeliveryZone(models.Model):
@@ -57,10 +54,7 @@ class DeliveryMethodQueryset(models.QuerySet):
     def price_based(self):
         return self.filter(type=DeliveryMethodType.PRICE_BASED)
 
-    def weight_based(self):
-        return self.filter(type=DeliveryMethodType.WEIGHT_BASED)
-
-    def applicable_delivery_methods(self, price, weight, country_code):
+    def applicable_delivery_methods(self, price, country_code):
         """Returns DeliveryMethods that can be used on an task with
         shipment to given country(code), that are applicable to given
         price & weight total.
@@ -76,8 +70,7 @@ class DeliveryMethodQueryset(models.QuerySet):
 
         qs = qs.prefetch_related('delivery_zone').order_by('price')
         price_based_methods = applicable_price_based_methods(price, qs)
-        weight_based_methods = applicable_weight_based_methods(weight, qs)
-        return price_based_methods | weight_based_methods
+        return price_based_methods
 
 
 class DeliveryMethod(models.Model):
@@ -99,12 +92,6 @@ class DeliveryMethod(models.Model):
         currency=settings.DEFAULT_CURRENCY,
         max_digits=settings.DEFAULT_MAX_DIGITS,
         decimal_places=settings.DEFAULT_DECIMAL_PLACES, blank=True, null=True)
-    minimum_task_weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
-        default=zero_weight, blank=True, null=True)
-    maximum_task_weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
-        blank=True, null=True)
 
     objects = DeliveryMethodQueryset.as_manager()
     translated = TranslationProxy()
@@ -113,19 +100,15 @@ class DeliveryMethod(models.Model):
         return self.name
 
     def __repr__(self):
-        if self.type == DeliveryMethodType.PRICE_BASED:
-            minimum = '%s%s' % (
-                self.minimum_task_price.amount,
-                self.minimum_task_price.currency)
-            max_price = self.maximum_task_price
-            maximum = (
-                '%s%s' % (max_price.amount, max_price.currency)
-                if max_price else 'no limit')
-            return 'DeliveryMethod(type=%s min=%s, max=%s)' % (
-                self.type, minimum, maximum)
-        return 'DeliveryMethod(type=%s weight_range=(%s)' % (
-            self.type, get_weight_type_display(
-                self.minimum_task_weight, self.maximum_task_weight))
+       minimum = '%s%s' % (
+            self.minimum_task_price.amount,
+            self.minimum_task_price.currency)
+       max_price = self.maximum_task_price
+       maximum = (
+           '%s%s' % (max_price.amount, max_price.currency)
+           if max_price else 'no limit')
+       return 'DeliveryMethod(type=%s min=%s, max=%s)' % (
+           self.type, minimum, maximum)
 
     def get_total(self, taxes=None):
         return get_taxed_delivery_price(self.price, taxes)
@@ -139,8 +122,6 @@ class DeliveryMethod(models.Model):
         if self.type == DeliveryMethodType.PRICE_BASED:
             return get_price_type_display(
                 self.minimum_task_price, self.maximum_task_price)
-        return get_weight_type_display(
-            self.minimum_task_weight, self.maximum_task_weight)
 
 
 class DeliveryMethodTranslation(models.Model):

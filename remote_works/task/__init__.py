@@ -144,8 +144,8 @@ def display_task_event(task_event):
     if event_type == TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value:
         return npgettext_lazy(
             'Dashboard message related to an task',
-            'We reavailabilityed %(quantity)d item',
-            'We reavailabilityed %(quantity)d items',
+            'We reavailed %(quantity)d item',
+            'We reavailed %(quantity)d items',
             number='quantity') % {'quantity': params['quantity']}
     if event_type == TaskEvents.NOTE_ADDED.value:
         return pgettext_lazy(

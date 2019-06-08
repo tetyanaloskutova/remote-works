@@ -5,7 +5,7 @@ import django.db.models.deletion
 import django_countries.fields
 import django_measurement.models
 import django_prices.models
-import remote_works.core.weight
+import remote_works.core.time
 
 
 class Migration(migrations.Migration):
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('price', django_prices.models.MoneyField(currency='USD', decimal_places=2, default=0, max_digits=12)),
                 ('minimum_task_price', django_prices.models.MoneyField(blank=True, currency='USD', decimal_places=2, default=0, max_digits=12, null=True)),
                 ('maximum_task_price', django_prices.models.MoneyField(blank=True, currency='USD', decimal_places=2, max_digits=12, null=True)),
-                ('minimum_task_weight', django_measurement.models.MeasurementField(blank=True, default=remote_works.core.weight.zero_weight, measurement_class='Mass', null=True)),
+                ('minimum_task_weight', django_measurement.models.MeasurementField(blank=True, default=remote_works.core.time.zero_weight, measurement_class='Mass', null=True)),
                 ('maximum_task_weight', django_measurement.models.MeasurementField(blank=True, measurement_class='Mass', null=True)),
             ],
         ),

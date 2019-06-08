@@ -20,7 +20,7 @@ import Form from "../../../components/Form";
 import i18n from "../../../i18n";
 
 export interface FormData {
-  reavailability: boolean;
+  reavail: boolean;
 }
 
 const styles = (theme: Theme) =>
@@ -54,7 +54,7 @@ const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
     <Dialog open={open}>
       <Form
         initial={{
-          reavailability: true
+          reavail: true
         }}
         onSubmit={onSubmit}
       >
@@ -74,9 +74,9 @@ const TaskCancelDialog = withStyles(styles, { name: "TaskCancelDialog" })(
                   }}
                 />
                 <ControlledCheckbox
-                  checked={data.reavailability}
+                  checked={data.reavail}
                   label={i18n.t("Release all availability allocated to this task")}
-                  name="reavailability"
+                  name="reavail"
                   onChange={change}
                 />
               </DialogContent>

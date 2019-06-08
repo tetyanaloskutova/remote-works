@@ -57,8 +57,8 @@ import { TaskVoid, TaskVoidVariables } from "./types/TaskVoid";
 
 const taskCancelMutation = gql`
   ${fragmentTaskDetails}
-  mutation TaskCancel($id: ID!, $reavailability: Boolean!) {
-    taskCancel(id: $id, reavailability: $reavailability) {
+  mutation TaskCancel($id: ID!, $reavail: Boolean!) {
+    taskCancel(id: $id, reavail: $reavail) {
       errors {
         field
         message

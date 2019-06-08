@@ -833,8 +833,8 @@ msgstr "Sipariş %(user_name)s tarafından iptal edildi"
 #: saleor/task/__init__.py:147
 #, python-format
 msgctxt "Dashboard message related to an task"
-msgid "We restocked %(quantity)d item"
-msgid_plural "We restocked %(quantity)d items"
+msgid "We reavailed %(quantity)d item"
+msgid_plural "We reavailed %(quantity)d items"
 msgstr[0] "%(quantity)d ürünü yeniden stokladık"
 msgstr[1] "%(quantity)d ürünü yeniden stokladık"
 

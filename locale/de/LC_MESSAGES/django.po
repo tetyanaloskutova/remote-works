@@ -834,8 +834,8 @@ msgstr "Bestellung wurde storniert von %(user_name)s"
 #: saleor/task/__init__.py:147
 #, python-format
 msgctxt "Dashboard message related to an task"
-msgid "We restocked %(quantity)d item"
-msgid_plural "We restocked %(quantity)d items"
+msgid "We reavailed %(quantity)d item"
+msgid_plural "We reavailed %(quantity)d items"
 msgstr[0] "Wir haben %(quantity)d Produkt aufgefüllt"
 msgstr[1] "We haben %(quantity)d Produkte aufgefüllt"
 

@@ -476,7 +476,7 @@ def cancel_order(request, task_pk):
         msg = pgettext_lazy('Dashboard message', 'Task canceled')
         with transaction.atomic():
             form.cancel_order()
-            if form.cleaned_data.get('reavailability'):
+            if form.cleaned_data.get('reavail'):
                 task.events.create(
                     user=request.user,
                     type=TaskEvents.UPDATED.value)
@@ -646,7 +646,7 @@ def cancel_fulfillment(request, task_pk, fulfillment_pk):
                 'fulfillment': fulfillment.composed_id}
         with transaction.atomic():
             form.cancel_fulfillment()
-            if form.cleaned_data.get('reavailability'):
+            if form.cleaned_data.get('reavail'):
                 task.events.create(
                     parameters={'quantity': fulfillment.get_total_quantity()},
                     user=request.user,

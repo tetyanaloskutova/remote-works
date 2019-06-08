@@ -723,7 +723,7 @@ type FulfillmentCancel {
 }
 
 input FulfillmentCancelInput {
-  reavailability: Boolean
+  reavail: Boolean
 }
 
 type FulfillmentCreate {
@@ -992,7 +992,7 @@ type Mutations {
   draftTaskLineUpdate(id: ID!, input: TaskLineInput!): DraftTaskLineUpdate
   draftTaskUpdate(id: ID!, input: DraftTaskInput!): DraftTaskUpdate
   orderAddNote(task: ID!, input: TaskAddNoteInput!): TaskAddNote
-  taskCancel(id: ID!, reavailability: Boolean!): TaskCancel
+  taskCancel(id: ID!, reavail: Boolean!): TaskCancel
   taskCapture(amount: Decimal!, id: ID!): TaskCapture
   taskFulfillmentCancel(id: ID!, input: FulfillmentCancelInput!): FulfillmentCancel
   taskFulfillmentCreate(input: FulfillmentCreateInput!, task: ID): FulfillmentCreate

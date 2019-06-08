@@ -612,10 +612,10 @@ def test_update_view_must_be_ajax(customer_user, rf):
 
 def test_get_cart_data(request_cart_with_item, delivery_zone, vatlayer):
     cart = request_cart_with_item
-    shipment_option = get_delivery_price_estimate(
-        cart.get_subtotal().gross, cart.get_total_weight(), 'PL', vatlayer)
+    delivery_option = get_delivery_price_estimate(
+        cart.get_subtotal().gross, 'PL', vatlayer)
     cart_data = utils.get_cart_data(
-        cart, shipment_option, 'USD', None, vatlayer)
+        cart, delivery_option, 'USD', None, vatlayer)
     assert cart_data['cart_total'] == TaxedMoney(
         net=Money('8.13', 'USD'), gross=Money(10, 'USD'))
     assert cart_data['total_with_delivery'].start == TaxedMoney(

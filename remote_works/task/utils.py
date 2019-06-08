@@ -9,7 +9,7 @@ from ..account.utils import store_user_address
 from ..checkout import AddressType
 from ..core.utils.taxes import (
     ZERO_MONEY, get_tax_rate_by_name, get_taxes_for_address)
-from ..core.weight import zero_weight
+from ..core.time import zero_weight
 from ..dashboard.task.utils import get_voucher_discount_for_order
 from ..discount.models import NotApplicable
 from ..task import FulfillmentStatus, TaskStatus
@@ -109,13 +109,13 @@ def update_task_prices(task, discounts):
     recalculate_order(task)
 
 
-def cancel_order(task, reavailability):
+def cancel_order(task, reavail):
     """Cancel task and associated fulfillments.
 
-    Return skills to corresponding availabilitys if reavailability is set to True.
+    Return skills to corresponding availabilitys if reavail is set to True.
     """
-    if reavailability:
-        reavailability_task_lines(task)
+    if reavail:
+        reavail_task_lines(task)
     for fulfillment in task.fulfillments.all():
         fulfillment.status = FulfillmentStatus.CANCELED
         fulfillment.save(update_fields=['status'])
@@ -149,13 +149,13 @@ def update_task_status(task):
         task.save(update_fields=['status'])
 
 
-def cancel_fulfillment(fulfillment, reavailability):
+def cancel_fulfillment(fulfillment, reavail):
     """Cancel fulfillment.
 
-    Return skills to corresponding availabilitys if reavailability is set to True.
+    Return skills to corresponding availabilitys if reavail is set to True.
     """
-    if reavailability:
-        reavailability_fulfillment_lines(fulfillment)
+    if reavail:
+        reavail_fulfillment_lines(fulfillment)
     for line in fulfillment:
         task_line = line.task_line
         task_line.quantity_fulfilled -= line.quantity
@@ -231,7 +231,7 @@ def delete_task_line(line):
     line.delete()
 
 
-def reavailability_task_lines(task):
+def reavail_task_lines(task):
     """Return ordered skills to corresponding availabilitys."""
     for line in task:
         if line.variant and line.variant.track_inventory:
@@ -245,7 +245,7 @@ def reavailability_task_lines(task):
             line.save(update_fields=['quantity_fulfilled'])
 
 
-def reavailability_fulfillment_lines(fulfillment):
+def reavail_fulfillment_lines(fulfillment):
     """Return fulfilled skills to corresponding availabilitys."""
     for line in fulfillment:
         if line.task_line.variant and line.task_line.variant.track_inventory:

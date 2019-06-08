@@ -906,8 +906,8 @@ def test_task_add_note(
 
 
 CANCEL_ORDER_QUERY = """
-    mutation cancelTask($id: ID!, $restock: Boolean!) {
-        orderCancel(id: $id, restock: $restock) {
+    mutation cancelTask($id: ID!, $reavail: Boolean!) {
+        orderCancel(id: $id, reavail: $reavail) {
             task {
                 status
             }
@@ -916,14 +916,14 @@ CANCEL_ORDER_QUERY = """
 """
 
 
-def test_task_cancel_and_restock(
+def test_task_cancel_and_reavail(
         staff_api_client, permission_manage_orders, task_with_lines):
     task = task_with_lines
     query = CANCEL_ORDER_QUERY
     task_id = graphene.Node.to_global_id('Task', task.id)
-    restock = True
+    reavail = True
     quantity = task.get_total_quantity()
-    variables = {'id': task_id, 'restock': restock}
+    variables = {'id': task_id, 'reavail': reavail}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
@@ -940,8 +940,8 @@ def test_task_cancel(
     task = task_with_lines
     query = CANCEL_ORDER_QUERY
     task_id = graphene.Node.to_global_id('Task', task.id)
-    restock = False
-    variables = {'id': task_id, 'restock': restock}
+    reavail = False
+    variables = {'id': task_id, 'reavail': reavail}
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)

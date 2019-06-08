@@ -9,7 +9,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import django_measurement.models
 import django_prices.models
-import remote_works.core.weight
+import remote_works.core.time
 import versatileimagefield.fields
 from django.contrib.postgres.operations import (HStoreExtension, UnaccentExtension, )
 
@@ -193,7 +193,7 @@ class Migration(migrations.Migration):
                 ('has_variants', models.BooleanField(default=True)),
                 ('is_delivery_required', models.BooleanField(default=True)),
                 ('tax_rate', models.CharField(choices=[('accommodation', 'accommodation'), ('admission to cultural events', 'admission to cultural events'), ('admission to entertainment events', 'admission to entertainment events'), ('admission to sporting events', 'admission to sporting events'), ('advertising', 'advertising'), ('agricultural supplies', 'agricultural supplies'), ('baby foodstuffs', 'baby foodstuffs'), ('bikes', 'bikes'), ('books', 'books'), ('childrens clothing', 'childrens clothing'), ('domestic fuel', 'domestic fuel'), ('domestic services', 'domestic services'), ('e-books', 'e-books'), ('foodstuffs', 'foodstuffs'), ('hotels', 'hotels'), ('medical', 'medical'), ('newspapers', 'newspapers'), ('passenger transport', 'passenger transport'), ('pharmaceuticals', 'pharmaceuticals'), ('property renovations', 'property renovations'), ('restaurants', 'restaurants'), ('social housing', 'social housing'), ('standard', 'standard'), ('water', 'water'), ('wine', 'wine')], default='standard', max_length=128)),
-                ('weight', django_measurement.models.MeasurementField(default=remote_works.core.weight.zero_weight, measurement_class='Mass')),
+                ('weight', django_measurement.models.MeasurementField(default=remote_works.core.time.zero_weight, measurement_class='Mass')),
             ],
         ),
         migrations.CreateModel(

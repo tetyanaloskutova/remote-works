@@ -263,7 +263,7 @@ export interface DraftTaskInput {
 }
 
 export interface FulfillmentCancelInput {
-  reavailability?: boolean | null;
+  reavail?: boolean | null;
 }
 
 export interface FulfillmentCreateInput {

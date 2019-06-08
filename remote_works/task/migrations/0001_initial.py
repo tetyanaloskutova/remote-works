@@ -11,7 +11,7 @@ import django_measurement.models
 import django_prices.models
 import remote_works.core.utils.json_serializer
 import remote_works.core.utils.taxes
-import remote_works.core.weight
+import remote_works.core.time
 
 
 class Migration(migrations.Migration):
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
                 ('translated_discount_name', models.CharField(blank=True, default='', max_length=255)),
                 ('display_gross_prices', models.BooleanField(default=True)),
                 ('customer_note', models.TextField(blank=True, default='')),
-                ('weight', django_measurement.models.MeasurementField(default=remote_works.core.weight.zero_weight, measurement_class='Mass')),
+                ('weight', django_measurement.models.MeasurementField(default=remote_works.core.time.zero_weight, measurement_class='Mass')),
                 ('billing_address', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='account.Address')),
                 ('delivery_address', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='account.Address')),
                 ('delivery_method', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='tasks', to='delivery.DeliveryMethod')),
@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('type', models.CharField(choices=[('PLACED', 'placed'), ('PLACED_FROM_DRAFT', 'draft_placed'), ('OVERSOLD_ITEMS', 'oversold_items'), ('TASK_MARKED_AS_PAID', 'marked_as_paid'), ('CANCELED', 'canceled'), ('TASK_FULLY_PAID', 'task_paid'), ('UPDATED', 'updated'), ('EMAIL_SENT', 'email_sent'), ('PAYMENT_CAPTURED', 'captured'), ('PAYMENT_REFUNDED', 'refunded'), ('PAYMENT_VOIDED', 'voided'), ('FULFILLMENT_CANCELED', 'fulfillment_canceled'), ('FULFILLMENT_REAVAILED_ITEMS', 'reavailabilityed_items'), ('FULFILLMENT_FULFILLED_ITEMS', 'fulfilled_items'), ('TRACKING_UPDATED', 'tracking_updated'), ('NOTE_ADDED', 'note_added'), ('OTHER', 'other')], max_length=255)),
+                ('type', models.CharField(choices=[('PLACED', 'placed'), ('PLACED_FROM_DRAFT', 'draft_placed'), ('OVERSOLD_ITEMS', 'oversold_items'), ('TASK_MARKED_AS_PAID', 'marked_as_paid'), ('CANCELED', 'canceled'), ('TASK_FULLY_PAID', 'task_paid'), ('UPDATED', 'updated'), ('EMAIL_SENT', 'email_sent'), ('PAYMENT_CAPTURED', 'captured'), ('PAYMENT_REFUNDED', 'refunded'), ('PAYMENT_VOIDED', 'voided'), ('FULFILLMENT_CANCELED', 'fulfillment_canceled'), ('FULFILLMENT_REAVAILED_ITEMS', 'reavailed_items'), ('FULFILLMENT_FULFILLED_ITEMS', 'fulfilled_items'), ('TRACKING_UPDATED', 'tracking_updated'), ('NOTE_ADDED', 'note_added'), ('OTHER', 'other')], max_length=255)),
                 ('parameters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, default=dict, encoder=remote_works.core.utils.json_serializer.CustomJsonEncoder)),
                 ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='events', to='task.Task')),
                 ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),

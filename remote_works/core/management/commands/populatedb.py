@@ -9,7 +9,7 @@ from django.db import connection
 from ...utils import create_superuser
 from ...utils.random_data import (
     add_address_to_admin, create_collections_by_schema, create_menus,
-    create_orders, create_page, create_skill_sales,
+    create_tasks, create_page, create_skill_sales,
     create_skills_by_schema, create_delivery_zones, create_users,
     create_vouchers, set_homepage_collection)
 
@@ -76,19 +76,23 @@ class Command(BaseCommand):
             cursor.execute(commands.getvalue())
 
     def handle(self, *args, **options):
+        if options['createsuperuser']:
+            credentials = {'email': 'admin@example.com', 'password': 'admin'}
+            msg = create_superuser(credentials)
+            self.stdout.write(msg)
+            add_address_to_admin(credentials['email'])
+
         self.make_database_faster()
         create_images = not options['withoutimages']
         for msg in create_delivery_zones():
+            self.stdout.write(msg)
+        for msg in create_users(20):
             self.stdout.write(msg)
         create_skills_by_schema(self.placeholders_dir, create_images)
         self.stdout.write('Created skills')
         for msg in create_skill_sales(5):
             self.stdout.write(msg)
         for msg in create_vouchers():
-            self.stdout.write(msg)
-        for msg in create_users(20):
-            self.stdout.write(msg)
-        for msg in create_orders(20):
             self.stdout.write(msg)
         for msg in create_collections_by_schema(self.placeholders_dir):
             self.stdout.write(msg)
@@ -99,12 +103,9 @@ class Command(BaseCommand):
         for msg in create_menus():
             self.stdout.write(msg)
 
-        if options['createsuperuser']:
-            credentials = {'email': 'admin@example.com', 'password': 'admin'}
-            msg = create_superuser(credentials)
-            self.stdout.write(msg)
-            add_address_to_admin(credentials['email'])
         if not options['withoutsearch']:
             self.populate_search_index()
         if not options['skipsequencereset']:
             self.sequence_reset()
+        for msg in create_tasks(20):
+            self.stdout.write(msg)

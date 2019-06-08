@@ -19,7 +19,7 @@ from . import FulfillmentStatus, TaskEvents, TaskStatus, display_task_event
 from ..account.models import Address
 from ..core.utils.json_serializer import CustomJsonEncoder
 from ..core.utils.taxes import ZERO_TAXED_MONEY, zero_money
-from ..core.weight import WeightUnits, zero_weight
+from ..core.time import TimeUnits, zero_weight
 from ..discount.models import Voucher
 from ..payment import ChargeStatus, TransactionKind
 from ..delivery.models import DeliveryMethod
@@ -124,7 +124,7 @@ class Task(models.Model):
     display_gross_prices = models.BooleanField(default=True)
     customer_note = models.TextField(blank=True, default='')
     weight = MeasurementField(
-        measurement=Weight, unit_choices=WeightUnits.CHOICES,
+        measurement=Weight, unit_choices=TimeUnits.CHOICES,
         default=zero_weight)
     objects = TaskQueryset.as_manager()
 

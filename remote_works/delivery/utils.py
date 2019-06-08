@@ -3,15 +3,15 @@ from django.utils.translation import pgettext_lazy
 from prices import MoneyRange
 
 from ..core.utils.taxes import get_taxed_delivery_price
-from ..core.weight import convert_weight, get_default_weight_unit
+from ..core.time import get_default_weight_unit
 
 
-def get_delivery_price_estimate(price, weight, country_code, taxes):
+def get_delivery_price_estimate(price, country_code, taxes):
     """Returns estimated price range for delivery for given task."""
     from .models import DeliveryMethod
 
     delivery_methods = DeliveryMethod.objects.applicable_delivery_methods(
-        price, weight, country_code)
+        price, country_code)
     delivery_methods = delivery_methods.values_list('price', flat=True)
     if not delivery_methods:
         return
@@ -60,11 +60,6 @@ def get_price_type_display(min_price, max_price):
 
 def get_weight_type_display(min_weight, max_weight):
     default_unit = get_default_weight_unit()
-
-    if min_weight.unit != default_unit:
-        min_weight = convert_weight(min_weight, default_unit)
-    if max_weight and max_weight.unit != default_unit:
-        max_weight = convert_weight(max_weight, default_unit)
 
     if max_weight is None:
         return pgettext_lazy(

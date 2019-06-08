@@ -218,24 +218,24 @@ class TaskCancel(BaseMutation):
     class Arguments:
         id = graphene.ID(
             required=True, description='ID of the task to cancel.')
-        reavailability = graphene.Boolean(
+        reavail = graphene.Boolean(
             required=True,
-            description='Determine if lines will be reavailabilityed or not.')
+            description='Determine if lines will be reavailed or not.')
 
     class Meta:
         description = 'Cancel an task.'
 
     @classmethod
     @permission_required('task.manage_orders')
-    def mutate(cls, root, info, id, reavailability):
+    def mutate(cls, root, info, id, reavail):
         errors = []
         task = cls.get_node_or_error(info, id, errors, 'id', Task)
         clean_task_cancel(task, errors)
         if errors:
             return TaskCancel(errors=errors)
 
-        cancel_order(task=task, reavailability=reavailability)
-        if reavailability:
+        cancel_order(task=task, reavail=reavail)
+        if reavail:
             task.events.create(
                 type=TaskEvents.FULFILLMENT_REAVAILED_ITEMS.value,
                 user=info.context.user,

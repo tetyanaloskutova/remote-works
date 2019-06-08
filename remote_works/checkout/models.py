@@ -13,7 +13,7 @@ from django_prices.models import MoneyField
 from ..account.models import Address
 from ..core.utils.taxes import ZERO_TAXED_MONEY, zero_money
 from ..delivery.models import DeliveryMethod
-from ..core.weight import zero_weight
+from ..core.time import zero_weight
 
 CENTS = Decimal('0.01')
 

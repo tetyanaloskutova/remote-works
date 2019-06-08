@@ -20,7 +20,7 @@ import Form from "../../../components/Form";
 import i18n from "../../../i18n";
 
 export interface FormData {
-  reavailability: boolean;
+  reavail: boolean;
 }
 
 const styles = (theme: Theme) =>
@@ -52,7 +52,7 @@ const TaskFulfillmentCancelDialog = withStyles(styles, {
     onClose
   }: TaskFulfillmentCancelDialogProps) => (
     <Dialog open={open}>
-      <Form initial={{ reavailability: true }} onSubmit={onConfirm}>
+      <Form initial={{ reavail: true }} onSubmit={onConfirm}>
         {({ change, data, submit }) => (
           <>
             <DialogTitle>
@@ -63,9 +63,9 @@ const TaskFulfillmentCancelDialog = withStyles(styles, {
                 {i18n.t("Are you sure you want to cancel this fulfillment?")}
               </DialogContentText>
               <ControlledCheckbox
-                checked={data.reavailability}
+                checked={data.reavail}
                 label={i18n.t("Reavail items?")}
-                name="reavailability"
+                name="reavail"
                 onChange={change}
               />
             </DialogContent>

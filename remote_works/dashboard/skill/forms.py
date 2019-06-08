@@ -13,7 +13,7 @@ from mptt.forms import TreeNodeChoiceField
 from . import SkillBulkAction
 from ...core import TaxRateType
 from ...core.utils.taxes import DEFAULT_TAX_RATE_NAME, include_taxes_in_prices
-from ...core.weight import WeightField
+from ...core.time import WeightField
 from ...skill.models import (
     Attribute, AttributeValue, Category, Collection, Skill, SkillImage,
     SkillType, SkillVariant, VariantImage)

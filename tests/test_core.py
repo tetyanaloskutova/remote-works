@@ -16,7 +16,7 @@ from remote_works.core.utils import (
     Country, build_absolute_uri, create_superuser, create_thumbnails,
     format_money, get_country_by_ip, get_currency_for_country, random_data)
 from remote_works.core.utils.text import get_cleaner, strip_html
-from remote_works.core.weight import WeightUnits, convert_weight
+from remote_works.core.time import TimeUnits
 from remote_works.discount.models import Sale, Voucher
 from remote_works.task.models import Task
 from remote_works.skill.models import SkillImage
@@ -245,13 +245,6 @@ def test_set_language_redirects_to_current_endpoint(client):
     # now check if we got redirect the endpoint we wanted to go back
     # in the new language (cart:index)
     assert expected_url == new_url
-
-
-def test_convert_weight():
-    weight = Weight(kg=1)
-    expected_result = Weight(g=1000)
-    assert convert_weight(weight, WeightUnits.GRAM) == expected_result
-
 
 def test_build_absolute_uri(site_settings, settings):
     # Case when we are using external service for storing static files,

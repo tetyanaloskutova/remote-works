@@ -18,7 +18,7 @@
     {% blocktrans trimmed with fulfillment=fulfillment.composed_id context "Modal cancel fulfillment text" %}
       Are you sure you want cancel fulfillment #{{ fulfillment }}?
     {% endblocktrans %}
-    {{ form.restock|materializecss }}
+    {{ form.reavail|materializecss }}
   </div>
 {% endblock %}
 

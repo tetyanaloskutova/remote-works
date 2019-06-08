@@ -3,7 +3,7 @@ from django.urls import reverse
 from prices import Money
 
 from remote_works.account.i18n import COUNTRY_CHOICES
-from remote_works.core.weight import WeightUnits
+from remote_works.core.time import TimeUnits
 from remote_works.dashboard.delivery.forms import (
     PriceDeliveryMethodForm, DeliveryZoneForm, WeightDeliveryMethodForm,
     currently_used_countries, default_delivery_zone_exists,
@@ -111,11 +111,11 @@ def test_delivery_zone_list(admin_client, delivery_zone):
 
 def test_delivery_zone_update_default_weight_unit(admin_client, site_settings):
     url = reverse('dashboard:delivery-zone-list')
-    data = {'default_weight_unit': WeightUnits.POUND}
+    data = {'default_weight_unit': TimeUnits.IDD}
     response = admin_client.post(url, data=data)
     assert response.status_code == 302
     site_settings.refresh_from_db()
-    assert site_settings.default_weight_unit == WeightUnits.POUND
+    assert site_settings.default_weight_unit == TimeUnits.IDD
 
 
 def test_delivery_zone_add(admin_client):

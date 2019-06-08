@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import pgettext_lazy
 
 from ...account.i18n import COUNTRY_CHOICES
-from ...core.weight import WeightField
+from ...core.time import WeightField
 from ...delivery import DeliveryMethodType
 from ...delivery.models import DeliveryMethod, DeliveryZone
 from ...site.models import SiteSettings
@@ -164,45 +164,19 @@ class PriceDeliveryMethodForm(forms.ModelForm):
 
 
 class WeightDeliveryMethodForm(forms.ModelForm):
-    minimum_task_weight = WeightField(
-        required=False, label=pgettext_lazy(
-            'Minimum task weight to use this delivery method',
-            'Minimum task weight'))
-    maximum_task_weight = WeightField(
-        required=False, label=pgettext_lazy(
-            'Maximum task weight to use this delivery method',
-            'Maximum task weight'))
 
     class Meta(DeliveryMethodForm.Meta):
         fields = [
-            'name', 'price', 'minimum_task_weight', 'maximum_task_weight']
+            'name', 'price']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['maximum_task_weight'].widget.attrs['placeholder'] = (
-            pgettext_lazy(
-                'Placeholder for maximum task weight set to unlimited',
-                'No limit'))
-        self.fields['minimum_task_weight'].widget.attrs['placeholder'] = '0'
-
-    def clean_minimum_task_weight(self):
-        return self.cleaned_data['minimum_task_weight'] or 0
 
     def clean(self):
         data = super().clean()
-        min_weight = data.get('minimum_task_weight')
-        max_weight = data.get('maximum_task_weight')
-        if min_weight and max_weight is not None and max_weight <= min_weight:
-            self.add_error('maximum_task_weight', pgettext_lazy(
-                'Price delivery method form error',
-                'Maximum task price should be larger'
-                ' than the minimum task price.'))
         return data
 
 
 def get_delivery_form(type):
-    if type == DeliveryMethodType.WEIGHT_BASED:
-        return WeightDeliveryMethodForm
-    elif type == DeliveryMethodType.PRICE_BASED:
-        return PriceDeliveryMethodForm
-    raise TypeError('Unknown form type: %s' % type)
+    return PriceDeliveryMethodForm
+

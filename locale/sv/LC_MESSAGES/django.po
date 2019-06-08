@@ -825,8 +825,8 @@ msgstr "Taskn avbröts av %(user_name)s"
 #: saleor/task/__init__.py:147
 #, python-format
 msgctxt "Dashboard message related to an task"
-msgid "We restocked %(quantity)d item"
-msgid_plural "We restocked %(quantity)d items"
+msgid "We reavailed %(quantity)d item"
+msgid_plural "We reavailed %(quantity)d items"
 msgstr[0] "Vi har fyllt på %(quantity)d vara"
 msgstr[1] "Vi har fyllt på %(quantity)d varor"
 

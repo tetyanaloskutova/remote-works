@@ -36,7 +36,7 @@ Task events
 +--------------------------+--------------------------+---------------------------------------------------------------------+
 | ``fulfillment_canceled`` | ``FULFILLMENT_CANCELED`` | Fulfillment for one or more of the items was canceled.              |
 +--------------------------+--------------------------+---------------------------------------------------------------------+
-| ``restocked_items``      | ``RESTOCKED_ITEMS``      | One or more of the task's items have been resocked                 |
+| ``reavailed_items``      | ``RESTOCKED_ITEMS``      | One or more of the task's items have been resocked                 |
 +--------------------------+--------------------------+---------------------------------------------------------------------+
 | ``fulfilled_items``      | ``FULFILLED_ITEMS``      | One or more of the task's items have been fulfilled.               |
 +--------------------------+--------------------------+---------------------------------------------------------------------+

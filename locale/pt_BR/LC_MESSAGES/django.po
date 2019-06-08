@@ -838,8 +838,8 @@ msgstr "Pedido foi cancelado por %(user_name)s"
 #: saleor/task/__init__.py:147
 #, python-format
 msgctxt "Dashboard message related to an task"
-msgid "We restocked %(quantity)d item"
-msgid_plural "We restocked %(quantity)d items"
+msgid "We reavailed %(quantity)d item"
+msgid_plural "We reavailed %(quantity)d items"
 msgstr[0] "Nós reabastecendo %(quantity)d item"
 msgstr[1] "Nós reabastecemos %(quantity)d itens"
 

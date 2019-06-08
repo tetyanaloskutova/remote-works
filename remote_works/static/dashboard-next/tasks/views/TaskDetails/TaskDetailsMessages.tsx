@@ -150,7 +150,7 @@ export const TaskDetailsMessages: React.StatelessComponent<
             });
           };
           const handleNoteAdd = (data: TaskAddNote) => {
-            if (!maybe(() => data.orderAddNote.errors.length)) {
+            if (!maybe(() => data.taskAddNote.errors.length)) {
               pushMessage({
                 text: i18n.t("Note successfully added", {
                   context: "notification"

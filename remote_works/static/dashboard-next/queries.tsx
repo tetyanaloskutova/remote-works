@@ -74,7 +74,6 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             <Messages>
               {pushMessage => (
                 <StrictTypedQuery
-                  fetchPolicy="cache-and-network"
                   query={query}
                   variables={variables}
                   skip={skip}

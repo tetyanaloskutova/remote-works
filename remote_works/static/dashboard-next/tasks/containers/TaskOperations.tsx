@@ -73,7 +73,7 @@ interface TaskOperationsProps {
   task: string;
   children: (
     props: {
-      orderAddNote: PartialMutationProviderOutput<
+      taskAddNote: PartialMutationProviderOutput<
         TaskAddNote,
         TaskAddNoteVariables
       >;
@@ -254,7 +254,7 @@ const TaskOperations: React.StatelessComponent<TaskOperationsProps> = ({
                                                                       ...markAsPaid
                                                                     ) =>
                                                                       children({
-                                                                        orderAddNote: getMutationProviderData(
+                                                                        taskAddNote: getMutationProviderData(
                                                                           ...addNote
                                                                         ),
                                                                         taskCancel: getMutationProviderData(

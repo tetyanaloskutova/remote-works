@@ -869,7 +869,7 @@ def test_task_add_note(
     task = task_with_lines
     query = """
         mutation addNote($id: ID!, $message: String) {
-            orderAddNote(task: $id, input: {message: $message}) {
+            taskAddNote(task: $id, input: {message: $message}) {
                 errors {
                 field
                 message
@@ -893,7 +893,7 @@ def test_task_add_note(
     response = staff_api_client.post_graphql(
         query, variables, permissions=[permission_manage_orders])
     content = get_graphql_content(response)
-    data = content['data']['orderAddNote']
+    data = content['data']['taskAddNote']
 
     assert data['task']['id'] == task_id
     assert data['event']['user']['email'] == staff_user.email

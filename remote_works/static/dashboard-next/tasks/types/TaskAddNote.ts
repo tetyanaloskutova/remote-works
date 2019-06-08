@@ -7,18 +7,18 @@ import { TaskAddNoteInput, TaskEventsEmails, TaskEvents } from "./../../types/gl
 // GraphQL mutation operation: TaskAddNote
 // ====================================================
 
-export interface TaskAddNote_orderAddNote_errors {
+export interface TaskAddNote_taskAddNote_errors {
   __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
-export interface TaskAddNote_orderAddNote_task_events_user {
+export interface TaskAddNote_taskAddNote_task_events_user {
   __typename: "User";
   email: string;
 }
 
-export interface TaskAddNote_orderAddNote_task_events {
+export interface TaskAddNote_taskAddNote_task_events {
   __typename: "TaskEvent";
   id: string;
   amount: number | null;
@@ -28,23 +28,23 @@ export interface TaskAddNote_orderAddNote_task_events {
   message: string | null;
   quantity: number | null;
   type: TaskEvents | null;
-  user: TaskAddNote_orderAddNote_task_events_user | null;
+  user: TaskAddNote_taskAddNote_task_events_user | null;
 }
 
-export interface TaskAddNote_orderAddNote_order {
+export interface TaskAddNote_taskAddNote_task {
   __typename: "Task";
   id: string;
-  events: (TaskAddNote_orderAddNote_task_events | null)[] | null;
+  events: (TaskAddNote_taskAddNote_task_events | null)[] | null;
 }
 
-export interface TaskAddNote_orderAddNote {
+export interface TaskAddNote_taskAddNote {
   __typename: "TaskAddNote";
-  errors: TaskAddNote_orderAddNote_errors[] | null;
-  task: TaskAddNote_orderAddNote_order | null;
+  errors: TaskAddNote_taskAddNote_errors[] | null;
+  task: TaskAddNote_taskAddNote_task | null;
 }
 
 export interface TaskAddNote {
-  orderAddNote: TaskAddNote_orderAddNote | null;
+  taskAddNote: TaskAddNote_taskAddNote | null;
 }
 
 export interface TaskAddNoteVariables {

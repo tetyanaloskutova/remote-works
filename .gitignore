@@ -28,7 +28,6 @@ dist/
 *\.egg*
 # data
 /docs/_build/
-/media/
 /node_modules/
 /static/
 /templates/templated_email/compiled/*

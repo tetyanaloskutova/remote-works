@@ -51,7 +51,7 @@ CACHES = {'default': django_cache_url.config()}
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://remote_works:remote_works@localhost:5432/remote_works',
+        default='postgres://mbaassist:mbaassist@localhost:5432/mbaassist',
         conn_max_age=600)}
 
 

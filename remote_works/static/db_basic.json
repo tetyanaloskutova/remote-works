@@ -1,0 +1,93 @@
+[
+{
+  "model": "skill.category",
+  "pk": 1,
+  "fields": {
+    "seo_title": "Analysis help",
+    "seo_description": "",
+    "name": "Analysis help",
+    "slug": "analysis_help",
+    "description": "",
+    "parent": null,
+    "background_image": "",
+    "lft": 1,
+    "rght": 2,
+    "tree_id": 1,
+    "level": 0
+  }
+},
+{
+  "model": "skill.skilltype",
+  "pk": 1,
+  "fields": {
+    "name": "Statistics",
+    "has_variants": false,
+    "is_delivery_required": false,
+    "tax_rate": "standard"
+  }
+},
+{
+  "model": "skill.skill",
+  "pk": 1,
+  "fields": {
+    "seo_title": "linear regression",
+    "seo_description": "Linear regression, logistic regression",
+    "skill_type": 1,
+    "name": "Linear regression",
+    "description": "logistic regression\t<p>Linear regression, logistic regression</p>",
+    "category": 1,
+    "price": {
+      "_type": "Money",
+      "amount": "35.00",
+      "currency": "USD"
+    },
+    "publication_date": null,
+    "is_published": true,
+    "attributes": "{}",
+    "updated_at": "2018-11-05T11:30:13.329Z",
+    "charge_taxes": true,
+    "tax_rate": "standard",
+    "owner_id": 1,
+    "experience_years": 2
+  }
+},
+{
+  "model": "skill.skillvariant",
+  "pk": 223,
+  "fields": {
+    "sku": "546451996",
+    "name": "Visualization",
+    "price_override": {
+      "_type": "Money",
+      "amount": "15.00",
+      "currency": "USD"
+    },
+    "skill": 1,
+    "attributes": "{}",
+    "track_inventory": true,
+    "quantity": 113,
+    "quantity_allocated": 14,
+    "cost_price": {
+      "_type": "Money",
+      "amount": "5.00",
+      "currency": "USD"
+    }
+
+  }
+},
+{
+  "model": "skill.collection",
+  "pk": 1,
+  "fields": {
+    "seo_title": "",
+    "seo_description": "",
+    "name": "Summer collection",
+    "slug": "summer-collection",
+    "background_image": "collection-backgrounds/summer_3Zz9sHf.jpg",
+    "is_published": false,
+    "skills": [
+      1
+    ]
+  }
+}
+]

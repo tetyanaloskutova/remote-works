@@ -169,8 +169,8 @@ def get_in_default_currency(defaults, field, currency):
     return None
 
 
-def create_skills_by_schema(placeholder_dir, create_images):
-    path = os.path.join(settings.PROJECT_ROOT, 'remote_works', 'static', 'db.json')
+def create_skills_by_schema(placeholder_dir, create_images, default_template):
+    path = os.path.join(settings.PROJECT_ROOT, 'remote_works', 'static', default_template)
     with open(path) as f:
         db_items = json.load(f, object_hook=object_hook)
     types = defaultdict(list)
@@ -291,20 +291,21 @@ def create_fake_payment(mock_email_confirmation, task):
 
 
 def create_task_line(task, discounts, taxes):
-    skill = Skill.objects.filter(variants__isnull=False).order_by('?')[0]
-    variant = skill.variants.all()[0]
-    quantity = random.randrange(1, 5)
-    variant.quantity += quantity
-    variant.quantity_allocated += quantity
-    variant.save()
-    return task.lines.create(
-        skill_name=variant.display_skill(),
-        skill_sku=variant.sku,
-        is_delivery_required=variant.is_delivery_required(),
-        quantity=quantity,
-        variant=variant,
-        unit_price=variant.get_price(discounts=discounts, taxes=taxes),
-        tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
+    if Skill.objects.filter(variants__isnull=False).count() > 0:
+        skill = Skill.objects.filter(variants__isnull=False).order_by('?')[0]
+        variant = skill.variants.all()[0]
+        quantity = random.randrange(1, 5)
+        variant.quantity += quantity
+        variant.quantity_allocated += quantity
+        variant.save()
+        return task.lines.create(
+            skill_name=variant.display_skill(),
+            skill_sku=variant.sku,
+            is_delivery_required=variant.is_delivery_required(),
+            quantity=quantity,
+            variant=variant,
+            unit_price=variant.get_price(discounts=discounts, taxes=taxes),
+            tax_rate=get_tax_rate_by_name(variant.skill.tax_rate, taxes))
 
 
 def create_task_lines(task, discounts, taxes, how_many=10):
@@ -350,9 +351,12 @@ def create_fake_task(discounts, taxes):
     task = Task.objects.create(**task_data)
 
     lines = create_task_lines(task, discounts, taxes, random.randrange(1, 5))
+    line_total = 0
+    for line in lines:
+        if line:
+            line_total += line.get_total()
 
-    task.total = sum(
-        [line.get_total() for line in lines], task.delivery_price)
+    task.total = task.delivery_price
     task.save()
 
     create_fake_payment(task=task)
@@ -559,18 +563,19 @@ def create_menus():
     bottom_menu, _ = Menu.objects.get_or_create(
         name=settings.DEFAULT_MENUS['bottom_menu_name'])
     bottom_menu.items.all().delete()
-    collection = Collection.objects.filter(
-        skills__isnull=False).order_by('?')[0]
-    item, _ = bottom_menu.items.get_or_create(
-        name='Collections',
-        collection=collection)
+    if Collection.objects.filter(skills__isnull=False).count() > 0:
+        collection = Collection.objects.filter(
+            skills__isnull=False).order_by('?')[0]
+        item, _ = bottom_menu.items.get_or_create(
+            name='Collections',
+            collection=collection)
 
-    for collection in Collection.objects.filter(
-            skills__isnull=False, background_image__isnull=False):
-        bottom_menu.items.get_or_create(
-            name=collection.name,
-            collection=collection,
-            parent=item)
+        for collection in Collection.objects.filter(
+                skills__isnull=False, background_image__isnull=False):
+            bottom_menu.items.get_or_create(
+                name=collection.name,
+                collection=collection,
+                parent=item)
 
     page = Page.objects.order_by('?')[0]
     bottom_menu.items.get_or_create(

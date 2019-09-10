@@ -43,6 +43,11 @@ class Command(BaseCommand):
             dest='skipsequencereset',
             default=False,
             help='Don\'t reset SQL sequences that are out of sync.')
+        parser.add_argument(
+            '--defaulttemplate',
+            type=str,
+            default='db.json',
+            help='json file with the data to populate the db')
 
     def make_database_faster(self):
         """Sacrifice some of the safeguards of sqlite3 for speed.
@@ -82,13 +87,17 @@ class Command(BaseCommand):
             self.stdout.write(msg)
             add_address_to_admin(credentials['email'])
 
+        default_template = 'db.json'
+        if options['defaulttemplate']:
+            default_template = options['defaulttemplate']
+
         self.make_database_faster()
         create_images = not options['withoutimages']
         for msg in create_delivery_zones():
             self.stdout.write(msg)
         for msg in create_users(20):
             self.stdout.write(msg)
-        create_skills_by_schema(self.placeholders_dir, create_images)
+        create_skills_by_schema(self.placeholders_dir, create_images, default_template)
         self.stdout.write('Created skills')
         for msg in create_skill_sales(5):
             self.stdout.write(msg)

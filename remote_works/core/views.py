@@ -13,6 +13,7 @@ from ..seo.schema.webpage import get_webpage_schema
 
 
 def home(request):
+    print(type(request.site))
     skills = skills_for_homepage(
         request.user,
         request.site.settings.homepage_collection)[:8]
